@@ -1,3 +1,7 @@
 .git/
 .gitee/
 .vscode/
+
+# native
+native/build/
+native/.vscode/

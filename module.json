@@ -1,0 +1,17 @@
+{
+  "cjc_version": "0.29.1",
+  "organization": "cangjie",
+  "name": "cjqt",
+  "description": "nothing here",
+  "version": "0.0.1",
+  "requires": {},
+  "package_requires": {},
+  "foreign_requires": {
+    "nativeQt": {
+      "path": "./native/build",
+      "export": []
+    }
+  },
+  "output_type": "executable",
+  "command_option": ""
+}

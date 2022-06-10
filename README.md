@@ -14,7 +14,9 @@
 
 ## <img alt="" src="./doc/assets/readme-icon-introduction.png" style="display: inline-block;" width=3%/>介绍
 
-介绍库或者框架符合的标准，应用领域，解决什么问题。有哪些主要的特点，与同类库相比有哪些优点。
+Qt是一个跨平台的C++图形开发框架，是目前主流的跨平台GUI库之一。
+
+CjQt是Qt的仓颉语言绑定，提供Qt类和函数的API。
 
 ### 特性
 
@@ -62,8 +64,19 @@
 │   ├── design.md  
 │   ├── proposal.md
 │   └── xxx_lib.md 
+├── native
+│   ├── src
+│   │   ├── application.cpp
+│   │   ├── main_window.cpp
+│   │   ├── url.cpp
+│   │   └── qml_application_engine.cpp
+│   └── CMakeLists.txt
 ├── src
-│   └── Template.cj
+│   ├── qt
+│   │   ├── q_application.cj
+│   │   ├── q_qml_application_engine.cj
+│   │   └── q_url.cj
+│   └── main.cj
 └── test   
     ├── HLT
     ├── LLT
@@ -71,6 +84,7 @@
 ```
 
 - `doc`是库的设计文档、提案、库的使用文档
+- `native`是C语言绑定QT库源码目录
 - `src`是库源码目录
 - `test`是存放测试用例，包括HLT用例、LLT 用例和UT用例
 
@@ -78,48 +92,24 @@
 
 主要是核心类和成员函数说明
 
-#### class xxx
+#### class QApplication
 
-##### func yyy
-
-成员函数功能描述
-
-```cangjie
-func yyy(): Unit
-```
-
-##### func zzz
+##### func exec
 
 成员函数功能描述
 
 ```cangjie
-func zzz(): Unit
+func exec(): Bool
 ```
 
-#### class xxx
+#### class QQmlApplicationAngine
 
-##### func yyy
+##### func loadData
 
 成员函数功能描述
 
 ```cangjie
-func yyy(): Unit
-```
-
-##### func zzz
-
-成员函数功能描述
-
-```cangjie
-func zzz(): Unit
-```
-
-#### func xxxx
-
-Top level函数功能描述
-
-```cangjie
-func xxxx(): Unit
+func loadData(data: String): Unit
 ```
 
 ## <img alt="" src="./doc/assets/readme-icon-compile.png" style="display: inline-block;" width=3%/>编译执行
@@ -137,15 +127,45 @@ cpm build
 
 示例描述
 
-```cangjie
-import xxx.*
+创建hello.qml文件
 
+```qml
+import QtQuick 2.2
+import QtQuick.Controls 1.4
+
+ApplicationWindow {
+    id: app
+    title: "CJQT QRC Example"
+    width: 600; height: 400
+    color: "lightgray"
+    Component.onCompleted: visible = true
+
+    Text {
+        text: "Hello CJQT!\nbinding by cangjie"
+        y: 30
+        anchors.horizontalCenter: app.contentItem.horizontalCenter
+        font.pointSize: 24; font.bold: true
+    }
+}
+```
+创建main.cj文件
+```cangjie
+import qt.*
+
+main() {
+    let app = QApplication()
+    let engine = QQmlApplicationAngine()
+    engine.loadUrl("/home/wathinst/cjProject/qt/src/hello.qml")
+    app.exec()
+    engine.delete()
+    app.delete()
+}
 ```
 
 执行结果如下：
 
 ```shell
-xxx
+./bin/main
 ```
 
 
