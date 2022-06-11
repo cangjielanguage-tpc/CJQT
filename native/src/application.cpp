@@ -12,18 +12,20 @@ namespace
 
 extern "C"
 {
-
 	long nativeApplicationCreate()
 	{
 		int argc = 0;
 		char *argv[0];
 		register_meta_types();
-		return reinterpret_cast<long>(new QApplication(argc, argv));
+		QApplication *app = new QApplication(argc, argv);
+		return reinterpret_cast<long>(app);
 	}
 
 	long nativeApplicationCreateWithArg(int argc, char *argv[])
 	{
-		return reinterpret_cast<long>(new QApplication(argc, argv));
+		register_meta_types();
+		QApplication *app = new QApplication(argc, argv);
+		return reinterpret_cast<long>(app);
 	}
 
 	bool nativeApplicationExec(long ptr)

@@ -88,30 +88,6 @@ CjQt是Qt的仓颉语言绑定，提供Qt类和函数的API。
 - `src`是库源码目录
 - `test`是存放测试用例，包括HLT用例、LLT 用例和UT用例
 
-### 接口说明
-
-主要是核心类和成员函数说明
-
-#### class QApplication
-
-##### func exec
-
-成员函数功能描述
-
-```cangjie
-func exec(): Bool
-```
-
-#### class QQmlApplicationAngine
-
-##### func loadData
-
-成员函数功能描述
-
-```cangjie
-func loadData(data: String): Unit
-```
-
 ## <img alt="" src="./doc/assets/readme-icon-compile.png" style="display: inline-block;" width=3%/>编译执行
 
 ### 编译
@@ -119,13 +95,41 @@ func loadData(data: String): Unit
 编译描述和具体shell命令
 
 ```shell
+./native.make.sh
 cpm update
 cpm build
 ```
 
-### xx示例
+### Qt5示例
 
-示例描述
+创建main.cj文件
+```cangjie
+import qt.*
+
+main() {
+    let app = QApplication()
+    let win = QMainWindow()
+    win.resize(300, 200)
+    win.show()
+    app.exec()
+    win.delete()
+    app.delete()
+}
+```
+
+执行命令如下：
+
+```shell
+./bin/main
+```
+
+执行效果：
+
+<p align="center">
+<img src="./doc/assets/qt_demo.png" width="30%" >
+</p>
+
+### QML示例
 
 创建hello.qml文件
 
@@ -155,23 +159,27 @@ import qt.*
 main() {
     let app = QApplication()
     let engine = QQmlApplicationAngine()
-    engine.loadUrl("/home/wathinst/cjProject/qt/src/hello.qml")
+    engine.loadUrl("./src/hello.qml")
     app.exec()
     engine.delete()
     app.delete()
 }
 ```
 
-执行结果如下：
+执行命令如下：
 
 ```shell
 ./bin/main
 ```
 
+执行效果：
 
+<p align="center">
+<img src="./doc/assets/qml_demo.png" width="30%" >
+</p>
 
 ## <img alt="" src="./doc/assets/readme-icon-contribute.png" style="display: inline-block;" width=3%/>参与贡献
 
 主要写参与贡献的人以及个人主页链接
 
-[@chinesebear](https://gitee.com/chinesebear)
+[@chinesebear](https://gitee.com/chinesebear) [@wathinst](https://gitee.com/wathinst)

@@ -5,3 +5,6 @@
 # native
 native/build/
 native/.vscode/
+
+#log
+log.*
