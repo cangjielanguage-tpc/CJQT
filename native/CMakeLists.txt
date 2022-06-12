@@ -22,6 +22,7 @@ link_directories(${GTK3_LIBRARY_DIRS})
 
 add_library(nativeQt SHARED 
         ./src/application.cpp
+        ./src/widget.cpp
         ./src/main_window.cpp
         ./src/qml_application_engine.cpp
         ./src/url.cpp

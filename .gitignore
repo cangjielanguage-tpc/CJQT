@@ -2,6 +2,9 @@
 .gitee/
 .vscode/
 
+build/
+bin/
+
 # native
 native/build/
 native/.vscode/

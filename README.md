@@ -16,27 +16,134 @@
 
 Qt是一个跨平台的C++图形开发框架，是目前主流的跨平台GUI库之一。
 
-CjQt是Qt的仓颉语言绑定，提供Qt类和函数的API。
-
-### 特性
-
-- 🚀 特性1
-
-- 🚀 特性2
-
-- 💪 特性3
-
-- 🛠️ 特性4
-
-- 🌍 特性5
-
-- 💡  特性6
+CjQt是Qt的仓颉语言绑定，提供仓颉语言风格的Qt类和函数的API封装。
 
 ### 路线
 
 <p align="center">
 <img src="./doc/assets/milestone.png" width="100%" >
 </p>
+
+### 当前进度
+
+```
+QWidgets:
+
+QAbstractButton           ░░░░░░░░░░         QAbstractGraphicsShapeItem   ░░░░░░░░░░
+QAbstractItemDelegate     ░░░░░░░░░░         QAbstractItemView            ░░░░░░░░░░    
+QAbstractScrollArea       ░░░░░░░░░░         QAbstractSlider              ░░░░░░░░░░    
+QAbstractSpinBox          ░░░░░░░░░░         QAccessibleWidget            ░░░░░░░░░░
+QAction                   ░░░░░░░░░░         QActionGroup                 ░░░░░░░░░░
+QApplication              ▓░░░░░░░░░         QBoxLayout                   ░░░░░░░░░░
+QButtonGroup              ░░░░░░░░░░         QCalendarWidget              ░░░░░░░░░░
+QCheckBox                 ░░░░░░░░░░         QColorDialog                 ░░░░░░░░░░
+QColormap                 ░░░░░░░░░░         QColumnView                  ░░░░░░░░░░
+QComboBox                 ░░░░░░░░░░         QCommandLinkButton           ░░░░░░░░░░
+QCommonStyle              ░░░░░░░░░░         QDateEdit                    ░░░░░░░░░░
+QDateTimeEdit             ░░░░░░░░░░         QDial                        ░░░░░░░░░░
+QDialog                   ░░░░░░░░░░         QDialogButtonBox             ░░░░░░░░░░
+QDockWidget               ░░░░░░░░░░         QDoubleSpinBox               ░░░░░░░░░░
+QErrorMessage             ░░░░░░░░░░         QFileDialog                  ░░░░░░░░░░
+QFileIconProvider         ░░░░░░░░░░         QFileSystemModel             ░░░░░░░░░░
+QFocusFrame               ░░░░░░░░░░         QFontComboBox                ░░░░░░░░░░
+QFontDialog               ░░░░░░░░░░         QFormLayout                  ░░░░░░░░░░
+QFrame                    ░░░░░░░░░░         QGesture                     ░░░░░░░░░░
+QGestureEvent             ░░░░░░░░░░         QGestureRecognizer           ░░░░░░░░░░
+QGraphicsAnchor           ░░░░░░░░░░         QGraphicsAnchorLayout        ░░░░░░░░░░
+QGraphicsBlur             ░░░░░░░░░░         QGraphicsColorizeEffect      ░░░░░░░░░░
+QGraphicsDropShadowEffect ░░░░░░░░░░         QGraphicsEffect              ░░░░░░░░░░
+QGraphicsEllipseItem      ░░░░░░░░░░         QGraphicsGridLayout          ░░░░░░░░░░
+QGraphicsItem             ░░░░░░░░░░         QGraphicsItemGroup           ░░░░░░░░░░
+QGraphicsLayout           ░░░░░░░░░░         QGraphicsLayoutItem          ░░░░░░░░░░
+QGraphicsLineItem         ░░░░░░░░░░         QGraphicsLinearLayout        ░░░░░░░░░░
+QGraphicsObject           ░░░░░░░░░░         QGraphicsOpacityEffect       ░░░░░░░░░░
+QGraphicsPathItem         ░░░░░░░░░░         QGraphicsPixmapItem          ░░░░░░░░░░
+QGraphicsPolygonItem      ░░░░░░░░░░         QGraphicsProxyWidget         ░░░░░░░░░░
+QGraphicsRectItem         ░░░░░░░░░░         QGraphicsRotation            ░░░░░░░░░░
+QGraphicsScale            ░░░░░░░░░░         QGraphicsScene               ░░░░░░░░░░
+QGraphicsSceneContextMenuEvent ░░░░░░░░░░    QGraphicsSceneDragDropEvent  ░░░░░░░░░░
+QGraphicsSceneEvent       ░░░░░░░░░░         QGraphicsSceneHelpEvent      ░░░░░░░░░░
+QGraphicsSceneHoverEvent  ░░░░░░░░░░         QGraphicsSceneMouseEvent     ░░░░░░░░░░
+QGraphicsSceneMoveEvent   ░░░░░░░░░░         QGraphicsSceneResizeEvent    ░░░░░░░░░░
+QGraphicsSceneWheelEvent  ░░░░░░░░░░         QGraphicsSceneWheelEvent     ░░░░░░░░░░
+QGraphicsTextItem         ░░░░░░░░░░         QGraphicsTransform           ░░░░░░░░░░
+QGraphicsView             ░░░░░░░░░░         QGraphicsWidget              ░░░░░░░░░░
+QGridLayout               ░░░░░░░░░░         QGroupBox                    ░░░░░░░░░░
+QHBoxLayout               ░░░░░░░░░░         QHeaderView                  ░░░░░░░░░░
+QInputDialog              ░░░░░░░░░░         QItemDelegate                ░░░░░░░░░░
+QItemEditorCreator        ░░░░░░░░░░         QItemEditorCreatorBase       ░░░░░░░░░░
+QItemEditorFactory        ░░░░░░░░░░         QKeyEventTransition          ░░░░░░░░░░
+QKeySequenceEdit          ░░░░░░░░░░         QLCDNumber                   ░░░░░░░░░░
+QLabel                    ░░░░░░░░░░         QLayout                      ░░░░░░░░░░
+QLayoutItem               ░░░░░░░░░░         QLineEdit                    ░░░░░░░░░░
+QListView                 ░░░░░░░░░░         QListWidget                  ░░░░░░░░░░
+QListWidgetItem           ░░░░░░░░░░         QMainWindow                  ▓░░░░░░░░░
+QMdiArea                  ░░░░░░░░░░         QMdiSubWindow                ░░░░░░░░░░
+QMenu                     ░░░░░░░░░░         QMenuBar                     ░░░░░░░░░░
+QMessageBox               ░░░░░░░░░░         QMouseEventTransition        ░░░░░░░░░░
+QOpenGLWidget             ░░░░░░░░░░         QPanGesture                  ░░░░░░░░░░
+QPinchGesture             ░░░░░░░░░░         QPlainTextDocumentLayout     ░░░░░░░░░░
+QPlainTextEdit            ░░░░░░░░░░         QProgressBar                 ░░░░░░░░░░
+QProgressDialog           ░░░░░░░░░░         QProxyStyle                  ░░░░░░░░░░
+QPushButton               ░░░░░░░░░░         QRadioButton                 ░░░░░░░░░░
+QRubberBand               ░░░░░░░░░░         QScrollArea                  ░░░░░░░░░░
+QScrollBar                ░░░░░░░░░░         QScroller                    ░░░░░░░░░░
+QScrollerProperties       ░░░░░░░░░░         QShortcut                    ░░░░░░░░░░
+QSizeGrip                 ░░░░░░░░░░         QSizePolicy                  ░░░░░░░░░░
+QSlider                   ░░░░░░░░░░         QSpacerItem                  ░░░░░░░░░░
+QSpinBox                  ░░░░░░░░░░         QSplashScreen                ░░░░░░░░░░
+QSplitter                 ░░░░░░░░░░         QSplitterHandle              ░░░░░░░░░░
+QStackedLayout            ░░░░░░░░░░         QStackedWidget               ░░░░░░░░░░
+QStandardItemEditorCreator ░░░░░░░░░░        QStatusBar                   ░░░░░░░░░░
+QStyle                    ░░░░░░░░░░         QStyleFactory                ░░░░░░░░░░
+QStyleHintReturn          ░░░░░░░░░░         QStyleHintReturnMask         ░░░░░░░░░░
+QStyleHintReturnVariant   ░░░░░░░░░░         QStyleOption                 ░░░░░░░░░░
+QStyleOptionButton        ░░░░░░░░░░         QStyleOptionComboBox         ░░░░░░░░░░
+QStyleOptionComplex       ░░░░░░░░░░         QStyleOptionDockWidget       ░░░░░░░░░░
+QStyleOptionFocusRect     ░░░░░░░░░░         QStyleOptionFrame            ░░░░░░░░░░
+QStyleOptionGraphicsItem  ░░░░░░░░░░         QStyleOptionGroupBox         ░░░░░░░░░░
+QStyleOptionHeader        ░░░░░░░░░░         QStyleOptionMenuItem         ░░░░░░░░░░
+QStyleOptionProgressBar   ░░░░░░░░░░         QStyleOptionRubberBand       ░░░░░░░░░░
+QStyleOptionSizeGrip      ░░░░░░░░░░         QStyleOptionSlider           ░░░░░░░░░░
+QStyleOptionSpinBox       ░░░░░░░░░░         QStyleOptionTab              ░░░░░░░░░░
+QStyleOptionTabBarBase    ░░░░░░░░░░         QStyleOptionTabWidgetFrame   ░░░░░░░░░░
+QStyleOptionTitleBar      ░░░░░░░░░░         QStyleOptionToolBar          ░░░░░░░░░░
+QStyleOptionToolBox       ░░░░░░░░░░         QStyleOptionToolButton       ░░░░░░░░░░
+QStyleOptionViewItem      ░░░░░░░░░░         QStylePainter                ░░░░░░░░░░
+QStylePlugin              ░░░░░░░░░░         QStyledItemDelegate          ░░░░░░░░░░
+QSwipeGesture             ░░░░░░░░░░         QSystemTrayIcon              ░░░░░░░░░░
+QTabBar                   ░░░░░░░░░░         QTabWidget                   ░░░░░░░░░░
+QTableView                ░░░░░░░░░░         QTableWidget                 ░░░░░░░░░░
+QTableWidgetItem          ░░░░░░░░░░         QTableWidgetSelectionRange   ░░░░░░░░░░
+QTapAndHoldGesture        ░░░░░░░░░░         QTapGesture                  ░░░░░░░░░░
+QTextBrowser              ░░░░░░░░░░         QTextEdit                    ░░░░░░░░░░
+QTileRules                ░░░░░░░░░░         QTimeEdit                    ░░░░░░░░░░
+QToolBar                  ░░░░░░░░░░         QToolBox                     ░░░░░░░░░░
+QToolButton               ░░░░░░░░░░         QToolTip                     ░░░░░░░░░░
+QTreeView                 ░░░░░░░░░░         QTreeWidget                  ░░░░░░░░░░
+QTreeWidgetItem           ░░░░░░░░░░         QTreeWidgetItemIterator      ░░░░░░░░░░
+QUndoCommand              ░░░░░░░░░░         QUndoGroup                   ░░░░░░░░░░
+QUndoStack                ░░░░░░░░░░         QUndoView                    ░░░░░░░░░░
+QVBoxLayout               ░░░░░░░░░░         QWhatsThis                   ░░░░░░░░░░
+QWidget                   ▓░░░░░░░░░         QWidgetAction                ░░░░░░░░░░
+QWidgetItem               ░░░░░░░░░░         QWizard                      ░░░░░░░░░░
+QWizardPage               ░░░░░░░░░░
+
+QCode:
+
+QBuffer                   ░░░░░░░░░░         QChar                        ░░░░░░░░░░
+QDate                     ░░░░░░░░░░         QDateTime                    ░░░░░░░░░░
+QDir                      ░░░░░░░░░░         QEvent                       ░░░░░░░░░░
+QEventLoop                ░░░░░░░░░░         QFile                        ░░░░░░░░░░
+
+QGui:
+
+QBitmap                   ░░░░░░░░░░         QCloseEvent                  ░░░░░░░░░░
+QColor                    ░░░░░░░░░░         QFocusEvent                  ░░░░░░░░░░
+QFont                     ░░░░░░░░░░         QIcon                        ░░░░░░░░░░
+QImage                    ░░░░░░░░░░         QKeyEvent                    ░░░░░░░░░░
+
+```
 
 
 
@@ -47,12 +154,6 @@ CjQt是Qt的仓颉语言绑定，提供Qt类和函数的API。
 <p align="center">
 <img src="./doc/assets/framework.png" width="60%" >
 </p>
-
-- 功能1介绍
-
-- 功能2介绍
-
-- 功能3介绍
 
 ### 源码目录
 
@@ -120,7 +221,7 @@ main() {
 执行命令如下：
 
 ```shell
-./bin/main
+./run.sh
 ```
 
 执行效果：
@@ -169,7 +270,7 @@ main() {
 执行命令如下：
 
 ```shell
-./bin/main
+./run.sh
 ```
 
 执行效果：
@@ -183,3 +284,20 @@ main() {
 主要写参与贡献的人以及个人主页链接
 
 [@chinesebear](https://gitee.com/chinesebear) [@wathinst](https://gitee.com/wathinst)
+
+<style>
+ 
+.container {
+  width: 30%;
+  background-color: #888888;
+}
+ 
+.skills {
+  text-align: right;
+  padding-right: 12px;
+  line-height: 20px;
+  color: white;
+  background-color: #2196F3;
+}
+
+</style>

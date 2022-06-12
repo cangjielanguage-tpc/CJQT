@@ -9,6 +9,7 @@ func testQt() {
     let app = QApplication()
     let win = QMainWindow()
     win.resize(300, 200)
+    win.setWindowTitle("CJQT Demo")
     win.show()
 
     app.exec()
