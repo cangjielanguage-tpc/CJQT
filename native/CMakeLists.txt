@@ -26,6 +26,9 @@ add_library(nativeQt SHARED
         ./src/main_window.cpp
         ./src/qml_application_engine.cpp
         ./src/url.cpp
+        ./src/gui/mouse_event.cpp
+        ./src/gui/key_event.cpp
+        ./src/gui/painter_event.cpp
 )
 
 target_link_libraries(nativeQt PRIVATE Qt5::Core Qt5::Widgets Qt5::Qml)

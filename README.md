@@ -141,7 +141,8 @@ QGui:
 QBitmap                   ░░░░░░░░░░         QCloseEvent                  ░░░░░░░░░░
 QColor                    ░░░░░░░░░░         QFocusEvent                  ░░░░░░░░░░
 QFont                     ░░░░░░░░░░         QIcon                        ░░░░░░░░░░
-QImage                    ░░░░░░░░░░         QKeyEvent                    ░░░░░░░░░░
+QImage                    ░░░░░░░░░░         QKeyEvent                    ▓▓▓▓▓▓░░░░
+QMouseEvent               ▓▓▓▓▓▓▓░░░         QPaintEvent                  ▓▓▓▓▓▓░░░░
 
 ```
 
