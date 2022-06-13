@@ -137,9 +137,10 @@ public open class QWidget {
         }
     }
     
-    public func setKeyPressEvent(callback: (QKeyEvent) -> Unit) {
+    public func setKeyPressEvent() {
         let cb: CFunc<(Int64) -> Unit> = {
             eventPtr => let event = QPaintersEvent(eventPtr)
+            println("key 1")
         }
         unsafe {
             nativeWidgetSetKeyPressEvent(ptr, cb)

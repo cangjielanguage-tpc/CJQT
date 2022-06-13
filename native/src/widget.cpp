@@ -7,7 +7,7 @@ extern "C"
 
     long nativeWidgetCreate()
     {
-        CjQtWidget *widget = new CjQtWidget(nullptr);
+        QWidget *widget = new QWidget(nullptr);
         widget->show();
         widget->hide();
         return reinterpret_cast<long>(widget);
@@ -15,7 +15,7 @@ extern "C"
 
     void nativeWidgetDelete(long ptr)
     {
-        CjQtWidget *instance = reinterpret_cast<CjQtWidget *>(static_cast<uintptr_t>(ptr));
+        QWidget *instance = reinterpret_cast<QWidget *>(static_cast<uintptr_t>(ptr));
         delete instance;
     }
 

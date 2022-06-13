@@ -5,7 +5,7 @@ BUILD_PATH=$NATIVE_PATH/build
 
 if [ ! -d "$BUILD_PATH" ];then
     echo "mkdir $BUILD_PATH"
-    mkdir $PWD/build
+    mkdir $BUILD_PATH
 fi
 
 cd $BUILD_PATH

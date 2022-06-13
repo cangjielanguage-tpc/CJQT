@@ -1,5 +1,5 @@
-#ifndef __NATIVE_WIDGET_H_
-#define __NATIVE_WIDGET_H_
+#ifndef __BASE_WIDGET_H_
+#define __BASE_WIDGET_H_
 
 #include <QWidget>
 #include <QMouseEvent>
@@ -8,11 +8,12 @@
 
 typedef void (*nativeEventCallback)(long);
 
-class CjQtWidget : public QWidget
+template <typename T>
+class BaseWidget : public T
 {
-    //Q_OBJECT
+    // Q_OBJECT
 public:
-    CjQtWidget(QWidget *parent): QWidget(parent){}
+    BaseWidget(T *parent = nullptr) : T(parent) {}
     nativeEventCallback paintEventCallback;
     nativeEventCallback mousePressEventCallback;
     nativeEventCallback mouseReleaseEventCallback;
@@ -22,24 +23,46 @@ public:
 protected:
     void paintEvent(QPaintEvent *event)
     {
-        (*paintEventCallback)(reinterpret_cast<long>(event));
+        if (paintEventCallback)
+        {
+            paintEventCallback(reinterpret_cast<long>(event));
+        }
     }
     void mousePressEvent(QMouseEvent *event)
     {
-        (*mousePressEventCallback)(reinterpret_cast<long>(event));
+        if (mousePressEventCallback)
+        {
+            mousePressEventCallback(reinterpret_cast<long>(event));
+        }
     }
     void mouseReleaseEvent(QMouseEvent *event)
     {
-        (*mouseReleaseEventCallback)(reinterpret_cast<long>(event));
+        if (mouseReleaseEventCallback)
+        {
+            mouseReleaseEventCallback(reinterpret_cast<long>(event));
+        }
     }
     void mouseMoveEvent(QMouseEvent *event)
     {
-        (*mouseMoveEventCallback)(reinterpret_cast<long>(event));
+        if (mouseMoveEventCallback)
+        {
+            mouseMoveEventCallback(reinterpret_cast<long>(event));
+        }
     }
     void keyPressEvent(QKeyEvent *event)
     {
-        (*keyPressEventCallback)(reinterpret_cast<long>(event));
+        if (keyPressEventCallback)
+        {
+            keyPressEventCallback(reinterpret_cast<long>(event));
+        }
     }
+};
+
+class CjQtWidget : public BaseWidget<QWidget>
+{
+    Q_OBJECT
+public:
+    CjQtWidget(QWidget *parent = nullptr) : BaseWidget<QWidget>(parent) {}
 };
 
 #endif
