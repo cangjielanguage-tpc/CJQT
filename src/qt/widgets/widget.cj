@@ -1,9 +1,9 @@
-package qt
+package qt.widgets
 
 from std import ffi.c.CString
 import qt.gui.*
 
-foreign func nativeWidgetCreate(appPtr: Int64): Int64
+foreign func nativeWidgetCreate(appPtr: Int64, parentPtr: Int64): Int64
 foreign func nativeWidgetResize(ptr: Int64, w: Int32, h: Int32): Unit
 foreign func nativeWidgetShow(ptr: Int64): Unit
 foreign func nativeWidgetHide(ptr: Int64): Unit
@@ -29,7 +29,13 @@ public open class QWidget {
 
     public init() {
         ptr = unsafe {
-            nativeWidgetCreate(QApplication.ptr)
+            nativeWidgetCreate(QApplication.ptr, 0)
+        }
+    }
+
+    public init(parent: QWidget) {
+        ptr = unsafe {
+            nativeWidgetCreate(QApplication.ptr, parent.ptr)
         }
     }
 

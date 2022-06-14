@@ -1,4 +1,4 @@
-package qt
+package qt.widgets
 
 foreign func nativeApplicationCreate(): Int64
 foreign func nativeApplicationExec(ptr: Int64): Bool

@@ -1,4 +1,6 @@
-package qt
+package qt.widgets
+
+import qt.code.*
 
 from std import ffi.c.CString
 
@@ -8,7 +10,7 @@ foreign func nativeQmlApplicationAngineLoadUrl(ptr: Int64, urlPtr: Int64): Unit
 foreign func nativeQmlApplicationAngineDelete(ptr: Int64): Unit
 
 public class QQmlApplicationAngine {
-    let ptr: Int64
+    public let ptr: Int64
     public init() {
         ptr = unsafe {
             nativeQmlApplicationAngineCreate()

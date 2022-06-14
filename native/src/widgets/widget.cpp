@@ -5,11 +5,18 @@ extern "C"
 
     // QWidget
 
-    long nativeWidgetCreate(long appPtr)
+    long nativeWidgetCreate(long appPtr, long parentPtr)
     {
-        CjQtWidget *widget = new CjQtWidget();
-        widget->show();
-        widget->hide();
+        CjQtWidget *widget;
+        if (parentPtr == 0L){
+            widget = new CjQtWidget();
+            widget->show();
+            widget->hide();
+        } else
+        {
+            QWidget *parent = reinterpret_cast<QWidget *>(static_cast<uintptr_t>(parentPtr));
+            widget = new CjQtWidget(parent);
+        }
         return reinterpret_cast<long>(widget);
     }
 

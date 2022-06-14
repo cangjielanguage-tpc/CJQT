@@ -21,11 +21,12 @@ include_directories(${GTK3_INCLUDE_DIRS})
 link_directories(${GTK3_LIBRARY_DIRS})
 
 add_library(nativeQt SHARED 
-        ./src/application.cpp
-        ./src/widget.cpp
-        ./src/main_window.cpp
-        ./src/qml_application_engine.cpp
-        ./src/url.cpp
+        ./src/widgets/application.cpp
+        ./src/widgets/widget.cpp
+        ./src/widgets/main_window.cpp
+        ./src/widgets/qml_application_engine.cpp
+        ./src/widgets/label.cpp
+        ./src/code/url.cpp
         ./src/gui/mouse_event.cpp
         ./src/gui/key_event.cpp
         ./src/gui/painter_event.cpp

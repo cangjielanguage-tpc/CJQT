@@ -1,4 +1,4 @@
-package qt
+package qt.code
 
 from std import ffi.c.CString
 
@@ -8,7 +8,7 @@ foreign func nativeUrlIsValid(ptr: Int64): Bool
 foreign func nativeUrlDelete(ptr: Int64): Unit
 
 public class QUrl {
-    let ptr: Int64
+    public let ptr: Int64
 
     public init(url: String) {
         ptr = unsafe {
@@ -22,7 +22,7 @@ public class QUrl {
         }
     }
 
-    public func toString():String {
+    public func toString(): String {
         unsafe {
             nativeUrlToString(ptr).toString()
         }
