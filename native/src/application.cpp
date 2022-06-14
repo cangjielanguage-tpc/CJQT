@@ -1,4 +1,8 @@
 #include <QApplication>
+#include "widget.h"
+
+#include <sys/types.h>
+#include <unistd.h>
 
 namespace
 {

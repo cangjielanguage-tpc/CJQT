@@ -5,20 +5,20 @@ foreign func nativeApplicationExec(ptr: Int64): Bool
 foreign func nativeApplicationDelete(ptr: Int64): Unit
 
 public class QApplication {
-    let ptr: Int64
+    static var ptr: Int64 = 0
     public init() {
         ptr = unsafe {
             nativeApplicationCreate()
         }
     }
 
-    public func exec(): Bool {
+    public static func exec(): Bool {
         return unsafe {
             nativeApplicationExec(ptr)
         }
     }
 
-    public func delete() {
+    public static func delete() {
         unsafe {
             nativeApplicationDelete(ptr)
         }

@@ -2,28 +2,30 @@ import qt.*
 
 main() {
     testQt()
-    // testQml()
+    //testQml()
 }
 
 func testQt() {
-    let app = QApplication()
-    let win = QWidget()
+    QApplication()
+    let win = QMainWindow()
     win.setWindowTitle("CJQT Demo")
+    win.resize(400, 500)
+
     win.show()
 
-    app.exec()
+    QApplication.exec()
 
     win.delete()
-    app.delete()
+    QApplication.delete()
 }
 
 func testQml() {
-    let app = QApplication()
+    QApplication()
     let engine = QQmlApplicationAngine()
     engine.loadUrl("./src/hello.qml")
 
-    app.exec()
+    QApplication.exec()
 
     engine.delete()
-    app.delete()
+    QApplication.delete()
 }

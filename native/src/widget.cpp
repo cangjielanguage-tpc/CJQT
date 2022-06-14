@@ -5,9 +5,9 @@ extern "C"
 
     // QWidget
 
-    long nativeWidgetCreate()
+    long nativeWidgetCreate(long appPtr)
     {
-        QWidget *widget = new QWidget(nullptr);
+        CjQtWidget *widget = new CjQtWidget();
         widget->show();
         widget->hide();
         return reinterpret_cast<long>(widget);
@@ -15,32 +15,32 @@ extern "C"
 
     void nativeWidgetDelete(long ptr)
     {
-        QWidget *instance = reinterpret_cast<QWidget *>(static_cast<uintptr_t>(ptr));
+        CjQtWidget *instance = reinterpret_cast<CjQtWidget *>(static_cast<uintptr_t>(ptr));
         delete instance;
     }
 
     void nativeWidgetSetPaintEvent(long ptr, nativeEventCallback callback){
-        CjQtWidget *instance = reinterpret_cast<CjQtWidget *>(static_cast<uintptr_t>(ptr));
+        BaseWidget<QWidget> *instance = reinterpret_cast<BaseWidget<QWidget> *>(static_cast<uintptr_t>(ptr));
         instance->paintEventCallback = callback;
     }
 
     void nativeWidgetSetMousePressEvent(long ptr, nativeEventCallback callback){
-        CjQtWidget *instance = reinterpret_cast<CjQtWidget *>(static_cast<uintptr_t>(ptr));
+        BaseWidget<QWidget> *instance = reinterpret_cast<BaseWidget<QWidget> *>(static_cast<uintptr_t>(ptr));
         instance->mousePressEventCallback = callback;
     }
 
     void nativeWidgetSetMouseReleaseEvent(long ptr, nativeEventCallback callback){
-        CjQtWidget *instance = reinterpret_cast<CjQtWidget *>(static_cast<uintptr_t>(ptr));
+        BaseWidget<QWidget> *instance = reinterpret_cast<BaseWidget<QWidget> *>(static_cast<uintptr_t>(ptr));
         instance->mouseReleaseEventCallback = callback;
     }
 
     void nativeWidgetSetMouseMoveEvent(long ptr, nativeEventCallback callback){
-        CjQtWidget *instance = reinterpret_cast<CjQtWidget *>(static_cast<uintptr_t>(ptr));
+        BaseWidget<QWidget> *instance = reinterpret_cast<BaseWidget<QWidget> *>(static_cast<uintptr_t>(ptr));
         instance->mouseMoveEventCallback = callback;
     }
 
     void nativeWidgetSetKeyPressEvent(long ptr, nativeEventCallback callback){
-        CjQtWidget *instance = reinterpret_cast<CjQtWidget *>(static_cast<uintptr_t>(ptr));
+        BaseWidget<QWidget> *instance = reinterpret_cast<BaseWidget<QWidget> *>(static_cast<uintptr_t>(ptr));
         instance->keyPressEventCallback = callback;
     }
 

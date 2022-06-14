@@ -3,7 +3,7 @@ package qt
 from std import ffi.c.CString
 import qt.gui.*
 
-foreign func nativeWidgetCreate(): Int64
+foreign func nativeWidgetCreate(appPtr: Int64): Int64
 foreign func nativeWidgetResize(ptr: Int64, w: Int32, h: Int32): Unit
 foreign func nativeWidgetShow(ptr: Int64): Unit
 foreign func nativeWidgetHide(ptr: Int64): Unit
@@ -25,9 +25,11 @@ foreign func nativeWidgetSetKeyPressEvent(ptr: Int64, callback: CFunc<(Int64) ->
 public open class QWidget {
     let ptr: Int64
 
+    static var keyEventCallback: (QKeyEvent) -> Unit = {event => }
+
     public init() {
         ptr = unsafe {
-            nativeWidgetCreate()
+            nativeWidgetCreate(QApplication.ptr)
         }
     }
 
@@ -136,11 +138,13 @@ public open class QWidget {
             nativeWidgetSetMouseMoveEvent(ptr, cb)
         }
     }
-    
-    public func setKeyPressEvent() {
+
+    public func setKeyPressEvent(callback: (QKeyEvent) -> Unit) {
+        QWidget.keyEventCallback = callback
         let cb: CFunc<(Int64) -> Unit> = {
-            eventPtr => let event = QPaintersEvent(eventPtr)
-            println("key 1")
+            eventPtr =>
+            let event = QKeyEvent(eventPtr)
+            QWidget.keyEventCallback(event)
         }
         unsafe {
             nativeWidgetSetKeyPressEvent(ptr, cb)
