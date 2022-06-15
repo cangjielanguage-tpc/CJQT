@@ -14,30 +14,47 @@ class BaseWidget : public T
     // Q_OBJECT
 public:
     BaseWidget(QWidget *parent = nullptr) : T(parent) {}
-    nativeEventCallback paintEventCallback;
-    nativeEventCallback mousePressEventCallback;
-    nativeEventCallback mouseReleaseEventCallback;
-    nativeEventCallback mouseMoveEventCallback;
-    nativeEventCallback keyPressEventCallback;
+    nativeEventCallback paintEventCallback = nullptr;
+    nativeEventCallback mousePressEventCallback = nullptr;
+    nativeEventCallback mouseReleaseEventCallback = nullptr;
+    nativeEventCallback mouseMoveEventCallback = nullptr;
+    nativeEventCallback keyPressEventCallback = nullptr;
 
 protected:
     void paintEvent(QPaintEvent *event)
     {
+        if (paintEventCallback != nullptr)
+        {
+            paintEventCallback(reinterpret_cast<long>(event));
+        }
+        else
+        {
+            T::paintEvent(event);
+        }
     }
 
     void mousePressEvent(QMouseEvent *event)
     {
-        
+        if (mousePressEventCallback != nullptr)
+        {
+            mousePressEventCallback(reinterpret_cast<long>(event));
+        }
     }
 
     void mouseReleaseEvent(QMouseEvent *event)
     {
-        
+        if (mouseReleaseEventCallback != nullptr)
+        {
+            mouseReleaseEventCallback(reinterpret_cast<long>(event));
+        }
     }
 
     void mouseMoveEvent(QMouseEvent *event)
     {
-        
+        if (mouseMoveEventCallback != nullptr)
+        {
+            mouseMoveEventCallback(reinterpret_cast<long>(event));
+        }
     }
 
     void keyPressEvent(QKeyEvent *event)

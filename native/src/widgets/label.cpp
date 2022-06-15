@@ -22,12 +22,12 @@ extern "C"
 	}
 
     void nativeLabelSetGeometry(long ptr, int ax, int ay, int aw, int ah){
-        CjQtLabel *instance = reinterpret_cast<CjQtLabel *>(static_cast<uintptr_t>(ptr));
+        QLabel *instance = reinterpret_cast<QLabel *>(static_cast<uintptr_t>(ptr));
         instance->setGeometry(ax, ay, aw, ah);
     }
 
     void nativeLabelSetText(long ptr, const char *text){
-        CjQtLabel *instance = reinterpret_cast<CjQtLabel *>(static_cast<uintptr_t>(ptr));
+        QLabel *instance = reinterpret_cast<QLabel *>(static_cast<uintptr_t>(ptr));
         instance->setText(text);
     }
 

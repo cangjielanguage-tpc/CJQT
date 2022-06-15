@@ -11,9 +11,9 @@ func testQt() {
     let win = QMainWindow()
     win.setWindowTitle("CJQT Demo")
     win.resize(400, 500)
-    //let tabel = QLabel(win)
-    //tabel.setGeometry(25, 25, 200, 100)
-    //tabel.setText("Hello CJQT!")
+    let tabel = QLabel(win)
+    tabel.setGeometry(25, 25, 200, 100)
+    tabel.setText("Hello CJQT!")
 
     win.show()
 
