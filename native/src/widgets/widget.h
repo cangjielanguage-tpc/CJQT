@@ -25,6 +25,7 @@ protected:
     {
         if (paintEventCallback != nullptr)
         {
+            //T::paintEvent(event);
             paintEventCallback(reinterpret_cast<long>(event));
         }
         else

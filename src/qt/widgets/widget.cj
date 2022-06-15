@@ -23,9 +23,10 @@ foreign func nativeWidgetSetMouseMoveEvent(ptr: Int64, callback: CFunc<(Int64) -
 foreign func nativeWidgetSetKeyPressEvent(ptr: Int64, callback: CFunc<(Int64) -> Unit>): Unit
 
 public open class QWidget {
-    let ptr: Int64
+    public let ptr: Int64
 
     static var keyEventCallback: (QKeyEvent) -> Unit = {event => }
+    static var paintersEventCallback: (QPaintersEvent) -> Unit = {event => }
 
     public init() {
         ptr = unsafe {
@@ -110,8 +111,10 @@ public open class QWidget {
     }
 
     public func setPaintEvent(callback: (QPaintersEvent) -> Unit) {
+        QWidget.paintersEventCallback = callback
         let cb: CFunc<(Int64) -> Unit> = {
             eventPtr => let event = QPaintersEvent(eventPtr)
+            QWidget.paintersEventCallback(event)
         }
         unsafe {
             nativeWidgetSetPaintEvent(ptr, cb)

@@ -30,6 +30,11 @@ add_library(nativeQt SHARED
         ./src/gui/mouse_event.cpp
         ./src/gui/key_event.cpp
         ./src/gui/painter_event.cpp
+        ./src/gui/painter.cpp
+        ./src/gui/pen.cpp
+        ./src/gui/color.cpp
+        ./src/gui/brush.cpp
+        ./src/gui/pixmap.cpp
 )
 
 target_link_libraries(nativeQt PRIVATE Qt5::Core Qt5::Widgets Qt5::Qml)

@@ -1,5 +1,6 @@
 import qt.*
 import qt.widgets.*
+import qt.gui.*
 
 main() {
     testQt()
@@ -8,12 +9,17 @@ main() {
 
 func testQt() {
     QApplication()
-    let win = QMainWindow()
+    let win = QWidget()
     win.setWindowTitle("CJQT Demo")
     win.resize(400, 500)
-    let tabel = QLabel(win)
-    tabel.setGeometry(25, 25, 200, 100)
-    tabel.setText("Hello CJQT!")
+
+    win.setPaintEvent() {
+        event => 
+        let painter = QPainter(win)
+        let pen = QPen(QColor(100, 0, 0, 100), 5)
+        painter.setPen(pen)
+        painter.drawRect(20, 20, 100, 50)
+    }
 
     win.show()
 
