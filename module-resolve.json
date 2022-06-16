@@ -84,6 +84,7 @@
       "command_option": "",
       "requires": [
         "cjqt/qt",
+        "cjqt/qt.code",
         "cjqt/qt.gui",
         "cjqt/qt.widgets"
       ],

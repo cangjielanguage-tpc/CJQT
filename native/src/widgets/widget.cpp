@@ -10,8 +10,6 @@ extern "C"
         CjQtWidget *widget;
         if (parentPtr == 0L){
             widget = new CjQtWidget();
-            widget->show();
-            widget->hide();
         } else
         {
             QWidget *parent = reinterpret_cast<QWidget *>(static_cast<uintptr_t>(parentPtr));
@@ -49,6 +47,13 @@ extern "C"
     void nativeWidgetSetKeyPressEvent(long ptr, nativeEventCallback callback){
         BaseWidget<QWidget> *instance = reinterpret_cast<BaseWidget<QWidget> *>(static_cast<uintptr_t>(ptr));
         instance->keyPressEventCallback = callback;
+    }
+
+    void nativeWidgetSetLayout(long ptr, long layoutPtr)
+    {
+        QWidget *instance = reinterpret_cast<QWidget *>(static_cast<uintptr_t>(ptr));
+        QLayout *layout = reinterpret_cast<QLayout *>(static_cast<uintptr_t>(layoutPtr));
+        instance->setLayout(layout);
     }
 
     void nativeWidgetResize(long ptr, int w, int h)
@@ -109,5 +114,11 @@ extern "C"
     {
         QWidget *instance = reinterpret_cast<QWidget *>(static_cast<uintptr_t>(ptr));
         instance->setWindowTitle(title);
+    }
+
+    void nativeWidgetRepaint(long ptr)
+    {
+        CjQtWidget *instance = reinterpret_cast<CjQtWidget *>(static_cast<uintptr_t>(ptr));
+        instance->repaint();
     }
 }

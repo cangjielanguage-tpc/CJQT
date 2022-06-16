@@ -11,8 +11,6 @@ extern "C"
 		CjQtLabel *label;
         if (parentPtr == 0L){
             label = new CjQtLabel();
-            label->show();
-		    label->hide();
         } else
         {
             QWidget *parent = reinterpret_cast<QWidget *>(static_cast<uintptr_t>(parentPtr));

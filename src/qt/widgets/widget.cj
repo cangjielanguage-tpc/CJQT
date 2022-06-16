@@ -14,6 +14,8 @@ foreign func nativeWidgetShowNormal(ptr: Int64): Unit
 foreign func nativeWidgetClose(ptr: Int64): Unit
 foreign func nativeWidgetMove(ptr: Int64, ax: Int32, ay: Int32): Unit
 foreign func nativeWidgetSetWindowTitle(ptr: Int64, title: CString): Unit
+foreign func nativeWidgetRepaint(ptr: Int64): Unit
+foreign func nativeWidgetSetLayout(ptr: Int64, layoutPtr: Int64): Unit
 foreign func nativeWidgetDelete(ptr: Int64): Unit
 
 foreign func nativeWidgetSetPaintEvent(ptr: Int64, callback: CFunc<(Int64) -> Unit>): Unit
@@ -44,9 +46,9 @@ public open class QWidget {
         this.ptr = ptr
     }
 
-    public func resize(w: Int32, h: Int32) {
+    public func resize(w: Int64, h: Int64) {
         unsafe {
-            nativeWidgetResize(ptr, w, h)
+            nativeWidgetResize(ptr, Int32(w), Int32(h))
         }
     }
 
@@ -104,6 +106,18 @@ public open class QWidget {
         }
     }
 
+    public open func setLayout(layout: QGridLayout) {
+        unsafe {
+            nativeWidgetSetLayout(ptr, layout.ptr)
+        }
+    }
+
+    public open func repaint() {
+        unsafe {
+            nativeWidgetRepaint(ptr)
+        }
+    }
+
     public open func delete() {
         unsafe {
             nativeWidgetDelete(ptr)
@@ -113,7 +127,8 @@ public open class QWidget {
     public func setPaintEvent(callback: (QPaintersEvent) -> Unit) {
         QWidget.paintersEventCallback = callback
         let cb: CFunc<(Int64) -> Unit> = {
-            eventPtr => let event = QPaintersEvent(eventPtr)
+            eventPtr =>
+            let event = QPaintersEvent(eventPtr)
             QWidget.paintersEventCallback(event)
         }
         unsafe {

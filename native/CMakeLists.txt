@@ -26,7 +26,9 @@ add_library(nativeQt SHARED
         ./src/widgets/main_window.cpp
         ./src/widgets/qml_application_engine.cpp
         ./src/widgets/label.cpp
+        ./src/widgets/grid_layout.cpp
         ./src/code/url.cpp
+        ./src/code/timer.cpp
         ./src/gui/mouse_event.cpp
         ./src/gui/key_event.cpp
         ./src/gui/painter_event.cpp

@@ -33,15 +33,21 @@ public class QPainter {
         }
     }
 
-    public func drawLine(x: Int32, y: Int32, x1: Int32, y1: Int32) {
+    public func setBrush(brush: QBrush) {
         unsafe {
-            nativePainterDrawLine(ptr, x, y, x1, y1)
+            nativePainterSetBrush(ptr, brush.ptr)
         }
     }
 
-    public func drawRect(x: Int32, y: Int32, width: Int32, height: Int32) {
+    public func drawLine(x: Int64, y: Int64, x1: Int64, y1: Int64) {
         unsafe {
-            nativePainterDrawRect(ptr, x, y, width, height)
+            nativePainterDrawLine(ptr, Int32(x), Int32(y), Int32(x1), Int32(y1))
+        }
+    }
+
+    public func drawRect(x: Int64, y: Int64, width: Int64, height: Int64) {
+        unsafe {
+            nativePainterDrawRect(ptr, Int32(x), Int32(y), Int32(width), Int32(height))
         }
     }
 

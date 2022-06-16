@@ -3,7 +3,7 @@
 
 extern "C"
 {
-    long nativeBrushCreate(long colorPtr, int thickness)
+    long nativeBrushCreate(long colorPtr)
     {
         QBrush *brush;
         if (colorPtr == 0L)

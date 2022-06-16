@@ -6,21 +6,26 @@ foreign func nativeApplicationDelete(ptr: Int64): Unit
 
 public class QApplication {
     static var ptr: Int64 = 0
-    public init() {
+    static public func create() {
         ptr = unsafe {
             nativeApplicationCreate()
         }
     }
 
-    public static func exec(): Bool {
-        return unsafe {
-            nativeApplicationExec(ptr)
+    static public func exec(): Bool {
+        if (ptr != 0) {
+            return unsafe {
+                nativeApplicationExec(ptr)
+            }
         }
+        return false
     }
 
-    public static func delete() {
-        unsafe {
-            nativeApplicationDelete(ptr)
+    static public func delete() {
+        if (ptr != 0) {
+            unsafe {
+                nativeApplicationDelete(ptr)
+            }
         }
     }
 }
