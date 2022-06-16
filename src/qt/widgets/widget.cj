@@ -5,6 +5,7 @@ import qt.gui.*
 
 foreign func nativeWidgetCreate(appPtr: Int64, parentPtr: Int64): Int64
 foreign func nativeWidgetResize(ptr: Int64, w: Int32, h: Int32): Unit
+foreign func nativeWidgetSetFixedSize(ptr: Int64, w: Int32, h: Int32): Unit
 foreign func nativeWidgetShow(ptr: Int64): Unit
 foreign func nativeWidgetHide(ptr: Int64): Unit
 foreign func nativeWidgetShowMinimized(ptr: Int64): Unit
@@ -44,6 +45,12 @@ public open class QWidget {
 
     public init(ptr: Int64) {
         this.ptr = ptr
+    }
+
+    public func setFixedSize(w: Int64, h: Int64) {
+        unsafe {
+            nativeWidgetSetFixedSize(ptr, Int32(w), Int32(h))
+        }
     }
 
     public func resize(w: Int64, h: Int64) {

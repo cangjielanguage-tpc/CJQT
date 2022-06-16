@@ -10,9 +10,9 @@ public class NextTetrisBox <: QWidget {
     public init() {
         let w = Tetris.getNextWidth()
         let h = Tetris.getNextHeight()
-        resize(w, h)
+        setFixedSize(w, h)
 
-        setPaintEvent() {
+        /* setPaintEvent() {
             event =>
             let painter = QPainter(this)
             let pen = QPen(QColor.Black, 0)
@@ -30,17 +30,17 @@ public class NextTetrisBox <: QWidget {
             }
 
             painter.delete()
-        }
+        } */
     }
 
     public func updateNextTetris(tetris: Tetris) {
-        nextBlock = tetris.nextBlock
+        /* nextBlock = tetris.nextBlock
         for (i in 0..Tetris.COUNT) {
             nextBlock.x[i] -= RESTX
             nextBlock.y[i] += RESTY
         }
 
         //重新绘制
-        repaint();
+        repaint() */
     }
 }

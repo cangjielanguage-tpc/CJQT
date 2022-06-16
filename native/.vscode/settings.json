@@ -1,0 +1,13 @@
+{
+    "files.associations": {
+        "qwidget": "cpp",
+        "qmouseevent": "cpp",
+        "qpainter": "cpp",
+        "qpaintevent": "cpp",
+        "qpen": "cpp",
+        "qcolor": "cpp",
+        "qbrush": "cpp",
+        "new": "cpp",
+        "qpixmap": "cpp"
+    }
+}

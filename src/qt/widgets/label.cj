@@ -8,10 +8,18 @@ foreign func nativeLabelSetText(ptr: Int64, text:CString): Unit
 foreign func nativeLabelDelete(ptr: Int64): Unit
 
 public class QLabel <: QWidget{
+
     public init() {
         super(unsafe {
             nativeLabelCreate(QApplication.ptr, 0)
         })
+    }
+
+    public init(text:String) {
+        super(unsafe {
+            nativeLabelCreate(QApplication.ptr, 0)
+        })
+        setText(text)
     }
 
     public init(parent: QWidget) {

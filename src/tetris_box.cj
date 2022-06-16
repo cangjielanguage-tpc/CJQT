@@ -5,12 +5,20 @@ public class TetrisBox <: QWidget {
     var block = Block() //用来储存Tetris中block的数据
 
     //用来存储Tetris中box的数据
-    var box = Array<Array<Int32>>(Tetris.MAX_X, item: Array<Int32>(Tetris.MAX_Y, item: 0))
+    var box: ArrayList<ArrayList<Int64>> = ArrayList()
 
     public init() {
+        for (i in 0..Tetris.MAX_X) {
+            let arr: ArrayList<Int64> = ArrayList()
+            for (j in 0..Tetris.MAX_Y) {
+                arr.add(0)
+            }
+            box.add(arr)
+        }
+
         let w = Tetris.getWidth()
         let h = Tetris.getHeight()
-        resize(w, h)
+        setFixedSize(w, h)
 
         setPaintEvent() {
             event =>
@@ -49,9 +57,7 @@ public class TetrisBox <: QWidget {
         //更新box
         for (i in 0..Tetris.MAX_X) {
             for (j in 0..Tetris.MAX_Y) {
-                {
-                    box[i][j] = tetris.getBox(i, j)
-                }
+                box[i][j] = tetris.getBox(i, j)
             }
         }
         repaint()

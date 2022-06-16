@@ -1,5 +1,6 @@
 from std import random.*
 from std import math.*
+from std import collection.*
 
 public class Tetris {
     static let MAX_X = 10 //显示窗口的横向格数
@@ -16,11 +17,18 @@ public class Tetris {
     var nextBlock = Block() //下一个方块
 
     //方格的坐标系 1表示右方格，0表示没有方格
-    var box = Array<Array<Int32>>(Tetris.MAX_X, item: Array<Int32>(Tetris.MAX_Y, item: 0))
+    var box: ArrayList<ArrayList<Int64>> = ArrayList()
 
     let random = Random()
 
     public init() {
+        for (i in 0..MAX_X) {
+            let arr: ArrayList<Int64> = ArrayList()
+            for (j in 0..MAX_Y) {
+                arr.add(0)
+            }
+            box.add(arr)
+        }
         createNextBlock()
     }
 
@@ -162,8 +170,6 @@ public class Tetris {
     private func createNextBlock() {
         var centerX = (MAX_X - 1) / 2 //中心x坐标
         var id = abs(random.nextInt64() % 7) //获得0 - 6的随机数
-
-        println("id: ${id}")
 
         //根据不同的随机数创建方块
         match (id) {

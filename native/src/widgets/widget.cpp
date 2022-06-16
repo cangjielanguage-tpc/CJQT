@@ -62,6 +62,12 @@ extern "C"
         instance->resize(w, h);
     }
 
+    void nativeWidgetSetFixedSize(long ptr, int w, int h)
+    {
+        QWidget *instance = reinterpret_cast<QWidget *>(static_cast<uintptr_t>(ptr));
+        instance->setFixedSize(w, h);
+    }
+
     void nativeWidgetShow(long ptr)
     {
         QWidget *instance = reinterpret_cast<QWidget *>(static_cast<uintptr_t>(ptr));
