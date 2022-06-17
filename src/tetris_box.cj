@@ -20,6 +20,9 @@ public class TetrisBox <: QWidget {
         let h = Tetris.getHeight()
         setFixedSize(w, h)
 
+        setPalette(QPalette(QColor.LightGray))
+        setAutoFillBackground(true)
+
         setPaintEvent() {
             event =>
             let painter = QPainter(this)

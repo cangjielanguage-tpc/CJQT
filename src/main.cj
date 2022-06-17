@@ -3,25 +3,20 @@ import qt.widgets.*
 import qt.gui.*
 
 main() {
-    // testQt()
-    //testQml()
-    testTetris()
+    testQt()
+    // testQml()
+    // testTetris()
 }
 
 func testQt() {
     QApplication.create()
     let win = QWidget()
-    win.setWindowTitle("CJQT Demo")
-    win.resize(400, 500)
+    win.setWindowTitle("CJQT Example")
+    win.resize(400, 300)
 
-    win.setPaintEvent() {
-        event =>
-        let painter = QPainter(win)
-        let pen = QPen(QColor.Gray, 4)
-        painter.setPen(pen)
-        painter.drawRect(20, 20, 100, 50)
-        painter.delete()
-    }
+    let label = QLabel(win)
+    label.setGeometry(150, 150, 100, 24)
+    label.setText("Hello CJQT!")
 
     win.show()
 
@@ -44,7 +39,7 @@ func testQml() {
 
 func testTetris() {
     QApplication.create()
-    
+
     let box = TetrisWindow()
     box.show()
 

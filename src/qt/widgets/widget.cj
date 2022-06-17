@@ -17,6 +17,8 @@ foreign func nativeWidgetMove(ptr: Int64, ax: Int32, ay: Int32): Unit
 foreign func nativeWidgetSetWindowTitle(ptr: Int64, title: CString): Unit
 foreign func nativeWidgetRepaint(ptr: Int64): Unit
 foreign func nativeWidgetSetLayout(ptr: Int64, layoutPtr: Int64): Unit
+foreign func nativeWidgetSetPalette(ptr: Int64, palettePtr: Int64): Unit
+foreign func nativeWidgetSetAutoFillBackground(ptr: Int64, enabled: Int32): Unit
 foreign func nativeWidgetDelete(ptr: Int64): Unit
 
 foreign func nativeWidgetSetPaintEvent(ptr: Int64, callback: CFunc<(Int64) -> Unit>): Unit
@@ -116,6 +118,18 @@ public open class QWidget {
     public open func setLayout(layout: QGridLayout) {
         unsafe {
             nativeWidgetSetLayout(ptr, layout.ptr)
+        }
+    }
+
+    public func setPalette(palette: QPalette) {
+        unsafe {
+            nativeWidgetSetPalette(ptr, palette.ptr)
+        }
+    }
+
+    public func setAutoFillBackground(enabled: Bool) {
+        unsafe {
+            nativeWidgetSetAutoFillBackground(ptr, if (enabled) {1} else {0})
         }
     }
 

@@ -1,4 +1,5 @@
 #include "widget.h"
+#include <QPalette>
 
 extern "C"
 {
@@ -126,5 +127,18 @@ extern "C"
     {
         CjQtWidget *instance = reinterpret_cast<CjQtWidget *>(static_cast<uintptr_t>(ptr));
         instance->repaint();
+    }
+
+    void nativeWidgetSetPalette(long ptr, long palettePtr)
+    {
+        QWidget *instance = reinterpret_cast<QWidget *>(static_cast<uintptr_t>(ptr));
+        QPalette *palette = reinterpret_cast<QPalette *>(static_cast<uintptr_t>(palettePtr));
+        instance->setPalette(*palette);
+    }
+
+    void nativeWidgetSetAutoFillBackground(long ptr, int enabled)
+    {
+        QWidget *instance = reinterpret_cast<QWidget *>(static_cast<uintptr_t>(ptr));
+        instance->setAutoFillBackground(enabled == 1);
     }
 }

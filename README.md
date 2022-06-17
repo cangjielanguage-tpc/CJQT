@@ -18,6 +18,8 @@ Qt是一个跨平台的C++图形开发框架，是目前主流的跨平台GUI库
 
 CjQt是Qt的仓颉语言绑定，提供仓颉语言风格的Qt类和函数的API封装。
 
+项目基于QT5.14.2版本构建，在wsl2+Ubuntu20.04上测试
+
 ### 路线
 
 - 近期目标：实现Demo运行，实现俄罗斯方块游戏
@@ -80,7 +82,23 @@ CjQt是Qt的仓颉语言绑定，提供仓颉语言风格的Qt类和函数的API
 
 ### 编译
 
-编译描述和具体shell命令
+下载QT文件[qt-opensource-linux-x64-5.14.2.run](https://download.qt.io/archive/qt/5.14/5.14.2/)到安装目录
+
+
+安装QT
+```shell
+chmod +x qt-opensource-linux-x64-5.14.2.run
+./qt-opensource-linux-x64-5.14.2.run
+```
+
+配置环境变量
+```shell
+vim ~/.bashrc
+export QT_HOME=/home/wathinst/Qt5.14.2/5.14.2/gcc_64(自己的安装目录)
+source ~/.bashrc
+```
+
+编译项目源码
 
 ```shell
 ./native.make.sh
@@ -92,16 +110,25 @@ cpm build
 
 创建main.cj文件
 ```cangjie
-import qt.*
+import qt.gui.*
+import qt.widgets.*
 
 main() {
-    let app = QApplication()
-    let win = QMainWindow()
-    win.resize(300, 200)
+    QApplication.create()
+    let win = QWidget()
+    win.setWindowTitle("CJQT Example")
+    win.resize(400, 300)
+
+    let label = QLabel(win)
+    label.setGeometry(150, 150, 100, 24)
+    label.setText("Hello CJQT!")
+
     win.show()
-    app.exec()
+
+    QApplication.exec()
+
     win.delete()
-    app.delete()
+    QApplication.delete()
 }
 ```
 
@@ -142,15 +169,18 @@ ApplicationWindow {
 ```
 创建main.cj文件
 ```cangjie
-import qt.*
+import qt.gui.*
+import qt.widgets.*
 
 main() {
-    let app = QApplication()
+    QApplication.create()
     let engine = QQmlApplicationAngine()
     engine.loadUrl("./src/hello.qml")
-    app.exec()
+
+    QApplication.exec()
+
     engine.delete()
-    app.delete()
+    QApplication.delete()
 }
 ```
 
@@ -164,6 +194,41 @@ main() {
 
 <p align="center">
 <img src="./doc/assets/qml_demo.png" width="60%" >
+</p>
+
+
+### 俄罗斯方块游戏示例
+
+
+创建main.cj文件
+```cangjie
+import qt.gui.*
+import qt.widgets.*
+
+main() {
+    QApplication.create()
+
+    let box = TetrisWindow()
+    box.show()
+
+    QApplication.exec()
+
+    box.delete()
+
+    QApplication.delete()
+}
+```
+
+执行命令如下：
+
+```shell
+./run.sh
+```
+
+执行效果：
+
+<p align="center">
+<img src="./doc/assets/tetris_demo.png" width="60%" >
 </p>
 
 ## <img alt="" src="./doc/assets/readme-icon-contribute.png" style="display: inline-block;" width=3%/>参与贡献

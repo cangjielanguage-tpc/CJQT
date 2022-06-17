@@ -12,6 +12,9 @@ public class NextTetrisBox <: QWidget {
         let h = Tetris.getNextHeight()
         setFixedSize(w, h)
 
+        setPalette(QPalette(QColor.LightGray))
+        setAutoFillBackground(true)
+
         /* setPaintEvent() {
             event =>
             let painter = QPainter(this)

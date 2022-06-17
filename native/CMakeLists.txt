@@ -11,7 +11,7 @@ set(CMAKE_AUTORCC ON)
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-set (CMAKE_PREFIX_PATH "/home/wathinst/Qt5.14.2/5.14.2/gcc_64")
+set (CMAKE_PREFIX_PATH $ENV{QT_HOME})
 
 find_package(Qt5 COMPONENTS Core Widgets Qml REQUIRED )
 
@@ -37,6 +37,7 @@ add_library(nativeQt SHARED
         ./src/gui/color.cpp
         ./src/gui/brush.cpp
         ./src/gui/pixmap.cpp
+        ./src/gui/palette.cpp
 )
 
 target_link_libraries(nativeQt PRIVATE Qt5::Core Qt5::Widgets Qt5::Qml)

@@ -81,7 +81,7 @@ public class TetrisWindow <: QMainWindow {
                 timer.stop()
                 //QMessageBox::information(this, tr("Game Over"), str);
                 status = STATUS_END
-                setWindowTitle("Game_Tetris - END")
+                setWindowTitle("CJQT Game Tetris - END")
             }
         }
 
@@ -96,7 +96,7 @@ public class TetrisWindow <: QMainWindow {
         status = STATUS_OFF
 
         nextTetrisBox.updateNextTetris(tetris)
-        setWindowTitle("Game_Tetris - OFF")
+        setWindowTitle("CJQT Game Tetris - OFF")
 
         setKeyPressEvent() {
             event =>
@@ -135,7 +135,7 @@ public class TetrisWindow <: QMainWindow {
                         //QMessageBox::information(this, tr("Game Over"), str);
                         //更改游戏状态为：游戏结束
                         status = STATUS_END
-                        setWindowTitle("Game_Tetris - END")
+                        setWindowTitle("CJQT Game Tetris - END")
                     }
                 }
             } else if (event.key() == QKeyEvent.KEY_D) {
@@ -156,7 +156,7 @@ public class TetrisWindow <: QMainWindow {
                 if (status == STATUS_PAUSE) {
                     timer.start()
                     status = STATUS_ON
-                    setWindowTitle("Game_Tetris - ON");
+                    setWindowTitle("CJQT Game Tetris - ON");
                 } else if (status == STATUS_OFF) {
                     //初始化窗口视图
                     tetris.createBlock()
@@ -166,7 +166,7 @@ public class TetrisWindow <: QMainWindow {
                     updateScore()
 
                     status = STATUS_ON
-                    setWindowTitle("Game_Tetris - ON");
+                    setWindowTitle("CJQT Game Tetris - ON");
                     timer.start()
                 } else if (status == STATUS_END) {
                     //初始化tetris
@@ -178,7 +178,7 @@ public class TetrisWindow <: QMainWindow {
                     updateScore()
 
                     status = STATUS_ON
-                    setWindowTitle("Game_Tetris - ON");
+                    setWindowTitle("CJQT Game Tetris - ON");
                     timer.start()
                 }
             } else if (event.key() == QKeyEvent.KEY_J) {
@@ -187,7 +187,7 @@ public class TetrisWindow <: QMainWindow {
                 if (status == STATUS_ON) {
                     timer.stop()
                     status = STATUS_PAUSE
-                    setWindowTitle("Game_Tetris - PAUSE");
+                    setWindowTitle("CJQT Game Tetris - PAUSE");
                 }
             } else if (event.key() == QKeyEvent.KEY_C) {
                 //C键-重新开始游戏
@@ -198,7 +198,7 @@ public class TetrisWindow <: QMainWindow {
                 nextTetrisBox.updateNextTetris(tetris)
                 updateScore()
                 status = STATUS_OFF
-                setWindowTitle("Game_Tetris - OFF");
+                setWindowTitle("CJQT Game Tetris - OFF");
             } else if (event.key() == QKeyEvent.KEY_M) {
                 //M键-关闭游戏
                 close()
