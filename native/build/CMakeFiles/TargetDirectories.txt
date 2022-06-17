@@ -1,4 +1,0 @@
-/home/wathinst/cjProject/qt/native/build/CMakeFiles/rebuild_cache.dir
-/home/wathinst/cjProject/qt/native/build/CMakeFiles/edit_cache.dir
-/home/wathinst/cjProject/qt/native/build/CMakeFiles/nativeQt.dir
-/home/wathinst/cjProject/qt/native/build/CMakeFiles/nativeQt_autogen.dir
