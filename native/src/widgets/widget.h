@@ -6,7 +6,7 @@
 #include <QKeyEvent>
 #include <QPainter>
 
-typedef void (*nativeEventCallback)(long);
+typedef void (*nativeEventCallback)(long, long);
 
 template <typename T>
 class BaseWidget : public T
@@ -25,8 +25,7 @@ protected:
     {
         if (paintEventCallback != nullptr)
         {
-            //T::paintEvent(event);
-            paintEventCallback(reinterpret_cast<long>(event));
+            paintEventCallback(reinterpret_cast<long>(this), reinterpret_cast<long>(event));
         }
         else
         {
@@ -38,7 +37,7 @@ protected:
     {
         if (mousePressEventCallback != nullptr)
         {
-            mousePressEventCallback(reinterpret_cast<long>(event));
+            mousePressEventCallback(reinterpret_cast<long>(this), reinterpret_cast<long>(event));
         }
     }
 
@@ -46,7 +45,7 @@ protected:
     {
         if (mouseReleaseEventCallback != nullptr)
         {
-            mouseReleaseEventCallback(reinterpret_cast<long>(event));
+            mouseReleaseEventCallback(reinterpret_cast<long>(this), reinterpret_cast<long>(event));
         }
     }
 
@@ -54,7 +53,7 @@ protected:
     {
         if (mouseMoveEventCallback != nullptr)
         {
-            mouseMoveEventCallback(reinterpret_cast<long>(event));
+            mouseMoveEventCallback(reinterpret_cast<long>(this), reinterpret_cast<long>(event));
         }
     }
 
@@ -62,7 +61,7 @@ protected:
     {
         if (keyPressEventCallback != nullptr)
         {
-            keyPressEventCallback(reinterpret_cast<long>(event));
+            keyPressEventCallback(reinterpret_cast<long>(this), reinterpret_cast<long>(event));
         }
     }
 };

@@ -3,9 +3,9 @@ import qt.widgets.*
 import qt.gui.*
 
 main() {
-    testQt()
+    // testQt()
     // testQml()
-    // testTetris()
+    testTetris()
 }
 
 func testQt() {

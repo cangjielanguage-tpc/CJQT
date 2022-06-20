@@ -15,7 +15,7 @@ public class NextTetrisBox <: QWidget {
         setPalette(QPalette(QColor.LightGray))
         setAutoFillBackground(true)
 
-        /* setPaintEvent() {
+        setPaintEvent() {
             event =>
             let painter = QPainter(this)
             let pen = QPen(QColor.Black, 0)
@@ -23,27 +23,26 @@ public class NextTetrisBox <: QWidget {
             painter.setPen(pen)
             painter.setBrush(brush)
 
-            
             for (i in 0..Tetris.COUNT) {
                 let x = nextBlock.x[i]
                 let y = nextBlock.y[i]
-                let x1 = x * Tetris.WIDTH + x * Tetris.INTERVAL
-                let y1 = y * Tetris.HEIGHT + y * Tetris.INTERVAL
-                painter.drawRect(x1, y1, Tetris.WIDTH, Tetris.HEIGHT)
+                if (x >= 0 && x < Tetris.NEXT_MAX_X && y >= 0 && y < Tetris.NEXT_MAX_Y) {
+                    let x1 = x * Tetris.WIDTH + x * Tetris.INTERVAL
+                    let y1 = y * Tetris.HEIGHT + y * Tetris.INTERVAL
+                    painter.drawRect(x1, y1, Tetris.WIDTH, Tetris.HEIGHT)
+                }
             }
-
             painter.delete()
-        } */
+        }
     }
 
     public func updateNextTetris(tetris: Tetris) {
-        /* nextBlock = tetris.nextBlock
         for (i in 0..Tetris.COUNT) {
-            nextBlock.x[i] -= RESTX
-            nextBlock.y[i] += RESTY
+            nextBlock.x[i] = tetris.nextBlock.x[i] - RESTX
+            nextBlock.y[i] = tetris.nextBlock.y[i] + RESTY
         }
 
         //重新绘制
-        repaint() */
+        repaint()
     }
 }

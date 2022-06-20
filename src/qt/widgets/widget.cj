@@ -2,6 +2,7 @@ package qt.widgets
 
 from std import ffi.c.CString
 import qt.gui.*
+from std import collection.*
 
 foreign func nativeWidgetCreate(appPtr: Int64, parentPtr: Int64): Int64
 foreign func nativeWidgetResize(ptr: Int64, w: Int32, h: Int32): Unit
@@ -21,17 +22,20 @@ foreign func nativeWidgetSetPalette(ptr: Int64, palettePtr: Int64): Unit
 foreign func nativeWidgetSetAutoFillBackground(ptr: Int64, enabled: Int32): Unit
 foreign func nativeWidgetDelete(ptr: Int64): Unit
 
-foreign func nativeWidgetSetPaintEvent(ptr: Int64, callback: CFunc<(Int64) -> Unit>): Unit
-foreign func nativeWidgetSetMousePressEvent(ptr: Int64, callback: CFunc<(Int64) -> Unit>): Unit
-foreign func nativeWidgetSetMouseReleaseEvent(ptr: Int64, callback: CFunc<(Int64) -> Unit>): Unit
-foreign func nativeWidgetSetMouseMoveEvent(ptr: Int64, callback: CFunc<(Int64) -> Unit>): Unit
-foreign func nativeWidgetSetKeyPressEvent(ptr: Int64, callback: CFunc<(Int64) -> Unit>): Unit
+foreign func nativeWidgetSetPaintEvent(ptr: Int64, callback: CFunc<(Int64, Int64) -> Unit>): Unit
+foreign func nativeWidgetSetMousePressEvent(ptr: Int64, callback: CFunc<(Int64, Int64) -> Unit>): Unit
+foreign func nativeWidgetSetMouseReleaseEvent(ptr: Int64, callback: CFunc<(Int64, Int64) -> Unit>): Unit
+foreign func nativeWidgetSetMouseMoveEvent(ptr: Int64, callback: CFunc<(Int64, Int64) -> Unit>): Unit
+foreign func nativeWidgetSetKeyPressEvent(ptr: Int64, callback: CFunc<(Int64, Int64) -> Unit>): Unit
 
 public open class QWidget {
     public let ptr: Int64
 
-    static var keyEventCallback: (QKeyEvent) -> Unit = {event => }
-    static var paintersEventCallback: (QPaintersEvent) -> Unit = {event => }
+    //public var keyEventCallback: (QKeyEvent) -> Unit = {event => }
+    static let keyEventCallback = HashMap<Int64, (QKeyEvent) -> Unit>()
+
+    //static var paintersEventCallback: (QPaintersEvent) -> Unit = {event => }
+    static var paintersEventCallback = HashMap<Int64, (QPaintersEvent) -> Unit>()
 
     public init() {
         ptr = unsafe {
@@ -129,7 +133,11 @@ public open class QWidget {
 
     public func setAutoFillBackground(enabled: Bool) {
         unsafe {
-            nativeWidgetSetAutoFillBackground(ptr, if (enabled) {1} else {0})
+            nativeWidgetSetAutoFillBackground(ptr, if (enabled) {
+                    1
+                } else {
+                    0
+                })
         }
     }
 
@@ -146,11 +154,15 @@ public open class QWidget {
     }
 
     public func setPaintEvent(callback: (QPaintersEvent) -> Unit) {
-        QWidget.paintersEventCallback = callback
-        let cb: CFunc<(Int64) -> Unit> = {
-            eventPtr =>
+        QWidget.paintersEventCallback.put(ptr, callback)
+        let cb: CFunc<(Int64, Int64) -> Unit> = {
+            ptr, eventPtr =>
             let event = QPaintersEvent(eventPtr)
-            QWidget.paintersEventCallback(event)
+            try {
+                QWidget.paintersEventCallback[ptr](event)
+            } catch (e: Exception) {
+                println(e)
+            }
         }
         unsafe {
             nativeWidgetSetPaintEvent(ptr, cb)
@@ -158,8 +170,8 @@ public open class QWidget {
     }
 
     public func setMousePressEvent(callback: (QMouseEvent) -> Unit) {
-        let cb: CFunc<(Int64) -> Unit> = {
-            eventPtr => let event = QPaintersEvent(eventPtr)
+        let cb: CFunc<(Int64, Int64) -> Unit> = {
+            ptr, eventPtr => let event = QPaintersEvent(eventPtr)
         }
         unsafe {
             nativeWidgetSetMousePressEvent(ptr, cb)
@@ -167,8 +179,8 @@ public open class QWidget {
     }
 
     public func setMouseReleaseEvent(callback: (QMouseEvent) -> Unit) {
-        let cb: CFunc<(Int64) -> Unit> = {
-            eventPtr => let event = QPaintersEvent(eventPtr)
+        let cb: CFunc<(Int64, Int64) -> Unit> = {
+            ptr, eventPtr => let event = QPaintersEvent(eventPtr)
         }
         unsafe {
             nativeWidgetSetMouseReleaseEvent(ptr, cb)
@@ -176,8 +188,8 @@ public open class QWidget {
     }
 
     public func setMouseMoveEvent(callback: (QMouseEvent) -> Unit) {
-        let cb: CFunc<(Int64) -> Unit> = {
-            eventPtr => let event = QPaintersEvent(eventPtr)
+        let cb: CFunc<(Int64, Int64) -> Unit> = {
+            ptr, eventPtr => let event = QPaintersEvent(eventPtr)
         }
         unsafe {
             nativeWidgetSetMouseMoveEvent(ptr, cb)
@@ -185,11 +197,15 @@ public open class QWidget {
     }
 
     public func setKeyPressEvent(callback: (QKeyEvent) -> Unit) {
-        QWidget.keyEventCallback = callback
-        let cb: CFunc<(Int64) -> Unit> = {
-            eventPtr =>
+        QWidget.keyEventCallback.put(ptr, callback)
+        let cb: CFunc<(Int64, Int64) -> Unit> = {
+            ptr, eventPtr =>
             let event = QKeyEvent(eventPtr)
-            QWidget.keyEventCallback(event)
+            try {
+                QWidget.keyEventCallback[ptr](event)
+            } catch (e: Exception) {
+                println(e)
+            }
         }
         unsafe {
             nativeWidgetSetKeyPressEvent(ptr, cb)

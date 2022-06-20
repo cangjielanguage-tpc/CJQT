@@ -5,7 +5,7 @@ foreign func nativeApplicationExec(ptr: Int64): Bool
 foreign func nativeApplicationDelete(ptr: Int64): Unit
 
 public class QApplication {
-    static var ptr: Int64 = 0
+    static public var ptr: Int64 = 0
     static public func create() {
         ptr = unsafe {
             nativeApplicationCreate()
