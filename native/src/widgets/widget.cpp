@@ -141,4 +141,15 @@ extern "C"
         QWidget *instance = reinterpret_cast<QWidget *>(static_cast<uintptr_t>(ptr));
         instance->setAutoFillBackground(enabled == 1);
     }
+
+    void nativeWidgetSetGeometry(long ptr, int ax, int ay, int aw, int ah){
+        QWidget *instance = reinterpret_cast<QWidget *>(static_cast<uintptr_t>(ptr));
+        instance->setGeometry(ax, ay, aw, ah);
+    }
+
+    void nativeWidgetSetFont(long ptr, long fontPtr){
+        QWidget *instance = reinterpret_cast<QWidget *>(static_cast<uintptr_t>(ptr));
+        QFont *font = reinterpret_cast<QFont *>(static_cast<uintptr_t>(fontPtr));
+        instance->setFont(*font);
+    }
 }

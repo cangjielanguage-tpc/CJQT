@@ -20,6 +20,8 @@ foreign func nativeWidgetRepaint(ptr: Int64): Unit
 foreign func nativeWidgetSetLayout(ptr: Int64, layoutPtr: Int64): Unit
 foreign func nativeWidgetSetPalette(ptr: Int64, palettePtr: Int64): Unit
 foreign func nativeWidgetSetAutoFillBackground(ptr: Int64, enabled: Int32): Unit
+foreign func nativeWidgetSetGeometry(ptr: Int64, ax:Int32, ay:Int32, aw:Int32, ah:Int32): Unit
+foreign func nativeWidgetSetFont(ptr: Int64, fontPtr: Int64): Unit
 foreign func nativeWidgetDelete(ptr: Int64): Unit
 
 foreign func nativeWidgetSetPaintEvent(ptr: Int64, callback: CFunc<(Int64, Int64) -> Unit>): Unit
@@ -138,6 +140,18 @@ public open class QWidget {
                 } else {
                     0
                 })
+        }
+    }
+
+    public func setGeometry(ax:Int32, ay:Int32, aw:Int32, ah:Int32) {
+        unsafe {
+            nativeWidgetSetGeometry(ptr, ax, ay, aw, ah)
+        }
+    }
+
+    public func setFont(font:QFont) {
+        unsafe {
+            nativeWidgetSetFont(ptr, font.ptr)
         }
     }
 

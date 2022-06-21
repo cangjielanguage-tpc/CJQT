@@ -27,6 +27,7 @@ add_library(nativeQt SHARED
         ./src/widgets/qml_application_engine.cpp
         ./src/widgets/label.cpp
         ./src/widgets/grid_layout.cpp
+        ./src/widgets/push_button.cpp
         ./src/code/url.cpp
         ./src/code/timer.cpp
         ./src/gui/mouse_event.cpp
@@ -38,6 +39,7 @@ add_library(nativeQt SHARED
         ./src/gui/brush.cpp
         ./src/gui/pixmap.cpp
         ./src/gui/palette.cpp
+        ./src/gui/font.cpp
 )
 
 target_link_libraries(nativeQt PRIVATE Qt5::Core Qt5::Widgets Qt5::Qml)

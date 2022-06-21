@@ -19,6 +19,13 @@ extern "C"
         return reinterpret_cast<long>(new QPalette(*palette));
     }
 
+    void nativePaletteSetColor(long ptr, int colorRole, long colorPtr)
+    {
+        QPalette *instance = reinterpret_cast<QPalette *>(static_cast<uintptr_t>(ptr));
+        QColor *color = reinterpret_cast<QColor *>(static_cast<uintptr_t>(colorPtr));
+        instance->setColor(QPalette::ColorRole(colorRole), *color);
+    }
+
     void nativePaletteDelete(long ptr)
     {
         QPalette *instance = reinterpret_cast<QPalette *>(static_cast<uintptr_t>(ptr));

@@ -3,9 +3,9 @@ import qt.widgets.*
 import qt.gui.*
 
 main() {
-    // testQt()
+    testQt()
     // testQml()
-    testTetris()
+    // testTetris()
 }
 
 func testQt() {
@@ -15,8 +15,14 @@ func testQt() {
     win.resize(400, 300)
 
     let label = QLabel(win)
-    label.setGeometry(150, 150, 100, 24)
+    label.setGeometry(120, 100, 200, 40)
     label.setText("Hello CJQT!")
+    label.setFontSize(24)
+    label.setFontColor(QColor.Red)
+
+    let button = QPushButton(win)
+    button.setGeometry(150, 180, 100, 24)
+    button.setText("test")
 
     win.show()
 

@@ -1,5 +1,37 @@
 ### QWidgets封装进度
 
+#### 常用控件
+
+- `QCheckBox` 复选框(CheckBox)控件（包含Text Label）
+- `QComboBox` 单击按钮，可在弹出的选项中选择一个
+- `QCommandLinkButton` Windows Vista风格的命令链接按钮
+- `QTimeEdit` 编辑或显示时间的控件
+- `QDateEdit` 编辑或显示日期的控件
+- `QDateTimeEdit` 编辑或显示时间和日期的控件
+- `QPushButton` 普通按钮控件
+- `QLabel` 显示文本或图片的控件
+- `QLineEdit` 单行(single line)文本框控件
+- `QMenu` 可以在菜单栏（MenuBar）的菜单控件、Context和弹出菜单中使用的控件
+- `QProgressBar` 水平与垂直进度条
+- `QRadioButton` 单选按钮控件（包含TextLabel）
+- `QScrollBar` 水平与垂直滚动条
+- `QSizeGrip` 可以改变最上层视窗的大小
+- `QSlider` 水平与垂直滑块
+- `QTabWidget` Tab控件
+- `QToolBox` 成列的Tab控件
+- `QToolButton` 用于QtoolBox控件中，基于选项或命令可以快速访问的按钮控件
+- `QButtonGroup` 按钮控件的组合容器(Container)
+- `QGroupBox` 带有标题的相同类型的组框（GroupBox Frame）
+- `QSplitter` 具有分割（Splitter）功能的控件
+- `QSplitterHandle` 可以控制分割功能的控件
+- `QStackedWidget` 堆叠布局控件
+- `QTabWidget` Tab控件
+- `QDialog` 对话窗口的基类
+- `QFrame` 框架控件的基类
+- `QListView` 列表布局控件
+- `QTableView` 表格布局控件
+- `QGridLayout` 网格布局控件
+
 ```
 QWidgets:
 
@@ -42,13 +74,13 @@ QGraphicsSceneMoveEvent   ░░░░░░░░░░         QGraphicsSceneR
 QGraphicsSceneWheelEvent  ░░░░░░░░░░         QGraphicsSceneWheelEvent     ░░░░░░░░░░
 QGraphicsTextItem         ░░░░░░░░░░         QGraphicsTransform           ░░░░░░░░░░
 QGraphicsView             ░░░░░░░░░░         QGraphicsWidget              ░░░░░░░░░░
-QGridLayout               ░░░░░░░░░░         QGroupBox                    ░░░░░░░░░░
+QGridLayout               ▓░░░░░░░░░         QGroupBox                    ░░░░░░░░░░
 QHBoxLayout               ░░░░░░░░░░         QHeaderView                  ░░░░░░░░░░
 QInputDialog              ░░░░░░░░░░         QItemDelegate                ░░░░░░░░░░
 QItemEditorCreator        ░░░░░░░░░░         QItemEditorCreatorBase       ░░░░░░░░░░
 QItemEditorFactory        ░░░░░░░░░░         QKeyEventTransition          ░░░░░░░░░░
 QKeySequenceEdit          ░░░░░░░░░░         QLCDNumber                   ░░░░░░░░░░
-QLabel                    ░░░░░░░░░░         QLayout                      ░░░░░░░░░░
+QLabel                    ▓░░░░░░░░░         QLayout                      ░░░░░░░░░░
 QLayoutItem               ░░░░░░░░░░         QLineEdit                    ░░░░░░░░░░
 QListView                 ░░░░░░░░░░         QListWidget                  ░░░░░░░░░░
 QListWidgetItem           ░░░░░░░░░░         QMainWindow                  ▓░░░░░░░░░
