@@ -16,12 +16,15 @@ namespace
 
 extern "C"
 {
+	Config *appConfig;
+
 	long nativeApplicationCreate()
 	{
 		int argc = 0;
 		char *argv[0];
 		register_meta_types();
 		QApplication *app = new QApplication(argc, argv);
+		appConfig = new Config();
 		return reinterpret_cast<long>(app);
 	}
 
@@ -40,6 +43,7 @@ extern "C"
 
 	void nativeApplicationDelete(long ptr)
 	{
+		delete appConfig;
 		QApplication *instance = reinterpret_cast<QApplication *>(static_cast<uintptr_t>(ptr));
 		delete instance;
 	}

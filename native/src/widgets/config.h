@@ -1,0 +1,122 @@
+#include <map>
+
+typedef void (*nativeEventCallback)(long, long);
+
+class Config
+{
+private:
+    std::map<long, nativeEventCallback> paintEventMap;
+    std::map<long, nativeEventCallback> mousePressEventMap;
+    std::map<long, nativeEventCallback> mouseReleaseEventMap;
+    std::map<long, nativeEventCallback> mouseMoveEventMap;
+    std::map<long, nativeEventCallback> keyPressEventMap;
+
+public:
+    Config() {}
+
+    void paintEventMapPut(long ptr, nativeEventCallback callback)
+    {
+        paintEventMap[ptr] = callback;
+    }
+
+    nativeEventCallback paintEventMapGet(long ptr)
+    {
+        std::map<long, nativeEventCallback>::iterator iter;
+        iter = paintEventMap.find(ptr);
+        if (iter != paintEventMap.end())
+        {
+            return iter->second;
+        }
+        return nullptr;
+    }
+
+    void paintEventMapRemove(long ptr)
+    {
+        paintEventMap.erase(ptr);
+    }
+
+
+    void mousePressEventMapPut(long ptr, nativeEventCallback callback)
+    {
+        mousePressEventMap[ptr] = callback;
+    }
+
+    nativeEventCallback mousePressEventMapGet(long ptr)
+    {
+        std::map<long, nativeEventCallback>::iterator iter;
+        iter = mousePressEventMap.find(ptr);
+        if (iter != mousePressEventMap.end())
+        {
+            return iter->second;
+        }
+        return nullptr;
+    }
+
+    void mousePressEventMapRemove(long ptr)
+    {
+        mousePressEventMap.erase(ptr);
+    }
+
+    void mouseReleaseEventMapPut(long ptr, nativeEventCallback callback)
+    {
+        mouseReleaseEventMap[ptr] = callback;
+    }
+
+    nativeEventCallback mouseReleaseEventMapGet(long ptr)
+    {
+        std::map<long, nativeEventCallback>::iterator iter;
+        iter = mouseReleaseEventMap.find(ptr);
+        if (iter != mouseReleaseEventMap.end())
+        {
+            return iter->second;
+        }
+        return nullptr;
+    }
+
+    void mouseReleaseEventMapRemove(long ptr)
+    {
+        mouseReleaseEventMap.erase(ptr);
+    }
+
+    void mouseMoveEventMapPut(long ptr, nativeEventCallback callback)
+    {
+        mouseMoveEventMap[ptr] = callback;
+    }
+
+    nativeEventCallback mouseMoveEventMapGet(long ptr)
+    {
+        std::map<long, nativeEventCallback>::iterator iter;
+        iter = mouseMoveEventMap.find(ptr);
+        if (iter != mouseMoveEventMap.end())
+        {
+            return iter->second;
+        }
+        return nullptr;
+    }
+
+    void mouseMoveEventMapRemove(long ptr)
+    {
+        mouseMoveEventMap.erase(ptr);
+    }
+
+    void keyPressEventMapPut(long ptr, nativeEventCallback callback)
+    {
+        keyPressEventMap[ptr] = callback;
+    }
+
+    nativeEventCallback keyPressEventMapGet(long ptr)
+    {
+        std::map<long, nativeEventCallback>::iterator iter;
+        iter = keyPressEventMap.find(ptr);
+        if (iter != keyPressEventMap.end())
+        {
+            return iter->second;
+        }
+        return nullptr;
+    }
+
+    void keyPressEventMapRemove(long ptr)
+    {
+        keyPressEventMap.erase(ptr);
+    }
+};

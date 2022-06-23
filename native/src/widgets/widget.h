@@ -6,35 +6,36 @@
 #include <QKeyEvent>
 #include <QPainter>
 
-typedef void (*nativeEventCallback)(long, long);
+#include "config.h"
 
-template <typename T>
-class BaseWidget : public T
+extern "C"
 {
-    // Q_OBJECT
+    extern Config *appConfig;
+}
+
+class CjQtWidget : public QWidget
+{
+    Q_OBJECT
 public:
-    BaseWidget(QWidget *parent = nullptr) : T(parent) {}
-    nativeEventCallback paintEventCallback = nullptr;
-    nativeEventCallback mousePressEventCallback = nullptr;
-    nativeEventCallback mouseReleaseEventCallback = nullptr;
-    nativeEventCallback mouseMoveEventCallback = nullptr;
-    nativeEventCallback keyPressEventCallback = nullptr;
+    CjQtWidget(QWidget *parent = nullptr) : QWidget(parent) {}
 
 protected:
     void paintEvent(QPaintEvent *event)
     {
+        nativeEventCallback paintEventCallback = appConfig->paintEventMapGet(reinterpret_cast<long>(this));
         if (paintEventCallback != nullptr)
         {
             paintEventCallback(reinterpret_cast<long>(this), reinterpret_cast<long>(event));
         }
         else
         {
-            T::paintEvent(event);
+            QWidget::paintEvent(event);
         }
     }
 
     void mousePressEvent(QMouseEvent *event)
     {
+        nativeEventCallback mousePressEventCallback = appConfig->mousePressEventMapGet(reinterpret_cast<long>(this));
         if (mousePressEventCallback != nullptr)
         {
             mousePressEventCallback(reinterpret_cast<long>(this), reinterpret_cast<long>(event));
@@ -43,6 +44,7 @@ protected:
 
     void mouseReleaseEvent(QMouseEvent *event)
     {
+        nativeEventCallback mouseReleaseEventCallback = appConfig->mouseReleaseEventMapGet(reinterpret_cast<long>(this));
         if (mouseReleaseEventCallback != nullptr)
         {
             mouseReleaseEventCallback(reinterpret_cast<long>(this), reinterpret_cast<long>(event));
@@ -51,6 +53,7 @@ protected:
 
     void mouseMoveEvent(QMouseEvent *event)
     {
+        nativeEventCallback mouseMoveEventCallback = appConfig->mouseMoveEventMapGet(reinterpret_cast<long>(this));
         if (mouseMoveEventCallback != nullptr)
         {
             mouseMoveEventCallback(reinterpret_cast<long>(this), reinterpret_cast<long>(event));
@@ -59,18 +62,12 @@ protected:
 
     void keyPressEvent(QKeyEvent *event)
     {
+        nativeEventCallback keyPressEventCallback = appConfig->keyPressEventMapGet(reinterpret_cast<long>(this));
         if (keyPressEventCallback != nullptr)
         {
             keyPressEventCallback(reinterpret_cast<long>(this), reinterpret_cast<long>(event));
         }
     }
-};
-
-class CjQtWidget : public BaseWidget<QWidget>
-{
-    // Q_OBJECT
-public:
-    CjQtWidget(QWidget *parent = nullptr) : BaseWidget<QWidget>(parent) {}
 };
 
 #endif

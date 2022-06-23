@@ -79,7 +79,7 @@ public class TetrisWindow <: QMainWindow {
                 updateScore()
             } else {
                 timer.stop()
-                //QMessageBox::information(this, tr("Game Over"), str);
+                //QMessageBox.information(this, "Game Over", "Game Over!\nYour Score is: ${tetris.score}!")
                 status = STATUS_END
                 setWindowTitle("CJQT Game Tetris - END")
             }
@@ -132,7 +132,7 @@ public class TetrisWindow <: QMainWindow {
                         timer.stop();
 
                         //输出结束提示
-                        //QMessageBox::information(this, tr("Game Over"), str);
+                        //QMessageBox.information(this, "Game Over", "Game Over!\nYour Score is: ${tetris.score}!")
                         //更改游戏状态为：游戏结束
                         status = STATUS_END
                         setWindowTitle("CJQT Game Tetris - END")

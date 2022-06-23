@@ -1,14 +1,14 @@
-#ifndef __LABEL_H_
-#define __LABEL_H_
+#ifndef __MESSAGE_BOX_H_
+#define __MESSAGE_BOX_H_
 
-#include <QLabel>
+#include <QMessageBox>
 #include "widget.h"
 
-class CjQtLabel : public QLabel
+class CjQtMessageBox : public QMessageBox
 {
-    // Q_OBJECT
+    Q_OBJECT
 public:
-    CjQtLabel(QWidget *parent = nullptr) : QLabel(parent) {}
+    CjQtMessageBox(QWidget *parent = nullptr) : QMessageBox(parent) {}
 
 protected:
     void paintEvent(QPaintEvent *event)
@@ -20,7 +20,7 @@ protected:
         }
         else
         {
-            QLabel::paintEvent(event);
+            QMessageBox::paintEvent(event);
         }
     }
 

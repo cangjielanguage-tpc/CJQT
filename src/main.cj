@@ -3,14 +3,14 @@ import qt.widgets.*
 import qt.gui.*
 
 main() {
-    testQt()
+    // testQt()
     // testQml()
-    // testTetris()
+    testTetris()
 }
 
 func testQt() {
     QApplication.create()
-    let win = QWidget()
+    let win = QMainWindow()
     win.setWindowTitle("CJQT Example")
     win.resize(400, 300)
 
@@ -22,7 +22,7 @@ func testQt() {
 
     let button = QPushButton(win)
     button.setGeometry(150, 180, 100, 24)
-    button.setText("test")
+    button.setText("button")
 
     win.show()
 

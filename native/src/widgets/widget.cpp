@@ -6,6 +6,8 @@ extern "C"
 
     // QWidget
 
+    // extern Config *appConfig;
+
     long nativeWidgetCreate(long appPtr, long parentPtr)
     {
         CjQtWidget *widget;
@@ -21,33 +23,33 @@ extern "C"
 
     void nativeWidgetDelete(long ptr)
     {
+        appConfig->paintEventMapRemove(ptr);
+        appConfig->mousePressEventMapRemove(ptr);
+        appConfig->mouseReleaseEventMapRemove(ptr);
+        appConfig->mouseMoveEventMapRemove(ptr);
+        appConfig->keyPressEventMapRemove(ptr);
         CjQtWidget *instance = reinterpret_cast<CjQtWidget *>(static_cast<uintptr_t>(ptr));
         delete instance;
     }
 
     void nativeWidgetSetPaintEvent(long ptr, nativeEventCallback callback){
-        BaseWidget<QWidget> *instance = reinterpret_cast<BaseWidget<QWidget> *>(static_cast<uintptr_t>(ptr));
-        instance->paintEventCallback = callback;
+        appConfig->paintEventMapPut(ptr, callback);
     }
 
     void nativeWidgetSetMousePressEvent(long ptr, nativeEventCallback callback){
-        BaseWidget<QWidget> *instance = reinterpret_cast<BaseWidget<QWidget> *>(static_cast<uintptr_t>(ptr));
-        instance->mousePressEventCallback = callback;
+        appConfig->mousePressEventMapPut(ptr, callback);
     }
 
     void nativeWidgetSetMouseReleaseEvent(long ptr, nativeEventCallback callback){
-        BaseWidget<QWidget> *instance = reinterpret_cast<BaseWidget<QWidget> *>(static_cast<uintptr_t>(ptr));
-        instance->mouseReleaseEventCallback = callback;
+        appConfig->mouseReleaseEventMapPut(ptr, callback);
     }
 
     void nativeWidgetSetMouseMoveEvent(long ptr, nativeEventCallback callback){
-        BaseWidget<QWidget> *instance = reinterpret_cast<BaseWidget<QWidget> *>(static_cast<uintptr_t>(ptr));
-        instance->mouseMoveEventCallback = callback;
+        appConfig->mouseMoveEventMapPut(ptr, callback);
     }
 
     void nativeWidgetSetKeyPressEvent(long ptr, nativeEventCallback callback){
-        BaseWidget<QWidget> *instance = reinterpret_cast<BaseWidget<QWidget> *>(static_cast<uintptr_t>(ptr));
-        instance->keyPressEventCallback = callback;
+        appConfig->keyPressEventMapPut(ptr, callback);
     }
 
     void nativeWidgetSetLayout(long ptr, long layoutPtr)

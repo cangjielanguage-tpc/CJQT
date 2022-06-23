@@ -24,6 +24,7 @@
 - `QGroupBox` 带有标题的相同类型的组框（GroupBox Frame）
 - `QSplitter` 具有分割（Splitter）功能的控件
 - `QSplitterHandle` 可以控制分割功能的控件
+- `QMessageBox` 消息框控件
 - `QStackedWidget` 堆叠布局控件
 - `QTabWidget` Tab控件
 - `QDialog` 对话窗口的基类
