@@ -9,7 +9,7 @@ public class Tetris {
     static let NEXT_MAX_Y = 6 //“下一个”显示窗口的竖向格数
     static let WIDTH = 30 //单格的宽度
     static let HEIGHT = 30 //单格的高度
-    static let INTERVAL = 4 //单格之间的间隔
+    static let INTERVAL = 2 //单格之间的间隔
     static let COUNT = 4 //每个方块的格数
 
     var score: Int64 = 0 //分数
@@ -17,15 +17,15 @@ public class Tetris {
     var nextBlock = Block() //下一个方块
 
     //方格的坐标系 1表示右方格，0表示没有方格
-    var box: ArrayList<ArrayList<Int64>> = ArrayList()
+    var box: ArrayList<ArrayList<BoxItem>> = ArrayList()
 
     let random = Random()
 
     public init() {
         for (i in 0..MAX_X) {
-            let arr: ArrayList<Int64> = ArrayList()
+            let arr: ArrayList<BoxItem> = ArrayList()
             for (j in 0..MAX_Y) {
-                arr.add(0)
+                arr.add(BoxItem())
             }
             box.add(arr)
         }
@@ -44,6 +44,7 @@ public class Tetris {
         block.centerX = nextBlock.centerX
         block.centerY = nextBlock.centerY
         block.id = nextBlock.id
+        block.color = nextBlock.color
 
         //创建下一个nextblock
         createNextBlock()
@@ -96,7 +97,7 @@ public class Tetris {
     public func isEnd(): Bool {
         let j = 0
         for (i in 0..MAX_X) {
-            if (box[i][j] == 1) {
+            if (box[i][j].show) {
                 return true
             }
         }
@@ -131,7 +132,7 @@ public class Tetris {
 
         for (i in 0..MAX_X) {
             for (j in 0..MAX_Y) {
-                box[i][j] = 0
+                box[i][j].show = false
             }
         }
         for (i in 0..COUNT) {
@@ -147,22 +148,22 @@ public class Tetris {
     }
 
     //获得游戏窗口的宽度
-    public static func getWidth(): Int64 {
+    static public func getWidth(): Int64 {
         return MAX_X * WIDTH + (MAX_X - 1) * INTERVAL
     }
 
     //获得游戏窗口的高度
-    public static func getHeight(): Int64 {
+    static public func getHeight(): Int64 {
         return MAX_Y * HEIGHT + (MAX_Y - 1) * INTERVAL
     }
 
     //获得“下一个”窗口的宽度
-    public static func getNextWidth(): Int64 {
+    static public func getNextWidth(): Int64 {
         return NEXT_MAX_X * WIDTH + (NEXT_MAX_X - 1) * INTERVAL
     }
 
     //获得“下一个”窗口的高度
-    public static func getNextHeight(): Int64 {
+    static public func getNextHeight(): Int64 {
         return NEXT_MAX_Y * WIDTH + (NEXT_MAX_Y - 1) * INTERVAL
     }
 
@@ -176,101 +177,66 @@ public class Tetris {
             case 0 =>
                 //##
                 //##
-                nextBlock.x[0] = centerX
-                nextBlock.x[1] = centerX
-                nextBlock.x[2] = centerX + 1
-                nextBlock.x[3] = centerX + 1
-                nextBlock.y[0] = -2
-                nextBlock.y[1] = -1
-                nextBlock.y[2] = -2
-                nextBlock.y[3] = -1
+                nextBlock.x = [centerX, centerX, centerX + 1, centerX + 1]
+                nextBlock.y = [-2, -1, -2, -1]
                 nextBlock.centerX = 0
                 nextBlock.centerY = 0
                 nextBlock.id = 0
+                nextBlock.color = QColor.Cyan
             case 1 =>
                 //####
                 //
-                nextBlock.x[0] = centerX - 1
-                nextBlock.x[1] = centerX
-                nextBlock.x[2] = centerX + 1
-                nextBlock.x[3] = centerX + 2
-                nextBlock.y[0] = -1
-                nextBlock.y[1] = -1
-                nextBlock.y[2] = -1
-                nextBlock.y[3] = -1
+                nextBlock.x = [centerX - 1, centerX, centerX + 1, centerX + 2]
+                nextBlock.y = [-1, -1, -1, -1]
                 nextBlock.centerX = centerX
                 nextBlock.centerY = -1
                 nextBlock.id = 1
+                nextBlock.color = QColor.Blue
             case 2 =>
                 //##
                 // ##
-                nextBlock.x[0] = centerX - 1
-                nextBlock.x[1] = centerX
-                nextBlock.x[2] = centerX
-                nextBlock.x[3] = centerX + 1
-                nextBlock.y[0] = -2
-                nextBlock.y[1] = -2
-                nextBlock.y[2] = -1
-                nextBlock.y[3] = -1
+                nextBlock.x = [centerX - 1, centerX, centerX, centerX + 1]
+                nextBlock.y = [-2, -2, -1, -1]
                 nextBlock.centerX = centerX
                 nextBlock.centerY = -2
                 nextBlock.id = 2
+                nextBlock.color = QColor(255, 165, 0, 255)
             case 3 =>
                 // ##
                 //##
-                nextBlock.x[0] = centerX
-                nextBlock.x[1] = centerX + 1
-                nextBlock.x[2] = centerX - 1
-                nextBlock.x[3] = centerX
-                nextBlock.y[0] = -2
-                nextBlock.y[1] = -2
-                nextBlock.y[2] = -1
-                nextBlock.y[3] = -1
+                nextBlock.x = [centerX, centerX + 1, centerX - 1, centerX]
+                nextBlock.y = [-2, -2, -1, -1]
                 nextBlock.centerX = centerX
                 nextBlock.centerY = -2
                 nextBlock.id = 3
+                nextBlock.color = QColor.Magenta
             case 4 =>
                 //#
                 //###
-                nextBlock.x[0] = centerX - 1
-                nextBlock.x[1] = centerX - 1
-                nextBlock.x[2] = centerX
-                nextBlock.x[3] = centerX + 1
-                nextBlock.y[0] = -2
-                nextBlock.y[1] = -1
-                nextBlock.y[2] = -1
-                nextBlock.y[3] = -1
+                nextBlock.x = [centerX - 1, centerX - 1, centerX, centerX + 1]
+                nextBlock.y = [-2, -1, -1, -1]
                 nextBlock.centerX = centerX
                 nextBlock.centerY = -1
                 nextBlock.id = 4
+                nextBlock.color = QColor.Green
             case 5 =>
                 //  #
                 //###
-                nextBlock.x[0] = centerX + 1
-                nextBlock.x[1] = centerX - 1
-                nextBlock.x[2] = centerX
-                nextBlock.x[3] = centerX + 1
-                nextBlock.y[0] = -2
-                nextBlock.y[1] = -1
-                nextBlock.y[2] = -1
-                nextBlock.y[3] = -1
+                nextBlock.x = [centerX + 1, centerX - 1, centerX, centerX + 1]
+                nextBlock.y = [-2, -1, -1, -1]
                 nextBlock.centerX = centerX
                 nextBlock.centerY = -1
                 nextBlock.id = 5
+                nextBlock.color = QColor(139, 0, 139, 255)
             case 6 =>
                 // #
                 //###
-                nextBlock.x[0] = centerX
-                nextBlock.x[1] = centerX - 1
-                nextBlock.x[2] = centerX
-                nextBlock.x[3] = centerX + 1
-                nextBlock.y[0] = -2
-                nextBlock.y[1] = -1
-                nextBlock.y[2] = -1
-                nextBlock.y[3] = -1
+                nextBlock.x = [centerX, centerX - 1, centerX, centerX + 1]
+                nextBlock.y = [-2, -1, -1, -1]
                 nextBlock.centerX = centerX
                 nextBlock.centerY = -1
                 nextBlock.id = 6
+                nextBlock.color = QColor.Red
             case _ => ()
         }
     }
@@ -296,7 +262,7 @@ public class Tetris {
             //y坐标在0 - MAXY之间就对box中的状态进行判定
             //box中为1则返回false
             if (newY[i] >= 0 && newY[i] < MAX_Y) {
-                if (box[newX[i]][newY[i]] == 1) {
+                if (box[newX[i]][newY[i]].show) {
                     return false
                 }
             } else if (newY[i] >= MAX_Y) {
@@ -347,7 +313,7 @@ public class Tetris {
             //y坐标在0 - MAXY 之间就对box中的状态进行判定
             //box中为1则返回false
             if (newY[i] >= 0 && newY[i] < MAX_Y) {
-                if (box[newX[i]][newY[i]] == 1) {
+                if (box[newX[i]][newY[i]].show) {
                     return false
                 }
             } else if (newY[i] >= MAX_Y) {
@@ -355,8 +321,8 @@ public class Tetris {
                 return false
             }
         }
-        newCenterX = block.centerX;
-        newCenterY = block.centerY;
+        newCenterX = block.centerX
+        newCenterY = block.centerY
 
         //满足条件后进行block的赋值
         for (i in 0..COUNT) {
@@ -375,7 +341,8 @@ public class Tetris {
             let x = block.x[i]
             let y = block.y[i]
             if (y >= 0) {
-                box[x][y] = 1
+                box[x][y].show = true
+                box[x][y].color = block.color
             }
         }
     }
@@ -386,7 +353,7 @@ public class Tetris {
         for (j in 0..MAX_Y) {
             var judgement = true
             for (i in 0..MAX_X) {
-                if (box[i][j] == 0) {
+                if (!box[i][j].show) {
                     judgement = false
                     break
                 }
@@ -405,4 +372,10 @@ public record Block {
     public var centerX: Int64 = -1 //方块的中心x坐标
     public var centerY: Int64 = -1 //方块的中心y坐标
     public var id: Int64 = 0 //方块的ID
+    public var color = QColor.Black //方块的颜色
+}
+
+public class BoxItem {
+    public var show = false //是否显示方块
+    public var color = QColor.Black //方块的颜色
 }

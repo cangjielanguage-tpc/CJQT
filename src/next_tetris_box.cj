@@ -18,10 +18,21 @@ public class NextTetrisBox <: QWidget {
         setPaintEvent() {
             event =>
             let painter = QPainter(this)
-            let pen = QPen(QColor.Black, 0)
-            let brush = QBrush(QColor.Black)
-            painter.setPen(pen)
-            painter.setBrush(brush)
+
+            painter.setPen(QPen(QColor.White, 0))
+            painter.setBrush(QBrush(QColor.White))
+
+            for (i in 0..Tetris.NEXT_MAX_Y) {
+                let y = (i + 1) * (Tetris.WIDTH + Tetris.INTERVAL) - Tetris.INTERVAL
+                painter.drawRect(0, y + (Tetris.INTERVAL / 2), Tetris.getNextWidth(), 0)
+            }
+            for (i in 0..Tetris.NEXT_MAX_X) {
+                let x = (i + 1) * (Tetris.WIDTH + Tetris.INTERVAL) - Tetris.INTERVAL
+                painter.drawRect(x + (Tetris.INTERVAL / 2), 0, 0, Tetris.getNextHeight())
+            }
+
+            painter.setPen(QPen(QColor.Gray, 1))
+            painter.setBrush(QBrush(nextBlock.color))
 
             for (i in 0..Tetris.COUNT) {
                 let x = nextBlock.x[i]
@@ -37,6 +48,7 @@ public class NextTetrisBox <: QWidget {
     }
 
     public func updateNextTetris(tetris: Tetris) {
+        nextBlock.color = tetris.nextBlock.color
         for (i in 0..Tetris.COUNT) {
             nextBlock.x[i] = tetris.nextBlock.x[i] - RESTX
             nextBlock.y[i] = tetris.nextBlock.y[i] + RESTY

@@ -115,13 +115,22 @@ import qt.widgets.*
 
 main() {
     QApplication.create()
-    let win = QWidget()
+    let win = QMainWindow()
     win.setWindowTitle("CJQT Example")
     win.resize(400, 300)
 
     let label = QLabel(win)
-    label.setGeometry(150, 150, 100, 24)
+    label.setGeometry(120, 100, 200, 40)
     label.setText("Hello CJQT!")
+    label.setFontSize(24)
+    label.setFontColor(QColor.Red)
+
+    let button = QPushButton(win)
+    button.setGeometry(150, 180, 100, 24)
+    button.setText("button")
+    button.connect {
+        label.hide()
+    }
 
     win.show()
 
@@ -142,58 +151,6 @@ main() {
 
 <p align="center">
 <img src="./doc/assets/qt_demo.png" width="60%" >
-</p>
-
-### QML示例
-
-创建hello.qml文件
-
-```qml
-import QtQuick 2.2
-import QtQuick.Controls 1.4
-
-ApplicationWindow {
-    id: app
-    title: "CJQT QRC Example"
-    width: 600; height: 400
-    color: "lightgray"
-    Component.onCompleted: visible = true
-
-    Text {
-        text: "Hello CJQT!\nbinding by cangjie"
-        y: 30
-        anchors.horizontalCenter: app.contentItem.horizontalCenter
-        font.pointSize: 24; font.bold: true
-    }
-}
-```
-创建main.cj文件
-```cangjie
-import qt.gui.*
-import qt.widgets.*
-
-main() {
-    QApplication.create()
-    let engine = QQmlApplicationAngine()
-    engine.loadUrl("./src/hello.qml")
-
-    QApplication.exec()
-
-    engine.delete()
-    QApplication.delete()
-}
-```
-
-执行命令如下：
-
-```shell
-./run.sh
-```
-
-执行效果：
-
-<p align="center">
-<img src="./doc/assets/qml_demo.png" width="60%" >
 </p>
 
 

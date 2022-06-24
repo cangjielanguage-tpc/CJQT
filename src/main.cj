@@ -3,8 +3,7 @@ import qt.widgets.*
 import qt.gui.*
 
 main() {
-    // testQt()
-    // testQml()
+    //testQt()
     testTetris()
 }
 
@@ -23,23 +22,15 @@ func testQt() {
     let button = QPushButton(win)
     button.setGeometry(150, 180, 100, 24)
     button.setText("button")
+    button.connect {
+        label.hide()
+    }
 
     win.show()
 
     QApplication.exec()
 
     win.delete()
-    QApplication.delete()
-}
-
-func testQml() {
-    QApplication.create()
-    let engine = QQmlApplicationAngine()
-    engine.loadUrl("./src/hello.qml")
-
-    QApplication.exec()
-
-    engine.delete()
     QApplication.delete()
 }
 

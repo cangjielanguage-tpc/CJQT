@@ -5,13 +5,13 @@ public class TetrisBox <: QWidget {
     var block = Block() //用来储存Tetris中block的数据
 
     //用来存储Tetris中box的数据
-    var box: ArrayList<ArrayList<Int64>> = ArrayList()
+    var box: ArrayList<ArrayList<BoxItem>> = ArrayList()
 
     public init() {
         for (i in 0..Tetris.MAX_X) {
-            let arr: ArrayList<Int64> = ArrayList()
+            let arr: ArrayList<BoxItem> = ArrayList()
             for (j in 0..Tetris.MAX_Y) {
-                arr.add(0)
+                arr.add(BoxItem())
             }
             box.add(arr)
         }
@@ -26,20 +26,33 @@ public class TetrisBox <: QWidget {
         setPaintEvent() {
             event =>
             let painter = QPainter(this)
-            let pen = QPen(QColor.Black, 0)
-            let brush = QBrush(QColor.Black)
-            painter.setPen(pen)
-            painter.setBrush(brush)
+
+            painter.setPen(QPen(QColor.White, 0))
+            painter.setBrush(QBrush(QColor.White))
+
+            for (i in 0..Tetris.MAX_Y) {
+                let y = (i + 1) * (Tetris.WIDTH + Tetris.INTERVAL) - Tetris.INTERVAL
+                painter.drawRect(0, y + (Tetris.INTERVAL / 2), Tetris.getWidth(), 0)
+            }
+            for (i in 0..Tetris.MAX_X) {
+                let x = (i + 1) * (Tetris.WIDTH + Tetris.INTERVAL) - Tetris.INTERVAL
+                painter.drawRect(x + (Tetris.INTERVAL / 2), 0, 0, Tetris.getHeight())
+            }
 
             for (i in 0..Tetris.MAX_X) {
                 for (j in 0..Tetris.MAX_Y) {
-                    if (box[i][j] == 1) {
+                    if (box[i][j].show) {
+                        painter.setPen(QPen(QColor.Gray, 1))
+                        painter.setBrush(QBrush(box[i][j].color))
                         let x = i * Tetris.WIDTH + i * Tetris.INTERVAL
                         let y = j * Tetris.HEIGHT + j * Tetris.INTERVAL
                         painter.drawRect(x, y, Tetris.WIDTH, Tetris.HEIGHT)
                     }
                 }
             }
+
+            painter.setPen(QPen(QColor.Gray, 1))
+            painter.setBrush(QBrush(block.color))
 
             for (i in 0..Tetris.COUNT) {
                 let x = block.x[i]
