@@ -5,11 +5,12 @@ from std import ffi.c.CString
 foreign func nativePushButtonCreate(appPtr: Int64, parentPtr: Int64): Int64
 foreign func nativePushButtonSetText(ptr: Int64, text: CString): Unit
 foreign func nativePushButtonSetStyleSheet(ptr: Int64, style: CString): Unit
-foreign func nativePushButtonConnect(ptr: Int64, callback: CFunc<(Int64) -> Unit>): Unit
+foreign func nativePushButtonConnect(ptr: Int64, code: Int64, callback: CFunc<(Int64) -> Unit>): Unit
 foreign func nativePushButtonDelete(ptr: Int64): Unit
 
 public class QPushButton <: QWidget {
-    static let connectCallback = HashMap<Int64, () -> Unit>()
+
+    public let clicked: QPushButtonClickedSignal
 
     public init() {
         super(
@@ -17,6 +18,7 @@ public class QPushButton <: QWidget {
                 nativePushButtonCreate(QApplication.ptr, 0)
             }
         )
+        clicked = QPushButtonClickedSignal(ptr)
     }
 
     public init(text: String) {
@@ -25,6 +27,7 @@ public class QPushButton <: QWidget {
                 nativePushButtonCreate(QApplication.ptr, 0)
             }
         )
+        clicked = QPushButtonClickedSignal(ptr)
         setText(text)
     }
 
@@ -34,6 +37,7 @@ public class QPushButton <: QWidget {
                 nativePushButtonCreate(QApplication.ptr, parent.ptr)
             }
         )
+        clicked = QPushButtonClickedSignal(ptr)
     }
 
     public func setText(text: String) {
@@ -48,24 +52,22 @@ public class QPushButton <: QWidget {
         }
     }
 
-    public func connect(callback: () -> Unit) {
-        QPushButton.connectCallback.put(ptr, callback)
-        let cb: CFunc<(Int64) -> Unit> = {
-            ptr => try {
-                QPushButton.connectCallback[ptr]()
-            } catch (e: Exception) {
-                println(e)
-            }
-        }
-        unsafe {
-            nativePushButtonConnect(ptr, cb)
-        }
-    }
-
     public override func delete() {
-        QPushButton.connectCallback.remove(ptr)
+        clicked.remove()
         unsafe {
             nativePushButtonDelete(ptr)
+        }
+    }
+}
+
+public class QPushButtonClickedSignal <: QSignal {
+    init(ptr: Int64){
+        super("clicked", ptr)
+    }
+
+    override func nativeConnect(code: Int64, cb: CFunc<(Int64) -> Unit>){
+        unsafe {
+            nativePushButtonConnect(ptr, code, cb)
         }
     }
 }

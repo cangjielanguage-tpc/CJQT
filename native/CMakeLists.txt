@@ -2,6 +2,8 @@ cmake_minimum_required(VERSION 3.5)
 
 project(nativeQt LANGUAGES CXX)
 
+# set(CMAKE_CXX_FLAGS   "-g")
+
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
 set(CMAKE_AUTOUIC ON)
@@ -29,6 +31,9 @@ add_library(nativeQt SHARED
         ./src/widgets/grid_layout.cpp
         ./src/widgets/push_button.cpp
         ./src/widgets/message_box.cpp
+        ./src/widgets/menu_bar.cpp
+        ./src/widgets/menu.cpp
+        ./src/widgets/action.cpp
         ./src/code/url.cpp
         ./src/code/timer.cpp
         ./src/gui/mouse_event.cpp

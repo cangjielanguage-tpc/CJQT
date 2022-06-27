@@ -4,6 +4,7 @@ from std import ffi.c.CString
 
 foreign func nativeMainWindowCreate(appPtr: Int64, parentPtr: Int64): Int64
 foreign func nativeMainWindowSetCentralWidget(ptr: Int64, widgetPtr: Int64): Unit
+foreign func nativeMainWindowSetMenuBar(ptr: Int64, menuBarPtr: Int64): Unit
 foreign func nativeMainWindowDelete(ptr: Int64): Unit
 
 public open class QMainWindow <: QWidget {
@@ -26,6 +27,12 @@ public open class QMainWindow <: QWidget {
     public func setCentralWidget(widget: QWidget) {
         unsafe {
             nativeMainWindowSetCentralWidget(ptr, widget.ptr)
+        }
+    }
+
+    public func setMenuBar(menuBar: QMenuBar) {
+        unsafe {
+            nativeMainWindowSetMenuBar(ptr, menuBar.ptr)
         }
     }
 

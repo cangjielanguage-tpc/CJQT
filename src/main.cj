@@ -1,10 +1,12 @@
-import qt.*
 import qt.widgets.*
 import qt.gui.*
+import example.tetris.*
+import example.notepad.*
 
 main() {
-    //testQt()
-    testTetris()
+    testQt()
+    //testTetris()
+    // testNotepad()
 }
 
 func testQt() {
@@ -22,8 +24,8 @@ func testQt() {
     let button = QPushButton(win)
     button.setGeometry(150, 180, 100, 24)
     button.setText("button")
-    button.connect {
-        label.hide()
+    button.clicked.connect(){
+        println("clicked")
     }
 
     win.show()
@@ -38,6 +40,19 @@ func testTetris() {
     QApplication.create()
 
     let box = TetrisWindow()
+    box.show()
+
+    QApplication.exec()
+
+    box.delete()
+
+    QApplication.delete()
+}
+
+func testNotepad() {
+    QApplication.create()
+
+    let box = NotepadWindow()
     box.show()
 
     QApplication.exec()

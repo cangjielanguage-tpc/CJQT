@@ -226,3 +226,34 @@ public open class QWidget {
         }
     }
 }
+
+public open class QSignal {
+    protected let ptr: Int64
+    protected let signalType: String
+
+    public init(signalType: String, ptr: Int64) {
+        this.ptr = ptr
+        this.signalType = signalType
+    }
+
+
+    public func connect(callback: () -> Unit) {
+        QCallbackMap.connect.put(QMapKey(signalType, ptr).hashCode(), callback)
+        let cb: CFunc<(Int64) -> Unit> = {
+            code => try {
+                QCallbackMap.connect[code]()
+            } catch (e: Exception) {
+                println(e)
+            }
+        }
+        nativeConnect(QMapKey(signalType, ptr).hashCode(), cb)
+    }
+
+    open func nativeConnect(code: Int64, cb: CFunc<(Int64) -> Unit>){
+
+    }
+
+    public func remove() {
+        QCallbackMap.connect.remove(QMapKey(signalType, ptr).hashCode())
+    }
+}

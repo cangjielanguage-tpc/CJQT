@@ -1,3 +1,5 @@
+package example.tetris
+
 import qt.gui.*
 import qt.widgets.*
 
@@ -20,23 +22,28 @@ public class TetrisBox <: QWidget {
         let h = Tetris.getHeight()
         setFixedSize(w, h)
 
-        setPalette(QPalette(QColor.LightGray))
-        setAutoFillBackground(true)
+        //setPalette(QPalette(QColor.LightGray))
+        //setAutoFillBackground(true)
 
         setPaintEvent() {
             event =>
             let painter = QPainter(this)
+
+            painter.setPen(QPen(QColor.Black, 1))
+            painter.setBrush(QBrush(QColor.LightGray))
+
+            painter.drawRect(0, 0, Tetris.getWidth() - 2, Tetris.getHeight() - 2)
 
             painter.setPen(QPen(QColor.White, 0))
             painter.setBrush(QBrush(QColor.White))
 
             for (i in 0..Tetris.MAX_Y) {
                 let y = (i + 1) * (Tetris.WIDTH + Tetris.INTERVAL) - Tetris.INTERVAL
-                painter.drawRect(0, y + (Tetris.INTERVAL / 2), Tetris.getWidth(), 0)
+                painter.drawRect(1, y + (Tetris.INTERVAL / 2), Tetris.getWidth() - 4, 0)
             }
             for (i in 0..Tetris.MAX_X) {
                 let x = (i + 1) * (Tetris.WIDTH + Tetris.INTERVAL) - Tetris.INTERVAL
-                painter.drawRect(x + (Tetris.INTERVAL / 2), 0, 0, Tetris.getHeight())
+                painter.drawRect(x + (Tetris.INTERVAL / 2), 1, 0, Tetris.getHeight() - 4)
             }
 
             for (i in 0..Tetris.MAX_X) {

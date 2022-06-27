@@ -25,6 +25,13 @@ extern "C"
         instance->setCentralWidget(widget);
     }
 
+    void nativeMainWindowSetMenuBar(long ptr, long menuBarPtr)
+    {
+        QMainWindow *instance = reinterpret_cast<QMainWindow *>(static_cast<uintptr_t>(ptr));
+        QMenuBar *menuBar = reinterpret_cast<QMenuBar *>(static_cast<uintptr_t>(menuBarPtr));
+        instance->setMenuBar(menuBar);
+    }
+
 	void nativeMainWindowDelete(long ptr)
 	{
 		CjQtMainWindow *instance = reinterpret_cast<CjQtMainWindow *>(static_cast<uintptr_t>(ptr));

@@ -1,3 +1,5 @@
+package example.tetris
+
 import qt.gui.*
 import qt.code.*
 import qt.widgets.*

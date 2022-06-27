@@ -14,7 +14,7 @@ foreign func nativeMessageBoxInformation(
 public class QMessageBox <: QWidget {
     static public func information(parent: QWidget, title: String, text: String) {
         unsafe {
-            nativeMessageBoxInformation(QApplication.ptr, parent.ptr, CString(title), CString(text), 0, 0)
+            nativeMessageBoxInformation(QApplication.ptr, 0, CString(title), CString(text), 0, 0)
         }
     }
 }

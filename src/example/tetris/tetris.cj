@@ -1,3 +1,5 @@
+package example.tetris
+
 from std import random.*
 from std import math.*
 from std import collection.*

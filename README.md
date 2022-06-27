@@ -161,6 +161,7 @@ main() {
 ```cangjie
 import qt.gui.*
 import qt.widgets.*
+import example.tetris.*
 
 main() {
     QApplication.create()
