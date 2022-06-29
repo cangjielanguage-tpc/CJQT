@@ -14,8 +14,9 @@
       "requires": [],
       "package_requires": {},
       "foreign_requires": {
-        "nativeQt": "./native/build"
-      }
+        "nativeQt": "/home/wathinst/cjProject/qt/native/build"
+      },
+      "cross_compile_configuration": {}
     },
     {
       "organization": "cangjie",
@@ -31,8 +32,9 @@
       "requires": [],
       "package_requires": {},
       "foreign_requires": {
-        "nativeQt": "./native/build"
-      }
+        "nativeQt": "/home/wathinst/cjProject/qt/native/build"
+      },
+      "cross_compile_configuration": {}
     },
     {
       "organization": "cangjie",
@@ -48,8 +50,9 @@
       "requires": [],
       "package_requires": {},
       "foreign_requires": {
-        "nativeQt": "./native/build"
-      }
+        "nativeQt": "/home/wathinst/cjProject/qt/native/build"
+      },
+      "cross_compile_configuration": {}
     },
     {
       "organization": "cangjie",
@@ -68,8 +71,9 @@
       ],
       "package_requires": {},
       "foreign_requires": {
-        "nativeQt": "./native/build"
-      }
+        "nativeQt": "/home/wathinst/cjProject/qt/native/build"
+      },
+      "cross_compile_configuration": {}
     },
     {
       "organization": "cangjie",
@@ -89,8 +93,9 @@
       ],
       "package_requires": {},
       "foreign_requires": {
-        "nativeQt": "./native/build"
-      }
+        "nativeQt": "/home/wathinst/cjProject/qt/native/build"
+      },
+      "cross_compile_configuration": {}
     },
     {
       "organization": "cangjie",
@@ -110,8 +115,9 @@
       ],
       "package_requires": {},
       "foreign_requires": {
-        "nativeQt": "./native/build"
-      }
+        "nativeQt": "/home/wathinst/cjProject/qt/native/build"
+      },
+      "cross_compile_configuration": {}
     },
     {
       "organization": "cangjie",
@@ -132,8 +138,9 @@
       ],
       "package_requires": {},
       "foreign_requires": {
-        "nativeQt": "./native/build"
-      }
+        "nativeQt": "/home/wathinst/cjProject/qt/native/build"
+      },
+      "cross_compile_configuration": {}
     }
   ]
 }

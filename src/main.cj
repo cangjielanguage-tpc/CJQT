@@ -5,8 +5,8 @@ import example.notepad.*
 
 main() {
     // testQt()
-    // testTetris()
-    testNotepad()
+    testTetris()
+    // testNotepad()
 }
 
 func testQt() {

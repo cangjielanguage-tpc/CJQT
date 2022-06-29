@@ -13,9 +13,9 @@ public class TetrisBox <: QWidget {
         for (i in 0..Tetris.MAX_X) {
             let arr: ArrayList<BoxItem> = ArrayList()
             for (j in 0..Tetris.MAX_Y) {
-                arr.add(BoxItem())
+                arr.append(BoxItem())
             }
-            box.add(arr)
+            box.append(arr)
         }
 
         let w = Tetris.getWidth()

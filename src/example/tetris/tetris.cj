@@ -27,9 +27,9 @@ public class Tetris {
         for (i in 0..MAX_X) {
             let arr: ArrayList<BoxItem> = ArrayList()
             for (j in 0..MAX_Y) {
-                arr.add(BoxItem())
+                arr.append(BoxItem())
             }
-            box.add(arr)
+            box.append(arr)
         }
         createNextBlock()
     }
@@ -368,7 +368,7 @@ public class Tetris {
     }
 }
 
-public record Block {
+public struct Block {
     public var x = Array<Int64>(Tetris.COUNT, item: -1) //方块单格的x坐标
     public var y = Array<Int64>(Tetris.COUNT, item: -1) //方块单格的y坐标
     public var centerX: Int64 = -1 //方块的中心x坐标
