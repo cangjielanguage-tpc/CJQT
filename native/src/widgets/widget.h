@@ -8,6 +8,74 @@
 
 #include "config.h"
 
+typedef void (*paintEventFunc)(QPaintEvent *event);
+
+#define PAINT_EVENT(func)                                                                                   \
+    void paintEvent(QPaintEvent *event)                                                                     \
+    {                                                                                                       \
+        nativeEventCallback paintEventCallback = appConfig->paintEventMapGet(reinterpret_cast<long>(this)); \
+        if (paintEventCallback != nullptr)                                                                  \
+        {                                                                                                   \
+            paintEventCallback(reinterpret_cast<long>(this), reinterpret_cast<long>(event));                \
+        }                                                                                                   \
+        else                                                                                                \
+        {                                                                                                   \
+            func(event);                                                                                    \
+        }                                                                                                   \
+    }
+
+#define MOUSE_PRESS_EVENT(func)                                                                                       \
+    void mousePressEvent(QMouseEvent *event)                                                                          \
+    {                                                                                                                 \
+        nativeEventCallback mousePressEventCallback = appConfig->mousePressEventMapGet(reinterpret_cast<long>(this)); \
+        if (mousePressEventCallback != nullptr)                                                                       \
+        {                                                                                                             \
+            mousePressEventCallback(reinterpret_cast<long>(this), reinterpret_cast<long>(event));                     \
+        }                                                                                                             \
+        else                                                                                                          \
+        {                                                                                                             \
+            func(event);                                                                                              \
+        }                                                                                                             \
+    }
+
+#define MOUSE_RELEASE_EVENT(func)                                                                                         \
+    void mouseReleaseEvent(QMouseEvent *event)                                                                            \
+    {                                                                                                                     \
+        nativeEventCallback mouseReleaseEventCallback = appConfig->mouseReleaseEventMapGet(reinterpret_cast<long>(this)); \
+        if (mouseReleaseEventCallback != nullptr)                                                                         \
+        {                                                                                                                 \
+            mouseReleaseEventCallback(reinterpret_cast<long>(this), reinterpret_cast<long>(event));                       \
+        }                                                                                                                 \
+        else                                                                                                              \
+        {                                                                                                                 \
+            func(event);                                                                                                  \
+        }                                                                                                                 \
+    }
+
+#define MOUSE_MOVE_EVENT(func)                                                                                      \
+    void mouseMoveEvent(QMouseEvent *event)                                                                         \
+    {                                                                                                               \
+        nativeEventCallback mouseMoveEventCallback = appConfig->mouseMoveEventMapGet(reinterpret_cast<long>(this)); \
+        if (mouseMoveEventCallback != nullptr)                                                                      \
+        {                                                                                                           \
+            mouseMoveEventCallback(reinterpret_cast<long>(this), reinterpret_cast<long>(event));                    \
+        }                                                                                                           \
+        else                                                                                                        \
+        {                                                                                                           \
+            func(event);                                                                                            \
+        }                                                                                                           \
+    }
+
+#define KEY_PRESS_EVENT                                                                                           \
+    void keyPressEvent(QKeyEvent *event)                                                                          \
+    {                                                                                                             \
+        nativeEventCallback keyPressEventCallback = appConfig->keyPressEventMapGet(reinterpret_cast<long>(this)); \
+        if (keyPressEventCallback != nullptr)                                                                     \
+        {                                                                                                         \
+            keyPressEventCallback(reinterpret_cast<long>(this), reinterpret_cast<long>(event));                   \
+        }                                                                                                         \
+    }
+
 extern "C"
 {
     extern Config *appConfig;
@@ -20,54 +88,15 @@ public:
     CjQtWidget(QWidget *parent = nullptr) : QWidget(parent) {}
 
 protected:
-    void paintEvent(QPaintEvent *event)
-    {
-        nativeEventCallback paintEventCallback = appConfig->paintEventMapGet(reinterpret_cast<long>(this));
-        if (paintEventCallback != nullptr)
-        {
-            paintEventCallback(reinterpret_cast<long>(this), reinterpret_cast<long>(event));
-        }
-        else
-        {
-            QWidget::paintEvent(event);
-        }
-    }
+    PAINT_EVENT(QWidget::paintEvent)
 
-    void mousePressEvent(QMouseEvent *event)
-    {
-        nativeEventCallback mousePressEventCallback = appConfig->mousePressEventMapGet(reinterpret_cast<long>(this));
-        if (mousePressEventCallback != nullptr)
-        {
-            mousePressEventCallback(reinterpret_cast<long>(this), reinterpret_cast<long>(event));
-        }
-    }
+    MOUSE_PRESS_EVENT(QWidget::mousePressEvent)
 
-    void mouseReleaseEvent(QMouseEvent *event)
-    {
-        nativeEventCallback mouseReleaseEventCallback = appConfig->mouseReleaseEventMapGet(reinterpret_cast<long>(this));
-        if (mouseReleaseEventCallback != nullptr)
-        {
-            mouseReleaseEventCallback(reinterpret_cast<long>(this), reinterpret_cast<long>(event));
-        }
-    }
+    MOUSE_RELEASE_EVENT(QWidget::mouseReleaseEvent)
 
-    void mouseMoveEvent(QMouseEvent *event)
-    {
-        nativeEventCallback mouseMoveEventCallback = appConfig->mouseMoveEventMapGet(reinterpret_cast<long>(this));
-        if (mouseMoveEventCallback != nullptr)
-        {
-            mouseMoveEventCallback(reinterpret_cast<long>(this), reinterpret_cast<long>(event));
-        }
-    }
+    MOUSE_MOVE_EVENT(QWidget::mouseMoveEvent)
 
-    void keyPressEvent(QKeyEvent *event)
-    {
-        nativeEventCallback keyPressEventCallback = appConfig->keyPressEventMapGet(reinterpret_cast<long>(this));
-        if (keyPressEventCallback != nullptr)
-        {
-            keyPressEventCallback(reinterpret_cast<long>(this), reinterpret_cast<long>(event));
-        }
-    }
+    KEY_PRESS_EVENT
 };
 
 #endif

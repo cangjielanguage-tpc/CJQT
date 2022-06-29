@@ -4,9 +4,9 @@ import example.tetris.*
 import example.notepad.*
 
 main() {
-    testQt()
-    //testTetris()
-    // testNotepad()
+    // testQt()
+    // testTetris()
+    testNotepad()
 }
 
 func testQt() {
@@ -24,7 +24,7 @@ func testQt() {
     let button = QPushButton(win)
     button.setGeometry(150, 180, 100, 24)
     button.setText("button")
-    button.clicked.connect(){
+    button.clicked.connect() {
         println("clicked")
     }
 

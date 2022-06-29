@@ -11,66 +11,15 @@ public:
     CjQtMenu(QWidget *parent = nullptr) : QMenu(parent) {}
 
 protected:
-    void paintEvent(QPaintEvent *event)
-    {
-        nativeEventCallback paintEventCallback = appConfig->paintEventMapGet(reinterpret_cast<long>(this));
-        if (paintEventCallback != nullptr)
-        {
-            paintEventCallback(reinterpret_cast<long>(this), reinterpret_cast<long>(event));
-        }
-        else
-        {
-            QMenu::paintEvent(event);
-        }
-    }
+    PAINT_EVENT(QMenu::paintEvent)
 
-    void mousePressEvent(QMouseEvent *event)
-    {
-        nativeEventCallback mousePressEventCallback = appConfig->mousePressEventMapGet(reinterpret_cast<long>(this));
-        if (mousePressEventCallback != nullptr)
-        {
-            mousePressEventCallback(reinterpret_cast<long>(this), reinterpret_cast<long>(event));
-        }
-        else
-        {
-            QMenu::mousePressEvent(event);
-        }
-    }
+    MOUSE_PRESS_EVENT(QMenu::mousePressEvent)
 
-    void mouseReleaseEvent(QMouseEvent *event)
-    {
-        nativeEventCallback mouseReleaseEventCallback = appConfig->mouseReleaseEventMapGet(reinterpret_cast<long>(this));
-        if (mouseReleaseEventCallback != nullptr)
-        {
-            mouseReleaseEventCallback(reinterpret_cast<long>(this), reinterpret_cast<long>(event));
-        }
-        else
-        {
-            QMenu::mouseReleaseEvent(event);
-        }
-    }
+    MOUSE_RELEASE_EVENT(QMenu::mouseReleaseEvent)
 
-    void mouseMoveEvent(QMouseEvent *event)
-    {
-        nativeEventCallback mouseMoveEventCallback = appConfig->mouseMoveEventMapGet(reinterpret_cast<long>(this));
-        if (mouseMoveEventCallback != nullptr)
-        {
-            mouseMoveEventCallback(reinterpret_cast<long>(this), reinterpret_cast<long>(event));
-        }
-        else
-        {
-            QMenu::mouseMoveEvent(event);
-        }
-    }
+    MOUSE_MOVE_EVENT(QMenu::mouseMoveEvent)
 
-    void keyPressEvent(QKeyEvent *event)
-    {
-        nativeEventCallback keyPressEventCallback = appConfig->keyPressEventMapGet(reinterpret_cast<long>(this));
-        if (keyPressEventCallback != nullptr)
-        {
-            keyPressEventCallback(reinterpret_cast<long>(this), reinterpret_cast<long>(event));
-        }
-    }
+    KEY_PRESS_EVENT
 };
 
 #endif
