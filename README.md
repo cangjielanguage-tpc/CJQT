@@ -55,6 +55,10 @@ CjQt是Qt的仓颉语言绑定，提供仓颉语言风格的Qt类和函数的API
 │   ├── design.md  
 │   ├── proposal.md
 │   └── xxx_lib.md 
+├── example
+│   ├── hello
+│   ├── notepad
+│   └── tetris
 ├── native
 │   ├── src
 │   │   ├── code
@@ -74,6 +78,7 @@ CjQt是Qt的仓颉语言绑定，提供仓颉语言风格的Qt类和函数的API
 ```
 
 - `doc`是库的设计文档、提案、库的使用文档
+- `example`是cjqt项目的使用示例
 - `native`是C语言绑定QT库源码目录
 - `src`是库源码目录
 - `test`是存放测试用例，包括HLT用例、LLT 用例和UT用例
@@ -101,50 +106,19 @@ source ~/.bashrc
 编译项目源码
 
 ```shell
-./native.make.sh
+./native/make.sh
 cpm update
 cpm build
 ```
 
-### Qt5示例
+### hello示例
 
-创建main.cj文件
-```cangjie
-import qt.gui.*
-import qt.widgets.*
+[hello示例详情](./example/hello/README.md)
 
-main() {
-    QApplication.create()
-    let win = QMainWindow()
-    win.setWindowTitle("CJQT Example")
-    win.resize(400, 300)
-
-    let label = QLabel(win)
-    label.setGeometry(120, 100, 200, 40)
-    label.setText("Hello CJQT!")
-    label.setFontSize(24)
-    label.setFontColor(QColor.Red)
-
-    let button = QPushButton(win)
-    button.setGeometry(150, 180, 100, 24)
-    button.setText("button")
-    button.connect {
-        label.hide()
-    }
-
-    win.show()
-
-    QApplication.exec()
-
-    win.delete()
-    QApplication.delete()
-}
-```
-
-执行命令如下：
+执行命令：
 
 ```shell
-./run.sh
+./example/hello/run.sh 
 ```
 
 执行效果：
@@ -156,31 +130,12 @@ main() {
 
 ### 俄罗斯方块游戏示例
 
+[俄罗斯方块示例详情](./example/tetris/README.md)
 
-创建main.cj文件
-```cangjie
-import qt.gui.*
-import qt.widgets.*
-import example.tetris.*
-
-main() {
-    QApplication.create()
-
-    let box = TetrisWindow()
-    box.show()
-
-    QApplication.exec()
-
-    box.delete()
-
-    QApplication.delete()
-}
-```
-
-执行命令如下：
+执行命令：
 
 ```shell
-./run.sh
+./example/tetris/run.sh
 ```
 
 执行效果：

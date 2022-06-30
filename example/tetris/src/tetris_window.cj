@@ -1,8 +1,6 @@
-package example.tetris
-
-import qt.gui.*
-import qt.code.*
-import qt.widgets.*
+from cjqt import qt.gui.*
+from cjqt import qt.code.*
+from cjqt import qt.widgets.*
 
 public class TetrisWindow <: QMainWindow {
     //游戏的状态

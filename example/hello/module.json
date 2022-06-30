@@ -1,0 +1,19 @@
+{
+  "cjc_version": "0.30.4",
+  "organization": "cjqt",
+  "name": "hello",
+  "description": "nothing here",
+  "version": "1.0.0",
+  "requires": {
+    "cjqt": {
+      "organization": "cangjie",
+      "version": "0.0.1",
+      "path": "../../"
+    }
+  },
+  "package_requires": {},
+  "foreign_requires": {},
+  "output_type": "executable",
+  "command_option": "",
+  "cross_compile_configuration": {}
+}

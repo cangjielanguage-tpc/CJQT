@@ -3,7 +3,7 @@
     {
       "organization": "cangjie",
       "name": "cjqt",
-      "path": "./",
+      "path": "/home/wathinst/cjProject/qt",
       "packagePath": "/home/wathinst/cjProject/qt/src/qt",
       "packageName": "cjqt/qt",
       "version": "0.0.1",
@@ -21,7 +21,7 @@
     {
       "organization": "cangjie",
       "name": "cjqt",
-      "path": "./",
+      "path": "/home/wathinst/cjProject/qt",
       "packagePath": "/home/wathinst/cjProject/qt/src/qt/gui",
       "packageName": "cjqt/qt.gui",
       "version": "0.0.1",
@@ -39,7 +39,7 @@
     {
       "organization": "cangjie",
       "name": "cjqt",
-      "path": "./",
+      "path": "/home/wathinst/cjProject/qt",
       "packagePath": "/home/wathinst/cjProject/qt/src/qt/code",
       "packageName": "cjqt/qt.code",
       "version": "0.0.1",
@@ -57,7 +57,7 @@
     {
       "organization": "cangjie",
       "name": "cjqt",
-      "path": "./",
+      "path": "/home/wathinst/cjProject/qt",
       "packagePath": "/home/wathinst/cjProject/qt/src/qt/widgets",
       "packageName": "cjqt/qt.widgets",
       "version": "0.0.1",
@@ -73,6 +73,25 @@
       "foreign_requires": {
         "nativeQt": "/home/wathinst/cjProject/qt/native/build"
       },
+      "cross_compile_configuration": {}
+    },
+    {
+      "organization": "cjqt",
+      "name": "hello",
+      "path": "./",
+      "packagePath": "/home/wathinst/cjProject/qt/example/hello/src",
+      "packageName": "hello/default",
+      "version": "1.0.0",
+      "hash": "-2010422790137593917",
+      "isMacroPackage": false,
+      "output_type": "executable",
+      "command_option": "",
+      "requires": [
+        "cjqt/qt.gui",
+        "cjqt/qt.widgets"
+      ],
+      "package_requires": {},
+      "foreign_requires": {},
       "cross_compile_configuration": {}
     }
   ]

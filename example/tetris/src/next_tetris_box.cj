@@ -1,7 +1,5 @@
-package example.tetris
-
-import qt.gui.*
-import qt.widgets.*
+from cjqt import qt.gui.*
+from cjqt import qt.widgets.*
 
 public class NextTetrisBox <: QWidget {
     let RESTX = (Tetris.MAX_X - Tetris.NEXT_MAX_X) / 2 //方块x坐标的转换常数

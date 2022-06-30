@@ -1,15 +1,11 @@
-import qt.widgets.*
-import qt.gui.*
-import example.tetris.*
-import example.notepad.*
+### hello示例
+
+创建main.cj文件
+```cangjie
+from cjqt import qt.widgets.*
+from cjqt import qt.gui.*
 
 main() {
-    // testQt()
-    testTetris()
-    // testNotepad()
-}
-
-func testQt() {
     QApplication.create()
     let win = QMainWindow()
     win.setWindowTitle("CJQT Example")
@@ -35,29 +31,16 @@ func testQt() {
     win.delete()
     QApplication.delete()
 }
+```
 
-func testTetris() {
-    QApplication.create()
+执行命令如下：
 
-    let box = TetrisWindow()
-    box.show()
+```shell
+./run.sh
+```
 
-    QApplication.exec()
+执行效果：
 
-    box.delete()
-
-    QApplication.delete()
-}
-
-func testNotepad() {
-    QApplication.create()
-
-    let box = NotepadWindow()
-    box.show()
-
-    QApplication.exec()
-
-    box.delete()
-
-    QApplication.delete()
-}
+<p align="center">
+<img src="./../../doc/assets/qt_demo.png" width="60%" >
+</p>

@@ -1,7 +1,5 @@
-package example.tetris
-
-import qt.gui.*
-import qt.widgets.*
+from cjqt import qt.gui.*
+from cjqt import qt.widgets.*
 
 public class TetrisBox <: QWidget {
     var block = Block() //用来储存Tetris中block的数据
