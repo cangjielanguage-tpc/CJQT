@@ -79,6 +79,7 @@ public class TetrisWindow <: QMainWindow {
                 updateScore()
             } else {
                 timer.stop()
+
                 //QMessageBox.information(this, "Game Over", "Game Over!\nYour Score is: ${tetris.score}!")
                 status = STATUS_END
                 setWindowTitle("CJQT Game Tetris - END")
@@ -98,115 +99,137 @@ public class TetrisWindow <: QMainWindow {
         nextTetrisBox.updateNextTetris(tetris)
         setWindowTitle("CJQT Game Tetris - OFF")
 
-        setKeyPressEvent() {
-            event =>
-            //W键-进行旋转并更新游戏窗口内容
-            if (event.key() == QKeyEvent.KEY_W) {
-                if (tetris.rotate()) {
-                    //需要游戏状态为：正常进行
-                    if (status == STATUS_ON) {
-                        tetrisBox.updateTetris(tetris)
-                    }
-                }
-            } else if (event.key() == QKeyEvent.KEY_A) {
-                //A键-将方块向左移动并更新游戏窗口内容
-                //需要游戏状态为：正常进行
-                if (status == STATUS_ON) {
-                    if (tetris.moveToLeft()) {
-                        tetrisBox.updateTetris(tetris);
-                    }
-                }
-            } else if (event.key() == QKeyEvent.KEY_S) {
-                //S键-将方块向下移动并更新游戏窗口内容
-                //需要游戏状态：正常进行
-                if (status == STATUS_ON) {
-                    if (tetris.moveToBottom()) {
-                        tetrisBox.updateTetris(tetris)
-
-                        nextTetrisBox.updateNextTetris(tetris)
-                        updateScore();
-                    } else {
-                        //游戏结束
-                        
-                        //计时器停止
-                        timer.stop();
-
-                        //输出结束提示
-                        //QMessageBox.information(this, "Game Over", "Game Over!\nYour Score is: ${tetris.score}!")
-                        //更改游戏状态为：游戏结束
-                        status = STATUS_END
-                        setWindowTitle("CJQT Game Tetris - END")
-                    }
-                }
-            } else if (event.key() == QKeyEvent.KEY_D) {
-                //D键-将方块向右移动并更新游戏窗口内容
-                //需要游戏状态为：正常进行
-                if (status == STATUS_ON) {
-                    if (tetris.moveToRight()) {
-                        tetrisBox.updateTetris(tetris);
-                    }
-                }
-            } else if (event.key() == QKeyEvent.KEY_H) {
-                //H键-开始游戏
-                //不同状态的相应：
-                //之前状态    之后状态
-                //游戏暂停 -> 正常进行
-                //还未开始 -> 正常进行
-                //游戏结束 -> 正常进行
-                if (status == STATUS_PAUSE) {
-                    timer.start()
-                    status = STATUS_ON
-                    setWindowTitle("CJQT Game Tetris - ON");
-                } else if (status == STATUS_OFF) {
-                    //初始化窗口视图
-                    tetris.createBlock()
-                    tetrisBox.updateTetris(tetris)
-
-                    nextTetrisBox.updateNextTetris(tetris)
-                    updateScore()
-
-                    status = STATUS_ON
-                    setWindowTitle("CJQT Game Tetris - ON");
-                    timer.start()
-                } else if (status == STATUS_END) {
-                    //初始化tetris
-                    tetris.clear()
-                    tetris.createBlock()
-                    tetrisBox.updateTetris(tetris)
-
-                    nextTetrisBox.updateNextTetris(tetris)
-                    updateScore()
-
-                    status = STATUS_ON
-                    setWindowTitle("CJQT Game Tetris - ON");
-                    timer.start()
-                }
-            } else if (event.key() == QKeyEvent.KEY_J) {
-                //J键-游戏暂停
-                //需要游戏状态为：正常进行
-                if (status == STATUS_ON) {
-                    timer.stop()
-                    status = STATUS_PAUSE
-                    setWindowTitle("CJQT Game Tetris - PAUSE");
-                }
-            } else if (event.key() == QKeyEvent.KEY_C) {
-                //C键-重新开始游戏
-                timer.stop()
-                tetris.clear()
-                tetrisBox.updateTetris(tetris)
-
-                nextTetrisBox.updateNextTetris(tetris)
-                updateScore()
-                status = STATUS_OFF
-                setWindowTitle("CJQT Game Tetris - OFF");
-            } else if (event.key() == QKeyEvent.KEY_M) {
-                //M键-关闭游戏
-                close()
-            }
-        }
+        setKeyPressEvent(handleEvent)
     }
 
     func updateScore() {
         scoreLabel.setText("${tetris.score}")
+    }
+
+    func handleEvent(event: QKeyEvent) {
+        match {
+            case event.key() == QKeyEvent.KEY_W => rotateTetris()
+            case event.key() == QKeyEvent.KEY_A => moveLeft()
+            case event.key() == QKeyEvent.KEY_S => moveDown()
+            case event.key() == QKeyEvent.KEY_D => moveRight()
+            case event.key() == QKeyEvent.KEY_H => startGame()
+            case event.key() == QKeyEvent.KEY_J => stopGame()
+            case event.key() == QKeyEvent.KEY_C => restartGame()
+            case event.key() == QKeyEvent.KEY_M => close()
+        }
+        //case _ => {}
+    }
+
+    //W键-旋转方块
+    func rotateTetris() {
+        //需要游戏状态为：正常进行
+        if (status == STATUS_ON) {
+            if (tetris.rotate()) {
+                tetrisBox.updateTetris(tetris)
+            }
+        }
+    }
+
+    //A键-向左移动方块
+    func moveLeft() {
+        //需要游戏状态为：正常进行
+        if (status == STATUS_ON) {
+            if (tetris.moveToLeft()) {
+                tetrisBox.updateTetris(tetris);
+            }
+        }
+    }
+
+    //S键-向下移动方块
+    func moveDown() {
+        //需要游戏状态：正常进行
+        if (status == STATUS_ON) {
+            if (tetris.moveToBottom()) {
+                tetrisBox.updateTetris(tetris)
+
+                nextTetrisBox.updateNextTetris(tetris)
+                updateScore();
+            } else {
+                //游戏结束
+                
+                //计时器停止
+                timer.stop()
+
+                //输出结束提示
+                //QMessageBox.information(this, "Game Over", "Game Over!\nYour Score is: ${tetris.score}!")
+                //更改游戏状态为：游戏结束
+                status = STATUS_END
+                setWindowTitle("CJQT Game Tetris - END")
+            }
+        }
+    }
+
+    //D键-向右移动方块
+    func moveRight() {
+        //需要游戏状态为：正常进行
+        if (status == STATUS_ON) {
+            if (tetris.moveToRight()) {
+                tetrisBox.updateTetris(tetris)
+            }
+        }
+    }
+
+    //H键-开始游戏
+    func startGame() {
+        //不同状态的相应：
+        //之前状态    之后状态
+        //游戏暂停 -> 正常进行
+        //还未开始 -> 正常进行
+        //游戏结束 -> 正常进行
+        if (status == STATUS_PAUSE) {
+            timer.start()
+            status = STATUS_ON
+            setWindowTitle("CJQT Game Tetris - ON");
+        } else if (status == STATUS_OFF) {
+            //初始化窗口视图
+            tetris.createBlock()
+            tetrisBox.updateTetris(tetris)
+
+            nextTetrisBox.updateNextTetris(tetris)
+            updateScore()
+
+            status = STATUS_ON
+            setWindowTitle("CJQT Game Tetris - ON");
+            timer.start()
+        } else if (status == STATUS_END) {
+            //初始化tetris
+            tetris.clear()
+            tetris.createBlock()
+            tetrisBox.updateTetris(tetris)
+
+            nextTetrisBox.updateNextTetris(tetris)
+            updateScore()
+
+            status = STATUS_ON
+            setWindowTitle("CJQT Game Tetris - ON");
+            timer.start()
+        }
+    }
+
+    //J键-游戏暂停
+    func stopGame() {
+        //需要游戏状态为：正常进行
+        if (status == STATUS_ON) {
+            timer.stop()
+            status = STATUS_PAUSE
+            setWindowTitle("CJQT Game Tetris - PAUSE");
+        }
+    }
+
+    // C键-重新开始游戏
+    func restartGame() {
+        timer.stop()
+        tetris.clear()
+        tetrisBox.updateTetris(tetris)
+
+        nextTetrisBox.updateNextTetris(tetris)
+        updateScore()
+        status = STATUS_OFF
+        setWindowTitle("CJQT Game Tetris - OFF");
     }
 }

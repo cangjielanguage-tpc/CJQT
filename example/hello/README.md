@@ -36,7 +36,16 @@ main() {
 执行命令如下：
 
 ```shell
-./run.sh
+cd `cjqtPath` # cjqt源码路径
+./build.sh
+
+cd `path` # 项目路径
+cpm update
+cpm build
+
+export LD_LIBRARY_PATH=`cjqtPath`/native/build:${LD_LIBRARY_PATH}  # 添加cjqt native动态库路径
+
+./bin/main
 ```
 
 执行效果：
