@@ -11,13 +11,13 @@ public:
     CjQtMenu(QWidget *parent = nullptr) : QMenu(parent) {}
 
 protected:
-    PAINT_EVENT(QMenu::paintEvent)
+    PAINT_EVENT(QMenu::paintEvent(event))
 
-    MOUSE_PRESS_EVENT(QMenu::mousePressEvent)
+    MOUSE_PRESS_EVENT(QMenu::mousePressEvent(event))
 
-    MOUSE_RELEASE_EVENT(QMenu::mouseReleaseEvent)
+    MOUSE_RELEASE_EVENT(QMenu::mouseReleaseEvent(event))
 
-    MOUSE_MOVE_EVENT(QMenu::mouseMoveEvent)
+    MOUSE_MOVE_EVENT(QMenu::mouseMoveEvent(event))
 
     KEY_PRESS_EVENT
 };

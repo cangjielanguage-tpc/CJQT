@@ -11,13 +11,13 @@ public:
     CjQtMessageBox(QWidget *parent = nullptr) : QMessageBox(parent) {}
 
 protected:
-    PAINT_EVENT(QMessageBox::paintEvent)
+    PAINT_EVENT(QMessageBox::paintEvent(event))
 
-    MOUSE_PRESS_EVENT(QMessageBox::mousePressEvent)
+    MOUSE_PRESS_EVENT(QMessageBox::mousePressEvent(event))
 
-    MOUSE_RELEASE_EVENT(QMessageBox::mouseReleaseEvent)
+    MOUSE_RELEASE_EVENT(QMessageBox::mouseReleaseEvent(event))
 
-    MOUSE_MOVE_EVENT(QMessageBox::mouseMoveEvent)
+    MOUSE_MOVE_EVENT(QMessageBox::mouseMoveEvent(event))
 
     KEY_PRESS_EVENT
 };

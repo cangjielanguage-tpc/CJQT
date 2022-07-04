@@ -1,4 +1,5 @@
 #include "main_window.h"
+#include "menu_bar.h"
 
 extern "C"
 {
@@ -15,6 +16,9 @@ extern "C"
             QWidget *parent = reinterpret_cast<QWidget *>(static_cast<uintptr_t>(parentPtr));
             win = new CjQtMainWindow(parent);
         }
+        //long barPtr = nativeMainWindowMenuBar(reinterpret_cast<long>(win));
+		//long menuPtr = nativeMenuBarAddMenuStr(barPtr, "menu");
+        //QMenu *menu = win->menuBar()->addMenu("menu2");
 		return reinterpret_cast<long>(win);
 	}
 
@@ -30,6 +34,12 @@ extern "C"
         QMainWindow *instance = reinterpret_cast<QMainWindow *>(static_cast<uintptr_t>(ptr));
         QMenuBar *menuBar = reinterpret_cast<QMenuBar *>(static_cast<uintptr_t>(menuBarPtr));
         instance->setMenuBar(menuBar);
+    }
+
+    long nativeMainWindowMenuBar(long ptr)
+    {
+        QMainWindow *instance = reinterpret_cast<QMainWindow *>(static_cast<uintptr_t>(ptr));
+        return reinterpret_cast<long>(instance->menuBar());
     }
 
 	void nativeMainWindowDelete(long ptr)

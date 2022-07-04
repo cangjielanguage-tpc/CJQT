@@ -3,6 +3,8 @@
 
 #include <sys/types.h>
 #include <unistd.h>
+#include "main_window.h"
+#include "menu_bar.h"
 
 namespace
 {
@@ -25,6 +27,13 @@ extern "C"
 		register_meta_types();
 		QApplication *app = new QApplication(argc, argv);
 		appConfig = new Config();
+
+		/*long winPtr = nativeMainWindowCreate(reinterpret_cast<long>(app), 0);
+		long barPtr = nativeMainWindowMenuBar(winPtr);
+		long menuPtr = nativeMenuBarAddMenuStr(barPtr, "menu");
+		nativeWidgetResize(winPtr, 400, 300);
+		nativeWidgetShow(winPtr); */
+
 		return reinterpret_cast<long>(app);
 	}
 

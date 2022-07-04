@@ -8,9 +8,11 @@ export LD_LIBRARY_PATH=$CUR_DIR/build/cjqt:${LD_LIBRARY_PATH}
 # native build
 sh $CUR_DIR/../../build.sh
 
+cd $CUR_DIR
+
 # cpm build
 cpm update
 cpm build
 
 # run
-exec $CUR_DIR/bin/main
+./bin/main

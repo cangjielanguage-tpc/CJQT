@@ -9,7 +9,7 @@
       "version": "0.0.1",
       "hash": "-2010748521373594389",
       "isMacroPackage": false,
-      "output_type": "static",
+      "output_type": "dynamic",
       "command_option": "",
       "requires": [],
       "package_requires": {},
@@ -27,7 +27,7 @@
       "version": "0.0.1",
       "hash": "-2010748521373594389",
       "isMacroPackage": false,
-      "output_type": "static",
+      "output_type": "dynamic",
       "command_option": "",
       "requires": [],
       "package_requires": {},
@@ -45,7 +45,7 @@
       "version": "0.0.1",
       "hash": "-2010748521373594389",
       "isMacroPackage": false,
-      "output_type": "static",
+      "output_type": "dynamic",
       "command_option": "",
       "requires": [],
       "package_requires": {},
@@ -63,7 +63,7 @@
       "version": "0.0.1",
       "hash": "-2010748521373594389",
       "isMacroPackage": false,
-      "output_type": "static",
+      "output_type": "dynamic",
       "command_option": "",
       "requires": [
         "cjqt/qt.code",
@@ -93,73 +93,6 @@
       ],
       "package_requires": {},
       "foreign_requires": {},
-      "cross_compile_configuration": {}
-    },
-    {
-      "organization": "cangjie",
-      "name": "cjqt",
-      "path": "/home/wathinst/cjProject/qt",
-      "packagePath": "/home/wathinst/cjProject/qt/src/example/notepad",
-      "packageName": "cjqt/example.notepad",
-      "version": "0.0.1",
-      "hash": "-2010748521373594389",
-      "isMacroPackage": false,
-      "output_type": "static",
-      "command_option": "",
-      "requires": [
-        "cjqt/qt.code",
-        "cjqt/qt.gui",
-        "cjqt/qt.widgets"
-      ],
-      "package_requires": {},
-      "foreign_requires": {
-        "nativeQt": "/home/wathinst/cjProject/qt/native/build"
-      },
-      "cross_compile_configuration": {}
-    },
-    {
-      "organization": "cangjie",
-      "name": "cjqt",
-      "path": "/home/wathinst/cjProject/qt",
-      "packagePath": "/home/wathinst/cjProject/qt/src/example/tetris",
-      "packageName": "cjqt/example.tetris",
-      "version": "0.0.1",
-      "hash": "-2010748521373594389",
-      "isMacroPackage": false,
-      "output_type": "static",
-      "command_option": "",
-      "requires": [
-        "cjqt/qt.code",
-        "cjqt/qt.gui",
-        "cjqt/qt.widgets"
-      ],
-      "package_requires": {},
-      "foreign_requires": {
-        "nativeQt": "/home/wathinst/cjProject/qt/native/build"
-      },
-      "cross_compile_configuration": {}
-    },
-    {
-      "organization": "cangjie",
-      "name": "cjqt",
-      "path": "/home/wathinst/cjProject/qt",
-      "packagePath": "/home/wathinst/cjProject/qt/src",
-      "packageName": "cjqt/default",
-      "version": "0.0.1",
-      "hash": "-2010748521373594389",
-      "isMacroPackage": false,
-      "output_type": "static",
-      "command_option": "",
-      "requires": [
-        "cjqt/example.notepad",
-        "cjqt/example.tetris",
-        "cjqt/qt.gui",
-        "cjqt/qt.widgets"
-      ],
-      "package_requires": {},
-      "foreign_requires": {
-        "nativeQt": "/home/wathinst/cjProject/qt/native/build"
-      },
       "cross_compile_configuration": {}
     }
   ]

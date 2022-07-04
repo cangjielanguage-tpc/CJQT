@@ -11,13 +11,13 @@ public:
     CjQtLabel(QWidget *parent = nullptr) : QLabel(parent) {}
 
 protected:
-    PAINT_EVENT(QLabel::paintEvent)
+    PAINT_EVENT(QLabel::paintEvent(event))
 
-    MOUSE_PRESS_EVENT(QLabel::mousePressEvent)
+    MOUSE_PRESS_EVENT(QLabel::mousePressEvent(event))
 
-    MOUSE_RELEASE_EVENT(QLabel::mouseReleaseEvent)
+    MOUSE_RELEASE_EVENT(QLabel::mouseReleaseEvent(event))
 
-    MOUSE_MOVE_EVENT(QLabel::mouseMoveEvent)
+    MOUSE_MOVE_EVENT(QLabel::mouseMoveEvent(event))
 
     KEY_PRESS_EVENT
 };

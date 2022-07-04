@@ -116,8 +116,8 @@ public class TetrisWindow <: QMainWindow {
             case event.key() == QKeyEvent.KEY_J => stopGame()
             case event.key() == QKeyEvent.KEY_C => restartGame()
             case event.key() == QKeyEvent.KEY_M => close()
+            case _ => ()
         }
-        //case _ => {}
     }
 
     //W键-旋转方块

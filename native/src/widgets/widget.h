@@ -7,6 +7,11 @@
 #include <QPainter>
 
 #include "config.h"
+extern "C"
+{
+void nativeWidgetShow(long ptr);
+void nativeWidgetResize(long ptr, int w, int h);
+}
 
 typedef void (*paintEventFunc)(QPaintEvent *event);
 
@@ -20,7 +25,7 @@ typedef void (*paintEventFunc)(QPaintEvent *event);
         }                                                                                                   \
         else                                                                                                \
         {                                                                                                   \
-            func(event);                                                                                    \
+            func;                                                                                    \
         }                                                                                                   \
     }
 
@@ -34,7 +39,7 @@ typedef void (*paintEventFunc)(QPaintEvent *event);
         }                                                                                                             \
         else                                                                                                          \
         {                                                                                                             \
-            func(event);                                                                                              \
+            func;                                                                                              \
         }                                                                                                             \
     }
 
@@ -48,7 +53,7 @@ typedef void (*paintEventFunc)(QPaintEvent *event);
         }                                                                                                                 \
         else                                                                                                              \
         {                                                                                                                 \
-            func(event);                                                                                                  \
+            func;                                                                                                  \
         }                                                                                                                 \
     }
 
@@ -62,7 +67,7 @@ typedef void (*paintEventFunc)(QPaintEvent *event);
         }                                                                                                           \
         else                                                                                                        \
         {                                                                                                           \
-            func(event);                                                                                            \
+            func;                                                                                            \
         }                                                                                                           \
     }
 
@@ -88,13 +93,13 @@ public:
     CjQtWidget(QWidget *parent = nullptr) : QWidget(parent) {}
 
 protected:
-    PAINT_EVENT(QWidget::paintEvent)
+    PAINT_EVENT(QWidget::paintEvent(event))
 
-    MOUSE_PRESS_EVENT(QWidget::mousePressEvent)
+    MOUSE_PRESS_EVENT(QWidget::mousePressEvent(event))
 
-    MOUSE_RELEASE_EVENT(QWidget::mouseReleaseEvent)
+    MOUSE_RELEASE_EVENT(QWidget::mouseReleaseEvent(event))
 
-    MOUSE_MOVE_EVENT(QWidget::mouseMoveEvent)
+    MOUSE_MOVE_EVENT(QWidget::mouseMoveEvent(event))
 
     KEY_PRESS_EVENT
 };

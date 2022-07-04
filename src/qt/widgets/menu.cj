@@ -17,6 +17,10 @@ public class QMenu <: QWidget {
         })
     }
 
+    public init(menuPrt: Int64) {
+        super(menuPrt)
+    }
+
     public init(parent: QWidget) {
         super(unsafe {
             nativeMenuCreate(QApplication.ptr, parent.ptr)
