@@ -9,9 +9,9 @@ extern "C"
 
     typedef void (*nativeConnectCallback)(long);
 
-    long nativePushButtonCreate(long appPtr, long parentPtr)
+    long nativePushButtonCreate(long parentPtr)
     {
-
+        APPLICATION_CREATE
         CjQtPushButton *label;
         if (parentPtr == 0L)
         {

@@ -5,9 +5,9 @@ extern "C"
 
 	// QLabel
 
-    long nativeLabelCreate(long appPtr, long parentPtr)
+    long nativeLabelCreate(long parentPtr)
 	{
-
+        APPLICATION_CREATE
 		CjQtLabel *label;
         if (parentPtr == 0L){
             label = new CjQtLabel();

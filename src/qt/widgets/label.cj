@@ -2,7 +2,7 @@ package qt.widgets
 
 from std import ffi.c.CString
 
-foreign func nativeLabelCreate(appPtr: Int64, parentPtr: Int64): Int64
+foreign func nativeLabelCreate(parentPtr: Int64): Int64
 foreign func nativeLabelSetText(ptr: Int64, text:CString): Unit
 foreign func nativeLabelSetStyleSheet(ptr: Int64, style:CString): Unit
 foreign func nativeLabelDelete(ptr: Int64): Unit
@@ -11,20 +11,20 @@ public class QLabel <: QWidget{
 
     public init() {
         super(unsafe {
-            nativeLabelCreate(QApplication.ptr, 0)
+            nativeLabelCreate( 0)
         })
     }
 
     public init(text:String) {
         super(unsafe {
-            nativeLabelCreate(QApplication.ptr, 0)
+            nativeLabelCreate(0)
         })
         setText(text)
     }
 
     public init(parent: QWidget) {
         super(unsafe {
-            nativeLabelCreate(QApplication.ptr, parent.ptr)
+            nativeLabelCreate(parent.ptr)
         })
     }
 

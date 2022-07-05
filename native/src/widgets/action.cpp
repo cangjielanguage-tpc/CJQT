@@ -5,17 +5,18 @@ extern "C"
 
 	// QAction
 
-	long nativeActionCreate(long appPtr, long parentPtr)
+	long nativeActionCreate(long parentPtr)
 	{
-
 		CjQtAction *label;
-        if (parentPtr == 0L){
-            label = new CjQtAction();
-        } else
-        {
-            QWidget *parent = reinterpret_cast<QWidget *>(static_cast<uintptr_t>(parentPtr));
-            label = new CjQtAction(parent);
-        }
+		if (parentPtr == 0L)
+		{
+			label = new CjQtAction();
+		}
+		else
+		{
+			QWidget *parent = reinterpret_cast<QWidget *>(static_cast<uintptr_t>(parentPtr));
+			label = new CjQtAction(parent);
+		}
 		return reinterpret_cast<long>(label);
 	}
 
@@ -36,5 +37,4 @@ extern "C"
 		CjQtAction *instance = reinterpret_cast<CjQtAction *>(static_cast<uintptr_t>(ptr));
 		delete instance;
 	}
-
 }

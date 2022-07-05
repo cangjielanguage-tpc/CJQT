@@ -2,7 +2,7 @@ package qt.widgets
 
 from std import ffi.c.CString
 
-foreign func nativeMenuCreate(appPtr: Int64, parentPtr: Int64): Int64
+foreign func nativeMenuCreate(parentPtr: Int64): Int64
 foreign func nativeMenuSetTitle(ptr: Int64, title:CString): Unit
 foreign func nativeMenuMenuAction(ptr: Int64): Int64
 foreign func nativeMenuAddSeparator(ptr: Int64): Unit
@@ -13,7 +13,7 @@ foreign func nativeMenuDelete(ptr: Int64): Unit
 public class QMenu <: QWidget {
     public init() {
         super(unsafe {
-            nativeMenuCreate(QApplication.ptr, 0)
+            nativeMenuCreate(0)
         })
     }
 
@@ -23,7 +23,7 @@ public class QMenu <: QWidget {
 
     public init(parent: QWidget) {
         super(unsafe {
-            nativeMenuCreate(QApplication.ptr, parent.ptr)
+            nativeMenuCreate(parent.ptr)
         })
     }
 

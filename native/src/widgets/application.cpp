@@ -20,40 +20,35 @@ extern "C"
 {
 	Config *appConfig;
 
-	long nativeApplicationCreate()
+	void nativeApplicationInit()
 	{
-		int argc = 0;
-		char *argv[0];
 		register_meta_types();
-		QApplication *app = new QApplication(argc, argv);
 		appConfig = new Config();
-
-		/*long winPtr = nativeMainWindowCreate(reinterpret_cast<long>(app), 0);
-		long barPtr = nativeMainWindowMenuBar(winPtr);
-		long menuPtr = nativeMenuBarAddMenuStr(barPtr, "menu");
-		nativeWidgetResize(winPtr, 400, 300);
-		nativeWidgetShow(winPtr); */
-
-		return reinterpret_cast<long>(app);
+		appConfig->appInit = true;
 	}
 
-	long nativeApplicationCreateWithArg(int argc, char *argv[])
+	void nativeApplicationInitWithArg(int argc, char *argv[])
 	{
 		register_meta_types();
-		QApplication *app = new QApplication(argc, argv);
-		return reinterpret_cast<long>(app);
+		appConfig = new Config();
+		appConfig->appInit = true;
+		appConfig->argc = argc;
+		appConfig->argv = argv;
 	}
 
-	bool nativeApplicationExec(long ptr)
+	bool nativeApplicationExec()
 	{
-		QApplication *instance = reinterpret_cast<QApplication *>(static_cast<uintptr_t>(ptr));
-		return instance->exec();
+		if (appConfig->app != nullptr){
+			return appConfig->app->exec();
+		}
+		return false;
 	}
 
-	void nativeApplicationDelete(long ptr)
+	void nativeApplicationDelete()
 	{
 		delete appConfig;
-		QApplication *instance = reinterpret_cast<QApplication *>(static_cast<uintptr_t>(ptr));
-		delete instance;
+		if (appConfig->app != nullptr){
+			delete appConfig->app;
+		}
 	}
 }

@@ -5,7 +5,7 @@
 #include "widget.h"
 extern "C"
 {
-long nativeMainWindowCreate(long appPtr, long parentPtr);
+long nativeMainWindowCreate(long parentPtr);
 long nativeMainWindowMenuBar(long ptr);
 }
 

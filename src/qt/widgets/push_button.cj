@@ -2,7 +2,7 @@ package qt.widgets
 
 from std import ffi.c.CString
 
-foreign func nativePushButtonCreate(appPtr: Int64, parentPtr: Int64): Int64
+foreign func nativePushButtonCreate(parentPtr: Int64): Int64
 foreign func nativePushButtonSetText(ptr: Int64, text: CString): Unit
 foreign func nativePushButtonSetStyleSheet(ptr: Int64, style: CString): Unit
 foreign func nativePushButtonConnect(ptr: Int64, code: Int64, callback: CFunc<(Int64) -> Unit>): Unit
@@ -15,7 +15,7 @@ public class QPushButton <: QWidget {
     public init() {
         super(
             unsafe {
-                nativePushButtonCreate(QApplication.ptr, 0)
+                nativePushButtonCreate(0)
             }
         )
         clicked = QPushButtonClickedSignal(ptr)
@@ -24,7 +24,7 @@ public class QPushButton <: QWidget {
     public init(text: String) {
         super(
             unsafe {
-                nativePushButtonCreate(QApplication.ptr, 0)
+                nativePushButtonCreate(0)
             }
         )
         clicked = QPushButtonClickedSignal(ptr)
@@ -34,7 +34,7 @@ public class QPushButton <: QWidget {
     public init(parent: QWidget) {
         super(
             unsafe {
-                nativePushButtonCreate(QApplication.ptr, parent.ptr)
+                nativePushButtonCreate(parent.ptr)
             }
         )
         clicked = QPushButtonClickedSignal(ptr)

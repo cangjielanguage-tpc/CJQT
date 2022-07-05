@@ -1,6 +1,6 @@
 package qt.widgets
 
-foreign func nativeActionCreate(appPtr: Int64, parentPtr: Int64): Int64
+foreign func nativeActionCreate(parentPtr: Int64): Int64
 foreign func nativeActionSetStatusTip(ptr: Int64, tip:CString): Unit
 foreign func nativeActionSetText(ptr: Int64, text:CString): Unit
 foreign func nativeActionDelete(ptr: Int64): Unit
@@ -10,13 +10,13 @@ public class QAction {
 
     public init() {
         ptr = unsafe {
-            nativeActionCreate(QApplication.ptr, 0)
+            nativeActionCreate(0)
         }
     }
 
     public init(parent: QWidget) {
         ptr = unsafe {
-            nativeActionCreate(QApplication.ptr, parent.ptr)
+            nativeActionCreate(parent.ptr)
         }
     }
 

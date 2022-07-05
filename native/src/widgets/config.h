@@ -1,6 +1,13 @@
 #include <map>
+#include <QApplication>
 
 typedef void (*nativeEventCallback)(long, long);
+
+#define APPLICATION_CREATE                                                   \
+    if (appConfig->appInit && appConfig->app == nullptr)                     \
+    {                                                                        \
+        appConfig->app = new QApplication(appConfig->argc, appConfig->argv); \
+    }
 
 class Config
 {
@@ -13,6 +20,11 @@ private:
 
 public:
     Config() {}
+
+    bool appInit = false;
+    QApplication *app = nullptr;
+    int argc = 0;
+    char **argv;
 
     void paintEventMapPut(long ptr, nativeEventCallback callback)
     {
@@ -34,7 +46,6 @@ public:
     {
         paintEventMap.erase(ptr);
     }
-
 
     void mousePressEventMapPut(long ptr, nativeEventCallback callback)
     {

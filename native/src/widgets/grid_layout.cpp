@@ -5,9 +5,9 @@ extern "C"
 
 	// QGridLayout
 
-	long nativeGridLayoutCreate(long appPtr, long parentPtr)
+	long nativeGridLayoutCreate(long parentPtr)
 	{
-
+		APPLICATION_CREATE
 		CjQtGridLayout *layout;
 		if (parentPtr == 0L)
 		{

@@ -1,31 +1,25 @@
 package qt.widgets
 
-foreign func nativeApplicationCreate(): Int64
-foreign func nativeApplicationExec(ptr: Int64): Bool
-foreign func nativeApplicationDelete(ptr: Int64): Unit
+foreign func nativeApplicationInit(): Unit
+foreign func nativeApplicationExec(): Bool
+foreign func nativeApplicationDelete(): Unit
 
 public class QApplication {
-    static public var ptr: Int64 = 0
     static public func create() {
-        ptr = unsafe {
-            nativeApplicationCreate()
+        unsafe {
+            nativeApplicationInit()
         }
     }
 
     static public func exec(): Bool {
-        if (ptr != 0) {
-            return unsafe {
-                nativeApplicationExec(ptr)
-            }
+        return unsafe {
+            nativeApplicationExec()
         }
-        return false
     }
 
     static public func delete() {
-        if (ptr != 0) {
-            unsafe {
-                nativeApplicationDelete(ptr)
-            }
+        unsafe {
+            nativeApplicationDelete()
         }
     }
 }

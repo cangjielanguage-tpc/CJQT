@@ -8,12 +8,15 @@ extern "C"
 
     // extern Config *appConfig;
 
-    long nativeWidgetCreate(long appPtr, long parentPtr)
+    long nativeWidgetCreate(long parentPtr)
     {
+        APPLICATION_CREATE
         CjQtWidget *widget;
-        if (parentPtr == 0L){
+        if (parentPtr == 0L)
+        {
             widget = new CjQtWidget();
-        } else
+        }
+        else
         {
             QWidget *parent = reinterpret_cast<QWidget *>(static_cast<uintptr_t>(parentPtr));
             widget = new CjQtWidget(parent);
@@ -32,23 +35,28 @@ extern "C"
         delete instance;
     }
 
-    void nativeWidgetSetPaintEvent(long ptr, nativeEventCallback callback){
+    void nativeWidgetSetPaintEvent(long ptr, nativeEventCallback callback)
+    {
         appConfig->paintEventMapPut(ptr, callback);
     }
 
-    void nativeWidgetSetMousePressEvent(long ptr, nativeEventCallback callback){
+    void nativeWidgetSetMousePressEvent(long ptr, nativeEventCallback callback)
+    {
         appConfig->mousePressEventMapPut(ptr, callback);
     }
 
-    void nativeWidgetSetMouseReleaseEvent(long ptr, nativeEventCallback callback){
+    void nativeWidgetSetMouseReleaseEvent(long ptr, nativeEventCallback callback)
+    {
         appConfig->mouseReleaseEventMapPut(ptr, callback);
     }
 
-    void nativeWidgetSetMouseMoveEvent(long ptr, nativeEventCallback callback){
+    void nativeWidgetSetMouseMoveEvent(long ptr, nativeEventCallback callback)
+    {
         appConfig->mouseMoveEventMapPut(ptr, callback);
     }
 
-    void nativeWidgetSetKeyPressEvent(long ptr, nativeEventCallback callback){
+    void nativeWidgetSetKeyPressEvent(long ptr, nativeEventCallback callback)
+    {
         appConfig->keyPressEventMapPut(ptr, callback);
     }
 
@@ -144,12 +152,14 @@ extern "C"
         instance->setAutoFillBackground(enabled == 1);
     }
 
-    void nativeWidgetSetGeometry(long ptr, int ax, int ay, int aw, int ah){
+    void nativeWidgetSetGeometry(long ptr, int ax, int ay, int aw, int ah)
+    {
         QWidget *instance = reinterpret_cast<QWidget *>(static_cast<uintptr_t>(ptr));
         instance->setGeometry(ax, ay, aw, ah);
     }
 
-    void nativeWidgetSetFont(long ptr, long fontPtr){
+    void nativeWidgetSetFont(long ptr, long fontPtr)
+    {
         QWidget *instance = reinterpret_cast<QWidget *>(static_cast<uintptr_t>(ptr));
         QFont *font = reinterpret_cast<QFont *>(static_cast<uintptr_t>(fontPtr));
         instance->setFont(*font);

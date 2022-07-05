@@ -17,7 +17,7 @@ main() {
     button.setGeometry(150, 180, 100, 24)
     button.setText("button")
     button.clicked.connect() {
-        println("clicked")
+        QMessageBox.information(win, "message", "button click!")
     }
 
     win.show()

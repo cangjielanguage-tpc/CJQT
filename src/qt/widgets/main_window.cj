@@ -2,7 +2,7 @@ package qt.widgets
 
 from std import ffi.c.CString
 
-foreign func nativeMainWindowCreate(appPtr: Int64, parentPtr: Int64): Int64
+foreign func nativeMainWindowCreate(parentPtr: Int64): Int64
 foreign func nativeMainWindowSetCentralWidget(ptr: Int64, widgetPtr: Int64): Unit
 foreign func nativeMainWindowSetMenuBar(ptr: Int64, menuBarPtr: Int64): Unit
 foreign func nativeMainWindowMenuBar(ptr: Int64): Int64
@@ -12,7 +12,7 @@ public open class QMainWindow <: QWidget {
     public init() {
         super(
             unsafe {
-                nativeMainWindowCreate(QApplication.ptr, 0)
+                nativeMainWindowCreate(0)
             }
         )
     }
@@ -20,7 +20,7 @@ public open class QMainWindow <: QWidget {
     public init(parent: QWidget) {
         super(
             unsafe {
-                nativeMainWindowCreate(QApplication.ptr, parent.ptr)
+                nativeMainWindowCreate(parent.ptr)
             }
         )
     }
