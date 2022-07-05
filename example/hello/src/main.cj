@@ -4,7 +4,7 @@ from cjqt import qt.gui.*
 main() {
     QApplication.create()
     let win = QMainWindow()
-    win.setWindowTitle("CJQT Example")
+    win.setWindowTitle("CJQT示例")
     win.resize(400, 300)
 
     let label = QLabel(win)
@@ -15,9 +15,9 @@ main() {
 
     let button = QPushButton(win)
     button.setGeometry(150, 180, 100, 24)
-    button.setText("button")
+    button.setText("按钮")
     button.clicked.connect() {
-        QMessageBox.information(win, "message", "button click!")
+        QMessageBox.information(win, "消息提示", "点击事件!")
     }
 
     win.show()

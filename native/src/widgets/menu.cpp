@@ -39,10 +39,10 @@ extern "C"
         instance->addSeparator();
     }
 
-    void nativeMenuAddAction(long ptr, const char *action)
+    long nativeMenuAddAction(long ptr, const char *action)
     {
         QMenu *instance = reinterpret_cast<QMenu *>(static_cast<uintptr_t>(ptr));
-        instance->addAction(action);
+        return reinterpret_cast<long>(instance->addAction(action));
     }
 
     void nativeMenuAddActionPtr(long ptr, long actionPtr)

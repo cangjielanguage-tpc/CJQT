@@ -6,7 +6,7 @@ foreign func nativeMenuCreate(parentPtr: Int64): Int64
 foreign func nativeMenuSetTitle(ptr: Int64, title:CString): Unit
 foreign func nativeMenuMenuAction(ptr: Int64): Int64
 foreign func nativeMenuAddSeparator(ptr: Int64): Unit
-foreign func nativeMenuAddAction(ptr: Int64, action:CString): Unit
+foreign func nativeMenuAddAction(ptr: Int64, action:CString): Int64
 foreign func nativeMenuAddActionPtr(ptr: Int64, actionPtr: Int64): Unit
 foreign func nativeMenuDelete(ptr: Int64): Unit
 
@@ -46,10 +46,11 @@ public class QMenu <: QWidget {
         }
     }
 
-    public func addAction(action:String) {
-        unsafe {
+    public func addAction(action:String): QAction {
+        let actionPtr = unsafe {
             nativeMenuAddAction(ptr, CString(action))
         }
+        return QAction(actionPtr)
     }
 
     public func addAction(action:QAction) {
