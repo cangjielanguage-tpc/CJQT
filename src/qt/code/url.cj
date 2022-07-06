@@ -10,6 +10,10 @@ foreign func nativeUrlDelete(ptr: Int64): Unit
 public class QUrl {
     public let ptr: Int64
 
+    public init(ptr: Int64) {
+        this.ptr = ptr
+    }
+
     public init(url: String) {
         ptr = unsafe {
             nativeUrlCreate(CString(url), 1)

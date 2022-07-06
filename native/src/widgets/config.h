@@ -2,6 +2,7 @@
 #include <QApplication>
 
 typedef void (*nativeEventCallback)(long, long);
+typedef void (*nativeConnectCallback)(long);
 
 #define APPLICATION_CREATE                                                   \
     if (appConfig->appInit && appConfig->app == nullptr)                     \

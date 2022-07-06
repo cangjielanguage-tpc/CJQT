@@ -22,15 +22,22 @@ extern "C"
 
 	void nativeActionSetStatusTip(long ptr, const char *tip)
 	{
-		CjQtAction *instance = reinterpret_cast<CjQtAction *>(static_cast<uintptr_t>(ptr));
+		QAction *instance = reinterpret_cast<QAction *>(static_cast<uintptr_t>(ptr));
 		instance->setStatusTip(tip);
 	}
 
 	void nativeActionSetText(long ptr, const char *txte)
 	{
-		CjQtAction *instance = reinterpret_cast<CjQtAction *>(static_cast<uintptr_t>(ptr));
+		QAction *instance = reinterpret_cast<QAction *>(static_cast<uintptr_t>(ptr));
 		instance->setText(txte);
 	}
+
+	void nativeActionConnectTriggered(long ptr, long code, nativeConnectCallback callback)
+    {
+        QAction *instance = reinterpret_cast<QAction *>(static_cast<uintptr_t>(ptr));
+        QObject::connect(instance, &QAction::triggered, [=]()
+                         { callback(code); });
+    }
 
 	void nativeActionDelete(long ptr)
 	{

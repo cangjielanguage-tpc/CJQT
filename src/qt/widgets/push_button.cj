@@ -10,7 +10,7 @@ foreign func nativePushButtonDelete(ptr: Int64): Unit
 
 public class QPushButton <: QWidget {
 
-    public let clicked: QPushButtonClickedSignal
+    public let clicked: QPushButtonClickedSignal 
 
     public init() {
         super(

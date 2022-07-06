@@ -26,9 +26,16 @@ public class NotepadWindow <: QMainWindow {
     func createFileMenu() {
         let menuFile = menuBar().addMenu("文件(&F)")
         let actionNew = menuFile.addAction("新建")
+        actionNew.triggered.connect() {
+            let url = QFileDialog.getOpenFileUrl(this, "文件选择框", QUrl("./"), "MD文件(*md);;文本文件(*txt)")
+            println("url: ${url.toString()}")
+        }
         menuFile.addAction("新建文件夹")
         menuFile.addSeparator()
         let actionOpen = menuFile.addAction("打开···")
+        actionOpen.triggered.connect() {
+            println("actionOpen triggered")
+        }
         menuFile.addAction("打开文件夹···")
         menuFile.addSeparator()
         let actionSave = menuFile.addAction("保存")

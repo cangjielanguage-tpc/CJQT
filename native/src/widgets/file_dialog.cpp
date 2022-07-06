@@ -1,0 +1,24 @@
+#include "file_dialog.h"
+#include <QUrl>
+#include <QString>
+
+extern "C"
+{
+
+    // QFileDialog
+
+    long nativeFileDialogGetOpenFileUrl(long parentPtr, const char *caption, long dirPtr, const char *filter)
+    {
+        QWidget *parent = reinterpret_cast<QWidget *>(static_cast<uintptr_t>(parentPtr));
+        QUrl *dir = reinterpret_cast<QUrl *>(static_cast<uintptr_t>(dirPtr));
+        QUrl url = QFileDialog::getOpenFileUrl(parent, caption, *dir, filter);
+        return reinterpret_cast<long>(&url);
+    }
+
+    const char *nativeFileDialogGetOpenFileName(long parentPtr, const char *caption, const char *dir, const char *filter)
+    {
+        QWidget *parent = reinterpret_cast<QWidget *>(static_cast<uintptr_t>(parentPtr));
+        QString str = QFileDialog::getOpenFileName(parent, caption, dir, filter);
+        return qstrdup(str.toUtf8());
+    }
+}

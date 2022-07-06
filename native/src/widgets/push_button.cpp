@@ -7,8 +7,6 @@ extern "C"
 
     // QPushButton
 
-    typedef void (*nativeConnectCallback)(long);
-
     long nativePushButtonCreate(long parentPtr)
     {
         APPLICATION_CREATE
