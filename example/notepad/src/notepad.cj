@@ -27,8 +27,8 @@ public class NotepadWindow <: QMainWindow {
         let menuFile = menuBar().addMenu("文件(&F)")
         let actionNew = menuFile.addAction("新建")
         actionNew.triggered.connect() {
-            let url = QFileDialog.getOpenFileUrl(this, "文件选择框", QUrl("./"), "MD文件(*md);;文本文件(*txt)")
-            println("url: ${url.toString()}")
+            let name = QFileDialog.getOpenFileName(this, "文件选择框", ".", "MD文件(*md);;文本文件(*txt)")
+            println("url: ${name}")
         }
         menuFile.addAction("新建文件夹")
         menuFile.addSeparator()

@@ -11,8 +11,10 @@ extern "C"
     {
         QWidget *parent = reinterpret_cast<QWidget *>(static_cast<uintptr_t>(parentPtr));
         QUrl *dir = reinterpret_cast<QUrl *>(static_cast<uintptr_t>(dirPtr));
-        QUrl url = QFileDialog::getOpenFileUrl(parent, caption, *dir, filter);
-        return reinterpret_cast<long>(&url);
+        QUrl url = QFileDialog::getOpenFileUrl(parent, caption, *dir, filter,
+                                                Q_NULLPTR,
+                                                QFileDialog::DontUseNativeDialog);
+        return reinterpret_cast<long>(&url); 
     }
 
     const char *nativeFileDialogGetOpenFileName(long parentPtr, const char *caption, const char *dir, const char *filter)
