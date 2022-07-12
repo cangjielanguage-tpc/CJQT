@@ -1,14 +1,19 @@
 from cjqt import qt.gui.*
 from cjqt import qt.code.*
 from cjqt import qt.widgets.*
+from std import io.*
 
 public class NotepadWindow <: QMainWindow {
+    let textEdit: QTextEdit
     public init() {
         setFixedSize(800, 600)
         setWindowTitle("Notepad")
 
         setPalette(QPalette(QColor.White))
         setAutoFillBackground(true)
+
+        textEdit = QTextEdit()
+        setCentralWidget(textEdit)
 
         createMenu()
     }
@@ -27,14 +32,19 @@ public class NotepadWindow <: QMainWindow {
         let menuFile = menuBar().addMenu("文件(&F)")
         let actionNew = menuFile.addAction("新建")
         actionNew.triggered.connect() {
-            let name = QFileDialog.getOpenFileName(this, "文件选择框", ".", "MD文件(*md);;文本文件(*txt)")
-            println("url: ${name}")
         }
         menuFile.addAction("新建文件夹")
         menuFile.addSeparator()
         let actionOpen = menuFile.addAction("打开···")
         actionOpen.triggered.connect() {
-            println("actionOpen triggered")
+            let name = QFileDialog.getOpenFileName(this, "文件选择框", ".",
+                "Markdown文件(*md);;文本文件(*txt)")
+            var fs: FileStream = FileStream(name)
+            if (fs.openFile()) {
+                let data = fs.readAllText()
+                textEdit.setMarkdown(data)
+                fs.close()
+            }
         }
         menuFile.addAction("打开文件夹···")
         menuFile.addSeparator()
