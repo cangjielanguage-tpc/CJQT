@@ -44,6 +44,18 @@ extern "C"
 		return false;
 	}
 
+	bool nativeApplicationIsCreate()
+	{
+		return appConfig->app != nullptr;
+	}
+
+	void nativeApplicationQuit()
+	{
+		if (appConfig->app != nullptr){
+			appConfig->app->quit();
+		}
+	}
+
 	void nativeApplicationDelete()
 	{
 		delete appConfig;

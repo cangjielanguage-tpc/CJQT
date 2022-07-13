@@ -5,6 +5,7 @@
 #include <QMouseEvent>
 #include <QKeyEvent>
 #include <QPainter>
+#include <QString>
 
 #include "config.h"
 extern "C"

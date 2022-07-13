@@ -2,9 +2,8 @@
 
 #### 常用控件
 
-- `QCheckBox` 复选框控件
+- `QCheckBox` 复选框控件(进行中)
 - `QComboBox` 单击按钮
-- `QCommandLinkButton` Windows Vista风格的命令链接按钮
 - `QTimeEdit` 编辑或显示时间的控件
 - `QDateEdit` 编辑或显示日期的控件
 - `QDateTimeEdit` 编辑或显示时间和日期的控件

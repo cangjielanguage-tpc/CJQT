@@ -1,6 +1,5 @@
 #include "file_dialog.h"
 #include <QUrl>
-#include <QString>
 
 extern "C"
 {
