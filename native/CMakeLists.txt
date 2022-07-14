@@ -37,6 +37,7 @@ add_library(nativeQt SHARED
         ./src/widgets/file_dialog.cpp
         ./src/widgets/text_edit.cpp
         ./src/widgets/check_box.cpp
+        ./src/widgets/group_box.cpp
         ./src/code/url.cpp
         ./src/code/timer.cpp
         ./src/gui/mouse_event.cpp

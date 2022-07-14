@@ -22,7 +22,7 @@
 - `QToolBox` 成列的Tab控件
 - `QToolButton` 基于选项或命令可以快速访问的按钮控件
 - `QButtonGroup` 按钮控件的组合容器
-- `QGroupBox` 带有标题的相同类型的组框
+- `QGroupBox` 分组框控件(进行中)
 - `QSplitter` 具有分割功能的控件
 - `QSplitterHandle` 控制分割功能的控件
 - `QMessageBox` 消息框控件(进行中)

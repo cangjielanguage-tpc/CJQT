@@ -13,6 +13,12 @@ main() {
     label.setFontSize(24)
     label.setFontColor(QColor.Red)
 
+    let box1 = QCheckBox(win)
+    box1.setChecked(true)
+    box1.setText("复选框1")
+    /* let box2 = QCheckBox(win)
+    box2.setText("复选框2") */
+
     let button = QPushButton(win)
     button.setGeometry(150, 180, 100, 24)
     button.setText("按钮")
