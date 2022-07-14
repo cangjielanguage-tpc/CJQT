@@ -34,17 +34,17 @@ public class TetrisWindow <: QMainWindow {
         tetrisBox = TetrisBox()
 
         nextTetrisBox = NextTetrisBox()
-        nextTetrisLabel = QLabel("next: ")
-        controlLabel = QLabel("control: ")
-        wControlLabel = QLabel("W-rotate")
-        sControlLabel = QLabel("S-move down")
-        aControlLabel = QLabel("A-move left")
-        dControlLabel = QLabel("D-move right")
-        hControlLabel = QLabel("H-start")
-        jControlLabel = QLabel("J-stop")
-        cControlLabel = QLabel("C-restart")
-        mControlLabel = QLabel("M-end")
-        scoreTitleLabel = QLabel("score: ")
+        nextTetrisLabel = QLabel("下一个: ")
+        controlLabel = QLabel("控制: ")
+        wControlLabel = QLabel("W-旋转")
+        sControlLabel = QLabel("S-下移")
+        aControlLabel = QLabel("A-左移")
+        dControlLabel = QLabel("D-右移")
+        hControlLabel = QLabel("H-开始")
+        jControlLabel = QLabel("J-暂停")
+        cControlLabel = QLabel("C-重新开始")
+        mControlLabel = QLabel("M-结束")
+        scoreTitleLabel = QLabel("得分: ")
         scoreLabel = QLabel("0")
         mainLayout = QGridLayout()
 
@@ -80,9 +80,9 @@ public class TetrisWindow <: QMainWindow {
             } else {
                 timer.stop()
 
-                QMessageBox.information(this, "Game Over", "Game Over!\nYour Score is: ${tetris.score}!")
+                QMessageBox.information(this, "游戏结束", "游戏结束!\n您的得分为: ${tetris.score}!")
                 status = STATUS_END
-                setWindowTitle("CJQT Game Tetris - END")
+                setWindowTitle("CJQT 俄罗斯方块 - 结束")
             }
         }
 
@@ -97,7 +97,7 @@ public class TetrisWindow <: QMainWindow {
         status = STATUS_OFF
 
         nextTetrisBox.updateNextTetris(tetris)
-        setWindowTitle("CJQT Game Tetris - OFF")
+        setWindowTitle("CJQT 俄罗斯方块 - 未开始")
 
         setKeyPressEvent(handleEvent)
     }
@@ -156,10 +156,10 @@ public class TetrisWindow <: QMainWindow {
                 timer.stop()
 
                 //输出结束提示
-                QMessageBox.information(this, "Game Over", "Game Over!\nYour Score is: ${tetris.score}!")
+                QMessageBox.information(this, "游戏结束", "游戏结束!\n您的得分为: ${tetris.score}!")
                 //更改游戏状态为：游戏结束
                 status = STATUS_END
-                setWindowTitle("CJQT Game Tetris - END")
+                setWindowTitle("CJQT 俄罗斯方块 - 结束")
             }
         }
     }
@@ -184,7 +184,7 @@ public class TetrisWindow <: QMainWindow {
         if (status == STATUS_PAUSE) {
             timer.start()
             status = STATUS_ON
-            setWindowTitle("CJQT Game Tetris - ON");
+            setWindowTitle("CJQT 俄罗斯方块 - 开始");
         } else if (status == STATUS_OFF) {
             //初始化窗口视图
             tetris.createBlock()
@@ -194,7 +194,7 @@ public class TetrisWindow <: QMainWindow {
             updateScore()
 
             status = STATUS_ON
-            setWindowTitle("CJQT Game Tetris - ON");
+            setWindowTitle("CJQT 俄罗斯方块 - 开始");
             timer.start()
         } else if (status == STATUS_END) {
             //初始化tetris
@@ -206,7 +206,7 @@ public class TetrisWindow <: QMainWindow {
             updateScore()
 
             status = STATUS_ON
-            setWindowTitle("CJQT Game Tetris - ON");
+            setWindowTitle("CJQT 俄罗斯方块 - 开始");
             timer.start()
         }
     }
@@ -217,7 +217,7 @@ public class TetrisWindow <: QMainWindow {
         if (status == STATUS_ON) {
             timer.stop()
             status = STATUS_PAUSE
-            setWindowTitle("CJQT Game Tetris - PAUSE");
+            setWindowTitle("CJQT 俄罗斯方块 - 暂停");
         }
     }
 
@@ -230,6 +230,6 @@ public class TetrisWindow <: QMainWindow {
         nextTetrisBox.updateNextTetris(tetris)
         updateScore()
         status = STATUS_OFF
-        setWindowTitle("CJQT Game Tetris - OFF");
+        setWindowTitle("CJQT 俄罗斯方块 - 未开始");
     }
 }

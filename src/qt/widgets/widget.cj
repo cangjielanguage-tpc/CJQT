@@ -121,7 +121,7 @@ public open class QWidget {
         }
     }
 
-    public open func setLayout(layout: QGridLayout) {
+    public open func setLayout(layout: QLayout) {
         unsafe {
             nativeWidgetSetLayout(ptr, layout.ptr)
         }

@@ -8,29 +8,15 @@ foreign func nativeCheckBoxIsChecked(ptr: Int64): Bool
 foreign func nativeCheckBoxDelete(ptr: Int64): Unit
 
 public class QCheckBox <: QWidget {
-    public init() {
-        super(
-            unsafe {
-                nativeCheckBoxCreate(0)
-            }
-        )
-    }
-
-    public init(text: String) {
-        super(
-            unsafe {
-                nativeCheckBoxCreate(0)
-            }
-        )
-        setText(text)
-    }
-
-    public init(parent: QWidget) {
+    public init(text!: String = "", parent!: QWidget = QWidget(0)) {
         super(
             unsafe {
                 nativeCheckBoxCreate(parent.ptr)
             }
         )
+        if (!text.isEmpty()){
+            setText(text)
+        }
     }
 
     public func setText(text: String) {

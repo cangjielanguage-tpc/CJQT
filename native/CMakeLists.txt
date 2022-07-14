@@ -38,6 +38,11 @@ add_library(nativeQt SHARED
         ./src/widgets/text_edit.cpp
         ./src/widgets/check_box.cpp
         ./src/widgets/group_box.cpp
+        ./src/widgets/radio_button.cpp
+        ./src/widgets/layout.cpp
+        ./src/widgets/box_layout.cpp
+        ./src/widgets/h_box_layout.cpp
+        ./src/widgets/v_box_layout.cpp
         ./src/code/url.cpp
         ./src/code/timer.cpp
         ./src/gui/mouse_event.cpp

@@ -22,7 +22,7 @@ public class QGroupBox <: QWidget {
     public init(parent!: QWidget = QWidget(0)) {
         super(
             unsafe {
-                nativePushButtonCreate(parent.ptr)
+                nativeGroupBoxCreate(parent.ptr)
             }
         )
         clicked = QGroupBoxClickedSignal(ptr)

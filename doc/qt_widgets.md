@@ -3,6 +3,7 @@
 #### 常用控件
 
 - `QCheckBox` 复选框控件(进行中)
+- `QRadioButton` 单选按钮控件(进行中)
 - `QComboBox` 单击按钮
 - `QTimeEdit` 编辑或显示时间的控件
 - `QDateEdit` 编辑或显示日期的控件
@@ -14,7 +15,6 @@
 - `QMenuBar` 菜单栏控件(进行中)
 - `QMenu` 菜单控件(进行中)
 - `QProgressBar` 水平与垂直进度条
-- `QRadioButton` 单选按钮控件
 - `QScrollBar` 水平与垂直滚动条
 - `QSizeGrip` 可以改变最上层视窗的大小
 - `QSlider` 水平与垂直滑块
@@ -22,7 +22,10 @@
 - `QToolBox` 成列的Tab控件
 - `QToolButton` 基于选项或命令可以快速访问的按钮控件
 - `QButtonGroup` 按钮控件的组合容器
-- `QGroupBox` 分组框控件(进行中)
+- `QGroupBox` 分组框控件(已完成)
+- `QBoxLayout` 线性布局控件(进行中)
+- `QHBoxLayout` 水平布局控件(进行中)
+- `QVBoxLayout` 垂直布局控件(进行中)
 - `QSplitter` 具有分割功能的控件
 - `QSplitterHandle` 控制分割功能的控件
 - `QMessageBox` 消息框控件(进行中)
@@ -43,9 +46,9 @@ QAbstractItemDelegate     ░░░░░░░░░░         QAbstractItemVi
 QAbstractScrollArea       ░░░░░░░░░░         QAbstractSlider              ░░░░░░░░░░    
 QAbstractSpinBox          ░░░░░░░░░░         QAccessibleWidget            ░░░░░░░░░░
 QAction                   ▓▓░░░░░░░░         QActionGroup                 ░░░░░░░░░░
-QApplication              ▓▓░░░░░░░░         QBoxLayout                   ░░░░░░░░░░
+QApplication              ▓▓░░░░░░░░         QBoxLayout                   ▓░░░░░░░░░
 QButtonGroup              ░░░░░░░░░░         QCalendarWidget              ░░░░░░░░░░
-QCheckBox                 ░░░░░░░░░░         QColorDialog                 ░░░░░░░░░░
+QCheckBox                 ▓▓░░░░░░░░         QColorDialog                 ░░░░░░░░░░
 QColormap                 ░░░░░░░░░░         QColumnView                  ░░░░░░░░░░
 QComboBox                 ░░░░░░░░░░         QCommandLinkButton           ░░░░░░░░░░
 QCommonStyle              ░░░░░░░░░░         QDateEdit                    ░░░░░░░░░░
@@ -77,13 +80,13 @@ QGraphicsSceneMoveEvent   ░░░░░░░░░░         QGraphicsSceneR
 QGraphicsSceneWheelEvent  ░░░░░░░░░░         QGraphicsSceneWheelEvent     ░░░░░░░░░░
 QGraphicsTextItem         ░░░░░░░░░░         QGraphicsTransform           ░░░░░░░░░░
 QGraphicsView             ░░░░░░░░░░         QGraphicsWidget              ░░░░░░░░░░
-QGridLayout               ▓▓░░░░░░░░         QGroupBox                    ░░░░░░░░░░
-QHBoxLayout               ░░░░░░░░░░         QHeaderView                  ░░░░░░░░░░
+QGridLayout               ▓▓░░░░░░░░         QGroupBox                    ▓▓▓▓▓▓▓▓▓▓
+QHBoxLayout               ▓░░░░░░░░░         QHeaderView                  ░░░░░░░░░░
 QInputDialog              ░░░░░░░░░░         QItemDelegate                ░░░░░░░░░░
 QItemEditorCreator        ░░░░░░░░░░         QItemEditorCreatorBase       ░░░░░░░░░░
 QItemEditorFactory        ░░░░░░░░░░         QKeyEventTransition          ░░░░░░░░░░
 QKeySequenceEdit          ░░░░░░░░░░         QLCDNumber                   ░░░░░░░░░░
-QLabel                    ▓▓░░░░░░░░         QLayout                      ░░░░░░░░░░
+QLabel                    ▓▓░░░░░░░░         QLayout                      ▓░░░░░░░░░
 QLayoutItem               ░░░░░░░░░░         QLineEdit                    ░░░░░░░░░░
 QListView                 ░░░░░░░░░░         QListWidget                  ░░░░░░░░░░
 QListWidgetItem           ░░░░░░░░░░         QMainWindow                  ▓▓░░░░░░░░
@@ -133,7 +136,7 @@ QTreeView                 ░░░░░░░░░░         QTreeWidget    
 QTreeWidgetItem           ░░░░░░░░░░         QTreeWidgetItemIterator      ░░░░░░░░░░
 QUndoCommand              ░░░░░░░░░░         QUndoGroup                   ░░░░░░░░░░
 QUndoStack                ░░░░░░░░░░         QUndoView                    ░░░░░░░░░░
-QVBoxLayout               ░░░░░░░░░░         QWhatsThis                   ░░░░░░░░░░
+QVBoxLayout               ▓░░░░░░░░░         QWhatsThis                   ░░░░░░░░░░
 QWidget                   ▓▓▓▓░░░░░░         QWidgetAction                ░░░░░░░░░░
 QWidgetItem               ░░░░░░░░░░         QWizard                      ░░░░░░░░░░
 QWizardPage               ░░░░░░░░░░

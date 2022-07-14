@@ -18,7 +18,7 @@ foreign func nativeGridLayoutAddWidgetWithNumAndSpan(
 ): Unit
 foreign func nativeGridLayoutDelete(ptr: Int64): Unit
 
-public class QGridLayout <: QWidget {
+public class QGridLayout <: QLayout {
     public init() {
         super(
             unsafe {
