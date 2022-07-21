@@ -12,6 +12,8 @@
 - `QLabel` 显示文本或图片的控件(进行中)
 - `QLineEdit` 单行文本框控件
 - `QTextEdit` 文本编辑控件(进行中)
+- `QStatusBar` 状态栏控件(进行中)
+- `QToolBar` 工具栏控件(进行中)
 - `QMenuBar` 菜单栏控件(进行中)
 - `QMenu` 菜单控件(进行中)
 - `QProgressBar` 水平与垂直进度条

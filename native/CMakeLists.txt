@@ -17,11 +17,6 @@ set (CMAKE_PREFIX_PATH $ENV{QT_HOME})
 
 find_package(Qt5 COMPONENTS Core Widgets Qml REQUIRED )
 
-# gtk头文件路径
-include_directories(${GTK3_INCLUDE_DIRS})
-# gtk库路径
-link_directories(${GTK3_LIBRARY_DIRS})
-
 add_library(nativeQt SHARED 
         ./src/widgets/application.cpp
         ./src/widgets/widget.cpp
@@ -43,6 +38,8 @@ add_library(nativeQt SHARED
         ./src/widgets/box_layout.cpp
         ./src/widgets/h_box_layout.cpp
         ./src/widgets/v_box_layout.cpp
+        ./src/widgets/status_bar.cpp
+        ./src/widgets/tool_bar.cpp
         ./src/code/url.cpp
         ./src/code/timer.cpp
         ./src/gui/mouse_event.cpp
@@ -55,6 +52,7 @@ add_library(nativeQt SHARED
         ./src/gui/pixmap.cpp
         ./src/gui/palette.cpp
         ./src/gui/font.cpp
+        ./src/gui/icon.cpp
 )
 
 target_link_libraries(nativeQt PRIVATE Qt5::Core Qt5::Widgets Qt5::Qml)
