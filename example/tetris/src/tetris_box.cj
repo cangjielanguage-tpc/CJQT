@@ -3,6 +3,8 @@ from cjqt import qt.widgets.*
 
 public class TetrisBox <: QWidget {
     var block = Block() //用来储存Tetris中block的数据
+    let width: Int64
+    let height: Int64
 
     //用来存储Tetris中box的数据
     var box: ArrayList<ArrayList<BoxItem>> = ArrayList()
@@ -16,9 +18,9 @@ public class TetrisBox <: QWidget {
             box.append(arr)
         }
 
-        let w = Tetris.getWidth()
-        let h = Tetris.getHeight()
-        setFixedSize(w, h)
+        width = Tetris.getWidth() + 4
+        height = Tetris.getHeight() + 4
+        setFixedSize(width, height)
 
         //setPalette(QPalette(QColor.LightGray))
         //setAutoFillBackground(true)
@@ -30,18 +32,18 @@ public class TetrisBox <: QWidget {
             painter.setPen(QPen(QColor.Black, 1))
             painter.setBrush(QBrush(QColor.LightGray))
 
-            painter.drawRect(0, 0, Tetris.getWidth() - 2, Tetris.getHeight() - 2)
+            painter.drawRect(0, 0, width - 2, height - 2)
 
             painter.setPen(QPen(QColor.White, 0))
             painter.setBrush(QBrush(QColor.White))
 
             for (i in 0..Tetris.MAX_Y) {
                 let y = (i + 1) * (Tetris.WIDTH + Tetris.INTERVAL) - Tetris.INTERVAL
-                painter.drawRect(1, y + (Tetris.INTERVAL / 2), Tetris.getWidth() - 4, 0)
+                painter.drawRect((Tetris.INTERVAL / 2), y + (Tetris.INTERVAL / 2), Tetris.getWidth() - (Tetris.INTERVAL / 2), 0)
             }
             for (i in 0..Tetris.MAX_X) {
                 let x = (i + 1) * (Tetris.WIDTH + Tetris.INTERVAL) - Tetris.INTERVAL
-                painter.drawRect(x + (Tetris.INTERVAL / 2), 1, 0, Tetris.getHeight() - 4)
+                painter.drawRect(x + (Tetris.INTERVAL / 2), (Tetris.INTERVAL / 2), 0, Tetris.getHeight() - (Tetris.INTERVAL / 2))
             }
 
             for (i in 0..Tetris.MAX_X) {
@@ -51,7 +53,7 @@ public class TetrisBox <: QWidget {
                         painter.setBrush(QBrush(box[i][j].color))
                         let x = i * Tetris.WIDTH + i * Tetris.INTERVAL
                         let y = j * Tetris.HEIGHT + j * Tetris.INTERVAL
-                        painter.drawRect(x, y, Tetris.WIDTH, Tetris.HEIGHT)
+                        painter.drawRect(x+1, y+1, Tetris.WIDTH, Tetris.HEIGHT)
                     }
                 }
             }
@@ -64,7 +66,7 @@ public class TetrisBox <: QWidget {
                 let y = block.y[i]
                 let x1 = x * Tetris.WIDTH + x * Tetris.INTERVAL
                 let y1 = y * Tetris.HEIGHT + y * Tetris.INTERVAL
-                painter.drawRect(x1, y1, Tetris.WIDTH, Tetris.HEIGHT)
+                painter.drawRect(x1+1, y1+1, Tetris.WIDTH, Tetris.HEIGHT)
             }
 
             painter.delete()
