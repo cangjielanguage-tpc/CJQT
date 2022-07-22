@@ -19,7 +19,7 @@ protected:
 
     // MOUSE_MOVE_EVENT(QAction::mouseMoveEvent)
 
-    KEY_PRESS_EVENT
+    // KEY_PRESS_EVENT(QAction::keyPressEvent(event))
 };
 
 #endif

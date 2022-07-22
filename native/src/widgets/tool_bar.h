@@ -19,7 +19,7 @@ protected:
 
     MOUSE_MOVE_EVENT(QToolBar::mouseMoveEvent(event))
 
-    KEY_PRESS_EVENT
+    KEY_PRESS_EVENT(QToolBar::keyPressEvent(event))
 };
 
 #endif

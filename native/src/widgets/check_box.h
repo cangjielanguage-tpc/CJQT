@@ -19,7 +19,7 @@ protected:
 
     MOUSE_MOVE_EVENT(QCheckBox::mouseMoveEvent(event))
 
-    KEY_PRESS_EVENT
+    KEY_PRESS_EVENT(QCheckBox::keyPressEvent(event))
 };
 
 #endif

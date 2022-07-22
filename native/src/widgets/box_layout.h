@@ -12,7 +12,7 @@ public:
 
 protected:
 
-    KEY_PRESS_EVENT
+    // KEY_PRESS_EVENT(QBoxLayout::keyPressEvent(event))
 };
 
 #endif

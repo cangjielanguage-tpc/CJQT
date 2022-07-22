@@ -19,7 +19,7 @@ protected:
 
     MOUSE_MOVE_EVENT(QLabel::mouseMoveEvent(event))
 
-    KEY_PRESS_EVENT
+    KEY_PRESS_EVENT(QLabel::keyPressEvent(event))
 };
 
 #endif

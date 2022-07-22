@@ -24,7 +24,7 @@ protected:
 
     MOUSE_MOVE_EVENT(QStatusBar::mouseMoveEvent(event))
 
-    KEY_PRESS_EVENT
+    KEY_PRESS_EVENT(QStatusBar::keyPressEvent(event))
 };
 
 #endif

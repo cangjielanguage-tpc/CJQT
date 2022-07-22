@@ -42,6 +42,13 @@ extern "C"
         return reinterpret_cast<long>(instance->menuBar());
     }
 
+    void nativeMainWindowAddToolBar(long ptr, long toolBarPtr)
+    {
+        QMainWindow *instance = reinterpret_cast<QMainWindow *>(static_cast<uintptr_t>(ptr));
+        QToolBar *toolBar = reinterpret_cast<QToolBar *>(static_cast<uintptr_t>(toolBarPtr));
+        instance->addToolBar(toolBar);
+    }
+
     void nativeMainWindowDelete(long ptr)
     {
         CjQtMainWindow *instance = reinterpret_cast<CjQtMainWindow *>(static_cast<uintptr_t>(ptr));

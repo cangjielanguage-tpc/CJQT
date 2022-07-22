@@ -6,6 +6,7 @@ foreign func nativeMainWindowCreate(parentPtr: Int64): Int64
 foreign func nativeMainWindowSetCentralWidget(ptr: Int64, widgetPtr: Int64): Unit
 foreign func nativeMainWindowSetMenuBar(ptr: Int64, menuBarPtr: Int64): Unit
 foreign func nativeMainWindowMenuBar(ptr: Int64): Int64
+foreign func nativeMainWindowAddToolBar(ptr: Int64, toolBarPtr: Int64): Unit
 foreign func nativeMainWindowDelete(ptr: Int64): Unit
 
 public open class QMainWindow <: QWidget {
@@ -42,6 +43,12 @@ public open class QMainWindow <: QWidget {
             nativeMainWindowMenuBar(ptr)
         }
         return QMenuBar(menuBarPrt)
+    }
+
+    public func addToolBar(toolBar: QToolBar) {
+        unsafe {
+            nativeMainWindowAddToolBar(ptr, toolBar.ptr)
+        }
     }
 
     public override func delete() {

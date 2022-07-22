@@ -60,7 +60,7 @@ public class QPushButton <: QWidget {
     }
 }
 
-public class QPushButtonClickedSignal <: QSignal {
+public class QPushButtonClickedSignal <: QSignalUnit {
     init(ptr: Int64){
         super("clicked", ptr)
     }

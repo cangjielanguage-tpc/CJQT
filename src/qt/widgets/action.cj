@@ -3,7 +3,11 @@ package qt.widgets
 foreign func nativeActionCreate(parentPtr: Int64): Int64
 foreign func nativeActionSetStatusTip(ptr: Int64, tip:CString): Unit
 foreign func nativeActionSetText(ptr: Int64, text:CString): Unit
-foreign func nativeActionConnectTriggered(ptr: Int64, code: Int64, callback: CFunc<(Int64) -> Unit>): Unit
+foreign func nativeActionSetCheckable(ptr: Int64, checkable: Bool): Unit
+foreign func nativeActionIsCheckable(ptr: Int64): Bool
+foreign func nativeActionSetChecked(ptr: Int64, checked: Bool): Unit
+foreign func nativeActionIsChecked(ptr: Int64): Bool
+foreign func nativeActionConnectTriggered(ptr: Int64, code: Int64, callback: CFunc<(Int64, Bool) -> Unit>): Unit
 foreign func nativeActionDelete(ptr: Int64): Unit
 
 public class QAction {
@@ -42,6 +46,32 @@ public class QAction {
         }
     }
 
+    public func setCheckable(checkable: Bool) {
+        unsafe {
+            nativeActionSetCheckable(ptr, checkable)
+        }
+    }
+
+    public func isCheckable(): Bool {
+        let checkable = unsafe {
+            nativeActionIsCheckable(ptr)
+        }
+        return checkable
+    }
+
+    public func setChecked(checked: Bool) {
+        unsafe {
+            nativeActionSetChecked(ptr, checked)
+        }
+    }
+
+    public func isChecked(): Bool {
+        let checked = unsafe {
+            nativeActionIsChecked(ptr)
+        }
+        return checked
+    }
+
     public func delete() {
         triggered.remove()
         unsafe {
@@ -50,12 +80,12 @@ public class QAction {
     }
 }
 
-public class QActionTriggeredSignal <: QSignal {
+public class QActionTriggeredSignal <: QSignalBool {
     init(ptr: Int64){
         super("triggered", ptr)
     }
 
-    override func nativeConnect(code: Int64, cb: CFunc<(Int64) -> Unit>){
+    override func nativeConnect(code: Int64, cb: CFunc<(Int64, Bool) -> Unit>){
         unsafe {
             nativeActionConnectTriggered(ptr, code, cb)
         }

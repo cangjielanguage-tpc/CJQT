@@ -19,7 +19,7 @@ protected:
 
     MOUSE_MOVE_EVENT(QTextEdit::mouseMoveEvent(event))
 
-    KEY_PRESS_EVENT
+    KEY_PRESS_EVENT(QTextEdit::keyPressEvent(event))
 };
 
 #endif

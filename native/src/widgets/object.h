@@ -18,7 +18,7 @@
         }                                                                                                   \
         else                                                                                                \
         {                                                                                                   \
-            func;                                                                                    \
+            func;                                                                                           \
         }                                                                                                   \
     }
 
@@ -32,7 +32,7 @@
         }                                                                                                             \
         else                                                                                                          \
         {                                                                                                             \
-            func;                                                                                              \
+            func;                                                                                                     \
         }                                                                                                             \
     }
 
@@ -46,7 +46,7 @@
         }                                                                                                                 \
         else                                                                                                              \
         {                                                                                                                 \
-            func;                                                                                                  \
+            func;                                                                                                         \
         }                                                                                                                 \
     }
 
@@ -60,17 +60,21 @@
         }                                                                                                           \
         else                                                                                                        \
         {                                                                                                           \
-            func;                                                                                            \
+            func;                                                                                                   \
         }                                                                                                           \
     }
 
-#define KEY_PRESS_EVENT                                                                                           \
+#define KEY_PRESS_EVENT(func)                                                                                     \
     void keyPressEvent(QKeyEvent *event)                                                                          \
     {                                                                                                             \
         nativeEventCallback keyPressEventCallback = appConfig->keyPressEventMapGet(reinterpret_cast<long>(this)); \
         if (keyPressEventCallback != nullptr)                                                                     \
         {                                                                                                         \
             keyPressEventCallback(reinterpret_cast<long>(this), reinterpret_cast<long>(event));                   \
+        }                                                                                                         \
+        else                                                                                                      \
+        {                                                                                                         \
+            func;                                                                                                 \
         }                                                                                                         \
     }
 

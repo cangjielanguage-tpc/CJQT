@@ -42,11 +42,39 @@ extern "C"
         return reinterpret_cast<long>(instance->addAction(*icon, action));
     }
 
-    long nativeToolBarAddAction(long ptr, long actionPtr)
+    void nativeToolBarAddAction(long ptr, long actionPtr)
     {
         QToolBar *instance = reinterpret_cast<QToolBar *>(static_cast<uintptr_t>(ptr));
         QAction *action = reinterpret_cast<QAction *>(static_cast<uintptr_t>(actionPtr));
         instance->addAction(action);
+    }
+
+    long nativeToolBarAddSeparator(long ptr)
+    {
+        QToolBar *instance = reinterpret_cast<QToolBar *>(static_cast<uintptr_t>(ptr));
+        return reinterpret_cast<long>(instance->addSeparator());
+    }
+
+    long nativeToolBarInsertSeparator(long ptr, long actionPtr)
+    {
+        QToolBar *instance = reinterpret_cast<QToolBar *>(static_cast<uintptr_t>(ptr));
+        QAction *action = reinterpret_cast<QAction *>(static_cast<uintptr_t>(actionPtr));
+        return reinterpret_cast<long>(instance->insertSeparator(action));
+    }
+
+    long nativeToolBarAddWidget(long ptr, long widgetPtr)
+    {
+        QToolBar *instance = reinterpret_cast<QToolBar *>(static_cast<uintptr_t>(ptr));
+        QWidget *widget = reinterpret_cast<QWidget *>(static_cast<uintptr_t>(widgetPtr));
+        return reinterpret_cast<long>(instance->addWidget(widget));
+    }
+
+    long nativeToolBarInsertWidget(long ptr, long actionPtr, long widgetPtr)
+    {
+        QToolBar *instance = reinterpret_cast<QToolBar *>(static_cast<uintptr_t>(ptr));
+        QAction *action = reinterpret_cast<QAction *>(static_cast<uintptr_t>(actionPtr));
+        QWidget *widget = reinterpret_cast<QWidget *>(static_cast<uintptr_t>(widgetPtr));
+        return reinterpret_cast<long>(instance->insertWidget(action, widget));
     }
 
 }

@@ -20,7 +20,7 @@ foreign func nativeWidgetRepaint(ptr: Int64): Unit
 foreign func nativeWidgetSetLayout(ptr: Int64, layoutPtr: Int64): Unit
 foreign func nativeWidgetSetPalette(ptr: Int64, palettePtr: Int64): Unit
 foreign func nativeWidgetSetAutoFillBackground(ptr: Int64, enabled: Int32): Unit
-foreign func nativeWidgetSetGeometry(ptr: Int64, ax:Int32, ay:Int32, aw:Int32, ah:Int32): Unit
+foreign func nativeWidgetSetGeometry(ptr: Int64, ax: Int32, ay: Int32, aw: Int32, ah: Int32): Unit
 foreign func nativeWidgetSetFont(ptr: Int64, fontPtr: Int64): Unit
 foreign func nativeWidgetDelete(ptr: Int64): Unit
 
@@ -143,13 +143,13 @@ public open class QWidget {
         }
     }
 
-    public func setGeometry(ax:Int32, ay:Int32, aw:Int32, ah:Int32) {
+    public func setGeometry(ax: Int32, ay: Int32, aw: Int32, ah: Int32) {
         unsafe {
             nativeWidgetSetGeometry(ptr, ax, ay, aw, ah)
         }
     }
 
-    public func setFont(font:QFont) {
+    public func setFont(font: QFont) {
         unsafe {
             nativeWidgetSetFont(ptr, font.ptr)
         }
@@ -236,6 +236,18 @@ public open class QSignal {
         this.signalType = signalType
     }
 
+    public open func remove() {}
+}
+
+public open class QSignalUnit <: QSignal {
+    public init(signalType: String, ptr: Int64) {
+        super(signalType, ptr)
+    }
+
+    public override open func remove() {
+        QCallbackMap.connect.remove(QMapKey(signalType, ptr).hashCode())
+        return
+    }
 
     public func connect(callback: () -> Unit) {
         QCallbackMap.connect.put(QMapKey(signalType, ptr).hashCode(), callback)
@@ -249,11 +261,55 @@ public open class QSignal {
         nativeConnect(QMapKey(signalType, ptr).hashCode(), cb)
     }
 
-    open func nativeConnect(code: Int64, cb: CFunc<(Int64) -> Unit>){
+    open func nativeConnect(code: Int64, cb: CFunc<(Int64) -> Unit>) {}
+}
 
+public open class QSignalInt64 <: QSignal {
+    public init(signalType: String, ptr: Int64) {
+        super(signalType, ptr)
     }
 
-    public func remove() {
+    public override open func remove() {
         QCallbackMap.connect.remove(QMapKey(signalType, ptr).hashCode())
+        return
     }
+
+    public func connect(callback: (Int64) -> Unit) {
+        QCallbackMap.connectInt64.put(QMapKey(signalType, ptr).hashCode(), callback)
+        let cb: CFunc<(Int64, Int32) -> Unit> = {
+            code, data => try {
+                QCallbackMap.connectInt64[code](Int64(data))
+            } catch (e: Exception) {
+                println(e)
+            }
+        }
+        nativeConnect(QMapKey(signalType, ptr).hashCode(), cb)
+    }
+
+    open func nativeConnect(code: Int64, cb: CFunc<(Int64, Int32) -> Unit>) {}
+}
+
+public open class QSignalBool <: QSignal {
+    public init(signalType: String, ptr: Int64) {
+        super(signalType, ptr)
+    }
+
+    public override open func remove() {
+        QCallbackMap.connect.remove(QMapKey(signalType, ptr).hashCode())
+        return
+    }
+
+    public func connect(callback: (Bool) -> Unit) {
+        QCallbackMap.connectBool.put(QMapKey(signalType, ptr).hashCode(), callback)
+        let cb: CFunc<(Int64, Bool) -> Unit> = {
+            code, data => try {
+                QCallbackMap.connectBool[code](data)
+            } catch (e: Exception) {
+                println(e)
+            }
+        }
+        nativeConnect(QMapKey(signalType, ptr).hashCode(), cb)
+    }
+
+    open func nativeConnect(code: Int64, cb: CFunc<(Int64, Bool) -> Unit>) {}
 }

@@ -32,11 +32,31 @@ extern "C"
 		instance->setText(txte);
 	}
 
-	void nativeActionConnectTriggered(long ptr, long code, nativeConnectCallback callback)
+	void nativeActionSetCheckable(long ptr, bool checkable){
+        QAction *instance = reinterpret_cast<QAction *>(static_cast<uintptr_t>(ptr));
+        instance->setCheckable(checkable);
+    }
+
+    bool nativeActionIsCheckable(long ptr){
+        QAction *instance = reinterpret_cast<QAction *>(static_cast<uintptr_t>(ptr));
+        return instance->isCheckable();
+    }
+
+    void nativeActionSetChecked(long ptr, bool checked){
+        QAction *instance = reinterpret_cast<QAction *>(static_cast<uintptr_t>(ptr));
+        instance->setChecked(checked);
+    }
+
+    bool nativeActionIsChecked(long ptr){
+        QAction *instance = reinterpret_cast<QAction *>(static_cast<uintptr_t>(ptr));
+        return instance->isChecked();
+    }
+
+	void nativeActionConnectTriggered(long ptr, long code, nativeConnectCallbackBool callback)
     {
         QAction *instance = reinterpret_cast<QAction *>(static_cast<uintptr_t>(ptr));
-        QObject::connect(instance, &QAction::triggered, [=]()
-                         { callback(code); });
+        QObject::connect(instance, &QAction::triggered, [=](bool result)
+                         { callback(code, result); });
     }
 
 	void nativeActionDelete(long ptr)

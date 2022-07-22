@@ -11,7 +11,7 @@ public:
     CjQtHBoxLayout(QWidget *parent = nullptr) : QHBoxLayout(parent) {}
 
 protected:
-    KEY_PRESS_EVENT
+    // KEY_PRESS_EVENT
 };
 
 #endif

@@ -24,7 +24,7 @@ protected:
 
     MOUSE_MOVE_EVENT(QMainWindow::mouseMoveEvent(event))
 
-    KEY_PRESS_EVENT
+    KEY_PRESS_EVENT(QMainWindow::keyPressEvent(event))
 };
 
 #endif

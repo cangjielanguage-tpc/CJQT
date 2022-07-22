@@ -19,7 +19,7 @@ protected:
 
     MOUSE_MOVE_EVENT(QGroupBox::mouseMoveEvent(event))
 
-    KEY_PRESS_EVENT
+    KEY_PRESS_EVENT(QGroupBox::keyPressEvent(event))
 };
 
 #endif

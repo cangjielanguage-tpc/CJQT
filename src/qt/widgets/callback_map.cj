@@ -4,6 +4,8 @@ from std import collection.*
 
 public class QCallbackMap {
     static let connect = HashMap<Int64, () -> Unit>()
+    static let connectInt64 = HashMap<Int64, (Int64) -> Unit>()
+    static let connectBool = HashMap<Int64, (Bool) -> Unit>()
 }
 
 public class QMapKey {

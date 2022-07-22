@@ -57,6 +57,27 @@ extern "C"
         instance->setText(text);
     }
 
+    const char *nativeTextEditToPlainText(long ptr)
+    {
+        QTextEdit *instance = reinterpret_cast<QTextEdit *>(static_cast<uintptr_t>(ptr));
+        QString str = instance->toPlainText();
+        return qstrdup(str.toUtf8());
+    }
+
+    const char *nativeTextEditToHtml(long ptr)
+    {
+        QTextEdit *instance = reinterpret_cast<QTextEdit *>(static_cast<uintptr_t>(ptr));
+        QString str = instance->toHtml();
+        return qstrdup(str.toUtf8());
+    }
+
+    const char *nativeTextEditToMarkdown(long ptr)
+    {
+        QTextEdit *instance = reinterpret_cast<QTextEdit *>(static_cast<uintptr_t>(ptr));
+        QString str = instance->toMarkdown();
+        return qstrdup(str.toUtf8());
+    }
+
     void nativeTextEditSetFontWeight(long ptr, int fontWeight)
     {
         QTextEdit *instance = reinterpret_cast<QTextEdit *>(static_cast<uintptr_t>(ptr));
@@ -100,5 +121,41 @@ extern "C"
     {
         CjTextEdit *instance = reinterpret_cast<CjTextEdit *>(static_cast<uintptr_t>(ptr));
         delete instance;
+    }
+
+    void nativeTextEditCopy(long ptr)
+    {
+        QTextEdit *instance = reinterpret_cast<QTextEdit *>(static_cast<uintptr_t>(ptr));
+#if QT_CONFIG(clipboard)
+        instance->copy();
+#endif
+    }
+
+    void nativeTextEditCut(long ptr)
+    {
+        QTextEdit *instance = reinterpret_cast<QTextEdit *>(static_cast<uintptr_t>(ptr));
+#if QT_CONFIG(clipboard)
+        instance->cut();
+#endif
+    }
+
+    void nativeTextEditPaste(long ptr)
+    {
+        QTextEdit *instance = reinterpret_cast<QTextEdit *>(static_cast<uintptr_t>(ptr));
+#if QT_CONFIG(clipboard)
+        instance->paste();
+#endif
+    }
+
+    void nativeTextEditUndo(long ptr)
+    {
+        QTextEdit *instance = reinterpret_cast<QTextEdit *>(static_cast<uintptr_t>(ptr));
+        instance->undo();
+    }
+
+    void nativeTextEditRedo(long ptr)
+    {
+        QTextEdit *instance = reinterpret_cast<QTextEdit *>(static_cast<uintptr_t>(ptr));
+        instance->redo();
     }
 }

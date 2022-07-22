@@ -19,7 +19,7 @@ protected:
 
     MOUSE_MOVE_EVENT(QMessageBox::mouseMoveEvent(event))
 
-    KEY_PRESS_EVENT
+    KEY_PRESS_EVENT(QMessageBox::keyPressEvent(event))
 };
 
 #endif

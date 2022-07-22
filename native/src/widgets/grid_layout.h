@@ -19,7 +19,7 @@ protected:
 
     // MOUSE_MOVE_EVENT(QGridLayout::mouseMoveEvent)
 
-    KEY_PRESS_EVENT
+    // KEY_PRESS_EVENT
 };
 
 #endif

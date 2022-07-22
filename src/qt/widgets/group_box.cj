@@ -102,7 +102,7 @@ public class QGroupBox <: QWidget {
 
 }
 
-public class QGroupBoxClickedSignal <: QSignal {
+public class QGroupBoxClickedSignal <: QSignalUnit {
     init(ptr: Int64){
         super("clicked", ptr)
     }
@@ -114,7 +114,7 @@ public class QGroupBoxClickedSignal <: QSignal {
     }
 }
 
-public class QGroupBoxToggledSignal <: QSignal {
+public class QGroupBoxToggledSignal <: QSignalUnit {
     init(ptr: Int64){
         super("toggled", ptr)
     }

@@ -19,7 +19,7 @@ protected:
 
     MOUSE_MOVE_EVENT(QFileDialog::mouseMoveEvent(event))
 
-    KEY_PRESS_EVENT
+    KEY_PRESS_EVENT(QFileDialog::keyPressEvent(event))
 };
 
 #endif

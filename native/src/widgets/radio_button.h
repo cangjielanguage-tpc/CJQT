@@ -19,7 +19,7 @@ protected:
 
     MOUSE_MOVE_EVENT(QRadioButton::mouseMoveEvent(event))
 
-    KEY_PRESS_EVENT
+    KEY_PRESS_EVENT(QRadioButton::keyPressEvent(event))
 };
 
 #endif

@@ -24,7 +24,7 @@ protected:
 
     MOUSE_MOVE_EVENT(QMenuBar::mouseMoveEvent(event))
 
-    KEY_PRESS_EVENT
+    KEY_PRESS_EVENT(QMenuBar::keyPressEvent(event))
 };
 
 #endif

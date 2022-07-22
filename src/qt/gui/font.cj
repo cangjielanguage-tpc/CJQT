@@ -31,3 +31,21 @@ public class QFont {
         }
     }
 }
+
+public enum FontWeight {
+    Thin | ExtraLight | Light | Normal | Medium | DemiBold | Bold | ExtraBold | Black
+
+    public func value(): Int32 {
+        return match (this) {
+            case Thin => 0
+            case ExtraLight => 12
+            case Light => 25
+            case Normal => 50
+            case Medium => 57
+            case DemiBold => 63
+            case Bold => 75
+            case ExtraBold => 81
+            case Black => 87
+        }
+    }
+}

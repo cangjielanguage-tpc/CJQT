@@ -5,14 +5,6 @@
 
 #include "object.h"
 
-extern "C"
-{
-void nativeWidgetShow(long ptr);
-void nativeWidgetResize(long ptr, int w, int h);
-}
-
-// typedef void (*paintEventFunc)(QPaintEvent *event);
-
 class CjQtWidget : public QWidget
 {
     Q_OBJECT
@@ -28,7 +20,7 @@ protected:
 
     MOUSE_MOVE_EVENT(QWidget::mouseMoveEvent(event))
 
-    KEY_PRESS_EVENT
+    KEY_PRESS_EVENT(QWidget::keyPressEvent(event))
 };
 
 #endif

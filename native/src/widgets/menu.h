@@ -19,7 +19,7 @@ protected:
 
     MOUSE_MOVE_EVENT(QMenu::mouseMoveEvent(event))
 
-    KEY_PRESS_EVENT
+    KEY_PRESS_EVENT(QMenu::keyPressEvent(event))
 };
 
 #endif
