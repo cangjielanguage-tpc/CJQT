@@ -40,6 +40,8 @@ add_library(nativeQt SHARED
         ./src/widgets/v_box_layout.cpp
         ./src/widgets/status_bar.cpp
         ./src/widgets/tool_bar.cpp
+        ./src/widgets/dialog.cpp
+        ./src/widgets/font_dialog.cpp
         ./src/code/url.cpp
         ./src/code/timer.cpp
         ./src/gui/mouse_event.cpp

@@ -31,6 +31,10 @@ public class QIcon {
         }
     }
 
+    public init(ptr: Int64) {
+        this.ptr = ptr
+    }
+
     public func name(): String {
         let result = unsafe {
             nativeIconGetName(ptr)

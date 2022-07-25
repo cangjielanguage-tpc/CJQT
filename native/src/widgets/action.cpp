@@ -32,32 +32,71 @@ extern "C"
 		instance->setText(txte);
 	}
 
-	void nativeActionSetCheckable(long ptr, bool checkable){
-        QAction *instance = reinterpret_cast<QAction *>(static_cast<uintptr_t>(ptr));
-        instance->setCheckable(checkable);
-    }
+	const char *nativeActionText(long ptr)
+	{
+		QAction *instance = reinterpret_cast<QAction *>(static_cast<uintptr_t>(ptr));
+		QString str = instance->text();
+		return qstrdup(str.toUtf8());
+	}
 
-    bool nativeActionIsCheckable(long ptr){
-        QAction *instance = reinterpret_cast<QAction *>(static_cast<uintptr_t>(ptr));
-        return instance->isCheckable();
-    }
+	void nativeActionSetIcon(long ptr, long iconPtr)
+	{
+		QAction *instance = reinterpret_cast<QAction *>(static_cast<uintptr_t>(ptr));
+		QIcon *icon = reinterpret_cast<QIcon *>(static_cast<uintptr_t>(iconPtr));
+		instance->setIcon(*icon);
+	}
 
-    void nativeActionSetChecked(long ptr, bool checked){
-        QAction *instance = reinterpret_cast<QAction *>(static_cast<uintptr_t>(ptr));
-        instance->setChecked(checked);
-    }
+	long nativeActionIcon(long ptr)
+	{
+		QAction *instance = reinterpret_cast<QAction *>(static_cast<uintptr_t>(ptr));
+		QIcon icon = instance->icon();
+		return reinterpret_cast<long>(&icon);
+	}
 
-    bool nativeActionIsChecked(long ptr){
-        QAction *instance = reinterpret_cast<QAction *>(static_cast<uintptr_t>(ptr));
-        return instance->isChecked();
-    }
+	void nativeActionSetShortcut(long ptr, long shortcutPtr)
+	{
+		QAction *instance = reinterpret_cast<QAction *>(static_cast<uintptr_t>(ptr));
+		QKeySequence *shortcut = reinterpret_cast<QKeySequence *>(static_cast<uintptr_t>(shortcutPtr));
+		instance->setShortcut(*shortcut);
+	}
+
+	long nativeActionShortcut(long ptr)
+	{
+		QAction *instance = reinterpret_cast<QAction *>(static_cast<uintptr_t>(ptr));
+		QKeySequence shortcut = instance->shortcut();
+		return reinterpret_cast<long>(&shortcut);
+	}
+
+	void nativeActionSetCheckable(long ptr, bool checkable)
+	{
+		QAction *instance = reinterpret_cast<QAction *>(static_cast<uintptr_t>(ptr));
+		instance->setCheckable(checkable);
+	}
+
+	bool nativeActionIsCheckable(long ptr)
+	{
+		QAction *instance = reinterpret_cast<QAction *>(static_cast<uintptr_t>(ptr));
+		return instance->isCheckable();
+	}
+
+	void nativeActionSetChecked(long ptr, bool checked)
+	{
+		QAction *instance = reinterpret_cast<QAction *>(static_cast<uintptr_t>(ptr));
+		instance->setChecked(checked);
+	}
+
+	bool nativeActionIsChecked(long ptr)
+	{
+		QAction *instance = reinterpret_cast<QAction *>(static_cast<uintptr_t>(ptr));
+		return instance->isChecked();
+	}
 
 	void nativeActionConnectTriggered(long ptr, long code, nativeConnectCallbackBool callback)
-    {
-        QAction *instance = reinterpret_cast<QAction *>(static_cast<uintptr_t>(ptr));
-        QObject::connect(instance, &QAction::triggered, [=](bool result)
-                         { callback(code, result); });
-    }
+	{
+		QAction *instance = reinterpret_cast<QAction *>(static_cast<uintptr_t>(ptr));
+		QObject::connect(instance, &QAction::triggered, [=](bool result)
+						 { callback(code, result); });
+	}
 
 	void nativeActionDelete(long ptr)
 	{

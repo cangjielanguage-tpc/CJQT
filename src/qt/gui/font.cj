@@ -13,6 +13,10 @@ public class QFont {
         }
     }
 
+    public init(ptr: Int64) {
+        this.ptr = ptr
+    }
+
     public init(font: QFont) {
         ptr = unsafe {
             nativeFontCreate(font.ptr)

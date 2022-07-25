@@ -25,16 +25,16 @@ public class QToolBar <: QWidget {
         }
     }
 
-    public func addAction(menu: String): QAction {
+    public func addAction(action: String): QAction {
         let actionPrt = unsafe {
-            nativeToolBarAddActionStr(ptr, CString(menu))
+            nativeToolBarAddActionStr(ptr, CString(action))
         }
         return QAction(actionPrt)
     }
 
-    public func addAction(icon: QIcon, menu: String): QAction {
+    public func addAction(icon: QIcon, action: String): QAction {
         let actionPrt = unsafe {
-            nativeToolBarAddActionStrIcon(ptr, icon.ptr, CString(menu))
+            nativeToolBarAddActionStrIcon(ptr, icon.ptr, CString(action))
         }
         return QAction(actionPrt)
     }

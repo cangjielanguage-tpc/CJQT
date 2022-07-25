@@ -45,6 +45,13 @@ extern "C"
         return reinterpret_cast<long>(instance->addAction(action));
     }
 
+    long nativeMenuAddActionStrIcon(long ptr, long iconPtr, const char *action)
+    {
+        QMenu *instance = reinterpret_cast<QMenu *>(static_cast<uintptr_t>(ptr));
+        QIcon *icon = reinterpret_cast<QIcon *>(static_cast<uintptr_t>(iconPtr));
+        return reinterpret_cast<long>(instance->addAction(*icon, action));
+    }
+
     void nativeMenuAddActionPtr(long ptr, long actionPtr)
     {
         QMenu *instance = reinterpret_cast<QMenu *>(static_cast<uintptr_t>(ptr));

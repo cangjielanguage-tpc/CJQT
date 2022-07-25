@@ -113,7 +113,7 @@ cpm build
 
 ### hello示例
 
-[hello示例详情](./example/hello/README.md)
+[hello示例详情](./example/hello)
 
 执行命令：
 
@@ -130,7 +130,7 @@ cpm build
 
 ### 俄罗斯方块游戏示例
 
-[俄罗斯方块示例详情](./example/tetris/README.md)
+[俄罗斯方块示例详情](./example/tetris)
 
 执行命令：
 
@@ -142,6 +142,22 @@ cpm build
 
 <p align="center">
 <img src="./doc/assets/tetris_demo.png" width="60%" >
+</p>
+
+### 记事本示例
+
+[记事本示例详情](./example/notepad)
+
+执行命令：
+
+```shell
+./example/notepad/run.sh
+```
+
+执行效果：
+
+<p align="center">
+<img src="./doc/assets/notepad_demo.png" width="60%" >
 </p>
 
 ## <img alt="" src="./doc/assets/readme-icon-contribute.png" style="display: inline-block;" width=3%/>参与贡献

@@ -8,8 +8,12 @@ public class NotepadWindow <: QMainWindow {
     let layout: QVBoxLayout
     var currentFile: String = ""
 
+    let actionBold = QAction()
+    let actionItalic = QAction()
+    let actionUnderline = QAction()
+
     public init() {
-        setFixedSize(800, 600)
+        setFixedSize(600, 400)
         setWindowTitle("记事本")
 
         setPalette(QPalette(QColor.White))
@@ -24,8 +28,26 @@ public class NotepadWindow <: QMainWindow {
         textEdit = QTextEdit()
         layout.addWidget(textEdit)
 
+        initAction()
         createMenu()
         createToolBar()
+    }
+
+    func initAction() {
+        actionBold.setText("粗体")
+        actionBold.setIcon(QIcon("./images/bold.png"))
+        actionBold.setCheckable(true)
+        actionBold.triggered.connect(setFontBold)
+
+        actionItalic.setText("斜体")
+        actionItalic.setIcon(QIcon("./images/italic.png"))
+        actionItalic.setCheckable(true)
+        actionItalic.triggered.connect(setFontItalic)
+
+        actionUnderline.setText("下划线")
+        actionUnderline.setIcon(QIcon("./images/underline.png"))
+        actionUnderline.setCheckable(true)
+        actionUnderline.triggered.connect(setFontUnderline)
     }
 
     func createMenu() {
@@ -40,36 +62,36 @@ public class NotepadWindow <: QMainWindow {
 
     func createFileMenu() {
         let menuFile = menuBar().addMenu("文件(&F)")
-        let actionNew = menuFile.addAction("新建")
+        let actionNew = menuFile.addAction(QIcon("./images/new.png"), "新建")
         actionNew.triggered.connect(newDocument)
 
-        let actionOpen = menuFile.addAction("打开···")
+        let actionOpen = menuFile.addAction(QIcon("./images/open.png"), "打开···")
         actionOpen.triggered.connect(openFile)
 
         menuFile.addSeparator()
-        let actionSave = menuFile.addAction("保存")
+        let actionSave = menuFile.addAction(QIcon("./images/save.png"), "保存")
         actionSave.triggered.connect(saveFile)
 
-        let actionSaveAs = menuFile.addAction("另存为···")
+        let actionSaveAs = menuFile.addAction(QIcon("./images/save_as.png"), "另存为···")
         actionSaveAs.triggered.connect(saveFileAs)
 
-        let actionClose = menuFile.addAction("关闭")
+        let actionClose = menuFile.addAction(QIcon("./images/exit.png"), "关闭")
         actionClose.triggered.connect(exitApp)
     }
 
     func createEditMenu() {
         let menuEdit = menuBar().addMenu("编辑(&E)")
-        let actionUndo = menuEdit.addAction("撤销")
+        let actionUndo = menuEdit.addAction(QIcon("./images/edit_undo.png"), "撤销")
         actionUndo.triggered.connect(editUndo)
-        let actionRedo = menuEdit.addAction("恢复")
+        let actionRedo = menuEdit.addAction(QIcon("./images/edit_redo.png"), "恢复")
         actionRedo.triggered.connect(editRedo)
 
         menuEdit.addSeparator()
-        let actionCut = menuEdit.addAction("剪切")
+        let actionCut = menuEdit.addAction(QIcon("./images/cut.png"), "剪切")
         actionCut.triggered.connect(editCut)
-        let actionCopy = menuEdit.addAction("复制")
+        let actionCopy = menuEdit.addAction(QIcon("./images/copy.png"), "复制")
         actionCopy.triggered.connect(editCopy)
-        let actionPaste = menuEdit.addAction("粘贴")
+        let actionPaste = menuEdit.addAction(QIcon("./images/paste.png"), "粘贴")
         actionPaste.triggered.connect(editPaste)
     }
 
@@ -88,15 +110,9 @@ public class NotepadWindow <: QMainWindow {
 
     func createFormatMenu() {
         let menuFormat = menuBar().addMenu("格式(&O)")
-        let actionBold = menuFormat.addAction("加粗")
-        actionBold.setCheckable(true)
-        actionBold.triggered.connect(setFontBold)
-        let actionItalic = menuFormat.addAction("斜体")
-        actionItalic.setCheckable(true)
-        actionItalic.triggered.connect(setFontItalic)
-        let actionUnderline = menuFormat.addAction("下划线")
-        actionUnderline.setCheckable(true)
-        actionUnderline.triggered.connect(setFontUnderline)
+        menuFormat.addAction(actionBold)
+        menuFormat.addAction(actionItalic)
+        menuFormat.addAction(actionUnderline)
     }
 
     func createViewMenu() {
@@ -117,7 +133,8 @@ public class NotepadWindow <: QMainWindow {
         menuHelp.addAction("检测更新···")
         menuHelp.addAction("更新日志")
         menuHelp.addSeparator()
-        menuHelp.addAction("关于")
+        let aboutClose = menuHelp.addAction(QIcon("./images/info.png"), "关于")
+        aboutClose.triggered.connect(about)
     }
 
     func createToolBar() {
@@ -146,19 +163,16 @@ public class NotepadWindow <: QMainWindow {
         actionRedo.triggered.connect(editRedo)
 
         toolBar.addSeparator()
-        toolBar.addAction(QIcon("./images/font.png"), "字体")
-        let actionItalic = toolBar.addAction(QIcon("./images/italic.png"), "斜体")
-        actionItalic.setCheckable(true)
-        actionItalic.triggered.connect(setFontItalic)
-        let actionBold = toolBar.addAction(QIcon("./images/bold.png"), "租体")
-        actionBold.setCheckable(true)
-        actionBold.triggered.connect(setFontBold)
-        let actionUnderline = toolBar.addAction(QIcon("./images/underline.png"), "下划线")
-        actionUnderline.setCheckable(true)
-        actionUnderline.triggered.connect(setFontUnderline)
+        let actionFont = toolBar.addAction(QIcon("./images/font.png"), "字体")
+        actionFont.triggered.connect(setFont)
+
+        toolBar.addAction(actionBold)
+        toolBar.addAction(actionItalic)
+        toolBar.addAction(actionUnderline)
 
         toolBar.addSeparator()
-        toolBar.addAction(QIcon("./images/info.png"), "关于")
+        let actionAbout = toolBar.addAction(QIcon("./images/info.png"), "关于")
+        actionAbout.triggered.connect(about)
 
         toolBar.addSeparator()
         let actionClose = toolBar.addAction(QIcon("./images/exit.png"), "退出")
@@ -256,6 +270,13 @@ public class NotepadWindow <: QMainWindow {
         textEdit.redo()
     }
 
+    func setFont(bool: Bool){
+        let font = QFontDialog.getFont(parent: this)
+        if (font.ptr != 0){
+            textEdit.setFont(font)
+        }
+    }
+
     func setFontUnderline(underline: Bool) {
         textEdit.setFontUnderline(underline)
     }
@@ -270,5 +291,9 @@ public class NotepadWindow <: QMainWindow {
         } else {
             textEdit.setFontWeight(FontWeight.Normal)
         }
+    }
+
+    func about(bool: Bool) {
+        QMessageBox.about(this, "CJQT记事本", "基于QT仓颉语言绑定版本构建的记事本示例")
     }
 }
