@@ -15,13 +15,12 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 set (CMAKE_PREFIX_PATH $ENV{QT_HOME})
 
-find_package(Qt5 COMPONENTS Core Widgets Qml REQUIRED )
+find_package(Qt5 COMPONENTS Core Widgets REQUIRED )
 
 add_library(nativeQt SHARED 
         ./src/widgets/application.cpp
         ./src/widgets/widget.cpp
         ./src/widgets/main_window.cpp
-        ./src/widgets/qml_application_engine.cpp
         ./src/widgets/label.cpp
         ./src/widgets/grid_layout.cpp
         ./src/widgets/push_button.cpp
@@ -57,4 +56,4 @@ add_library(nativeQt SHARED
         ./src/gui/icon.cpp
 )
 
-target_link_libraries(nativeQt PRIVATE Qt5::Core Qt5::Widgets Qt5::Qml)
+target_link_libraries(nativeQt PRIVATE Qt5::Core Qt5::Widgets)
