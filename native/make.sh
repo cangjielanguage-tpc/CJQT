@@ -12,4 +12,4 @@ cd $BUILD_PATH
 cmake ..
 make
 
-cp build/libnativeQt.so lib/libnativeQt.so
+cp $NATIVE_PATH/build/libnativeQt.so $NATIVE_PATH/lib/libnativeQt.so

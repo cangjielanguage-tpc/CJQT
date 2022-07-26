@@ -85,30 +85,11 @@ CjQt是Qt的仓颉语言绑定，提供仓颉语言风格的Qt类和函数的API
 
 ## <img alt="" src="./doc/assets/readme-icon-compile.png" style="display: inline-block;" width=3%/>编译执行
 
-### 编译
+### 安装依赖
 
-下载QT文件[qt-opensource-linux-x64-5.14.2.run](https://download.qt.io/archive/qt/5.14/5.14.2/)到安装目录
-
-
-安装QT
+安装 libxkbcommon-x11
 ```shell
-chmod +x qt-opensource-linux-x64-5.14.2.run
-./qt-opensource-linux-x64-5.14.2.run
-```
-
-配置环境变量
-```shell
-vim ~/.bashrc
-export QT_HOME=/home/wathinst/Qt5.14.2/5.14.2/gcc_64(自己的安装目录)
-source ~/.bashrc
-```
-
-编译项目源码
-
-```shell
-./native/make.sh
-cpm update
-cpm build
+sudo apt-get install libxkbcommon-x11-0
 ```
 
 ### hello示例
@@ -159,6 +140,102 @@ cpm build
 <p align="center">
 <img src="./doc/assets/notepad_demo.png" width="60%" >
 </p>
+
+### 项目使用（源码引用方式）
+
+克隆cjqt项目到本地
+```shell
+https://gitee.com/HW-PLLab/qt.git
+```
+
+创建demo项目并初始化工程
+```shell
+mkdir demo && cd demo
+cpm new demo demo
+```
+
+修改module.json文件并引入cjqt
+`path` 为qt的项目路径
+```json
+{
+  "cjc_version": "0.30.4",
+  "organization": "demo",
+  "name": "demo",
+  "description": "nothing here",
+  "version": "1.0.0",
+  "requires": {
+    "cjqt": {
+      "organization": "cangjie",
+      "version": "0.0.1",
+      "path": "../qt"
+    }
+  },
+  "package_requires": {},
+  "foreign_requires": {},
+  "output_type": "executable",
+  "command_option": "",
+  "cross_compile_configuration": {}
+}
+```
+
+更新项目
+```shell
+cpm update
+```
+
+新建src/main.cj文件
+```cangjie
+from cjqt import qt.widgets.*
+
+main() {
+    QApplication.create()
+    
+    let win = QMainWindow()
+    win.setWindowTitle("CJQT Demo")
+    win.resize(400, 300)
+    win.show()
+
+    QApplication.exec()
+
+    win.delete()
+    QApplication.delete()
+}
+```
+
+编译与运行
+```shell
+export LD_LIBRARY_PATH=../qt/native/lib:${LD_LIBRARY_PATH}
+export LD_LIBRARY_PATH=../qt/build/cjqt:${LD_LIBRARY_PATH}
+export QT_QPA_PLATFORM_PLUGIN_PATH=../qt/native/lib/platforms
+./../qt/build.sh
+cpm build
+./bin/main
+```
+
+### 项目编译
+
+下载QT文件[qt-opensource-linux-x64-5.14.2.run](https://download.qt.io/archive/qt/5.14/5.14.2/)到安装目录
+
+
+安装 QT
+```shell
+chmod +x qt-opensource-linux-x64-5.14.2.run
+./qt-opensource-linux-x64-5.14.2.run
+```
+
+配置环境变量
+```shell
+vim ~/.bashrc
+export QT_HOME=/home/wathinst/Qt5.14.2/5.14.2/gcc_64(自己的安装目录)
+source ~/.bashrc
+```
+
+编译项目源码
+
+```shell
+./build_native.sh  
+./build.sh
+```
 
 ## <img alt="" src="./doc/assets/readme-icon-contribute.png" style="display: inline-block;" width=3%/>参与贡献
 

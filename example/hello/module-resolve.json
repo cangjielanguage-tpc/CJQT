@@ -3,65 +3,65 @@
     {
       "organization": "cangjie",
       "name": "cjqt",
-      "path": "/home/wathinst/project/qt",
-      "packagePath": "/home/wathinst/project/qt/src/qt",
+      "path": "/home/wathinst/cjProject/qt",
+      "packagePath": "/home/wathinst/cjProject/qt/src/qt",
       "packageName": "cjqt/qt",
       "version": "0.0.1",
-      "hash": "-2010748483896057405",
+      "hash": "-2010748521373594389",
       "isMacroPackage": false,
       "output_type": "dynamic",
       "command_option": "",
       "requires": [],
       "package_requires": {},
       "foreign_requires": {
-        "nativeQt": "/home/wathinst/project/qt/native/lib"
+        "nativeQt": "/home/wathinst/cjProject/qt/native/lib"
       },
       "cross_compile_configuration": {}
     },
     {
       "organization": "cangjie",
       "name": "cjqt",
-      "path": "/home/wathinst/project/qt",
-      "packagePath": "/home/wathinst/project/qt/src/qt/gui",
+      "path": "/home/wathinst/cjProject/qt",
+      "packagePath": "/home/wathinst/cjProject/qt/src/qt/gui",
       "packageName": "cjqt/qt.gui",
       "version": "0.0.1",
-      "hash": "-2010748483896057405",
+      "hash": "-2010748521373594389",
       "isMacroPackage": false,
       "output_type": "dynamic",
       "command_option": "",
       "requires": [],
       "package_requires": {},
       "foreign_requires": {
-        "nativeQt": "/home/wathinst/project/qt/native/lib"
+        "nativeQt": "/home/wathinst/cjProject/qt/native/lib"
       },
       "cross_compile_configuration": {}
     },
     {
       "organization": "cangjie",
       "name": "cjqt",
-      "path": "/home/wathinst/project/qt",
-      "packagePath": "/home/wathinst/project/qt/src/qt/code",
+      "path": "/home/wathinst/cjProject/qt",
+      "packagePath": "/home/wathinst/cjProject/qt/src/qt/code",
       "packageName": "cjqt/qt.code",
       "version": "0.0.1",
-      "hash": "-2010748483896057405",
+      "hash": "-2010748521373594389",
       "isMacroPackage": false,
       "output_type": "dynamic",
       "command_option": "",
       "requires": [],
       "package_requires": {},
       "foreign_requires": {
-        "nativeQt": "/home/wathinst/project/qt/native/lib"
+        "nativeQt": "/home/wathinst/cjProject/qt/native/lib"
       },
       "cross_compile_configuration": {}
     },
     {
       "organization": "cangjie",
       "name": "cjqt",
-      "path": "/home/wathinst/project/qt",
-      "packagePath": "/home/wathinst/project/qt/src/qt/widgets",
+      "path": "/home/wathinst/cjProject/qt",
+      "packagePath": "/home/wathinst/cjProject/qt/src/qt/widgets",
       "packageName": "cjqt/qt.widgets",
       "version": "0.0.1",
-      "hash": "-2010748483896057405",
+      "hash": "-2010748521373594389",
       "isMacroPackage": false,
       "output_type": "dynamic",
       "command_option": "",
@@ -71,7 +71,7 @@
       ],
       "package_requires": {},
       "foreign_requires": {
-        "nativeQt": "/home/wathinst/project/qt/native/lib"
+        "nativeQt": "/home/wathinst/cjProject/qt/native/lib"
       },
       "cross_compile_configuration": {}
     },
@@ -79,10 +79,10 @@
       "organization": "cjqt",
       "name": "hello",
       "path": "./",
-      "packagePath": "/home/wathinst/project/qt/example/hello/src",
+      "packagePath": "/home/wathinst/cjProject/qt/example/hello/src",
       "packageName": "hello/default",
       "version": "1.0.0",
-      "hash": "-2010422845420161781",
+      "hash": "-2010422790137593917",
       "isMacroPackage": false,
       "output_type": "executable",
       "command_option": "",
