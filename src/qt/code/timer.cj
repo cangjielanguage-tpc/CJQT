@@ -1,6 +1,6 @@
 package qt.code
 
-from std import ffi.c.CString
+// from std import ffi.c.CString
 
 foreign func nativeTimerCreate(callback: CFunc<() -> Unit>, interval: Int32): Int64
 foreign func nativeTimerStart(ptr: Int64): Unit

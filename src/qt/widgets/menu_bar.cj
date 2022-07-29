@@ -1,6 +1,6 @@
 package qt.widgets
 
-from std import ffi.c.CString
+// from std import ffi.c.CString
 
 foreign func nativeMenuBarCreate(parentPtr: Int64): Int64
 foreign func nativeMenuBarAddActionStr(ptr: Int64, action:CString): Int64

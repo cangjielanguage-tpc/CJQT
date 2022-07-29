@@ -1,6 +1,6 @@
 package qt.widgets
 
-from std import ffi.c.CString
+// from std import ffi.c.CString
 
 foreign func nativeMainWindowCreate(parentPtr: Int64): Int64
 foreign func nativeMainWindowSetCentralWidget(ptr: Int64, widgetPtr: Int64): Unit

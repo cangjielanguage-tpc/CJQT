@@ -1,6 +1,6 @@
 package qt.code
 
-from std import ffi.c.CString
+// from std import ffi.c.CString
 
 foreign func nativeUrlCreate(url: CString, parsingMode: Int32): Int64
 foreign func nativeUrlToString(ptr: Int64): CString

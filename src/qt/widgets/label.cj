@@ -1,6 +1,6 @@
 package qt.widgets
 
-from std import ffi.c.CString
+// from std import ffi.c.CString
 
 foreign func nativeLabelCreate(parentPtr: Int64): Int64
 foreign func nativeLabelSetText(ptr: Int64, text:CString): Unit
