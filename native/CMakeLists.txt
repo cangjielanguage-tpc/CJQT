@@ -6,9 +6,9 @@ project(nativeQt LANGUAGES CXX)
 
 set(CMAKE_SYSTEM_PROCESSOR arm64)
 
-set(tools ~/ohos/prebuilts/gcc/linux-x86/aarch64/gcc-linaro-7.5.0-2019.12-x86_64_aarch64-linux-gnu)
-set(CMAKE_C_COMPILER aarch64-linux-gnu-g++)
-set(CMAKE_CXX_COMPILER aarch64-linux-gnu-g++)
+# set(tools ~/ohos/prebuilts/gcc/linux-x86/aarch64/gcc-linaro-7.5.0-2019.12-x86_64_aarch64-linux-gnu)
+# set(CMAKE_C_COMPILER aarch64-linux-gnu-g++)
+# set(CMAKE_CXX_COMPILER aarch64-linux-gnu-g++)
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
@@ -19,8 +19,8 @@ set(CMAKE_AUTORCC ON)
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-# set (CMAKE_PREFIX_PATH $ENV{QT_HOME})
-set (CMAKE_PREFIX_PATH ~/qtsource/qt-everywhere-src-5.14.2/out/aarch64-qt)
+set (CMAKE_PREFIX_PATH $ENV{QT_HOME})
+# set (CMAKE_PREFIX_PATH ~/qtsource/qt-everywhere-src-5.14.2/out/aarch64-qt)
 
 find_package(Qt5 COMPONENTS Core Widgets REQUIRED )
 
