@@ -24,6 +24,12 @@ set (CMAKE_PREFIX_PATH $ENV{QT_HOME})
 
 find_package(Qt5 COMPONENTS Core Widgets REQUIRED )
 
+include_directories(./includes 
+        ./includes/widgets
+        ./includes/code
+        ./includes/gui
+)
+
 add_library(nativeQt SHARED 
         ./src/widgets/application.cpp
         ./src/widgets/widget.cpp

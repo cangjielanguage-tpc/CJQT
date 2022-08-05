@@ -4,6 +4,10 @@
 
 ```shell
 ├── native
+│   ├── includes
+│   │   ├── code
+│   │   ├── gui
+│   │   └── widgets
 │   ├── src
 │   │   ├── code
 │   │   ├── gui
@@ -26,7 +30,7 @@
 
 #### label.h
 
-创建native/src/widgets/label.h头文件。
+创建native/includes/widgets/label.h头文件。
 
 所有widgets组件需要引用widget.h头文件，该头文件定义了一些虚函数实现的宏。
 
