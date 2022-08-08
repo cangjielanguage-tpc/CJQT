@@ -22,16 +22,13 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set (CMAKE_PREFIX_PATH $ENV{QT_HOME})
 # set (CMAKE_PREFIX_PATH ~/qtsource/qt-everywhere-src-5.14.2/out/aarch64-qt)
 
-find_package(Qt5 COMPONENTS Core Widgets REQUIRED )
-
-include_directories(./includes 
+set (INC_DIR ./includes 
         ./includes/widgets
         ./includes/code
         ./includes/gui
 )
 
-add_library(nativeQt SHARED 
-        ./src/widgets/application.cpp
+set (SRC_DIR ./src/widgets/application.cpp
         ./src/widgets/widget.cpp
         ./src/widgets/main_window.cpp
         ./src/widgets/label.cpp
@@ -68,5 +65,29 @@ add_library(nativeQt SHARED
         ./src/gui/font.cpp
         ./src/gui/icon.cpp
 )
+
+set (MOC_INC_DIR 
+        ./includes/widgets/dialog.h
+        ./includes/widgets/grid_layout.h
+        ./includes/widgets/dialog.h
+        ./includes/code/timer.h
+        ./includes/widgets/menu.h
+        ./includes/widgets/menu_bar.h
+        ./includes/widgets/main_window.h
+        ./includes/widgets/tool_bar.h
+        ./includes/widgets/push_button.h
+        ./includes/widgets/widget.h
+        ./includes/widgets/text_edit.h
+        ./includes/widgets/status_bar.h
+)
+
+find_package(Qt5 COMPONENTS Core Widgets REQUIRED )
+
+include_directories(${INC_DIR})
+link_directories(${INC_DIR})
+
+qt5_wrap_cpp(MOC_SRC  ${MOC_INC_DIR})
+
+add_library(nativeQt SHARED ${MOC_SRC} ${SRC_DIR})
 
 target_link_libraries(nativeQt PRIVATE Qt5::Core Qt5::Widgets)

@@ -1,6 +1,7 @@
 .git/
 .gitee/
 .vscode/
+.idea/
 
 build/
 bin/

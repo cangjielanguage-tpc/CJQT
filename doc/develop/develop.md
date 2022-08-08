@@ -121,7 +121,9 @@ extern "C"
 
 #### 编译
 
-将label.cpp源文件路径添加到CMakeLists.txt配置文件中，
+将label.cpp源文件路径添加到CMakeLists.txt配置文件的 `SRC_DIR` 中，
+
+如果继承类添加了 `Q_OBJECT` 宏定义，则需要将label.h头文件路径添加到CMakeLists.txt配置文件的 `MOC_INC_DIR` 中，
 
 运行编译命令，成功则生成libnativeQt.so到native/lib/x86_64路径下。
 

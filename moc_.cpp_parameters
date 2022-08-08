@@ -1,0 +1,9 @@
+-I/home/wathinst/cjProject/qt/native/./includes
+-I/home/wathinst/cjProject/qt/native/./includes/widgets
+-I/home/wathinst/cjProject/qt/native/./includes/code
+-I/home/wathinst/cjProject/qt/native/./includes/gui
+-I/home/wathinst/cjProject/qt/native
+-I/home/wathinst/cjProject/qt/build
+-o
+/home/wathinst/cjProject/qt/moc_.cpp
+/home/wathinst/cjProject/qt/native
