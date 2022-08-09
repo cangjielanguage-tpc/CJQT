@@ -108,7 +108,7 @@ public class QActionTriggeredSignal <: QSignalBool {
         super("triggered", ptr)
     }
 
-    override func nativeConnect(code: Int64, cb: CFunc<(Int64, Bool) -> Unit>) {
+    public override func nativeConnect(code: Int64, cb: CFunc<(Int64, Bool) -> Unit>) {
         unsafe {
             nativeActionConnectTriggered(ptr, code, cb)
         }

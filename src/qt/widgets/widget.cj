@@ -261,7 +261,7 @@ public open class QSignalUnit <: QSignal {
         nativeConnect(QMapKey(signalType, ptr).hashCode(), cb)
     }
 
-    open func nativeConnect(code: Int64, cb: CFunc<(Int64) -> Unit>) {}
+    public open func nativeConnect(code: Int64, cb: CFunc<(Int64) -> Unit>) {}
 }
 
 public open class QSignalInt64 <: QSignal {
@@ -286,7 +286,7 @@ public open class QSignalInt64 <: QSignal {
         nativeConnect(QMapKey(signalType, ptr).hashCode(), cb)
     }
 
-    open func nativeConnect(code: Int64, cb: CFunc<(Int64, Int32) -> Unit>) {}
+    public open func nativeConnect(code: Int64, cb: CFunc<(Int64, Int32) -> Unit>) {}
 }
 
 public open class QSignalBool <: QSignal {
@@ -311,5 +311,5 @@ public open class QSignalBool <: QSignal {
         nativeConnect(QMapKey(signalType, ptr).hashCode(), cb)
     }
 
-    open func nativeConnect(code: Int64, cb: CFunc<(Int64, Bool) -> Unit>) {}
+    public open func nativeConnect(code: Int64, cb: CFunc<(Int64, Bool) -> Unit>) {}
 }

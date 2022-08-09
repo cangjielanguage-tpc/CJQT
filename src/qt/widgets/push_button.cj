@@ -65,7 +65,7 @@ public class QPushButtonClickedSignal <: QSignalUnit {
         super("clicked", ptr)
     }
 
-    override func nativeConnect(code: Int64, cb: CFunc<(Int64) -> Unit>){
+    public override func nativeConnect(code: Int64, cb: CFunc<(Int64) -> Unit>){
         unsafe {
             nativePushButtonConnect(ptr, code, cb)
         }

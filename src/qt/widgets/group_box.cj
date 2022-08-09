@@ -107,7 +107,7 @@ public class QGroupBoxClickedSignal <: QSignalUnit {
         super("clicked", ptr)
     }
 
-    override func nativeConnect(code: Int64, cb: CFunc<(Int64) -> Unit>){
+    public override func nativeConnect(code: Int64, cb: CFunc<(Int64) -> Unit>){
         unsafe {
             nativeGroupBoxClickedConnect(ptr, code, cb)
         }
@@ -119,7 +119,7 @@ public class QGroupBoxToggledSignal <: QSignalUnit {
         super("toggled", ptr)
     }
 
-    override func nativeConnect(code: Int64, cb: CFunc<(Int64) -> Unit>){
+    public override func nativeConnect(code: Int64, cb: CFunc<(Int64) -> Unit>){
         unsafe {
             nativeGroupBoxToggledConnect(ptr, code, cb)
         }
