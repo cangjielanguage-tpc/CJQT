@@ -1,3 +1,11 @@
+/*
+ * Copyright (c) Cangjie Library Team 2022-2022. All rights resvered.
+ */
+
+/**
+ * @file
+ *
+ */
 package qt.widgets
 
 // from std import ffi.c.CString
@@ -16,13 +24,31 @@ foreign func nativeMessageBoxAbout(
     text: CString
 ): Unit
 
+/**
+ * The class is QMessageBox inherited from QWidget
+ * @author wathinst
+ */
 public class QMessageBox <: QWidget {
+    /**
+     * The Function is information
+     *
+     * @param parent of QWidget
+     * @param title of String
+     * @param text of String
+     */
     static public func information(parent: QWidget, title: String, text: String) {
         unsafe {
             nativeMessageBoxInformation(parent.ptr, CString(title), CString(text), 0, 0)
         }
     }
 
+    /**
+     * The Function is about
+     *
+     * @param parent of QWidget
+     * @param title of String
+     * @param text of String
+     */
     static public func about(parent: QWidget, title: String, text: String) {
         unsafe {
             nativeMessageBoxAbout(parent.ptr, CString(title), CString(text))

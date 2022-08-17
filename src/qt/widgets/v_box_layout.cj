@@ -1,9 +1,26 @@
+/*
+ * Copyright (c) Cangjie Library Team 2022-2022. All rights resvered.
+ */
+
+/**
+ * @file
+ *
+ */
 package qt.widgets
 
 foreign func nativeVBoxLayoutCreate(parentPtr: Int64): Int64
 foreign func nativeVBoxLayoutDelete(ptr: Int64): Unit
 
+/**
+ * The class is QVBoxLayout inherited from QBoxLayout
+ * @author wathinst
+ */
 public class QVBoxLayout <: QBoxLayout {
+    /**
+     * The Function is init constructor
+     *
+     * @param parent of QWidget, and the Default value is QWidget()
+     */
     public init(parent!: QWidget = QWidget()) {
         super(
             unsafe {
@@ -12,6 +29,10 @@ public class QVBoxLayout <: QBoxLayout {
         )
     }
 
+    /**
+     * The Function is delete
+     *
+     */
     public override func delete() {
         unsafe {
             nativeVBoxLayoutDelete(ptr)

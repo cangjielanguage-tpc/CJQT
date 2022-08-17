@@ -8,43 +8,14 @@
  */
 package qt.widgets
 
-/*
- * The Function is nativeLabelCreate
- *
- * @param parentPtr of Int64
- *
- * @return Type of Int64
- */
 foreign func nativeLabelCreate(parentPtr: Int64): Int64
-/*
- * The Function is nativeLabelSetText
- *
- * @param ptr of Int64
- * @param text of CString
- *
- * @return Type of Unit
- */
 foreign func nativeLabelSetText(ptr: Int64, text:CString): Unit
-/*
- * The Function is nativeLabelSetStyleSheet
- *
- * @param ptr of Int64
- * @param style of CString
- *
- * @return Type of Unit
- */
 foreign func nativeLabelSetStyleSheet(ptr: Int64, style:CString): Unit
-/*
- * The Function is nativeLabelDelete
- *
- * @param ptr of Int64
- *
- * @return Type of Unit
- */
 foreign func nativeLabelDelete(ptr: Int64): Unit
 
 /**
  * The class is QLabel inherited from QWidget
+ * @author wathinst
  */
 public class QLabel <: QWidget{
 

@@ -1,3 +1,11 @@
+/*
+ * Copyright (c) Cangjie Library Team 2022-2022. All rights resvered.
+ */
+
+/**
+ * @file
+ *
+ */
 package qt.widgets
 
 foreign func nativeCheckBoxCreate(parentPtr: Int64): Int64
@@ -7,7 +15,17 @@ foreign func nativeCheckBoxSetChecked(ptr: Int64, checked: Bool): Unit
 foreign func nativeCheckBoxIsChecked(ptr: Int64): Bool
 foreign func nativeCheckBoxDelete(ptr: Int64): Unit
 
+/**
+ * The class is QCheckBox inherited from QWidget
+ * @author wathinst
+ */
 public class QCheckBox <: QWidget {
+    /**
+     * The Function is init constructor
+     *
+     * @param text of String, and the Default value is ""
+     * @param parent of QWidget, and the Default value is QWidget(0)
+     */
     public init(text!: String = "", parent!: QWidget = QWidget(0)) {
         super(
             unsafe {
@@ -19,12 +37,22 @@ public class QCheckBox <: QWidget {
         }
     }
 
+    /**
+     * The Function is setText
+     *
+     * @param text of String
+     */
     public func setText(text: String) {
         unsafe {
             nativeCheckBoxSetText(ptr, CString(text))
         }
     }
 
+    /**
+     * The Function is text
+     *
+     * @return Type of String
+     */
     public func text(): String {
         let text = unsafe {
             nativeCheckBoxText(ptr)
@@ -32,12 +60,22 @@ public class QCheckBox <: QWidget {
         return text.toString()
     }
 
+    /**
+     * The Function is setChecked
+     *
+     * @param checked of Bool
+     */
     public func setChecked(checked: Bool) {
         unsafe {
             nativeCheckBoxSetChecked(ptr, checked)
         }
     }
 
+    /**
+     * The Function is isChecked
+     *
+     * @return Type of Bool
+     */
     public func isChecked(): Bool {
         let checked = unsafe {
             nativeCheckBoxIsChecked(ptr)
@@ -45,6 +83,10 @@ public class QCheckBox <: QWidget {
         return checked
     }
 
+    /**
+     * The Function is delete
+     *
+     */
     public override func delete() {
         unsafe {
             nativeCheckBoxDelete(ptr)

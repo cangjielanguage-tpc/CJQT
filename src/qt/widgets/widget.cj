@@ -1,3 +1,11 @@
+/*
+ * Copyright (c) Cangjie Library Team 2022-2022. All rights resvered.
+ */
+
+/**
+ * @file
+ *
+ */
 package qt.widgets
 
 // from std import ffi.c.CString
@@ -30,109 +38,196 @@ foreign func nativeWidgetSetMouseReleaseEvent(ptr: Int64, callback: CFunc<(Int64
 foreign func nativeWidgetSetMouseMoveEvent(ptr: Int64, callback: CFunc<(Int64, Int64) -> Unit>): Unit
 foreign func nativeWidgetSetKeyPressEvent(ptr: Int64, callback: CFunc<(Int64, Int64) -> Unit>): Unit
 
+/**
+ * The class is QWidget
+ * @author wathinst
+ */
 public open class QWidget {
+    /** let member ptr type is Int64 */
     public let ptr: Int64
 
     //public var keyEventCallback: (QKeyEvent) -> Unit = {event => }
+    /* let member keyEventCallback */
     static let keyEventCallback = HashMap<Int64, (QKeyEvent) -> Unit>()
 
     //static var paintersEventCallback: (QPaintersEvent) -> Unit = {event => }
+    /* var member paintersEventCallback */
     static var paintersEventCallback = HashMap<Int64, (QPaintersEvent) -> Unit>()
 
+    /**
+     * The Function is init constructor
+     *
+     */
     public init() {
         ptr = unsafe {
             nativeWidgetCreate(0)
         }
     }
 
+    /**
+     * The Function is init constructor
+     *
+     * @param parent of QWidget
+     */
     public init(parent: QWidget) {
         ptr = unsafe {
             nativeWidgetCreate(parent.ptr)
         }
     }
 
+    /**
+     * The Function is init constructor
+     *
+     * @param ptr of Int64
+     */
     public init(ptr: Int64) {
         this.ptr = ptr
     }
 
+    /**
+     * The Function is setFixedSize
+     *
+     * @param w of Int64
+     * @param h of Int64
+     */
     public func setFixedSize(w: Int64, h: Int64) {
         unsafe {
             nativeWidgetSetFixedSize(ptr, Int32(w), Int32(h))
         }
     }
 
+    /**
+     * The Function is resize
+     *
+     * @param w of Int64
+     * @param h of Int64
+     */
     public func resize(w: Int64, h: Int64) {
         unsafe {
             nativeWidgetResize(ptr, Int32(w), Int32(h))
         }
     }
 
+    /**
+     * The Function is show
+     *
+     */
     public func show() {
         unsafe {
             nativeWidgetShow(ptr)
         }
     }
 
+    /**
+     * The Function is hide
+     *
+     */
     public func hide() {
         unsafe {
             nativeWidgetHide(ptr)
         }
     }
 
+    /**
+     * The Function is showMinimized
+     *
+     */
     public func showMinimized() {
         unsafe {
             nativeWidgetShowMinimized(ptr)
         }
     }
 
+    /**
+     * The Function is showMaximized
+     *
+     */
     public func showMaximized() {
         unsafe {
             nativeWidgetShowMaximized(ptr)
         }
     }
 
+    /**
+     * The Function is showFullScreen
+     *
+     */
     public func showFullScreen() {
         unsafe {
             nativeWidgetShowFullScreen(ptr)
         }
     }
 
+    /**
+     * The Function is showNormal
+     *
+     */
     public func showNormal() {
         unsafe {
             nativeWidgetShowNormal(ptr)
         }
     }
 
+    /**
+     * The Function is close
+     *
+     */
     public func close() {
         unsafe {
             nativeWidgetClose(ptr)
         }
     }
 
+    /**
+     * The Function is move
+     *
+     * @param ax of Int32
+     * @param ay of Int32
+     */
     public func move(ax: Int32, ay: Int32) {
         unsafe {
             nativeWidgetMove(ptr, ax, ay)
         }
     }
 
+    /**
+     * The Function is setWindowTitle
+     *
+     * @param title of String
+     */
     public func setWindowTitle(title: String) {
         unsafe {
             nativeWidgetSetWindowTitle(ptr, CString(title))
         }
     }
 
+    /**
+     * The Function is setLayout
+     *
+     * @param layout of QLayout
+     */
     public open func setLayout(layout: QLayout) {
         unsafe {
             nativeWidgetSetLayout(ptr, layout.ptr)
         }
     }
 
+    /**
+     * The Function is setPalette
+     *
+     * @param palette of QPalette
+     */
     public func setPalette(palette: QPalette) {
         unsafe {
             nativeWidgetSetPalette(ptr, palette.ptr)
         }
     }
 
+    /**
+     * The Function is setAutoFillBackground
+     *
+     * @param enabled of Bool
+     */
     public func setAutoFillBackground(enabled: Bool) {
         unsafe {
             nativeWidgetSetAutoFillBackground(ptr, if (enabled) {
@@ -143,30 +238,56 @@ public open class QWidget {
         }
     }
 
+    /**
+     * The Function is setGeometry
+     *
+     * @param ax of Int32
+     * @param ay of Int32
+     * @param aw of Int32
+     * @param ah of Int32
+     */
     public func setGeometry(ax: Int32, ay: Int32, aw: Int32, ah: Int32) {
         unsafe {
             nativeWidgetSetGeometry(ptr, ax, ay, aw, ah)
         }
     }
 
+    /**
+     * The Function is setFont
+     *
+     * @param font of QFont
+     */
     public func setFont(font: QFont) {
         unsafe {
             nativeWidgetSetFont(ptr, font.ptr)
         }
     }
 
+    /**
+     * The Function is repaint
+     *
+     */
     public open func repaint() {
         unsafe {
             nativeWidgetRepaint(ptr)
         }
     }
 
+    /**
+     * The Function is delete
+     *
+     */
     public open func delete() {
         unsafe {
             nativeWidgetDelete(ptr)
         }
     }
 
+    /**
+     * The Function is setPaintEvent
+     *
+     * @param callback of (QPaintersEvent)->Unit
+     */
     public func setPaintEvent(callback: (QPaintersEvent) -> Unit) {
         QWidget.paintersEventCallback.put(ptr, callback)
         let cb: CFunc<(Int64, Int64) -> Unit> = {
@@ -183,6 +304,11 @@ public open class QWidget {
         }
     }
 
+    /**
+     * The Function is setMousePressEvent
+     *
+     * @param callback of (QMouseEvent)->Unit
+     */
     public func setMousePressEvent(callback: (QMouseEvent) -> Unit) {
         let cb: CFunc<(Int64, Int64) -> Unit> = {
             ptr, eventPtr => let event = QPaintersEvent(eventPtr)
@@ -192,6 +318,11 @@ public open class QWidget {
         }
     }
 
+    /**
+     * The Function is setMouseReleaseEvent
+     *
+     * @param callback of (QMouseEvent)->Unit
+     */
     public func setMouseReleaseEvent(callback: (QMouseEvent) -> Unit) {
         let cb: CFunc<(Int64, Int64) -> Unit> = {
             ptr, eventPtr => let event = QPaintersEvent(eventPtr)
@@ -201,6 +332,11 @@ public open class QWidget {
         }
     }
 
+    /**
+     * The Function is setMouseMoveEvent
+     *
+     * @param callback of (QMouseEvent)->Unit
+     */
     public func setMouseMoveEvent(callback: (QMouseEvent) -> Unit) {
         let cb: CFunc<(Int64, Int64) -> Unit> = {
             ptr, eventPtr => let event = QPaintersEvent(eventPtr)
@@ -210,6 +346,11 @@ public open class QWidget {
         }
     }
 
+    /**
+     * The Function is setKeyPressEvent
+     *
+     * @param callback of (QKeyEvent)->Unit
+     */
     public func setKeyPressEvent(callback: (QKeyEvent) -> Unit) {
         QWidget.keyEventCallback.put(ptr, callback)
         let cb: CFunc<(Int64, Int64) -> Unit> = {
@@ -227,28 +368,63 @@ public open class QWidget {
     }
 }
 
+/**
+ * The class is QSignal
+ * @author wathinst
+ */
 public open class QSignal {
+    /* let member ptr type is Int64 */
     protected let ptr: Int64
+    /* let member signalType type is String */
     protected let signalType: String
 
+    /**
+     * The Function is init constructor
+     *
+     * @param signalType of String
+     * @param ptr of Int64
+     */
     public init(signalType: String, ptr: Int64) {
         this.ptr = ptr
         this.signalType = signalType
     }
 
+    /**
+     * The Function is remove
+     *
+     */
     public open func remove() {}
 }
 
+/**
+ * The class is QSignalUnit inherited from QSignal
+ * @author wathinst
+ */
 public open class QSignalUnit <: QSignal {
+    /**
+     * The Function is init constructor
+     *
+     * @param signalType of String
+     * @param ptr of Int64
+     */
     public init(signalType: String, ptr: Int64) {
         super(signalType, ptr)
     }
 
+    /**
+     * The Function is remove
+     *
+     */
     public override open func remove() {
         QCallbackMap.connect.remove(QMapKey(signalType, ptr).hashCode())
         return
     }
 
+    /**
+     * The Function is connect
+     *
+     * @param callback of ()->Unit
+     */
     public func connect(callback: () -> Unit) {
         QCallbackMap.connect.put(QMapKey(signalType, ptr).hashCode(), callback)
         let cb: CFunc<(Int64) -> Unit> = {
@@ -261,19 +437,44 @@ public open class QSignalUnit <: QSignal {
         nativeConnect(QMapKey(signalType, ptr).hashCode(), cb)
     }
 
+    /**
+     * The Function is nativeConnect
+     *
+     * @param code of Int64
+     * @param cb of CFunc<(Int64)->Unit>
+     */
     public open func nativeConnect(code: Int64, cb: CFunc<(Int64) -> Unit>) {}
 }
 
+/**
+ * The class is QSignalInt64 inherited from QSignal
+ * @author wathinst
+ */
 public open class QSignalInt64 <: QSignal {
+    /**
+     * The Function is init constructor
+     *
+     * @param signalType of String
+     * @param ptr of Int64
+     */
     public init(signalType: String, ptr: Int64) {
         super(signalType, ptr)
     }
 
+    /**
+     * The Function is remove
+     *
+     */
     public override open func remove() {
         QCallbackMap.connect.remove(QMapKey(signalType, ptr).hashCode())
         return
     }
 
+    /**
+     * The Function is connect
+     *
+     * @param callback of (Int64)->Unit
+     */
     public func connect(callback: (Int64) -> Unit) {
         QCallbackMap.connectInt64.put(QMapKey(signalType, ptr).hashCode(), callback)
         let cb: CFunc<(Int64, Int32) -> Unit> = {
@@ -286,19 +487,44 @@ public open class QSignalInt64 <: QSignal {
         nativeConnect(QMapKey(signalType, ptr).hashCode(), cb)
     }
 
+    /**
+     * The Function is nativeConnect
+     *
+     * @param code of Int64
+     * @param cb of CFunc<(Int64,Int32)->Unit>
+     */
     public open func nativeConnect(code: Int64, cb: CFunc<(Int64, Int32) -> Unit>) {}
 }
 
+/**
+ * The class is QSignalBool inherited from QSignal
+ * @author wathinst
+ */
 public open class QSignalBool <: QSignal {
+    /**
+     * The Function is init constructor
+     *
+     * @param signalType of String
+     * @param ptr of Int64
+     */
     public init(signalType: String, ptr: Int64) {
         super(signalType, ptr)
     }
 
+    /**
+     * The Function is remove
+     *
+     */
     public override open func remove() {
         QCallbackMap.connect.remove(QMapKey(signalType, ptr).hashCode())
         return
     }
 
+    /**
+     * The Function is connect
+     *
+     * @param callback of (Bool)->Unit
+     */
     public func connect(callback: (Bool) -> Unit) {
         QCallbackMap.connectBool.put(QMapKey(signalType, ptr).hashCode(), callback)
         let cb: CFunc<(Int64, Bool) -> Unit> = {
@@ -311,5 +537,11 @@ public open class QSignalBool <: QSignal {
         nativeConnect(QMapKey(signalType, ptr).hashCode(), cb)
     }
 
+    /**
+     * The Function is nativeConnect
+     *
+     * @param code of Int64
+     * @param cb of CFunc<(Int64,Bool)->Unit>
+     */
     public open func nativeConnect(code: Int64, cb: CFunc<(Int64, Bool) -> Unit>) {}
 }

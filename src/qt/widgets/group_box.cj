@@ -1,3 +1,11 @@
+/*
+ * Copyright (c) Cangjie Library Team 2022-2022. All rights resvered.
+ */
+
+/**
+ * @file
+ *
+ */
 package qt.widgets
 
 foreign func nativeGroupBoxCreate(parentPtr: Int64): Int64
@@ -15,10 +23,21 @@ foreign func nativeGroupBoxClickedConnect(ptr: Int64, code: Int64, callback: CFu
 foreign func nativeGroupBoxToggledConnect(ptr: Int64, code: Int64, callback: CFunc<(Int64) -> Unit>): Unit
 foreign func nativeGroupBoxDelete(ptr: Int64): Unit
 
+/**
+ * The class is QGroupBox inherited from QWidget
+ * @author wathinst
+ */
 public class QGroupBox <: QWidget {
-    public let clicked: QGroupBoxClickedSignal 
+    /** let member clicked type is QGroupBoxClickedSignal */
+    public let clicked: QGroupBoxClickedSignal
+    /** let member toggled type is QGroupBoxToggledSignal */
     public let toggled: QGroupBoxToggledSignal 
 
+    /**
+     * The Function is init constructor
+     *
+     * @param parent of QWidget, and the Default value is QWidget(0)
+     */
     public init(parent!: QWidget = QWidget(0)) {
         super(
             unsafe {
@@ -29,12 +48,22 @@ public class QGroupBox <: QWidget {
         toggled = QGroupBoxToggledSignal(ptr)
     }
 
+    /**
+     * The Function is setTitle
+     *
+     * @param title of String
+     */
     public func setTitle(title: String) {
         unsafe {
             nativeGroupBoxSetTitle(ptr, CString(title))
         }
     }
 
+    /**
+     * The Function is title
+     *
+     * @return Type of String
+     */
     public func title(): String {
         let title = unsafe {
             nativeGroupBoxTitle(ptr)
@@ -42,12 +71,22 @@ public class QGroupBox <: QWidget {
         return title.toString()
     }
 
+    /**
+     * The Function is setAlignment
+     *
+     * @param alignment of Int64
+     */
     public func setAlignment(alignment: Int64) {
         unsafe {
             nativeGroupBoxSetAlignment(ptr, Int32(alignment))
         }
     }
 
+    /**
+     * The Function is alignment
+     *
+     * @return Type of Int64
+     */
     public func alignment(): Int64 {
         let alignment = unsafe {
             nativeGroupBoxAlignment(ptr)
@@ -55,12 +94,22 @@ public class QGroupBox <: QWidget {
         return Int64(alignment)
     }
 
+    /**
+     * The Function is setFlat
+     *
+     * @param flat of Bool
+     */
     public func setFlat(flat: Bool) {
         unsafe {
             nativeGroupBoxSetFlat(ptr, flat)
         }
     }
 
+    /**
+     * The Function is isFlat
+     *
+     * @return Type of Bool
+     */
     public func isFlat(): Bool {
         let flat = unsafe {
             nativeGroupBoxIsFlat(ptr)
@@ -68,12 +117,22 @@ public class QGroupBox <: QWidget {
         return flat
     }
 
+    /**
+     * The Function is setCheckable
+     *
+     * @param checkable of Bool
+     */
     public func setCheckable(checkable: Bool) {
         unsafe {
             nativeGroupBoxSetCheckable(ptr, checkable)
         }
     }
 
+    /**
+     * The Function is isCheckable
+     *
+     * @return Type of Bool
+     */
     public func isCheckable(): Bool {
         let checkable = unsafe {
             nativeGroupBoxIsCheckable(ptr)
@@ -81,12 +140,22 @@ public class QGroupBox <: QWidget {
         return checkable
     }
 
+    /**
+     * The Function is setChecked
+     *
+     * @param checked of Bool
+     */
     public func setChecked(checked: Bool) {
         unsafe {
             nativeGroupBoxSetChecked(ptr, checked)
         }
     }
 
+    /**
+     * The Function is isChecked
+     *
+     * @return Type of Bool
+     */
     public func isChecked(): Bool {
         let checked = unsafe {
             nativeGroupBoxIsChecked(ptr)
@@ -94,6 +163,10 @@ public class QGroupBox <: QWidget {
         return checked
     }
 
+    /**
+     * The Function is delete
+     *
+     */
     public override func delete() {
         unsafe {
             nativeGroupBoxDelete(ptr)
@@ -102,11 +175,26 @@ public class QGroupBox <: QWidget {
 
 }
 
+/**
+ * The class is QGroupBoxClickedSignal inherited from QSignalUnit
+ * @author wathinst
+ */
 public class QGroupBoxClickedSignal <: QSignalUnit {
+    /*
+     * The Function is init constructor
+     *
+     * @param ptr of Int64
+     */
     init(ptr: Int64){
         super("clicked", ptr)
     }
 
+    /**
+     * The Function is nativeConnect
+     *
+     * @param code of Int64
+     * @param cb of CFunc<(Int64)->Unit>
+     */
     public override func nativeConnect(code: Int64, cb: CFunc<(Int64) -> Unit>){
         unsafe {
             nativeGroupBoxClickedConnect(ptr, code, cb)
@@ -114,11 +202,26 @@ public class QGroupBoxClickedSignal <: QSignalUnit {
     }
 }
 
+/**
+ * The class is QGroupBoxToggledSignal inherited from QSignalUnit
+ * @author wathinst
+ */
 public class QGroupBoxToggledSignal <: QSignalUnit {
+    /*
+     * The Function is init constructor
+     *
+     * @param ptr of Int64
+     */
     init(ptr: Int64){
         super("toggled", ptr)
     }
 
+    /**
+     * The Function is nativeConnect
+     *
+     * @param code of Int64
+     * @param cb of CFunc<(Int64)->Unit>
+     */
     public override func nativeConnect(code: Int64, cb: CFunc<(Int64) -> Unit>){
         unsafe {
             nativeGroupBoxToggledConnect(ptr, code, cb)

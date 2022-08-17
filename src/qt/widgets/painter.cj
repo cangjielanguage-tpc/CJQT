@@ -1,3 +1,11 @@
+/*
+ * Copyright (c) Cangjie Library Team 2022-2022. All rights resvered.
+ */
+
+/**
+ * @file
+ *
+ */
 package qt.widgets
 
 import qt.gui.*
@@ -12,45 +20,89 @@ foreign func nativePainterDrawLine(ptr: Int64, x: Int32, y: Int32, x1: Int32, y1
 foreign func nativePainterDrawRect(ptr: Int64, x: Int32, y: Int32, width: Int32, height: Int32): Unit
 foreign func nativePainterDrawPixmap(ptr: Int64, x: Int32, y: Int32, width: Int32, height: Int32, pixmapPtr: Int64): Unit
 
+/**
+ * The class is QPainter
+ * @author wathinst
+ */
 public class QPainter {
+    /** let member ptr type is Int64 */
     public let ptr: Int64
 
+    /**
+     * The Function is init constructor
+     *
+     */
     public init() {
         ptr = unsafe {
             nativePainterCreate(0)
         }
     }
 
+    /**
+     * The Function is init constructor
+     *
+     * @param widget of QWidget
+     */
     public init(widget: QWidget) {
         ptr = unsafe {
             nativePainterCreate(widget.ptr)
         }
     }
 
+    /**
+     * The Function is setPen
+     *
+     * @param pen of QPen
+     */
     public func setPen(pen: QPen) {
         unsafe {
             nativePainterSetPen(ptr, pen.ptr)
         }
     }
 
+    /**
+     * The Function is setBrush
+     *
+     * @param brush of QBrush
+     */
     public func setBrush(brush: QBrush) {
         unsafe {
             nativePainterSetBrush(ptr, brush.ptr)
         }
     }
 
+    /**
+     * The Function is drawLine
+     *
+     * @param x of Int64
+     * @param y of Int64
+     * @param x1 of Int64
+     * @param y1 of Int64
+     */
     public func drawLine(x: Int64, y: Int64, x1: Int64, y1: Int64) {
         unsafe {
             nativePainterDrawLine(ptr, Int32(x), Int32(y), Int32(x1), Int32(y1))
         }
     }
 
+    /**
+     * The Function is drawRect
+     *
+     * @param x of Int64
+     * @param y of Int64
+     * @param width of Int64
+     * @param height of Int64
+     */
     public func drawRect(x: Int64, y: Int64, width: Int64, height: Int64) {
         unsafe {
             nativePainterDrawRect(ptr, Int32(x), Int32(y), Int32(width), Int32(height))
         }
     }
 
+    /**
+     * The Function is delete
+     *
+     */
     public func delete() {
         unsafe {
             nativePainterDelete(ptr)
