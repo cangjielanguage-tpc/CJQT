@@ -6,6 +6,8 @@ from cjqt import qt.widgets.*
 
 main() {
     QApplication.create()
+    newWidgetWithParentTest()
+    newWidgetByPtrTest()
     setFixedSizeTest()
     resizeTest()
     showTest()
@@ -23,8 +25,26 @@ main() {
     setGeometryTest()
     setFontTest()
     repaintTest()
+    setPaintEventTest()
+    setMousePressEventTest()
+    setMouseReleaseEventTest()
+    setMouseMoveEventTest()
+    setKeyPressEventTest()
     QApplication.delete()
     return 0
+}
+
+func newWidgetWithParentTest() {
+    let widget = QWidget()
+    let widget1 = QWidget(widget)
+    widget1.delete()
+    widget.delete()
+}
+
+func newWidgetByPtrTest() {
+    let widget = QWidget()
+    let widget1 = QWidget(widget.ptr)
+    widget.delete()
 }
 
 // 设置固定大小
@@ -41,43 +61,43 @@ func resizeTest() {
     widget.delete()
 }
 
-func showTest(){
+func showTest() {
     let widget = QWidget()
     widget.show()
     widget.delete()
 }
 
-func hideTest(){
+func hideTest() {
     let widget = QWidget()
     widget.hide()
     widget.delete()
 }
 
-func showMinimizedTest(){
+func showMinimizedTest() {
     let widget = QWidget()
     widget.showMinimized()
     widget.delete()
 }
 
-func showMaximizedTest(){
+func showMaximizedTest() {
     let widget = QWidget()
     widget.showMaximized()
     widget.delete()
 }
 
-func showFullScreenTest(){
+func showFullScreenTest() {
     let widget = QWidget()
     widget.showFullScreen()
     widget.delete()
 }
 
-func showNormalTest(){
+func showNormalTest() {
     let widget = QWidget()
     widget.showNormal()
     widget.delete()
 }
 
-func closeTest(){
+func closeTest() {
     let widget = QWidget()
     widget.close()
     widget.delete()
@@ -90,7 +110,7 @@ func moveTest() {
 }
 
 // 设置窗口标题
-func setWindowTitleTest(){
+func setWindowTitleTest() {
     let widget = QWidget()
     widget.setWindowTitle("test")
     widget.delete()
@@ -106,7 +126,7 @@ func setLayoutTest() {
 
 func setPaletteTest() {
     let widget = QWidget()
-    let color = QColor(128,128,128,128)
+    let color = QColor(128, 128, 128, 128)
     let palette = QPalette(color)
     widget.setPalette(palette)
     color.delete()
@@ -137,5 +157,46 @@ func setFontTest() {
 func repaintTest() {
     let widget = QWidget()
     widget.repaint()
+    widget.delete()
+}
+
+func setPaintEventTest() {
+    let widget = QWidget()
+    widget.setPaintEvent() {
+        event => 
+    }
+    widget.repaint()
+    widget.delete()
+}
+
+func setMousePressEventTest() {
+    let widget = QWidget()
+    widget.setMousePressEvent() {
+        event => 
+    }
+    widget.delete()
+}
+
+func setMouseReleaseEventTest() {
+    let widget = QWidget()
+    widget.setMouseReleaseEvent() {
+        event => 
+    }
+    widget.delete()
+}
+
+func setMouseMoveEventTest() {
+    let widget = QWidget()
+    widget.setMouseMoveEvent() {
+        event => 
+    }
+    widget.delete()
+}
+
+func setKeyPressEventTest() {
+    let widget = QWidget()
+    widget.setKeyPressEvent() {
+        event => 
+    }
     widget.delete()
 }
