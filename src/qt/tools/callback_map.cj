@@ -6,7 +6,7 @@
  * @file
  *
  */
-package qt.widgets
+package qt.tools
 
 from std import collection.*
 
@@ -14,15 +14,16 @@ from std import collection.*
  * The class is QCallbackMap
  * @author wathinst
  */
-public class QCallbackMap {
+public open class QCallbackMap {
     /* let member connect */
-    static let connect = HashMap<Int64, () -> Unit>()
+    public static let connect = HashMap<Int64, () -> Unit>()
     /* let member connectInt64 */
-    static let connectInt64 = HashMap<Int64, (Int64) -> Unit>()
+    public static let connectInt64 = HashMap<Int64, (Int64) -> Unit>()
     /* let member connectBool */
-    static let connectBool = HashMap<Int64, (Bool) -> Unit>()
+    public static let connectBool = HashMap<Int64, (Bool) -> Unit>()
+    /* let member timer */
+    public static let timer = HashMap<Int64, () -> Unit>()
 }
-
 /**
  * The class is QMapKey
  * @author wathinst

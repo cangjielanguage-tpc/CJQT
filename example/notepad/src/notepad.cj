@@ -196,11 +196,12 @@ public class NotepadWindow <: QMainWindow {
         }
         currentFile = fileName
         setWindowTitle(fileName)
-        var fs: FileStream = FileStream(fileName)
-        if (fs.openFile()) {
-            let data = fs.readAllText()
+
+        var file = File(fileName, AccessMode.Read, OpenMode.Open)
+        if(file.canRead()){
+            let data = String.fromUtf8(file.readToEnd())
             textEdit.setText(data)
-            fs.close()
+            file.close()
         }
     }
 
@@ -218,11 +219,12 @@ public class NotepadWindow <: QMainWindow {
             currentFile = fileName
             setWindowTitle(fileName)
         }
-        var fs: FileStream = FileStream(currentFile)
-        if (fs.openFile()) {
-            fs.write(textEdit.toPlainText())
-            fs.flush()
-            fs.close()
+
+        var file = File(currentFile, AccessMode.Write, OpenMode.OpenOrCreate)
+        if(file.canWrite()){
+            file.write(textEdit.toPlainText().toUtf8Array())
+            file.flush()
+            file.close()
         }
     }
 
@@ -238,11 +240,12 @@ public class NotepadWindow <: QMainWindow {
         }
         currentFile = fileName
         setWindowTitle(fileName)
-        var fs: FileStream = FileStream(currentFile)
-        if (fs.openFile()) {
-            fs.write(textEdit.toPlainText())
-            fs.flush()
-            fs.close()
+        
+        var file = File(currentFile, AccessMode.Write, OpenMode.OpenOrCreate)
+        if(file.canWrite()){
+            file.write(textEdit.toPlainText().toUtf8Array())
+            file.flush()
+            file.close()
         }
     }
 

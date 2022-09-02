@@ -11,6 +11,8 @@
       "isMacroPackage": false,
       "output_type": "dynamic",
       "command_option": "",
+      "condition_option": {},
+      "link_option": "",
       "requires": [],
       "package_requires": {},
       "foreign_requires": {
@@ -29,6 +31,28 @@
       "isMacroPackage": false,
       "output_type": "dynamic",
       "command_option": "",
+      "condition_option": {},
+      "link_option": "",
+      "requires": [],
+      "package_requires": {},
+      "foreign_requires": {
+        "nativeQt": "/home/wathinst/cjProject/qt/native/lib/x86_64"
+      },
+      "cross_compile_configuration": {}
+    },
+    {
+      "organization": "cangjie",
+      "name": "cjqt",
+      "path": "/home/wathinst/cjProject/qt",
+      "packagePath": "/home/wathinst/cjProject/qt/src/qt/tools",
+      "packageName": "cjqt/qt.tools",
+      "version": "0.0.1",
+      "hash": "-2010748521373594389",
+      "isMacroPackage": false,
+      "output_type": "dynamic",
+      "command_option": "",
+      "condition_option": {},
+      "link_option": "",
       "requires": [],
       "package_requires": {},
       "foreign_requires": {
@@ -47,7 +71,11 @@
       "isMacroPackage": false,
       "output_type": "dynamic",
       "command_option": "",
-      "requires": [],
+      "condition_option": {},
+      "link_option": "",
+      "requires": [
+        "cjqt/qt.tools"
+      ],
       "package_requires": {},
       "foreign_requires": {
         "nativeQt": "/home/wathinst/cjProject/qt/native/lib/x86_64"
@@ -65,9 +93,12 @@
       "isMacroPackage": false,
       "output_type": "dynamic",
       "command_option": "",
+      "condition_option": {},
+      "link_option": "",
       "requires": [
         "cjqt/qt.code",
-        "cjqt/qt.gui"
+        "cjqt/qt.gui",
+        "cjqt/qt.tools"
       ],
       "package_requires": {},
       "foreign_requires": {
@@ -78,7 +109,7 @@
     {
       "organization": "cjqt",
       "name": "notepad",
-      "path": "./",
+      "path": ".",
       "packagePath": "/home/wathinst/cjProject/qt/example/notepad/src",
       "packageName": "notepad/default",
       "version": "1.0.0",
@@ -86,6 +117,8 @@
       "isMacroPackage": false,
       "output_type": "executable",
       "command_option": "",
+      "condition_option": {},
+      "link_option": "",
       "requires": [
         "cjqt/qt.code",
         "cjqt/qt.gui",

@@ -38,6 +38,83 @@ foreign func nativeWidgetSetMouseReleaseEvent(ptr: Int64, callback: CFunc<(Int64
 foreign func nativeWidgetSetMouseMoveEvent(ptr: Int64, callback: CFunc<(Int64, Int64) -> Unit>): Unit
 foreign func nativeWidgetSetKeyPressEvent(ptr: Int64, callback: CFunc<(Int64, Int64) -> Unit>): Unit
 
+@c
+func paintersEventCallback(ptr: Int64, eventPtr: Int64): Unit {
+    let event = QPaintersEvent(eventPtr)
+    try {
+        QWidgetCallbackMap.paintersEvent[ptr](event)
+    } catch (e: Exception) {
+        println(e)
+    }
+}
+
+@c
+func mousePressEventCallback(ptr: Int64, eventPtr: Int64): Unit {
+    let event = QMouseEvent(eventPtr)
+    try {
+        QWidgetCallbackMap.mousePressEvent[ptr](event)
+    } catch (e: Exception) {
+        println(e)
+    }
+}
+
+@c
+func mouseReleaseEventCallback(ptr: Int64, eventPtr: Int64): Unit {
+    let event = QMouseEvent(eventPtr)
+    try {
+        QWidgetCallbackMap.mouseReleaseEvent[ptr](event)
+    } catch (e: Exception) {
+        println(e)
+    }
+}
+
+@c
+func mouseMoveEventCallback(ptr: Int64, eventPtr: Int64): Unit {
+    let event = QMouseEvent(eventPtr)
+    try {
+        QWidgetCallbackMap.mouseMoveEvent[ptr](event)
+    } catch (e: Exception) {
+        println(e)
+    }
+}
+
+@c
+func keyPressEventCallback(ptr: Int64, eventPtr: Int64): Unit {
+    let event = QKeyEvent(eventPtr)
+    try {
+        QWidgetCallbackMap.keyPressEvent[ptr](event)
+    } catch (e: Exception) {
+        println(e)
+    }
+}
+
+@c
+func connectUnitCallback(code: Int64): Unit {
+    try {
+        QCallbackMap.connect[code]()
+    } catch (e: Exception) {
+        println(e)
+    }
+}
+
+@c
+func connectInt64Callback(code: Int64, data: Int32): Unit {
+    try {
+        QCallbackMap.connectInt64[code](Int64(data))
+    } catch (e: Exception) {
+        println(e)
+    }
+}
+
+@c
+func connectBoolCallback(code: Int64, data: Bool): Unit {
+    try {
+        QCallbackMap.connectBool[code](data)
+    } catch (e: Exception) {
+        println(e)
+    }
+}
+
 /**
  * The class is QWidget
  * @author wathinst
@@ -45,14 +122,6 @@ foreign func nativeWidgetSetKeyPressEvent(ptr: Int64, callback: CFunc<(Int64, In
 public open class QWidget {
     /** let member ptr type is Int64 */
     public let ptr: Int64
-
-    //public var keyEventCallback: (QKeyEvent) -> Unit = {event => }
-    /* let member keyEventCallback */
-    static let keyEventCallback = HashMap<Int64, (QKeyEvent) -> Unit>()
-
-    //static var paintersEventCallback: (QPaintersEvent) -> Unit = {event => }
-    /* var member paintersEventCallback */
-    static var paintersEventCallback = HashMap<Int64, (QPaintersEvent) -> Unit>()
 
     /**
      * The Function is init constructor
@@ -278,6 +347,11 @@ public open class QWidget {
      *
      */
     public open func delete() {
+        QWidgetCallbackMap.paintersEvent.remove(ptr)
+        QWidgetCallbackMap.mousePressEvent.remove(ptr)
+        QWidgetCallbackMap.mouseReleaseEvent.remove(ptr)
+        QWidgetCallbackMap.mouseMoveEvent.remove(ptr)
+        QWidgetCallbackMap.keyPressEvent.remove(ptr)
         unsafe {
             nativeWidgetDelete(ptr)
         }
@@ -289,18 +363,9 @@ public open class QWidget {
      * @param callback of (QPaintersEvent)->Unit
      */
     public func setPaintEvent(callback: (QPaintersEvent) -> Unit) {
-        QWidget.paintersEventCallback.put(ptr, callback)
-        let cb: CFunc<(Int64, Int64) -> Unit> = {
-            ptr, eventPtr =>
-            let event = QPaintersEvent(eventPtr)
-            try {
-                QWidget.paintersEventCallback[ptr](event)
-            } catch (e: Exception) {
-                println(e)
-            }
-        }
+        QWidgetCallbackMap.paintersEvent.put(ptr, callback)
         unsafe {
-            nativeWidgetSetPaintEvent(ptr, cb)
+            nativeWidgetSetPaintEvent(ptr, paintersEventCallback)
         }
     }
 
@@ -310,11 +375,9 @@ public open class QWidget {
      * @param callback of (QMouseEvent)->Unit
      */
     public func setMousePressEvent(callback: (QMouseEvent) -> Unit) {
-        let cb: CFunc<(Int64, Int64) -> Unit> = {
-            ptr, eventPtr => let event = QPaintersEvent(eventPtr)
-        }
+        QWidgetCallbackMap.mousePressEvent.put(ptr, callback)
         unsafe {
-            nativeWidgetSetMousePressEvent(ptr, cb)
+            nativeWidgetSetMousePressEvent(ptr, mousePressEventCallback)
         }
     }
 
@@ -324,11 +387,9 @@ public open class QWidget {
      * @param callback of (QMouseEvent)->Unit
      */
     public func setMouseReleaseEvent(callback: (QMouseEvent) -> Unit) {
-        let cb: CFunc<(Int64, Int64) -> Unit> = {
-            ptr, eventPtr => let event = QPaintersEvent(eventPtr)
-        }
+        QWidgetCallbackMap.mouseReleaseEvent.put(ptr, callback)
         unsafe {
-            nativeWidgetSetMouseReleaseEvent(ptr, cb)
+            nativeWidgetSetMouseReleaseEvent(ptr, mouseReleaseEventCallback)
         }
     }
 
@@ -338,11 +399,9 @@ public open class QWidget {
      * @param callback of (QMouseEvent)->Unit
      */
     public func setMouseMoveEvent(callback: (QMouseEvent) -> Unit) {
-        let cb: CFunc<(Int64, Int64) -> Unit> = {
-            ptr, eventPtr => let event = QPaintersEvent(eventPtr)
-        }
+        QWidgetCallbackMap.mouseMoveEvent.put(ptr, callback)
         unsafe {
-            nativeWidgetSetMouseMoveEvent(ptr, cb)
+            nativeWidgetSetMouseMoveEvent(ptr, mouseMoveEventCallback)
         }
     }
 
@@ -352,18 +411,9 @@ public open class QWidget {
      * @param callback of (QKeyEvent)->Unit
      */
     public func setKeyPressEvent(callback: (QKeyEvent) -> Unit) {
-        QWidget.keyEventCallback.put(ptr, callback)
-        let cb: CFunc<(Int64, Int64) -> Unit> = {
-            ptr, eventPtr =>
-            let event = QKeyEvent(eventPtr)
-            try {
-                QWidget.keyEventCallback[ptr](event)
-            } catch (e: Exception) {
-                println(e)
-            }
-        }
+        QWidgetCallbackMap.keyPressEvent.put(ptr, callback)
         unsafe {
-            nativeWidgetSetKeyPressEvent(ptr, cb)
+            nativeWidgetSetKeyPressEvent(ptr, keyPressEventCallback)
         }
     }
 }
@@ -375,6 +425,7 @@ public open class QWidget {
 public open class QSignal {
     /* let member ptr type is Int64 */
     protected let ptr: Int64
+
     /* let member signalType type is String */
     protected let signalType: String
 
@@ -415,7 +466,7 @@ public open class QSignalUnit <: QSignal {
      * The Function is remove
      *
      */
-    public override open func remove() {
+    public open override func remove() {
         QCallbackMap.connect.remove(QMapKey(signalType, ptr).hashCode())
         return
     }
@@ -427,14 +478,7 @@ public open class QSignalUnit <: QSignal {
      */
     public func connect(callback: () -> Unit) {
         QCallbackMap.connect.put(QMapKey(signalType, ptr).hashCode(), callback)
-        let cb: CFunc<(Int64) -> Unit> = {
-            code => try {
-                QCallbackMap.connect[code]()
-            } catch (e: Exception) {
-                println(e)
-            }
-        }
-        nativeConnect(QMapKey(signalType, ptr).hashCode(), cb)
+        nativeConnect(QMapKey(signalType, ptr).hashCode(), connectUnitCallback)
     }
 
     /**
@@ -465,7 +509,7 @@ public open class QSignalInt64 <: QSignal {
      * The Function is remove
      *
      */
-    public override open func remove() {
+    public open override func remove() {
         QCallbackMap.connect.remove(QMapKey(signalType, ptr).hashCode())
         return
     }
@@ -477,14 +521,7 @@ public open class QSignalInt64 <: QSignal {
      */
     public func connect(callback: (Int64) -> Unit) {
         QCallbackMap.connectInt64.put(QMapKey(signalType, ptr).hashCode(), callback)
-        let cb: CFunc<(Int64, Int32) -> Unit> = {
-            code, data => try {
-                QCallbackMap.connectInt64[code](Int64(data))
-            } catch (e: Exception) {
-                println(e)
-            }
-        }
-        nativeConnect(QMapKey(signalType, ptr).hashCode(), cb)
+        nativeConnect(QMapKey(signalType, ptr).hashCode(), connectInt64Callback)
     }
 
     /**
@@ -515,7 +552,7 @@ public open class QSignalBool <: QSignal {
      * The Function is remove
      *
      */
-    public override open func remove() {
+    public open override func remove() {
         QCallbackMap.connect.remove(QMapKey(signalType, ptr).hashCode())
         return
     }
@@ -527,14 +564,7 @@ public open class QSignalBool <: QSignal {
      */
     public func connect(callback: (Bool) -> Unit) {
         QCallbackMap.connectBool.put(QMapKey(signalType, ptr).hashCode(), callback)
-        let cb: CFunc<(Int64, Bool) -> Unit> = {
-            code, data => try {
-                QCallbackMap.connectBool[code](data)
-            } catch (e: Exception) {
-                println(e)
-            }
-        }
-        nativeConnect(QMapKey(signalType, ptr).hashCode(), cb)
+        nativeConnect(QMapKey(signalType, ptr).hashCode(), connectBoolCallback)
     }
 
     /**

@@ -12,7 +12,7 @@ public class TetrisWindow <: QMainWindow {
     var status = 0 //游戏状态
     var tetris = Tetris() //俄罗斯方块类对象
 
-    var timer: QTimer //计时器
+    var timer: QTimer = QTimer() //计时器
     var tetrisBox: TetrisBox //游戏窗口
 
     var nextTetrisBox: NextTetrisBox //“下一个”窗口
