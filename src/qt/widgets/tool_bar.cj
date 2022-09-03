@@ -113,13 +113,13 @@ public class QToolBar <: QWidget {
     }
 
     /**
-     * The Function is addSeparator
+     * The Function is AddWidget
      *
      * @param widget of QWidget
      *
      * @return Type of QAction
      */
-    public func addSeparator(widget: QWidget): QAction {
+    public func AddWidget(widget: QWidget): QAction {
         let actionPrt = unsafe {
             nativeToolBarAddWidget(ptr, widget.ptr)
         }
