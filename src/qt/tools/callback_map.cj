@@ -6,25 +6,26 @@
  * @file
  *
  */
-package qt.widgets
+package qt.tools
 
 from std import collection.*
+from std import ffi.c.CString
 
 /**
  * The class is QCallbackMap
  * @author wathinst
  */
-public class QCallbackMap {
+public open class QCallbackMap {
     /* let member connect */
-    static let connect = HashMap<Int64, () -> Unit>()
+    public static let connect = HashMap<Int64, () -> Unit>()
     /* let member connectInt64 */
-    static let connectInt64 = HashMap<Int64, (Int64) -> Unit>()
+    public static let connectInt64 = HashMap<Int64, (Int64) -> Unit>()
     /* let member connectInt64 */
-    static let connectInt64Int64 = HashMap<Int64, (Int64,Int64) -> Unit>()
+    public static let connectInt64Int64 = HashMap<Int64, (Int64,Int64) -> Unit>()
     /* let member connectCString */
-    static let connectCString = HashMap<Int64, (CString) -> Unit>()
+    public static let connectCString = HashMap<Int64, (CString) -> Unit>()
     /* let member connectBool */
-    static let connectBool = HashMap<Int64, (Bool) -> Unit>()
+    public static let connectBool = HashMap<Int64, (Bool) -> Unit>()
 }
 
 /**

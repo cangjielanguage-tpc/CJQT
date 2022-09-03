@@ -64,6 +64,7 @@ set (SRC_DIR ./src/widgets/application.cpp
         ./src/gui/pixmap.cpp
         ./src/gui/palette.cpp
         ./src/gui/font.cpp
+        ./src/gui/icon.cpp
         ./src/gui/validator.cpp
 )
 

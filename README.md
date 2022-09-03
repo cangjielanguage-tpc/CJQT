@@ -57,6 +57,7 @@ CjQt是Qt的仓颉语言绑定，提供仓颉语言风格的Qt类和函数的API
 │   └── xxx_lib.md 
 ├── example
 │   ├── hello
+│   └── lineEdit
 │   ├── notepad
 │   └── tetris
 ├── native
@@ -113,6 +114,7 @@ sudo apt-get install libxkbcommon-x11-0
 
 [俄罗斯方块示例详情](./example/tetris)
 
+
 执行命令：
 
 ```shell
@@ -139,6 +141,22 @@ sudo apt-get install libxkbcommon-x11-0
 
 <p align="center">
 <img src="./doc/assets/notepad_demo.png" width="60%" >
+</p>
+
+### 单行文本编辑器使用示例
+
+[单行文本编辑器使用示例详情](./example/lineEdit)
+
+执行命令：
+
+```shell
+./example/lineEdit/run.sh
+```
+
+执行效果：
+
+<p align="center">
+<img src="./doc/assets/lineEdit_demo.png" width="60%" >
 </p>
 
 ### 项目使用（源码引用方式）
