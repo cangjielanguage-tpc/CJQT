@@ -89,7 +89,7 @@ QTextTable                ░░░░░░░░░░         QTextTableCell 
 QTextTableCellFormat      ░░░░░░░░░░         QTextTableFormat             ░░░░░░░░░░
 QTouchEvent               ░░░░░░░░░░         QTransform                   ░░░░░░░░░░
 QUndoCommand              ░░░░░░░░░░         QUndoGroup                   ░░░░░░░░░░
-QUndoStack                ░░░░░░░░░░         QValidator                   ░░░░░░░░░░
+QUndoStack                ░░░░░░░░░░         QValidator                   ▓▓▓▓▓▓░░
 QVector2D                 ░░░░░░░░░░         QVector3D                    ░░░░░░░░░░
 QVector4D                 ░░░░░░░░░░         QVulkanDeviceFunctions       ░░░░░░░░░░
 QVulkanExtension          ░░░░░░░░░░         QVulkanFunctions             ░░░░░░░░░░

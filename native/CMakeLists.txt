@@ -51,6 +51,7 @@ set (SRC_DIR ./src/widgets/application.cpp
         ./src/widgets/tool_bar.cpp
         ./src/widgets/dialog.cpp
         ./src/widgets/font_dialog.cpp
+        ./src/widgets/line_edit.cpp
         ./src/code/url.cpp
         ./src/code/timer.cpp
         ./src/gui/mouse_event.cpp
@@ -63,7 +64,7 @@ set (SRC_DIR ./src/widgets/application.cpp
         ./src/gui/pixmap.cpp
         ./src/gui/palette.cpp
         ./src/gui/font.cpp
-        ./src/gui/icon.cpp
+        ./src/gui/validator.cpp
 )
 
 set (MOC_INC_DIR 
@@ -71,6 +72,7 @@ set (MOC_INC_DIR
         ./includes/widgets/grid_layout.h
         ./includes/widgets/dialog.h
         ./includes/code/timer.h
+        ./includes/gui/validator.h
         ./includes/widgets/menu.h
         ./includes/widgets/menu_bar.h
         ./includes/widgets/main_window.h
@@ -79,9 +81,10 @@ set (MOC_INC_DIR
         ./includes/widgets/widget.h
         ./includes/widgets/text_edit.h
         ./includes/widgets/status_bar.h
+        ./includes/widgets/line_edit.h
 )
 
-find_package(Qt5 COMPONENTS Core Widgets REQUIRED )
+find_package(Qt5 COMPONENTS Core Gui Widgets REQUIRED )
 
 include_directories(${INC_DIR})
 link_directories(${INC_DIR})
@@ -90,4 +93,4 @@ qt5_wrap_cpp(MOC_SRC  ${MOC_INC_DIR})
 
 add_library(nativeQt SHARED ${MOC_SRC} ${SRC_DIR})
 
-target_link_libraries(nativeQt PRIVATE Qt5::Core Qt5::Widgets)
+target_link_libraries(nativeQt PRIVATE Qt5::Core Qt5::Gui Qt5::Widgets)

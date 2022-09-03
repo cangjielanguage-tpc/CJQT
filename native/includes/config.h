@@ -3,7 +3,9 @@
 
 typedef void (*nativeEventCallback)(long, long);
 typedef void (*nativeConnectCallback)(long);
+typedef void (*nativeConnectCallbackChar)(long, char *);
 typedef void (*nativeConnectCallbackInt)(long, int);
+typedef void (*nativeConnectCallbackIntInt)(long, int, int);
 typedef void (*nativeConnectCallbackBool)(long, bool);
 
 #define APPLICATION_CREATE                                                   \

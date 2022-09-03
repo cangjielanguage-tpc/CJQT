@@ -8,22 +8,11 @@
  */
 package qt.code
 
-import qt.tools.*
-
 // from std import ffi.c.CString
-foreign func nativeTimerCreate(callback: CFunc<(Int64) -> Unit>, interval: Int32): Int64
+foreign func nativeTimerCreate(callback: CFunc<() -> Unit>, interval: Int32): Int64
 foreign func nativeTimerStart(ptr: Int64): Unit
 foreign func nativeTimerStop(ptr: Int64): Unit
 foreign func nativeTimerDelete(ptr: Int64): Unit
-
-@c
-func timerCallback(ptr: Int64): Unit {
-    try {
-        QCallbackMap.timer[ptr]()
-    } catch (e: Exception) {
-        println(e)
-    }
-}
 
 /**
  * The class is QTimer
@@ -34,11 +23,7 @@ public class QTimer {
     public let ptr: Int64
 
     /* var member timerCallback type is () -> Unit */
-    //static var timerCallback: () -> Unit = { => }
-
-    public init() {
-        ptr = 0
-    }
+    static var timerCallback: () -> Unit = {}
 
     /**
      * The Function is init constructor
@@ -47,10 +32,13 @@ public class QTimer {
      * @param callback of ()->Unit
      */
     public init(interval: Int32, callback: () -> Unit) {
-        ptr = unsafe {
-            nativeTimerCreate(timerCallback, interval)
+        QTimer.timerCallback = callback
+        let cb: CFunc<() -> Unit> = {
+            QTimer.timerCallback()
         }
-        QCallbackMap.timer.put(ptr, callback)
+        ptr = unsafe {
+            nativeTimerCreate(cb, interval)
+        }
     }
 
     /**
@@ -59,9 +47,7 @@ public class QTimer {
      */
     public func start() {
         unsafe {
-            if (ptr != 0) {
-                nativeTimerStart(ptr)
-            }
+            nativeTimerStart(ptr)
         }
     }
 
@@ -71,9 +57,7 @@ public class QTimer {
      */
     public func stop() {
         unsafe {
-            if (ptr != 0) {
-                nativeTimerStop(ptr)
-            }
+            nativeTimerStop(ptr)
         }
     }
 
@@ -83,9 +67,7 @@ public class QTimer {
      */
     public func delete() {
         unsafe {
-            if (ptr != 0) {
-                nativeUrlDelete(ptr)
-            }
+            nativeUrlDelete(ptr)
         }
     }
 }

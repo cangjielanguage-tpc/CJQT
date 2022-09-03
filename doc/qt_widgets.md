@@ -89,7 +89,7 @@ QItemEditorCreator        ░░░░░░░░░░         QItemEditorCrea
 QItemEditorFactory        ░░░░░░░░░░         QKeyEventTransition          ░░░░░░░░░░
 QKeySequenceEdit          ░░░░░░░░░░         QLCDNumber                   ░░░░░░░░░░
 QLabel                    ▓▓░░░░░░░░         QLayout                      ▓░░░░░░░░░
-QLayoutItem               ░░░░░░░░░░         QLineEdit                    ░░░░░░░░░░
+QLayoutItem               ░░░░░░░░░░         QLineEdit                    ▓▓▓▓▓░░░░░
 QListView                 ░░░░░░░░░░         QListWidget                  ░░░░░░░░░░
 QListWidgetItem           ░░░░░░░░░░         QMainWindow                  ▓▓░░░░░░░░
 QMdiArea                  ░░░░░░░░░░         QMdiSubWindow                ░░░░░░░░░░
