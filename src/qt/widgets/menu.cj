@@ -8,8 +8,6 @@
  */
 package qt.widgets
 
-// from std import ffi.c.CString
-
 foreign func nativeMenuCreate(parentPtr: Int64): Int64
 foreign func nativeMenuSetTitle(ptr: Int64, title:CString): Unit
 foreign func nativeMenuMenuAction(ptr: Int64): Int64

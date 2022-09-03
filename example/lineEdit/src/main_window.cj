@@ -1,6 +1,5 @@
 from cjqt import qt.code.*
 from cjqt import qt.widgets.*
-from std import ffi.c.CString
 
 public class maniWindow <: QMainWindow {
     let mainLayout: QGridLayout

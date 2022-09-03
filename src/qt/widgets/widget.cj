@@ -8,7 +8,6 @@
  */
 package qt.widgets
 
-// from std import ffi.c.CString
 import qt.gui.*
 from std import collection.*
 import qt.tools.QCallbackMap

@@ -8,11 +8,21 @@
  */
 package qt.code
 
-// from std import ffi.c.CString
-foreign func nativeTimerCreate(callback: CFunc<() -> Unit>, interval: Int32): Int64
+import qt.tools.*
+
+foreign func nativeTimerCreate(callback: CFunc<(Int64) -> Unit>, interval: Int32): Int64
 foreign func nativeTimerStart(ptr: Int64): Unit
 foreign func nativeTimerStop(ptr: Int64): Unit
 foreign func nativeTimerDelete(ptr: Int64): Unit
+
+@c
+func timerCallback(ptr: Int64): Unit {
+    try {
+        QCallbackMap.timer[ptr]()
+    } catch (e: Exception) {
+        println(e)
+    }
+}
 
 /**
  * The class is QTimer
@@ -23,7 +33,11 @@ public class QTimer {
     public let ptr: Int64
 
     /* var member timerCallback type is () -> Unit */
-    static var timerCallback: () -> Unit = {}
+    //static var timerCallback: () -> Unit = { => }
+
+    public init() {
+        ptr = 0
+    }
 
     /**
      * The Function is init constructor
@@ -32,13 +46,10 @@ public class QTimer {
      * @param callback of ()->Unit
      */
     public init(interval: Int32, callback: () -> Unit) {
-        QTimer.timerCallback = callback
-        let cb: CFunc<() -> Unit> = {
-            QTimer.timerCallback()
-        }
         ptr = unsafe {
-            nativeTimerCreate(cb, interval)
+            nativeTimerCreate(timerCallback, interval)
         }
+        QCallbackMap.timer.put(ptr, callback)
     }
 
     /**
@@ -47,7 +58,9 @@ public class QTimer {
      */
     public func start() {
         unsafe {
-            nativeTimerStart(ptr)
+            if (ptr != 0) {
+                nativeTimerStart(ptr)
+            }
         }
     }
 
@@ -57,7 +70,9 @@ public class QTimer {
      */
     public func stop() {
         unsafe {
-            nativeTimerStop(ptr)
+            if (ptr != 0) {
+                nativeTimerStop(ptr)
+            }
         }
     }
 
@@ -67,7 +82,9 @@ public class QTimer {
      */
     public func delete() {
         unsafe {
-            nativeUrlDelete(ptr)
+            if (ptr != 0) {
+                nativeUrlDelete(ptr)
+            }
         }
     }
 }

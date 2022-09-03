@@ -3,90 +3,100 @@
     {
       "organization": "cangjie",
       "name": "cjqt",
-      "path": "./",
-      "packagePath": "/home/helin4576/git/qt/src/qt",
+      "path": ".",
+      "packagePath": "/home/wathinst/cjProject/qt/src/qt",
       "packageName": "cjqt/qt",
       "version": "0.0.1",
-      "hash": "-2010748140393620438",
+      "hash": "-2010748521373594389",
       "isMacroPackage": false,
       "output_type": "dynamic",
       "command_option": "",
+      "condition_option": {},
+      "link_option": "",
       "requires": [],
       "package_requires": {},
       "foreign_requires": {
-        "nativeQt": "/home/helin4576/git/qt/native/lib/x86_64"
+        "nativeQt": "/home/wathinst/cjProject/qt/native/lib/x86_64"
       },
       "cross_compile_configuration": {}
     },
     {
       "organization": "cangjie",
       "name": "cjqt",
-      "path": "./",
-      "packagePath": "/home/helin4576/git/qt/src/qt/tools",
+      "path": ".",
+      "packagePath": "/home/wathinst/cjProject/qt/src/qt/tools",
       "packageName": "cjqt/qt.tools",
       "version": "0.0.1",
-      "hash": "-2010748140393620438",
+      "hash": "-2010748521373594389",
       "isMacroPackage": false,
       "output_type": "dynamic",
       "command_option": "",
+      "condition_option": {},
+      "link_option": "",
       "requires": [],
       "package_requires": {},
       "foreign_requires": {
-        "nativeQt": "/home/helin4576/git/qt/native/lib/x86_64"
+        "nativeQt": "/home/wathinst/cjProject/qt/native/lib/x86_64"
       },
       "cross_compile_configuration": {}
     },
     {
       "organization": "cangjie",
       "name": "cjqt",
-      "path": "./",
-      "packagePath": "/home/helin4576/git/qt/src/qt/code",
+      "path": ".",
+      "packagePath": "/home/wathinst/cjProject/qt/src/qt/code",
       "packageName": "cjqt/qt.code",
       "version": "0.0.1",
-      "hash": "-2010748140393620438",
+      "hash": "-2010748521373594389",
       "isMacroPackage": false,
       "output_type": "dynamic",
       "command_option": "",
+      "condition_option": {},
+      "link_option": "",
       "requires": [
         "cjqt/qt.tools"
       ],
       "package_requires": {},
       "foreign_requires": {
-        "nativeQt": "/home/helin4576/git/qt/native/lib/x86_64"
+        "nativeQt": "/home/wathinst/cjProject/qt/native/lib/x86_64"
       },
       "cross_compile_configuration": {}
     },
     {
       "organization": "cangjie",
       "name": "cjqt",
-      "path": "./",
-      "packagePath": "/home/helin4576/git/qt/src/qt/gui",
+      "path": ".",
+      "packagePath": "/home/wathinst/cjProject/qt/src/qt/gui",
       "packageName": "cjqt/qt.gui",
       "version": "0.0.1",
-      "hash": "-2010748140393620438",
+      "hash": "-2010748521373594389",
       "isMacroPackage": false,
       "output_type": "dynamic",
       "command_option": "",
+      "condition_option": {},
+      "link_option": "",
       "requires": [
         "cjqt/qt.code"
       ],
       "package_requires": {},
       "foreign_requires": {
-        "nativeQt": "/home/helin4576/git/qt/native/lib/x86_64"
+        "nativeQt": "/home/wathinst/cjProject/qt/native/lib/x86_64"
       },
       "cross_compile_configuration": {}
     },
     {
       "organization": "cangjie",
       "name": "cjqt",
-      "path": "./",
-      "packagePath": "/home/helin4576/git/qt/src/qt/widgets",
+      "path": ".",
+      "packagePath": "/home/wathinst/cjProject/qt/src/qt/widgets",
       "packageName": "cjqt/qt.widgets",
       "version": "0.0.1",
-      "hash": "-2010748140393620438",
+      "hash": "-2010748521373594389",
       "isMacroPackage": false,
       "output_type": "dynamic",
       "command_option": "",
+      "condition_option": {},
+      "link_option": "",
       "requires": [
         "cjqt/qt.code",
         "cjqt/qt.gui",
@@ -94,7 +104,7 @@
       ],
       "package_requires": {},
       "foreign_requires": {
-        "nativeQt": "/home/helin4576/git/qt/native/lib/x86_64"
+        "nativeQt": "/home/wathinst/cjProject/qt/native/lib/x86_64"
       },
       "cross_compile_configuration": {}
     }

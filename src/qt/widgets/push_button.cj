@@ -8,8 +8,6 @@
  */
 package qt.widgets
 
-// from std import ffi.c.CString
-
 foreign func nativePushButtonCreate(parentPtr: Int64): Int64
 foreign func nativePushButtonSetText(ptr: Int64, text: CString): Unit
 foreign func nativePushButtonSetStyleSheet(ptr: Int64, style: CString): Unit

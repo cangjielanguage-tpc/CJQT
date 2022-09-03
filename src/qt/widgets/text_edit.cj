@@ -8,8 +8,6 @@
  */
 package qt.widgets
 
-// from std import ffi.c.CString
-
 foreign func nativeTextEditCreate(parentPtr: Int64): Int64
 foreign func nativeTextEditAppend(ptr: Int64, text: CString): Unit
 foreign func nativeTextEditSetFontFamily(ptr: Int64, fontFamily: CString): Unit

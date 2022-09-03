@@ -8,8 +8,6 @@
  */
 package qt.gui
 
-from std import ffi.c.CString
-
 foreign func nativeKeyEventGetKey(ptr: Int64): Int32
 foreign func nativeKeyEventGetCount(ptr: Int64): Int32
 foreign func nativeKeyEventGetText(ptr: Int64): CString

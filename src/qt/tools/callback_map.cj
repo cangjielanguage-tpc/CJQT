@@ -9,7 +9,6 @@
 package qt.tools
 
 from std import collection.*
-from std import ffi.c.CString
 
 /**
  * The class is QCallbackMap
@@ -26,6 +25,8 @@ public open class QCallbackMap {
     public static let connectCString = HashMap<Int64, (CString) -> Unit>()
     /* let member connectBool */
     public static let connectBool = HashMap<Int64, (Bool) -> Unit>()
+    /* let member timer */
+    public static let timer = HashMap<Int64, () -> Unit>()
 }
 
 /**

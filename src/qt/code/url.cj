@@ -8,8 +8,6 @@
  */
 package qt.code
 
-from std import ffi.c.CString
-
 foreign func nativeUrlCreate(url: CString, parsingMode: Int32): Int64
 foreign func nativeUrlToString(ptr: Int64): CString
 foreign func nativeUrlIsValid(ptr: Int64): Bool

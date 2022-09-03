@@ -8,8 +8,6 @@
  */
 package qt.widgets
 
-// from std import ffi.c.CString
-
 foreign func nativeGridLayoutCreate(parentPtr: Int64): Int64
 foreign func nativeGridLayoutSetHorizontalSpacing(ptr: Int64, spacing: Int32): Unit
 foreign func nativeGridLayoutSetVerticalSpacing(ptr: Int64, spacing: Int32): Unit

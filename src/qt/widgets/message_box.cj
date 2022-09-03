@@ -8,8 +8,6 @@
  */
 package qt.widgets
 
-// from std import ffi.c.CString
-
 foreign func nativeMessageBoxInformation(
     parentPtr: Int64,
     title: CString,
