@@ -46,7 +46,7 @@ public enum QValidatorState {
      *
      * @return Type  of   Enum QValidatorState
      */
-    static public func conver(state: Int32): QValidatorState {
+    static public func convert(state: Int32): QValidatorState {
         match (state) {
             case 0 => Invalid
             case 1 => Intermediate
@@ -62,10 +62,10 @@ public enum QValidatorState {
  */
 public open class QValidator {
     /** let member ptr type is Int64 */
-    let ptr: Int64
+    public let ptr: Int64
 
     /** let member changed type is QValidatorChangedSignal */
-    let changed: QValidatorChangedSignal
+    public let changed: QValidatorChangedSignal
 
     /**
      * The Function is init constructor
@@ -92,7 +92,7 @@ public open class QValidator {
      * The Function is delete
      *
      */
-    public func delete(): Unit {
+    public open func delete(): Unit {
         changed.remove()
         unsafe {
             nativeValidatorDelete(this.ptr)
@@ -122,7 +122,7 @@ public open class QValidator {
         let state = unsafe {
             nativeValidatorValidate(this.ptr, CString(input), Int32(pos))
         }
-        return QValidatorState.conver(state)
+        return QValidatorState.convert(state)
     }
 }
 

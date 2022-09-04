@@ -452,13 +452,13 @@ extern "C"
     void nativeLineEditConnectTextChanged(long ptr, long code, nativeConnectCallbackChar callback)
     {
         QLineEdit *lineEditObj = reinterpret_cast<QLineEdit *>(static_cast<uintptr_t>(ptr));
-        QObject::connect(lineEditObj, &QLineEdit::textChanged, [=](const QString &text)
-                         { QByteArray ba = text.toUtf8();callback(code, ba.data()); });
+        QObject::connect(lineEditObj, &QLineEdit::textChanged, [=](QString text)
+                         {QByteArray ba=text.toUtf8() ; callback(code,ba.data()); });
     }
     void nativeLineEditConnectTextEdited(long ptr, long code, nativeConnectCallbackChar callback)
     {
         QLineEdit *lineEditObj = reinterpret_cast<QLineEdit *>(static_cast<uintptr_t>(ptr));
-        QObject::connect(lineEditObj, &QLineEdit::textEdited, [=](const QString &text)
-                         { QByteArray ba = text.toUtf8();callback(code, ba.data()); });
+        QObject::connect(lineEditObj, &QLineEdit::textEdited, [=](const QString text)
+                         {QByteArray ba=text.toUtf8() ; callback(code,ba.data()); });
     }
 }

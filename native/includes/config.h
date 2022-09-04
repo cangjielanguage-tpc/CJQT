@@ -7,6 +7,7 @@ typedef void (*nativeConnectCallbackChar)(long, char *);
 typedef void (*nativeConnectCallbackInt)(long, int);
 typedef void (*nativeConnectCallbackIntInt)(long, int, int);
 typedef void (*nativeConnectCallbackBool)(long, bool);
+typedef void (*nativeConnectCallbackDouble)(long, double);
 
 #define APPLICATION_CREATE                                                   \
     if (appConfig->appInit && appConfig->app == nullptr)                     \

@@ -595,7 +595,7 @@ public open class QSignalInt64Int64 <: QSignal {
      * The Function is remove
      *
      */
-    public override open func remove() {
+    public open override func remove() {
         QCallbackMap.connect.remove(QMapKey(signalType, ptr).hashCode())
         return
     }
@@ -630,7 +630,7 @@ public open class QSignalInt64Int64 <: QSignal {
  * The class is QSignalCString inherited from QSignal
  * @author helin
  */
-public open class QSignalCString <: QSignal {
+public open class QSignalString <: QSignal {
     /**
      * The Function is init constructor
      *
@@ -645,7 +645,7 @@ public open class QSignalCString <: QSignal {
      * The Function is remove
      *
      */
-    public override open func remove() {
+    public open override func remove() {
         QCallbackMap.connect.remove(QMapKey(signalType, ptr).hashCode())
         return
     }
@@ -653,13 +653,13 @@ public open class QSignalCString <: QSignal {
     /**
      * The Function is connect
      *
-     * @param callback of (CString)->Unit
+     * @param callback of (String)->Unit
      */
-    public func connect(callback: (CString) -> Unit) {
-        QCallbackMap.connectCString.put(QMapKey(signalType, ptr).hashCode(), callback)
+    public func connect(callback: (String) -> Unit) {
+        QCallbackMap.connectString.put(QMapKey(signalType, ptr).hashCode(), callback)
         let cb: CFunc<(Int64, CString) -> Unit> = {
             code, data1 => try {
-                QCallbackMap.connectCString[code](data1)
+                QCallbackMap.connectString[code](data1.toString())
             } catch (e: Exception) {
                 println(e)
             }

@@ -1,4 +1,5 @@
 from cjqt import qt.code.*
+from cjqt import qt.gui.*
 from cjqt import qt.widgets.*
 
 public class maniWindow <: QMainWindow {
@@ -20,6 +21,9 @@ public class maniWindow <: QMainWindow {
     let lineEdit8: QLineEdit
     let lineEdit10: QLineEdit
     let note10: QLabel
+    let label11: QLabel
+    let lineEdit11: QLineEdit
+    let note11: QLabel
     public init() {
         setFixedSize(600, 800)
         setWindowTitle("单行文本编辑器")
@@ -107,12 +111,41 @@ public class maniWindow <: QMainWindow {
         mainLayout.addWidget(lineEdit10, 21, 0, 1, 80)
         mainLayout.addWidget(note10, 22, 0, 1, 80)
 
+        label11 = QLabel("双精度浮点型文本框")
+        lineEdit11 = QLineEdit()
+        lineEdit11.setPlaceholderText("浮点型")
+        lineEdit11.setMaxLengt(10)
+        note11 = QLabel()
+        mainLayout.addWidget(label11, 23, 0, 1, 80)
+        mainLayout.addWidget(lineEdit11, 24, 0, 1, 80)
+        mainLayout.addWidget(note11, 25, 0, 1, 80)
+        let dwValidator: QDoubleValidator = QDoubleValidator()
+
+        //范围为-100～100区间范围
+        dwValidator.setRange(0.0, 100.0, 2);
+
+        //设在为标准数字（0.005）
+        dwValidator.setNotation(QDoubleValidatorNotation.StandardNotation)
+
+        //精度为2
+        //dwValidator.setDecimals(2)
+        //lineEdit11.setValidator(dwValidator)
+
         //Signal
         trailingAction.triggered.connect(onSearch)
-        lineEdit10.inputRejected.connect(onInputRejected)
-        lineEdit10.returnPressed.connect(onReturnPressed)
-        lineEdit10.selectionChanged.connect(onSelectionChanged)
+
+        //lineEdit10.inputRejected.connect(onInputRejected)
+        //lineEdit10.returnPressed.connect(onReturnPressed)
+        //lineEdit10.selectionChanged.connect(onSelectionChanged)
         lineEdit10.textChanged.connect(onTextChanged)
+        dwValidator.bottomChanged.connect(onBottomChanged)
+        dwValidator.topChanged.connect(onTopChanged)
+        dwValidator.decimalsChanged.connect(onDecimalsChanged)
+        lineEdit11.inputRejected.connect(onInputRejected)
+        lineEdit11.returnPressed.connect(onReturnPressed)
+        lineEdit11.selectionChanged.connect(onSelectionChanged)
+        //lineEdit11.textChanged.connect(onTextChanged)
+
         let widget = QWidget(this)
         widget.setLayout(mainLayout)
         setCentralWidget(widget)
@@ -128,23 +161,32 @@ public class maniWindow <: QMainWindow {
     }
 
     public func onInputRejected(): Unit {
-        let length = this.lineEdit10.maxLength()
+        let length = this.lineEdit11.maxLength()
         this.note10.setText("文本框字符长度不超过${length}")
     }
     public func onReturnPressed(): Unit {
-        let str = this.lineEdit10.text()
+        let str = this.lineEdit11.text()
         this.note10.setText("输入的内容为：${str}")
     }
 
     public func onSelectionChanged(): Unit {
-        if (lineEdit10.hasSelectedText()) {
-            let str = this.lineEdit10.selectedText()
+        if (lineEdit11.hasSelectedText()) {
+            let str = this.lineEdit11.selectedText()
             this.note10.setText("选中的内容为：${str}")
         }
     }
 
-    public func onTextChanged(text: CString): Unit {
-        let str = this.lineEdit10.text()
-        this.note10.setText("输入的内容为：${str}")
+    public func onTextChanged(text:String): Unit {
+        this.note10.setText("输入的内容为：${text}")
+    }
+
+    public func onBottomChanged(bottom: Float64): Unit {
+        this.note11.setText("最小值不低于：${bottom}")
+    }
+    public func onTopChanged(top: Float64): Unit {
+        this.note11.setText("最大值不超过：${top}")
+    }
+    public func onDecimalsChanged(decimals: Int64): Unit {
+        this.note11.setText("小数点精度为：${decimals}")
     }
 }

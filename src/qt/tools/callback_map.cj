@@ -21,12 +21,14 @@ public open class QCallbackMap {
     public static let connectInt64 = HashMap<Int64, (Int64) -> Unit>()
     /* let member connectInt64 */
     public static let connectInt64Int64 = HashMap<Int64, (Int64,Int64) -> Unit>()
-    /* let member connectCString */
-    public static let connectCString = HashMap<Int64, (CString) -> Unit>()
+    /* let member connectString */
+    public static let connectString = HashMap<Int64, (String) -> Unit>()
     /* let member connectBool */
     public static let connectBool = HashMap<Int64, (Bool) -> Unit>()
     /* let member timer */
     public static let timer = HashMap<Int64, () -> Unit>()
+    /* let member connectFloat64 */
+    public static let connectFloat64 = HashMap<Int64, (Float64) -> Unit>()
 }
 
 /**

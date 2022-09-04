@@ -243,7 +243,7 @@ public open class QSignalInt64Int64 <: QSignal {
  * The class is QSignalCString inherited from QSignal
  * @author helin
  */
-public open class QSignalCString <: QSignal {
+public open class QSignalString <: QSignal {
     /**
      * The Function is init constructor
      *
@@ -266,13 +266,13 @@ public open class QSignalCString <: QSignal {
     /**
      * The Function is connect
      *
-     * @param callback of (CString)->Unit
+     * @param callback of (String)->Unit
      */
-    public func connect(callback: (CString) -> Unit) {
-        QCallbackMap.connectCString.put(QMapKey(signalType, ptr).hashCode(), callback)
+    public func connect(callback: (String) -> Unit) {
+        QCallbackMap.connectString.put(QMapKey(signalType, ptr).hashCode(), callback)
         let cb: CFunc<(Int64, CString) -> Unit> = {
             code, data1 => try {
-                QCallbackMap.connectCString[code](data1)
+                QCallbackMap.connectString[code](data1.toString())
             } catch (e: Exception) {
                 println(e)
             }
@@ -287,4 +287,54 @@ public open class QSignalCString <: QSignal {
      * @param cb of CFunc<(Int64,CString)->Unit>
      */
     public open func nativeConnect(code: Int64, cb: CFunc<(Int64, CString) -> Unit>) {}
+}
+
+/**
+ * The class is QSignalFloat64 inherited from QSignal
+ * @author helin
+ */
+public open class QSignalFloat64 <: QSignal {
+    /**
+     * The Function is init constructor
+     *
+     * @param signalType of String
+     * @param ptr of Int64
+     */
+    public init(signalType: String, ptr: Int64) {
+        super(signalType, ptr)
+    }
+
+    /**
+     * The Function is remove
+     *
+     */
+    public override open func remove() {
+        QCallbackMap.connect.remove(QMapKey(signalType, ptr).hashCode())
+        return
+    }
+
+    /**
+     * The Function is connect
+     *
+     * @param callback of (Float64)->Unit
+     */
+    public func connect(callback: (Float64) -> Unit) {
+        QCallbackMap.connectFloat64.put(QMapKey(signalType, ptr).hashCode(), callback)
+        let cb: CFunc<(Int64, Float64) -> Unit> = {
+            code, data1 => try {
+                QCallbackMap.connectFloat64[code](data1)
+            } catch (e: Exception) {
+                println(e)
+            }
+        }
+        nativeConnect(QMapKey(signalType, ptr).hashCode(), cb)
+    }
+
+    /**
+     * The Function is nativeConnect
+     *
+     * @param code of Int64
+     * @param cb of CFunc<(Int64,Float64)->Unit>
+     */
+    public open func nativeConnect(code: Int64, cb: CFunc<(Int64, Float64) -> Unit>) {}
 }
