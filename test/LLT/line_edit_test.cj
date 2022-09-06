@@ -21,6 +21,7 @@ main() {
     setValidatorTest()
     setAlignmenTest()
     optTest()
+    signalTest()
     widget.delete()
     QApplication.delete()
     return 0
@@ -145,6 +146,7 @@ func signalTest() {
     lineEdit.selectionChanged.connect(onSelectionChanged)
     lineEdit.textChanged.connect(onTextChanged)
     lineEdit.textEdited.connect(onTextEdited)
+    lineEdit.editingFinished.connect(onEditingFinished)
     lineEdit.setText("test")
     lineEdit.selectAll()
     lineEdit.delete()
@@ -168,5 +170,8 @@ public func onTextEdited(text: String): Unit {
     return
 }
 public func onCursorPositionChanged(oldPos: Int64, newPos: Int64) {
+    return
+}
+public func onEditingFinished(): Unit {
     return
 }
