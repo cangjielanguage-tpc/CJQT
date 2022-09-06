@@ -52,8 +52,11 @@ set (SRC_DIR ./src/widgets/application.cpp
         ./src/widgets/dialog.cpp
         ./src/widgets/font_dialog.cpp
         ./src/widgets/line_edit.cpp
+        ./src/widgets/frame.cpp
         ./src/code/url.cpp
         ./src/code/timer.cpp
+        ./src/code/rect.cpp
+        ./src/code/size.cpp
         ./src/gui/mouse_event.cpp
         ./src/gui/key_event.cpp
         ./src/gui/painter_event.cpp
@@ -84,6 +87,7 @@ set (MOC_INC_DIR
         ./includes/widgets/text_edit.h
         ./includes/widgets/status_bar.h
         ./includes/widgets/line_edit.h
+        ./includes/widgets/frame.h
 )
 
 find_package(Qt5 COMPONENTS Core Gui Widgets REQUIRED )

@@ -164,4 +164,9 @@ extern "C"
         QFont *font = reinterpret_cast<QFont *>(static_cast<uintptr_t>(fontPtr));
         instance->setFont(*font);
     }
+    void nativeWidgetSetStyleSheet(long ptr, const char *styleSheet)
+    {
+        QWidget *instance = reinterpret_cast<QWidget *>(static_cast<uintptr_t>(ptr));
+        instance->setStyleSheet(QString(styleSheet));
+    }
 }

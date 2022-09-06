@@ -31,6 +31,7 @@ foreign func nativeWidgetSetAutoFillBackground(ptr: Int64, enabled: Int32): Unit
 foreign func nativeWidgetSetGeometry(ptr: Int64, ax: Int32, ay: Int32, aw: Int32, ah: Int32): Unit
 foreign func nativeWidgetSetFont(ptr: Int64, fontPtr: Int64): Unit
 foreign func nativeWidgetDelete(ptr: Int64): Unit
+foreign func nativeWidgetSetStyleSheet(ptr: Int64, styleSheet: CString): Unit
 
 foreign func nativeWidgetSetPaintEvent(ptr: Int64, callback: CFunc<(Int64, Int64) -> Unit>): Unit
 foreign func nativeWidgetSetMousePressEvent(ptr: Int64, callback: CFunc<(Int64, Int64) -> Unit>): Unit
@@ -338,6 +339,17 @@ public open class QWidget {
     public func setFont(font: QFont) {
         unsafe {
             nativeWidgetSetFont(ptr, font.ptr)
+        }
+    }
+
+    /**
+     * The Function is setStyleSheel
+     *
+     * @param styleSheet of String
+     */
+    public func setStyleSheel(styleSheet: String) {
+        unsafe {
+            nativeWidgetSetStyleSheet(ptr, CString(styleSheet))
         }
     }
 

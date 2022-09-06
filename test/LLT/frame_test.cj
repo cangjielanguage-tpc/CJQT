@@ -1,0 +1,66 @@
+// EXEC: cjc %import-path %L %l %f
+// EXEC: ./main
+from cjqt import qt.gui.*
+from cjqt import qt.code.*
+from cjqt import qt.widgets.*
+
+main() {
+    QApplication.create()
+    var widget = QWidget()
+    initFrameTest(widget)
+    initFrameOtherTest(widget)
+    initEnum()
+    widget.delete()
+    QApplication.delete()
+    return 0
+}
+
+func initFrameTest(widget: QWidget): Unit {
+    var frame1 = QFrame(widget)
+    frame1.setLineWidth(3)
+    frame1.setMidLineWidth(3)
+    frame1.setFrameShape(QFrameShape.Box)
+    frame1.setFrameShadow(QFrameShadow.Raised)
+    frame1.setStyleSheel("background-color:cyan")
+    frame1.setFrameRect(QRect(0, 0, 40, 40))
+    frame1.setFrameStyle(Int64(QFrameShadow.Raised.value()))
+    frame1.frameShadow()
+    frame1.frameShape()
+    frame1.frameRect()
+    frame1.frameStyle()
+    frame1.frameWidth()
+    frame1.lineWidth()
+    frame1.midLineWidth()
+    frame1.sizeHint()
+    frame1.delete()
+}
+func initFrameOtherTest(widget: QWidget): Unit {
+    var frame2 = QFrame()
+    var frame3 = QFrame(0)
+    var frame4 = QFrame(widget, WindowType.Widget)
+    frame2.delete()
+
+    frame3.delete()
+    frame4.delete()
+}
+func initEnum(): Unit {
+    var frame = QFrame()
+    frame.setFrameShape(QFrameShape.Panel)
+    frame.setFrameShape(QFrameShape.StyledPanel)
+    frame.setFrameShape(QFrameShape.HLine)
+    frame.setFrameShape(QFrameShape.VLine)
+    frame.setFrameShape(QFrameShape.WInPanel)
+    QFrameShape.convert(UInt16(1))
+    QFrameShape.convert(UInt16(2))
+    QFrameShape.convert(UInt16(3))
+    QFrameShape.convert(UInt16(4))
+    QFrameShape.convert(UInt16(5))
+    QFrameShape.convert(UInt16(6))
+    QFrameShape.convert(UInt16(7))
+    frame.setFrameShadow(QFrameShadow.Sunken)
+    QFrameShadow.convert(UInt16(1))
+    QFrameShadow.convert(UInt16(2))
+    QFrameShadow.convert(UInt16(3))
+    QFrameShadow.convert(UInt16(4))
+    frame.delete()
+}
