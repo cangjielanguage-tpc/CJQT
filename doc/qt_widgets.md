@@ -10,7 +10,7 @@
 - `QDateTimeEdit` 编辑或显示时间和日期的控件
 - `QPushButton` 普通按钮控件(进行中)
 - `QLabel` 显示文本或图片的控件(进行中)
-- `QLineEdit` 单行文本框控件
+- `QLineEdit` 单行文本框控件(进行中)
 - `QTextEdit` 文本编辑控件(进行中)
 - `QStatusBar` 状态栏控件(进行中)
 - `QToolBar` 工具栏控件(进行中)
@@ -35,7 +35,7 @@
 - `QTabWidget` Tab控件
 - `QFileDialog` 对话窗口的基类(进行中)
 - `QDialog` 对话窗口的基类
-- `QFrame` 框架控件的基类
+- `QFrame` 框架控件的基类(已完成)
 - `QListView` 列表布局控件
 - `QTableView` 表格布局控件
 - `QGridLayout` 网格布局控件(进行中)
@@ -61,7 +61,7 @@ QErrorMessage             ░░░░░░░░░░         QFileDialog    
 QFileIconProvider         ░░░░░░░░░░         QFileSystemModel             ░░░░░░░░░░
 QFocusFrame               ░░░░░░░░░░         QFontComboBox                ░░░░░░░░░░
 QFontDialog               ░░░░░░░░░░         QFormLayout                  ░░░░░░░░░░
-QFrame                    ░░░░░░░░░░         QGesture                     ░░░░░░░░░░
+QFrame                    ▓▓▓▓▓▓▓▓▓▓       QGesture                     ░░░░░░░░░░
 QGestureEvent             ░░░░░░░░░░         QGestureRecognizer           ░░░░░░░░░░
 QGraphicsAnchor           ░░░░░░░░░░         QGraphicsAnchorLayout        ░░░░░░░░░░
 QGraphicsBlur             ░░░░░░░░░░         QGraphicsColorizeEffect      ░░░░░░░░░░
@@ -89,7 +89,7 @@ QItemEditorCreator        ░░░░░░░░░░         QItemEditorCrea
 QItemEditorFactory        ░░░░░░░░░░         QKeyEventTransition          ░░░░░░░░░░
 QKeySequenceEdit          ░░░░░░░░░░         QLCDNumber                   ░░░░░░░░░░
 QLabel                    ▓▓░░░░░░░░         QLayout                      ▓░░░░░░░░░
-QLayoutItem               ░░░░░░░░░░         QLineEdit                    ▓▓▓▓▓░░░░░
+QLayoutItem               ░░░░░░░░░░         QLineEdit                    ▓▓▓▓▓▓▓░░░
 QListView                 ░░░░░░░░░░         QListWidget                  ░░░░░░░░░░
 QListWidgetItem           ░░░░░░░░░░         QMainWindow                  ▓▓░░░░░░░░
 QMdiArea                  ░░░░░░░░░░         QMdiSubWindow                ░░░░░░░░░░
