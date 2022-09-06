@@ -6,7 +6,7 @@ main() {
 
     let widget = QWidget()
     widget.setFixedSize(800, 800)
-    widget.setWindowTitle("单行文本编辑器")
+    widget.setWindowTitle("QFrame")
     var layout = QGridLayout()
     var frame1 = QFrame(widget)
     frame1.setLineWidth(3)

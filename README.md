@@ -159,6 +159,22 @@ sudo apt-get install libxkbcommon-x11-0
 <img src="./doc/assets/lineEdit_demo.png" width="60%" >
 </p>
 
+### QFrame使用示例
+
+[QFrame使用示例详情](./example/frame)
+
+执行命令：
+
+```shell
+./example/frame/run.sh
+```
+
+执行效果：
+
+<p align="center">
+<img src="./doc/assets/QFrame_demo.png" width="60%" >
+</p>
+
 ### 项目使用（源码引用方式）
 
 克隆cjqt项目到本地
@@ -259,4 +275,4 @@ source ~/.bashrc
 
 主要写参与贡献的人以及个人主页链接
 
-[@chinesebear](https://gitee.com/chinesebear) [@wathinst](https://gitee.com/wathinst)
+[@chinesebear](https://gitee.com/chinesebear) [@wathinst](https://gitee.com/wathinst) [@helin4576](https://gitee.com/helin4576)
