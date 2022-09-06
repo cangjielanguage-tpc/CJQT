@@ -138,12 +138,8 @@ foreign func nativeLineEditInputMask(ptr: Int64): CString
        QLineEdit *lineEditObj = reinterpret_cast<QLineEdit *>(static_cast<uintptr_t>(ptr));
        return lineEditObj->isClearButtonEnabled();
    }
-   bool nativeLineEditIsModified(long ptr)
-   {
-       QLineEdit *lineEditObj = reinterpret_cast<QLineEdit *>(static_cast<uintptr_t>(ptr));
-       return lineEditObj->isModified();
-   }
  * ****************/
+foreign func nativeLineEditIsModified(ptr: Int64): Bool
 foreign func nativeLineEditIsReadOnly(ptr: Int64): Bool
 
 /*******************
@@ -219,15 +215,7 @@ foreign func nativeLineEditSetEchMode(ptr: Int64, echMode: Int32): Unit
 foreign func nativeLineEditSetInputMask(ptr: Int64, inputMask: CString): Unit
 foreign func nativeLineEditSetFrame(ptr: Int64, b: Bool): Unit
 foreign func nativeLineEditSetMaxLength(ptr: Int64, length: Int32): Unit
-
-/********************
-
-   void nativeLineEditSetModified(long ptr, bool b)
-   {
-       QLineEdit *lineEditObj = reinterpret_cast<QLineEdit *>(static_cast<uintptr_t>(ptr));
-       return lineEditObj->setModified(b);
-   }
- * ***********************/
+foreign func nativeLineEditSetModified(ptr: Int64, b: Bool): Unit
 foreign func nativeLineEditSetPlaceholderText(ptr: Int64, str: CString): Unit
 foreign func nativeLineEditSetReadOnly(ptr: Int64, b: Bool): Unit
 
@@ -362,7 +350,7 @@ public enum EchoMode {
      *
      * @return Type  of   Enum EchoMode
      */
-    public static func conver(echoMode: Int32): EchoMode {
+    public static func convert(echoMode: Int32): EchoMode {
         match (echoMode) {
             case 0 => Normal
             case 1 => NoEcho
@@ -578,7 +566,7 @@ public open class QLineEdit <: QWidget {
         let num = unsafe {
             nativeLineEditEchMode(this.ptr)
         }
-        return EchoMode.conver(num)
+        return EchoMode.convert(num)
     }
 
     /**
@@ -597,7 +585,7 @@ public open class QLineEdit <: QWidget {
      *
      * @return Type of Bool
      */
-    public func isReadOnly(b: Bool): Bool {
+    public func isReadOnly(): Bool {
         return unsafe {
             nativeLineEditIsReadOnly(this.ptr)
         }
@@ -692,6 +680,28 @@ public open class QLineEdit <: QWidget {
             nativeLineEditMaxLength(this.ptr)
         }
         return Int64(length)
+    }
+
+    /**
+     * The Function is setModified
+     *
+     * @param b of Bool
+     */
+    public func setModified(b: Bool): Unit {
+        unsafe {
+            nativeLineEditSetModified(this.ptr, b)
+        }
+    }
+
+    /**
+     * The Function is modified
+     *
+     * @return Type of Bool
+     */
+    public func modified(): Bool {
+        return unsafe {
+            nativeLineEditIsModified(this.ptr)
+        }
     }
 
     /**

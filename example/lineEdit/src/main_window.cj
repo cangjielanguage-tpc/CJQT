@@ -128,8 +128,8 @@ public class maniWindow <: QMainWindow {
         dwValidator.setNotation(QDoubleValidatorNotation.StandardNotation)
 
         //精度为2
-        //dwValidator.setDecimals(2)
-        //lineEdit11.setValidator(dwValidator)
+        dwValidator.setDecimals(2)
+        lineEdit11.setValidator(dwValidator)
 
         //Signal
         trailingAction.triggered.connect(onSearch)

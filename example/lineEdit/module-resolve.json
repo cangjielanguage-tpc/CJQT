@@ -76,7 +76,8 @@
       "condition_option": {},
       "link_option": "",
       "requires": [
-        "cjqt/qt.code"
+        "cjqt/qt.code",
+        "cjqt/qt.tools"
       ],
       "package_requires": {},
       "foreign_requires": {

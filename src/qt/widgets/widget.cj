@@ -115,6 +115,15 @@ func connectBoolCallback(code: Int64, data: Bool): Unit {
     }
 }
 
+@c
+func connectCStringCallback(code: Int64, data: CString): Unit {
+    try {
+        QCallbackMap.connectString[code](data.toString())
+    } catch (e: Exception) {
+        println(e)
+    }
+}
+
 /**
  * The class is QWidget
  * @author wathinst
@@ -657,14 +666,7 @@ public open class QSignalString <: QSignal {
      */
     public func connect(callback: (String) -> Unit) {
         QCallbackMap.connectString.put(QMapKey(signalType, ptr).hashCode(), callback)
-        let cb: CFunc<(Int64, CString) -> Unit> = {
-            code, data1 => try {
-                QCallbackMap.connectString[code](data1.toString())
-            } catch (e: Exception) {
-                println(e)
-            }
-        }
-        nativeConnect(QMapKey(signalType, ptr).hashCode(), cb)
+        nativeConnect(QMapKey(signalType, ptr).hashCode(), connectCStringCallback)
     }
 
     /**
