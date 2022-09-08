@@ -53,10 +53,15 @@ set (SRC_DIR ./src/widgets/application.cpp
         ./src/widgets/font_dialog.cpp
         ./src/widgets/line_edit.cpp
         ./src/widgets/frame.cpp
+        ./src/widgets/abstract_scroll_area.cpp
+        ./src/widgets/abstract_slider.cpp
+        ./src/widgets/graphics_scene.cpp
+        ./src/widgets/scroll_bar.cpp
         ./src/code/url.cpp
         ./src/code/timer.cpp
         ./src/code/rect.cpp
         ./src/code/size.cpp
+        ./src/code/event.cpp
         ./src/gui/mouse_event.cpp
         ./src/gui/key_event.cpp
         ./src/gui/painter_event.cpp
@@ -88,6 +93,10 @@ set (MOC_INC_DIR
         ./includes/widgets/status_bar.h
         ./includes/widgets/line_edit.h
         ./includes/widgets/frame.h
+        ./includes/widgets/abstract_scroll_area.h
+        ./includes/widgets/abstract_slider.h
+        ./includes/widgets/graphics_scene.h
+        ./includes/widgets/scroll_bar.h
 )
 
 find_package(Qt5 COMPONENTS Core Gui Widgets REQUIRED )

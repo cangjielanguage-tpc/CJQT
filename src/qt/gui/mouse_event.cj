@@ -14,7 +14,7 @@ package qt.gui
  */
 public class QMouseEvent{
     /* let member ptr type is Int64 */
-    let ptr: Int64
+    public let ptr: Int64
 
     /**
      * The Function is init constructor

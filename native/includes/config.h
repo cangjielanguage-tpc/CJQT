@@ -8,6 +8,7 @@ typedef void (*nativeConnectCallbackInt)(long, int);
 typedef void (*nativeConnectCallbackIntInt)(long, int, int);
 typedef void (*nativeConnectCallbackBool)(long, bool);
 typedef void (*nativeConnectCallbackDouble)(long, double);
+typedef bool (*nativeEventCallbackBool)(long);
 
 #define APPLICATION_CREATE                                                   \
     if (appConfig->appInit && appConfig->app == nullptr)                     \
@@ -23,6 +24,7 @@ private:
     std::map<long, nativeEventCallback> mouseReleaseEventMap;
     std::map<long, nativeEventCallback> mouseMoveEventMap;
     std::map<long, nativeEventCallback> keyPressEventMap;
+    std::map<long, nativeEventCallbackBool> eventMap;
 
 public:
     Config() {}
@@ -135,5 +137,26 @@ public:
     void keyPressEventMapRemove(long ptr)
     {
         keyPressEventMap.erase(ptr);
+    }
+    // doEvent
+    void eventMapPut(long ptr, nativeEventCallbackBool callback)
+    {
+        eventMap[ptr] = callback;
+    }
+
+    nativeEventCallbackBool eventMapGet(long ptr)
+    {
+        std::map<long, nativeEventCallbackBool>::iterator iter;
+        iter = eventMap.find(ptr);
+        if (iter != eventMap.end())
+        {
+            return iter->second;
+        }
+        return nullptr;
+    }
+
+    void eventMapRemove(long ptr)
+    {
+        eventMap.erase(ptr);
     }
 };

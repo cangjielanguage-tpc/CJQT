@@ -78,6 +78,20 @@
         }                                                                                                         \
     }
 
+#define EVENT(func)                                                                                   \
+    bool event(QEvent *event)                                                                         \
+    {                                                                                                 \
+        nativeEventCallbackBool eventCallback = appConfig->eventMapGet(reinterpret_cast<long>(this)); \
+        if (eventCallback != nullptr)                                                                 \
+        {                                                                                             \
+            eventCallback(reinterpret_cast<long>(this), reinterpret_cast<long>(event));               \
+        }                                                                                             \
+        else                                                                                          \
+        {                                                                                             \
+            func;                                                                                     \
+        }                                                                                             \
+    }
+
 extern "C"
 {
     extern Config *appConfig;

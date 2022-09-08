@@ -167,7 +167,7 @@ public open class QFrame <: QWidget {
      * The Function is delete
      *
      */
-    public func delete(): Unit {
+    public open override func delete(): Unit {
         unsafe {
             nativeFrameDelete(this.ptr)
         }

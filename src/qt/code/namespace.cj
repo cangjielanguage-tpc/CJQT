@@ -148,3 +148,15 @@ public enum WindowType {
         }
     }
 }
+
+public enum Orientation {
+    | Horizontal
+    | Vertical
+
+    public func value(): Int32 {
+        match (this) {
+            case Horizontal => 0x1i32
+            case Vertical => 0x2i32
+        }
+    }
+}
