@@ -12,9 +12,7 @@ package qt.gui
  * The class is QPaintersEvent
  * @author wathinst
  */
-public class QPaintersEvent{
-    /* let member ptr type is Int64 */
-    let ptr: Int64
+public class QPaintersEvent<:QEvent{
 
     /**
      * The Function is init constructor
@@ -22,6 +20,6 @@ public class QPaintersEvent{
      * @param ptr of Int64
      */
     public init(ptr: Int64) {
-        this.ptr = ptr
+        super(ptr)
     }
 }

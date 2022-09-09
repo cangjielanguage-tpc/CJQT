@@ -11,35 +11,44 @@ class CjScrollBar : public QScrollBar
 public:
     CjScrollBar(QWidget *parent = nullptr) : QScrollBar(parent) {}
     CjScrollBar(Qt::Orientation orientation, QWidget *parent = nullptr) : QScrollBar(orientation, parent) {}
-    void setEvent(eventCallback callBack)
+
+    void doHideEvent(QHideEvent *event)
     {
-        if (callBack != nullptr)
-        {
-            m_pEventCallBack = callBack;
-        }
+        return QScrollBar::hideEvent(event);
+    }
+    void doPaintEvent(QPaintEvent *event)
+    {
+        return QScrollBar::paintEvent(event);
+    }
+    void doMouseMoveEvent(QMouseEvent *event)
+    {
+        return QScrollBar::mouseMoveEvent(event);
     }
     void doMousePressEvent(QMouseEvent *event)
     {
         return QScrollBar::mousePressEvent(event);
     }
-
-protected:
-    virtual bool event(QEvent *event)
+    void doMouseReleaseEvent(QMouseEvent *event)
     {
-        if (event != nullptr)
-        {
-            long eventPtr = reinterpret_cast<long>(event);
-            long receivePtr = reinterpret_cast<long>(this);
-            if (!m_pEventCallBack(receivePtr, eventPtr))
-            {
-                QScrollBar::event(event);
-            }
-        }
-        QScrollBar::event(event);
+        return QScrollBar::mouseReleaseEvent(event);
+    }
+    void doWheelEvent(QWheelEvent *event)
+    {
+        return QScrollBar::wheelEvent(event);
     }
 
 protected:
-    eventCallback m_pEventCallBack = nullptr;
+    HIDE_EVENT(QScrollBar::hideEvent(event))
+
+    PAINT_EVENT(QScrollBar::paintEvent(event))
+
+    MOUSE_PRESS_EVENT(QScrollBar::mousePressEvent(event))
+
+    MOUSE_RELEASE_EVENT(QScrollBar::mouseReleaseEvent(event))
+
+    MOUSE_MOVE_EVENT(QScrollBar::mouseMoveEvent(event))
+
+    WHEEL_EVENT(QScrollBar::wheelEvent(event))
 };
 
 #endif

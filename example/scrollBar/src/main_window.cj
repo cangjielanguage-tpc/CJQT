@@ -16,9 +16,24 @@ public class maniWindow <: QMainWindow {
         mainLayout.setAlignment()
 
         let widget = QWidget(this)
-        let srollBar = QScrollBar(Orientation.Horizontal, widget)
-        srollBar.setEvent()
-       mainLayout.addWidget(srollBar, 10, 10,4,40)
+
+        let srollBar1 = QScrollBar(Orientation.Horizontal, widget)
+        mainLayout.addWidget(srollBar1, 60, 10, 10, 40)
+        //调用QScrollBar类MousePressEvent函数
+        srollBar1.setMousePressEvent()
+
+        let srollBar2 = myScrollBar(Orientation.Horizontal, widget)
+        mainLayout.addWidget(srollBar2, 120, 10, 10, 40)
+        //调用myScrollBar子类派生的MousePressEvent函数
+        srollBar2.setMousePressEvent()
+
+        let srollBar3 = myScrollBar(Orientation.Horizontal, widget)
+        mainLayout.addWidget(srollBar3, 160, 10, 10, 40)
+        //调用自定义的lambda表达式
+        srollBar3.setMousePressEvent({
+            event=>
+            println("entry custMousePressEvent")
+        })
         widget.setLayout(mainLayout)
         setCentralWidget(widget)
     }

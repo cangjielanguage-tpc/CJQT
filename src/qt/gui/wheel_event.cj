@@ -9,10 +9,10 @@
 package qt.gui
 
 /**
- * The class is QMouseEvent
- * @author wathinst
+ * The class is QWheelEvent
+ * @author helin
  */
-public class QMouseEvent<:QEvent{
+public class QWheelEvent<:QEvent{
 
     /**
      * The Function is init constructor

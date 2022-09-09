@@ -4,21 +4,22 @@ package qt.widgets
 foreign func nativeScrollBarCreate(parentPtr: Int64): Int64
 foreign func nativeScrollBarCreateWithOrietation(orientation: Int32, parentPtr: Int64): Int64
 foreign func nativeScrollBarDelete(ptr: Int64): Unit
-foreign func nativeScrollBarSetEvent(ptr: Int64, callback: CFunc<(Int64, Int64) -> Bool>): Unit
-foreign func nativeScrollBardoMousePressEvent(ptr: Int64, eventPtr: Int64): Unit
 
-@c
-func eventCallback(receivePtr: Int64, eventPtr: Int64): Bool {
-    let event = QEvent(eventPtr)
-    let scrollBar = QScrollBar(receivePtr)
-    println("entry scrollBar event")
-    try {
-        scrollBar.event(event)
-    } catch (e: Exception) {
-        println(e)
-        return false
-    }
-}
+// set event
+foreign func nativeScrollBarSetPaintEvent(ptr: Int64, callback: CFunc<(Int64, Int64) -> Unit>): Unit
+foreign func nativeScrollBarSetHideEvent(ptr: Int64, callback: CFunc<(Int64, Int64) -> Unit>): Unit
+foreign func nativeScrollBarSetMouseMoveEvent(ptr: Int64, callback: CFunc<(Int64, Int64) -> Unit>): Unit
+foreign func nativeScrollBarSetMousePressEvent(ptr: Int64, callback: CFunc<(Int64, Int64) -> Unit>): Unit
+foreign func nativeScrollBarSetMouseReleaseEvent(ptr: Int64, callback: CFunc<(Int64, Int64) -> Unit>): Unit
+foreign func nativeScrollBarSetWheelEvent(ptr: Int64, callback: CFunc<(Int64, Int64) -> Unit>): Unit
+
+// do event
+foreign func nativeScrollBarPaintEvent(ptr: Int64, eventPtr: Int64): Unit
+foreign func nativeScrollBarHideEvent(ptr: Int64, eventPtr: Int64): Unit
+foreign func nativeScrollBarMouseMoveEvent(ptr: Int64, eventPtr: Int64): Unit
+foreign func nativeScrollBarMousePressEvent(ptr: Int64, eventPtr: Int64): Unit
+foreign func nativeScrollBarMouseReleaseEvent(ptr: Int64, eventPtr: Int64): Unit
+foreign func nativeScrollBarWheelEvent(ptr: Int64, eventPtr: Int64): Unit
 
 public open class QScrollBar <: QAbstractSlider {
     public init() {
@@ -36,37 +37,45 @@ public open class QScrollBar <: QAbstractSlider {
     public init(orientation: Orientation, parent: QWidget) {
         super(unsafe { nativeScrollBarCreateWithOrietation(orientation.value(), parent.ptr) })
     }
-    public func setEvent(): Unit {
-        unsafe { nativeScrollBarSetEvent(this.ptr, eventCallback) }
+        /**
+     * The Function is setMouseReleaseEvent
+     *
+     * @param callback of (QMouseEvent)->Unit
+     */
+    public func setMousePressEvent() {
+        super.setMousePressEvent(mousePressEvent)
     }
-    protected open override func event(event: QEvent): Bool {
-        match (event.eventType()) {
-            case QEventType.MouseButtonPress =>
-                println("entry scrollBar 1")
-                if (event is QMouseEvent) {
-                    println("entry scrollBar 2")
-                    var mouseEvent = event as QMouseEvent
-                    match (mouseEvent) {
-                        case None => return false
-                        case _ =>
-                            mousePressEvent(mouseEvent.getOrThrow())
-                            return true
-                    }
-                }
-                return false
-            case _ => return false
-        }
-    }
+    //protected event function
     protected open func contextMenuEvent(): Unit {}
-    protected open func hideEvent(): Unit {}
-    protected open func mouseMoveEvent(event: QMouseEvent): Unit {}
-    protected open func mousePressEvent(event: QMouseEvent): Unit {
-        println("entry scrollBar mouseMoveEvent")
-        return unsafe {
-            nativeScrollBardoMousePressEvent(this.ptr, event.ptr)
+    protected open func hideEvent(event: QHideEvent): Unit {
+        unsafe {
+            nativeScrollBarHideEvent(this.ptr, event.ptr)
         }
     }
-    protected open func mouseReleaseEvent(): Unit {}
-    protected open func paintEvent(): Unit {}
-    protected open func wheelEvent(): Unit {}
+    protected open func mouseMoveEvent(event: QMouseEvent): Unit {
+        unsafe {
+            nativeScrollBarMouseMoveEvent(this.ptr, event.ptr)
+        }
+    }
+    protected open func mousePressEvent(event: QMouseEvent): Unit {
+        println("entry QScrollBar mousePressEvent")
+        unsafe {
+            nativeScrollBarMousePressEvent(this.ptr, event.ptr)
+        }
+    }
+    protected open func mouseReleaseEvent(event: QMouseEvent): Unit {
+        unsafe {
+            nativeScrollBarMouseReleaseEvent(this.ptr, event.ptr)
+        }
+    }
+    protected open func paintEvent(event: QPaintersEvent): Unit {
+        unsafe {
+            nativeScrollBarPaintEvent(this.ptr, event.ptr)
+        }
+    }
+    protected open func wheelEvent(event: QWheelEvent): Unit {
+        unsafe {
+            nativeScrollBarWheelEvent(this.ptr, event.ptr)
+        }
+    }
 }

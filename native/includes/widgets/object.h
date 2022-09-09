@@ -92,6 +92,34 @@
         }                                                                                             \
     }
 
+#define HIDE_EVENT(func)                                                                                  \
+    void hideEvent(QHideEvent *event)                                                                     \
+    {                                                                                                     \
+        nativeEventCallback hideEventCallback = appConfig->hideEventMapGet(reinterpret_cast<long>(this)); \
+        if (hideEventCallback != nullptr)                                                                 \
+        {                                                                                                 \
+            hideEventCallback(reinterpret_cast<long>(this), reinterpret_cast<long>(event));               \
+        }                                                                                                 \
+        else                                                                                              \
+        {                                                                                                 \
+            func;                                                                                         \
+        }                                                                                                 \
+    }
+
+#define WHEEL_EVENT(func)                                                                                   \
+    void wheelEvent(QWheelEvent *event)                                                                     \
+    {                                                                                                       \
+        nativeEventCallback wheelEventCallback = appConfig->wheelEventMapGet(reinterpret_cast<long>(this)); \
+        if (wheelEventCallback != nullptr)                                                                  \
+        {                                                                                                   \
+            wheelEventCallback(reinterpret_cast<long>(this), reinterpret_cast<long>(event));                \
+        }                                                                                                   \
+        else                                                                                                \
+        {                                                                                                   \
+            func;                                                                                           \
+        }                                                                                                   \
+    }
+
 extern "C"
 {
     extern Config *appConfig;

@@ -13,4 +13,6 @@ public class QWidgetCallbackMap <: QCallbackMap {
     public static let mouseReleaseEvent = HashMap<Int64, (QMouseEvent) -> Unit>()
     /* let member mouseMoveEvent */
     public static let mouseMoveEvent = HashMap<Int64, (QMouseEvent) -> Unit>()
+        /* let member mouseMoveEvent */
+    public static let event = HashMap<Int64, (QEvent) -> Bool>()
 }
