@@ -152,14 +152,14 @@ func signalTest() {
     lineEdit.delete()
 }
 
-public func onInputRejected(): Unit {
+public func onInputRejected(d: Unit): Unit {
     return
 }
-public func onReturnPressed(): Unit {
+public func onReturnPressed(d: Unit): Unit {
     return
 }
 
-public func onSelectionChanged(): Unit {
+public func onSelectionChanged(d: Unit): Unit {
     return
 }
 
@@ -169,9 +169,9 @@ public func onTextChanged(text: String): Unit {
 public func onTextEdited(text: String): Unit {
     return
 }
-public func onCursorPositionChanged(oldPos: Int64, newPos: Int64) {
+public func onCursorPositionChanged(pos: (Int64, Int64)) {
     return
 }
-public func onEditingFinished(): Unit {
+public func onEditingFinished(d: Unit): Unit {
     return
 }

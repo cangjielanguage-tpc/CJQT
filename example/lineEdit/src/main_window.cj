@@ -160,16 +160,16 @@ public class maniWindow <: QMainWindow {
         }
     }
 
-    public func onInputRejected(): Unit {
+    public func onInputRejected(d: Unit): Unit {
         let length = this.lineEdit11.maxLength()
         this.note10.setText("文本框字符长度不超过${length}")
     }
-    public func onReturnPressed(): Unit {
+    public func onReturnPressed(d: Unit): Unit {
         let str = this.lineEdit11.text()
         this.note10.setText("输入的内容为：${str}")
     }
 
-    public func onSelectionChanged(): Unit {
+    public func onSelectionChanged(d: Unit): Unit {
         if (lineEdit11.hasSelectedText()) {
             let str = this.lineEdit11.selectedText()
             this.note10.setText("选中的内容为：${str}")

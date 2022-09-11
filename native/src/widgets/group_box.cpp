@@ -68,18 +68,18 @@ extern "C" {
         return instance->isChecked();
     }
 
-    void nativeGroupBoxClickedConnect(long ptr, long code, nativeConnectCallback callback)
+    void nativeGroupBoxClickedConnect(long ptr, long code, nativeConnectCallbackPointer callback)
     {
         QGroupBox *instance = reinterpret_cast<QGroupBox *>(static_cast<uintptr_t>(ptr));
         QObject::connect(instance, &QGroupBox::clicked, [=]()
-                         { callback(code); });
+                         { callback(code, (void*)0); });
     }
 
-    void nativeGroupBoxToggledConnect(long ptr, long code, nativeConnectCallback callback)
+    void nativeGroupBoxToggledConnect(long ptr, long code, nativeConnectCallbackPointer callback)
     {
         QGroupBox *instance = reinterpret_cast<QGroupBox *>(static_cast<uintptr_t>(ptr));
         QObject::connect(instance, &QGroupBox::toggled, [=]()
-                         { callback(code); });
+                         { callback(code, (void*)0); });
     }
 
     void nativeGroupBoxDelete(long ptr)

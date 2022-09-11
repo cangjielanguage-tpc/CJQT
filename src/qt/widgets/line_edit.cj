@@ -293,14 +293,18 @@ foreign func nativeLineEditSetText(ptr: Int64, str: CString): Unit
 foreign func nativeLineEditConnectCursorPositionChanged(
     ptr: Int64,
     code: Int64,
-    callback: CFunc<(Int64, Int32, Int32) -> Unit>
+    callback: CFunc<(Int64, CPointer<Unit>) -> Unit>
 ): Unit
-foreign func nativeLineEditConnectEditingFinished(ptr: Int64, code: Int64, callback: CFunc<(Int64) -> Unit>): Unit
-foreign func nativeLineEditConnectInputRejected(ptr: Int64, code: Int64, callback: CFunc<(Int64) -> Unit>): Unit
-foreign func nativeLineEditConnectReturnPressed(ptr: Int64, code: Int64, callback: CFunc<(Int64) -> Unit>): Unit
-foreign func nativeLineEditConnectSelectionChanged(ptr: Int64, code: Int64, callback: CFunc<(Int64) -> Unit>): Unit
-foreign func nativeLineEditConnectTextChanged(ptr: Int64, code: Int64, callback: CFunc<(Int64, CString) -> Unit>): Unit
-foreign func nativeLineEditConnectTextEdited(ptr: Int64, code: Int64, callback: CFunc<(Int64, CString) -> Unit>): Unit
+foreign func nativeLineEditConnectEditingFinished(ptr: Int64, code: Int64, 
+    callback: CFunc<(Int64, CPointer<Unit>) -> Unit>): Unit
+foreign func nativeLineEditConnectInputRejected(ptr: Int64, code: Int64, 
+    callback: CFunc<(Int64, CPointer<Unit>) -> Unit>): Unit
+foreign func nativeLineEditConnectReturnPressed(ptr: Int64, code: Int64, 
+    callback: CFunc<(Int64, CPointer<Unit>) -> Unit>): Unit
+foreign func nativeLineEditConnectSelectionChanged(ptr: Int64, code: Int64, 
+    callback: CFunc<(Int64, CPointer<Unit>) -> Unit>): Unit
+foreign func nativeLineEditConnectTextChanged(ptr: Int64, code: Int64, callback: CFunc<(Int64, CPointer<Unit>) -> Unit>): Unit
+foreign func nativeLineEditConnectTextEdited(ptr: Int64, code: Int64, callback: CFunc<(Int64, CPointer<Unit>) -> Unit>): Unit
 
 /**
  * The enum is ActionPosition
@@ -367,25 +371,25 @@ public enum EchoMode {
  */
 public open class QLineEdit <: QWidget {
     /** let member cursorPositionChanged type is QLineEditCursorPositionChangedSignal */
-    public let cursorPositionChanged: QLineEditCursorPositionChangedSignal
+    public let cursorPositionChanged: QLineEditCursorPositionChangedSignal<(Int64, Int64)>
 
     /** let member editingFinished type is QLineEditEditingFinishedSignal */
-    public let editingFinished: QLineEditEditingFinishedSignal
+    public let editingFinished: QLineEditEditingFinishedSignal<Unit>
 
     /** let member inputRejected type is QLineEditInputRejectedSignal */
-    public let inputRejected: QLineEditInputRejectedSignal
+    public let inputRejected: QLineEditInputRejectedSignal<Unit>
 
     /** let member returnPressed type is QLineEditReturnPressedSignal */
-    public let returnPressed: QLineEditReturnPressedSignal
+    public let returnPressed: QLineEditReturnPressedSignal<Unit>
 
     /** let member selectionChanged type is QLineEditSelectionChangedSignal */
-    public let selectionChanged: QLineEditSelectionChangedSignal
+    public let selectionChanged: QLineEditSelectionChangedSignal<Unit>
 
     /** let member textChanged type is QLineEditTextChangedSignal */
-    public let textChanged: QLineEditTextChangedSignal
+    public let textChanged: QLineEditTextChangedSignal<String>
 
     /** let member textEdited type is QLineEditTextEditedSignal */
-    public let textEdited: QLineEditTextEditedSignal
+    public let textEdited: QLineEditTextEditedSignal<String>
 
     /**
      * The Function is init constructor
@@ -832,10 +836,10 @@ public open class QLineEdit <: QWidget {
 }
 
 /**
- * The class is QLineEditCursorPositionChangedSignal inherited from QSignalUnit
+ * The class is QLineEditCursorPositionChangedSignal inherited from QWidgetSignal<T>
  * @author helin
  */
-public class QLineEditCursorPositionChangedSignal <: QSignalInt64Int64 {
+public class QLineEditCursorPositionChangedSignal<T> <: QWidgetSignal<T> {
     /*
      * The Function is init constructor
      *
@@ -851,7 +855,7 @@ public class QLineEditCursorPositionChangedSignal <: QSignalInt64Int64 {
      * @param code of Int64
      * @param cb of CFunc<(Int64,Int32,Int32)->Unit>
      */
-    public override func nativeConnect(code: Int64, cb: CFunc<(Int64, Int32, Int32) -> Unit>): Unit {
+    public override func nativeConnect(code: Int64, cb: CFunc<(Int64, CPointer<Unit>) -> Unit>): Unit {
         unsafe {
             nativeLineEditConnectCursorPositionChanged(ptr, code, cb)
         }
@@ -859,10 +863,10 @@ public class QLineEditCursorPositionChangedSignal <: QSignalInt64Int64 {
 }
 
 /**
- * The class is QLineEditEditingFinishedSignal inherited from QSignalUnit
+ * The class is QLineEditEditingFinishedSignal inherited from QWidgetSignal<T>
  * @author helin
  */
-public class QLineEditEditingFinishedSignal <: QSignalUnit {
+public class QLineEditEditingFinishedSignal<T> <: QWidgetSignal<T> {
     /*
      * The Function is init constructor
      *
@@ -878,7 +882,7 @@ public class QLineEditEditingFinishedSignal <: QSignalUnit {
      * @param code of Int64
      * @param cb of CFunc<(Int64)->Unit>
      */
-    public override func nativeConnect(code: Int64, cb: CFunc<(Int64) -> Unit>): Unit {
+    public override func nativeConnect(code: Int64, cb: CFunc<(Int64, CPointer<Unit>) -> Unit>): Unit {
         unsafe {
             nativeLineEditConnectEditingFinished(ptr, code, cb)
         }
@@ -886,10 +890,10 @@ public class QLineEditEditingFinishedSignal <: QSignalUnit {
 }
 
 /**
- * The class is QLineEditInputRejectedSignal inherited from QSignalUnit
+ * The class is QLineEditInputRejectedSignal inherited from QWidgetSignal<T>
  * @author helin
  */
-public class QLineEditInputRejectedSignal <: QSignalUnit {
+public class QLineEditInputRejectedSignal<T> <: QWidgetSignal<T> {
     /*
      * The Function is init constructor
      *
@@ -905,7 +909,7 @@ public class QLineEditInputRejectedSignal <: QSignalUnit {
      * @param code of Int64
      * @param cb of CFunc<(Int64)->Unit>
      */
-    public override func nativeConnect(code: Int64, cb: CFunc<(Int64) -> Unit>): Unit {
+    public override func nativeConnect(code: Int64, cb: CFunc<(Int64, CPointer<Unit>) -> Unit>): Unit {
         unsafe {
             nativeLineEditConnectInputRejected(ptr, code, cb)
         }
@@ -913,10 +917,10 @@ public class QLineEditInputRejectedSignal <: QSignalUnit {
 }
 
 /**
- * The class is QLineEditReturnPressedSignal inherited from QSignalUnit
+ * The class is QLineEditReturnPressedSignal inherited from QWidgetSignal<T>
  * @author helin
  */
-public class QLineEditReturnPressedSignal <: QSignalUnit {
+public class QLineEditReturnPressedSignal<T> <: QWidgetSignal<T> {
     /*
      * The Function is init constructor
      *
@@ -932,7 +936,7 @@ public class QLineEditReturnPressedSignal <: QSignalUnit {
      * @param code of Int64
      * @param cb of CFunc<(Int64)->Unit>
      */
-    public override func nativeConnect(code: Int64, cb: CFunc<(Int64) -> Unit>): Unit {
+    public override func nativeConnect(code: Int64, cb: CFunc<(Int64, CPointer<Unit>) -> Unit>): Unit {
         unsafe {
             nativeLineEditConnectReturnPressed(ptr, code, cb)
         }
@@ -940,10 +944,10 @@ public class QLineEditReturnPressedSignal <: QSignalUnit {
 }
 
 /**
- * The class is QLineEditSelectionChangedSignal inherited from QSignalUnit
+ * The class is QLineEditSelectionChangedSignal inherited from QWidgetSignal<T>
  * @author helin
  */
-public class QLineEditSelectionChangedSignal <: QSignalUnit {
+public class QLineEditSelectionChangedSignal<T> <: QWidgetSignal<T> {
     /*
      * The Function is init constructor
      *
@@ -959,7 +963,7 @@ public class QLineEditSelectionChangedSignal <: QSignalUnit {
      * @param code of Int64
      * @param cb of CFunc<(Int64)->Unit>
      */
-    public override func nativeConnect(code: Int64, cb: CFunc<(Int64) -> Unit>): Unit {
+    public override func nativeConnect(code: Int64, cb: CFunc<(Int64, CPointer<Unit>) -> Unit>): Unit {
         unsafe {
             nativeLineEditConnectSelectionChanged(ptr, code, cb)
         }
@@ -970,7 +974,7 @@ public class QLineEditSelectionChangedSignal <: QSignalUnit {
  * The class is QLineEditTextChangedSignal inherited from QSignalCString
  * @author helin
  */
-public class QLineEditTextChangedSignal <: QSignalString {
+public class QLineEditTextChangedSignal<T> <: QWidgetSignal<T> {
     /*
      * The Function is init constructor
      *
@@ -986,7 +990,7 @@ public class QLineEditTextChangedSignal <: QSignalString {
      * @param code of Int64
      * @param cb of CFunc<(Int64,CString)->Unit>
      */
-    public override func nativeConnect(code: Int64, cb: CFunc<(Int64, CString) -> Unit>): Unit {
+    public override func nativeConnect(code: Int64, cb: CFunc<(Int64, CPointer<Unit>) -> Unit>): Unit {
         unsafe {
             nativeLineEditConnectTextChanged(ptr, code, cb)
         }
@@ -997,7 +1001,7 @@ public class QLineEditTextChangedSignal <: QSignalString {
  * The class is QLineEditTextEditedSignal inherited from QSignalCString
  * @author helin
  */
-public class QLineEditTextEditedSignal <: QSignalString {
+public class QLineEditTextEditedSignal<T> <: QWidgetSignal<T> {
     /*
      * The Function is init constructor
      *
@@ -1013,7 +1017,7 @@ public class QLineEditTextEditedSignal <: QSignalString {
      * @param code of Int64
      * @param cb of CFunc<(Int64,CString)->Unit>
      */
-    public override func nativeConnect(code: Int64, cb: CFunc<(Int64, CString) -> Unit>): Unit {
+    public override func nativeConnect(code: Int64, cb: CFunc<(Int64, CPointer<Unit>) -> Unit>): Unit {
         unsafe {
             nativeLineEditConnectTextEdited(ptr, code, cb)
         }

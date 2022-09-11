@@ -91,11 +91,11 @@ extern "C"
 		return instance->isChecked();
 	}
 
-	void nativeActionConnectTriggered(long ptr, long code, nativeConnectCallbackBool callback)
+	void nativeActionConnectTriggered(long ptr, long code, nativeConnectCallbackPointer callback)
 	{
 		QAction *instance = reinterpret_cast<QAction *>(static_cast<uintptr_t>(ptr));
 		QObject::connect(instance, &QAction::triggered, [=](bool result)
-						 { callback(code, result); });
+						 { callback(code, (void *)result); });
 	}
 
 	void nativeActionDelete(long ptr)

@@ -18,7 +18,7 @@ foreign func nativeActionSetCheckable(ptr: Int64, checkable: Bool): Unit
 foreign func nativeActionIsCheckable(ptr: Int64): Bool
 foreign func nativeActionSetChecked(ptr: Int64, checked: Bool): Unit
 foreign func nativeActionIsChecked(ptr: Int64): Bool
-foreign func nativeActionConnectTriggered(ptr: Int64, code: Int64, callback: CFunc<(Int64, Bool) -> Unit>): Unit
+foreign func nativeActionConnectTriggered(ptr: Int64, code: Int64, callback: CFunc<(Int64, CPointer<Unit>) -> Unit>): Unit
 foreign func nativeActionDelete(ptr: Int64): Unit
 
 /**
@@ -30,7 +30,7 @@ public class QAction {
     public let ptr: Int64
 
     /** let member triggered type is QActionTriggeredSignal */
-    public let triggered: QActionTriggeredSignal
+    public let triggered: QActionTriggeredSignal<Bool>
 
     /**
      * The Function is init constructor
@@ -40,7 +40,7 @@ public class QAction {
         ptr = unsafe {
             nativeActionCreate(0)
         }
-        triggered = QActionTriggeredSignal(ptr)
+        triggered = QActionTriggeredSignal<Bool>(ptr)
     }
 
     /**
@@ -52,7 +52,7 @@ public class QAction {
         ptr = unsafe {
             nativeActionCreate(parent.ptr)
         }
-        triggered = QActionTriggeredSignal(ptr)
+        triggered = QActionTriggeredSignal<Bool>(ptr)
     }
 
     /*
@@ -62,7 +62,7 @@ public class QAction {
      */
     init(ptr: Int64) {
         this.ptr = ptr
-        triggered = QActionTriggeredSignal(ptr)
+        triggered = QActionTriggeredSignal<Bool>(ptr)
     }
 
     /**
@@ -181,10 +181,10 @@ public class QAction {
 }
 
 /**
- * The class is QActionTriggeredSignal inherited from QSignalBool
+ * The class is QActionTriggeredSignal inherited from QWidgetSignal<T>
  * @author wathinst
  */
-public class QActionTriggeredSignal <: QSignalBool {
+public class QActionTriggeredSignal<T> <: QWidgetSignal<T> {
     /*
      * The Function is init constructor
      *
@@ -198,9 +198,9 @@ public class QActionTriggeredSignal <: QSignalBool {
      * The Function is nativeConnect
      *
      * @param code of Int64
-     * @param cb of CFunc<(Int64,Bool)->Unit>
+     * @param cb of CFunc<(Int64,CPointer<Unit>)->Unit>
      */
-    public override func nativeConnect(code: Int64, cb: CFunc<(Int64, Bool) -> Unit>) {
+    public override func nativeConnect(code: Int64, cb: CFunc<(Int64, CPointer<Unit>) -> Unit>) {
         unsafe {
             nativeActionConnectTriggered(ptr, code, cb)
         }

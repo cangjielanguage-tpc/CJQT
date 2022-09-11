@@ -419,43 +419,48 @@ extern "C"
         return lineEditObj->setText(QString(ch));
     }
     // Signals Function
-    void nativeLineEditConnectCursorPositionChanged(long ptr, long code, nativeConnectCallbackIntInt callback)
+    void nativeLineEditConnectCursorPositionChanged(long ptr, long code, nativeConnectCallbackPointer callback)
     {
         QLineEdit *lineEditObj = reinterpret_cast<QLineEdit *>(static_cast<uintptr_t>(ptr));
         QObject::connect(lineEditObj, &QLineEdit::cursorPositionChanged, [=](int oldPos, int newPos)
-                         { callback(code, oldPos, newPos); });
+                         { 
+                            CjDataIntInt  data = {    
+ 	                            .p1= oldPos,    
+ 	                            .p2 = newPos
+                            };
+                            callback(code, (void *)&data); });
     }
-    void nativeLineEditConnectEditingFinished(long ptr, long code, nativeConnectCallback callback)
+    void nativeLineEditConnectEditingFinished(long ptr, long code, nativeConnectCallbackPointer callback)
     {
         QLineEdit *lineEditObj = reinterpret_cast<QLineEdit *>(static_cast<uintptr_t>(ptr));
         QObject::connect(lineEditObj, &QLineEdit::editingFinished, [=]()
-                         { callback(code); });
+                         { callback(code, (void *)0); });
     }
-    void nativeLineEditConnectInputRejected(long ptr, long code, nativeConnectCallback callback)
+    void nativeLineEditConnectInputRejected(long ptr, long code, nativeConnectCallbackPointer callback)
     {
         QLineEdit *lineEditObj = reinterpret_cast<QLineEdit *>(static_cast<uintptr_t>(ptr));
         QObject::connect(lineEditObj, &QLineEdit::inputRejected, [=]()
-                         { callback(code); });
+                         { callback(code, (void *)0); });
     }
-    void nativeLineEditConnectReturnPressed(long ptr, long code, nativeConnectCallback callback)
+    void nativeLineEditConnectReturnPressed(long ptr, long code, nativeConnectCallbackPointer callback)
     {
         QLineEdit *lineEditObj = reinterpret_cast<QLineEdit *>(static_cast<uintptr_t>(ptr));
         QObject::connect(lineEditObj, &QLineEdit::returnPressed, [=]()
-                         { callback(code); });
+                         { callback(code, (void *)0); });
     }
-    void nativeLineEditConnectSelectionChanged(long ptr, long code, nativeConnectCallback callback)
+    void nativeLineEditConnectSelectionChanged(long ptr, long code, nativeConnectCallbackPointer callback)
     {
         QLineEdit *lineEditObj = reinterpret_cast<QLineEdit *>(static_cast<uintptr_t>(ptr));
         QObject::connect(lineEditObj, &QLineEdit::selectionChanged, [=]()
-                         { callback(code); });
+                         { callback(code, (void *)0); });
     }
-    void nativeLineEditConnectTextChanged(long ptr, long code, nativeConnectCallbackChar callback)
+    void nativeLineEditConnectTextChanged(long ptr, long code, nativeConnectCallbackPointer callback)
     {
         QLineEdit *lineEditObj = reinterpret_cast<QLineEdit *>(static_cast<uintptr_t>(ptr));
         QObject::connect(lineEditObj, &QLineEdit::textChanged, [=](QString text)
                          {QByteArray ba=text.toUtf8() ; callback(code,ba.data()); });
     }
-    void nativeLineEditConnectTextEdited(long ptr, long code, nativeConnectCallbackChar callback)
+    void nativeLineEditConnectTextEdited(long ptr, long code, nativeConnectCallbackPointer callback)
     {
         QLineEdit *lineEditObj = reinterpret_cast<QLineEdit *>(static_cast<uintptr_t>(ptr));
         QObject::connect(lineEditObj, &QLineEdit::textEdited, [=](const QString text)

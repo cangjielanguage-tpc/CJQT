@@ -19,8 +19,8 @@ foreign func nativeGroupBoxSetCheckable(ptr: Int64, checkable: Bool): Unit
 foreign func nativeGroupBoxIsCheckable(ptr: Int64): Bool
 foreign func nativeGroupBoxSetChecked(ptr: Int64, checked: Bool): Unit
 foreign func nativeGroupBoxIsChecked(ptr: Int64): Bool
-foreign func nativeGroupBoxClickedConnect(ptr: Int64, code: Int64, callback: CFunc<(Int64) -> Unit>): Unit
-foreign func nativeGroupBoxToggledConnect(ptr: Int64, code: Int64, callback: CFunc<(Int64) -> Unit>): Unit
+foreign func nativeGroupBoxClickedConnect(ptr: Int64, code: Int64, callback: CFunc<(Int64, CPointer<Unit>) -> Unit>): Unit
+foreign func nativeGroupBoxToggledConnect(ptr: Int64, code: Int64, callback: CFunc<(Int64, CPointer<Unit>) -> Unit>): Unit
 foreign func nativeGroupBoxDelete(ptr: Int64): Unit
 
 /**
@@ -29,9 +29,9 @@ foreign func nativeGroupBoxDelete(ptr: Int64): Unit
  */
 public class QGroupBox <: QWidget {
     /** let member clicked type is QGroupBoxClickedSignal */
-    public let clicked: QGroupBoxClickedSignal
+    public let clicked: QGroupBoxClickedSignal<Unit>
     /** let member toggled type is QGroupBoxToggledSignal */
-    public let toggled: QGroupBoxToggledSignal 
+    public let toggled: QGroupBoxToggledSignal<Unit>
 
     /**
      * The Function is init constructor
@@ -176,10 +176,10 @@ public class QGroupBox <: QWidget {
 }
 
 /**
- * The class is QGroupBoxClickedSignal inherited from QSignalUnit
+ * The class is QGroupBoxClickedSignal inherited from QWidgetSignal<T>
  * @author wathinst
  */
-public class QGroupBoxClickedSignal <: QSignalUnit {
+public class QGroupBoxClickedSignal<T> <: QWidgetSignal<T> {
     /*
      * The Function is init constructor
      *
@@ -195,7 +195,7 @@ public class QGroupBoxClickedSignal <: QSignalUnit {
      * @param code of Int64
      * @param cb of CFunc<(Int64)->Unit>
      */
-    public override func nativeConnect(code: Int64, cb: CFunc<(Int64) -> Unit>){
+    public override func nativeConnect(code: Int64, cb: CFunc<(Int64, CPointer<Unit>) -> Unit>){
         unsafe {
             nativeGroupBoxClickedConnect(ptr, code, cb)
         }
@@ -203,10 +203,10 @@ public class QGroupBoxClickedSignal <: QSignalUnit {
 }
 
 /**
- * The class is QGroupBoxToggledSignal inherited from QSignalUnit
+ * The class is QGroupBoxToggledSignal inherited from QWidgetSignal<T>
  * @author wathinst
  */
-public class QGroupBoxToggledSignal <: QSignalUnit {
+public class QGroupBoxToggledSignal<T> <: QWidgetSignal<T> {
     /*
      * The Function is init constructor
      *
@@ -222,7 +222,7 @@ public class QGroupBoxToggledSignal <: QSignalUnit {
      * @param code of Int64
      * @param cb of CFunc<(Int64)->Unit>
      */
-    public override func nativeConnect(code: Int64, cb: CFunc<(Int64) -> Unit>){
+    public override func nativeConnect(code: Int64, cb: CFunc<(Int64, CPointer<Unit>) -> Unit>){
         unsafe {
             nativeGroupBoxToggledConnect(ptr, code, cb)
         }

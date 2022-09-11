@@ -29,6 +29,8 @@ public open class QCallbackMap {
     public static let timer = HashMap<Int64, () -> Unit>()
     /* let member connectFloat64 */
     public static let connectFloat64 = HashMap<Int64, (Float64) -> Unit>()
+
+    public static let connectAny = HashMap<Int64, Any>()
 }
 
 /**

@@ -35,11 +35,11 @@ extern "C"
         instance->setStyleSheet(style);
     }
 
-    void nativePushButtonConnect(long ptr, long code, nativeConnectCallback callback)
+    void nativePushButtonConnect(long ptr, long code, nativeConnectCallbackPointer callback)
     {
         QPushButton *instance = reinterpret_cast<QPushButton *>(static_cast<uintptr_t>(ptr));
         QObject::connect(instance, &QPushButton::clicked, [=]()
-                         { callback(code); });
+                         { callback(code, (void *)0); });
     }
 
     void nativePushButtonDelete(long ptr)

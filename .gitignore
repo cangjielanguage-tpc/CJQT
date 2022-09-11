@@ -22,3 +22,5 @@ output/
 
 *.gcda*
 *.gcno*
+
+module-resolve.json

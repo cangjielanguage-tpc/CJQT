@@ -4,6 +4,7 @@
 #include <QWidget>
 
 #include "object.h"
+#include "data_type.h"
 
 class CjQtWidget : public QWidget
 {
