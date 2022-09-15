@@ -32,6 +32,8 @@ foreign func nativeWidgetSetGeometry(ptr: Int64, ax: Int32, ay: Int32, aw: Int32
 foreign func nativeWidgetSetFont(ptr: Int64, fontPtr: Int64): Unit
 foreign func nativeWidgetDelete(ptr: Int64): Unit
 foreign func nativeWidgetSetStyleSheet(ptr: Int64, styleSheet: CString): Unit
+foreign func nativeWidgetSetWindowIcon(ptr: Int64, iconPtr: Int64): Unit
+foreign func nativeWidgetRect(ptr: Int64): Int64
 
 foreign func nativeWidgetSetPaintEvent(ptr: Int64, callback: CFunc<(Int64, Int64) -> Unit>): Unit
 foreign func nativeWidgetSetMousePressEvent(ptr: Int64, callback: CFunc<(Int64, Int64) -> Unit>): Unit
@@ -129,18 +131,17 @@ func connectCStringCallback(code: Int64, data: CString): Unit {
  * The class is QWidget
  * @author wathinst
  */
-public open class QWidget {
-    /** let member ptr type is Int64 */
-    public let ptr: Int64
-
+public open class QWidget <: QObject {
     /**
      * The Function is init constructor
      *
      */
     public init() {
-        ptr = unsafe {
-            nativeWidgetCreate(0)
-        }
+        super(
+            unsafe {
+                nativeWidgetCreate(0)
+            }
+        )
     }
 
     /**
@@ -149,9 +150,11 @@ public open class QWidget {
      * @param parent of QWidget
      */
     public init(parent: QWidget) {
-        ptr = unsafe {
-            nativeWidgetCreate(parent.ptr)
-        }
+        super(
+            unsafe {
+                nativeWidgetCreate(parent.ptr)
+            }
+        )
     }
 
     /**
@@ -160,7 +163,7 @@ public open class QWidget {
      * @param ptr of Int64
      */
     public init(ptr: Int64) {
-        this.ptr = ptr
+        super(ptr)
     }
 
     /**
@@ -351,6 +354,29 @@ public open class QWidget {
         unsafe {
             nativeWidgetSetStyleSheet(ptr, CString(styleSheet))
         }
+    }
+
+    /**
+     * The Function is setWindowIcon
+     *
+     * @param icon of QIcon
+     */
+    public func setWindowIcon(icon: QIcon): Unit {
+        unsafe {
+            nativeWidgetSetWindowIcon(ptr, icon.ptr)
+        }
+    }
+
+    /**
+     * The Function is rect
+     *
+     * @return Type of  QRect
+     */
+    public func rect(): QRect {
+        let rectPtr = unsafe {
+            nativeWidgetRect(this.ptr)
+        }
+        return QRect(rectPtr)
     }
 
     /**

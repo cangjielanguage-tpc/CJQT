@@ -21,7 +21,7 @@ public class QHBoxLayout <: QBoxLayout {
      *
      * @param parent of QWidget, and the Default value is QWidget()
      */
-    public init(parent!: QWidget = QWidget()) {
+    public init(parent!: QWidget = QWidget(0)) {
         super(
             unsafe {
                 nativeHBoxLayoutCreate(parent.ptr)

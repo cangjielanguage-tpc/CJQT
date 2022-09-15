@@ -20,7 +20,20 @@ extern "C"
         }
         return reinterpret_cast<long>(painter);
     }
-
+    long nativePainterCreateWithDevice(long devicePtr)
+    {
+        QPainter *painter;
+        if (devicePtr == 0L)
+        {
+            painter = new QPainter();
+        }
+        else
+        {
+            QPaintDevice *device = reinterpret_cast<QPaintDevice *>(static_cast<uintptr_t>(devicePtr));
+            painter = new QPainter(device);
+        }
+        return reinterpret_cast<long>(painter);
+    }
     void nativePainterSetPen(long ptr, long penPtr)
     {
         QPainter *instance = reinterpret_cast<QPainter *>(static_cast<uintptr_t>(ptr));
@@ -49,7 +62,7 @@ extern "C"
         instance->drawRect(x, y, width, height);
     }
     void nativePainterDrawPixmap(long ptr, int x, int y,
-                              int width, int height, long pixmapPtr)
+                                 int width, int height, long pixmapPtr)
     {
         QPainter *instance = reinterpret_cast<QPainter *>(static_cast<uintptr_t>(ptr));
         QPixmap *pixmap = reinterpret_cast<QPixmap *>(static_cast<uintptr_t>(pixmapPtr));
@@ -60,5 +73,29 @@ extern "C"
     {
         QPainter *instance = reinterpret_cast<QPainter *>(static_cast<uintptr_t>(ptr));
         delete instance;
+    }
+    void nativePainterTranslate(long ptr, double dx, double dy)
+    {
+        QPainter *instance = reinterpret_cast<QPainter *>(static_cast<uintptr_t>(ptr));
+        instance->translate(dx, dy);
+    }
+    void nativePainterTranslateWithPoint(long ptr, const long pointPrt)
+    {
+        QPainter *instance = reinterpret_cast<QPainter *>(static_cast<uintptr_t>(ptr));
+        QPoint *point = reinterpret_cast<QPoint *>(static_cast<uintptr_t>(pointPrt));
+        instance->translate(*point);
+    }
+    void nativePainterTranslateWithPointF(long ptr, const long pointFPrt)
+    {
+        QPainter *instance = reinterpret_cast<QPainter *>(static_cast<uintptr_t>(ptr));
+        QPointF *pointF = reinterpret_cast<QPointF *>(static_cast<uintptr_t>(pointFPrt));
+        instance->translate(*pointF);
+    }
+
+    void nativePainterDrawPolyline(long ptr, const long polygonFPtr)
+    {
+        QPainter *instance = reinterpret_cast<QPainter *>(static_cast<uintptr_t>(ptr));
+        QPolygonF *polygon = reinterpret_cast<QPolygonF *>(static_cast<uintptr_t>(polygonFPtr));
+        instance->drawPolyline(*polygon);
     }
 }

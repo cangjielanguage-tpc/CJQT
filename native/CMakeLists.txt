@@ -56,12 +56,27 @@ set (SRC_DIR ./src/widgets/application.cpp
         ./src/widgets/abstract_scroll_area.cpp
         ./src/widgets/abstract_slider.cpp
         ./src/widgets/scroll_bar.cpp
+        ./src/widgets/graphics_scene.cpp
+        ./src/widgets/graphics_view.cpp
+        ./src/widgets/graphics_item.cpp
+        ./src/widgets/graphics_line_item.cpp
+        ./src/widgets/action_group.cpp
+        ./src/widgets/graphics_scene_mouse_event.cpp
+        ./src/widgets/graphics_scene_event.cpp
+        ./src/widgets/abstract_graphics_shape_item.cpp
+        ./src/widgets/graphics_rect_item.cpp
         ./src/code/url.cpp
         ./src/code/timer.cpp
         ./src/code/rect.cpp
         ./src/code/size.cpp
         ./src/code/event.cpp
         ./src/code/conversion.cpp
+        ./src/code/cj_object.cpp
+        ./src/code/point_f.cpp
+        ./src/code/rect_f.cpp
+        ./src/code/point.cpp
+        ./src/code/size_f.cpp
+        ./src/code/line_f.cpp
         ./src/gui/mouse_event.cpp
         ./src/gui/key_event.cpp
         ./src/gui/painter_event.cpp
@@ -75,14 +90,21 @@ set (SRC_DIR ./src/widgets/application.cpp
         ./src/gui/icon.cpp
         ./src/gui/validator.cpp
         ./src/gui/double_validator.cpp
+        ./src/gui/paint_device.cpp
+        ./src/gui/transform.cpp
+        ./src/gui/polygon.cpp
+        ./src/gui/polygon_f.cpp
+
 )
 
 set (MOC_INC_DIR 
+        ./includes/code/timer.h
+        ./includes/code/cj_object.h
+        ./includes/gui/validator.h
+        ./includes/gui/paint_device.h
         ./includes/widgets/dialog.h
         ./includes/widgets/grid_layout.h
         ./includes/widgets/dialog.h
-        ./includes/code/timer.h
-        ./includes/gui/validator.h
         ./includes/widgets/menu.h
         ./includes/widgets/menu_bar.h
         ./includes/widgets/main_window.h
@@ -96,6 +118,10 @@ set (MOC_INC_DIR
         ./includes/widgets/abstract_scroll_area.h
         ./includes/widgets/abstract_slider.h
         ./includes/widgets/scroll_bar.h
+        ./includes/widgets/graphics_scene.h
+        ./includes/widgets/graphics_view.h
+        ./includes/widgets/graphics_item.h
+        ./includes/widgets/abstract_graphics_shape_item.h
 )
 
 find_package(Qt5 COMPONENTS Core Gui Widgets REQUIRED )

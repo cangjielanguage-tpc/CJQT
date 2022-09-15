@@ -14,15 +14,15 @@ import qt.code.*
 foreign func nativeFrameCreate(parentPtr: Int64, f: UInt32): Int64
 foreign func nativeFrameDelete(ptr: Int64): Unit
 foreign func nativeFrameFrameRect(ptr: Int64): Int64
-foreign func nativeFrameFrameShadow(ptr: Int64): UInt16
-foreign func nativeFrameFrameShape(ptr: Int64): UInt16
+foreign func nativeFrameFrameShadow(ptr: Int64): Int16
+foreign func nativeFrameFrameShape(ptr: Int64): Int16
 foreign func nativeFrameFrameStyle(ptr: Int64): Int32
 foreign func nativeFrameFrameWidth(ptr: Int64): Int32
 foreign func nativeFrameLineWidth(ptr: Int64): Int32
 foreign func nativeFrameMidLineWidth(ptr: Int64): Int32
 foreign func nativeFrameSetFrameRect(ptr: Int64, rectPtr: Int64): Unit
-foreign func nativeFrameSetFrameShadow(ptr: Int64, shadow: UInt16): Unit
-foreign func nativeFrameSetFrameShape(ptr: Int64, shape: UInt16): Unit
+foreign func nativeFrameSetFrameShadow(ptr: Int64, shadow: Int16): Unit
+foreign func nativeFrameSetFrameShape(ptr: Int64, shape: Int16): Unit
 foreign func nativeFrameSetFrameStyle(ptr: Int64, style: Int32): Unit
 foreign func nativeFrameSetLineWidth(ptr: Int64, width: Int32): Unit
 foreign func nativeFrameSetMidLineWidth(ptr: Int64, width: Int32): Unit
@@ -38,28 +38,28 @@ public enum QFrameShadow {
     /**
      * The Function is value
      *
-     * @return Type  is  UInt16
+     * @return Type  is  Int16
      */
-    public func value(): UInt16 {
+    public func value(): Int16 {
         match (this) {
-            case Plain => 0x0010u16
-            case Raised => 0x0020u16
-            case Sunken => 0x0030u16
+            case Plain => 0x0010
+            case Raised => 0x0020
+            case Sunken => 0x0030
         }
     }
 
     /**
      * The Function is convert
      *
-     * @param shadow of UInt16
+     * @param shadow of Int16
      *
      * @return Type  is  QFrameShadow
      */
-    public static func convert(shadow: UInt16): QFrameShadow {
+    public static func convert(shadow: Int16): QFrameShadow {
         match (shadow) {
-            case 0x0010u16 => Plain
-            case 0x0020u16 => Raised
-            case 0x0030u16 => Sunken
+            case 0x0010 => Plain
+            case 0x0020 => Raised
+            case 0x0030 => Sunken
             case _ => Plain
         }
     }
@@ -75,36 +75,36 @@ public enum QFrameShape {
     /**
      * The Function is value
      *
-     * @return Type  is  UInt16
+     * @return Type  is  Int16
      */
-    public func value(): UInt16 {
+    public func value(): Int16 {
         match (this) {
-            case NoFrame => 0x0000u16
-            case Box => 0x0001u16
-            case Panel => 0x0002u16
-            case StyledPanel => 0x0006u16
-            case HLine => 0x0004u16
-            case VLine => 0x0005u16
-            case WInPanel => 0x0003u16
+            case NoFrame => 0x0000
+            case Box => 0x0001
+            case Panel => 0x0002
+            case StyledPanel => 0x0006
+            case HLine => 0x0004
+            case VLine => 0x0005
+            case WInPanel => 0x0003
         }
     }
 
     /**
      * The Function is convert
      *
-     * @param shape of UInt16
+     * @param shape of Int16
      *
      * @return Type  is  QFrameShape
      */
-    public static func convert(shape: UInt16): QFrameShape {
+    public static func convert(shape: Int16): QFrameShape {
         match (shape) {
-            case 0x0000u16 => NoFrame
-            case 0x0001u16 => Box
-            case 0x0002u16 => Panel
-            case 0x0006u16 => StyledPanel
-            case 0x0004u16 => HLine
-            case 0x0005u16 => VLine
-            case 0x0003u16 => WInPanel
+            case 0x0000 => NoFrame
+            case 0x0001 => Box
+            case 0x0002 => Panel
+            case 0x0006 => StyledPanel
+            case 0x0004 => HLine
+            case 0x0005=> VLine
+            case 0x0003 => WInPanel
             case _ => NoFrame
         }
     }

@@ -67,7 +67,7 @@ public class QColor {
      * @param b of UInt8
      * @param a of UInt8
      */
-    public init(r: UInt8, g: UInt8, b: UInt8, a: UInt8) {
+    public init(r: UInt8, g: UInt8, b: UInt8, a!: UInt8=255) {
         ptr = unsafe {
             nativeColorCreate(Int32(r), Int32(g), Int32(b), Int32(a))
         }

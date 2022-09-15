@@ -30,26 +30,29 @@ extern "C"
     long nativeMouseEventGetPos(long vptr)
     {
         QMouseEvent *engine = reinterpret_cast<QMouseEvent *>(static_cast<uintptr_t>(vptr));
-        const QPoint point = engine->pos();
-        return reinterpret_cast<long>(&point);
+        QPoint point = engine->pos();
+        QPoint *p = new QPoint(point.x(), point.y());
+        return reinterpret_cast<long>(p);
     }
 
     long nativeMouseEventGetScreenPos(long vptr)
     {
         QMouseEvent *engine = reinterpret_cast<QMouseEvent *>(static_cast<uintptr_t>(vptr));
-        return reinterpret_cast<long>(&engine->screenPos());
+        QPointF pointF = engine->screenPos();
+        return reinterpret_cast<long>(&pointF);
     }
 
     long nativeMouseEventGetWindowPos(long vptr)
     {
         QMouseEvent *engine = reinterpret_cast<QMouseEvent *>(static_cast<uintptr_t>(vptr));
-        return reinterpret_cast<long>(&engine->windowPos());
+        QPointF pointF = engine->windowPos();
+        return reinterpret_cast<long>(&pointF);
     }
 
     long nativeMouseEventGetGlobalPos(long vptr)
     {
         QMouseEvent *engine = reinterpret_cast<QMouseEvent *>(static_cast<uintptr_t>(vptr));
-        const QPoint point = engine->globalPos();
+        QPoint point = engine->globalPos();
         return reinterpret_cast<long>(&point);
     }
 

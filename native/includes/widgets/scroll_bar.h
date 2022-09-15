@@ -11,33 +11,54 @@ class CjScrollBar : public QScrollBar
 public:
     CjScrollBar(QWidget *parent = nullptr) : QScrollBar(parent) {}
     CjScrollBar(Qt::Orientation orientation, QWidget *parent = nullptr) : QScrollBar(orientation, parent) {}
+    ~CjScrollBar()
+    {
+        appConfig->wheelEventMapRemove(reinterpret_cast<long>(this));
+        appConfig->contextMenuEventMapRemove(reinterpret_cast<long>(this));
+        appConfig->paintEventMapRemove(reinterpret_cast<long>(this));
+        appConfig->mouseMoveEventMapRemove(reinterpret_cast<long>(this));
+        appConfig->mousePressEventMapRemove(reinterpret_cast<long>(this));
+        appConfig->mouseReleaseEventMapRemove(reinterpret_cast<long>(this));
+        appConfig->hideEventMapRemove(reinterpret_cast<long>(this));
+    }
 
+public:
+    void doContextMenuEvent(QContextMenuEvent *event)
+    {
+        QScrollBar::contextMenuEvent(event);
+    }
     void doHideEvent(QHideEvent *event)
     {
-        return QScrollBar::hideEvent(event);
+        QScrollBar::hideEvent(event);
     }
     void doPaintEvent(QPaintEvent *event)
     {
-        return QScrollBar::paintEvent(event);
+        QScrollBar::paintEvent(event);
     }
     void doMouseMoveEvent(QMouseEvent *event)
     {
-        return QScrollBar::mouseMoveEvent(event);
+        QScrollBar::mouseMoveEvent(event);
     }
     void doMousePressEvent(QMouseEvent *event)
     {
-        return QScrollBar::mousePressEvent(event);
+        QScrollBar::mousePressEvent(event);
     }
     void doMouseReleaseEvent(QMouseEvent *event)
     {
-        return QScrollBar::mouseReleaseEvent(event);
+        QScrollBar::mouseReleaseEvent(event);
     }
     void doWheelEvent(QWheelEvent *event)
     {
-        return QScrollBar::wheelEvent(event);
+        QScrollBar::wheelEvent(event);
+    }
+    void doSliderChange(QAbstractSlider::SliderChange change)
+    {
+        QScrollBar::sliderChange(change);
     }
 
 protected:
+    CONTEXT_MENU_EVENT(QScrollBar::contextMenuEvent(event))
+
     HIDE_EVENT(QScrollBar::hideEvent(event))
 
     PAINT_EVENT(QScrollBar::paintEvent(event))

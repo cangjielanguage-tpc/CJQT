@@ -46,7 +46,7 @@ public enum QValidatorState {
      *
      * @return Type  of   Enum QValidatorState
      */
-    static public func convert(state: Int32): QValidatorState {
+     public static func convert(state: Int32): QValidatorState {
         match (state) {
             case 0 => Invalid
             case 1 => Intermediate

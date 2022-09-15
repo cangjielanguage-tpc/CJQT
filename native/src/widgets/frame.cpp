@@ -26,7 +26,8 @@ extern "C"
     {
         QFrame *instance = reinterpret_cast<QFrame *>(static_cast<uintptr_t>(ptr));
         QRect rect = instance->frameRect();
-        return reinterpret_cast<long>(&rect);
+        QRect *p = new QRect(rect);
+        return reinterpret_cast<long>(p);
     }
     short nativeFrameFrameShadow(long ptr)
     {
@@ -93,6 +94,7 @@ extern "C"
     {
         QFrame *instance = reinterpret_cast<QFrame *>(static_cast<uintptr_t>(ptr));
         QSize size = instance->sizeHint();
-        return reinterpret_cast<long>(&size);
+        QSize *p = new QSize(size);
+        return reinterpret_cast<long>(p);
     }
 }

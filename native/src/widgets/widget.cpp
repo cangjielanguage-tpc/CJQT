@@ -169,4 +169,17 @@ extern "C"
         QWidget *instance = reinterpret_cast<QWidget *>(static_cast<uintptr_t>(ptr));
         instance->setStyleSheet(QString(styleSheet));
     }
+    void nativeWidgetSetWindowIcon(long ptr, const long iconPtr)
+    {
+        QWidget *instance = reinterpret_cast<QWidget *>(static_cast<uintptr_t>(ptr));
+        QIcon *icon = reinterpret_cast<QIcon *>(static_cast<uintptr_t>(iconPtr));
+        instance->setWindowIcon(*icon);
+    }
+    long nativeWidgetRect(long ptr)
+    {
+        QWidget *instance = reinterpret_cast<QWidget *>(static_cast<uintptr_t>(ptr));
+        QRect rect = instance->rect();
+        QRect *pRect = new QRect(rect);
+        return reinterpret_cast<long>(pRect);
+    }
 }

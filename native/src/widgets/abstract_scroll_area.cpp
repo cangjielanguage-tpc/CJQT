@@ -50,7 +50,8 @@ extern "C"
     {
         QAbstractScrollArea *instance = reinterpret_cast<QAbstractScrollArea *>(static_cast<uintptr_t>(ptr));
         QSize size = instance->maximumViewportSize();
-        return reinterpret_cast<long>(&size);
+        QSize *p = new QSize(size);
+        return reinterpret_cast<long>(p);
     }
     QWidgetList nativeAbstractScrollAreaScrollBarWidgets(long ptr, short alignment)
     {
@@ -129,12 +130,14 @@ extern "C"
     {
         QAbstractScrollArea *instance = reinterpret_cast<QAbstractScrollArea *>(static_cast<uintptr_t>(ptr));
         QSize size = instance->minimumSizeHint();
-        return reinterpret_cast<long>(&size);
+        QSize *p = new QSize(size);
+        return reinterpret_cast<long>(p);
     }
     long nativeAbstractScrollAreaSizeHint(long ptr)
     {
         QAbstractScrollArea *instance = reinterpret_cast<QAbstractScrollArea *>(static_cast<uintptr_t>(ptr));
         QSize size = instance->sizeHint();
-        return reinterpret_cast<long>(&size);
+        QSize *p = new QSize(size);
+        return reinterpret_cast<long>(p);
     }
 }

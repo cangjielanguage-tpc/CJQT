@@ -8,12 +8,13 @@
  */
 package qt.gui
 
+foreign func nativeMouseEventGetPos(vptr: Int64): Int64
+
 /**
  * The class is QMouseEvent
  * @author wathinst
  */
-public class QMouseEvent<:QEvent{
-
+public class QMouseEvent <: QEvent {
     /**
      * The Function is init constructor
      *
@@ -21,5 +22,12 @@ public class QMouseEvent<:QEvent{
      */
     public init(ptr: Int64) {
         super(ptr)
+    }
+
+    public func getPos(): QPoint {
+        let pointPtr = unsafe {
+            nativeMouseEventGetPos(this.ptr)
+        }
+        return QPoint(pointPtr)
     }
 }

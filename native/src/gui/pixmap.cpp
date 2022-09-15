@@ -11,7 +11,11 @@ extern "C"
         else
             return 0;
     }
-
+    long nativePixmapCreateWithWH(int w, int h)
+    {
+        QPixmap *pixmap = new QPixmap(w, h);
+        return reinterpret_cast<long>(pixmap);
+    }
     int nativePixmapGetWidth(long ptr)
     {
         QPixmap *instance = reinterpret_cast<QPixmap *>(static_cast<uintptr_t>(ptr));
@@ -27,5 +31,11 @@ extern "C"
     {
         QPixmap *instance = reinterpret_cast<QPixmap *>(static_cast<uintptr_t>(ptr));
         delete instance;
+    }
+    void nativePixmapFill(long ptr, const long colorPtr)
+    {
+        QPixmap *instance = reinterpret_cast<QPixmap *>(static_cast<uintptr_t>(ptr));
+        QColor *color = reinterpret_cast<QColor *>(static_cast<uintptr_t>(colorPtr));
+        instance->fill(*color);
     }
 }

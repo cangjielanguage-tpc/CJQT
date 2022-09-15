@@ -11,6 +11,7 @@ package qt.widgets
 import qt.gui.*
 
 foreign func nativePainterCreate(widgetPtr: Int64): Int64
+foreign func nativePainterCreateWithDevice(devicePtr: Int64): Int64
 foreign func nativePainterDelete(ptr: Int64): Unit
 
 foreign func nativePainterSetPen(ptr: Int64, penPtr: Int64): Unit
@@ -19,6 +20,10 @@ foreign func nativePainterSetOpacity(ptr: Int64, opacity: Float32): Unit
 foreign func nativePainterDrawLine(ptr: Int64, x: Int32, y: Int32, x1: Int32, y1: Int32): Unit
 foreign func nativePainterDrawRect(ptr: Int64, x: Int32, y: Int32, width: Int32, height: Int32): Unit
 foreign func nativePainterDrawPixmap(ptr: Int64, x: Int32, y: Int32, width: Int32, height: Int32, pixmapPtr: Int64): Unit
+foreign func nativePainterTranslate(ptr: Int64, dx: Float64, dy: Float64): Unit
+foreign func nativePainterTranslateWithPoint(ptr: Int64, pointPrt: Int64): Unit
+foreign func nativePainterTranslateWithPointF(ptr: Int64, pointFPrt: Int64): Unit
+foreign func nativePainterDrawPolyline(ptr: Int64, polygonFPtr: Int64): Unit
 
 /**
  * The class is QPainter
@@ -46,6 +51,17 @@ public class QPainter {
     public init(widget: QWidget) {
         ptr = unsafe {
             nativePainterCreate(widget.ptr)
+        }
+    }
+
+    /**
+     * The Function is init constructor
+     *
+     * @param device of QPaintDevice
+     */
+    public init(device: QPaintDevice) {
+        ptr = unsafe {
+            nativePainterCreateWithDevice(device.ptr)
         }
     }
 
@@ -106,6 +122,51 @@ public class QPainter {
     public func delete() {
         unsafe {
             nativePainterDelete(ptr)
+        }
+    }
+
+    /**
+     * The Function is translate
+     *
+     * @param dx of Float64
+     * @param dy of Float64
+     */
+    public func translate(dx: Float64, dy: Float64): Unit {
+        unsafe {
+            nativePainterTranslate(this.ptr, dx, dy)
+        }
+    }
+
+    /**
+     * The Function is translate
+     *
+     * @param offset of QPoint
+     */
+    public func translate(offset: QPoint): Unit {
+        unsafe {
+            nativePainterTranslateWithPoint(this.ptr, offset.ptr)
+        }
+    }
+
+    /**
+     * The Function is translate
+     *
+     * @param offset of QPointF
+     */
+    public func translate(offset: QPointF): Unit {
+        unsafe {
+            nativePainterTranslateWithPointF(this.ptr, offset.ptr)
+        }
+    }
+
+    /**
+     * The Function is drawPolyline
+     *
+     * @param points of QPolygonF
+     */
+    public func drawPolyline(points: QPolygonF): Unit {
+        unsafe {
+            nativePainterDrawPolyline(this.ptr, points.ptr)
         }
     }
 }

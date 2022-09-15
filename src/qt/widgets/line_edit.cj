@@ -728,7 +728,7 @@ public open class QLineEdit <: QWidget {
         let num = unsafe {
             nativeLineEditAlignment(this.ptr)
         }
-        return Alignment.conver(num)
+        return Alignment.convert(num)
     }
 
     /**

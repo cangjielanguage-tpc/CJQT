@@ -19,7 +19,7 @@ foreign func nativeKeyEventIsAutoRepeat(ptr: Int64): Int32
  */
 public class QKeyEvent {
     /* let member ptr type is Int64 */
-    let ptr: Int64
+    public let ptr: Int64
 
     /** let member KEY_A */
     public static let KEY_A = 65

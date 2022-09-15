@@ -5,16 +5,15 @@
 
 class CjValidator : public QValidator
 {
+    Q_OBJECT
 public:
     CjValidator(QObject *parent = nullptr) : QValidator(parent) {}
 
 public:
-    virtual QValidator::State validate(QString &input, int &pos) const
+    QValidator::State validate(QString &input, int &pos) const
     {
-        input;
-        pos;
         return QValidator::State::Invalid;
-    };
+    }
 };
 
 #endif

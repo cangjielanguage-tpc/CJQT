@@ -49,7 +49,7 @@ public enum Alignment {
      *
      * @return Type  is  Int16
      */
-    public static func conver(num: Int16): Alignment {
+    public static func convert(num: Int16): Alignment {
         match (num) {
             case 0x0001 => AlignLeft
             case 0x0002 => AlignRight
@@ -60,7 +60,7 @@ public enum Alignment {
             case 0x0040 => AlignBottom
             case 0x0080 => AlignVCenter
             case 0x0100 => AlignBaseline
-            case _ => AlignCenter
+            case _ => AlignLeft
         }
     }
 }
@@ -153,10 +153,93 @@ public enum Orientation {
     | Horizontal
     | Vertical
 
+    public func value(): Int16 {
+        match (this) {
+            case Horizontal => 0x1
+            case Vertical => 0x2
+        }
+    }
+}
+public enum AspectRatioMode {
+    | IgnoreAspectRatio
+    | KeepAspectRatio
+    | KeepAspectRatioByExpanding
+
     public func value(): Int32 {
         match (this) {
-            case Horizontal => 0x1i32
-            case Vertical => 0x2i32
+            case IgnoreAspectRatio => 0
+            case KeepAspectRatio => 1
+            case KeepAspectRatioByExpanding => 2
+        }
+    }
+}
+
+public enum GlobalColor {
+    | white
+    | black
+    | red
+    | darkRed
+    | green
+    | darkGreen
+    | blue
+    | darkBlue
+    | cyan
+    | darkCyan
+    | magenta
+    | darkMagenta
+    | yellow
+    | darkYellow
+    | gray
+    | darkGray
+    | lightGray
+    | transparent
+    | color0
+    | color1
+
+    public func value(): Int32 {
+        match (this) {
+            case white => 3
+            case black => 2
+            case red => 7
+            case darkRed => 13
+            case green => 8
+            case darkGreen => 14
+            case blue => 9
+            case darkBlue => 15
+            case cyan => 10
+            case darkCyan => 16
+            case magenta => 11
+            case darkMagenta => 17
+            case yellow => 12
+            case darkYellow => 18
+            case gray => 5
+            case darkGray => 4
+            case lightGray => 6
+            case transparent => 19
+            case color0 => 0
+            case color1 => 1
+        }
+    }
+}
+
+public enum PenStyle {
+    | NoPen
+    | SolidLine
+    | DashLine
+    | DotLine
+    | DashDotLine
+    | DashDotDotLine
+    | CustomDashLine
+
+    public func value(): Int32 {
+        match (this) {
+            case NoPen => 0
+            case SolidLine => 1
+            case DashLine => 2
+            case DotLine => 3
+            case DashDotLine => 4
+            case DashDotDotLine => 5
+            case CustomDashLine => 6
         }
     }
 }

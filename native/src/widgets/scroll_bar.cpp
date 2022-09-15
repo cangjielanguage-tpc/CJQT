@@ -17,7 +17,7 @@ extern "C"
         }
         return reinterpret_cast<long>(bar);
     }
-    long nativeScrollBarCreateWithOrietation(int orientation, long parentPtr)
+    long nativeScrollBarCreateWithOrietation(short orientation, long parentPtr)
     {
         CjScrollBar *bar;
         if (parentPtr == 0L)
@@ -38,30 +38,18 @@ extern "C"
         CjScrollBar *instance = reinterpret_cast<CjScrollBar *>(static_cast<uintptr_t>(ptr));
         delete instance;
     }
-    // set event
-    void nativeScrollBarSetPaintEvent(long ptr, nativeEventCallback callback)
+    bool nativeScrollBarEvent(long ptr, long eventPtr)
     {
-        appConfig->paintEventMapPut(ptr, callback);
+        CjScrollBar *instance = reinterpret_cast<CjScrollBar *>(static_cast<uintptr_t>(ptr));
+        QEvent *event = reinterpret_cast<QEvent *>(static_cast<uintptr_t>(eventPtr));
+        return instance->event(event);
     }
-    void nativeScrollBarSetHideEvent(long ptr, nativeEventCallback callback)
+    long nativeScrollBarSizeHint(long ptr)
     {
-        appConfig->hideEventMapPut(ptr, callback);
-    }
-    void nativeScrollBarSetMouseMoveEvent(long ptr, nativeEventCallback callback)
-    {
-        appConfig->mouseMoveEventMapPut(ptr, callback);
-    }
-    void nativeScrollBarSetMousePressEvent(long ptr, nativeEventCallback callback)
-    {
-        appConfig->mousePressEventMapPut(ptr, callback);
-    }
-    void nativeScrollBarSetMouseReleaseEvent(long ptr, nativeEventCallback callback)
-    {
-        appConfig->mouseReleaseEventMapPut(ptr, callback);
-    }
-    void nativeScrollBarSetWheelEvent(long ptr, nativeEventCallback callback)
-    {
-        appConfig->wheelEventMapPut(ptr, callback);
+        CjScrollBar *instance = reinterpret_cast<CjScrollBar *>(static_cast<uintptr_t>(ptr));
+        QSize size = instance->sizeHint();
+        QSize *p = new QSize(size);
+        return reinterpret_cast<long>(p);
     }
     // do event
     void nativeScrollBarPaintEvent(long ptr, long eventPtr)
@@ -99,5 +87,11 @@ extern "C"
         CjScrollBar *instance = reinterpret_cast<CjScrollBar *>(static_cast<uintptr_t>(ptr));
         QWheelEvent *event = reinterpret_cast<QWheelEvent *>(static_cast<uintptr_t>(eventPtr));
         instance->doWheelEvent(event);
+    }
+    void nativeScrollBarContextMenuEvent(long ptr, long eventPtr)
+    {
+        CjScrollBar *instance = reinterpret_cast<CjScrollBar *>(static_cast<uintptr_t>(ptr));
+        QContextMenuEvent *event = reinterpret_cast<QContextMenuEvent *>(static_cast<uintptr_t>(eventPtr));
+        instance->doContextMenuEvent(event);
     }
 }
