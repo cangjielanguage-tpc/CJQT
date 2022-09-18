@@ -24,7 +24,7 @@ set (CMAKE_PREFIX_PATH $ENV{QT_HOME})
 
 set (INC_DIR ./includes 
         ./includes/widgets
-        ./includes/code
+        ./includes/core
         ./includes/gui
 )
 
@@ -65,18 +65,20 @@ set (SRC_DIR ./src/widgets/application.cpp
         ./src/widgets/graphics_scene_event.cpp
         ./src/widgets/abstract_graphics_shape_item.cpp
         ./src/widgets/graphics_rect_item.cpp
-        ./src/code/url.cpp
-        ./src/code/timer.cpp
-        ./src/code/rect.cpp
-        ./src/code/size.cpp
-        ./src/code/event.cpp
-        ./src/code/conversion.cpp
-        ./src/code/cj_object.cpp
-        ./src/code/point_f.cpp
-        ./src/code/rect_f.cpp
-        ./src/code/point.cpp
-        ./src/code/size_f.cpp
-        ./src/code/line_f.cpp
+        ./src/widgets/tab_bar.cpp
+        ./src/widgets/tab_widget.cpp
+        ./src/core/url.cpp
+        ./src/core/timer.cpp
+        ./src/core/rect.cpp
+        ./src/core/size.cpp
+        ./src/core/event.cpp
+        ./src/core/conversion.cpp
+        ./src/core/cj_object.cpp
+        ./src/core/point_f.cpp
+        ./src/core/rect_f.cpp
+        ./src/core/point.cpp
+        ./src/core/size_f.cpp
+        ./src/core/line_f.cpp
         ./src/gui/mouse_event.cpp
         ./src/gui/key_event.cpp
         ./src/gui/painter_event.cpp
@@ -98,8 +100,8 @@ set (SRC_DIR ./src/widgets/application.cpp
 )
 
 set (MOC_INC_DIR 
-        ./includes/code/timer.h
-        ./includes/code/cj_object.h
+        ./includes/core/timer.h
+        ./includes/core/cj_object.h
         ./includes/gui/validator.h
         ./includes/gui/paint_device.h
         ./includes/widgets/dialog.h
@@ -122,6 +124,8 @@ set (MOC_INC_DIR
         ./includes/widgets/graphics_view.h
         ./includes/widgets/graphics_item.h
         ./includes/widgets/abstract_graphics_shape_item.h
+        ./includes/widgets/tab_bar.h
+        ./includes/widgets/tab_widget.h
 )
 
 find_package(Qt5 COMPONENTS Core Gui Widgets REQUIRED )

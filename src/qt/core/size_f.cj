@@ -1,4 +1,4 @@
-package qt.code
+package qt.core
 
 //foreign function
 foreign func nativeSizeFCreate(): Int64

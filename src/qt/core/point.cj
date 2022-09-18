@@ -1,4 +1,4 @@
-package qt.code
+package qt.core
 
 //foreign function
 foreign func nativePointCreateWithXY(xpos: Int32, ypos: Int32): Int64

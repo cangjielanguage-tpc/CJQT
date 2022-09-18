@@ -6,7 +6,7 @@
  * @file
  *
  */
-package qt.code
+package qt.core
 
 import qt.tools.*
 

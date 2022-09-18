@@ -1,4 +1,4 @@
-package qt.code
+package qt.core
 
 @Test
 public class Mytest{

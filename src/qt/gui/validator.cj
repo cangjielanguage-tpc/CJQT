@@ -8,7 +8,7 @@
  */
 package qt.gui
 
-import qt.code.*
+import qt.core.*
 
 // foreign C Functions
 foreign func nativeValidatorCreate(parentPtr: Int64): Int64

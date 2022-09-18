@@ -6,7 +6,7 @@
  * @file
  *
  */
-package qt.code
+package qt.core
 
 foreign func nativeUrlCreate(url: CString, parsingMode: Int32): Int64
 foreign func nativeUrlToString(ptr: Int64): CString

@@ -1,4 +1,4 @@
-package qt.code
+package qt.core
 
 //C
 foreign func nativeEventCreate(eventType: Int32): Int64

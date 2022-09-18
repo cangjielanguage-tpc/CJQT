@@ -8,7 +8,7 @@
  */
 package qt.widgets
 
-import qt.code.*
+import qt.core.*
 
 foreign func nativeFileDialogGetFont(parentPtr: Int64): Int64
 

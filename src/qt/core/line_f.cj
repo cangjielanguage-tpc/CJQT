@@ -1,4 +1,4 @@
-package qt.code
+package qt.core
 
 //foreign function
 foreign func nativeLineFCreateWithLine(linePtr: Int64): Int64

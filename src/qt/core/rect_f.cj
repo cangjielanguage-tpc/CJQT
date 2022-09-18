@@ -1,4 +1,4 @@
-package qt.code
+package qt.core
 
 //foreign funtion
 foreign func nativeRectFCreate(): Int64
