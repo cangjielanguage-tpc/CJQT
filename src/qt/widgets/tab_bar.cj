@@ -195,7 +195,7 @@ public class QTabBar <: QWidget {
         let colorPtr = unsafe {
             nativeTabBarTabTextColor(ptr, Int32(index))
         }
-        return QColor(colorPtr)
+        return QColor(ptr: colorPtr)
     }
 
     public func setTabTextColor(index: Int64, color: QColor) {
