@@ -1,7 +1,7 @@
-### QCode封装进度
+### QCore封装进度
 
 ```
-QCode:
+QCore:
 
 QAbstractAnimation        ░░░░░░░░░░         QAbstractEventDispatcher     ░░░░░░░░░░
 QAbstractItemModel        ░░░░░░░░░░         QAbstractListModel           ░░░░░░░░░░

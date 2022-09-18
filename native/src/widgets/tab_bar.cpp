@@ -172,7 +172,7 @@ extern "C"
         return instance->drawBase();
     }
 
-    long nativeTabIconSize(long ptr)
+    long nativeTabBarIconSize(long ptr)
     {
         QTabBar *instance = reinterpret_cast<QTabBar *>(static_cast<uintptr_t>(ptr));
         QSize size = instance->iconSize();

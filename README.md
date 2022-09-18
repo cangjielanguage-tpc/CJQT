@@ -33,7 +33,7 @@ CjQt是Qt的仓颉语言绑定，提供仓颉语言风格的Qt类和函数的API
 ### 当前进度
 
 - [QWidgets封装进度](./doc/qt_widgets.md)
-- [QCode封装进度](./doc/qt_code.md)
+- [QCore封装进度](./doc/qt_core.md)
 - [QGui封装进度](./doc/qt_gui.md)
 
 
@@ -62,13 +62,13 @@ CjQt是Qt的仓颉语言绑定，提供仓颉语言风格的Qt类和函数的API
 │   └── tetris
 ├── native
 │   ├── src
-│   │   ├── code
+│   │   ├── core
 │   │   ├── gui
 │   │   └── widgets
 │   └── CMakeLists.txt
 ├── src
 │   ├── qt
-│   │   ├── code
+│   │   ├── core
 │   │   ├── gui
 │   │   └── widgets
 │   └── main.cj

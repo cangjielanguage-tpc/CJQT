@@ -73,6 +73,10 @@ public class QColor {
         }
     }
 
+    public init(ptr: Int64) {
+        this.ptr = ptr
+    }
+
     /**
      * The Function is delete
      *
