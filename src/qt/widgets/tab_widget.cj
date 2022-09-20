@@ -202,7 +202,7 @@ public class QTabWidget <: QWidget {
         return Int64(count)
     }
 
-    public func count(index: Int64): Int64 {
+    public func count(): Int64 {
         let count = unsafe {
             nativeTabWidgetCount(ptr)
         }
@@ -288,7 +288,7 @@ public class QTabWidget <: QWidget {
         }
     }
 
-    public func tabBar(change: Bool): QTabBar {
+    public func tabBar(): QTabBar {
         let tabBarPtr = unsafe {
             nativeTabWidgetTabBar(ptr)
         }

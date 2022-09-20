@@ -224,21 +224,21 @@ public class QTabBar <: QWidget {
         return QRect(rectPtr)
     }
 
-    public func tabAt(index: Int64, point: QPoint): Int64 {
+    public func tabAt(point: QPoint): Int64 {
         let index = unsafe {
             nativeTabBarTabAt(ptr, point.ptr)
         }
         return Int64(index)
     }
 
-    public func currentIndex(index: Int64): Int64 {
+    public func currentIndex(): Int64 {
         let index = unsafe {
             nativeTabBarCurrentIndex(ptr)
         }
         return Int64(index)
     }
 
-    public func count(index: Int64): Int64 {
+    public func count(): Int64 {
         let count = unsafe {
             nativeTabBarCount(ptr)
         }
