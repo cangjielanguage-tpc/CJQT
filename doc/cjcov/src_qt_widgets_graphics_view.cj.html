@@ -1,0 +1,2897 @@
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Cangjie Code Coverage Report</title>
+  <style media="screen" type="text/css">
+  body
+{
+  color: #000000;
+  background-color: #FFFFFF;
+}
+
+/* Link formats: use maroon w/underlines */
+a:link
+{
+  color: navy;
+  text-decoration: underline;
+}
+a:visited
+{
+  color: maroon;
+  text-decoration: underline;
+}
+a:active
+{
+  color: navy;
+  text-decoration: underline;
+}
+
+/*** TD formats ***/
+td
+{
+  font-family: sans-serif;
+}
+td.title
+{
+  text-align: center;
+  padding-bottom: 10px;
+  font-size: 20pt;
+  font-weight: bold;
+}
+
+/* TD Header Information */
+td.headerName
+{
+  text-align: right;
+  color: black;
+  padding-right: 6px;
+  font-weight: bold;
+  vertical-align: top;
+  white-space: nowrap;
+}
+td.headerValue
+{
+  text-align: left;
+  color: #284FA8;
+  font-family: sans-serif;
+  font-weight: bold;
+  white-space: nowrap;
+}
+
+td.headerTableEntry
+{
+  text-align: right;
+  color: black;
+  font-weight: bold;
+  white-space: nowrap;
+  padding-left: 12px;
+  padding-right: 4px;
+  background-color: LightBlue;
+}
+td.headerValueLeg
+{
+  text-align: left;
+  color: black;
+  font-size: 80%;
+  white-space: nowrap;
+  padding-top: 2px;
+}
+
+/* Color of horizontal ruler */
+td.hr
+{
+  background-color: navy;
+  height:3px;
+}
+/* Footer format */
+td.footer
+{
+  text-align: center;
+  padding-top: 3px;
+  font-family: sans-serif;
+}
+
+/* Coverage Table */
+
+td.coverTableHead
+{
+  text-align: center;
+  color: white;
+  background-color: SteelBlue;
+  font-family: sans-serif;
+  font-size: 120%;
+  white-space: nowrap;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+td.coverFile
+{
+  text-align: left;
+  padding-left: 10px;
+  padding-right: 20px;
+  color: black;
+  background-color: LightBlue;
+  font-family: monospace;
+  font-weight: bold;
+  font-size: 110%;
+}
+td.coverBar
+{
+  padding-left: 10px;
+  padding-right: 10px;
+  background-color: LightBlue;
+}
+td.coverBarOutline
+{
+  background-color: white;
+}
+td.coverValue
+{
+  padding-top: 2px;
+  text-align: right;
+  padding-left: 10px;
+  padding-right: 10px;
+  font-family: sans-serif;
+  white-space: nowrap;
+  font-weight: bold;
+}
+
+/* Link Details */
+a.detail:link
+{
+  color: #B8D0FF;
+  font-size:80%;
+}
+a.detail:visited
+{
+  color: #B8D0FF;
+  font-size:80%;
+}
+a.detail:active
+{
+  color: #FFFFFF;
+  font-size:80%;
+}
+
+.graphcont{
+    color:#000;
+    font-weight:700;
+    float:left
+}
+
+.graph{
+    float:left;
+    background-color: white;
+    position:relative;
+    width:280px;
+    padding:0
+}
+
+.graph .bar{
+    display:block;
+    position:relative;
+    border:black 1px solid;
+    text-align:center;
+    color:#fff;
+    height:10px;
+    font-family:Arial,Helvetica,sans-serif;
+    font-size:12px;
+    line-height:1.9em
+}
+
+.graph .bar span{
+    position:absolute;
+    left:1em
+}
+
+td.coveredLine,
+span.coveredLine
+{
+    background-color: LightGreen!important;
+}
+
+td.uncoveredLine,
+span.uncoveredLine
+{
+    background-color: LightPink!important;
+}
+
+.linebranch, .linecount
+{
+    border-right: 1px gray solid;
+    background-color: lightgray;
+}
+
+.linebranchDetails
+{
+    position: relative;
+}
+.linebranchSummary
+{
+    cursor: help;
+}
+.linebranchContents
+{
+    font-family: sans-serif;
+    font-size: small;
+    text-align: left;
+    position: absolute;
+    width: 15em;
+    padding: 1em;
+    background: white;
+    border: solid gray 1px;
+    box-shadow: 5px 5px 10px gray;
+    z-index: 1; /* show in front of the table entries */
+}
+
+.takenBranch
+{
+    color: Green!important;
+    cursor: help;
+}
+
+.notTakenBranch
+{
+    color: Red!important;
+    cursor: help;
+}
+
+.src
+{
+    padding-left: 12px;
+}
+
+.srcHeader,
+span.takenBranch,
+span.notTakenBranch
+{
+    font-family: monospace;
+    font-weight: bold;
+}
+
+pre
+{
+    height : 15px;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.lineno
+{
+    background-color: #EFE383;
+    border-right: 1px solid #BBB15F;
+}
+  </style>
+</head>
+
+<body>
+
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr><td class="title">Cangjie Code Coverage Report</td></tr>
+    <tr><td class="hr"></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding="1" border="0" width="100%">
+          <tr>
+            <td class="headerName">File:</td>
+            <td class="headerValue">src/qt/widgets/graphics_view.cj</td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerValue" style="text-align:right;">Hit</td>
+            <td width="10%" class="headerValue" style="text-align:right;">Total</td>
+            <td width="15%" class="headerValue" style="text-align:right;">Coverage</td>
+          </tr>
+          <tr>
+            <td class="headerName">Date:</td>
+            <td class="headerValue">2022-09-25 19:33:00</td>
+            <td></td>
+            <td class="headerName">Lines:</td>
+            <td class="headerTableEntry">0</td>
+            <td class="headerTableEntry">156</td>
+            <td class="headerTableEntry" style="background-color:LightPink">0.0 %</td>
+          </tr>
+          <tr>
+            <td class="headerName">Legend:</td>
+            <td class="headerValueLeg">
+              <span style="background-color:LightPink">low: &lt; 75.0 %</span>
+              <span style="background-color:Yellow">medium: &gt;= 75.0 %</span>
+              <span style="background-color:LightGreen">high: &gt;= 90.0 %</span>
+            </td>
+            <td></td>
+            <td class="headerName">Branches:</td>
+            <td class="headerTableEntry">-</td>
+            <td class="headerTableEntry">-</td>
+            <td class="headerTableEntry" style="background-color:LightGreen">-</td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="hr"></td></tr>
+  </table>
+
+  <br>
+  <table cellspacing="0" cellpadding="1">
+     <tr>
+      <td width="5%" align="right" class="srcHeader">Line</td>
+      <td width="5%" align="right" class="srcHeader">Branch</td>
+      <td width="5%" align="center" class="srcHeader">Hit</td>
+      <td width="75%" align="left" class="srcHeader src">Source</td>
+    </tr>
+
+    <tr>
+<td align="right" class="lineno"><pre>1</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>package qt.widgets</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>2</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre></pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>3</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>//foreign function</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>4</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>foreign func nativeGraphicsViewCreateWithScene(scenePtr: Int64, parentPtr: Int64): Int64</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>5</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>foreign func nativeGraphicsViewCreate(parentPtr: Int64): Int64</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>6</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>foreign func nativeGraphicsViewDelete(ptr: Int64): Unit</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>7</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>foreign func nativeGraphicsViewAlignment(ptr: Int64): Int16</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>8</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>foreign func nativeGraphicsViewSetAlignment(ptr: Int64, lag: Int16): Unit</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>9</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>foreign func nativeGraphicsViewBackgroundBrush(ptr: Int64): Int64</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>10</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>foreign func nativeGraphicsViewSetBackgroundBrush(ptr: Int64, brushPtr: Int64): Unit</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>11</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>foreign func nativeGraphicsViewCacheMode(ptr: Int64): Int16</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>12</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>foreign func nativeGraphicsViewSetCacheMode(ptr: Int64, chcheMode: Int16): Unit</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>13</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>foreign func nativeGraphicsViewCenterOn(ptr: Int64, posPtr: Int64): Unit</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>14</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>foreign func nativeGraphicsViewCenterOnWithXY(ptr: Int64, x: Float64, y: Float64): Unit</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>15</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>foreign func nativeGraphicsViewCenterOnWithItem(ptr: Int64, itemPtr: Int64): Unit</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>16</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>foreign func nativeGraphicsViewDragMode(ptr: Int64): Int32</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>17</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>foreign func nativeGraphicsViewSetDragMode(ptr: Int64, dragMode: Int32): Unit</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>18</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>foreign func nativeGraphicsViewEnsureVisibleWithRect(ptr: Int64, rectPtr: Int64, xmargin: Int32, ymargin: Int32): Unit</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>19</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>foreign func nativeGraphicsViewEnsureVisible(</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>20</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    ptr: Int64,</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>21</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    x: Float64,</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>22</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    y: Float64,</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>23</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    w: Float64,</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>24</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    h: Float64,</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>25</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    xmargin: Int32,</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>26</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    ymargin: Int32</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>27</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>): Unit</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>28</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>foreign func nativeGraphicsViewEnsureVisibleWithItem(ptr: Int64, itemPtr: Int64, xmargin: Int32, ymargin: Int32): Unit</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>29</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>foreign func nativeGraphicsViewFitlnViewWithRect(ptr: Int64, rectPtr: Int64, aspectRatioMode: Int32): Unit</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>30</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>foreign func nativeGraphicsViewFitlnView(</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>31</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    ptr: Int64,</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>32</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    x: Float64,</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>33</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    y: Float64,</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>34</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    w: Float64,</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>35</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    h: Float64,</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>36</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    aspectRatioMode: Int32</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>37</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>): Unit</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>38</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>foreign func nativeGraphicsViewFitlnViewWithItem(ptr: Int64, itemPtr: Int64, aspectRatioMode: Int32): Unit</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>39</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>foreign func nativeGraphicsViewForegroundBrush(ptr: Int64): Int64</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>40</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>foreign func nativeGraphicsViewSetForegroundBrush(ptr: Int64, brushPtr: Int64): Unit</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>41</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>foreign func nativeGraphicsViewIsInteractive(ptr: Int64): Bool</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>42</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>foreign func nativeGraphicsViewSetInteractive(ptr: Int64, allowed: Bool): Unit</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>43</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>foreign func nativeGraphicsViewIsTransformed(ptr: Int64): Bool</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>44</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>foreign func nativeGraphicsViewSetTransform(ptr: Int64, matrixPtr: Int64, combine: Bool): Unit</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>45</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>foreign func nativeGraphicsViewSetTransformationAnchor(ptr: Int64, anchor: Int32): Unit</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>46</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>foreign func nativeGraphicsViewItemAtWithPoint(ptr: Int64, posPtr: Int64): Int64</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>47</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>foreign func nativeGraphicsViewItemAtWithXY(ptr: Int64, x: Int32, y: Int32): Int64</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>48</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>foreign func nativeGraphicsViewMapFromScene(ptr: Int64, pointFPtr: Int64): Int64</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>49</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>foreign func nativeGraphicsViewMapFromSceneWithRectF(ptr: Int64, rectFPt: Int64): Int64</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>50</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>foreign func nativeGraphicsViewMapFromSceneWithPolygonF(ptr: Int64, polygonFPtr: Int64): Int64</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>51</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>foreign func nativeGraphicsViewMapFromSceneWithPainterPath(ptr: Int64, painterPathPtr: Int64): Int64</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>52</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>foreign func nativeGraphicsViewMapFromSceneWithXY(ptr: Int64, x: Float64, y: Float64): Int64</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>53</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>foreign func nativeGraphicsViewMapFromSceneWithXYWH(ptr: Int64, x: Float64, y: Float64, w: Float64, h: Float64): Int64</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>54</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>foreign func nativeGraphicsViewMapToScene(ptr: Int64, pointPtr: Int64): Int64</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>55</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>foreign func nativeGraphicsViewMapToSceneWithRect(ptr: Int64, rectPtr: Int64): Int64</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>56</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>foreign func nativeGraphicsViewMapToSceneWithPolygon(ptr: Int64, polygonPtr: Int64): Int64</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>57</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>foreign func nativeGraphicsViewMapToSceneWithPainterPath(ptr: Int64, painterPathPtr: Int64): Int64</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>58</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>foreign func nativeGraphicsViewMapToSceneWithXY(ptr: Int64, x: Int32, y: Int32): Int64</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>59</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>foreign func nativeGraphicsViewMapToSceneWithXYWH(ptr: Int64, x: Int32, y: Int32, w: Int32, h: Int32): Int64</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>60</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>foreign func nativeGraphicsViewOptimizationFlags(ptr: Int64): Int16</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>61</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>foreign func nativeGraphicsViewSetOptimizationFlag(ptr: Int64, flag: Int16, enabled: Bool): Unit</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>62</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>foreign func nativeGraphicsViewSetOptimizationFlags(ptr: Int64, flag: Int16): Unit</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>63</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>foreign func nativeGraphicsViewRender(</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>64</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    ptr: Int64,</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>65</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    painterPtr: Int64,</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>66</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    targetPtr: Int64,</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>67</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    sourcePtr: Int64,</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>68</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    aspectRatioMode: Int32</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>69</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>): Unit</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>70</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>foreign func nativeGraphicsViewRenderHints(ptr: Int64): Int16</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>71</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>foreign func nativeGraphicsViewSetRenderHint(ptr: Int64, hint: Int16, enabled: Bool): Unit</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>72</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>foreign func nativeGraphicsViewSetRenderHints(ptr: Int64, hint: Int16): Unit</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>73</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>foreign func nativeGraphicsViewResetCachedContent(ptr: Int64): Unit</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>74</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>foreign func nativeGraphicsViewResetTransform(ptr: Int64): Unit</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>75</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>foreign func nativeGraphicsViewResizeAnchor(ptr: Int64): Int16</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>76</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>foreign func nativeGraphicsViewSetResizeAnchor(ptr: Int64, anchor: Int32): Unit</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>77</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>foreign func nativeGraphicsViewRotate(ptr: Int64, angle: Float64): Unit</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>78</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>foreign func nativeGraphicsViewRubberBandRect(ptr: Int64): Int64</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>79</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>foreign func nativeGraphicsViewRubberBandSelectionMode(ptr: Int64): Int16</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>80</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>foreign func nativeGraphicsViewSetRubberBandSelectionMode(ptr: Int64, selectionMode: Int16): Unit</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>81</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>foreign func nativeGraphicsViewScale(ptr: Int64, sx: Float64, sy: Float64): Unit</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>82</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>foreign func nativeGraphicsViewScene(ptr: Int64): Int64</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>83</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>foreign func nativeGraphicsViewSetScene(ptr: Int64, scenePtr: Int64): Unit</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>84</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>foreign func nativeGraphicsViewSceneRect(ptr: Int64): Int64</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>85</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>foreign func nativeGraphicsViewSetSceneRectWithRect(ptr: Int64, rectFPtr: Int64): Unit</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>86</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>foreign func nativeGraphicsViewSetSceneRect(ptr: Int64, x: Float64, y: Float64, w: Float64, h: Float64): Unit</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>87</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>foreign func nativeGraphicsViewSetViewportUpdateMode(ptr: Int64, updateMode: Int32): Unit</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>88</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>foreign func nativeGraphicsViewShear(ptr: Int64, sh: Float64, sv: Float64): Unit</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>89</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>foreign func nativeGraphicsViewTransform(ptr: Int64): Int64</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>90</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>foreign func nativeGraphicsViewTransformationAnchor(ptr: Int64): Int32</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>91</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>foreign func nativeGraphicsViewTranslate(ptr: Int64, dx: Float64, dy: Float64): Unit</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>92</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>foreign func nativeGraphicsViewViewportTransform(ptr: Int64): Int64</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>93</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>foreign func nativeGraphicsViewViewportUpdateMode(ptr: Int64): Int32</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>94</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre></pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>95</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>//Enum</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>96</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>public enum QGraphicsViewCacheMode {</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>97</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    CacheNone | CacheBackground</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>98</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre></pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>99</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>    public func value(): Int16 {</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>100</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>        match (this) {</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>101</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case CacheNone =&gt; 0x0</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>102</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case CacheBackground =&gt; 0x1</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>103</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>        }</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>104</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    }</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>105</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre></pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>106</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>    public static func convert(value: Int16): QGraphicsViewCacheMode {</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>107</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>        match (value) {</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>108</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case 0x0 =&gt; CacheNone</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>109</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case 0x1 =&gt; CacheBackground</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>110</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case _ =&gt; CacheNone</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>111</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>        }</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>112</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    }</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>113</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>}</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>114</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>public enum QGraphicsViewDragMode {</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>115</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    NoDrag | ScrollHandOrag | RubberBandDrag</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>116</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre></pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>117</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>    public func value(): Int32 {</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>118</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>        match (this) {</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>119</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case NoDrag =&gt; 0</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>120</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case ScrollHandOrag =&gt; 1</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>121</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case RubberBandDrag =&gt; 2</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>122</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>        }</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>123</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    }</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>124</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre></pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>125</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>    public static func convert(value: Int32): QGraphicsViewDragMode {</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>126</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>        match (value) {</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>127</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case 0 =&gt; NoDrag</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>128</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case 1 =&gt; ScrollHandOrag</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>129</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case 2 =&gt; RubberBandDrag</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>130</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case _ =&gt; NoDrag</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>131</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>        }</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>132</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    }</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>133</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>}</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>134</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre></pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>135</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>public enum QGraphicsViewViewportAnchor {</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>136</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    NoAnchor | AnchorViewCenter | AnchorUnderMouse</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>137</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre></pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>138</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>    public func value(): Int32 {</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>139</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>        match (this) {</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>140</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case NoAnchor =&gt; 0</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>141</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case AnchorViewCenter =&gt; 1</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>142</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case AnchorUnderMouse =&gt; 2</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>143</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>        }</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>144</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    }</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>145</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre></pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>146</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>    public static func convert(value: Int32): QGraphicsViewViewportAnchor {</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>147</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>        match (value) {</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>148</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case 0 =&gt; NoAnchor</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>149</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case 1 =&gt; AnchorViewCenter</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>150</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case 2 =&gt; AnchorUnderMouse</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>151</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case _ =&gt; NoAnchor</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>152</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>        }</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>153</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    }</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>154</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>}</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>155</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre></pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>156</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>public open class QGraphicsView &lt;: QAbstractScrollArea {</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>157</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>    public init(parent!: QWidget = QWidget(0)) {</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>158</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>        super(unsafe { nativeGraphicsViewCreate(parent.ptr) })</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>159</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    }</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>160</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>    public init(ptr: Int64) {</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>161</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>        super(ptr)</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>162</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    }</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>163</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>    public init(scene: QGraphicsScene, parent!: QWidget = QWidget(0)) {</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>164</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>        super(unsafe { nativeGraphicsViewCreateWithScene(scene.ptr, parent.ptr) })</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>165</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    }</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>166</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre></pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>167</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>    public open override func delete(): Unit {</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>168</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>        unsafe { nativeGraphicsViewDelete(this.ptr) }</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>169</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    }</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>170</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre></pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>171</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>    public func alignment(): Alignment {</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>172</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>        let alignment = unsafe {</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>173</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            nativeGraphicsViewAlignment(this.ptr)</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>174</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>        }</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>175</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>        return Alignment.convert(alignment)</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>176</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    }</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>177</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>    public func setAlignment(alignment: Alignment): Unit {</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>178</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>        unsafe {</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>179</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            nativeGraphicsViewSetAlignment(this.ptr, alignment.value())</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>180</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>        }</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>181</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    }</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>182</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>    public func backgroundBrush(): QBrush {</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>183</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>        let brushPtr = unsafe {</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>184</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            nativeGraphicsViewBackgroundBrush(this.ptr)</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>185</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>        }</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>186</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>        return QBrush(brushPtr)</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>187</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    }</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>188</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>    public func setBackgroundBrush(brush: QBrush): Unit {</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>189</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>        unsafe {</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>190</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            nativeGraphicsViewSetBackgroundBrush(this.ptr, brush.ptr)</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>191</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>        }</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>192</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    }</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>193</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>    public func cacheMode(): QGraphicsViewCacheMode {</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>194</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>        let cacheMode = unsafe {</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>195</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            nativeGraphicsViewCacheMode(this.ptr)</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>196</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>        }</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>197</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>        return QGraphicsViewCacheMode.convert(cacheMode)</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>198</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    }</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>199</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>    public func setCacheMode(cacheMode: QGraphicsViewCacheMode): Unit {</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>200</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>        unsafe {</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>201</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            nativeGraphicsViewSetCacheMode(this.ptr, cacheMode.value())</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>202</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>        }</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>203</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    }</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>204</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>    public func centerOn(pos: QPointF): Unit {</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>205</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>        unsafe {</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>206</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            nativeGraphicsViewCenterOn(this.ptr, pos.ptr)</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>207</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>        }</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>208</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    }</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>209</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>    public func centerOn(x: Float64, y: Float64): Unit {</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>210</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>        unsafe {</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>211</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            nativeGraphicsViewCenterOnWithXY(this.ptr, x, y)</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>212</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>        }</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>213</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    }</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>214</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>    public func centerOn(item: QGraphicsItem): Unit {</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>215</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>        unsafe {</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>216</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            nativeGraphicsViewCenterOnWithItem(this.ptr, item.ptr)</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>217</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>        }</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>218</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    }</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>219</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>    public func dragMode(): QGraphicsViewDragMode {</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>220</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>        let dragMode = unsafe {</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>221</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            nativeGraphicsViewDragMode(this.ptr)</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>222</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>        }</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>223</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>        return QGraphicsViewDragMode.convert(dragMode)</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>224</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    }</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>225</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>    public func setDragMode(dragMode: QGraphicsViewDragMode): Unit {</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>226</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>        unsafe {</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>227</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            nativeGraphicsViewSetDragMode(this.ptr, dragMode.value())</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>228</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>        }</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>229</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    }</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>230</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>    public func ensureVisible(rect: QRectF, xmargin!: Int64 = 50, ymargin!: Int64 = 50): Unit {</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>231</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>        unsafe {</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>232</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            nativeGraphicsViewEnsureVisibleWithRect(this.ptr, rect.ptr, Int32(xmargin), Int32(ymargin))</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>233</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>        }</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>234</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    }</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>235</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre></pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>236</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>    public func ensureVisible(</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>237</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>        x: Float64,</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>238</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>        y: Float64,</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>239</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>        w: Float64,</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>240</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>        h: Float64,</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>241</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>        xmargin!: Int64 = 50,</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>242</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>        ymargin!: Int64 = 50</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>243</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    ): Unit {</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>244</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>        unsafe {</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>245</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            nativeGraphicsViewEnsureVisible(this.ptr, x, y, w, h, Int32(xmargin), Int32(ymargin))</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>246</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>        }</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>247</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    }</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>248</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>    public func ensureVisible(</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>249</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>        item: QGraphicsItem,</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>250</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>        xmargin!: Int64 = 50,</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>251</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>        ymargin!: Int64 = 50</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>252</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    ): Unit {</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>253</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>        unsafe {</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>254</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            nativeGraphicsViewEnsureVisibleWithItem(this.ptr, item.ptr, Int32(xmargin), Int32(ymargin))</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>255</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>        }</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>256</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    }</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>257</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre></pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>258</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>    public func fitlnView(rect: QRectF, aspectRatioMode!: AspectRatioMode = AspectRatioMode.IgnoreAspectRatio): Unit {</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>259</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>        unsafe { nativeGraphicsViewFitlnViewWithRect(this.ptr, rect.ptr, aspectRatioMode.value()) }</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>260</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    }</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>261</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>    public func fitlnView(</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>262</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>        x: Float64,</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>263</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>        y: Float64,</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>264</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>        w: Float64,</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>265</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>        h: Float64,</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>266</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>        aspectRatioMode!: AspectRatioMode = AspectRatioMode.IgnoreAspectRatio</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>267</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    ): Unit {</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>268</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>        unsafe { nativeGraphicsViewFitlnView(this.ptr, x, y, w, h, aspectRatioMode.value()) }</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>269</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    }</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>270</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre></pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>271</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>    public func fitlnView(item: QGraphicsItem, aspectRatioMode!: AspectRatioMode = AspectRatioMode.IgnoreAspectRatio): Unit {</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>272</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>        unsafe { nativeGraphicsViewFitlnViewWithItem(this.ptr, item.ptr, aspectRatioMode.value()) }</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>273</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    }</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>274</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre></pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>275</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>    public func foregroundBrush(): QBrush {</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>276</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>        let brushPtr = unsafe {</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>277</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            nativeGraphicsViewForegroundBrush(this.ptr)</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>278</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>        }</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>279</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>        return QBrush(brushPtr)</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>280</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    }</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>281</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>    public func setForegroundBrush(brush: QBrush): Unit {</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>282</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>        unsafe {</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>283</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            nativeGraphicsViewSetForegroundBrush(this.ptr, brush.ptr)</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>284</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>        }</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>285</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    }</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>286</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>    public func isInteractive(): Bool {</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>287</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>        return unsafe { nativeGraphicsViewIsInteractive(this.ptr) }</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>288</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    }</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>289</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>    public func setInteractiv(allowed: Bool): Unit {</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>290</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>        unsafe { nativeGraphicsViewSetInteractive(this.ptr, allowed) }</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>291</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    }</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>292</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre></pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>293</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>    public func isTransformed(): Bool {</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>294</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>        return unsafe { nativeGraphicsViewIsTransformed(this.ptr) }</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>295</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    }</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>296</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>    public func setTransform(matrix: QTransform, combine!: Bool = false): Unit {</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>297</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>        unsafe { nativeGraphicsViewSetTransform(this.ptr, matrix.ptr, combine) }</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>298</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    }</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>299</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>    public func setTransformationAnchor(anchor: QGraphicsViewViewportAnchor): Unit {</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>300</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>        unsafe { nativeGraphicsViewSetTransformationAnchor(this.ptr, anchor.value()) }</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>301</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    }</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>302</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>    public func itemAt(pos: QPoint): QGraphicsItem {</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>303</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>        let itemPtr = unsafe {</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>304</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            nativeGraphicsViewItemAtWithPoint(this.ptr, pos.ptr)</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>305</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>        }</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>306</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>        return QGraphicsItem(itemPtr)</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>307</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    }</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>308</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>    public func itemAt(x: Int64, y: Int64): QGraphicsItem {</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>309</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>        let itemPtr = unsafe {</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>310</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            nativeGraphicsViewItemAtWithXY(this.ptr, Int32(x), Int32(y))</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>311</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>        }</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>312</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>        return QGraphicsItem(itemPtr)</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>313</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    }</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>314</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>    public func mapFromScene(point: QPointF): QPoint {</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>315</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>        let pointPtr = unsafe {</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>316</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            nativeGraphicsViewMapFromScene(this.ptr, point.ptr)</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>317</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>        }</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>318</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>        return QPoint(pointPtr)</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>319</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    }</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>320</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>    public func mapFromScene(rect: QRectF): QPolygon {</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>321</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>        let polygongPtr = unsafe {</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>322</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            nativeGraphicsViewMapFromSceneWithRectF(this.ptr, rect.ptr)</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>323</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>        }</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>324</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>        return QPolygon(polygongPtr)</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>325</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    }</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>326</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>    public func mapFromScene(polygon: QPolygonF): QPolygon {</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>327</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>        let polygongPtr = unsafe {</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>328</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            nativeGraphicsViewMapFromSceneWithPolygonF(this.ptr, polygon.ptr)</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>329</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>        }</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>330</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>        return QPolygon(polygongPtr)</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>331</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    }</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>332</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>    public func mapFromScene(x: Float64, y: Float64): QPoint {</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>333</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>        let pointPtr = unsafe {</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>334</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            nativeGraphicsViewMapFromSceneWithXY(this.ptr, x, y)</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>335</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>        }</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>336</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>        return QPoint(pointPtr)</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>337</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    }</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>338</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>    public func mapFromScene(x: Float64, y: Float64, w: Float64, h: Float64): QPolygon {</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>339</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>        let polygongPtr = unsafe {</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>340</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            nativeGraphicsViewMapFromSceneWithXYWH(this.ptr, x, y, w, h)</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>341</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>        }</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>342</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>        return QPolygon(polygongPtr)</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>343</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    }</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>344</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre></pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>345</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>    public func mapToScene(point: QPoint): QPointF {</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>346</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>        let pointFPtr = unsafe {</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>347</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            nativeGraphicsViewMapToScene(this.ptr, point.ptr)</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>348</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>        }</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>349</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>        return QPointF(pointFPtr)</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>350</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    }</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>351</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>    public func mapToScene(rect: QRect): QPolygonF {</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>352</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>        let polygonFPtr = unsafe {</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>353</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            nativeGraphicsViewMapToSceneWithRect(this.ptr, rect.ptr)</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>354</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>        }</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>355</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>        return QPolygonF(polygonFPtr)</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>356</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    }</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>357</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>    public func mapToScene(polygon: QPolygon): QPolygonF {</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>358</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>        let polygonFPtr = unsafe {</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>359</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            nativeGraphicsViewMapToSceneWithPolygon(this.ptr, polygon.ptr)</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>360</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>        }</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>361</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>        return QPolygonF(polygonFPtr)</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>362</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    }</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>363</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>    public func mapToScene(x: Int64, y: Int64): QPointF {</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>364</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>        let pointFPtr = unsafe {</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>365</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            nativeGraphicsViewMapToSceneWithXY(this.ptr, Int32(x), Int32(y))</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>366</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>        }</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>367</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>        return QPointF(pointFPtr)</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>368</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    }</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>369</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>    public func mapToScene(x: Int64, y: Int64, w: Int64, h: Int64): QPolygonF {</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>370</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>        let polygonFPtr = unsafe {</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>371</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            nativeGraphicsViewMapToSceneWithXYWH(this.ptr, Int32(x), Int32(y), Int32(w), Int32(h))</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>372</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>        }</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>373</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>        return QPolygonF(polygonFPtr)</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>374</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    }</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>375</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>    public func scene(): QGraphicsScene {</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>376</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>        let scenePtr = unsafe { nativeGraphicsViewScene(this.ptr) }</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>377</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>        return QGraphicsScene(scenePtr)</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>378</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    }</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>379</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>    public func sceneRect(): QRectF {</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>380</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>        let rectFPtr = unsafe { nativeGraphicsViewSceneRect(this.ptr) }</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>381</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>        return QRectF(rectFPtr)</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>382</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    }</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>383</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>    public func setScene(scene: QGraphicsScene): Unit {</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>384</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>        unsafe { nativeGraphicsViewSetScene(this.ptr, scene.ptr) }</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>385</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    }</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>386</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>    public func setSceneRect(rect: QRectF): Unit {</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>387</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>        unsafe { nativeGraphicsViewSetSceneRectWithRect(this.ptr, rect.ptr) }</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>388</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    }</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>389</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>    public func setSceneRect(x: Float64, y: Float64, w: Float64, h: Float64): Unit {</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>390</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>        unsafe { nativeGraphicsViewSetSceneRect(this.ptr, x, y, w, h) }</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>391</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    }</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>392</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>}</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>393</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>//foreign func nativeGraphicsViewMapFromSceneWithPainterPath(ptr: Int64, painterPathPtr: Int64): Int64</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>394</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>//foreign func nativeGraphicsViewMapToSceneWithPainterPath(ptr: Int64, painterPathPtr: Int64): Int64</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>395</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>/***************</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>396</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>foreign func nativeGraphicsViewOptimizationFlags(ptr: Int64): Int16</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>397</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>foreign func nativeGraphicsViewSetOptimizationFlag(ptr: Int64, flag: Int16, enabled: Bool): Unit</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>398</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>foreign func nativeGraphicsViewSetOptimizationFlags(ptr: Int64, flag: Int16): Unit</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>399</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>foreign func nativeGraphicsViewRender(</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>400</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    ptr: Int64,</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>401</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    painterPtr: Int64,</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>402</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    targetPtr: Int64,</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>403</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    sourcePtr: Int64,</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>404</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    aspectRatioMode: Int32</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>405</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>): Unit</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>406</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>foreign func nativeGraphicsViewRenderHints(ptr: Int64): Int16</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>407</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>foreign func nativeGraphicsViewSetRenderHint(ptr: Int64, hint: Int16, enabled: Bool): Unit</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>408</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>foreign func nativeGraphicsViewSetRenderHints(ptr: Int64, hint: Int16): Unit</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>409</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>foreign func nativeGraphicsViewResetCachedContent(ptr: Int64): Unit</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>410</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>foreign func nativeGraphicsViewResetTransform(ptr: Int64): Unit</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>411</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>foreign func nativeGraphicsViewResizeAnchor(ptr: Int64): Int16</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>412</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>foreign func nativeGraphicsViewSetResizeAnchor(ptr: Int64, anchor: Int32): Unit</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>413</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>foreign func nativeGraphicsViewRotate(ptr: Int64, angle: Float64): Unit</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>414</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>foreign func nativeGraphicsViewRubberBandRect(ptr: Int64): Int64</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>415</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>foreign func nativeGraphicsViewRubberBandSelectionMode(ptr: Int64): Int16</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>416</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>foreign func nativeGraphicsViewSetRubberBandSelectionMode(ptr: Int64, selectionMode: Int16): Unit</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>417</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>foreign func nativeGraphicsViewScale(ptr: Int64, sx: Float64, sy: Float64): Unit</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>418</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>************************/</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>419</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>/********************</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>420</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>foreign func nativeGraphicsViewSetViewportUpdateMode(ptr: Int64, updateMode: Int32): Unit</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>421</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>foreign func nativeGraphicsViewShear(ptr: Int64, sh: Float64, sv: Float64): Unit</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>422</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>foreign func nativeGraphicsViewTransform(ptr: Int64): Int64</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>423</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>foreign func nativeGraphicsViewTransformationAnchor(ptr: Int64): Int32</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>424</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>foreign func nativeGraphicsViewTranslate(ptr: Int64, dx: Float64, dy: Float64): Unit</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>425</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>foreign func nativeGraphicsViewViewportTransform(ptr: Int64): Int64</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>426</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>foreign func nativeGraphicsViewViewportUpdateMode(ptr: Int64): Int32</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>427</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>***********************/</pre></td>
+</tr>
+
+  </table>
+  <br>
+
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr><td class="hr"><td></tr>
+    <tr><td class="footer">Generated by: cjcov (Version 1.0.0)</a></td></tr>
+  </table>
+  <br>
+
+</body>
+
+</html>

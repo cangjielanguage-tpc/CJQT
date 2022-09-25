@@ -22,18 +22,18 @@ foreign func nativeActionConnectTriggered(ptr: Int64, code: Int64, callback: CFu
 foreign func nativeActionDelete(ptr: Int64): Unit
 
 /**
- * The class is QAction
+ * Qt动作类
  * @author wathinst
  */
 public class QAction {
-    /** let member ptr type is Int64 */
+    /** QAction类对象指针 */
     public let ptr: Int64
 
-    /** let member triggered type is QActionTriggeredSignal */
+    /** 动作触发信号 */
     public let triggered: QActionTriggeredSignal<Bool>
 
     /**
-     * The Function is init constructor
+     * 默认构造函数
      *
      */
     public init() {
@@ -44,9 +44,9 @@ public class QAction {
     }
 
     /**
-     * The Function is init constructor
+     * 默认构造函数
      *
-     * @param parent of QWidget
+     * @param parent QWidget父类
      */
     public init(parent: QWidget) {
         ptr = unsafe {
@@ -56,9 +56,9 @@ public class QAction {
     }
 
     /*
-     * The Function is init constructor
+     * 默认构造函数
      *
-     * @param ptr of Int64
+     * @param ptr QAction类对象指针
      */
     init(ptr: Int64) {
         this.ptr = ptr
@@ -66,9 +66,9 @@ public class QAction {
     }
 
     /**
-     * The Function is setStatusTip
+     * 设置状态提示
      *
-     * @param tip of String
+     * @param tip 提示文本
      */
     public func setStatusTip(tip: String) {
         unsafe {
@@ -77,9 +77,9 @@ public class QAction {
     }
 
     /**
-     * The Function is setText
+     * 设置动作文本
      *
-     * @param text of String
+     * @param text 文本
      */
     public func setText(text: String) {
         unsafe {
@@ -88,9 +88,9 @@ public class QAction {
     }
 
     /**
-     * The Function is text
+     * 获取动作文本
      *
-     * @return Type of String
+     * @return 文本
      */
     public func text(): String {
         let result = unsafe {
@@ -100,9 +100,9 @@ public class QAction {
     }
 
     /**
-     * The Function is setIcon
+     * 设置动作图标
      *
-     * @param icon of QIcon
+     * @param icon 图标
      */
     public func setIcon(icon: QIcon) {
         unsafe {
@@ -111,9 +111,9 @@ public class QAction {
     }
 
     /**
-     * The Function is icon
+     * 获取动作动作
      *
-     * @return Type of QIcon
+     * @return 图标
      */
     public func icon(): QIcon {
         let iconPtr = unsafe {
@@ -123,9 +123,9 @@ public class QAction {
     }
 
     /**
-     * The Function is setCheckable
+     * 设置可检测的
      *
-     * @param checkable of Bool
+     * @param checkable 是否可检测
      */
     public func setCheckable(checkable: Bool) {
         unsafe {
@@ -134,9 +134,9 @@ public class QAction {
     }
 
     /**
-     * The Function is isCheckable
+     * 获取可检测的状态
      *
-     * @return Type of Bool
+     * @return 是否可检测
      */
     public func isCheckable(): Bool {
         let checkable = unsafe {
@@ -146,9 +146,9 @@ public class QAction {
     }
 
     /**
-     * The Function is setChecked
+     * 设置选中状态
      *
-     * @param checked of Bool
+     * @param checked 是否选中
      */
     public func setChecked(checked: Bool) {
         unsafe {
@@ -157,9 +157,9 @@ public class QAction {
     }
 
     /**
-     * The Function is isChecked
+     * 获取选中状态
      *
-     * @return Type of Bool
+     * @return 是否选中
      */
     public func isChecked(): Bool {
         let checked = unsafe {
@@ -169,7 +169,7 @@ public class QAction {
     }
 
     /**
-     * The Function is delete
+     * 释放内存
      *
      */
     public func delete() {
@@ -181,7 +181,7 @@ public class QAction {
 }
 
 /**
- * The class is QActionTriggeredSignal inherited from QWidgetSignal<T>
+ * 动作触发的信号类
  * @author wathinst
  */
 public class QActionTriggeredSignal<T> <: QWidgetSignal<T> {

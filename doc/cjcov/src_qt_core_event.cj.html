@@ -1,0 +1,2681 @@
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Cangjie Code Coverage Report</title>
+  <style media="screen" type="text/css">
+  body
+{
+  color: #000000;
+  background-color: #FFFFFF;
+}
+
+/* Link formats: use maroon w/underlines */
+a:link
+{
+  color: navy;
+  text-decoration: underline;
+}
+a:visited
+{
+  color: maroon;
+  text-decoration: underline;
+}
+a:active
+{
+  color: navy;
+  text-decoration: underline;
+}
+
+/*** TD formats ***/
+td
+{
+  font-family: sans-serif;
+}
+td.title
+{
+  text-align: center;
+  padding-bottom: 10px;
+  font-size: 20pt;
+  font-weight: bold;
+}
+
+/* TD Header Information */
+td.headerName
+{
+  text-align: right;
+  color: black;
+  padding-right: 6px;
+  font-weight: bold;
+  vertical-align: top;
+  white-space: nowrap;
+}
+td.headerValue
+{
+  text-align: left;
+  color: #284FA8;
+  font-family: sans-serif;
+  font-weight: bold;
+  white-space: nowrap;
+}
+
+td.headerTableEntry
+{
+  text-align: right;
+  color: black;
+  font-weight: bold;
+  white-space: nowrap;
+  padding-left: 12px;
+  padding-right: 4px;
+  background-color: LightBlue;
+}
+td.headerValueLeg
+{
+  text-align: left;
+  color: black;
+  font-size: 80%;
+  white-space: nowrap;
+  padding-top: 2px;
+}
+
+/* Color of horizontal ruler */
+td.hr
+{
+  background-color: navy;
+  height:3px;
+}
+/* Footer format */
+td.footer
+{
+  text-align: center;
+  padding-top: 3px;
+  font-family: sans-serif;
+}
+
+/* Coverage Table */
+
+td.coverTableHead
+{
+  text-align: center;
+  color: white;
+  background-color: SteelBlue;
+  font-family: sans-serif;
+  font-size: 120%;
+  white-space: nowrap;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+td.coverFile
+{
+  text-align: left;
+  padding-left: 10px;
+  padding-right: 20px;
+  color: black;
+  background-color: LightBlue;
+  font-family: monospace;
+  font-weight: bold;
+  font-size: 110%;
+}
+td.coverBar
+{
+  padding-left: 10px;
+  padding-right: 10px;
+  background-color: LightBlue;
+}
+td.coverBarOutline
+{
+  background-color: white;
+}
+td.coverValue
+{
+  padding-top: 2px;
+  text-align: right;
+  padding-left: 10px;
+  padding-right: 10px;
+  font-family: sans-serif;
+  white-space: nowrap;
+  font-weight: bold;
+}
+
+/* Link Details */
+a.detail:link
+{
+  color: #B8D0FF;
+  font-size:80%;
+}
+a.detail:visited
+{
+  color: #B8D0FF;
+  font-size:80%;
+}
+a.detail:active
+{
+  color: #FFFFFF;
+  font-size:80%;
+}
+
+.graphcont{
+    color:#000;
+    font-weight:700;
+    float:left
+}
+
+.graph{
+    float:left;
+    background-color: white;
+    position:relative;
+    width:280px;
+    padding:0
+}
+
+.graph .bar{
+    display:block;
+    position:relative;
+    border:black 1px solid;
+    text-align:center;
+    color:#fff;
+    height:10px;
+    font-family:Arial,Helvetica,sans-serif;
+    font-size:12px;
+    line-height:1.9em
+}
+
+.graph .bar span{
+    position:absolute;
+    left:1em
+}
+
+td.coveredLine,
+span.coveredLine
+{
+    background-color: LightGreen!important;
+}
+
+td.uncoveredLine,
+span.uncoveredLine
+{
+    background-color: LightPink!important;
+}
+
+.linebranch, .linecount
+{
+    border-right: 1px gray solid;
+    background-color: lightgray;
+}
+
+.linebranchDetails
+{
+    position: relative;
+}
+.linebranchSummary
+{
+    cursor: help;
+}
+.linebranchContents
+{
+    font-family: sans-serif;
+    font-size: small;
+    text-align: left;
+    position: absolute;
+    width: 15em;
+    padding: 1em;
+    background: white;
+    border: solid gray 1px;
+    box-shadow: 5px 5px 10px gray;
+    z-index: 1; /* show in front of the table entries */
+}
+
+.takenBranch
+{
+    color: Green!important;
+    cursor: help;
+}
+
+.notTakenBranch
+{
+    color: Red!important;
+    cursor: help;
+}
+
+.src
+{
+    padding-left: 12px;
+}
+
+.srcHeader,
+span.takenBranch,
+span.notTakenBranch
+{
+    font-family: monospace;
+    font-weight: bold;
+}
+
+pre
+{
+    height : 15px;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.lineno
+{
+    background-color: #EFE383;
+    border-right: 1px solid #BBB15F;
+}
+  </style>
+</head>
+
+<body>
+
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr><td class="title">Cangjie Code Coverage Report</td></tr>
+    <tr><td class="hr"></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding="1" border="0" width="100%">
+          <tr>
+            <td class="headerName">File:</td>
+            <td class="headerValue">src/qt/core/event.cj</td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerValue" style="text-align:right;">Hit</td>
+            <td width="10%" class="headerValue" style="text-align:right;">Total</td>
+            <td width="15%" class="headerValue" style="text-align:right;">Coverage</td>
+          </tr>
+          <tr>
+            <td class="headerName">Date:</td>
+            <td class="headerValue">2022-09-25 19:33:00</td>
+            <td></td>
+            <td class="headerName">Lines:</td>
+            <td class="headerTableEntry">0</td>
+            <td class="headerTableEntry">232</td>
+            <td class="headerTableEntry" style="background-color:LightPink">0.0 %</td>
+          </tr>
+          <tr>
+            <td class="headerName">Legend:</td>
+            <td class="headerValueLeg">
+              <span style="background-color:LightPink">low: &lt; 75.0 %</span>
+              <span style="background-color:Yellow">medium: &gt;= 75.0 %</span>
+              <span style="background-color:LightGreen">high: &gt;= 90.0 %</span>
+            </td>
+            <td></td>
+            <td class="headerName">Branches:</td>
+            <td class="headerTableEntry">-</td>
+            <td class="headerTableEntry">-</td>
+            <td class="headerTableEntry" style="background-color:LightGreen">-</td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="hr"></td></tr>
+  </table>
+
+  <br>
+  <table cellspacing="0" cellpadding="1">
+     <tr>
+      <td width="5%" align="right" class="srcHeader">Line</td>
+      <td width="5%" align="right" class="srcHeader">Branch</td>
+      <td width="5%" align="center" class="srcHeader">Hit</td>
+      <td width="75%" align="left" class="srcHeader src">Source</td>
+    </tr>
+
+    <tr>
+<td align="right" class="lineno"><pre>1</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>package qt.core</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>2</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre></pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>3</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>//C</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>4</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>foreign func nativeEventCreate(eventType: Int32): Int64</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>5</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>foreign func nativeEventDelete(ptr: Int64): Unit</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>6</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>foreign func nativeEventAccept(ptr: Int64): Unit</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>7</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>foreign func nativeEventIgnore(ptr: Int64): Unit</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>8</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>foreign func nativeEventIsAccepted(ptr: Int64): Bool</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>9</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>foreign func nativeEventSetAccepted(ptr: Int64, accepted: Bool): Unit</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>10</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>foreign func nativeEventSpontaneous(ptr: Int64): Bool</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>11</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>foreign func nativeEventType(ptr: Int64): Int32</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>12</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>foreign func nativeEventRegisterEventType(hint: Int32): Int32</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>13</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre></pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>14</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>public enum QEventType {</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>15</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    | None // invalid event</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>16</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    | Timer // timer event</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>17</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    | MouseButtonPress // mouse button pressed</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>18</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    | MouseButtonRelease // mouse button released</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>19</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    | MouseButtonDblClick // mouse button double click</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>20</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    | MouseMove // mouse move</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>21</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    | KeyPress // key pressed</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>22</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    | KeyRelease // key released</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>23</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    | FocusIn // keyboard focus received</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>24</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    | FocusOut // keyboard focus lost</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>25</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    | FocusAboutToChange // keyboard focus is about to be lost</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>26</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    | Enter // mouse enters widget</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>27</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    | Leave // mouse leaves widget</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>28</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    | Paint // paint widget</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>29</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    | Move // move widget</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>30</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    | Resize // resize widget</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>31</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    | Create // after widget creation</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>32</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    | Destroy // during widget destruction</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>33</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    | Show // widget is shown</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>34</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    | Hide // widget is hidden</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>35</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    | Close // request to close widget</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>36</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    | Quit // request to quit application</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>37</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    | ParentChange // widget has been reparented</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>38</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    | ParentAboutToChange // sent just before the parent change is done</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>39</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    | ThreadChange // object has changed threads</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>40</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    | WindowActivate // window was activated</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>41</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    | WindowDeactivate // window was deactivated</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>42</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    | ShowToParent // widget is shown to parent</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>43</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    | HideToParent // widget is hidden to parent</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>44</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    | Wheel // wheel event</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>45</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    | WindowTitleChange // window title changed</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>46</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    | WindowIconChange // icon changed</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>47</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    | ApplicationWindowIconChange // application icon changed</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>48</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    | ApplicationFontChange // application font changed</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>49</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    | ApplicationLayoutDirectionChange // application layout direction changed</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>50</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    | ApplicationPaletteChange // application palette changed</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>51</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    | PaletteChange // widget palette changed</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>52</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    | Clipboard // internal clipboard event</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>53</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    | Speech // reserved for speech input</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>54</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    | MetaCall // meta call event</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>55</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    | SockAct // socket activation</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>56</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    | WinEventAct // win event activation</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>57</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    | DeferredDelete // deferred delete event</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>58</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    | DragEnter // drag moves into widget</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>59</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    | DragMove // drag moves in widget</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>60</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    | DragLeave // drag leaves or is cancelled</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>61</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    | Drop // actual drop</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>62</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    | DragResponse // drag accepted/rejected</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>63</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    | ChildAdded // new child widget</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>64</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    | ChildPolished // polished child widget</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>65</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    | ChildRemoved // deleted child widget</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>66</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    | ShowWindowRequest // widget's window should be mapped</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>67</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    | PolishRequest // widget should be polished</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>68</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    | Polish // widget is polished</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>69</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    | LayoutRequest // widget should be relayouted</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>70</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    | UpdateRequest // widget should be repainted</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>71</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    | UpdateLater // request update() later</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>72</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    | EmbeddingControl // ActiveX embedding</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>73</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    | ActivateControl // ActiveX activation</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>74</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    | DeactivateControl // ActiveX deactivation</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>75</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    | ContextMenu // context popup menu</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>76</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    | InputMethod // input method</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>77</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    | TabletMove // Wacom tablet event</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>78</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    | LocaleChange // the system locale changed</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>79</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    | LanguageChange // the application language changed</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>80</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    | LayoutDirectionChange // the layout direction changed</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>81</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    | Style // internal style event</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>82</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    | TabletPress // tablet press</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>83</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    | TabletRelease // tablet release</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>84</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    | OkRequest // CE (Ok) button pressed</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>85</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    | HelpRequest // CE (?)  button pressed</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>86</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    | IconDrag // proxy icon dragged</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>87</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    | FontChange // font has changed</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>88</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    | EnabledChange // enabled state has changed</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>89</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    | ActivationChange // window activation has changed</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>90</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    | StyleChange // style has changed</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>91</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    | IconTextChange // icon text has changed.  Deprecated.</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>92</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    | ModifiedChange // modified state has changed</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>93</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    | MouseTrackingChange // mouse tracking state has changed</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>94</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    | WindowBlocked // window is about to be blocked modally</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>95</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    | WindowUnblocked // windows modal blocking has ended</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>96</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    | WindowStateChange</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>97</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    | ReadOnlyChange // readonly state has changed</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>98</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    | ToolTip</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>99</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    | WhatsThis</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>100</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    | StatusTip</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>101</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    | ActionChanged</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>102</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    | ActionAdded</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>103</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    | ActionRemoved</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>104</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    | FileOpen // file open request</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>105</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    | Shortcut // shortcut triggered</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>106</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    | ShortcutOverride // shortcut override request</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>107</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    | WhatsThisClicked</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>108</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    | ToolBarChange // toolbar visibility toggled</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>109</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    | ApplicationActivate // deprecated. Use ApplicationStateChange instead.</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>110</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    | ApplicationActivated // deprecated</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>111</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    | ApplicationDeactivate // deprecated. Use ApplicationStateChange instead.</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>112</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    | ApplicationDeactivated // deprecated</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>113</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    | QueryWhatsThis // query what's this widget help</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>114</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    | EnterWhatsThisMode</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>115</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    | LeaveWhatsThisMode</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>116</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    | ZOrderChange // child widget has had its z-order changed</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>117</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    | HoverEnter // mouse cursor enters a hover widget</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>118</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    | HoverLeave // mouse cursor leaves a hover widget</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>119</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    | HoverMove // mouse cursor move inside a hover widget</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>120</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre></pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>121</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>    public func value(): Int32 {</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>122</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>        match (this) {</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>123</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case None =&gt; 0 // invalid event</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>124</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case Timer =&gt; 1 // timer event</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>125</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case MouseButtonPress =&gt; 2 // mouse button pressed</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>126</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case MouseButtonRelease =&gt; 3 // mouse button released</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>127</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case MouseButtonDblClick =&gt; 4 // mouse button double click</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>128</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case MouseMove =&gt; 5 // mouse move</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>129</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case KeyPress =&gt; 6 // key pressed</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>130</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case KeyRelease =&gt; 7 // key released</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>131</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case FocusIn =&gt; 8 // keyboard focus received</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>132</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case FocusOut =&gt; 9 // keyboard focus lost</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>133</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case FocusAboutToChange =&gt; 23 // keyboard focus is about to be lost</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>134</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case Enter =&gt; 10 // mouse enters widget</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>135</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case Leave =&gt; 11 // mouse leaves widget</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>136</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case Paint =&gt; 12 // paint widget</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>137</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case Move =&gt; 13 // move widget</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>138</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case Resize =&gt; 14 // resize widget</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>139</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case Create =&gt; 15 // after widget creation</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>140</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case Destroy =&gt; 16 // during widget destruction</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>141</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case Show =&gt; 17 // widget is shown</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>142</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case Hide =&gt; 18 // widget is hidden</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>143</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case Close =&gt; 19 // request to close widget</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>144</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case Quit =&gt; 20 // request to quit application</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>145</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case ParentChange =&gt; 21 // widget has been reparented</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>146</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case ParentAboutToChange =&gt; 131 // sent just before the parent change is done</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>147</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case ThreadChange =&gt; 22 // object has changed threads</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>148</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case WindowActivate =&gt; 24 // window was activated</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>149</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case WindowDeactivate =&gt; 25 // window was deactivated</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>150</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case ShowToParent =&gt; 26 // widget is shown to parent</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>151</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case HideToParent =&gt; 27 // widget is hidden to parent</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>152</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case Wheel =&gt; 31 // wheel event</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>153</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case WindowTitleChange =&gt; 33 // window title changed</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>154</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case WindowIconChange =&gt; 34 // icon changed</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>155</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case ApplicationWindowIconChange =&gt; 35 // application icon changed</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>156</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case ApplicationFontChange =&gt; 36 // application font changed</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>157</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case ApplicationLayoutDirectionChange =&gt; 37 // application layout direction changed</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>158</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case ApplicationPaletteChange =&gt; 38 // application palette changed</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>159</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case PaletteChange =&gt; 39 // widget palette changed</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>160</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case Clipboard =&gt; 40 // internal clipboard event</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>161</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case Speech =&gt; 42 // reserved for speech input</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>162</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case MetaCall =&gt; 43 // meta call event</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>163</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case SockAct =&gt; 50 // socket activation</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>164</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case WinEventAct =&gt; 132 // win event activation</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>165</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case DeferredDelete =&gt; 52 // deferred delete event</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>166</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case DragEnter =&gt; 60 // drag moves into widget</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>167</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case DragMove =&gt; 61 // drag moves in widget</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>168</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case DragLeave =&gt; 62 // drag leaves or is cancelled</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>169</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case Drop =&gt; 63 // actual drop</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>170</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case DragResponse =&gt; 64 // drag accepted/rejected</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>171</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case ChildAdded =&gt; 68 // new child widget</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>172</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case ChildPolished =&gt; 69 // polished child widget</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>173</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case ChildRemoved =&gt; 71 // deleted child widget</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>174</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case ShowWindowRequest =&gt; 73 // widget's window should be mapped</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>175</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case PolishRequest =&gt; 74 // widget should be polished</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>176</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case Polish =&gt; 75 // widget is polished</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>177</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case LayoutRequest =&gt; 76 // widget should be relayouted</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>178</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case UpdateRequest =&gt; 77 // widget should be repainted</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>179</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case UpdateLater =&gt; 78 // request update() later</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>180</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case EmbeddingControl =&gt; 79 // ActiveX embedding</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>181</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case ActivateControl =&gt; 80 // ActiveX activation</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>182</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case DeactivateControl =&gt; 81 // ActiveX deactivation</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>183</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case ContextMenu =&gt; 82 // context popup menu</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>184</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case InputMethod =&gt; 83 // input method</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>185</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case TabletMove =&gt; 87 // Wacom tablet event</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>186</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case LocaleChange =&gt; 88 // the system locale changed</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>187</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case LanguageChange =&gt; 89 // the application language changed</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>188</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case LayoutDirectionChange =&gt; 90 // the layout direction changed</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>189</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case Style =&gt; 91 // internal style event</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>190</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case TabletPress =&gt; 92 // tablet press</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>191</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case TabletRelease =&gt; 93 // tablet release</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>192</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case OkRequest =&gt; 94 // CE (Ok) button pressed</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>193</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case HelpRequest =&gt; 95 // CE (?)  button pressed</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>194</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case IconDrag =&gt; 96 // proxy icon dragged</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>195</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case FontChange =&gt; 97 // font has changed</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>196</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case EnabledChange =&gt; 98 // enabled state has changed</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>197</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case ActivationChange =&gt; 99 // window activation has changed</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>198</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case StyleChange =&gt; 100 // style has changed</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>199</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case IconTextChange =&gt; 101 // icon text has changed.  Deprecated.</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>200</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case ModifiedChange =&gt; 102 // modified state has changed</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>201</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case MouseTrackingChange =&gt; 109 // mouse tracking state has changed</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>202</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case WindowBlocked =&gt; 103 // window is about to be blocked modally</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>203</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case WindowUnblocked =&gt; 104 // windows modal blocking has ended</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>204</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case WindowStateChange =&gt; 105</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>205</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case ReadOnlyChange =&gt; 106 // readonly state has changed</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>206</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case ToolTip =&gt; 110</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>207</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case WhatsThis =&gt; 111</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>208</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case StatusTip =&gt; 112</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>209</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case ActionChanged =&gt; 113</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>210</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case ActionAdded =&gt; 114</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>211</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case ActionRemoved =&gt; 115</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>212</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case FileOpen =&gt; 116 // file open request</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>213</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case Shortcut =&gt; 117 // shortcut triggered</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>214</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case ShortcutOverride =&gt; 51 // shortcut override request</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>215</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case WhatsThisClicked =&gt; 118</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>216</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case ToolBarChange =&gt; 120 // toolbar visibility toggled</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>217</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case ApplicationActivate =&gt; 121 // deprecated. Use ApplicationStateChange instead.</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>218</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case ApplicationActivated =&gt; ApplicationActivate.value() // deprecated</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>219</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case ApplicationDeactivate =&gt; 122 // deprecated. Use ApplicationStateChange instead.</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>220</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case ApplicationDeactivated =&gt; ApplicationDeactivate.value() // deprecated</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>221</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case QueryWhatsThis =&gt; 123 // query what's this widget help</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>222</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case EnterWhatsThisMode =&gt; 124</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>223</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case LeaveWhatsThisMode =&gt; 125</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>224</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case ZOrderChange =&gt; 126 // child widget has had its z-order changed</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>225</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case HoverEnter =&gt; 127 // mouse cursor enters a hover widget</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>226</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case HoverLeave =&gt; 128 // mouse cursor leaves a hover widget</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>227</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case HoverMove =&gt; 129 // mouse cursor move inside a hover widget</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>228</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>        }</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>229</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    }</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>230</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre></pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>231</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>    public static func convert(eventTYpe: Int32): QEventType {</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>232</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>        match (eventTYpe) {</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>233</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case 0 =&gt; None // invalid event</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>234</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case 1 =&gt; Timer // timer event</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>235</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case 2 =&gt; MouseButtonPress // mouse button pressed</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>236</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case 3 =&gt; MouseButtonRelease // mouse button released</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>237</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case 4 =&gt; MouseButtonDblClick // mouse button double click</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>238</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case 5 =&gt; MouseMove // mouse move</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>239</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case 6 =&gt; KeyPress // key pressed</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>240</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case 7 =&gt; KeyRelease // key released</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>241</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case 8 =&gt; FocusIn // keyboard focus received</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>242</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case 9 =&gt; FocusOut // keyboard focus lost</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>243</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case 23 =&gt; FocusAboutToChange // keyboard focus is about to be lost</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>244</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case 10 =&gt; Enter // mouse enters widget</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>245</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case 11 =&gt; Leave // mouse leaves widget</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>246</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case 12 =&gt; Paint // paint widget</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>247</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case 13 =&gt; Move // move widget</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>248</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case 14 =&gt; Resize // resize widget</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>249</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case 15 =&gt; Create // after widget creation</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>250</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case 16 =&gt; Destroy // during widget destruction</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>251</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case 17 =&gt; Show // widget is shown</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>252</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case 18 =&gt; Hide // widget is hidden</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>253</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case 19 =&gt; Close // request to close widget</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>254</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case 20 =&gt; Quit // request to quit application</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>255</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case 21 =&gt; ParentChange // widget has been reparented</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>256</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case 131 =&gt; ParentAboutToChange // sent just before the parent change is done</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>257</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case 22 =&gt; ThreadChange // object has changed threads</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>258</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case 24 =&gt; WindowActivate // window was activated</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>259</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case 25 =&gt; WindowDeactivate // window was deactivated</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>260</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case 26 =&gt; ShowToParent // widget is shown to parent</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>261</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case 27 =&gt; HideToParent // widget is hidden to parent</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>262</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case 31 =&gt; Wheel // wheel event</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>263</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case 33 =&gt; WindowTitleChange // window title changed</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>264</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case 34 =&gt; WindowIconChange // icon changed</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>265</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case 35 =&gt; ApplicationWindowIconChange // application icon changed</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>266</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case 36 =&gt; ApplicationFontChange // application font changed</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>267</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case 37 =&gt; ApplicationLayoutDirectionChange // application layout direction changed</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>268</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case 38 =&gt; ApplicationPaletteChange // application palette changed</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>269</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case 39 =&gt; PaletteChange // widget palette changed</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>270</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case 40 =&gt; Clipboard // internal clipboard event</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>271</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case 42 =&gt; Speech // reserved for speech input</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>272</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case 43 =&gt; MetaCall // meta call event</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>273</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case 50 =&gt; SockAct // socket activation</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>274</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case 132 =&gt; WinEventAct // win event activation</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>275</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case 52 =&gt; DeferredDelete // deferred delete event</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>276</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case 60 =&gt; DragEnter // drag moves into widget</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>277</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case 61 =&gt; DragMove // drag moves in widget</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>278</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case 62 =&gt; DragLeave // drag leaves or is cancelled</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>279</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case 63 =&gt; Drop // actual drop</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>280</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case 64 =&gt; DragResponse // drag accepted/rejected</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>281</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case 68 =&gt; ChildAdded // new child widget</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>282</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case 69 =&gt; ChildPolished // polished child widget</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>283</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case 71 =&gt; ChildRemoved // deleted child widget</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>284</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case 73 =&gt; ShowWindowRequest // widget's window should be mapped</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>285</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case 74 =&gt; PolishRequest // widget should be polished</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>286</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case 75 =&gt; Polish // widget is polished</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>287</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case 76 =&gt; LayoutRequest // widget should be relayouted</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>288</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case 77 =&gt; UpdateRequest // widget should be repainted</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>289</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case 78 =&gt; UpdateLater // request update() later</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>290</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case 79 =&gt; EmbeddingControl // ActiveX embedding</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>291</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case 80 =&gt; ActivateControl // ActiveX activation</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>292</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case 81 =&gt; DeactivateControl // ActiveX deactivation</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>293</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case 82 =&gt; ContextMenu // context popup menu</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>294</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case 83 =&gt; InputMethod // input method</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>295</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case 87 =&gt; TabletMove // Wacom tablet event</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>296</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case 88 =&gt; LocaleChange // the system locale changed</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>297</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case 89 =&gt; LanguageChange // the application language changed</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>298</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case 90 =&gt; LayoutDirectionChange // the layout direction changed</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>299</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case 91 =&gt; Style // internal style event</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>300</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case 92 =&gt; TabletPress // tablet press</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>301</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case 93 =&gt; TabletRelease // tablet release</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>302</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case 94 =&gt; OkRequest // CE (Ok) button pressed</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>303</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case 95 =&gt; HelpRequest // CE (?)  button pressed</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>304</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case 96 =&gt; IconDrag // proxy icon dragged</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>305</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case 97 =&gt; FontChange // font has changed</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>306</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case 98 =&gt; EnabledChange // enabled state has changed</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>307</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case 99 =&gt; ActivationChange // window activation has changed</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>308</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case 100 =&gt; StyleChange // style has changed</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>309</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case 101 =&gt; IconTextChange // icon text has changed.  Deprecated.</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>310</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case 102 =&gt; ModifiedChange // modified state has changed</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>311</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case 109 =&gt; MouseTrackingChange // mouse tracking state has changed</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>312</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case 103 =&gt; WindowBlocked // window is about to be blocked modally</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>313</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case 104 =&gt; WindowUnblocked // windows modal blocking has ended</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>314</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case 105 =&gt; WindowStateChange</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>315</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case 106 =&gt; ReadOnlyChange // readonly state has changed</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>316</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case 110 =&gt; ToolTip</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>317</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case 111 =&gt; WhatsThis</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>318</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case 112 =&gt; StatusTip</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>319</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case 113 =&gt; ActionChanged</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>320</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case 114 =&gt; ActionAdded</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>321</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case 115 =&gt; ActionRemoved</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>322</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case 116 =&gt; FileOpen // file open request</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>323</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case 117 =&gt; Shortcut // shortcut triggered</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>324</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case 51 =&gt; ShortcutOverride // shortcut override request</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>325</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case 118 =&gt; WhatsThisClicked</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>326</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case 120 =&gt; ToolBarChange // toolbar visibility toggled</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>327</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case 121 =&gt; ApplicationActivate // deprecated. Use ApplicationStateChange instead.</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>328</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre></pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>329</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>            //case ApplicationActivated =&gt; ApplicationActivate.value() // deprecated</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>330</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case 122 =&gt; ApplicationDeactivate // deprecated. Use ApplicationStateChange instead.</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>331</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre></pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>332</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>            //case ApplicationDeactivated =&gt; ApplicationDeactivate.value() // deprecated</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>333</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case 123 =&gt; QueryWhatsThis // query what's this widget help</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>334</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case 124 =&gt; EnterWhatsThisMode</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>335</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case 125 =&gt; LeaveWhatsThisMode</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>336</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case 126 =&gt; ZOrderChange // child widget has had its z-order changed</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>337</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case 127 =&gt; HoverEnter // mouse cursor enters a hover widget</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>338</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case 128 =&gt; HoverLeave // mouse cursor leaves a hover widget</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>339</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case 129 =&gt; HoverMove // mouse cursor move inside a hover widget</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>340</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            case _ =&gt; None</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>341</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>        }</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>342</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    }</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>343</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>}</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>344</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre></pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>345</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>public open class QEvent {</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>346</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    public let ptr: Int64</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>347</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>    public init(eventType: QEventType) {</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>348</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>        this.ptr = unsafe {</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>349</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            nativeEventCreate(eventType.value())</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>350</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>        }</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>351</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    }</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>352</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>    public init(ptr:Int64){</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>353</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>        this.ptr=ptr</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>354</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    }</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>355</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>    public open func delete(): Unit {</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>356</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>        return unsafe {</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>357</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            nativeEventDelete(this.ptr)</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>358</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>        }</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>359</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    }</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>360</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>    public func accept(): Unit {</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>361</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>        return unsafe {</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>362</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            nativeEventAccept(this.ptr)</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>363</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>        }</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>364</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    }</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>365</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>    public func ignore(): Unit {</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>366</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>        return unsafe {</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>367</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            nativeEventIgnore(this.ptr)</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>368</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>        }</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>369</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    }</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>370</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>    public func isAccepted(): Bool {</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>371</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>        return unsafe {</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>372</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            nativeEventIsAccepted(this.ptr)</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>373</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>        }</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>374</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    }</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>375</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>    public func setAccepted(accepted: Bool): Unit {</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>376</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>        return unsafe {</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>377</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            nativeEventSetAccepted(this.ptr, accepted)</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>378</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>        }</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>379</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    }</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>380</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>    public func spontaneous(): Bool {</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>381</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>        return unsafe {</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>382</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            nativeEventSpontaneous(this.ptr)</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>383</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>        }</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>384</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    }</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>385</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>    public func eventType(): QEventType {</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>386</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>        let nType = unsafe {</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>387</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>            nativeEventType(this.ptr)</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>388</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>        }</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>389</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount uncoveredLine"><pre>N</pre></td>
+<td align="left" class="src uncoveredLine"><pre>        return QEventType.convert(nType)</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>390</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>    }</pre></td>
+</tr>
+<tr>
+<td align="right" class="lineno"><pre>391</pre></td>
+<td align="right" class="linebranch"></td>
+<td align="center" class="linecount "><pre></pre></td>
+<td align="left" class="src "><pre>}</pre></td>
+</tr>
+
+  </table>
+  <br>
+
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr><td class="hr"><td></tr>
+    <tr><td class="footer">Generated by: cjcov (Version 1.0.0)</a></td></tr>
+  </table>
+  <br>
+
+</body>
+
+</html>

@@ -86,6 +86,10 @@ CjQt是Qt的仓颉语言绑定，提供仓颉语言风格的Qt类和函数的API
 
 ## <img alt="" src="./doc/assets/readme-icon-compile.png" style="display: inline-block;" width=3%/>编译执行
 
+### 接口说明
+
+cjqt类和成员函数说明，详情见 [API](./doc/api/index.html)
+
 ### 安装依赖
 
 安装 libxkbcommon-x11
