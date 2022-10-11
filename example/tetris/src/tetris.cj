@@ -200,7 +200,7 @@ public class Tetris {
                 nextBlock.centerX = centerX
                 nextBlock.centerY = -2
                 nextBlock.id = 2
-                nextBlock.color = QColor(255, 165, 0, 255)
+                nextBlock.color = QColor(255, 165, 0, a: 255)
             case 3 =>
                 // ##
                 //##
@@ -227,7 +227,7 @@ public class Tetris {
                 nextBlock.centerX = centerX
                 nextBlock.centerY = -1
                 nextBlock.id = 5
-                nextBlock.color = QColor(139, 0, 139, 255)
+                nextBlock.color = QColor(139, 0, 139, a: 255)
             case 6 =>
                 // #
                 //###
