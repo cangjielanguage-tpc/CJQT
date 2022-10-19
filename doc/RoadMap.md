@@ -13,5 +13,5 @@
 | 7    | [I5M6EL](https://gitee.com/HW-PLLab/qt/issues/I5M6EL) | 封装QListView组件  | Widgets | [@helin4576](https://gitee.com/helin4576) |
 | 8    | [I5M6EW](https://gitee.com/HW-PLLab/qt/issues/I5M6EW) | 封装QTableView组件  | Widgets |  |
 | 9    | [I5M6F3](https://gitee.com/HW-PLLab/qt/issues/I5M6F3) | 封装QStackedWidget组件  | Widgets |  |
-| 10   | [I5M6FC](https://gitee.com/HW-PLLab/qt/issues/I5M6FC) | 封装QSplitter组件  | Widgets |  |
-| 11   | [I5M6FJ](https://gitee.com/HW-PLLab/qt/issues/I5M6FJ) | 封装QSplitterHandle组件  | Widgets |  |
+| 10   | [I5M6FC](https://gitee.com/HW-PLLab/qt/issues/I5M6FC) | 封装QSplitter组件  | Widgets | [@wathinst](https://gitee.com/wathinst) |
+| 11   | [I5M6FJ](https://gitee.com/HW-PLLab/qt/issues/I5M6FJ) | 封装QSplitterHandle组件  | Widgets | [@wathinst](https://gitee.com/wathinst) |

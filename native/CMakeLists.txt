@@ -67,6 +67,8 @@ set (SRC_DIR ./src/widgets/application.cpp
         ./src/widgets/graphics_rect_item.cpp
         ./src/widgets/tab_bar.cpp
         ./src/widgets/tab_widget.cpp
+        ./src/widgets/splitter.cpp
+        ./src/widgets/splitter_handle.cpp
         ./src/core/url.cpp
         ./src/core/timer.cpp
         ./src/core/rect.cpp
@@ -126,6 +128,8 @@ set (MOC_INC_DIR
         ./includes/widgets/abstract_graphics_shape_item.h
         ./includes/widgets/tab_bar.h
         ./includes/widgets/tab_widget.h
+        ./includes/widgets/splitter.h
+        ./includes/widgets/splitter_handle.h
 )
 
 find_package(Qt5 COMPONENTS Core Gui Widgets REQUIRED )
