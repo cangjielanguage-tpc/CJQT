@@ -31,4 +31,16 @@ extern "C" {
         CjQtBoxLayout *instance = reinterpret_cast<CjQtBoxLayout *>(static_cast<uintptr_t>(ptr));
         delete instance;
     }
+
+    void nativeBoxLayoutAddSpacing(long ptr, int spacing)
+	{
+		QBoxLayout *instance = reinterpret_cast<QBoxLayout *>(static_cast<uintptr_t>(ptr));
+		instance->addSpacing(spacing);
+	}
+
+    void nativeBoxLayoutAddStretch(long ptr, int stretch)
+	{
+		QBoxLayout *instance = reinterpret_cast<QBoxLayout *>(static_cast<uintptr_t>(ptr));
+		instance->addStretch(stretch);
+	}
 }

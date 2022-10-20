@@ -24,6 +24,7 @@ foreign func nativeWidgetShowNormal(ptr: Int64): Unit
 foreign func nativeWidgetClose(ptr: Int64): Unit
 foreign func nativeWidgetMove(ptr: Int64, ax: Int32, ay: Int32): Unit
 foreign func nativeWidgetSetWindowTitle(ptr: Int64, title: CString): Unit
+foreign func nativeWidgetWindowTitle(ptr: Int64): CString
 foreign func nativeWidgetRepaint(ptr: Int64): Unit
 foreign func nativeWidgetSetLayout(ptr: Int64, layoutPtr: Int64): Unit
 foreign func nativeWidgetSetPalette(ptr: Int64, palettePtr: Int64): Unit
@@ -34,6 +35,12 @@ foreign func nativeWidgetDelete(ptr: Int64): Unit
 foreign func nativeWidgetSetStyleSheet(ptr: Int64, styleSheet: CString): Unit
 foreign func nativeWidgetSetWindowIcon(ptr: Int64, iconPtr: Int64): Unit
 foreign func nativeWidgetRect(ptr: Int64): Int64
+foreign func nativeWidgetSetMinimumWidth(ptr: Int64, width: Int32): Unit
+foreign func nativeWidgetSetMinimumHeight(ptr: Int64, height: Int32): Unit
+foreign func nativeWidgetSetMaximumWidth(ptr: Int64, width: Int32): Unit
+foreign func nativeWidgetSetMaximumHeight(ptr: Int64, height: Int32): Unit
+foreign func nativeWidgetSetToolTip(ptr: Int64, title: CString): Unit
+foreign func nativeWidgetToolTip(ptr: Int64): CString
 
 foreign func nativeWidgetSetPaintEvent(ptr: Int64, callback: CFunc<(Int64, Int64) -> Unit>): Unit
 foreign func nativeWidgetSetMousePressEvent(ptr: Int64, callback: CFunc<(Int64, Int64) -> Unit>): Unit
@@ -283,6 +290,13 @@ public open class QWidget <: QObject {
         }
     }
 
+    public func windowTitle(): String {
+        let result = unsafe {
+            nativeWidgetWindowTitle(ptr)
+        }
+        return result.toString()
+    }
+
     /**
      * The Function is setLayout
      *
@@ -377,6 +391,63 @@ public open class QWidget <: QObject {
             nativeWidgetRect(this.ptr)
         }
         return QRect(rectPtr)
+    }
+
+    /**
+     * The Function is setMinimumWidth
+     *
+     * @param width of Int32
+     */
+    public func setMinimumWidth(width: Int64) {
+        unsafe {
+            nativeWidgetSetMinimumWidth(ptr, Int32(width))
+        }
+    }
+
+    /**
+     * The Function is setMinimumHeight
+     *
+     * @param height of Int32
+     */
+    public func setMinimumHeight(height: Int64) {
+        unsafe {
+            nativeWidgetSetMinimumHeight(ptr, Int32(height))
+        }
+    }
+
+    /**
+     * The Function is setMaximumWidth
+     *
+     * @param width of Int32
+     */
+    public func setMaximumWidth(width: Int64) {
+        unsafe {
+            nativeWidgetSetMaximumWidth(ptr, Int32(width))
+        }
+    }
+
+    /**
+     * The Function is setMaximumHeight
+     *
+     * @param height of Int32
+     */
+    public func setMaximumHeight(height: Int64) {
+        unsafe {
+            nativeWidgetSetMaximumHeight(ptr, Int32(height))
+        }
+    }
+
+    public func setToolTip(tip: String) {
+        unsafe {
+            nativeWidgetSetToolTip(ptr, CString(tip))
+        }
+    }
+
+    public func toolTip(): String {
+        let result = unsafe {
+            nativeWidgetToolTip(ptr)
+        }
+        return result.toString()
     }
 
     /**

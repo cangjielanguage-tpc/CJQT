@@ -14,6 +14,9 @@ public class Ui <: QMainWindow {
         splitter = QSplitter()
         splitter.setHandleWidth(0)
 
+        let sidebar = LeftPanel()
+        splitter.addWidget(sidebar)
+        
         mainLayout.addWidget(splitter)
 
         let widget = QWidget(this)

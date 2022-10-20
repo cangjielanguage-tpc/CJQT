@@ -133,6 +133,13 @@ extern "C"
         instance->setWindowTitle(title);
     }
 
+    const char *nativeWidgetWindowTitle(long ptr)
+    {
+        QWidget *instance = reinterpret_cast<QWidget *>(static_cast<uintptr_t>(ptr));
+        QString str = instance->windowTitle();
+        return qstrdup(str.toUtf8());
+    }
+
     void nativeWidgetRepaint(long ptr)
     {
         CjQtWidget *instance = reinterpret_cast<CjQtWidget *>(static_cast<uintptr_t>(ptr));
@@ -181,5 +188,42 @@ extern "C"
         QRect rect = instance->rect();
         QRect *pRect = new QRect(rect);
         return reinterpret_cast<long>(pRect);
+    }
+
+    void nativeWidgetSetMinimumWidth(long ptr, int width)
+    {
+        QWidget *instance = reinterpret_cast<QWidget *>(static_cast<uintptr_t>(ptr));
+        instance->setMinimumWidth(width);
+    }
+
+    void nativeWidgetSetMinimumHeight(long ptr, int height)
+    {
+        QWidget *instance = reinterpret_cast<QWidget *>(static_cast<uintptr_t>(ptr));
+        instance->setMinimumHeight(height);
+    }
+
+    void nativeWidgetSetMaximumWidth(long ptr, int width)
+    {
+        QWidget *instance = reinterpret_cast<QWidget *>(static_cast<uintptr_t>(ptr));
+        instance->setMaximumWidth(width);
+    }
+
+    void nativeWidgetSetMaximumHeight(long ptr, int height)
+    {
+        QWidget *instance = reinterpret_cast<QWidget *>(static_cast<uintptr_t>(ptr));
+        instance->setMaximumHeight(height);
+    }
+
+    void nativeWidgetSetToolTip(long ptr, const char *tip)
+    {
+        QWidget *instance = reinterpret_cast<QWidget *>(static_cast<uintptr_t>(ptr));
+        instance->setToolTip(tip);
+    }
+
+    const char *nativeWidgetToolTip(long ptr)
+    {
+        QWidget *instance = reinterpret_cast<QWidget *>(static_cast<uintptr_t>(ptr));
+        QString str = instance->toolTip();
+        return qstrdup(str.toUtf8());
     }
 }

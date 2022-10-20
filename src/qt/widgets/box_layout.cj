@@ -12,6 +12,9 @@ foreign func nativeBoxLayoutCreate(parentPtr: Int64): Int64
 foreign func nativeBoxLayoutAddWidget(ptr: Int64, widgetPtr: Int64): Unit
 foreign func nativeBoxLayoutDelete(ptr: Int64): Unit
 
+foreign func nativeBoxLayoutAddSpacing(ptr: Int64, spacing: Int32): Unit
+foreign func nativeBoxLayoutAddStretch(ptr: Int64, stretch: Int32): Unit
+
 /**
  * The class is QBoxLayout inherited from QLayout
  * @author wathinst
@@ -57,6 +60,18 @@ public open class QBoxLayout <: QLayout {
     public override open func delete() {
         unsafe {
             nativeBoxLayoutDelete(ptr)
+        }
+    }
+
+    public func addSpacing(spacing: Int64) {
+        unsafe {
+            nativeBoxLayoutAddSpacing(ptr, Int32(spacing))
+        }
+    }
+
+    public func addStretch(stretch: Int64) {
+        unsafe {
+            nativeBoxLayoutAddStretch(ptr, Int32(stretch))
         }
     }
 }
