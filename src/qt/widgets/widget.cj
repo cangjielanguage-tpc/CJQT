@@ -17,6 +17,7 @@ foreign func nativeWidgetResize(ptr: Int64, w: Int32, h: Int32): Unit
 foreign func nativeWidgetSetFixedSize(ptr: Int64, w: Int32, h: Int32): Unit
 foreign func nativeWidgetShow(ptr: Int64): Unit
 foreign func nativeWidgetHide(ptr: Int64): Unit
+foreign func nativeWidgetIsVisible(ptr: Int64): Bool
 foreign func nativeWidgetShowMinimized(ptr: Int64): Unit
 foreign func nativeWidgetShowMaximized(ptr: Int64): Unit
 foreign func nativeWidgetShowFullScreen(ptr: Int64): Unit
@@ -39,8 +40,11 @@ foreign func nativeWidgetSetMinimumWidth(ptr: Int64, width: Int32): Unit
 foreign func nativeWidgetSetMinimumHeight(ptr: Int64, height: Int32): Unit
 foreign func nativeWidgetSetMaximumWidth(ptr: Int64, width: Int32): Unit
 foreign func nativeWidgetSetMaximumHeight(ptr: Int64, height: Int32): Unit
+foreign func nativeWidgetSetFixedWidth(ptr: Int64, width: Int32): Unit
+foreign func nativeWidgetSetFixedHeight(ptr: Int64, height: Int32): Unit
 foreign func nativeWidgetSetToolTip(ptr: Int64, title: CString): Unit
 foreign func nativeWidgetToolTip(ptr: Int64): CString
+foreign func nativeWidgetSetSizePolicy(ptr: Int64, horizontal: Int32, vertical: Int32): Unit
 
 foreign func nativeWidgetSetPaintEvent(ptr: Int64, callback: CFunc<(Int64, Int64) -> Unit>): Unit
 foreign func nativeWidgetSetMousePressEvent(ptr: Int64, callback: CFunc<(Int64, Int64) -> Unit>): Unit
@@ -215,6 +219,17 @@ public open class QWidget <: QObject {
         unsafe {
             nativeWidgetHide(ptr)
         }
+    }
+
+    /**
+     * The Function is isVisible
+     *
+     */
+    public func isVisible(): Bool {
+        let result = unsafe {
+            nativeWidgetIsVisible(ptr)
+        }
+        return result
     }
 
     /**
@@ -437,6 +452,28 @@ public open class QWidget <: QObject {
         }
     }
 
+    /**
+     * The Function is setFixedWidth
+     *
+     * @param width of Int32
+     */
+    public func setFixedWidth(width: Int64) {
+        unsafe {
+            nativeWidgetSetFixedWidth(ptr, Int32(width))
+        }
+    }
+
+    /**
+     * The Function is setFixedHeight
+     *
+     * @param height of Int32
+     */
+    public func setFixedHeight(height: Int64) {
+        unsafe {
+            nativeWidgetSetFixedHeight(ptr, Int32(height))
+        }
+    }
+
     public func setToolTip(tip: String) {
         unsafe {
             nativeWidgetSetToolTip(ptr, CString(tip))
@@ -448,6 +485,12 @@ public open class QWidget <: QObject {
             nativeWidgetToolTip(ptr)
         }
         return result.toString()
+    }
+
+    public func setSizePolicy(horizontal: Int64, vertical: Int64) {
+        unsafe {
+            nativeWidgetSetSizePolicy(ptr, Int32(horizontal), Int32(vertical))
+        }
     }
 
     /**

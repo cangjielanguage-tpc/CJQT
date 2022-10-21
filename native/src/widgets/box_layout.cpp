@@ -43,4 +43,11 @@ extern "C" {
 		QBoxLayout *instance = reinterpret_cast<QBoxLayout *>(static_cast<uintptr_t>(ptr));
 		instance->addStretch(stretch);
 	}
+
+    void nativeBoxLayoutAddLayout(long ptr, long layoutPtr, int stretch)
+	{
+		QBoxLayout *instance = reinterpret_cast<QBoxLayout *>(static_cast<uintptr_t>(ptr));
+        QLayout *layout = reinterpret_cast<QLayout *>(static_cast<uintptr_t>(layoutPtr));
+		instance->addLayout(layout, stretch);
+	}
 }

@@ -91,6 +91,12 @@ extern "C"
         instance->hide();
     }
 
+    bool nativeWidgetIsVisible(long ptr)
+    {
+        QWidget *instance = reinterpret_cast<QWidget *>(static_cast<uintptr_t>(ptr));
+        return instance->isVisible();
+    }
+
     void nativeWidgetShowMinimized(long ptr)
     {
         QWidget *instance = reinterpret_cast<QWidget *>(static_cast<uintptr_t>(ptr));
@@ -214,6 +220,18 @@ extern "C"
         instance->setMaximumHeight(height);
     }
 
+    void nativeWidgetSetFixedWidth(long ptr, int width)
+    {
+        QWidget *instance = reinterpret_cast<QWidget *>(static_cast<uintptr_t>(ptr));
+        instance->setFixedWidth(width);
+    }
+
+    void nativeWidgetSetFixedHeight(long ptr, int height)
+    {
+        QWidget *instance = reinterpret_cast<QWidget *>(static_cast<uintptr_t>(ptr));
+        instance->setFixedHeight(height);
+    }
+
     void nativeWidgetSetToolTip(long ptr, const char *tip)
     {
         QWidget *instance = reinterpret_cast<QWidget *>(static_cast<uintptr_t>(ptr));
@@ -225,5 +243,11 @@ extern "C"
         QWidget *instance = reinterpret_cast<QWidget *>(static_cast<uintptr_t>(ptr));
         QString str = instance->toolTip();
         return qstrdup(str.toUtf8());
+    }
+
+    void nativeWidgetSetSizePolicy(long ptr, int horizontal, int vertical)
+    {
+        QWidget *instance = reinterpret_cast<QWidget *>(static_cast<uintptr_t>(ptr));
+        instance->setSizePolicy(QSizePolicy::Policy(horizontal), QSizePolicy::Policy(vertical));
     }
 }

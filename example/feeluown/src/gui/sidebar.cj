@@ -2,6 +2,57 @@ package gui
 
 from cjqt import qt.widgets.*
 
+public class ListViewContainer <: QFrame {
+    let btnTextHide: String = "△"
+    let btnTextShow: String = "▼"
+    let toggleBtn: QPushButton
+    let label: QLabel
+    let view: QWidget
+
+    public init(label: QLabel, view: QWidget, parent!: QWidget = QWidget(0)) {
+        super(parent)
+        this.label = label
+        this.view = view
+        toggleBtn = QPushButton()
+        toggleBtn.setText(btnTextHide)
+
+        let layout = QVBoxLayout(parent: this)
+        layout.setContentsMargins(0, 0, 0, 0)
+        layout.setSpacing(0)
+
+        let hLayout = QHBoxLayout()
+        label.setFixedHeight(25)
+        hLayout.addWidget(label)
+        hLayout.addStretch(0)
+        hLayout.addWidget(toggleBtn)
+        hLayout.addSpacing(10)
+        layout.addLayout(hLayout)
+        layout.addWidget(view)
+        layout.addStretch(0)
+        setSizePolicy(5, 4)
+
+        toggleBtn.clicked.connect(toggleView)
+    }
+
+    func toggleView(d: Unit) {
+        if (view.isVisible()) {
+            showView()
+        } else {
+            hideView()
+        }
+    }
+
+    func showView() {
+        toggleBtn.setText(btnTextHide)
+        view.show()
+    }
+
+    func hideView() {
+        toggleBtn.setText(btnTextShow)
+        view.hide()
+    }
+}
+
 public class LeftPanel <: QScrollArea {
     public init(parent!: QWidget = QWidget(0)) {
         super(parent: parent)
@@ -35,13 +86,23 @@ class ILeftPanel <: QFrame {
         let playlistsHeader = QLabel("歌单列表")
         let myMusicHeader = QLabel("我的音乐")
 
+        let playlists_view = QWidget(this)
+        let providers_view = QWidget(this)
+        let my_music_view = QWidget(this)
+        let collections_view = QWidget(this)
+
+        let providers_con = ListViewContainer(libraryHeader, providers_view)
+        let collections_con = ListViewContainer(collectionsHeader, collections_view)
+        let playlists_con = ListViewContainer(playlistsHeader, playlists_view)
+        let my_music_con = ListViewContainer(myMusicHeader, my_music_view)
+
         layout.setSpacing(0)
         layout.setContentsMargins(6, 4, 0, 0)
 
-        layout.addWidget(libraryHeader)
-        layout.addWidget(collectionsHeader)
-        layout.addWidget(playlistsHeader)
-        layout.addWidget(myMusicHeader)
+        layout.addWidget(providers_con)
+        layout.addWidget(collections_con)
+        layout.addWidget(playlists_con)
+        layout.addWidget(my_music_con)
         layout.addStretch(0)
     }
 }
