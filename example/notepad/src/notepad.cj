@@ -1,7 +1,5 @@
-from cjqt import qt.gui.*
 from cjqt import qt.core.*
-from cjqt import qt.widgets.*
-from std import io.*
+from std import fs.*
 
 public class NotepadWindow <: QMainWindow {
     let textEdit: QTextEdit
@@ -197,8 +195,8 @@ public class NotepadWindow <: QMainWindow {
         currentFile = fileName
         setWindowTitle(fileName)
 
-        var file = File(fileName, AccessMode.Read, OpenMode.Open)
-        if(file.canRead()){
+        var file: File = File(fileName, OpenOption.Open(true, false))
+        if (File.exists(fileName)) {
             let data = String.fromUtf8(file.readToEnd())
             textEdit.setText(data)
             file.close()
@@ -220,8 +218,8 @@ public class NotepadWindow <: QMainWindow {
             setWindowTitle(fileName)
         }
 
-        var file = File(currentFile, AccessMode.Write, OpenMode.OpenOrCreate)
-        if(file.canWrite()){
+        var file: File = File(currentFile, OpenOption.Create(false))
+        if (File.exists(currentFile)) {
             file.write(textEdit.toPlainText().toUtf8Array())
             file.flush()
             file.close()
@@ -241,8 +239,8 @@ public class NotepadWindow <: QMainWindow {
         currentFile = fileName
         setWindowTitle(fileName)
         
-        var file = File(currentFile, AccessMode.Write, OpenMode.OpenOrCreate)
-        if(file.canWrite()){
+        var file: File = File(currentFile, OpenOption.Create(false))
+        if (File.exists(currentFile)) {
             file.write(textEdit.toPlainText().toUtf8Array())
             file.flush()
             file.close()

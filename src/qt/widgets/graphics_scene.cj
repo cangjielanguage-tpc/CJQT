@@ -1,8 +1,5 @@
 package qt.widgets
 
-from std import collection.*
-import qt.tools.QCallbackMap
-
 //foreign function
 foreign func nativeGraphicsSceneCreate(x: Float64, y: Float64, width: Float64, heigh: Float64, parentPtr: Int64): Int64
 foreign func nativeGraphicsSceneCreateWithRectF(rectFPtr: Int64, parentPtr: Int64): Int64

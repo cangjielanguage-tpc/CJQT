@@ -7,11 +7,13 @@ foreign func nativeObjectDelete(ptr: Int64): Unit
 public open class QObject {
     public let ptr: Int64
     public init(ptr: Int64) {
-        this.ptr = ptr
+        unsafe {
+            this.ptr = ptr
+        }
     }
     public init(parent!: QObject=QObject(0)) {
-        this.ptr = unsafe {
-            if (parent.ptr != 0) {
+        unsafe {
+            this.ptr = if (parent.ptr != 0) {
                 unsafe { nativeObjectCreate(0) }
             } else {
                 unsafe { nativeObjectCreate(parent.ptr) }

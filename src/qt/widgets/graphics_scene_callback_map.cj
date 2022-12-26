@@ -1,7 +1,5 @@
 package qt.widgets
 
-import qt.tools.*
-
 public class QGraphicsSceneCallbackMap <: QCallbackMap {
     /* let member contextMenuEvent */
     public static let contextMenuEvent = HashMap<Int64, (QGraphicsSceneContextMenuEvent) -> Unit>()

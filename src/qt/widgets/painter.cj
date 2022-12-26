@@ -8,8 +8,6 @@
  */
 package qt.widgets
 
-import qt.gui.*
-
 foreign func nativePainterCreate(widgetPtr: Int64): Int64
 foreign func nativePainterCreateWithDevice(devicePtr: Int64): Int64
 foreign func nativePainterDelete(ptr: Int64): Unit

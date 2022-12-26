@@ -8,8 +8,6 @@
  */
 package qt.widgets
 
-import qt.core.*
-
 foreign func nativeFileDialogGetOpenFileUrl(
     parentPtr: Int64,
     caption: CString,

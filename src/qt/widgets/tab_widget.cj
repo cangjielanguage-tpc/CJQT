@@ -189,10 +189,10 @@ public class QTabWidget <: QWidget {
     }
 
     public func widget(index: Int64): QWidget {
-        let index = unsafe {
+        let idx = unsafe {
             nativeTabWidgetWidget(ptr, Int32(index))
         }
-        return QWidget(index)
+        return QWidget(idx)
     }
 
     public func indexOf(widget: QWidget): Int64 {

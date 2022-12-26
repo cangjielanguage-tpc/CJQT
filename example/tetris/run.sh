@@ -26,4 +26,4 @@ cpm update
 cpm build
 
 # run
-./bin/main
+./build/bin/main
