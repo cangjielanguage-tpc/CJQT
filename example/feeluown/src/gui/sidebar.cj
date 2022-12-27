@@ -36,9 +36,9 @@ public class ListViewContainer <: QFrame {
 
     func toggleView(d: Unit) {
         if (view.isVisible()) {
-            showView()
-        } else {
             hideView()
+        } else {
+            showView()
         }
     }
 
