@@ -1,15 +1,16 @@
 from cjqt import qt.widgets.*
 import gui.*
 
+
 main() {
     QApplication.create()
 
-    let ui = Ui()
-    ui.show()
+    let app = GuiApp()
+    app.show()
 
     QApplication.exec()
 
-    ui.delete()
+    app.delete()
 
     QApplication.delete()
     return 0

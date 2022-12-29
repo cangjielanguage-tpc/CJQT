@@ -17,4 +17,16 @@ extern "C"
         QSize *instance = reinterpret_cast<QSize *>(static_cast<uintptr_t>(ptr));
         delete instance;
     }
+
+    int nativeSizeWidth(long ptr)
+    {
+        QSize *instance = reinterpret_cast<QSize *>(static_cast<uintptr_t>(ptr));
+        return instance->width();
+    }
+
+    int nativeSizeHeight(long ptr)
+    {
+        QSize *instance = reinterpret_cast<QSize *>(static_cast<uintptr_t>(ptr));
+        return instance->height();
+    }
 }

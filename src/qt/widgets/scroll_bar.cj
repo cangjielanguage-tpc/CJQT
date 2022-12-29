@@ -43,7 +43,7 @@ public open class QScrollBar <: QAbstractSlider {
             nativeScrollBarEvent(this.ptr, event.ptr)
         }
     }
-    public func sizeHint(): QSize {
+    public open func sizeHint(): QSize {
         let sizePrt = unsafe {
             nativeScrollBarSizeHint(this.ptr)
         }

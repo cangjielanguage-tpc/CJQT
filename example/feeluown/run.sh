@@ -17,7 +17,7 @@ export LD_LIBRARY_PATH=$CUR_DIR/build/cjqt:${LD_LIBRARY_PATH}
 export QT_QPA_PLATFORM_PLUGIN_PATH=$QT_PLATFORM_URL/platforms
 
 # native build
-sh $CUR_DIR/../../build.sh
+# sh $CUR_DIR/../../build.sh
 
 cd $CUR_DIR
 

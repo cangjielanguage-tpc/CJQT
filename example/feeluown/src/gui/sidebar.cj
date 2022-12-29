@@ -1,6 +1,6 @@
 package gui
 
-from cjqt import qt.widgets.*
+from std import math.*
 
 public class ListViewContainer <: QFrame {
     let btnTextHide: String = "△"
@@ -54,14 +54,23 @@ public class ListViewContainer <: QFrame {
 }
 
 public class LeftPanel <: QScrollArea {
-    public init(parent!: QWidget = QWidget(0)) {
+    let app: GuiApp
+
+    public init(app: GuiApp, parent!: QWidget = QWidget(0)) {
         super(parent: parent)
+        this.app = app
         setWidgetResizable(true)
         setFrameShape(QFrameShape.NoFrame)
 
         let p = ILeftPanel(parent: this)
         setWidget(p)
         setMaximumWidth(280)
+    }
+
+    public override func sizeHint(): QSize {
+        let size = sizeHint()
+        let width = min(app.width() / 4, 240)
+        return QSize(width, size.height())
     }
 }
 

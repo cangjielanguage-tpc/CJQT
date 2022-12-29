@@ -67,7 +67,7 @@ public open class QScrollArea <: QFrame {
         return result
     }
 
-    public func sizeHint(): QSize {
+    public open func sizeHint(): QSize {
         let result = unsafe {
             nativeScrollAreaSizeHint(ptr)
         }

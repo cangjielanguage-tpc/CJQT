@@ -18,6 +18,10 @@ foreign func nativeWidgetSetFixedSize(ptr: Int64, w: Int32, h: Int32): Unit
 foreign func nativeWidgetShow(ptr: Int64): Unit
 foreign func nativeWidgetHide(ptr: Int64): Unit
 foreign func nativeWidgetIsVisible(ptr: Int64): Bool
+foreign func nativeWidgetX(ptr: Int64): Int32
+foreign func nativeWidgetY(ptr: Int64): Int32
+foreign func nativeWidgetWidth(ptr: Int64): Int32
+foreign func nativeWidgetHeight(ptr: Int64): Int32
 foreign func nativeWidgetShowMinimized(ptr: Int64): Unit
 foreign func nativeWidgetShowMaximized(ptr: Int64): Unit
 foreign func nativeWidgetShowFullScreen(ptr: Int64): Unit
@@ -230,6 +234,50 @@ public open class QWidget <: QObject {
             nativeWidgetIsVisible(ptr)
         }
         return result
+    }
+
+    /**
+     * The Function is x
+     *
+     */
+    public func x(): Int64 {
+        let result = unsafe {
+            nativeWidgetX(ptr)
+        }
+        return Int64(result)
+    }
+
+    /**
+     * The Function is y
+     *
+     */
+    public func y(): Int64 {
+        let result = unsafe {
+            nativeWidgetY(ptr)
+        }
+        return Int64(result)
+    }
+
+    /**
+     * The Function is width
+     *
+     */
+    public func width(): Int64 {
+        let result = unsafe {
+            nativeWidgetWidth(ptr)
+        }
+        return Int64(result)
+    }
+
+    /**
+     * The Function is height
+     *
+     */
+    public func height(): Int64 {
+        let result = unsafe {
+            nativeWidgetHeight(ptr)
+        }
+        return Int64(result)
     }
 
     /**

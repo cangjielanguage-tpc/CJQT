@@ -97,6 +97,30 @@ extern "C"
         return instance->isVisible();
     }
 
+    int nativeWidgetX(long ptr)
+    {
+        QWidget *instance = reinterpret_cast<QWidget *>(static_cast<uintptr_t>(ptr));
+        return instance->x();
+    }
+
+    int nativeWidgetY(long ptr)
+    {
+        QWidget *instance = reinterpret_cast<QWidget *>(static_cast<uintptr_t>(ptr));
+        return instance->y();
+    }
+
+    int nativeWidgetWidth(long ptr)
+    {
+        QWidget *instance = reinterpret_cast<QWidget *>(static_cast<uintptr_t>(ptr));
+        return instance->width();
+    }
+
+    int nativeWidgetHeight(long ptr)
+    {
+        QWidget *instance = reinterpret_cast<QWidget *>(static_cast<uintptr_t>(ptr));
+        return instance->height();
+    }
+
     void nativeWidgetShowMinimized(long ptr)
     {
         QWidget *instance = reinterpret_cast<QWidget *>(static_cast<uintptr_t>(ptr));
