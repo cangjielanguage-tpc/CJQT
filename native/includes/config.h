@@ -10,6 +10,9 @@ typedef void (*nativeConnectCallbackBool)(long, bool);
 typedef void (*nativeConnectCallbackDouble)(long, double);
 typedef void (*nativeConnectCallbackPointer)(long, void *);
 
+typedef int (*nativeRowCountCallback)(long, long);
+typedef long (*nativeDataCallback)(long, long, int);
+
 #define APPLICATION_CREATE                                                   \
     if (appConfig->appInit && appConfig->app == nullptr)                     \
     {                                                                        \
@@ -36,6 +39,9 @@ private:
     std::map<long, nativeEventCallback> inputMethodEventMap;
     std::map<long, nativeEventCallback> keyReleaseEventMap;
     std::map<long, nativeEventCallback> mouseDoubleClickEventMap;
+
+    std::map<long, nativeRowCountCallback> rowCountMap;
+    std::map<long, nativeDataCallback> dataMap;
 
 public:
     Config() {}
@@ -406,4 +412,49 @@ public:
     {
         mouseDoubleClickEventMap.erase(ptr);
     }
+
+    // RowCountCallback
+    void rowCountMapPut(long ptr, nativeRowCountCallback callback)
+    {
+        rowCountMap[ptr] = callback;
+    }
+
+    nativeRowCountCallback rowCountMapGet(long ptr)
+    {
+        std::map<long, nativeRowCountCallback>::iterator iter;
+        iter = rowCountMap.find(ptr);
+        if (iter != rowCountMap.end())
+        {
+            return iter->second;
+        }
+        return nullptr;
+    }
+
+    void rowCountMapRemove(long ptr)
+    {
+        rowCountMap.erase(ptr);
+    }
+
+    // DataCallback
+    void dataMapPut(long ptr, nativeDataCallback callback)
+    {
+        dataMap[ptr] = callback;
+    }
+
+    nativeDataCallback dataMapGet(long ptr)
+    {
+        std::map<long, nativeDataCallback>::iterator iter;
+        iter = dataMap.find(ptr);
+        if (iter != dataMap.end())
+        {
+            return iter->second;
+        }
+        return nullptr;
+    }
+
+    void dataMapRemove(long ptr)
+    {
+        dataMap.erase(ptr);
+    }
+
 };

@@ -62,7 +62,7 @@ public class LeftPanel <: QScrollArea {
         setWidgetResizable(true)
         setFrameShape(QFrameShape.NoFrame)
 
-        let p = ILeftPanel(parent: this)
+        let p = ILeftPanel(app, parent: this)
         setWidget(p)
         setMaximumWidth(280)
     }
@@ -75,8 +75,11 @@ public class LeftPanel <: QScrollArea {
 }
 
 class ILeftPanel <: QFrame {
-    public init(parent!: QWidget = QWidget(0)) {
+    let app: GuiApp
+
+    public init(app: GuiApp, parent!: QWidget = QWidget(0)) {
         super(parent)
+        this.app = app
 
         let layout = QVBoxLayout(parent: this)
 

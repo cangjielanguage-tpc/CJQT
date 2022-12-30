@@ -129,7 +129,7 @@ public class QSplitter <: QWidget {
         }
     }
 
-    public open func sizeHint(): QSize {
+    public func sizeHint(): QSize {
         let result = unsafe {
             nativeSplitterSizeHint(ptr)
         }

@@ -70,6 +70,8 @@ set (SRC_DIR ./src/widgets/application.cpp
         ./src/widgets/splitter.cpp
         ./src/widgets/splitter_handle.cpp
         ./src/widgets/scroll_area.cpp
+        ./src/widgets/list_view.cpp
+        ./src/widgets/abstract_item_view.cpp
         ./src/core/url.cpp
         ./src/core/timer.cpp
         ./src/core/rect.cpp
@@ -82,6 +84,9 @@ set (SRC_DIR ./src/widgets/application.cpp
         ./src/core/point.cpp
         ./src/core/size_f.cpp
         ./src/core/line_f.cpp
+        ./src/core/abstract_item_model.cpp
+        ./src/core/abstract_list_model.cpp
+        ./src/core/model_index.cpp
         ./src/gui/mouse_event.cpp
         ./src/gui/key_event.cpp
         ./src/gui/painter_event.cpp
@@ -132,6 +137,7 @@ set (MOC_INC_DIR
         ./includes/widgets/splitter.h
         ./includes/widgets/splitter_handle.h
         ./includes/widgets/scroll_area.h
+        ./includes/widgets/list_view.h
 )
 
 find_package(Qt5 COMPONENTS Core Gui Widgets REQUIRED )

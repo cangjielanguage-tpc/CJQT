@@ -274,4 +274,10 @@ extern "C"
         QWidget *instance = reinterpret_cast<QWidget *>(static_cast<uintptr_t>(ptr));
         instance->setSizePolicy(QSizePolicy::Policy(horizontal), QSizePolicy::Policy(vertical));
     }
+
+    void nativeWidgetAreaSetAttribute(long ptr, int attribute, bool on)
+    {
+        QWidget *instance = reinterpret_cast<QWidget *>(static_cast<uintptr_t>(ptr));
+        return instance->setAttribute(Qt::WidgetAttribute(attribute), on);
+    }
 }
