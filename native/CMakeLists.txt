@@ -87,6 +87,8 @@ set (SRC_DIR ./src/widgets/application.cpp
         ./src/core/abstract_item_model.cpp
         ./src/core/abstract_list_model.cpp
         ./src/core/model_index.cpp
+        ./src/core/abstract_item_delegate.cpp
+        ./src/core/styled_item_delegate.cpp
         ./src/gui/mouse_event.cpp
         ./src/gui/key_event.cpp
         ./src/gui/painter_event.cpp

@@ -85,20 +85,32 @@ public open class QAbstractScrollArea <: QFrame {
         }
     }
 
-    public func addScrollBarWidget(widget:QWidget,alignment:Alignment):Unit{
-        return unsafe{
-            nativeAbstractScrollAreaAddScrollBarWidget(this.ptr,widget.ptr,alignment.value())
+    public func addScrollBarWidget(widget: QWidget, alignment: Alignment): Unit {
+        return unsafe {
+            nativeAbstractScrollAreaAddScrollBarWidget(this.ptr, widget.ptr, alignment.value())
         }
     }
-        public func cornerWidget():QWidget{
-        let widgetPtr= unsafe{
+
+    public func setHorizontalScrollBarPolicy(policy: ScrollBarPolicy): Unit {
+        return unsafe {
+            nativeAbstractScrollAreaSetHorizontalScrollBarPolicy(this.ptr, policy.value())
+        }
+    }
+
+    public func setVerticalScrollBarPolicy(policy: ScrollBarPolicy): Unit {
+        return unsafe {
+            nativeAbstractScrollAreaSetVerticalScrollBarPolicy(this.ptr, policy.value())
+        }
+    }
+
+
+    public func cornerWidget(): QWidget {
+        let widgetPtr = unsafe {
             nativeAbstractScrollAreaCornerWidget(this.ptr)
         }
         return QWidget(widgetPtr)
     }
 }
-
-
 //foreign func nativeAbstractScrollAreaHorizontalScrollBar(ptr: Int64): Int64
 //foreign func nativeAbstractScrollAreaHorizontalScrollBarPolicy(ptr: Int64): Int32
 //foreign func nativeAbstractScrollAreaMaximumVieportSize(ptr: Int64): Int64

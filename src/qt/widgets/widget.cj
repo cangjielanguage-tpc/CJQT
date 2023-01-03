@@ -6,6 +6,7 @@
  * @file
  *
  */
+
 package qt.widgets
 
 import qt.gui.*
@@ -49,6 +50,7 @@ foreign func nativeWidgetSetFixedHeight(ptr: Int64, height: Int32): Unit
 foreign func nativeWidgetSetToolTip(ptr: Int64, title: CString): Unit
 foreign func nativeWidgetToolTip(ptr: Int64): CString
 foreign func nativeWidgetSetSizePolicy(ptr: Int64, horizontal: Int32, vertical: Int32): Unit
+foreign func nativeWidgetAreaSetAttribute(ptr: Int64, attribute: Int32, on: Bool): Unit
 
 foreign func nativeWidgetSetPaintEvent(ptr: Int64, callback: CFunc<(Int64, Int64) -> Unit>): Unit
 foreign func nativeWidgetSetMousePressEvent(ptr: Int64, callback: CFunc<(Int64, Int64) -> Unit>): Unit
@@ -538,6 +540,12 @@ public open class QWidget <: QObject {
     public func setSizePolicy(horizontal: Int64, vertical: Int64) {
         unsafe {
             nativeWidgetSetSizePolicy(ptr, Int32(horizontal), Int32(vertical))
+        }
+    }
+
+    public func setAttribute(attribute: WidgetAttribute, on: Bool) {
+        unsafe {
+            nativeWidgetAreaSetAttribute(ptr, attribute.value(), on)
         }
     }
 
