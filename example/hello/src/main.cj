@@ -16,8 +16,8 @@ main() {
     let button = QPushButton(win)
     button.setGeometry(150, 80, 100, 24)
     button.setText("按钮")
-    button.clicked.connect() { d =>
-        QMessageBox.information(win, "消息提示", "点击事件!")
+    button.clicked.connect() {
+        d => QMessageBox.information(win, "消息提示", "点击事件!")
     }
 
     let group = QGroupBox(parent: win)

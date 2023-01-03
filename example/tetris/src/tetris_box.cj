@@ -1,8 +1,8 @@
 
 public class TetrisBox <: QWidget {
     var block = Block() //用来储存Tetris中block的数据
-    let width: Int64
-    let height: Int64
+    let widthVal: Int64
+    let heightVal: Int64
 
     //用来存储Tetris中box的数据
     var box: ArrayList<ArrayList<BoxItem>> = ArrayList()
@@ -16,9 +16,9 @@ public class TetrisBox <: QWidget {
             box.append(arr)
         }
 
-        width = Tetris.getWidth() + 4
-        height = Tetris.getHeight() + 4
-        setFixedSize(width, height)
+        widthVal = Tetris.getWidth() + 4
+        heightVal = Tetris.getHeight() + 4
+        setFixedSize(widthVal, heightVal)
 
         //setPalette(QPalette(QColor.LightGray))
         //setAutoFillBackground(true)
@@ -30,7 +30,7 @@ public class TetrisBox <: QWidget {
             painter.setPen(QPen(QColor.Black, 1))
             painter.setBrush(QBrush(QColor.LightGray))
 
-            painter.drawRect(0, 0, width - 2, height - 2)
+            painter.drawRect(0, 0, widthVal - 2, heightVal - 2)
 
             painter.setPen(QPen(QColor.White, 0))
             painter.setBrush(QBrush(QColor.White))

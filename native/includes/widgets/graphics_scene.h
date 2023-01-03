@@ -20,10 +20,12 @@ public:
         appConfig->helpEventMapRemove(reinterpret_cast<long>(this));
         appConfig->inputMethodEventMapRemove(reinterpret_cast<long>(this));
         appConfig->mouseDoubleClickEventMapRemove(reinterpret_cast<long>(this));
-        appConfig->mouseMoveEventMapRemove(reinterpret_cast<long>(this));
-        appConfig->mousePressEventMapRemove(reinterpret_cast<long>(this));
-        appConfig->mouseReleaseEventMapRemove(reinterpret_cast<long>(this));
-        appConfig->keyPressEventMapRemove(reinterpret_cast<long>(this));
+
+        appConfig->callbackMapRemove((char *)"graphicsMouseMoveEvent", reinterpret_cast<long>(this));
+        appConfig->callbackMapRemove((char *)"graphicsMousePressEvent", reinterpret_cast<long>(this));
+        appConfig->callbackMapRemove((char *)"graphicsMouseReleaseEvent", reinterpret_cast<long>(this));
+        appConfig->callbackMapRemove((char *)"graphicsKeyPressEvent", reinterpret_cast<long>(this));
+
         appConfig->keyReleaseEventMapRemove(reinterpret_cast<long>(this));
         appConfig->wheelEventMapRemove(reinterpret_cast<long>(this));
     }

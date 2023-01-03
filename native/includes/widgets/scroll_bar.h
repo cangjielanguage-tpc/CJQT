@@ -13,13 +13,13 @@ public:
     CjScrollBar(Qt::Orientation orientation, QWidget *parent = nullptr) : QScrollBar(orientation, parent) {}
     ~CjScrollBar()
     {
-        appConfig->wheelEventMapRemove(reinterpret_cast<long>(this));
-        appConfig->contextMenuEventMapRemove(reinterpret_cast<long>(this));
-        appConfig->paintEventMapRemove(reinterpret_cast<long>(this));
-        appConfig->mouseMoveEventMapRemove(reinterpret_cast<long>(this));
-        appConfig->mousePressEventMapRemove(reinterpret_cast<long>(this));
-        appConfig->mouseReleaseEventMapRemove(reinterpret_cast<long>(this));
-        appConfig->hideEventMapRemove(reinterpret_cast<long>(this));
+        // appConfig->wheelEventMapRemove(reinterpret_cast<long>(this));
+        // appConfig->contextMenuEventMapRemove(reinterpret_cast<long>(this));
+        // appConfig->paintEventMapRemove(reinterpret_cast<long>(this));
+        // appConfig->mouseMoveEventMapRemove(reinterpret_cast<long>(this));
+        // appConfig->mousePressEventMapRemove(reinterpret_cast<long>(this));
+        // appConfig->mouseReleaseEventMapRemove(reinterpret_cast<long>(this));
+        // appConfig->hideEventMapRemove(reinterpret_cast<long>(this));
     }
 
 public:

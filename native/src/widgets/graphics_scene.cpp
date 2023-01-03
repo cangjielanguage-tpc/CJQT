@@ -219,21 +219,21 @@ extern "C"
     {
         appConfig->mouseDoubleClickEventMapPut(ptr, callback);
     }
-    void nativeGraphicsSceneSetMouseMoveEvent(long ptr, nativeEventCallback callback)
+    void nativeGraphicsSceneSetMouseMoveEvent(long ptr, nativeCallbackPointer callback)
     {
-        appConfig->mouseMoveEventMapPut(ptr, callback);
+        appConfig->callbackMapPut((char *)"graphicsMouseMoveEvent", ptr, callback);
     }
-    void nativeGraphicsSceneSetMousePressEvent(long ptr, nativeEventCallback callback)
+    void nativeGraphicsSceneSetMousePressEvent(long ptr, nativeCallbackPointer callback)
     {
-        appConfig->mousePressEventMapPut(ptr, callback);
+        appConfig->callbackMapPut((char *)"graphicsMousePressEvent", ptr, callback);
     }
-    void nativeGraphicsSceneSetMouseReleaseEvent(long ptr, nativeEventCallback callback)
+    void nativeGraphicsSceneSetMouseReleaseEvent(long ptr, nativeCallbackPointer callback)
     {
-        appConfig->mouseReleaseEventMapPut(ptr, callback);
+        appConfig->callbackMapPut((char *)"graphicsMouseReleaseEvent", ptr, callback);
     }
-    void nativeGraphicsSceneSetKeyPressEvent(long ptr, nativeEventCallback callback)
+    void nativeGraphicsSceneSetKeyPressEvent(long ptr, nativeCallbackPointer callback)
     {
-        appConfig->keyPressEventMapPut(ptr, callback);
+        appConfig->callbackMapPut((char *)"graphicsKeyPressEvent", ptr, callback);
     }
     void nativeGraphicsSceneSetKeyReleaseEvent(long ptr, nativeEventCallback callback)
     {

@@ -26,38 +26,38 @@ extern "C"
 
     void nativeWidgetDelete(long ptr)
     {
-        appConfig->paintEventMapRemove(ptr);
-        appConfig->mousePressEventMapRemove(ptr);
-        appConfig->mouseReleaseEventMapRemove(ptr);
-        appConfig->mouseMoveEventMapRemove(ptr);
-        appConfig->keyPressEventMapRemove(ptr);
+        appConfig->callbackMapRemove((char *)"paintEvent", ptr);
+        appConfig->callbackMapRemove((char *)"mousePressEvent", ptr);
+        appConfig->callbackMapRemove((char *)"mouseReleaseEvent", ptr);
+        appConfig->callbackMapRemove((char *)"mouseMoveEvent", ptr);
+        appConfig->callbackMapRemove((char *)"keyPressEvent", ptr);
         CjQtWidget *instance = reinterpret_cast<CjQtWidget *>(static_cast<uintptr_t>(ptr));
         delete instance;
     }
 
-    void nativeWidgetSetPaintEvent(long ptr, nativeEventCallback callback)
+    void nativeWidgetSetPaintEvent(long ptr, nativeCallbackPointer callback)
     {
-        appConfig->paintEventMapPut(ptr, callback);
+        appConfig->callbackMapPut((char *)"paintEvent", ptr, callback);
     }
 
-    void nativeWidgetSetMousePressEvent(long ptr, nativeEventCallback callback)
+    void nativeWidgetSetMousePressEvent(long ptr, nativeCallbackPointer callback)
     {
-        appConfig->mousePressEventMapPut(ptr, callback);
+        appConfig->callbackMapPut((char *)"mousePressEvent", ptr, callback);
     }
 
-    void nativeWidgetSetMouseReleaseEvent(long ptr, nativeEventCallback callback)
+    void nativeWidgetSetMouseReleaseEvent(long ptr, nativeCallbackPointer callback)
     {
-        appConfig->mouseReleaseEventMapPut(ptr, callback);
+        appConfig->callbackMapPut((char *)"mouseReleaseEvent", ptr, callback);
     }
 
-    void nativeWidgetSetMouseMoveEvent(long ptr, nativeEventCallback callback)
+    void nativeWidgetSetMouseMoveEvent(long ptr, nativeCallbackPointer callback)
     {
-        appConfig->mouseMoveEventMapPut(ptr, callback);
+        appConfig->callbackMapPut((char *)"mouseMoveEvent", ptr, callback);
     }
 
-    void nativeWidgetSetKeyPressEvent(long ptr, nativeEventCallback callback)
+    void nativeWidgetSetKeyPressEvent(long ptr, nativeCallbackPointer callback)
     {
-        appConfig->keyPressEventMapPut(ptr, callback);
+        appConfig->callbackMapPut((char *)"keyPressEvent", ptr, callback);
     }
 
     void nativeWidgetSetLayout(long ptr, long layoutPtr)
