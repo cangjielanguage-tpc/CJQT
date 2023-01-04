@@ -10,17 +10,11 @@ extern "C"
 
     void nativeAbstractListModelDelete(long ptr)
     {
-        appConfig->rowCountMapRemove(ptr);
-        appConfig->dataMapRemove(ptr);
+        appConfig->callbackMapRemove((char *)"rowCount", ptr);
+        appConfig->callbackMapRemove((char *)"data", ptr);
         CjAbstractListModel *instance = reinterpret_cast<CjAbstractListModel *>(static_cast<uintptr_t>(ptr));
         delete instance;
     }
-
-    //void beginInsertRows(const QModelIndex &parent, int first, int last);
-    //void endInsertRows();
-
-    //void beginRemoveRows(const QModelIndex &parent, int first, int last);
-    //void endRemoveRows();
 
     void nativeAbstractItemModelBeginInsertRows(long ptr, long parentPtr, int first, int last)
     {
@@ -48,13 +42,13 @@ extern "C"
         instance->endRemoveRows();
     }
 
-    void nativeAbstractListModelSetRowCountCallback(long ptr, nativeRowCountCallback callback)
+    void nativeAbstractListModelSetRowCountCallback(long ptr, nativeCallbackPointer callback)
     {
-        appConfig->rowCountMapPut(ptr, callback);
+        appConfig->callbackMapPut((char *)"rowCount", ptr, callback);
     }
 
-    void nativeAbstractListModelSetDataCallback(long ptr, nativeDataCallback callback)
+    void nativeAbstractListModelSetDataCallback(long ptr, nativeCallbackPointer callback)
     {
-        appConfig->dataMapPut(ptr, callback);
+        appConfig->callbackMapPut((char *)"data", ptr, callback);
     }
 }

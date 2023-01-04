@@ -3,6 +3,7 @@
 #include <QAbstractListModel>
 
 #include "object.h"
+#include "data_type.h"
 
 class CjAbstractListModel : public QAbstractListModel
 {
@@ -10,48 +11,55 @@ class CjAbstractListModel : public QAbstractListModel
 public:
     CjAbstractListModel(QObject *parent = nullptr) : QAbstractListModel(parent) {}
 
-    void beginInsertRows(const QModelIndex &parent, int first, int last) {
+    void beginInsertRows(const QModelIndex &parent, int first, int last)
+    {
         QAbstractItemModel::beginInsertRows(parent, first, last);
     }
 
-    void endInsertRows() {
+    void endInsertRows()
+    {
         QAbstractItemModel::endInsertRows();
     }
 
-    void beginRemoveRows(const QModelIndex &parent, int first, int last) {
+    void beginRemoveRows(const QModelIndex &parent, int first, int last)
+    {
         QAbstractItemModel::beginRemoveRows(parent, first, last);
     }
 
-    void endRemoveRows() {
+    void endRemoveRows()
+    {
         QAbstractItemModel::endRemoveRows();
     }
 
-    virtual int rowCount(const QModelIndex &parent = QModelIndex()) const override 
+    virtual int rowCount(const QModelIndex &parent = QModelIndex()) const override
     {
-           nativeRowCountCallback rowCountCallback = appConfig->rowCountMapGet(reinterpret_cast<long>(this)); 
-        if (rowCountCallback != nullptr)                                                                  
-        {                                                                                                   
-            return rowCountCallback(reinterpret_cast<long>(this), reinterpret_cast<long>(&parent));                
-        }                                                                                                   
-        else                                                                                                
-        {                                                                                                   
-            return 0;                                                                                          
-        }   
+        nativeCallbackPointer rowCountCallback = appConfig->callbackMapGet((char *)"rowCount", reinterpret_cast<long>(this));
+        if (rowCountCallback != nullptr)
+        {
+            return (int)(intptr_t)rowCountCallback(reinterpret_cast<long>(this), (void *)reinterpret_cast<long>(&parent));
+        }
+        else
+        {
+            return 0;
+        }
     }
 
-    virtual QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override 
+    virtual QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override
     {
-        nativeDataCallback dataCallback = appConfig->dataMapGet(reinterpret_cast<long>(this)); 
-        if (dataCallback != nullptr)                                                                  
-        {   
-            long dataPtr =  dataCallback(reinterpret_cast<long>(this), reinterpret_cast<long>(&index), role);     
-            QVariant *instance = reinterpret_cast<QVariant *>(static_cast<uintptr_t>(dataPtr));                                                                                          
-            return *instance;                
-        }                                                                                                   
-        else                                                                                                
-        {                                                                                                   
-            return QVariant();                                                                                          
-        }               
+        nativeCallbackPointer dataCallback = appConfig->callbackMapGet((char *)"data", reinterpret_cast<long>(this));
+        if (dataCallback != nullptr)
+        {
+            CjDataLongInt data = {
+                .p1 = reinterpret_cast<long>(&index),
+                .p2 = role};
+            long dataPtr = (long)dataCallback(reinterpret_cast<long>(this), (void *)&data);
+            QVariant *instance = reinterpret_cast<QVariant *>(static_cast<uintptr_t>(dataPtr));
+            return *instance;
+        }
+        else
+        {
+            return QVariant();
+        }
     }
 };
 

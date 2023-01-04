@@ -35,9 +35,9 @@ public class QPainter {
      * The Function is init constructor
      *
      */
-    public init() {
-        ptr = unsafe {
-            nativePainterCreate(0)
+    public init(ptr!: Int64 = 0) {
+        this.ptr = unsafe {
+            nativePainterCreate(ptr)
         }
     }
 

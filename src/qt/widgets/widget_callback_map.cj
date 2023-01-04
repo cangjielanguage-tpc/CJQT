@@ -15,4 +15,9 @@ public class QWidgetCallbackMap <: QCallbackMap {
     public static let mouseMoveEvent = HashMap<Int64, (QMouseEvent) -> Unit>()
         /* let member mouseMoveEvent */
     public static let event = HashMap<Int64, (QEvent) -> Bool>()
+
+    /* let member paintCallback */
+    public static let paintCallback = HashMap<Int64, (QPainter, QModelIndex) -> Unit>()
+    /* let member dataCallback */
+    public static let sizeHintCallback = HashMap<Int64, (QModelIndex) -> Int64>()
 }

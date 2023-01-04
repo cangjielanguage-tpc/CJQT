@@ -4,6 +4,13 @@ foreign func nativeCPointerToInt(pointer: CPointer<Unit>): Int32
 foreign func nativeCPointerToString(pointer: CPointer<Unit>): CString
 foreign func nativeCPointerToBool(pointer: CPointer<Unit>): Bool
 foreign func nativeCPointerToCjDataIntInt(pointer: CPointer<Unit>): CjDataIntInt
+foreign func nativeCPointerToCjDataLongInt(pointer: CPointer<Unit>): CjDataLongInt
+foreign func nativeCPointerToCjDataLongLong(pointer: CPointer<Unit>): CjDataLongLong
+foreign func nativeCPointerToCjDataLongLongLong(pointer: CPointer<Unit>): CjDataLongLongLong
+
+foreign func nativeIntToCPointer(data: Int32): CPointer<Unit>
+foreign func nativeStringToCPointer(data: CString): CPointer<Unit>
+foreign func nativeBoolToCPointer(data: Bool): CPointer<Unit>
 
 public class QConversion {
     public static func cPointerToInt(pointer: CPointer<Unit>): Int64 {
@@ -33,10 +40,71 @@ public class QConversion {
         }
         return result
     }
+
+    public static func cPointerToCjDataLongInt(pointer: CPointer<Unit>): CjDataLongInt {
+        let result = unsafe {
+            nativeCPointerToCjDataLongInt(pointer)
+        }
+        return result
+    }
+
+    public static func cPointerToCjDataLongLong(pointer: CPointer<Unit>): CjDataLongLong {
+        let result = unsafe {
+            nativeCPointerToCjDataLongLong(pointer)
+        }
+        return result
+    }
+
+    public static func cPointerToCjDataLongLongLong(pointer: CPointer<Unit>): CjDataLongLongLong {
+        let result = unsafe {
+            nativeCPointerToCjDataLongLongLong(pointer)
+        }
+        return result
+    }
+
+    public static func intToCPointer(data: Int64): CPointer<Unit> {
+        let result = unsafe {
+            nativeIntToCPointer(Int32(data))
+        }
+        return result
+    }
+
+    public static func stringToCPointer(data: String): CPointer<Unit> {
+        let result = unsafe {
+            nativeStringToCPointer(CString(data))
+        }
+        return result
+    }
+
+    public static func boolToCPointer(data: Bool): CPointer<Unit> {
+        let result = unsafe {
+            nativeBoolToCPointer(data)
+        }
+        return result
+    }
 }
 
 @c
 public struct CjDataIntInt {
     public var p1: Int32 = 0
     public var p2: Int32 = 0
+}
+
+@c
+public struct CjDataLongInt {
+    public var p1: Int64 = 0
+    public var p2: Int32 = 0
+}
+
+@c
+public struct CjDataLongLong {
+    public var p1: Int64 = 0
+    public var p2: Int64 = 0
+}
+
+@c
+public struct CjDataLongLongLong {
+    public var p1: Int64 = 0
+    public var p2: Int64 = 0
+    public var p3: Int64 = 0
 }
