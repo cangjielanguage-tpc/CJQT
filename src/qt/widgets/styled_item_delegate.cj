@@ -23,7 +23,7 @@ func styledItemDelegateSizeHintCallback(ptr: Int64, dataPtr: CPointer<Unit>): In
     let data = QConversion.cPointerToCjDataLongLong(dataPtr)
     let index = QModelIndex(data.p2)
     try {
-        return QWidgetCallbackMap.sizeHintCallback[ptr](index)
+        return QWidgetCallbackMap.sizeHintCallback[ptr](index).ptr
     } catch (e: Exception) {
         println(e)
     }
@@ -31,11 +31,12 @@ func styledItemDelegateSizeHintCallback(ptr: Int64, dataPtr: CPointer<Unit>): In
 }
 
 public open class QStyledItemDelegate <: QAbstractItemDelegate {
-
     public init() {
-        super(unsafe {
-            nativeStyledItemDelegateCreate()
-        })
+        super(
+            unsafe {
+                nativeStyledItemDelegateCreate()
+            }
+        )
         //setPaint()
         //setSizeHint()
     }
@@ -68,11 +69,9 @@ public open class QStyledItemDelegate <: QAbstractItemDelegate {
         }
     }
 
-    public open func paint(painter: QPainter, index: QModelIndex): Unit {
+    public open func paint(painter: QPainter, index: QModelIndex): Unit {}
 
-    }
-
-    public open func sizeHint(index: QModelIndex): Int64 {
-        return QSize().ptr
+    public open func sizeHint(index: QModelIndex): QSize {
+        return QSize()
     }
 }

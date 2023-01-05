@@ -13,22 +13,22 @@ public:
 
     void beginInsertRows(const QModelIndex &parent, int first, int last)
     {
-        QAbstractItemModel::beginInsertRows(parent, first, last);
+        QAbstractListModel::beginInsertRows(parent, first, last);
     }
 
     void endInsertRows()
     {
-        QAbstractItemModel::endInsertRows();
+        QAbstractListModel::endInsertRows();
     }
 
     void beginRemoveRows(const QModelIndex &parent, int first, int last)
     {
-        QAbstractItemModel::beginRemoveRows(parent, first, last);
+        QAbstractListModel::beginRemoveRows(parent, first, last);
     }
 
     void endRemoveRows()
     {
-        QAbstractItemModel::endRemoveRows();
+        QAbstractListModel::endRemoveRows();
     }
 
     virtual int rowCount(const QModelIndex &parent = QModelIndex()) const override
@@ -52,13 +52,12 @@ public:
             CjDataLongInt data = {
                 .p1 = reinterpret_cast<long>(&index),
                 .p2 = role};
-            long dataPtr = (long)dataCallback(reinterpret_cast<long>(this), (void *)&data);
-            QVariant *instance = reinterpret_cast<QVariant *>(static_cast<uintptr_t>(dataPtr));
-            return *instance;
+            QVariant *variant = (QVariant *)dataCallback(reinterpret_cast<long>(this), (void *)&data);
+            return *variant;
         }
         else
         {
-            return QVariant();
+            return QVariant(); 
         }
     }
 };

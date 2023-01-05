@@ -278,6 +278,6 @@ extern "C"
     void nativeWidgetAreaSetAttribute(long ptr, int attribute, bool on)
     {
         QWidget *instance = reinterpret_cast<QWidget *>(static_cast<uintptr_t>(ptr));
-        return instance->setAttribute(Qt::WidgetAttribute(attribute), on);
+        instance->setAttribute(Qt::WidgetAttribute(attribute), on);
     }
 }

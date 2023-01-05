@@ -6,6 +6,9 @@ foreign func nativeSizeCreateWithWidth(width: Int32, height: Int32): Int64
 foreign func nativeSizeDelete(ptr: Int64): Unit
 foreign func nativeSizeWidth(ptr: Int64): Int32
 foreign func nativeSizeHeight(ptr: Int64): Int32
+foreign func nativeSizeIsNull(ptr: Int64): Bool
+foreign func nativeSizeIsEmpty(ptr: Int64): Bool
+foreign func nativeSizeIsValid(ptr: Int64): Bool
 
 public open class QSize {
     public let ptr: Int64
@@ -48,5 +51,38 @@ public open class QSize {
             nativeSizeHeight(ptr)
         }
         return Int64(result)
+    }
+
+    /**
+     * The Function is isNull
+     *
+     */
+    public func isNull(): Bool {
+        let result = unsafe {
+            nativeSizeIsNull(ptr)
+        }
+        return result
+    }
+
+    /**
+     * The Function is isEmpty
+     *
+     */
+    public func isEmpty(): Bool {
+        let result = unsafe {
+            nativeSizeIsEmpty(ptr)
+        }
+        return result
+    }
+
+    /**
+     * The Function is isValid
+     *
+     */
+    public func isValid(): Bool {
+        let result = unsafe {
+            nativeSizeIsValid(ptr)
+        }
+        return result
     }
 }

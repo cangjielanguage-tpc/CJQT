@@ -23,7 +23,7 @@ func abstractItemDelegateSizeHintCallback(ptr: Int64, dataPtr: CPointer<Unit>): 
     let data = QConversion.cPointerToCjDataLongLong(dataPtr)
     let index = QModelIndex(data.p2)
     try {
-        return QWidgetCallbackMap.sizeHintCallback[ptr](index)
+        return QWidgetCallbackMap.sizeHintCallback[ptr](index).ptr
     } catch (e: Exception) {
         println(e)
     }
@@ -71,5 +71,5 @@ public abstract class QAbstractItemDelegate {
 
     public func paint(painter: QPainter, index: QModelIndex): Unit
 
-    public func sizeHint(index: QModelIndex): Int64
+    public func sizeHint(index: QModelIndex): QSize
 }

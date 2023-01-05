@@ -11,9 +11,15 @@ public open class QAbstractItemView <: QAbstractScrollArea {
         super(ptr)
     }
 
-    public func setModel(modelPtr: Int64)  {
+    public func setModel(model: QAbstractListModel)  {
         unsafe {
-            nativeAbstractItemViewSetModel(this.ptr,  modelPtr)
+            nativeAbstractItemViewSetModel(this.ptr,  model.ptr)
+        }
+    }
+
+    public func setModel(model: QStringListModel)  {
+        unsafe {
+            nativeAbstractItemViewSetModel(this.ptr,  model.ptr)
         }
     }
 
@@ -24,9 +30,9 @@ public open class QAbstractItemView <: QAbstractScrollArea {
         return modelPtr
     }
 
-    public func setItemDelegate(delegatePtr: Int64)  {
+    public func setItemDelegate(delegate: QAbstractItemDelegate)  {
         unsafe {
-            nativeAbstractItemViewSetItemDelegate(this.ptr,  delegatePtr)
+            nativeAbstractItemViewSetItemDelegate(this.ptr,  delegate.ptr)
         }
     }
 

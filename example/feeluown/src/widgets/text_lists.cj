@@ -7,14 +7,14 @@ from cjqt import qt.tools.*
 from std import collection.*
 
 public class TextlistModel <: QAbstractListModel {
-    let items = ArrayList<Int64>()
+    let items = ArrayList<QVariant>()
 
     public init() {
         setRowCountCallback()
         setDataCallback()
     }
 
-    public func add(item: Int64) {
+    public func add(item: QVariant) {
         let start = items.size
         let end = start + 1
         beginInsertRows(QModelIndex(), start, end)
@@ -40,25 +40,53 @@ public class TextlistModel <: QAbstractListModel {
         return Int32(items.size)
     }
 
-    public func data(index: QModelIndex, role: Int32): Int64 {
-        if (!index.isValid()) {
-            return 0
+    public func data(index: QModelIndex, role: Int32): QVariant {
+        let row = index.row()
+        if (row < 0 || row >= Int32(items.size)) {
+            return QVariant()
         }
-        if (role == 0x0100) {
-            let row = index.row()
+        if (role == ItemDataRole.DisplayRole.value() || role == ItemDataRole.EditRole.value()) {
             return items[Int64(row)]
         }
-        return 0
+        return QVariant()
+    }
+}
+
+public class TextlistDelegate <: QStyledItemDelegate {
+    init() {
+        setPaint()
+        setSizeHint()
+    }
+
+    func paint(painter: QPainter, index: QModelIndex) {
+        super.paint(painter, index)
+    }
+
+    func sizeHint(index: QModelIndex): QSize {
+        let size = super.sizeHint(index)
+        if (size.isValid()) {
+            return QSize(size.width(), 25)
+        }
+        return QSize()
     }
 }
 
 public class TextlistView <: QListView {
-    init(parent: QWidget) {
+    let listModel = TextlistModel()
+
+    public init(parent: QWidget) {
         super(parent: parent)
 
-        //setAttribute(0, false)
         setAttribute(WidgetAttribute.WA_MacShowFocusRect, false)
         setHorizontalScrollBarPolicy(ScrollBarPolicy.ScrollBarAlwaysOff)
         setVerticalScrollBarPolicy(ScrollBarPolicy.ScrollBarAlwaysOff)
+        setStyleSheet("QListView{border:none;background:transparent;}")
+
+        listModel.add(QVariant("追梦赤子心"))
+        listModel.add(QVariant("起风了"))
+        listModel.add(QVariant("网易云音乐"))
+
+        setModel(listModel)
+        
     }
 }

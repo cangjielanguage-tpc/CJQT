@@ -9,7 +9,7 @@ foreign func nativeAbstractItemModelBeginRemoveRows(ptr: Int64, parentPtr: Int64
 foreign func nativeAbstractItemModelEndRemoveRows(ptr: Int64): Unit
 
 foreign func nativeAbstractListModelSetRowCountCallback(ptr: Int64, callback: CFunc<(Int64, Int64) -> Int32>): Unit
-foreign func nativeAbstractListModelSetDataCallback(ptr: Int64, callback: CFunc<(Int64, CPointer<Unit>) -> Int64>): Unit
+foreign func nativeAbstractListModelSetDataCallback(ptr: Int64, callback: CFunc<(Int64, CPointer<Unit>) -> CPointer<Unit>>): Unit
 
 @c
 func rowCountCallback(ptr: Int64, parentPtr: Int64): Int32 {
@@ -23,16 +23,16 @@ func rowCountCallback(ptr: Int64, parentPtr: Int64): Int32 {
 }
 
 @c
-func dataCallback(ptr: Int64, dataPtr: CPointer<Unit>): Int64 {
+func dataCallback(ptr: Int64, dataPtr: CPointer<Unit>): CPointer<Unit> {
     let data = QConversion.cPointerToCjDataLongInt(dataPtr)
     let index = QModelIndex(data.p1)
     let role = data.p2
     try {
-        return QCoreCallbackMap.dataCallback[ptr](index, role)
+        return QCoreCallbackMap.dataCallback[ptr](index, role).ptr
     } catch (e: Exception) {
         println(e)
     }
-    return 0
+    return QVariant().ptr
 }
 
 public abstract class QAbstractListModel {
@@ -100,5 +100,5 @@ public abstract class QAbstractListModel {
 
     public func rowCount(parent: QModelIndex): Int32
 
-    public func data(index: QModelIndex, role: Int32): Int64
+    public func data(index: QModelIndex, role: Int32): QVariant
 }

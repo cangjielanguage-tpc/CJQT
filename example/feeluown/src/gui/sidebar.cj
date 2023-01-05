@@ -1,6 +1,7 @@
 package gui
 
 from std import math.*
+import widgets.*
 
 public class ListViewContainer <: QFrame {
     let btnTextHide: String = "△"
@@ -99,7 +100,7 @@ class ILeftPanel <: QFrame {
         let playlistsHeader = QLabel("歌单列表")
         let myMusicHeader = QLabel("我的音乐")
 
-        let playlists_view = QWidget(this)
+        let playlists_view = TextlistView(this)
         let providers_view = QWidget(this)
         let my_music_view = QWidget(this)
         let collections_view = QWidget(this)

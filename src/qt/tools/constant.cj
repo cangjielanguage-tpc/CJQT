@@ -33,3 +33,35 @@ public enum ScrollBarPolicy {
         }
     }
 }
+
+public enum ItemDataRole {
+    | DisplayRole
+    | DecorationRole
+    | EditRole
+    | ToolTipRole
+    | StatusTipRole
+    | WhatsThisRole
+    | FontRole
+    | TextAlignmentRole
+    | BackgroundRole
+    | ForegroundRole
+    | CheckStateRole
+    | UserRole
+
+    public func value(): Int32 {
+        return match (this) {
+            case DisplayRole => 0
+            case DecorationRole => 1
+            case EditRole => 2
+            case ToolTipRole => 3
+            case StatusTipRole => 4
+            case WhatsThisRole => 5
+            case FontRole => 6
+            case TextAlignmentRole => 7
+            case BackgroundRole => 8
+            case ForegroundRole => 9
+            case CheckStateRole => 10
+            case UserRole => 0x0100
+        }
+    }
+}
