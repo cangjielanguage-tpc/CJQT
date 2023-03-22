@@ -1,17 +1,19 @@
 import logging
 import locale
 import os
+import platform
 import re
 import shutil
 import subprocess
 import sys
 import time
+import json
 from logging.handlers import TimedRotatingFileHandler
 from pathlib import Path
 from subprocess import PIPE
-
 from .compare import pareFile
 from .config import parser_maple_test_config_file, form_line, do_library_path, do_library_branch
+# sys.stdout.reconfigure(encoding='utf-8')
 
 ENCODING = locale.getpreferredencoding(False)
 HOME_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -26,20 +28,21 @@ TEMP = parser_maple_test_config_file()
 
 def log_output(output, cmd, filename=None):
     """ log command output"""
-    LOG.info("CMD ==>> : %s", str(cmd))
-    LOG.info("FILE ==>> : %s", str(filename))
+    LOG.info("CMD    : %s", str(cmd))
+    LOG.info("FILE   : %s", str(filename))
     stdout, stderr = output.communicate()
-    error = stderr.decode("utf-8", "ignore").strip()
-    out = stdout.decode("utf-8", "ignore").strip()
+    encode = "utf-8" if platform.system() == 'Linux' else 'gbk'
+    error = stderr.decode(encode, "ignore").strip()
+    out = stdout.decode(encode, "ignore").strip()
 
     if error:
         error = re.split("\r?\n", error)
         for item in error:
-            LOG.info(f"Stderr : {item}")
+            LOG.info("Stderr : {}".format(item))
     if out:
         out = re.split("\r?\n", out)
         for item in out:
-            LOG.info(f"Stdout : {item}")
+            LOG.info("Stdout : {}".format(item))
     return stdout, stderr
 
 
@@ -49,13 +52,14 @@ def init_log(name):
     create_file(log_path)
     log = logging.getLogger(name)
     log.setLevel(logging.DEBUG)
-    formatter = logging.Formatter("[%(asctime)s:%(module)s:%(lineno)s:%(levelname)s] %(message)s")
+    formatter = logging.Formatter("[%(asctime)s] %(levelname)s - %(message)s", "%m-%d %H:%M:%S")
+    # sys.stdout.reconfigure(encoding='utf-8')
     streamhandler = logging.StreamHandler(sys.stdout)
     streamhandler.setLevel(logging.DEBUG)
     streamhandler.setFormatter(formatter)
     log.addHandler(streamhandler)
     filehandler = TimedRotatingFileHandler(
-        os.path.join(log_path, "cj-stdx.log"), when="W6", interval=1, backupCount=60
+        os.path.join(log_path, "ci_test.log"), when="W6", interval=1, backupCount=60
     )
     filehandler.setLevel(logging.DEBUG)
     filehandler.setFormatter(formatter)
@@ -74,30 +78,32 @@ def get_cj_toolchain():
 def runAll(flag):
     subcmd = ""
     if flag == "true":
-        subcmd = " --coverage -overflow no"
+        subcmd = " --coverage"
     parent_dir = os.path.dirname(os.path.dirname(HOME_DIR))
     lib_dir = os.path.join(parent_dir, "build")
     if os.path.exists(lib_dir):
         parent_dir = os.path.dirname(os.path.dirname(HOME_DIR))
         lib_dir = os.path.join(parent_dir, "build")
-        sub_lib_dir = os.listdir(lib_dir)[0]
         global LIB_DIR
-        LIB_DIR = os.path.join(lib_dir, str(sub_lib_dir))
-        improt_libs(LIB_DIR)
-        if os.path.exists(lib_dir):
-            env_setup(LIB_DIR)
-        else:
-            raise AttributeError("not found ci_lib directory.")
+        for sub_lib_dir in os.listdir(lib_dir):
+            if sub_lib_dir != "bin":
+                LIB_DIR = os.path.join(lib_dir, str(sub_lib_dir))
+                improt_libs(LIB_DIR)
+                if os.path.exists(lib_dir):
+                    env_setup(LIB_DIR)
+                else:
+                    raise AttributeError("not found ci_lib directory.")
     third_path_libs = do_library_path()
     ci_lib_arr = []
-    for path_lib in third_path_libs:
-        ci_lib_path = os.path.join(parent_dir, "ci_lib")
-        third_path_lib = os.path.join(str(ci_lib_path), path_lib)
-        if os.path.exists(third_path_lib):
-            # set ci_lib lib
-            improt_libs(third_path_lib)
-            env_setup(third_path_lib)
-            ci_lib_arr.append(third_path_lib)
+    if third_path_libs:
+        for path_lib in third_path_libs:
+            ci_lib_path = os.path.join(parent_dir, "ci_lib")
+            third_path_lib = os.path.join(str(ci_lib_path), path_lib)
+            if os.path.exists(third_path_lib):
+                # set ci_lib lib
+                improt_libs(third_path_lib)
+                env_setup(third_path_lib)
+                ci_lib_arr.append(third_path_lib)
     run_all_lib_dir = LIB_DIR
     loop_dir(TEMP.get("test_home"), lambda file: runOne(file, run_all_lib_dir, subcmd, ci_lib_arr))
 
@@ -120,12 +126,19 @@ def runOne(file, lib_dir, subcmd, ci_lib_arr=None):
             create_file(runPath)
             for item in copy:
                 try:
-                    shutil.copyfile(os.path.join(path.parent, item), os.path.join(runPath, item))
+                    copy_path = os.path.join(path.parent, item)
+                    if os.path.isdir(copy_path):
+                        shutil.copytree(copy_path, os.path.join(runPath, item))
+                        shutil.copymode(copy_path, os.path.join(runPath, item))
+                    else:
+                        shutil.copyfile(copy_path, os.path.join(runPath, item))
+                        shutil.copymode(copy_path, os.path.join(runPath, item))
                 finally:
                     pass
             else:
                 subprocess.Popen("cp ./*.cjo ./*.o {}/".format(runPath),
                                  shell=True, cwd=parent_dir, stderr=subprocess.PIPE, stdout=subprocess.PIPE)
+                case_one_return_code = 0
                 for item in exec:
                     cmd_temp = item
                     import_path_dir = str(lib_dir + "/..")
@@ -136,6 +149,9 @@ def runOne(file, lib_dir, subcmd, ci_lib_arr=None):
                             l_path_dir = l_path_dir + " -L {} ".format(ci_lib)
                     cmd = form_line(item, {"import-path": "--import-path {}".format(import_path_dir)})
                     cmd = form_line(cmd, {"L": "-L {}".format(l_path_dir)})
+                    cmd = form_line(cmd, {"project-path": "--import-path {}".format(parent_dir)})
+                    cmd = form_line(cmd, {"project-L": "-L {}".format(parent_dir)})
+                    cmd = form_line(cmd, {"project": "{}".format(parent_dir)})
                     cmd = form_line(cmd, {"l": LIBS_STR})
                     if str(cmd) == str(cmd_temp):
                         sub_lib_cmd = get_library_cmd(parent_dir, ci_lib_dir, ci_lib_const)
@@ -147,11 +163,16 @@ def runOne(file, lib_dir, subcmd, ci_lib_arr=None):
                     output = subprocess.Popen(cmd, shell=True, cwd=runPath, stderr=subprocess.PIPE,
                                               stdout=subprocess.PIPE)
                     out, err = log_output(output, output.args, path.name)
-                    if err and ("error" in str(err) or "exception" in str(err)):
-                        RESULT.get("FAIL").append(str(path))
-                        break
+                    if output.returncode != 0:
+                        case_one_return_code = output.returncode
                 else:
-                    RESULT.get("PASS").append(str(path))
+                    LOG.info("return : %s", str(output.returncode))
+                    LOG.info(" >>=============================================<< ")
+                    LOG.info("")
+                    if case_one_return_code != 0:
+                        RESULT.get("FAIL").append(str(path))
+                    else:
+                        RESULT.get("PASS").append(str(path))
 
 
 def improt_libs(libsdir):
@@ -221,7 +242,7 @@ def unittest():
                     is_first = False
                     is_top_file = False
                     for file in files:
-                        if os.path.exists(file) and file.endswith(".cj"):
+                        if file.endswith(".cj"):
                             is_top_file = True
                             ut_dir_cmd = "cp {}/test/UT/{} {}/src/{}".format(parent_dir, file, parent_dir, file)
                             output = subprocess.Popen(ut_dir_cmd, shell=True, cwd=parent_dir, stderr=subprocess.PIPE,
@@ -241,9 +262,9 @@ def unittest():
             if err:
                 exit(1)
             loop_dir(ROOT_DIR, lambda file: src_files(file))
-            print(CJC_TOOLS)
+            # print(CJC_TOOLS)
             cmd1 = "{0} {1} --test".format(CJC_TOOLS, SRC_FILES)
-            print(cmd1)
+            # print(cmd1)
             output = subprocess.Popen(cmd1, shell=True, cwd=ROOT_DIR, stderr=subprocess.PIPE,
                                       stdout=subprocess.PIPE)
             out, err = log_output(output, output.args, ROOT_DIR)
@@ -293,30 +314,27 @@ def create_file(path):
         os.makedirs(path)
 
 
-LOG: logging.Logger
-CJC_TOOLS: str = ""
-
-
-def start():
-    global LOG, CJC_TOOLS
-    LOG = init_log("root")
-    CJC_TOOLS = get_cj_toolchain()
+LOG: logging.Logger = init_log("root")
+CJC_TOOLS: str = get_cj_toolchain()
 
 
 # 加载三方库
 def loding_library():
     py_exe = sys.executable
-    ci_lib_const = "ci_lib"
+    ci_lib_const = "temp_ci_lib"
     parent_dir = os.path.dirname(os.path.dirname(HOME_DIR))
     ci_lib_dir = os.path.join(parent_dir, ci_lib_const)
     if os.path.exists(ci_lib_dir):
-        subprocess.Popen("rm -rf {}/*".format(ci_lib_const), shell=True, cwd=parent_dir, stderr=subprocess.PIPE,
-                         stdout=subprocess.PIPE)
         LOG.info(">>> 清理ci_lib中缓存文件...")
+        try :
+            shutil.rmtree(ci_lib_const)
+        except:
+            LOG.warn(">>> ci_lib文件夹为空...")
     else:
-        subprocess.Popen("mkdir {}".format(ci_lib_const), shell=True, cwd=parent_dir, stderr=subprocess.PIPE,
-                         stdout=subprocess.PIPE)
+        os.mkdir(ci_lib_dir)
         LOG.info(">>> 创建ci_lib中缓存文件...")
+
+    load_c_library(parent_dir, ci_lib_dir, ci_lib_const)
     my_librarys = do_library_path()
     if not my_librarys:
         LOG.info(">>> 无其他三方库依赖")
@@ -328,23 +346,23 @@ def loding_library():
     LOG.info(">>> 三方库依赖 compiling....")
     for lib in my_librarys:
         LOG.info("clone {} starting".format(lib))
-        cmd = "git clone -b {} {} ./{}".format(str(my_branchs[lib]), str(my_librarys[lib]), lib)
+        cmd = "git clone {} ./{}".format(str(my_librarys[lib]), lib)
         output = subprocess.Popen(cmd, shell=True, cwd=parent_dir, stderr=subprocess.PIPE, stdout=subprocess.PIPE)
         log_output(output, output.args, parent_dir)
         LOG.info("clone {} successs".format(lib))
-        output = subprocess.Popen(
-            "cp -r ci_test {}".format(lib), shell=True, cwd=parent_dir, stderr=subprocess.PIPE, stdout=subprocess.PIPE
-        )
+        # 拉取tag
+        cmd = "git checkout {}".format(str(my_branchs[lib]))
+        output = subprocess.Popen(cmd, shell=True, cwd=os.path.join(parent_dir, lib), stderr=subprocess.PIPE, stdout=subprocess.PIPE)
         log_output(output, output.args, parent_dir)
+        LOG.info("checkout tag {} successs".format(lib))
+        # // TODO
+        try:
+            shutil.copytree(os.path.join(parent_dir, "ci_test"), os.path.join(os.path.join(parent_dir, lib), "ci_test"))
+        except:
+            shutil.rmtree(os.path.join(os.path.join(parent_dir, lib), "ci_test"))
+            shutil.copytree(os.path.join(parent_dir, "ci_test"), os.path.join(os.path.join(parent_dir, lib), "ci_test"))
         output = subprocess.Popen(
-            "{} ./{}/ci_test/main.py build".format(py_exe, lib), shell=True, cwd=parent_dir, stderr=PIPE, stdout=PIPE
-        )
-        out, err = log_output(output, output.args, parent_dir)
-        if err:
-            exit(1)
-        output = subprocess.Popen(
-            "cp -r ./{}/build/* ./{}".format(lib, ci_lib_const), shell=True, cwd=parent_dir, stderr=subprocess.PIPE,
-            stdout=subprocess.PIPE
+            "{} {} download".format(py_exe, os.path.join(parent_dir, lib, "ci_test", "main.py")), shell=True, cwd=parent_dir, stderr=PIPE, stdout=PIPE
         )
         out, err = log_output(output, output.args, parent_dir)
         if err:
@@ -352,28 +370,82 @@ def loding_library():
     return get_library_cmd(parent_dir, ci_lib_dir, ci_lib_const)
 
 
+    # 加载so/dll
+def load_c_library(parent_dir, ci_lib_dir, ci_lib_const):
+    LOG.info('parent_dir:{}'.format(parent_dir))
+    LOG.info('ci_lib_dir:{}'.format(ci_lib_dir))
+    LOG.info('modulejson:{}'.format(os.path.join(parent_dir, "module.json")))
+    file = open(os.path.join(parent_dir, "module.json"))
+    mainlib = json.load(file)['name']
+    file.close()
+    # foreignlib = '{}/lib_{}'.format(ci_lib_const,mainlib)
+    foreignlib = os.path.join(ci_lib_const, "lib_{}".format(mainlib))
+    OS = 'linux_x86_64' if platform.system() == 'Linux' else 'windows'
+    if not os.path.exists(foreignlib):
+        output = subprocess.Popen(
+            "git clone -b lib_{} https://gitee.com/HW-PLLab/ci_lib.git {} --depth 1".format(mainlib, "{}/lib_{}".format(ci_lib_const, mainlib)),
+            shell=True,
+            cwd=parent_dir,
+            stderr=subprocess.PIPE,
+            stdout=subprocess.PIPE,
+        )
+        # if
+        out, err = log_output(output, output.args, parent_dir)
+        if "not find remote branch" in str(err):
+            return
+    if os.path.exists(os.path.join(parent_dir, "lib")):
+        try:
+            shutil.rmtree(os.path.join(parent_dir, "lib"))
+        except:
+            LOG.warn(">>> lib文件夹为空...")
+    else:
+        os.mkdir(os.path.join(parent_dir, "lib"))
+
+    todo = " ; cp -r lib/protobuf ." if mainlib == "grpc" else ""
+    aaa = os.path.join(parent_dir, foreignlib, OS, "lib", "lib_{}".format(mainlib))
+    bbb = os.path.join(parent_dir, "lib")
+    try:
+        shutil.copytree(aaa, bbb)
+    except:
+        try:
+            shutil.rmtree(bbb)
+            shutil.copytree(aaa, bbb)
+        except:
+            return
+    if not todo == "":
+        try:
+            shutil.copytree(os.path.join(parent_dir, "lib", "protobuf"), os.path.join(parent_dir,"protobuf"))
+        except:
+            shutil.rmtree(os.path.join(parent_dir,"protobuf"))
+            shutil.copytree(os.path.join(parent_dir, "lib", "protobuf"), os.path.join(parent_dir,"protobuf"))
+    LOG.info("load foreign lib for {}".format(mainlib))
+
+
 def get_library_cmd(parent_dir, ci_lib_dir, ci_lib_const):
     my_libs_cmd = ""
     my_lib_dir = os.path.join(parent_dir, ci_lib_const)
-    for sub_lib_dir in os.listdir(ci_lib_dir):
-        global LIB_DIR
-        LIB_DIR = os.path.join(ci_lib_dir, str(sub_lib_dir))
-        my_libs = []
-        for lib in os.listdir(LIB_DIR):
-            if lib.startswith("lib") and lib.endswith(".so"):
-                aa = lib[3:len(lib) - 3]
-                my_libs.append(aa)
-            elif lib.startswith("lib") and lib.endswith(".a"):
-                aa = lib[3:len(lib) - 2]
-                my_libs.append(aa)
-        for ss in my_libs:
-            my_libs_cmd = my_libs_cmd + "-l {} ".format(ss)
-        print(LIB_DIR)
-        if os.path.exists(ci_lib_dir):
-            env_setup(LIB_DIR)
-        else:
-            raise AttributeError("not found ci_lib directory.")
-        print(os.environ['LIBRARY_PATH'])
+    dynamic_lib = ".dll" if platform.system() == "Windows" else ".so"
+    static_lib = ".lib" if platform.system() == "Windows" else ".a"
+    if os.path.exists(ci_lib_dir):
+        for sub_lib_dir in os.listdir(ci_lib_dir):
+            global LIB_DIR
+            LIB_DIR = os.path.join(ci_lib_dir, str(sub_lib_dir))
+            my_libs = []
+            for lib in os.listdir(LIB_DIR):
+                if lib.startswith("lib") and lib.endswith(dynamic_lib):
+                    aa = lib[3:len(lib) - 3]
+                    my_libs.append(aa)
+                elif lib.startswith("lib") and lib.endswith(static_lib):
+                    aa = lib[3:len(lib) - 2]
+                    my_libs.append(aa)
+            for ss in my_libs:
+                my_libs_cmd = my_libs_cmd + "-l {} ".format(ss)
+            # print(LIB_DIR)
+            # if os.path.exists(ci_lib_dir):
+            #     env_setup(LIB_DIR)
+            # else:
+            #     raise AttributeError("not found ci_lib directory.")
+            # print(os.environ['LIBRARY_PATH'])
 
     return " --import-path {} -L {} {}".format(my_lib_dir, my_lib_dir, my_libs_cmd)
 
@@ -400,59 +472,15 @@ RESULT = {
 }
 
 
-def runForeignConfig(depend):
-    if depend is None:
-        return
+def runForeignConfig():
     parent_dir = os.path.dirname(os.path.dirname(HOME_DIR))
-    depends = os.path.join(parent_dir, depend)
-    depend_dir = Path(depends)
-    if not depend_dir.exists():
-        return
-    for path, dirs, files in os.walk(parent_dir + "/build"):
-        cmd = "cp {0}/*.so {1}/build/{2}/".format(depends, parent_dir, str(dirs[0]))
-        output = subprocess.Popen(cmd, shell=True, cwd=parent_dir, stderr=subprocess.PIPE,
-                                  stdout=subprocess.PIPE)
-        log_output(output, output.args, parent_dir)
-        break
-
-
-def runBuild(flag, libs_cmd):
-    subcmd = ""
-    cpmsubcmd = ""
-    if flag == "true":
-        subcmd = " --coverage -overflow no"
-        cpmsubcmd = " --coverage"
-    LOG.info("start build.....")
-    global SRC_FILES
-    parent_dir = os.path.dirname(os.path.dirname(HOME_DIR))
-    ROOT_DIR = os.path.join(parent_dir, "src")
-    if os.path.exists(os.path.join(parent_dir, "module.json")):
-        LOG.info("Building with CPM.....")
-        cpmbuild(cpmsubcmd)
-    else:
-        LOG.info("Building with cjc.....")
-        loop_dir(ROOT_DIR, lambda file: src_files(file))
-        cmd1 = "{0} {1} -o lib.o -c".format(CJC_TOOLS, SRC_FILES)
-        cmd1 = cmd1 + libs_cmd + subcmd
-        output = subprocess.Popen(cmd1, shell=True, cwd=parent_dir, stderr=subprocess.PIPE,
-                                  stdout=subprocess.PIPE)
-        out, err = log_output(output, output.args, parent_dir)
-        if err and "error" in str(err):
-            LOG.error("build error")
-            exit(1)
-        LOG.info("end build")
-
-
-def cpmbuild(subcmd):
-    cmd1 = "cpm build {}".format(subcmd)
-    parent_dir = os.path.dirname(os.path.dirname(HOME_DIR))
-    output = subprocess.Popen(cmd1, shell=True, cwd=parent_dir, stderr=subprocess.PIPE,
-                              stdout=subprocess.PIPE)
-    out, err = log_output(output, output.args, parent_dir)
-    if err and "error" in str(err):
-        LOG.error("build error")
-        exit(1)
-    LOG.info("end build")
+    build_dir = os.path.join(parent_dir, "build")
+    for path, dirs, files in os.walk(build_dir):
+        for dd in dirs:
+            if dd != "bin":
+                for _, _, lib_files in os.walk(os.path.join(parent_dir, dd, "lib")):
+                    for lib_file in lib_files:
+                        shutil.copyfile(os.path.join(parent_dir, dd, "lib", lib_file), os.path.join(build_dir, dd, lib_file))
 
 
 def end_build():
@@ -461,16 +489,16 @@ def end_build():
         LOG.info(f"CASE: {item}, Result: FAIL")
     a = len(RESULT.get("FAIL"))
     b = len(RESULT.get("PASS"))
-    LOG.info(f"")
-    LOG.info(f"\tTestSuiteTask: Total: {str(a + b)}, PASS: {str(b)}, FAIL: {str(a)}")
+    LOG.info("")
+    LOG.info("  TestSuiteTask: Total: {}, PASS: {}, FAIL: {}, Ratio  : {}%".format(str(a + b), str(b), str(a), round(b / (a + b) * 100, 2) if (a + b) > 0 else 0))
     if a:
         exit(1)
 
 
 def clear():
-    print("start clear")
+    LOG.info("start clear")
     output = subprocess.Popen(f"rm -rf {TEMP.get('temp_dir')}", shell=True)
     output.communicate()
     output = subprocess.Popen(f"rm -rf {TEMP.get('log_dir')}", shell=True)
     output.communicate()
-    print("end clear")
+    LOG.info("end clear")

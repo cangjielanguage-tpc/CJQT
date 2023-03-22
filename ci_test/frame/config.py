@@ -21,6 +21,24 @@ ENCODING = locale.getpreferredencoding(False)
 OS_SEP = os.path.sep
 OS = platform.system()
 
+
+def conf_other_build_file():
+    cfg = read_config(complete_path(SRC_DIR+"gitee_gate.cfg"))
+    if cfg:
+        # return get_config_value(cfg, "other_build", "shell", default=None)
+        try:
+            list_entry = cfg["other_build"]
+            for item in list_entry:
+                if item == "shell" and list_entry[item]:
+                    return list_entry[item]
+                else:
+                    return None
+        except KeyError:
+            return None
+    else:
+        return None
+
+
 def conf_UT_test():
     cfg = read_config(complete_path(SRC_DIR+"gitee_gate.cfg"))
     if cfg:
@@ -28,12 +46,14 @@ def conf_UT_test():
     else:
         return "true"
 
+
 def conf_coverage_LLT():
     cfg = read_config(complete_path(SRC_DIR+"gitee_gate.cfg"))
     if cfg:
         return get_config_value(cfg, "coverage", "LLT", default="false")
     else:
         return "false"
+
 
 def conf_coverage_UT():
     cfg = read_config(complete_path(SRC_DIR+"gitee_gate.cfg"))
@@ -53,7 +73,7 @@ def conf_library_depends_dynamic():
 
 def parse_args():
     parser = argparse.ArgumentParser(description="test script")
-    parser.add_argument("type", help=" clear | build")
+    parser.add_argument("type", help="build | test | ut | cjlint")
     parser.add_argument(
         "--cfg",
         metavar="<CFG_FILE>",
@@ -152,12 +172,14 @@ def complete_path(path):
         return Path(os.path.realpath(str(path)))
     return path.expanduser().resolve()
 
+
 def split_and_complete_path(paths):
     """ Split the paths and returns the canonical path of each path"""
     canonicalPaths = []
     for path in paths.split(","):
         canonicalPaths.append(complete_path(path))
     return canonicalPaths
+
 
 def read_config(file_path):
     if not file_path.exists() or not file_path.is_file():
@@ -166,6 +188,7 @@ def read_config(file_path):
     config.optionxform = str
     config.read(str(file_path), encoding="utf-8")
     return config
+
 
 def get_config_value(config, section, option, default=None):
     """read config value from test config"""
