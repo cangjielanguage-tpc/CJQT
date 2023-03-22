@@ -12,7 +12,7 @@ from logging.handlers import TimedRotatingFileHandler
 from pathlib import Path
 from subprocess import PIPE
 from .compare import pareFile
-from .config import parser_maple_test_config_file, form_line, do_library_path, do_library_branch
+from .config import parser_maple_test_config_file, form_line, do_library_path, do_library_branch, conf_library_depends_dynamic
 # sys.stdout.reconfigure(encoding='utf-8')
 
 ENCODING = locale.getpreferredencoding(False)
@@ -104,6 +104,15 @@ def runAll(flag):
                 improt_libs(third_path_lib)
                 env_setup(third_path_lib)
                 ci_lib_arr.append(third_path_lib)
+
+    depends_dynamic = conf_library_depends_dynamic()
+    depends_dynamic_dir = os.path.join(parent_dir, depends_dynamic)
+    if os.path.exists(depends_dynamic_dir):
+                # set depends_dynamic lib
+                improt_libs(depends_dynamic_dir)
+                env_setup(depends_dynamic_dir)
+                ci_lib_arr.append(depends_dynamic_dir)
+
     run_all_lib_dir = LIB_DIR
     loop_dir(TEMP.get("test_home"), lambda file: runOne(file, run_all_lib_dir, subcmd, ci_lib_arr))
 
