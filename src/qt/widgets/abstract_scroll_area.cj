@@ -1,4 +1,7 @@
-package qt.widgets
+package cjqt.qt.widgets
+
+import cjqt.qt.core.*
+import cjqt.qt.tools.ScrollBarPolicy
 
 //C
 foreign func nativeAbstractScrollAreaCreate(parentPtr: Int64): Int64
@@ -31,34 +34,34 @@ foreign func nativeAbstractScrollAreaSetupViewport(ptr: Int64, viewportPtr: Int6
        QAbstractScrollArea *instance = reinterpret_cast<QAbstractScrollArea *>(static_cast<uintptr_t>(ptr));
        return instance->sizeAdjustPolicy();
    }
-   long nativeAbstractScrollAreaVerticalScrollBar(ptr:Int64)
+   uintptr_t nativeAbstractScrollAreaVerticalScrollBar(ptr:Int64)
    {
        QAbstractScrollArea *instance = reinterpret_cast<QAbstractScrollArea *>(static_cast<uintptr_t>(ptr));
        QScrollBar *scrollbar = instance->verticalScrollBar();
-       return reinterpret_cast<long>(scrollbar);
+       return reinterpret_cast<uintptr_t>(scrollbar);
    }
    int nativeAbstractScrollAreaVerticalScrollBarPolicy(ptr:Int64)
    {
        QAbstractScrollArea *instance = reinterpret_cast<QAbstractScrollArea *>(static_cast<uintptr_t>(ptr));
        return instance->verticalScrollBarPolicy();
    }
-   long nativeAbstractScrollAreaViewport(ptr:Int64)
+   uintptr_t nativeAbstractScrollAreaViewport(ptr:Int64)
    {
        QAbstractScrollArea *instance = reinterpret_cast<QAbstractScrollArea *>(static_cast<uintptr_t>(ptr));
        QWidget *widget = instance->viewport();
-       return reinterpret_cast<long>(widget);
+       return reinterpret_cast<uintptr_t>(widget);
    }
-   long nativeAbstractScrollAreaMinimumSizeHint(ptr:Int64)
+   uintptr_t nativeAbstractScrollAreaMinimumSizeHint(ptr:Int64)
    {
        QAbstractScrollArea *instance = reinterpret_cast<QAbstractScrollArea *>(static_cast<uintptr_t>(ptr));
        QSize size = instance->minimumSizeHint();
-       return reinterpret_cast<long>(&size);
+       return reinterpret_cast<uintptr_t>(&size);
    }
-   long nativeAbstractScrollAreaSizeHint(ptr:Int64)
+   uintptr_t nativeAbstractScrollAreaSizeHint(ptr:Int64)
    {
        QAbstractScrollArea *instance = reinterpret_cast<QAbstractScrollArea *>(static_cast<uintptr_t>(ptr));
        QSize size = instance->sizeHint();
-       return reinterpret_cast<long>(&size);
+       return reinterpret_cast<uintptr_t>(&size);
    }
  * *****************/
 public open class QAbstractScrollArea <: QFrame {

@@ -2,73 +2,73 @@
 
 extern "C"
 {
-    long nativePointFCreate(double xpos, double ypos)
+    uintptr_t nativePointFCreate(double xpos, double ypos)
     {
         QPointF *pointF = new QPointF(xpos, ypos);
-        return reinterpret_cast<long>(pointF);
+        return reinterpret_cast<uintptr_t>(pointF);
     }
-    long nativePointFCreateWithPoint(const long pointPtr)
+    uintptr_t nativePointFCreateWithPoint(const uintptr_t pointPtr)
     {
         QPoint *point = reinterpret_cast<QPoint *>(static_cast<uintptr_t>(pointPtr));
         QPointF *pointF = new QPointF(*point);
-        return reinterpret_cast<long>(pointF);
+        return reinterpret_cast<uintptr_t>(pointF);
     }
-    void nativePointFDelete(long ptr)
+    void nativePointFDelete(uintptr_t ptr)
     {
         QPointF *instance = reinterpret_cast<QPointF *>(static_cast<uintptr_t>(ptr));
         delete instance;
     }
 
-    bool nativePointFIsNull(long ptr)
+    bool nativePointFIsNull(uintptr_t ptr)
     {
         QPointF *instance = reinterpret_cast<QPointF *>(static_cast<uintptr_t>(ptr));
         return instance->isNull();
     }
-    double nativePointFManhattanLength(long ptr)
+    double nativePointFManhattanLength(uintptr_t ptr)
     {
         QPointF *instance = reinterpret_cast<QPointF *>(static_cast<uintptr_t>(ptr));
         return instance->manhattanLength();
     }
-    double nativePointFRx(long ptr)
+    double nativePointFRx(uintptr_t ptr)
     {
         QPointF *instance = reinterpret_cast<QPointF *>(static_cast<uintptr_t>(ptr));
         return instance->rx();
     }
-    double nativePointFRy(long ptr)
+    double nativePointFRy(uintptr_t ptr)
     {
         QPointF *instance = reinterpret_cast<QPointF *>(static_cast<uintptr_t>(ptr));
         return instance->ry();
     }
-    void nativePointFSetX(long ptr, double x)
+    void nativePointFSetX(uintptr_t ptr, double x)
     {
         QPointF *instance = reinterpret_cast<QPointF *>(static_cast<uintptr_t>(ptr));
         instance->setX(x);
     }
-    void nativePointFSetY(long ptr, double y)
+    void nativePointFSetY(uintptr_t ptr, double y)
     {
         QPointF *instance = reinterpret_cast<QPointF *>(static_cast<uintptr_t>(ptr));
         instance->setY(y);
     }
-    long nativePointFToPoint(long ptr)
+    uintptr_t nativePointFToPoint(uintptr_t ptr)
     {
         QPointF *instance = reinterpret_cast<QPointF *>(static_cast<uintptr_t>(ptr));
         QPoint point = instance->toPoint();
         QPoint *p = new QPoint(point);
-        return reinterpret_cast<long>(p);
+        return reinterpret_cast<uintptr_t>(p);
     }
-    long nativePointFTransposed(long ptr)
+    uintptr_t nativePointFTransposed(uintptr_t ptr)
     {
         QPointF *instance = reinterpret_cast<QPointF *>(static_cast<uintptr_t>(ptr));
         QPointF pointF = instance->transposed();
         QPointF *p = new QPointF(pointF);
-        return reinterpret_cast<long>(p);
+        return reinterpret_cast<uintptr_t>(p);
     }
-    double nativePointFX(long ptr)
+    double nativePointFX(uintptr_t ptr)
     {
         QPointF *instance = reinterpret_cast<QPointF *>(static_cast<uintptr_t>(ptr));
         return instance->x();
     }
-    double nativePointFY(long ptr)
+    double nativePointFY(uintptr_t ptr)
     {
         QPointF *instance = reinterpret_cast<QPointF *>(static_cast<uintptr_t>(ptr));
         return instance->y();

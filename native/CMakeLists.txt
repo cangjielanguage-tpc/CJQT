@@ -4,7 +4,7 @@ project(nativeQt LANGUAGES CXX)
 
 # set(CMAKE_CXX_FLAGS   "-g")
 
-set(CMAKE_SYSTEM_PROCESSOR arm64)
+# set(CMAKE_SYSTEM_PROCESSOR arm64)
 
 # set(tools ~/ohos/prebuilts/gcc/linux-x86/aarch64/gcc-linaro-7.5.0-2019.12-x86_64_aarch64-linux-gnu)
 # set(CMAKE_C_COMPILER aarch64-linux-gnu-g++)

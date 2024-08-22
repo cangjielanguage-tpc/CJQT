@@ -6,7 +6,9 @@
  * @file
  *
  */
-package qt.widgets
+package cjqt.qt.widgets
+
+import cjqt.qt.core.*
 
 foreign func nativeFileDialogGetOpenFileUrl(
     parentPtr: Int64,
@@ -55,7 +57,7 @@ public class QFileDialog <: QWidget {
         filter!: String = ""): QUrl {
         /* let member urlPtr */
         let urlPtr = unsafe {
-            nativeFileDialogGetOpenFileUrl(parent.ptr, CString(caption), dir.ptr, CString(filter))
+            nativeFileDialogGetOpenFileUrl(parent.ptr, LibC.mallocCString(caption), dir.ptr, LibC.mallocCString(filter))
         }
         return QUrl(urlPtr)
     }
@@ -74,7 +76,7 @@ public class QFileDialog <: QWidget {
         filter!: String = ""): String {
         /* let member name */
         let name = unsafe {
-            nativeFileDialogGetOpenFileName(parent.ptr, CString(caption), CString(dir), CString(filter))
+            nativeFileDialogGetOpenFileName(parent.ptr, LibC.mallocCString(caption), LibC.mallocCString(dir), LibC.mallocCString(filter))
         }
         return name.toString()
     }
@@ -93,7 +95,7 @@ public class QFileDialog <: QWidget {
         filter!: String = ""): QUrl {
         /* let member urlPtr */
         let urlPtr = unsafe {
-            nativeFileDialogGetSaveFileUrl(parent.ptr, CString(caption), dir.ptr, CString(filter))
+            nativeFileDialogGetSaveFileUrl(parent.ptr, LibC.mallocCString(caption), dir.ptr, LibC.mallocCString(filter))
         }
         return QUrl(urlPtr)
     }
@@ -112,7 +114,7 @@ public class QFileDialog <: QWidget {
         filter!: String = ""): String {
         /* let member name */
         let name = unsafe {
-            nativeFileDialogGetSaveFileName(parent.ptr, CString(caption), CString(dir), CString(filter))
+            nativeFileDialogGetSaveFileName(parent.ptr, LibC.mallocCString(caption), LibC.mallocCString(dir), LibC.mallocCString(filter))
         }
         return name.toString()
     }

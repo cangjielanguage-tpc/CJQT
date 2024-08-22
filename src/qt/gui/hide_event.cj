@@ -6,7 +6,9 @@
  * @file
  *
  */
-package qt.gui
+package cjqt.qt.gui
+
+import cjqt.qt.core.QEvent
 
 /**
  * The class is QHideEvent

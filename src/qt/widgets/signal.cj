@@ -1,5 +1,6 @@
-package qt.widgets
+package cjqt.qt.widgets
 
+import cjqt.qt.tools.*
 
 public open class QWidgetSignal<T> {
     /* let member ptr type is Int64 */

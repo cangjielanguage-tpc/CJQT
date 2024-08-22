@@ -6,7 +6,7 @@
  * @file
  *
  */
-package qt.widgets
+package cjqt.qt.widgets
 
 /**
  * The class is QGraphicsSceneDragDropEvent

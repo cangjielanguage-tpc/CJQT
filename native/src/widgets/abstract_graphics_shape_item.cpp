@@ -14,7 +14,7 @@ void CjAbstractGraphicsShapeItem::paint(QPainter *painter, const QStyleOptionGra
 };
 extern "C"
 {
-    long nativeAbstractGraphicsShapeItemCreate(long parentPtr)
+    uintptr_t nativeAbstractGraphicsShapeItemCreate(uintptr_t parentPtr)
     {
         CjAbstractGraphicsShapeItem *item;
         if (parentPtr == 0L)
@@ -23,33 +23,33 @@ extern "C"
         }
     }
 
-    void nativeAbstractGraphicsShapeItemDelete(long ptr)
+    void nativeAbstractGraphicsShapeItemDelete(uintptr_t ptr)
     {
         CjAbstractGraphicsShapeItem *instance = reinterpret_cast<CjAbstractGraphicsShapeItem *>(static_cast<uintptr_t>(ptr));
         delete instance;
     }
 
-    long nativeAbstractGraphicsShapeItemBrush(long ptr)
+    uintptr_t nativeAbstractGraphicsShapeItemBrush(uintptr_t ptr)
     {
         QAbstractGraphicsShapeItem *instance = reinterpret_cast<QAbstractGraphicsShapeItem *>(static_cast<uintptr_t>(ptr));
         QBrush brush = instance->brush();
         QBrush *p = new QBrush(brush);
-        return reinterpret_cast<long>(p);
+        return reinterpret_cast<uintptr_t>(p);
     }
-    void nativeAbstractGraphicsShapeItemSetBrush(long ptr, const long brushPtr)
+    void nativeAbstractGraphicsShapeItemSetBrush(uintptr_t ptr, const uintptr_t brushPtr)
     {
         QAbstractGraphicsShapeItem *instance = reinterpret_cast<QAbstractGraphicsShapeItem *>(static_cast<uintptr_t>(ptr));
         QBrush *brush = reinterpret_cast<QBrush *>(static_cast<uintptr_t>(brushPtr));
         instance->setBrush(*brush);
     }
-    long nativeAbstractGraphicsShapeItemPen(long ptr)
+    uintptr_t nativeAbstractGraphicsShapeItemPen(uintptr_t ptr)
     {
         QAbstractGraphicsShapeItem *instance = reinterpret_cast<QAbstractGraphicsShapeItem *>(static_cast<uintptr_t>(ptr));
         QPen pen = instance->pen();
         QPen *p = new QPen(pen);
-        return reinterpret_cast<long>(p);
+        return reinterpret_cast<uintptr_t>(p);
     }
-    void nativeAbstractGraphicsShapeItemSetPen(long ptr, const long penPtr)
+    void nativeAbstractGraphicsShapeItemSetPen(uintptr_t ptr, const uintptr_t penPtr)
     {
         QAbstractGraphicsShapeItem *instance = reinterpret_cast<QAbstractGraphicsShapeItem *>(static_cast<uintptr_t>(ptr));
         QPen *pen = reinterpret_cast<QPen *>(static_cast<uintptr_t>(penPtr));

@@ -1,4 +1,4 @@
-package qt.core
+package cjqt.qt.core
 
 //foreign function
 foreign func nativeObjectCreate(parentPtr: Int64): Int64

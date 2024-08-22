@@ -2,7 +2,7 @@
 
 extern "C"
 {
-    long nativeGraphicsRectItemCreateWithXYWH(double x, double y, double width, double height, long parentPtr)
+    uintptr_t nativeGraphicsRectItemCreateWithXYWH(double x, double y, double width, double height, uintptr_t parentPtr)
     {
         QGraphicsRectItem *item;
         if (parentPtr == 0L)
@@ -14,9 +14,9 @@ extern "C"
             QGraphicsItem *parent = reinterpret_cast<QGraphicsItem *>(static_cast<uintptr_t>(parentPtr));
             item = new QGraphicsRectItem(x, y, width, height, parent);
         }
-        return reinterpret_cast<long>(item);
+        return reinterpret_cast<uintptr_t>(item);
     }
-    long nativeGraphicsRectItemCreateWithRect(const long rectPtr, long parentPtr)
+    uintptr_t nativeGraphicsRectItemCreateWithRect(const uintptr_t rectPtr, uintptr_t parentPtr)
     {
         QGraphicsRectItem *item;
         QRectF *rect = reinterpret_cast<QRectF *>(static_cast<uintptr_t>(rectPtr));
@@ -30,9 +30,9 @@ extern "C"
             QGraphicsItem *parent = reinterpret_cast<QGraphicsItem *>(static_cast<uintptr_t>(parentPtr));
             item = new QGraphicsRectItem(*rect, parent);
         }
-        return reinterpret_cast<long>(item);
+        return reinterpret_cast<uintptr_t>(item);
     }
-    long nativeGraphicsRectItemCreate(long parentPtr)
+    uintptr_t nativeGraphicsRectItemCreate(uintptr_t parentPtr)
     {
         QGraphicsRectItem *item;
         if (parentPtr == 0L)
@@ -44,27 +44,27 @@ extern "C"
             QGraphicsItem *parent = reinterpret_cast<QGraphicsItem *>(static_cast<uintptr_t>(parentPtr));
             item = new QGraphicsRectItem(parent);
         }
-        return reinterpret_cast<long>(item);
+        return reinterpret_cast<uintptr_t>(item);
     }
-    void nativeGraphicsRectItemDelete(long ptr)
+    void nativeGraphicsRectItemDelete(uintptr_t ptr)
     {
         QGraphicsRectItem *instance = reinterpret_cast<QGraphicsRectItem *>(static_cast<uintptr_t>(ptr));
         delete instance;
     }
-    long nativeGraphicsRectItemRect(long ptr)
+    uintptr_t nativeGraphicsRectItemRect(uintptr_t ptr)
     {
         QGraphicsRectItem *instance = reinterpret_cast<QGraphicsRectItem *>(static_cast<uintptr_t>(ptr));
         QRectF rectF = instance->rect();
         QRectF *p = new QRectF(rectF);
-        return reinterpret_cast<long>(p);
+        return reinterpret_cast<uintptr_t>(p);
     }
-    void nativeGraphicsRectItemSetRectWithRect(long ptr, const long rectanglePtr)
+    void nativeGraphicsRectItemSetRectWithRect(uintptr_t ptr, const uintptr_t rectanglePtr)
     {
         QGraphicsRectItem *instance = reinterpret_cast<QGraphicsRectItem *>(static_cast<uintptr_t>(ptr));
         QRectF *rectangle = reinterpret_cast<QRectF *>(static_cast<uintptr_t>(rectanglePtr));
         instance->setRect(*rectangle);
     }
-    void nativeGraphicsRectItemSetRect(long ptr, double x, double y, double width, double height)
+    void nativeGraphicsRectItemSetRect(uintptr_t ptr, double x, double y, double width, double height)
     {
         QGraphicsRectItem *instance = reinterpret_cast<QGraphicsRectItem *>(static_cast<uintptr_t>(ptr));
         instance->setRect(x, y, width, height);

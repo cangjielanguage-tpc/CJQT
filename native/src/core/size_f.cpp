@@ -2,23 +2,23 @@
 
 extern "C"
 {
-    long nativeSizeFCreate()
+    uintptr_t nativeSizeFCreate()
     {
         QSizeF *sizeF = new QSizeF();
-        return reinterpret_cast<long>(sizeF);
+        return reinterpret_cast<uintptr_t>(sizeF);
     }
-    long nativeSizeFCreateWithWH(double width, double height)
+    uintptr_t nativeSizeFCreateWithWH(double width, double height)
     {
         QSizeF *pointF = new QSizeF(width, height);
-        return reinterpret_cast<long>(pointF);
+        return reinterpret_cast<uintptr_t>(pointF);
     }
-    long nativeSizeFCreateWithSize(const long sizePtr)
+    uintptr_t nativeSizeFCreateWithSize(const uintptr_t sizePtr)
     {
         QSize *size = reinterpret_cast<QSize *>(static_cast<uintptr_t>(sizePtr));
         QSizeF *sizeF = new QSizeF(*size);
-        return reinterpret_cast<long>(sizeF);
+        return reinterpret_cast<uintptr_t>(sizeF);
     }
-    void nativeSizeFDelete(long ptr)
+    void nativeSizeFDelete(uintptr_t ptr)
     {
         QSizeF *instance = reinterpret_cast<QSizeF *>(static_cast<uintptr_t>(ptr));
         delete instance;

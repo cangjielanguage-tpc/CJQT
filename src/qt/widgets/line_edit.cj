@@ -6,9 +6,10 @@
  * @file
  *
  */
-package qt.widgets
+package cjqt.qt.widgets
 
-import qt.gui.QValidator
+import cjqt.qt.gui.*
+import cjqt.qt.core.*
 
 // foreign C Functions
 foreign func nativeLineEditCreate(parentPtr: Int64): Int64
@@ -21,81 +22,81 @@ foreign func nativeLineEditAlignment(ptr: Int64): Int16
 /********************************
 
 
-   void nativeLineEditBackspace(long ptr)
+   void nativeLineEditBackspace(uintptr_t ptr)
    {
        QLineEdit *lineEditObj = reinterpret_cast<QLineEdit *>(static_cast<uintptr_t>(ptr));
        return lineEditObj->backspace();
    }
    #if QT_CONFIG(completer)
-   long nativeLineEditCompleter(long ptr)
+   uintptr_t nativeLineEditCompleter(uintptr_t ptr)
    {
        QLineEdit *lineEditObj = reinterpret_cast<QLineEdit *>(static_cast<uintptr_t>(ptr));
        QCompleter *completerObj = lineEditObj->completer();
-       return reinterpret_cast<long>(completerObj);
+       return reinterpret_cast<uintptr_t>(completerObj);
    }
    #endif
    #ifndef QT_NO_CONTEXTMENU
-   long nativeLineEditCreateStandardContextMenu(long ptr)
+   uintptr_t nativeLineEditCreateStandardContextMenu(uintptr_t ptr)
    {
        QLineEdit *lineEditObj = reinterpret_cast<QLineEdit *>(static_cast<uintptr_t>(ptr));
        QMenu *menuObj = lineEditObj->createStandardContextMenu();
-       return reinterpret_cast<long>(menuObj);
+       return reinterpret_cast<uintptr_t>(menuObj);
    }
    #endif
-   void nativeLineEditCursorBackward(long ptr, bool mark, int steps)
+   void nativeLineEditCursorBackward(uintptr_t ptr, bool mark, int steps)
    {
        QLineEdit *lineEditObj = reinterpret_cast<QLineEdit *>(static_cast<uintptr_t>(ptr));
        return lineEditObj->cursorBackward(mark, steps);
    }
-   void nativeLineEditCursorForward(long ptr, bool mark, int steps)
+   void nativeLineEditCursorForward(uintptr_t ptr, bool mark, int steps)
    {
        QLineEdit *lineEditObj = reinterpret_cast<QLineEdit *>(static_cast<uintptr_t>(ptr));
        return lineEditObj->cursorForward(mark, steps);
    }
-   int nativeLineEditCursorMoveStyle(long ptr)
+   int nativeLineEditCursorMoveStyle(uintptr_t ptr)
    {
        QLineEdit *lineEditObj = reinterpret_cast<QLineEdit *>(static_cast<uintptr_t>(ptr));
        return lineEditObj->cursorMoveStyle();
    }
-   int nativeLineEditCursorPosition(long ptr)
+   int nativeLineEditCursorPosition(uintptr_t ptr)
    {
        QLineEdit *lineEditObj = reinterpret_cast<QLineEdit *>(static_cast<uintptr_t>(ptr));
        return lineEditObj->cursorPosition();
    }
-   int nativeLineEditCursorPositionAt(long ptr, const long pointPrt)
+   int nativeLineEditCursorPositionAt(uintptr_t ptr, const uintptr_t pointPrt)
    {
        QLineEdit *lineEditObj = reinterpret_cast<QLineEdit *>(static_cast<uintptr_t>(ptr));
        QPoint *pointObj = reinterpret_cast<QPoint *>(static_cast<uintptr_t>(pointPrt));
        return lineEditObj->cursorPositionAt(*pointObj);
    }
-   void nativeLineEditCursorWordBackword(long ptr, bool mark)
+   void nativeLineEditCursorWordBackword(uintptr_t ptr, bool mark)
    {
        QLineEdit *lineEditObj = reinterpret_cast<QLineEdit *>(static_cast<uintptr_t>(ptr));
        return lineEditObj->cursorWordBackward(mark);
    }
-   void nativeLineEditCursorWordForward(long ptr, bool mark)
+   void nativeLineEditCursorWordForward(uintptr_t ptr, bool mark)
    {
        QLineEdit *lineEditObj = reinterpret_cast<QLineEdit *>(static_cast<uintptr_t>(ptr));
        return lineEditObj->cursorWordForward(mark);
    }
-   void nativeLineEditDel(long ptr)
+   void nativeLineEditDel(uintptr_t ptr)
    {
        QLineEdit *lineEditObj = reinterpret_cast<QLineEdit *>(static_cast<uintptr_t>(ptr));
        return lineEditObj->del();
    }
-   void nativeLineEditDeselect(long ptr)
+   void nativeLineEditDeselect(uintptr_t ptr)
    {
        QLineEdit *lineEditObj = reinterpret_cast<QLineEdit *>(static_cast<uintptr_t>(ptr));
        return lineEditObj->deselect();
    }
-   char *nativeLineEditDisplayText(long ptr)
+   char *nativeLineEditDisplayText(uintptr_t ptr)
    {
        QLineEdit *lineEditObj = reinterpret_cast<QLineEdit *>(static_cast<uintptr_t>(ptr));
        QString str = lineEditObj->displayText();
        QByteArray ba = str.toUtf8();
        return ba.data();
    }
-   bool nativeLineEditDragEnabled(long ptr)
+   bool nativeLineEditDragEnabled(uintptr_t ptr)
    {
        QLineEdit *lineEditObj = reinterpret_cast<QLineEdit *>(static_cast<uintptr_t>(ptr));
        return lineEditObj->dragEnabled();
@@ -105,18 +106,18 @@ foreign func nativeLineEditEchMode(ptr: Int64): Int32
 
 /***************
 
-   void nativeLineEditEnd(long ptr, bool mark)
+   void nativeLineEditEnd(uintptr_t ptr, bool mark)
    {
        QLineEdit *lineEditObj = reinterpret_cast<QLineEdit *>(static_cast<uintptr_t>(ptr));
        return lineEditObj->end(mark);
    }
-   bool nativeLineEditHasAcceptableInput(long ptr)
+   bool nativeLineEditHasAcceptableInput(uintptr_t ptr)
    {
        QLineEdit *lineEditObj = reinterpret_cast<QLineEdit *>(static_cast<uintptr_t>(ptr));
        return lineEditObj->hasAcceptableInput();
    }
 
-   void nativeLineEditHome(long ptr, bool mark)
+   void nativeLineEditHome(uintptr_t ptr, bool mark)
    {
        QLineEdit *lineEditObj = reinterpret_cast<QLineEdit *>(static_cast<uintptr_t>(ptr));
        return lineEditObj->home(mark);
@@ -128,12 +129,12 @@ foreign func nativeLineEditInputMask(ptr: Int64): CString
 
 /*********************
 
-   void nativeLineEditInsert(long ptr, const char *newText)
+   void nativeLineEditInsert(uintptr_t ptr, const char *newText)
    {
        QLineEdit *lineEditObj = reinterpret_cast<QLineEdit *>(static_cast<uintptr_t>(ptr));
        return lineEditObj->insert(QString(newText));
    }
-   bool nativeLineEditIsClearButtonEnabled(long ptr)
+   bool nativeLineEditIsClearButtonEnabled(uintptr_t ptr)
    {
        QLineEdit *lineEditObj = reinterpret_cast<QLineEdit *>(static_cast<uintptr_t>(ptr));
        return lineEditObj->isClearButtonEnabled();
@@ -144,12 +145,12 @@ foreign func nativeLineEditIsReadOnly(ptr: Int64): Bool
 
 /*******************
 
-   bool nativeLineEditIsRedoAvailable(long ptr)
+   bool nativeLineEditIsRedoAvailable(uintptr_t ptr)
    {
        QLineEdit *lineEditObj = reinterpret_cast<QLineEdit *>(static_cast<uintptr_t>(ptr));
        return lineEditObj->isRedoAvailable();
    }
-   bool nativeLineEditIsUndoAvailable(long ptr)
+   bool nativeLineEditIsUndoAvailable(uintptr_t ptr)
    {
        QLineEdit *lineEditObj = reinterpret_cast<QLineEdit *>(static_cast<uintptr_t>(ptr));
        return lineEditObj->isUndoAvailable();
@@ -162,17 +163,17 @@ foreign func nativeLineEditSelectedText(ptr: Int64): CString
 /************************
 
 
-   int nativeLineEditSelectionEnd(long ptr)
+   int nativeLineEditSelectionEnd(uintptr_t ptr)
    {
        QLineEdit *lineEditObj = reinterpret_cast<QLineEdit *>(static_cast<uintptr_t>(ptr));
        return lineEditObj->selectionEnd();
    }
-   int nativeLineEditSelectionLength(long ptr)
+   int nativeLineEditSelectionLength(uintptr_t ptr)
    {
        QLineEdit *lineEditObj = reinterpret_cast<QLineEdit *>(static_cast<uintptr_t>(ptr));
        return lineEditObj->selectionLength();
    }
-   int nativeLineEditSelectionStart(long ptr)
+   int nativeLineEditSelectionStart(uintptr_t ptr)
    {
        QLineEdit *lineEditObj = reinterpret_cast<QLineEdit *>(static_cast<uintptr_t>(ptr));
        return lineEditObj->selectionStart();
@@ -182,30 +183,30 @@ foreign func nativeLineEditSetAlignment(ptr: Int64, flag: Int16): Unit
 
 /********************
 
-   void nativeLineEditSetClearButtonEnabled(long ptr, bool enable)
+   void nativeLineEditSetClearButtonEnabled(uintptr_t ptr, bool enable)
    {
        QLineEdit *lineEditObj = reinterpret_cast<QLineEdit *>(static_cast<uintptr_t>(ptr));
        return lineEditObj->setClearButtonEnabled(enable);
    }
    #if QT_CONFIG(completer)
-   void nativeLineEditSetCompleter(long ptr, long completerPtr)
+   void nativeLineEditSetCompleter(uintptr_t ptr, uintptr_t completerPtr)
    {
        QLineEdit *lineEditObj = reinterpret_cast<QLineEdit *>(static_cast<uintptr_t>(ptr));
        QCompleter *completerObj = reinterpret_cast<QCompleter *>(static_cast<uintptr_t>(completerPtr));
        return lineEditObj->setCompleter(completerObj);
    }
    #endif
-   void nativeLineEditSetCursorMoveStyle(long ptr, int style)
+   void nativeLineEditSetCursorMoveStyle(uintptr_t ptr, int style)
    {
        QLineEdit *lineEditObj = reinterpret_cast<QLineEdit *>(static_cast<uintptr_t>(ptr));
        return lineEditObj->setCursorMoveStyle(Qt::CursorMoveStyle(style));
    }
-   void nativeLineEditSetCursorPosition(long ptr, int position)
+   void nativeLineEditSetCursorPosition(uintptr_t ptr, int position)
    {
        QLineEdit *lineEditObj = reinterpret_cast<QLineEdit *>(static_cast<uintptr_t>(ptr));
        return lineEditObj->setCursorPosition(position);
    }
-   void nativeLineEditSetDragEnabled(long ptr, bool b)
+   void nativeLineEditSetDragEnabled(uintptr_t ptr, bool b)
    {
        QLineEdit *lineEditObj = reinterpret_cast<QLineEdit *>(static_cast<uintptr_t>(ptr));
        return lineEditObj->setDragEnabled(b);
@@ -222,17 +223,17 @@ foreign func nativeLineEditSetReadOnly(ptr: Int64, b: Bool): Unit
 /***************************
 
 
-   void nativeLineEditSetSelection(long ptr, int start, int length)
+   void nativeLineEditSetSelection(uintptr_t ptr, int start, int length)
    {
        QLineEdit *lineEditObj = reinterpret_cast<QLineEdit *>(static_cast<uintptr_t>(ptr));
        return lineEditObj->setSelection(start, length);
    }
-   void nativeLineEditSetTextMargins(long ptr, int left, int stop, int right, int bottom)
+   void nativeLineEditSetTextMargins(uintptr_t ptr, int left, int stop, int right, int bottom)
    {
        QLineEdit *lineEditObj = reinterpret_cast<QLineEdit *>(static_cast<uintptr_t>(ptr));
        return lineEditObj->setTextMargins(left, stop, right, bottom);
    }
-   void nativeLineEditSetTextMarginsWithMargins(long ptr, const long marginsPtr)
+   void nativeLineEditSetTextMarginsWithMargins(uintptr_t ptr, const uintptr_t marginsPtr)
    {
        QLineEdit *lineEditObj = reinterpret_cast<QLineEdit *>(static_cast<uintptr_t>(ptr));
        QMargins *marginsObj = reinterpret_cast<QMargins *>(static_cast<uintptr_t>(marginsPtr));
@@ -244,12 +245,12 @@ foreign func nativeLineEditSetValidator(ptr: Int64, validatorPtr: Int64): Unit
 foreign func nativeLineEditText(ptr: Int64): CString
 
 /*********************
-   long nativeLineEditTextMargins(long ptr)
+   uintptr_t nativeLineEditTextMargins(uintptr_t ptr)
    {
        QLineEdit *lineEditObj = reinterpret_cast<QLineEdit *>(static_cast<uintptr_t>(ptr));
        QMargins margins = lineEditObj->textMargins();
        QMargins *pMargins = new QMargins(margins);
-       return reinterpret_cast<long>(pMargins);
+       return reinterpret_cast<uintptr_t>(pMargins);
    }
  * ***************/
 foreign func nativeLineEditValidator(ptr: Int64): Int64
@@ -257,25 +258,25 @@ foreign func nativeLineEditValidator(ptr: Int64): Int64
 /**************************
 
    // Reimplemented Public Functions
-   bool nativeLineEditEven(long ptr, long eventPtr)
+   bool nativeLineEditEven(uintptr_t ptr, uintptr_t eventPtr)
    {
        QLineEdit *lineEditObj = reinterpret_cast<QLineEdit *>(static_cast<uintptr_t>(ptr));
        QEvent *eventObj = reinterpret_cast<QEvent *>(static_cast<uintptr_t>(eventPtr));
        return lineEditObj->event(eventObj);
    }
-   long nativeLineEditInputMethodQuery(long ptr, long property)
+   uintptr_t nativeLineEditInputMethodQuery(uintptr_t ptr, uintptr_t property)
    {
        QLineEdit *lineEditObj = reinterpret_cast<QLineEdit *>(static_cast<uintptr_t>(ptr));
        QVariant variant = lineEditObj->inputMethodQuery(Qt::InputMethodQuery(property));
        QVariant *pVariant = new QVariant(variant);
-       return reinterpret_cast<long>(pVariant);
+       return reinterpret_cast<uintptr_t>(pVariant);
    }
-   long nativeLineEditMinimumSizeHint(long ptr)
+   uintptr_t nativeLineEditMinimumSizeHint(uintptr_t ptr)
    {
        QLineEdit *lineEditObj = reinterpret_cast<QLineEdit *>(static_cast<uintptr_t>(ptr));
        QSize size = lineEditObj->minimumSizeHint();
        QSize *pSize = new QSize(size);
-       return reinterpret_cast<long>(pSize);
+       return reinterpret_cast<uintptr_t>(pSize);
    }
  * ********************/
 
@@ -438,7 +439,7 @@ public open class QLineEdit <: QWidget {
     public init(contents: String) {
         super(
             unsafe {
-                nativeLineEditCreateWithString(CString(contents), 0)
+                nativeLineEditCreateWithString(LibC.mallocCString(contents), 0)
             }
         )
         cursorPositionChanged = QLineEditCursorPositionChangedSignal(this.ptr)
@@ -459,7 +460,7 @@ public open class QLineEdit <: QWidget {
     public init(contents: String, parent: QWidget) {
         super(
             unsafe {
-                nativeLineEditCreateWithString(CString(contents), parent.ptr)
+                nativeLineEditCreateWithString(LibC.mallocCString(contents), parent.ptr)
             }
         )
         cursorPositionChanged = QLineEditCursorPositionChangedSignal(this.ptr)
@@ -546,7 +547,7 @@ public open class QLineEdit <: QWidget {
      */
     public func setPlaceholderText(str: String): Unit {
         unsafe {
-            nativeLineEditSetPlaceholderText(this.ptr, CString(str))
+            nativeLineEditSetPlaceholderText(this.ptr, LibC.mallocCString(str))
         }
     }
 
@@ -602,7 +603,7 @@ public open class QLineEdit <: QWidget {
      */
     public func setInputMask(inputMark: String): Unit {
         unsafe {
-            nativeLineEditSetInputMask(this.ptr, CString(inputMark))
+            nativeLineEditSetInputMask(this.ptr, LibC.mallocCString(inputMark))
         }
     }
 
@@ -830,7 +831,7 @@ public open class QLineEdit <: QWidget {
      */
     public func setText(str: String): Unit {
         unsafe {
-            nativeLineEditSetText(this.ptr, CString(str))
+            nativeLineEditSetText(this.ptr, LibC.mallocCString(str))
         }
     }
 }

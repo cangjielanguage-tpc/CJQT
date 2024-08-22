@@ -5,13 +5,13 @@ extern "C"
 
 	// QMessageBox
 
-    void nativeMessageBoxInformation(long parentPtr, const char *title, const char *text, long buttonsPtr, long defaultButtonPtr)
+    void nativeMessageBoxInformation(uintptr_t parentPtr, const char *title, const char *text, uintptr_t buttonsPtr, uintptr_t defaultButtonPtr)
 	{
 		QWidget *parent = reinterpret_cast<QWidget *>(static_cast<uintptr_t>(parentPtr));
         QMessageBox::information(parent, title, text);
 	}
 
-	void nativeMessageBoxAbout(long parentPtr, const char *title, const char *text)
+	void nativeMessageBoxAbout(uintptr_t parentPtr, const char *title, const char *text)
 	{
 		QWidget *parent = reinterpret_cast<QWidget *>(static_cast<uintptr_t>(parentPtr));
         QMessageBox::about(parent, title, text);

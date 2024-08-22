@@ -4,7 +4,7 @@ extern "C"
 {
     // QRadioButton
 
-    long nativeRadioButtonCreate(long parentPtr)
+    uintptr_t nativeRadioButtonCreate(uintptr_t parentPtr)
 	{
         APPLICATION_CREATE
 		CjQtRadioButton *label;
@@ -15,31 +15,31 @@ extern "C"
             QWidget *parent = reinterpret_cast<QWidget *>(static_cast<uintptr_t>(parentPtr));
             label = new CjQtRadioButton(parent);
         }
-		return reinterpret_cast<long>(label);
+		return reinterpret_cast<uintptr_t>(label);
 	}
 
-    void nativeRadioButtonSetText(long ptr, const char *text){
+    void nativeRadioButtonSetText(uintptr_t ptr, const char *text){
         QRadioButton *instance = reinterpret_cast<QRadioButton *>(static_cast<uintptr_t>(ptr));
         instance->setText(text);
     }
 
-    const char *nativeRadioButtonText(long ptr){
+    const char *nativeRadioButtonText(uintptr_t ptr){
         QRadioButton *instance = reinterpret_cast<QRadioButton *>(static_cast<uintptr_t>(ptr));
         QString str = instance->text();
         return qstrdup(str.toUtf8());
     }
 
-    void nativeRadioButtonSetChecked(long ptr, bool checked){
+    void nativeRadioButtonSetChecked(uintptr_t ptr, bool checked){
         QRadioButton *instance = reinterpret_cast<QRadioButton *>(static_cast<uintptr_t>(ptr));
         instance->setChecked(checked);
     }
 
-    bool nativeRadioButtonIsChecked(long ptr){
+    bool nativeRadioButtonIsChecked(uintptr_t ptr){
         QRadioButton *instance = reinterpret_cast<QRadioButton *>(static_cast<uintptr_t>(ptr));
         return instance->isChecked();
     }
 
-    void nativeRadioButtonDelete(long ptr)
+    void nativeRadioButtonDelete(uintptr_t ptr)
 	{
 		CjQtRadioButton *instance = reinterpret_cast<CjQtRadioButton *>(static_cast<uintptr_t>(ptr));
 		delete instance;

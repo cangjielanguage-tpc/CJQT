@@ -1,6 +1,7 @@
-package qt.core
+package cjqt.qt.core
 
-from std import collection.*
+import std.collection.*
+import cjqt.qt.tools.QCallbackMap
 
 public class QCoreCallbackMap <: QCallbackMap {
     /* let member rowCountCallback */

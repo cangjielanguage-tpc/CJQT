@@ -1,4 +1,6 @@
-package qt.core
+package cjqt.qt.core
+
+import cjqt.qt.tools.QConversion
 
 //foreign function
 foreign func nativeVariantCreate(): CPointer<Unit>
@@ -80,7 +82,7 @@ public open class QVariant {
         return result
     }
 
-    public func toCString(): String {
+    public func toString(): String {
         let result = unsafe { nativeVariantToString(this.ptr) }
         return result.toString()
     }

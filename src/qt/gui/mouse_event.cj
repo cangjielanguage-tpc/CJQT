@@ -6,7 +6,10 @@
  * @file
  *
  */
-package qt.gui
+package cjqt.qt.gui
+
+import cjqt.qt.core.QEvent
+import cjqt.qt.core.QPoint
 
 foreign func nativeMouseEventGetPos(vptr: Int64): Int64
 

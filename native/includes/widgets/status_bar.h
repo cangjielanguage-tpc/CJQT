@@ -6,7 +6,7 @@
 
 extern "C"
 {
-    long nativeMenuBarAddMenuStr(long ptr, const char *menu);
+    uintptr_t nativeMenuBarAddMenuStr(uintptr_t ptr, const char *menu);
 }
 
 class CjQtStatusBar : public QStatusBar

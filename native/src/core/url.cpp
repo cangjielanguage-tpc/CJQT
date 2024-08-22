@@ -13,24 +13,24 @@ char *convert_to_cstring(const QString &source)
 extern "C"
 {
 
-    long nativeUrlCreate(const char *url, int parsingMode)
+    uintptr_t nativeUrlCreate(const char *url, int parsingMode)
     {
-        return reinterpret_cast<long>(new QUrl(QString::fromUtf8(url), static_cast<QUrl::ParsingMode>(parsingMode)));
+        return reinterpret_cast<uintptr_t>(new QUrl(QString::fromUtf8(url), static_cast<QUrl::ParsingMode>(parsingMode)));
     }
 
-    void nativeUrlDelete(long vptr)
+    void nativeUrlDelete(uintptr_t vptr)
     {
         QUrl *url = reinterpret_cast<QUrl *>(static_cast<uintptr_t>(vptr));
         delete url;
     }
 
-    char *nativeUrlToString(long vptr)
+    char *nativeUrlToString(uintptr_t vptr)
     {
         QUrl *url = reinterpret_cast<QUrl *>(static_cast<uintptr_t>(vptr));
         return convert_to_cstring(url->toString());
     }
 
-    bool nativeUrlIsValid(long vptr)
+    bool nativeUrlIsValid(uintptr_t vptr)
     {
         QUrl *url = reinterpret_cast<QUrl *>(static_cast<uintptr_t>(vptr));
         return url->isValid();

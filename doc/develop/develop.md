@@ -92,7 +92,7 @@ extern "C"
 
 	// QLabel
 
-    long nativeLabelCreate(long parentPtr)
+    uintptr_t nativeLabelCreate(uintptr_t parentPtr)
 	{
         APPLICATION_CREATE
 		CjQtLabel *label;
@@ -103,16 +103,16 @@ extern "C"
             QWidget *parent = reinterpret_cast<QWidget *>(static_cast<uintptr_t>(parentPtr));
             label = new CjQtLabel(parent);
         }
-		return reinterpret_cast<long>(label);
+		return reinterpret_cast<uintptr_t>(label);
 	}
 
-	void nativeLabelDelete(long ptr)
+	void nativeLabelDelete(uintptr_t ptr)
 	{
 		CjQtLabel *instance = reinterpret_cast<CjQtLabel *>(static_cast<uintptr_t>(ptr));
 		delete instance;
 	}
 
-    void nativeLabelSetText(long ptr, const char *text){
+    void nativeLabelSetText(uintptr_t ptr, const char *text){
         QLabel *instance = reinterpret_cast<QLabel *>(static_cast<uintptr_t>(ptr));
         instance->setText(text);
     }
@@ -172,7 +172,7 @@ public class QLabel <: QWidget{
 
     public func setText(text:String) {
         unsafe {
-            nativeLabelSetText(ptr, CString(text))
+            nativeLabelSetText(ptr, LibC.mallocCString(text))
         }
     }
 }

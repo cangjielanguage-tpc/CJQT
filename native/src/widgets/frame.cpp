@@ -2,7 +2,7 @@
 
 extern "C"
 {
-    long nativeFrameCreate(long parentPtr, uint f)
+    uintptr_t nativeFrameCreate(uintptr_t parentPtr, uint f)
     {
         CjFrame *frame;
         if (parentPtr == 0L)
@@ -14,87 +14,87 @@ extern "C"
             QWidget *parent = reinterpret_cast<QWidget *>(static_cast<uintptr_t>(parentPtr));
             frame = new CjFrame(parent, Qt::WindowFlags(f));
         }
-        return reinterpret_cast<long>(frame);
+        return reinterpret_cast<uintptr_t>(frame);
     }
 
-    void nativeFrameDelete(long ptr)
+    void nativeFrameDelete(uintptr_t ptr)
     {
         CjFrame *instance = reinterpret_cast<CjFrame *>(static_cast<uintptr_t>(ptr));
         delete instance;
     }
-    long nativeFrameFrameRect(long ptr)
+    uintptr_t nativeFrameFrameRect(uintptr_t ptr)
     {
         QFrame *instance = reinterpret_cast<QFrame *>(static_cast<uintptr_t>(ptr));
         QRect rect = instance->frameRect();
         QRect *p = new QRect(rect);
-        return reinterpret_cast<long>(p);
+        return reinterpret_cast<uintptr_t>(p);
     }
-    short nativeFrameFrameShadow(long ptr)
+    short nativeFrameFrameShadow(uintptr_t ptr)
     {
         QFrame *instance = reinterpret_cast<QFrame *>(static_cast<uintptr_t>(ptr));
         return instance->frameShadow();
     }
-    short nativeFrameFrameShape(long ptr)
+    short nativeFrameFrameShape(uintptr_t ptr)
     {
         QFrame *instance = reinterpret_cast<QFrame *>(static_cast<uintptr_t>(ptr));
         return instance->frameShape();
     }
-    int nativeFrameFrameStyle(long ptr)
+    int nativeFrameFrameStyle(uintptr_t ptr)
     {
         QFrame *instance = reinterpret_cast<QFrame *>(static_cast<uintptr_t>(ptr));
         return instance->frameStyle();
     }
-    int nativeFrameFrameWidth(long ptr)
+    int nativeFrameFrameWidth(uintptr_t ptr)
     {
         QFrame *instance = reinterpret_cast<QFrame *>(static_cast<uintptr_t>(ptr));
         return instance->frameWidth();
     }
-    int nativeFrameLineWidth(long ptr)
+    int nativeFrameLineWidth(uintptr_t ptr)
     {
         QFrame *instance = reinterpret_cast<QFrame *>(static_cast<uintptr_t>(ptr));
         return instance->lineWidth();
     }
-    int nativeFrameMidLineWidth(long ptr)
+    int nativeFrameMidLineWidth(uintptr_t ptr)
     {
         QFrame *instance = reinterpret_cast<QFrame *>(static_cast<uintptr_t>(ptr));
         return instance->midLineWidth();
     }
-    void nativeFrameSetFrameRect(long ptr, long rectPtr)
+    void nativeFrameSetFrameRect(uintptr_t ptr, uintptr_t rectPtr)
     {
         QFrame *instance = reinterpret_cast<QFrame *>(static_cast<uintptr_t>(ptr));
         QRect *rect = reinterpret_cast<QRect *>(static_cast<uintptr_t>(rectPtr));
         return instance->setFrameRect(*rect);
     }
-    void nativeFrameSetFrameShadow(long ptr, short shadow)
+    void nativeFrameSetFrameShadow(uintptr_t ptr, short shadow)
     {
         QFrame *instance = reinterpret_cast<QFrame *>(static_cast<uintptr_t>(ptr));
         return instance->setFrameShadow(QFrame::Shadow(shadow));
     }
-    void nativeFrameSetFrameShape(long ptr, short shape)
+    void nativeFrameSetFrameShape(uintptr_t ptr, short shape)
     {
         QFrame *instance = reinterpret_cast<QFrame *>(static_cast<uintptr_t>(ptr));
         return instance->setFrameShape(QFrame::Shape(shape));
     }
-    void nativeFrameSetFrameStyle(long ptr, int style)
+    void nativeFrameSetFrameStyle(uintptr_t ptr, int style)
     {
         QFrame *instance = reinterpret_cast<QFrame *>(static_cast<uintptr_t>(ptr));
         return instance->setFrameStyle(style);
     }
-    void nativeFrameSetLineWidth(long ptr, int width)
+    void nativeFrameSetLineWidth(uintptr_t ptr, int width)
     {
         QFrame *instance = reinterpret_cast<QFrame *>(static_cast<uintptr_t>(ptr));
         return instance->setLineWidth(width);
     }
-    void nativeFrameSetMidLineWidth(long ptr, int width)
+    void nativeFrameSetMidLineWidth(uintptr_t ptr, int width)
     {
         QFrame *instance = reinterpret_cast<QFrame *>(static_cast<uintptr_t>(ptr));
         return instance->setMidLineWidth(width);
     }
-    long nativeFrameSizeHint(long ptr)
+    uintptr_t nativeFrameSizeHint(uintptr_t ptr)
     {
         QFrame *instance = reinterpret_cast<QFrame *>(static_cast<uintptr_t>(ptr));
         QSize size = instance->sizeHint();
         QSize *p = new QSize(size);
-        return reinterpret_cast<long>(p);
+        return reinterpret_cast<uintptr_t>(p);
     }
 }

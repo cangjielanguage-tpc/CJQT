@@ -14,27 +14,27 @@ public:
                        const QStyleOptionViewItem &option,
                        const QModelIndex &index) const override
     {
-        nativeCallbackPointer paintCallback = appConfig->callbackMapGet((char *)"paint", reinterpret_cast<long>(this));
+        nativeCallbackPointer paintCallback = appConfig->callbackMapGet((char *)"paint", reinterpret_cast<uintptr_t>(this));
         if (paintCallback != nullptr)
         {
             CjDataLongLongLong data = {
-                .p1 = reinterpret_cast<long>(painter),
-                .p2 = reinterpret_cast<long>(&option),
-                .p3 = reinterpret_cast<long>(&index)};
-            paintCallback(reinterpret_cast<long>(this), (void *)&data);
+                .p1 = reinterpret_cast<uintptr_t>(painter),
+                .p2 = reinterpret_cast<uintptr_t>(&option),
+                .p3 = reinterpret_cast<uintptr_t>(&index)};
+            paintCallback(reinterpret_cast<uintptr_t>(this), (void *)&data);
         }
     }
 
     virtual QSize sizeHint(const QStyleOptionViewItem &option,
                            const QModelIndex &index) const override
     {
-        nativeCallbackPointer sizeHintCallback = appConfig->callbackMapGet((char *)"sizeHint", reinterpret_cast<long>(this));
+        nativeCallbackPointer sizeHintCallback = appConfig->callbackMapGet((char *)"sizeHint", reinterpret_cast<uintptr_t>(this));
         if (sizeHintCallback != nullptr)
         {
             CjDataLongLong data = {
-                .p1 = reinterpret_cast<long>(&option),
-                .p2 = reinterpret_cast<long>(&index)};
-            long dataPtr = (long)sizeHintCallback(reinterpret_cast<long>(this), (void *)&data);
+                .p1 = reinterpret_cast<uintptr_t>(&option),
+                .p2 = reinterpret_cast<uintptr_t>(&index)};
+            uintptr_t dataPtr = (uintptr_t)sizeHintCallback(reinterpret_cast<uintptr_t>(this), (void *)&data);
             QSize *instance = reinterpret_cast<QSize *>(static_cast<uintptr_t>(dataPtr));
             return *instance;
         }

@@ -5,7 +5,7 @@ extern "C"
 
 	// QLabel
 
-    long nativeLabelCreate(long parentPtr)
+    uintptr_t nativeLabelCreate(uintptr_t parentPtr)
 	{
         APPLICATION_CREATE
 		CjQtLabel *label;
@@ -16,20 +16,20 @@ extern "C"
             QWidget *parent = reinterpret_cast<QWidget *>(static_cast<uintptr_t>(parentPtr));
             label = new CjQtLabel(parent);
         }
-		return reinterpret_cast<long>(label);
+		return reinterpret_cast<uintptr_t>(label);
 	}
 
-    void nativeLabelSetGeometry(long ptr, int ax, int ay, int aw, int ah){
+    void nativeLabelSetGeometry(uintptr_t ptr, int ax, int ay, int aw, int ah){
         QLabel *instance = reinterpret_cast<QLabel *>(static_cast<uintptr_t>(ptr));
         instance->setGeometry(ax, ay, aw, ah);
     }
 
-    void nativeLabelSetText(long ptr, const char *text){
+    void nativeLabelSetText(uintptr_t ptr, const char *text){
         QLabel *instance = reinterpret_cast<QLabel *>(static_cast<uintptr_t>(ptr));
         instance->setText(text);
     }
 
-	void nativeLabelDelete(long ptr)
+	void nativeLabelDelete(uintptr_t ptr)
 	{
 		CjQtLabel *instance = reinterpret_cast<CjQtLabel *>(static_cast<uintptr_t>(ptr));
 		delete instance;

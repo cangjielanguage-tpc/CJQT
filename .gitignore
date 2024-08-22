@@ -2,9 +2,11 @@
 .gitee/
 .vscode/
 .idea/
+.cache/
 
 build/
 bin/
+target/
 
 # native
 native/build/

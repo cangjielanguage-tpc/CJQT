@@ -2,7 +2,7 @@
 #include <QPen>
 extern "C"
 {
-    long nativeGraphicsLineItemCreateWithParent(long parentPtr)
+    uintptr_t nativeGraphicsLineItemCreateWithParent(uintptr_t parentPtr)
     {
         QGraphicsLineItem *item;
         if (parentPtr == 0L)
@@ -14,9 +14,9 @@ extern "C"
             QGraphicsItem *parent = reinterpret_cast<QGraphicsItem *>(static_cast<uintptr_t>(parentPtr));
             item = new QGraphicsLineItem(parent);
         }
-        return reinterpret_cast<long>(item);
+        return reinterpret_cast<uintptr_t>(item);
     }
-    long nativeGraphicsLineItemCreate(double x1, double y1, double x2, double y2, long parentPtr)
+    uintptr_t nativeGraphicsLineItemCreate(double x1, double y1, double x2, double y2, uintptr_t parentPtr)
     {
         QGraphicsLineItem *item;
         if (parentPtr == 0L)
@@ -28,9 +28,9 @@ extern "C"
             QGraphicsItem *parent = reinterpret_cast<QGraphicsItem *>(static_cast<uintptr_t>(parentPtr));
             item = new QGraphicsLineItem(x1, y1, x2, y2, parent);
         }
-        return reinterpret_cast<long>(item);
+        return reinterpret_cast<uintptr_t>(item);
     }
-    long nativeGraphicsLineItemCreateWithLine(const long lineFPtr, long parentPtr)
+    uintptr_t nativeGraphicsLineItemCreateWithLine(const uintptr_t lineFPtr, uintptr_t parentPtr)
     {
         QGraphicsLineItem *item;
         QLineF *lineF = reinterpret_cast<QLineF *>(static_cast<uintptr_t>(lineFPtr));
@@ -43,39 +43,39 @@ extern "C"
             QGraphicsItem *parent = reinterpret_cast<QGraphicsItem *>(static_cast<uintptr_t>(parentPtr));
             item = new QGraphicsLineItem(*lineF, parent);
         }
-        return reinterpret_cast<long>(item);
+        return reinterpret_cast<uintptr_t>(item);
     }
-    void nativeGraphicsLineItemDelete(long ptr)
+    void nativeGraphicsLineItemDelete(uintptr_t ptr)
     {
         QGraphicsLineItem *instance = reinterpret_cast<QGraphicsLineItem *>(static_cast<uintptr_t>(ptr));
         delete instance;
     }
-    long nativeGraphicsLineItemLine(long ptr)
+    uintptr_t nativeGraphicsLineItemLine(uintptr_t ptr)
     {
         QGraphicsLineItem *instance = reinterpret_cast<QGraphicsLineItem *>(static_cast<uintptr_t>(ptr));
         QLineF lineF = instance->line();
         QLineF *p = new QLineF(lineF);
-        return reinterpret_cast<long>(p);
+        return reinterpret_cast<uintptr_t>(p);
     }
-    long nativeGraphicsLineItemPen(long ptr)
+    uintptr_t nativeGraphicsLineItemPen(uintptr_t ptr)
     {
         QGraphicsLineItem *instance = reinterpret_cast<QGraphicsLineItem *>(static_cast<uintptr_t>(ptr));
         QPen pen = instance->pen();
         QPen *p = new QPen(pen);
-        return reinterpret_cast<long>(p);
+        return reinterpret_cast<uintptr_t>(p);
     }
-    void nativeGraphicsLineItemSetLineWithLine(long ptr, const long lineFPtr)
+    void nativeGraphicsLineItemSetLineWithLine(uintptr_t ptr, const uintptr_t lineFPtr)
     {
         QGraphicsLineItem *instance = reinterpret_cast<QGraphicsLineItem *>(static_cast<uintptr_t>(ptr));
         QLineF *lineF = reinterpret_cast<QLineF *>(static_cast<uintptr_t>(lineFPtr));
         instance->setLine(*lineF);
     }
-    void nativeGraphicsLineItemSetLine(long ptr, double x1, double y1, double x2, double y2)
+    void nativeGraphicsLineItemSetLine(uintptr_t ptr, double x1, double y1, double x2, double y2)
     {
         QGraphicsLineItem *instance = reinterpret_cast<QGraphicsLineItem *>(static_cast<uintptr_t>(ptr));
         instance->setLine(x1, y1, x2, y2);
     }
-    void nativeGraphicsLineItemSetPen(long ptr, const long penPtr)
+    void nativeGraphicsLineItemSetPen(uintptr_t ptr, const uintptr_t penPtr)
     {
         QGraphicsLineItem *instance = reinterpret_cast<QGraphicsLineItem *>(static_cast<uintptr_t>(ptr));
         QPen *pen = reinterpret_cast<QPen *>(static_cast<uintptr_t>(penPtr));

@@ -6,7 +6,7 @@
  * @file
  *
  */
-package qt.widgets
+package cjqt.qt.widgets
 
 foreign func nativeApplicationInit(): Unit
 foreign func nativeApplicationExec(): Bool

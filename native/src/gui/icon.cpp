@@ -2,54 +2,54 @@
 
 extern "C"
 {
-    long nativeIconCreate()
+    uintptr_t nativeIconCreate()
     {
-        return reinterpret_cast<long>(new QIcon());
+        return reinterpret_cast<uintptr_t>(new QIcon());
     }
 
-    long nativeIconCreateWithFileName(const char *fileName)
+    uintptr_t nativeIconCreateWithFileName(const char *fileName)
     {
-        return reinterpret_cast<long>(new QIcon(fileName));
+        return reinterpret_cast<uintptr_t>(new QIcon(fileName));
     }
 
-    long nativeIconCreateWithOtherIcon(long iconPtr)
+    uintptr_t nativeIconCreateWithOtherIcon(uintptr_t iconPtr)
     {
         QIcon *instance = reinterpret_cast<QIcon *>(static_cast<uintptr_t>(iconPtr));
-        return reinterpret_cast<long>(new QIcon(*instance));
+        return reinterpret_cast<uintptr_t>(new QIcon(*instance));
     }
 
-    const char *nativeIconGetName(long ptr)
+    const char *nativeIconGetName(uintptr_t ptr)
     {
         QIcon *instance = reinterpret_cast<QIcon *>(static_cast<uintptr_t>(ptr));
         QString str = instance->name();
         return qstrdup(str.toUtf8());
     }
 
-    bool nativeIconIsNull(long ptr)
+    bool nativeIconIsNull(uintptr_t ptr)
     {
         QIcon *instance = reinterpret_cast<QIcon *>(static_cast<uintptr_t>(ptr));
         return instance->isNull();
     }
 
-    bool nativeIconIsMask(long ptr)
+    bool nativeIconIsMask(uintptr_t ptr)
     {
         QIcon *instance = reinterpret_cast<QIcon *>(static_cast<uintptr_t>(ptr));
         return instance->isMask();
     }
 
-    bool nativeIconIsDetached(long ptr)
+    bool nativeIconIsDetached(uintptr_t ptr)
     {
         QIcon *instance = reinterpret_cast<QIcon *>(static_cast<uintptr_t>(ptr));
         return instance->isDetached();
     }
 
-    void nativeIconDetach(long ptr)
+    void nativeIconDetach(uintptr_t ptr)
     {
         QIcon *instance = reinterpret_cast<QIcon *>(static_cast<uintptr_t>(ptr));
         instance->detach();
     }
 
-    void nativeIconDelete(long ptr)
+    void nativeIconDelete(uintptr_t ptr)
     {
         QIcon *instance = reinterpret_cast<QIcon *>(static_cast<uintptr_t>(ptr));
         delete instance;

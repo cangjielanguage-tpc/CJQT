@@ -1,4 +1,7 @@
-package qt.widgets
+package cjqt.qt.widgets
+
+import cjqt.qt.gui.*
+import cjqt.qt.core.*
 
 foreign func nativeTabBarCreate(parentPtr: Int64): Int64
 foreign func nativeTabBarDelete(ptr: Int64): Unit
@@ -132,25 +135,25 @@ public class QTabBar <: QWidget {
 
     public func addTab(text: String) {
         unsafe {
-            nativeTabBarAddTab(ptr, CString(text))
+            nativeTabBarAddTab(ptr, LibC.mallocCString(text))
         }
     }
 
     public func addTab(icon: QIcon, text: String) {
         unsafe {
-            nativeTabBarAddTabWithIcon(ptr, icon.ptr, CString(text))
+            nativeTabBarAddTabWithIcon(ptr, icon.ptr, LibC.mallocCString(text))
         }
     }
 
     public func insertTab(index: Int64, text: String) {
         unsafe {
-            nativeTabBarInsertTab(ptr, Int32(index), CString(text))
+            nativeTabBarInsertTab(ptr, Int32(index), LibC.mallocCString(text))
         }
     }
 
     public func insertTab(index: Int64, icon: QIcon, text: String) {
         unsafe {
-            nativeTabBarInsertTabWithIcon(ptr, Int32(index), icon.ptr, CString(text))
+            nativeTabBarInsertTabWithIcon(ptr, Int32(index), icon.ptr, LibC.mallocCString(text))
         }
     }
 
@@ -187,7 +190,7 @@ public class QTabBar <: QWidget {
 
     public func setTabText(index: Int64, text: String) {
         unsafe {
-            nativeTabBarSetTabText(ptr, Int32(index), CString(text))
+            nativeTabBarSetTabText(ptr, Int32(index), LibC.mallocCString(text))
         }
     }
 

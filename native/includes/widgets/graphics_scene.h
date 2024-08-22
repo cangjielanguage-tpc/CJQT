@@ -11,23 +11,23 @@ public:
     CjGraphicsScene(const QRectF &sceneRect, QObject *parent = nullptr) : QGraphicsScene(sceneRect, parent) {}
     CjGraphicsScene(QObject *parent = nullptr) : QGraphicsScene(parent)
     {
-        appConfig->contextMenuEventMapRemove(reinterpret_cast<long>(this));
-        appConfig->dragEnterEventMapRemove(reinterpret_cast<long>(this));
-        appConfig->dragLeaveEventMapRemove(reinterpret_cast<long>(this));
-        appConfig->dragMoveEventMapRemove(reinterpret_cast<long>(this));
-        appConfig->dropEventMapRemove(reinterpret_cast<long>(this));
-        appConfig->focusOutEventMapRemove(reinterpret_cast<long>(this));
-        appConfig->helpEventMapRemove(reinterpret_cast<long>(this));
-        appConfig->inputMethodEventMapRemove(reinterpret_cast<long>(this));
-        appConfig->mouseDoubleClickEventMapRemove(reinterpret_cast<long>(this));
+        appConfig->contextMenuEventMapRemove(reinterpret_cast<uintptr_t>(this));
+        appConfig->dragEnterEventMapRemove(reinterpret_cast<uintptr_t>(this));
+        appConfig->dragLeaveEventMapRemove(reinterpret_cast<uintptr_t>(this));
+        appConfig->dragMoveEventMapRemove(reinterpret_cast<uintptr_t>(this));
+        appConfig->dropEventMapRemove(reinterpret_cast<uintptr_t>(this));
+        appConfig->focusOutEventMapRemove(reinterpret_cast<uintptr_t>(this));
+        appConfig->helpEventMapRemove(reinterpret_cast<uintptr_t>(this));
+        appConfig->inputMethodEventMapRemove(reinterpret_cast<uintptr_t>(this));
+        appConfig->mouseDoubleClickEventMapRemove(reinterpret_cast<uintptr_t>(this));
 
-        appConfig->callbackMapRemove((char *)"graphicsMouseMoveEvent", reinterpret_cast<long>(this));
-        appConfig->callbackMapRemove((char *)"graphicsMousePressEvent", reinterpret_cast<long>(this));
-        appConfig->callbackMapRemove((char *)"graphicsMouseReleaseEvent", reinterpret_cast<long>(this));
-        appConfig->callbackMapRemove((char *)"graphicsKeyPressEvent", reinterpret_cast<long>(this));
+        appConfig->callbackMapRemove((char *)"graphicsMouseMoveEvent", reinterpret_cast<uintptr_t>(this));
+        appConfig->callbackMapRemove((char *)"graphicsMousePressEvent", reinterpret_cast<uintptr_t>(this));
+        appConfig->callbackMapRemove((char *)"graphicsMouseReleaseEvent", reinterpret_cast<uintptr_t>(this));
+        appConfig->callbackMapRemove((char *)"graphicsKeyPressEvent", reinterpret_cast<uintptr_t>(this));
 
-        appConfig->keyReleaseEventMapRemove(reinterpret_cast<long>(this));
-        appConfig->wheelEventMapRemove(reinterpret_cast<long>(this));
+        appConfig->keyReleaseEventMapRemove(reinterpret_cast<uintptr_t>(this));
+        appConfig->wheelEventMapRemove(reinterpret_cast<uintptr_t>(this));
     }
 
 public:

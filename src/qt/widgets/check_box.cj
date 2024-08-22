@@ -6,7 +6,7 @@
  * @file
  *
  */
-package qt.widgets
+package cjqt.qt.widgets
 
 foreign func nativeCheckBoxCreate(parentPtr: Int64): Int64
 foreign func nativeCheckBoxSetText(ptr: Int64, text: CString): Unit
@@ -44,7 +44,7 @@ public class QCheckBox <: QWidget {
      */
     public func setText(text: String) {
         unsafe {
-            nativeCheckBoxSetText(ptr, CString(text))
+            nativeCheckBoxSetText(ptr, LibC.mallocCString(text))
         }
     }
 

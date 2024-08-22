@@ -1,4 +1,4 @@
-package qt.gui
+package cjqt.qt.gui
 
 //foreign function
 foreign func nativeTransformCreateWithTwoVector(m11: Float64, m12: Float64, m21: Float64, m22: Float64, dx: Float64, 

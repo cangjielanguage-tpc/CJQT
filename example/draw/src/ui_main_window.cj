@@ -1,6 +1,6 @@
-from cjqt import qt.core.*
-from cjqt import qt.gui.*
-from cjqt import qt.widgets.*
+import cjqt.qt.core.*
+import cjqt.qt.gui.*
+import cjqt.qt.widgets.*
 
 public class Ui_MainWindow {
     public let selectAct: QAction

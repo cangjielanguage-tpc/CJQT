@@ -3,7 +3,7 @@
 
 extern "C"
 {
-    long nativeBrushCreate(long colorPtr)
+    uintptr_t nativeBrushCreate(uintptr_t colorPtr)
     {
         QBrush *brush;
         if (colorPtr == 0L)
@@ -15,21 +15,21 @@ extern "C"
             QColor *color = reinterpret_cast<QColor *>(static_cast<uintptr_t>(colorPtr));
             brush = new QBrush(*color);
         }
-        return reinterpret_cast<long>(brush);
+        return reinterpret_cast<uintptr_t>(brush);
     }
-    long nativeBrushCreateWithBrush(const long brushPtr)
+    uintptr_t nativeBrushCreateWithBrush(const uintptr_t brushPtr)
     {
 
         QBrush *oldBrush = reinterpret_cast<QBrush *>(static_cast<uintptr_t>(brushPtr));
         QBrush *brush = new QBrush(*oldBrush);
-        return reinterpret_cast<long>(brush);
+        return reinterpret_cast<uintptr_t>(brush);
     }
-    long nativeBrushCreateWithPixmap(const long pixmapPtr)
+    uintptr_t nativeBrushCreateWithPixmap(const uintptr_t pixmapPtr)
     {
         QPixmap *pix = reinterpret_cast<QPixmap *>(static_cast<uintptr_t>(pixmapPtr));
-        return reinterpret_cast<long>(new QBrush(*pix));
+        return reinterpret_cast<uintptr_t>(new QBrush(*pix));
     }
-    void nativeBrushDelete(long ptr)
+    void nativeBrushDelete(uintptr_t ptr)
     {
         QBrush *instance = reinterpret_cast<QBrush *>(static_cast<uintptr_t>(ptr));
         delete instance;

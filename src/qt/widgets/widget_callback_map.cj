@@ -1,6 +1,9 @@
-package qt.widgets
+package cjqt.qt.widgets
 
-import qt.tools.*
+import cjqt.qt.tools.*
+import cjqt.qt.gui.*
+import cjqt.qt.core.*
+import std.collection.*
 
 public class QWidgetCallbackMap <: QCallbackMap {
     /* let member keyPressEvent */

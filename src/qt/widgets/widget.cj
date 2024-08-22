@@ -7,11 +7,12 @@
  *
  */
 
-package qt.widgets
+package cjqt.qt.widgets
 
-import qt.gui.*
-from std import collection.*
-import qt.tools.QCallbackMap
+import cjqt.qt.gui.*
+import std.collection.*
+import cjqt.qt.tools.*
+import cjqt.qt.core.*
 
 foreign func nativeWidgetCreate(parentPtr: Int64): Int64
 foreign func nativeWidgetResize(ptr: Int64, w: Int32, h: Int32): Unit
@@ -58,7 +59,7 @@ foreign func nativeWidgetSetMouseReleaseEvent(ptr: Int64, callback: CFunc<(Int64
 foreign func nativeWidgetSetMouseMoveEvent(ptr: Int64, callback: CFunc<(Int64, Int64) -> Unit>): Unit
 foreign func nativeWidgetSetKeyPressEvent(ptr: Int64, callback: CFunc<(Int64, Int64) -> Unit>): Unit
 
-@c
+@C
 func paintersEventCallback(ptr: Int64, eventPtr: Int64): Unit {
     let event = QPaintersEvent(eventPtr)
     try {
@@ -68,7 +69,7 @@ func paintersEventCallback(ptr: Int64, eventPtr: Int64): Unit {
     }
 }
 
-@c
+@C
 func mousePressEventCallback(ptr: Int64, eventPtr: Int64): Unit {
     let event = QMouseEvent(eventPtr)
     try {
@@ -78,7 +79,7 @@ func mousePressEventCallback(ptr: Int64, eventPtr: Int64): Unit {
     }
 }
 
-@c
+@C
 func mouseReleaseEventCallback(ptr: Int64, eventPtr: Int64): Unit {
     let event = QMouseEvent(eventPtr)
     try {
@@ -88,7 +89,7 @@ func mouseReleaseEventCallback(ptr: Int64, eventPtr: Int64): Unit {
     }
 }
 
-@c
+@C
 func mouseMoveEventCallback(ptr: Int64, eventPtr: Int64): Unit {
     let event = QMouseEvent(eventPtr)
     try {
@@ -98,7 +99,7 @@ func mouseMoveEventCallback(ptr: Int64, eventPtr: Int64): Unit {
     }
 }
 
-@c
+@C
 func keyPressEventCallback(ptr: Int64, eventPtr: Int64): Unit {
     let event = QKeyEvent(eventPtr)
     try {
@@ -108,7 +109,7 @@ func keyPressEventCallback(ptr: Int64, eventPtr: Int64): Unit {
     }
 }
 
-@c
+@C
 func connectUnitCallback(code: Int64): Unit {
     try {
         QCallbackMap.connect[code]()
@@ -117,7 +118,7 @@ func connectUnitCallback(code: Int64): Unit {
     }
 }
 
-@c
+@C
 func connectInt64Callback(code: Int64, data: Int32): Unit {
     try {
         QCallbackMap.connectInt64[code](Int64(data))
@@ -126,7 +127,7 @@ func connectInt64Callback(code: Int64, data: Int32): Unit {
     }
 }
 
-@c
+@C
 func connectBoolCallback(code: Int64, data: Bool): Unit {
     try {
         QCallbackMap.connectBool[code](data)
@@ -135,7 +136,7 @@ func connectBoolCallback(code: Int64, data: Bool): Unit {
     }
 }
 
-@c
+@C
 func connectCStringCallback(code: Int64, data: CString): Unit {
     try {
         QCallbackMap.connectString[code](data.toString())
@@ -351,7 +352,7 @@ public open class QWidget <: QObject {
      */
     public func setWindowTitle(title: String) {
         unsafe {
-            nativeWidgetSetWindowTitle(ptr, CString(title))
+            nativeWidgetSetWindowTitle(ptr, LibC.mallocCString(title))
         }
     }
 
@@ -431,7 +432,7 @@ public open class QWidget <: QObject {
      */
     public func setStyleSheet(styleSheet: String) {
         unsafe {
-            nativeWidgetSetStyleSheet(ptr, CString(styleSheet))
+            nativeWidgetSetStyleSheet(ptr, LibC.mallocCString(styleSheet))
         }
     }
 
@@ -526,7 +527,7 @@ public open class QWidget <: QObject {
 
     public func setToolTip(tip: String) {
         unsafe {
-            nativeWidgetSetToolTip(ptr, CString(tip))
+            nativeWidgetSetToolTip(ptr, LibC.mallocCString(tip))
         }
     }
 

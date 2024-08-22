@@ -1,4 +1,4 @@
-package qt.widgets
+package cjqt.qt.widgets
 
 foreign func nativeListViewCreate(parentPtr: Int64): Int64
 foreign func nativeListViewDelete(ptr: Int64): Unit

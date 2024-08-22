@@ -1,4 +1,4 @@
-package qt.widgets
+package cjqt.qt.widgets
 
 //foreign function
 foreign func nativeGraphicsItemCreate(parentPtr: Int64): Int64

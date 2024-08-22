@@ -1,4 +1,7 @@
-package qt.widgets
+package cjqt.qt.widgets
+
+import cjqt.qt.gui.*
+import cjqt.qt.core.*
 
 //C
 foreign func nativeScrollBarCreate(parentPtr: Int64): Int64

@@ -6,7 +6,7 @@
  * @file
  *
  */
-package qt.gui
+package cjqt.qt.gui
 
 foreign func nativeColorCreate(r: Int32, g: Int32, b: Int32, a: Int32): Int64
 foreign func nativeColorDelete(ptr: Int64): Unit

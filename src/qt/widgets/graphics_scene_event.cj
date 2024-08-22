@@ -6,7 +6,9 @@
  * @file
  *
  */
-package qt.widgets
+package cjqt.qt.widgets
+
+import cjqt.qt.core.QEvent
 
 //foregin function 
 foreign func nativeGraphicsSceneEventDelete(ptr: Int64): Unit

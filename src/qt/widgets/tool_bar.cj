@@ -6,7 +6,10 @@
  * @file
  *
  */
-package qt.widgets
+package cjqt.qt.widgets
+
+import cjqt.qt.gui.*
+import cjqt.qt.core.*
 
 foreign func nativeToolBarCreate(parentPtr: Int64): Int64
 foreign func nativeToolBarDelete(ptr: Int64): Unit
@@ -55,7 +58,7 @@ public class QToolBar <: QWidget {
      */
     public func addAction(action: String): QAction {
         let actionPrt = unsafe {
-            nativeToolBarAddActionStr(ptr, CString(action))
+            nativeToolBarAddActionStr(ptr, LibC.mallocCString(action))
         }
         return QAction(actionPrt)
     }
@@ -70,7 +73,7 @@ public class QToolBar <: QWidget {
      */
     public func addAction(icon: QIcon, action: String): QAction {
         let actionPrt = unsafe {
-            nativeToolBarAddActionStrIcon(ptr, icon.ptr, CString(action))
+            nativeToolBarAddActionStrIcon(ptr, icon.ptr, LibC.mallocCString(action))
         }
         return QAction(actionPrt)
     }

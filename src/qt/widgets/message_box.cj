@@ -6,7 +6,7 @@
  * @file
  *
  */
-package qt.widgets
+package cjqt.qt.widgets
 
 foreign func nativeMessageBoxInformation(
     parentPtr: Int64,
@@ -36,7 +36,7 @@ public class QMessageBox <: QWidget {
      */
     static public func information(parent: QWidget, title: String, text: String) {
         unsafe {
-            nativeMessageBoxInformation(parent.ptr, CString(title), CString(text), 0, 0)
+            nativeMessageBoxInformation(parent.ptr, LibC.mallocCString(title), LibC.mallocCString(text), 0, 0)
         }
     }
 
@@ -49,7 +49,7 @@ public class QMessageBox <: QWidget {
      */
     static public func about(parent: QWidget, title: String, text: String) {
         unsafe {
-            nativeMessageBoxAbout(parent.ptr, CString(title), CString(text))
+            nativeMessageBoxAbout(parent.ptr, LibC.mallocCString(title), LibC.mallocCString(text))
         }
     }
 }

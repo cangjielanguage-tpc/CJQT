@@ -6,7 +6,10 @@
  * @file
  *
  */
-package qt.widgets
+package cjqt.qt.widgets
+
+import cjqt.qt.gui.*
+import cjqt.qt.core.*
 
 foreign func nativeMenuBarCreate(parentPtr: Int64): Int64
 foreign func nativeMenuBarAddActionStr(ptr: Int64, action:CString): Int64
@@ -60,7 +63,7 @@ public class QMenuBar <: QWidget {
      */
     public func addAction(menu:String): QAction {
         let actionPrt = unsafe {
-            nativeMenuBarAddActionStr(ptr, CString(menu))
+            nativeMenuBarAddActionStr(ptr, LibC.mallocCString(menu))
         }
         return QAction(actionPrt)
     }
@@ -85,7 +88,7 @@ public class QMenuBar <: QWidget {
      */
     public func addMenu(menu:String): QMenu {
         let menuPrt = unsafe {
-            nativeMenuBarAddMenuStr(ptr, CString(menu))
+            nativeMenuBarAddMenuStr(ptr, LibC.mallocCString(menu))
         }
         return QMenu(menuPrt)
     }
@@ -100,7 +103,7 @@ public class QMenuBar <: QWidget {
      */
     public func addMenu(icon: QIcon, menu:String): QMenu {
         let menuPrt = unsafe {
-            nativeMenuBarAddMenuStrIcon(ptr, icon.ptr, CString(menu))
+            nativeMenuBarAddMenuStrIcon(ptr, icon.ptr, LibC.mallocCString(menu))
         }
         return QMenu(menuPrt)
     }

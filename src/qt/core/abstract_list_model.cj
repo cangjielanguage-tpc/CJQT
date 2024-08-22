@@ -1,4 +1,6 @@
-package qt.core
+package cjqt.qt.core
+
+import cjqt.qt.tools.QConversion
 
 foreign func nativeAbstractListModelCreate(): Int64
 foreign func nativeAbstractListModelDelete(ptr: Int64): Unit
@@ -11,7 +13,7 @@ foreign func nativeAbstractItemModelEndRemoveRows(ptr: Int64): Unit
 foreign func nativeAbstractListModelSetRowCountCallback(ptr: Int64, callback: CFunc<(Int64, Int64) -> Int32>): Unit
 foreign func nativeAbstractListModelSetDataCallback(ptr: Int64, callback: CFunc<(Int64, CPointer<Unit>) -> CPointer<Unit>>): Unit
 
-@c
+@C
 func rowCountCallback(ptr: Int64, parentPtr: Int64): Int32 {
     let parent = QModelIndex(parentPtr)
     try {
@@ -22,7 +24,7 @@ func rowCountCallback(ptr: Int64, parentPtr: Int64): Int32 {
     return 0
 }
 
-@c
+@C
 func dataCallback(ptr: Int64, dataPtr: CPointer<Unit>): CPointer<Unit> {
     let data = QConversion.cPointerToCjDataLongInt(dataPtr)
     let index = QModelIndex(data.p1)

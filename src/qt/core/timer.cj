@@ -6,16 +6,16 @@
  * @file
  *
  */
-package qt.core
+package cjqt.qt.core
 
-import qt.tools.*
+import cjqt.qt.tools.*
 
 foreign func nativeTimerCreate(callback: CFunc<(Int64) -> Unit>, interval: Int32): Int64
 foreign func nativeTimerStart(ptr: Int64): Unit
 foreign func nativeTimerStop(ptr: Int64): Unit
 foreign func nativeTimerDelete(ptr: Int64): Unit
 
-@c
+@C
 func timerCallback(ptr: Int64): Unit {
     try {
         QCallbackMap.timer[ptr]()

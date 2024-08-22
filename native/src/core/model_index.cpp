@@ -2,76 +2,76 @@
 
 extern "C"
 {
-    long nativeModelIndexCreate()
+    uintptr_t nativeModelIndexCreate()
     {
         QModelIndex *event = new QModelIndex();
-        return reinterpret_cast<long>(event);
+        return reinterpret_cast<uintptr_t>(event);
     }
 
-    void nativeModelIndexDelete(long ptr)
+    void nativeModelIndexDelete(uintptr_t ptr)
     {
         QModelIndex *instance = reinterpret_cast<QModelIndex *>(static_cast<uintptr_t>(ptr));
         delete instance;
     }
 
-    int nativeModelIndexRow(long ptr)
+    int nativeModelIndexRow(uintptr_t ptr)
     {
         QModelIndex *instance = reinterpret_cast<QModelIndex *>(static_cast<uintptr_t>(ptr));
         return instance->row();
     }
 
-    int nativeModelIndexColumn(long ptr)
+    int nativeModelIndexColumn(uintptr_t ptr)
     {
         QModelIndex *instance = reinterpret_cast<QModelIndex *>(static_cast<uintptr_t>(ptr));
         return instance->column();
     }
 
-    long nativeModelIndexParent(long ptr)
+    uintptr_t nativeModelIndexParent(uintptr_t ptr)
     {
         QModelIndex *instance = reinterpret_cast<QModelIndex *>(static_cast<uintptr_t>(ptr));
         QModelIndex parent = instance->parent();
-        return reinterpret_cast<long>(&parent);
+        return reinterpret_cast<uintptr_t>(&parent);
     }
 
-    long nativeModelIndexSibling(long ptr, int row, int column)
+    uintptr_t nativeModelIndexSibling(uintptr_t ptr, int row, int column)
     {
         QModelIndex *instance = reinterpret_cast<QModelIndex *>(static_cast<uintptr_t>(ptr));
         QModelIndex sibling = instance->sibling(row, column);
-        return reinterpret_cast<long>(&sibling);
+        return reinterpret_cast<uintptr_t>(&sibling);
     }
 
-    long nativeModelIndexSiblingAtColumn(long ptr, int column)
+    uintptr_t nativeModelIndexSiblingAtColumn(uintptr_t ptr, int column)
     {
         QModelIndex *instance = reinterpret_cast<QModelIndex *>(static_cast<uintptr_t>(ptr));
         QModelIndex sibling = instance->siblingAtColumn(column);
-        return reinterpret_cast<long>(&sibling);
+        return reinterpret_cast<uintptr_t>(&sibling);
     }
 
-    long nativeModelIndexSiblingAtRow(long ptr, int row)
+    uintptr_t nativeModelIndexSiblingAtRow(uintptr_t ptr, int row)
     {
         QModelIndex *instance = reinterpret_cast<QModelIndex *>(static_cast<uintptr_t>(ptr));
         QModelIndex sibling = instance->siblingAtRow(row);
-        return reinterpret_cast<long>(&sibling);
+        return reinterpret_cast<uintptr_t>(&sibling);
     }
 
-    long nativeModelIndexData(long ptr, int role = Qt::DisplayRole)
+    uintptr_t nativeModelIndexData(uintptr_t ptr, int role = Qt::DisplayRole)
     {
         QModelIndex *instance = reinterpret_cast<QModelIndex *>(static_cast<uintptr_t>(ptr));
         QVariant data = instance->data(Qt::ItemDataRole(role));
-        return reinterpret_cast<long>(&data);
+        return reinterpret_cast<uintptr_t>(&data);
     }
 
-    bool nativeModelIndexIsValid(long ptr)
+    bool nativeModelIndexIsValid(uintptr_t ptr)
     {
         QModelIndex *instance = reinterpret_cast<QModelIndex *>(static_cast<uintptr_t>(ptr));
         return instance->isValid();
     }
 
-    long nativeModelIndexModel(long ptr)
+    uintptr_t nativeModelIndexModel(uintptr_t ptr)
     {
         QModelIndex *instance = reinterpret_cast<QModelIndex *>(static_cast<uintptr_t>(ptr));
         const QAbstractItemModel *model = instance->model();
-        return reinterpret_cast<long>(model);
+        return reinterpret_cast<uintptr_t>(model);
     }
 
 }

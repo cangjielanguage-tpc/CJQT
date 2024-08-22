@@ -6,9 +6,9 @@
  * @file
  *
  */
-package qt.tools
+package cjqt.qt.tools
 
-from std import collection.*
+import std.collection.*
 
 /**
  * The class is QCallbackMap

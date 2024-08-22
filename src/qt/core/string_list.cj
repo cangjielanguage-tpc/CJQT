@@ -1,4 +1,4 @@
-package qt.core
+package cjqt.qt.core
 
 foreign func nativeStringListCreate(): Int64
 foreign func nativeStringListDelete(ptr: Int64): Unit
@@ -25,7 +25,7 @@ public class QStringList {
 
     public func append(data: String) {
         unsafe {
-            nativeStringListAppend(ptr, CString(data))
+            nativeStringListAppend(ptr, LibC.mallocCString(data))
         }
     }
 }

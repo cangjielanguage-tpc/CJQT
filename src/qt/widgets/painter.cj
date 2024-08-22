@@ -6,7 +6,10 @@
  * @file
  *
  */
-package qt.widgets
+package cjqt.qt.widgets
+
+import cjqt.qt.gui.*
+import cjqt.qt.core.*
 
 foreign func nativePainterCreate(widgetPtr: Int64): Int64
 foreign func nativePainterCreateWithDevice(devicePtr: Int64): Int64

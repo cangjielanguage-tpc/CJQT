@@ -1,4 +1,4 @@
-package qt.widgets
+package cjqt.qt.widgets
 
 @Test
 public class WidgetTest{

@@ -1,4 +1,4 @@
-package qt.tools
+package cjqt.qt.tools
 
 public enum WidgetAttribute {
     | WA_Disabled

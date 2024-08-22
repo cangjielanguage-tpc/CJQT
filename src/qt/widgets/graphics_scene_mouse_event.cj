@@ -6,7 +6,10 @@
  * @file
  *
  */
-package qt.widgets
+package cjqt.qt.widgets
+
+import cjqt.qt.gui.*
+import cjqt.qt.core.*
 
 //foreign function
 foreign func nativeGraphicsSceneMouseEventScenePos(ptr: Int64): Int64

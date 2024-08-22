@@ -6,7 +6,9 @@
  * @file
  *
  */
-package qt.widgets
+package cjqt.qt.widgets
+
+import cjqt.qt.gui.*
 
 foreign func nativeActionCreate(parentPtr: Int64): Int64
 foreign func nativeActionSetStatusTip(ptr: Int64, tip: CString): Unit
@@ -72,7 +74,7 @@ public class QAction {
      */
     public func setStatusTip(tip: String) {
         unsafe {
-            nativeActionSetStatusTip(ptr, CString(tip))
+            nativeActionSetStatusTip(ptr, LibC.mallocCString(tip))
         }
     }
 
@@ -83,7 +85,7 @@ public class QAction {
      */
     public func setText(text: String) {
         unsafe {
-            nativeActionSetText(ptr, CString(text))
+            nativeActionSetText(ptr, LibC.mallocCString(text))
         }
     }
 

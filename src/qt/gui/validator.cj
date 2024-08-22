@@ -6,9 +6,9 @@
  * @file
  *
  */
-package qt.gui
+package cjqt.qt.gui
 
-import qt.core.*
+import cjqt.qt.core.*
 
 // foreign C Functions
 foreign func nativeValidatorCreate(parentPtr: Int64): Int64
@@ -106,7 +106,7 @@ public open class QValidator {
      */
     public open func fixup(input: String) {
         unsafe {
-            nativeValidatorFixup(this.ptr, CString(input))
+            nativeValidatorFixup(this.ptr, LibC.mallocCString(input))
         }
     }
 
@@ -120,7 +120,7 @@ public open class QValidator {
      */
     public open func validate(input: String, pos: Int64): QValidatorState {
         let state = unsafe {
-            nativeValidatorValidate(this.ptr, CString(input), Int32(pos))
+            nativeValidatorValidate(this.ptr, LibC.mallocCString(input), Int32(pos))
         }
         return QValidatorState.convert(state)
     }

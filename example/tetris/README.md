@@ -4,8 +4,8 @@
 
 创建main.cj文件
 ```cangjie
-import qt.gui.*
-import qt.widgets.*
+import cjqt.qt.gui.*
+import cjqt.qt.widgets.*
 import example.tetris.*
 
 main() {

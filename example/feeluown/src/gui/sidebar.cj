@@ -1,6 +1,6 @@
 package gui
 
-from std import math.*
+import math.*
 import widgets.*
 
 public class ListViewContainer <: QFrame {

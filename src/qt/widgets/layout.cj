@@ -6,7 +6,7 @@
  * @file
  *
  */
-package qt.widgets
+package cjqt.qt.widgets
 
 foreign func nativeLayoutSetSpacing(ptr: Int64, spacing: Int32): Unit
 foreign func nativeLayoutSetContentsMargins(ptr: Int64, left: Int32, top: Int32, right: Int32, bottom: Int32): Unit

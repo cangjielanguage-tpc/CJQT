@@ -6,7 +6,7 @@
  * @file
  *
  */
-package qt.widgets
+package cjqt.qt.widgets
 
 foreign func nativeHBoxLayoutCreate(parentPtr: Int64): Int64
 foreign func nativeHBoxLayoutDelete(ptr: Int64): Unit

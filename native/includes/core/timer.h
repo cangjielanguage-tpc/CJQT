@@ -3,7 +3,7 @@
 
 #include <QTimer>
 
-typedef void (*nativeTimerCallback)(long);
+typedef void (*nativeTimerCallback)(uintptr_t);
 
 class CjQtTimer : public QTimer
 {
@@ -19,7 +19,7 @@ private Q_SLOTS:
     void tick()
     {
         if (callback != nullptr){
-            callback(reinterpret_cast<long>(this));
+            callback(reinterpret_cast<uintptr_t>(this));
         }
     }
 };

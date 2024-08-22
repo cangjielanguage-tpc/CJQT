@@ -3,7 +3,7 @@
 extern "C" {
     // QHBoxLayout
 
-    long nativeHBoxLayoutCreate(long parentPtr)
+    uintptr_t nativeHBoxLayoutCreate(uintptr_t parentPtr)
     {
         APPLICATION_CREATE
         CjQtHBoxLayout *layout;
@@ -16,10 +16,10 @@ extern "C" {
             QWidget *parent = reinterpret_cast<QWidget *>(static_cast<uintptr_t>(parentPtr));
             layout = new CjQtHBoxLayout(parent);
         }
-        return reinterpret_cast<long>(layout);
+        return reinterpret_cast<uintptr_t>(layout);
     }
 
-    void nativeHBoxLayoutDelete(long ptr)
+    void nativeHBoxLayoutDelete(uintptr_t ptr)
     {
         CjQtHBoxLayout *instance = reinterpret_cast<CjQtHBoxLayout *>(static_cast<uintptr_t>(ptr));
         delete instance;

@@ -2,13 +2,13 @@
 
 extern "C"
 {
-    long nativePaintDeviceCreate()
+    uintptr_t nativePaintDeviceCreate()
     {
         CjPaintDevice *paintDevice = new CjPaintDevice();
-        return reinterpret_cast<long>(paintDevice);
+        return reinterpret_cast<uintptr_t>(paintDevice);
     }
 
-    void nativePaintDeviceDelete(long ptr)
+    void nativePaintDeviceDelete(uintptr_t ptr)
     {
         CjPaintDevice *instance = reinterpret_cast<CjPaintDevice *>(static_cast<uintptr_t>(ptr));
         delete instance;

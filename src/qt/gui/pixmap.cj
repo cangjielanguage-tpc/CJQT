@@ -1,4 +1,4 @@
-package qt.gui
+package cjqt.qt.gui
 
 //foreign function
 foreign func nativePixmapCreateWithWH(w: Int32, h: Int32): Int64

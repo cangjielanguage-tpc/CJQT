@@ -1,10 +1,10 @@
 package widgets
 
-from cjqt import qt.widgets.*
-from cjqt import qt.gui.*
-from cjqt import qt.core.*
-from cjqt import qt.tools.*
-from std import collection.*
+import cjqt.qt.widgets.*
+import cjqt.qt.gui.*
+import cjqt.qt.core.*
+import cjqt.qt.tools.*
+import std.collection.*
 
 public class TextlistModel <: QAbstractListModel {
     let items = ArrayList<QVariant>()

@@ -2,13 +2,13 @@
 
 extern "C"
 {
-    long nativeAbstractListModelCreate()
+    uintptr_t nativeAbstractListModelCreate()
     {
         CjAbstractListModel *event = new CjAbstractListModel();
-        return reinterpret_cast<long>(event);
+        return reinterpret_cast<uintptr_t>(event);
     }
 
-    void nativeAbstractListModelDelete(long ptr)
+    void nativeAbstractListModelDelete(uintptr_t ptr)
     {
         appConfig->callbackMapRemove((char *)"rowCount", ptr);
         appConfig->callbackMapRemove((char *)"data", ptr);
@@ -16,38 +16,38 @@ extern "C"
         delete instance;
     }
 
-    void nativeAbstractItemModelBeginInsertRows(long ptr, long parentPtr, int first, int last)
+    void nativeAbstractItemModelBeginInsertRows(uintptr_t ptr, uintptr_t parentPtr, int first, int last)
     {
         CjAbstractListModel *instance = reinterpret_cast<CjAbstractListModel *>(static_cast<uintptr_t>(ptr));
         const QModelIndex *parent = reinterpret_cast<QModelIndex *>(static_cast<uintptr_t>(parentPtr));
         instance->beginInsertRows(*parent, first, last);
     }
 
-    void nativeAbstractItemModelEndInsertRows(long ptr)
+    void nativeAbstractItemModelEndInsertRows(uintptr_t ptr)
     {
         CjAbstractListModel *instance = reinterpret_cast<CjAbstractListModel *>(static_cast<uintptr_t>(ptr));
         instance->endInsertRows();
     }
 
-    void nativeAbstractItemModelBeginRemoveRows(long ptr, long parentPtr, int first, int last)
+    void nativeAbstractItemModelBeginRemoveRows(uintptr_t ptr, uintptr_t parentPtr, int first, int last)
     {
         CjAbstractListModel *instance = reinterpret_cast<CjAbstractListModel *>(static_cast<uintptr_t>(ptr));
         const QModelIndex *parent = reinterpret_cast<QModelIndex *>(static_cast<uintptr_t>(parentPtr));
         instance->beginRemoveRows(*parent, first, last);
     }
 
-    void nativeAbstractItemModelEndRemoveRows(long ptr)
+    void nativeAbstractItemModelEndRemoveRows(uintptr_t ptr)
     {
         CjAbstractListModel *instance = reinterpret_cast<CjAbstractListModel *>(static_cast<uintptr_t>(ptr));
         instance->endRemoveRows();
     }
 
-    void nativeAbstractListModelSetRowCountCallback(long ptr, nativeCallbackPointer callback)
+    void nativeAbstractListModelSetRowCountCallback(uintptr_t ptr, nativeCallbackPointer callback)
     {
         appConfig->callbackMapPut((char *)"rowCount", ptr, callback);
     }
 
-    void nativeAbstractListModelSetDataCallback(long ptr, nativeCallbackPointer callback)
+    void nativeAbstractListModelSetDataCallback(uintptr_t ptr, nativeCallbackPointer callback)
     {
         appConfig->callbackMapPut((char *)"data", ptr, callback);
     }

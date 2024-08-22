@@ -5,7 +5,7 @@ extern "C"
 
     // QDialog
 
-    long nativeDialogCreate(long parentPtr)
+    uintptr_t nativeDialogCreate(uintptr_t parentPtr)
 	{
 		CjQtDialog *dialog;
 		if (parentPtr == 0L)
@@ -17,10 +17,10 @@ extern "C"
 			QWidget *parent = reinterpret_cast<QWidget *>(static_cast<uintptr_t>(parentPtr));
 			dialog = new CjQtDialog(parent);
 		}
-		return reinterpret_cast<long>(dialog);
+		return reinterpret_cast<uintptr_t>(dialog);
 	}
 
-    void nativeDialogDelete(long ptr)
+    void nativeDialogDelete(uintptr_t ptr)
 	{
 		CjQtDialog *instance = reinterpret_cast<CjQtDialog *>(static_cast<uintptr_t>(ptr));
 		delete instance;

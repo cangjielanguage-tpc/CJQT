@@ -5,7 +5,7 @@ extern "C"
 
     // QTabWidget
 
-    long nativeTabWidgetCreate(long parentPtr)
+    uintptr_t nativeTabWidgetCreate(uintptr_t parentPtr)
     {
         APPLICATION_CREATE
         CjQtTabWidget *tabWidget;
@@ -18,23 +18,23 @@ extern "C"
             QWidget *parent = reinterpret_cast<QWidget *>(static_cast<uintptr_t>(parentPtr));
             tabWidget = new CjQtTabWidget(parent);
         }
-        return reinterpret_cast<long>(tabWidget);
+        return reinterpret_cast<uintptr_t>(tabWidget);
     }
 
-    void nativeTabWidgetDelete(long ptr)
+    void nativeTabWidgetDelete(uintptr_t ptr)
     {
         CjQtTabWidget *instance = reinterpret_cast<CjQtTabWidget *>(static_cast<uintptr_t>(ptr));
         delete instance;
     }
 
-    void nativeTabWidgetAddTab(long ptr, long widgetPtr, const char *text)
+    void nativeTabWidgetAddTab(uintptr_t ptr, uintptr_t widgetPtr, const char *text)
     {
         QTabWidget *instance = reinterpret_cast<QTabWidget *>(static_cast<uintptr_t>(ptr));
         QWidget *widget = reinterpret_cast<QWidget *>(static_cast<uintptr_t>(widgetPtr));
         instance->addTab(widget, text);
     }
 
-    void nativeTabWidgetAddTabWithIcon(long ptr, long widgetPtr, long iconPtr, const char *text)
+    void nativeTabWidgetAddTabWithIcon(uintptr_t ptr, uintptr_t widgetPtr, uintptr_t iconPtr, const char *text)
     {
         QTabWidget *instance = reinterpret_cast<QTabWidget *>(static_cast<uintptr_t>(ptr));
         QWidget *widget = reinterpret_cast<QWidget *>(static_cast<uintptr_t>(widgetPtr));
@@ -42,14 +42,14 @@ extern "C"
         instance->addTab(widget, *icon, text);
     }
 
-    void nativeTabWidgetInsertTab(long ptr, int index, long widgetPtr, const char *text)
+    void nativeTabWidgetInsertTab(uintptr_t ptr, int index, uintptr_t widgetPtr, const char *text)
     {
         QTabWidget *instance = reinterpret_cast<QTabWidget *>(static_cast<uintptr_t>(ptr));
         QWidget *widget = reinterpret_cast<QWidget *>(static_cast<uintptr_t>(widgetPtr));
         instance->insertTab(index, widget, text);
     }
 
-    void nativeTabWidgetInsertTabWithIcon(long ptr, long widgetPtr, int index, long iconPtr, const char *text)
+    void nativeTabWidgetInsertTabWithIcon(uintptr_t ptr, uintptr_t widgetPtr, int index, uintptr_t iconPtr, const char *text)
     {
         QTabWidget *instance = reinterpret_cast<QTabWidget *>(static_cast<uintptr_t>(ptr));
         QWidget *widget = reinterpret_cast<QWidget *>(static_cast<uintptr_t>(widgetPtr));
@@ -57,193 +57,193 @@ extern "C"
         instance->insertTab(index, widget, *icon, text);
     }
 
-    void nativeTabWidgetRemoveTab(long ptr, int index)
+    void nativeTabWidgetRemoveTab(uintptr_t ptr, int index)
     {
         QTabWidget *instance = reinterpret_cast<QTabWidget *>(static_cast<uintptr_t>(ptr));
         instance->removeTab(index);
     }
 
-    bool nativeTabWidgetIsTabEnabled(long ptr, int index)
+    bool nativeTabWidgetIsTabEnabled(uintptr_t ptr, int index)
     {
         QTabWidget *instance = reinterpret_cast<QTabWidget *>(static_cast<uintptr_t>(ptr));
         return instance->isTabEnabled(index);
     }
 
-    void nativeTabWidgetSetTabEnabled(long ptr, int index, bool enabl)
+    void nativeTabWidgetSetTabEnabled(uintptr_t ptr, int index, bool enabl)
     {
         QTabWidget *instance = reinterpret_cast<QTabWidget *>(static_cast<uintptr_t>(ptr));
         instance->setTabEnabled(index, enabl);
     }
 
-    const char *nativeTabWidgetTabText(long ptr, int index)
+    const char *nativeTabWidgetTabText(uintptr_t ptr, int index)
     {
         QTabWidget *instance = reinterpret_cast<QTabWidget *>(static_cast<uintptr_t>(ptr));
         QString str = instance->tabText(index);
         return qstrdup(str.toUtf8());
     }
 
-    void nativeTabWidgetSetTabText(long ptr, int index, const char *text)
+    void nativeTabWidgetSetTabText(uintptr_t ptr, int index, const char *text)
     {
         QTabWidget *instance = reinterpret_cast<QTabWidget *>(static_cast<uintptr_t>(ptr));
         instance->setTabText(index, text);
     }
 
-    long nativeTabWidgetTabIcon(long ptr, int index)
+    uintptr_t nativeTabWidgetTabIcon(uintptr_t ptr, int index)
     {
         QTabWidget *instance = reinterpret_cast<QTabWidget *>(static_cast<uintptr_t>(ptr));
         QIcon icon = instance->tabIcon(index);
-        return reinterpret_cast<long>(&icon);
+        return reinterpret_cast<uintptr_t>(&icon);
     }
 
-    void nativeTabWidgetSetTabIcon(long ptr, int index, long iconPtr)
+    void nativeTabWidgetSetTabIcon(uintptr_t ptr, int index, uintptr_t iconPtr)
     {
         QTabWidget *instance = reinterpret_cast<QTabWidget *>(static_cast<uintptr_t>(ptr));
         QIcon *icon = reinterpret_cast<QIcon *>(static_cast<uintptr_t>(iconPtr));
         instance->setTabIcon(index, *icon);
     }
 
-    int nativeTabWidgetCurrentIndex(long ptr)
+    int nativeTabWidgetCurrentIndex(uintptr_t ptr)
     {
         QTabWidget *instance = reinterpret_cast<QTabWidget *>(static_cast<uintptr_t>(ptr));
         return instance->currentIndex();
     }
 
-    long nativeTabWidgetCurrentWidget(long ptr)
+    uintptr_t nativeTabWidgetCurrentWidget(uintptr_t ptr)
     {
         QTabWidget *instance = reinterpret_cast<QTabWidget *>(static_cast<uintptr_t>(ptr));
         QWidget *widget = instance->currentWidget();
-        return reinterpret_cast<long>(widget);
+        return reinterpret_cast<uintptr_t>(widget);
     }
 
-    long nativeTabWidgetWidget(long ptr, int index)
+    uintptr_t nativeTabWidgetWidget(uintptr_t ptr, int index)
     {
         QTabWidget *instance = reinterpret_cast<QTabWidget *>(static_cast<uintptr_t>(ptr));
         QWidget *widget = instance->widget(index);
-        return reinterpret_cast<long>(widget);
+        return reinterpret_cast<uintptr_t>(widget);
     }
 
-    int nativeTabWidgetIndexOf(long ptr, long widgetPtr)
+    int nativeTabWidgetIndexOf(uintptr_t ptr, uintptr_t widgetPtr)
     {
         QTabWidget *instance = reinterpret_cast<QTabWidget *>(static_cast<uintptr_t>(ptr));
         QWidget *widget = reinterpret_cast<QWidget *>(static_cast<uintptr_t>(widgetPtr));
         return instance->indexOf(widget);
     }
 
-    int nativeTabWidgetCount(long ptr)
+    int nativeTabWidgetCount(uintptr_t ptr)
     {
         QTabWidget *instance = reinterpret_cast<QTabWidget *>(static_cast<uintptr_t>(ptr));
         return instance->count();
     }
 
-    long nativeTabWidgetIconSize(long ptr)
+    uintptr_t nativeTabWidgetIconSize(uintptr_t ptr)
     {
         QTabWidget *instance = reinterpret_cast<QTabWidget *>(static_cast<uintptr_t>(ptr));
         QSize size = instance->iconSize();
-        return reinterpret_cast<long>(&size);
+        return reinterpret_cast<uintptr_t>(&size);
     }
 
-    void nativeTabWidgetSetIconSize(long ptr, long sizePtr)
+    void nativeTabWidgetSetIconSize(uintptr_t ptr, uintptr_t sizePtr)
     {
         QTabWidget *instance = reinterpret_cast<QTabWidget *>(static_cast<uintptr_t>(ptr));
         QSize *size = reinterpret_cast<QSize *>(static_cast<uintptr_t>(sizePtr));
         instance->setIconSize(*size);
     }
 
-    void nativeTabWidgetSetUsesScrollButtons(long ptr, bool useButtons)
+    void nativeTabWidgetSetUsesScrollButtons(uintptr_t ptr, bool useButtons)
     {
         QTabWidget *instance = reinterpret_cast<QTabWidget *>(static_cast<uintptr_t>(ptr));
         instance->setUsesScrollButtons(useButtons);
     }
 
-    bool nativeTabWidgetUsesScrollButtons(long ptr)
+    bool nativeTabWidgetUsesScrollButtons(uintptr_t ptr)
     {
         QTabWidget *instance = reinterpret_cast<QTabWidget *>(static_cast<uintptr_t>(ptr));
         return instance->usesScrollButtons();
     }
 
-    void nativeTabWidgetSetTabsClosable(long ptr, bool closable)
+    void nativeTabWidgetSetTabsClosable(uintptr_t ptr, bool closable)
     {
         QTabWidget *instance = reinterpret_cast<QTabWidget *>(static_cast<uintptr_t>(ptr));
         instance->setTabsClosable(closable);
     }
 
-    bool nativeTabWidgetTabsClosable(long ptr)
+    bool nativeTabWidgetTabsClosable(uintptr_t ptr)
     {
         QTabWidget *instance = reinterpret_cast<QTabWidget *>(static_cast<uintptr_t>(ptr));
         return instance->tabsClosable();
     }
 
-    void nativeTabWidgetSetMovable(long ptr, bool movable)
+    void nativeTabWidgetSetMovable(uintptr_t ptr, bool movable)
     {
         QTabWidget *instance = reinterpret_cast<QTabWidget *>(static_cast<uintptr_t>(ptr));
         instance->setMovable(movable);
     }
 
-    bool nativeTabWidgetIsMovable(long ptr)
+    bool nativeTabWidgetIsMovable(uintptr_t ptr)
     {
         QTabWidget *instance = reinterpret_cast<QTabWidget *>(static_cast<uintptr_t>(ptr));
         return instance->isMovable();
     }
 
-    void nativeTabWidgetSetDocumentMode(long ptr, bool documentMode)
+    void nativeTabWidgetSetDocumentMode(uintptr_t ptr, bool documentMode)
     {
         QTabWidget *instance = reinterpret_cast<QTabWidget *>(static_cast<uintptr_t>(ptr));
         instance->setDocumentMode(documentMode);
     }
 
-    bool nativeTabWidgetDocumentMode(long ptr)
+    bool nativeTabWidgetDocumentMode(uintptr_t ptr)
     {
         QTabWidget *instance = reinterpret_cast<QTabWidget *>(static_cast<uintptr_t>(ptr));
         return instance->documentMode();
     }
 
-    void nativeTabWidgetSetTabBarAutoHide(long ptr, bool hide)
+    void nativeTabWidgetSetTabBarAutoHide(uintptr_t ptr, bool hide)
     {
         QTabWidget *instance = reinterpret_cast<QTabWidget *>(static_cast<uintptr_t>(ptr));
         instance->setTabBarAutoHide(hide);
     }
 
-    bool nativeTabWidgetTabBarAutoHide(long ptr)
+    bool nativeTabWidgetTabBarAutoHide(uintptr_t ptr)
     {
         QTabWidget *instance = reinterpret_cast<QTabWidget *>(static_cast<uintptr_t>(ptr));
         return instance->tabBarAutoHide();
     }
 
-    void nativeTabWidgetClear(long ptr)
+    void nativeTabWidgetClear(uintptr_t ptr)
     {
         QTabWidget *instance = reinterpret_cast<QTabWidget *>(static_cast<uintptr_t>(ptr));
         instance->clear();
     }
 
-    long nativeTabWidgetTabBar(long ptr)
+    uintptr_t nativeTabWidgetTabBar(uintptr_t ptr)
     {
         QTabWidget *instance = reinterpret_cast<QTabWidget *>(static_cast<uintptr_t>(ptr));
         QTabBar *tabBar = instance->tabBar();
-        return reinterpret_cast<long>(tabBar);
+        return reinterpret_cast<uintptr_t>(tabBar);
     }
 
-    void nativeTabWidgetConnectCurrentChanged(long ptr, long code, nativeConnectCallbackPointer callback)
+    void nativeTabWidgetConnectCurrentChanged(uintptr_t ptr, uintptr_t code, nativeConnectCallbackPointer callback)
     {
         QTabWidget *instance = reinterpret_cast<QTabWidget *>(static_cast<uintptr_t>(ptr));
         QObject::connect(instance, &QTabWidget::currentChanged, [=](int index)
                          { callback(code, (void *)&index); });
     }
 
-    void nativeTabWidgetConnectTabCloseRequested(long ptr, long code, nativeConnectCallbackPointer callback)
+    void nativeTabWidgetConnectTabCloseRequested(uintptr_t ptr, uintptr_t code, nativeConnectCallbackPointer callback)
     {
         QTabWidget *instance = reinterpret_cast<QTabWidget *>(static_cast<uintptr_t>(ptr));
         QObject::connect(instance, &QTabWidget::tabCloseRequested, [=](int index)
                          { callback(code, (void *)&index); });
     }
 
-    void nativeTabWidgetConnectTabBarClicked(long ptr, long code, nativeConnectCallbackPointer callback)
+    void nativeTabWidgetConnectTabBarClicked(uintptr_t ptr, uintptr_t code, nativeConnectCallbackPointer callback)
     {
         QTabWidget *instance = reinterpret_cast<QTabWidget *>(static_cast<uintptr_t>(ptr));
         QObject::connect(instance, &QTabWidget::tabBarClicked, [=](int index)
                          { callback(code, (void *)&index); });
     }
 
-    void nativeTabWidgetConnectTabBarDoubleClicked(long ptr, long code, nativeConnectCallbackPointer callback)
+    void nativeTabWidgetConnectTabBarDoubleClicked(uintptr_t ptr, uintptr_t code, nativeConnectCallbackPointer callback)
     {
         QTabWidget *instance = reinterpret_cast<QTabWidget *>(static_cast<uintptr_t>(ptr));
         QObject::connect(instance, &QTabWidget::tabBarDoubleClicked, [=](int index)

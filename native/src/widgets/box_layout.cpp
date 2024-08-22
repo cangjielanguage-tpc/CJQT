@@ -3,7 +3,7 @@
 extern "C" {
     // QBoxLayout
 
-    long nativeBoxLayoutCreate(long parentPtr)
+    uintptr_t nativeBoxLayoutCreate(uintptr_t parentPtr)
     {
         APPLICATION_CREATE
         CjQtBoxLayout *layout;
@@ -16,35 +16,35 @@ extern "C" {
             QWidget *parent = reinterpret_cast<QWidget *>(static_cast<uintptr_t>(parentPtr));
             layout = new CjQtBoxLayout(parent);
         }
-        return reinterpret_cast<long>(layout);
+        return reinterpret_cast<uintptr_t>(layout);
     }
 
-    void nativeBoxLayoutAddWidget(long ptr, long widgetPtr)
+    void nativeBoxLayoutAddWidget(uintptr_t ptr, uintptr_t widgetPtr)
 	{
 		QBoxLayout *instance = reinterpret_cast<QBoxLayout *>(static_cast<uintptr_t>(ptr));
 		QWidget *widget = reinterpret_cast<QWidget *>(static_cast<uintptr_t>(widgetPtr));
 		instance->addWidget(widget);
 	}
 
-    void nativeBoxLayoutDelete(long ptr)
+    void nativeBoxLayoutDelete(uintptr_t ptr)
     {
         CjQtBoxLayout *instance = reinterpret_cast<CjQtBoxLayout *>(static_cast<uintptr_t>(ptr));
         delete instance;
     }
 
-    void nativeBoxLayoutAddSpacing(long ptr, int spacing)
+    void nativeBoxLayoutAddSpacing(uintptr_t ptr, int spacing)
 	{
 		QBoxLayout *instance = reinterpret_cast<QBoxLayout *>(static_cast<uintptr_t>(ptr));
 		instance->addSpacing(spacing);
 	}
 
-    void nativeBoxLayoutAddStretch(long ptr, int stretch)
+    void nativeBoxLayoutAddStretch(uintptr_t ptr, int stretch)
 	{
 		QBoxLayout *instance = reinterpret_cast<QBoxLayout *>(static_cast<uintptr_t>(ptr));
 		instance->addStretch(stretch);
 	}
 
-    void nativeBoxLayoutAddLayout(long ptr, long layoutPtr, int stretch)
+    void nativeBoxLayoutAddLayout(uintptr_t ptr, uintptr_t layoutPtr, int stretch)
 	{
 		QBoxLayout *instance = reinterpret_cast<QBoxLayout *>(static_cast<uintptr_t>(ptr));
         QLayout *layout = reinterpret_cast<QLayout *>(static_cast<uintptr_t>(layoutPtr));

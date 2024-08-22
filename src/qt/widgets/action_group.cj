@@ -1,4 +1,6 @@
-package qt.widgets
+package cjqt.qt.widgets
+
+import cjqt.qt.core.QObject
 
 //foreign function 
 foreign func nativeActionGroupCreate(parentPtr: Int64): Int64

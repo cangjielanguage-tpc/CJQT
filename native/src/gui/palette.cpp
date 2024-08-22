@@ -2,31 +2,31 @@
 
 extern "C"
 {
-    long nativePaletteCreate()
+    uintptr_t nativePaletteCreate()
     {
-        return reinterpret_cast<long>(new QPalette());
+        return reinterpret_cast<uintptr_t>(new QPalette());
     }
 
-    long nativePaletteCreateForColor(long colorPtr)
+    uintptr_t nativePaletteCreateForColor(uintptr_t colorPtr)
     {
         QColor *color = reinterpret_cast<QColor *>(static_cast<uintptr_t>(colorPtr));
-        return reinterpret_cast<long>(new QPalette(*color));
+        return reinterpret_cast<uintptr_t>(new QPalette(*color));
     }
 
-    long nativePaletteCreateForPalette(long palettePtr)
+    uintptr_t nativePaletteCreateForPalette(uintptr_t palettePtr)
     {
         QPalette *palette = reinterpret_cast<QPalette *>(static_cast<uintptr_t>(palettePtr));
-        return reinterpret_cast<long>(new QPalette(*palette));
+        return reinterpret_cast<uintptr_t>(new QPalette(*palette));
     }
 
-    void nativePaletteSetColor(long ptr, int colorRole, long colorPtr)
+    void nativePaletteSetColor(uintptr_t ptr, int colorRole, uintptr_t colorPtr)
     {
         QPalette *instance = reinterpret_cast<QPalette *>(static_cast<uintptr_t>(ptr));
         QColor *color = reinterpret_cast<QColor *>(static_cast<uintptr_t>(colorPtr));
         instance->setColor(QPalette::ColorRole(colorRole), *color);
     }
 
-    void nativePaletteDelete(long ptr)
+    void nativePaletteDelete(uintptr_t ptr)
     {
         QPalette *instance = reinterpret_cast<QPalette *>(static_cast<uintptr_t>(ptr));
         delete instance;

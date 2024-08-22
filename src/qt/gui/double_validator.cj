@@ -1,6 +1,6 @@
-package qt.gui
+package cjqt.qt.gui
 
-from std import convert.*
+import std.convert.*
 
 //foreign C function
 foreign func nativeDoubleValidatorCreate(parentPtr: Int64): Int64
@@ -182,7 +182,7 @@ public open class QDoubleValidator <: QValidator {
             }
         }
 
-        var strInput = CString(input)
+        var strInput = LibC.mallocCString(input)
         let num = unsafe {
             nativeDoubleValidatorValidate(this.ptr, strInput, Int32(pos))
         }

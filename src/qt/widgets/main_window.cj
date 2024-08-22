@@ -6,7 +6,7 @@
  * @file
  *
  */
-package qt.widgets
+package cjqt.qt.widgets
 
 foreign func nativeMainWindowCreate(parentPtr: Int64): Int64
 foreign func nativeMainWindowSetCentralWidget(ptr: Int64, widgetPtr: Int64): Unit

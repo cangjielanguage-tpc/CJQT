@@ -6,7 +6,7 @@
  * @file
  *
  */
-package qt.gui
+package cjqt.qt.gui
 
 foreign func nativeKeyEventGetKey(ptr: Int64): Int32
 foreign func nativeKeyEventGetCount(ptr: Int64): Int32

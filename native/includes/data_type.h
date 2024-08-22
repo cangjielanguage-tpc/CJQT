@@ -9,21 +9,21 @@ typedef struct
 
 typedef struct
 {
-    long p1;
+    uintptr_t p1;
     int p2;
 } CjDataLongInt;
 
 typedef struct
 {
-    long p1;
-    long p2;
+    uintptr_t p1;
+    uintptr_t p2;
 } CjDataLongLong;
 
 typedef struct
 {
-    long p1;
-    long p2;
-    long p3;
+    uintptr_t p1;
+    uintptr_t p2;
+    uintptr_t p3;
 } CjDataLongLongLong;
 
 #endif

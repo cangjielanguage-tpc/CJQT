@@ -6,7 +6,7 @@
  * @file
  *
  */
-package qt.gui
+package cjqt.qt.gui
 
 foreign func nativeFontCreate(fontPtr: Int64): Int64
 foreign func nativeFontSetPointSize(ptr: Int64, size: Int32): Unit

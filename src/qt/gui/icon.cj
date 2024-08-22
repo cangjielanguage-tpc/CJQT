@@ -6,7 +6,7 @@
  * @file
  *
  */
-package qt.gui
+package cjqt.qt.gui
 
 foreign func nativeIconCreate(): Int64
 foreign func nativeIconCreateWithFileName(fileName: CString): Int64
@@ -43,7 +43,7 @@ public class QIcon {
      */
     public init(fileName: String) {
         ptr = unsafe {
-            nativeIconCreateWithFileName(CString(fileName))
+            nativeIconCreateWithFileName(LibC.mallocCString(fileName))
         }
     }
 

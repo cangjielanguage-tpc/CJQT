@@ -6,7 +6,10 @@
  * @file QLabel
  * 
  */
-package qt.widgets
+package cjqt.qt.widgets
+
+import cjqt.qt.gui.*
+import cjqt.qt.core.*
 
 foreign func nativeLabelCreate(parentPtr: Int64): Int64
 foreign func nativeLabelSetText(ptr: Int64, text:CString): Unit
@@ -58,7 +61,7 @@ public class QLabel <: QWidget{
      */
     public func setText(text:String) {
         unsafe {
-            nativeLabelSetText(ptr, CString(text))
+            nativeLabelSetText(ptr, LibC.mallocCString(text))
         }
     }
 

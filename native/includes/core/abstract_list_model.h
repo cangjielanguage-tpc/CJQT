@@ -33,10 +33,10 @@ public:
 
     virtual int rowCount(const QModelIndex &parent = QModelIndex()) const override
     {
-        nativeCallbackPointer rowCountCallback = appConfig->callbackMapGet((char *)"rowCount", reinterpret_cast<long>(this));
+        nativeCallbackPointer rowCountCallback = appConfig->callbackMapGet((char *)"rowCount", reinterpret_cast<uintptr_t>(this));
         if (rowCountCallback != nullptr)
         {
-            return (int)(intptr_t)rowCountCallback(reinterpret_cast<long>(this), (void *)reinterpret_cast<long>(&parent));
+            return (int)(intptr_t)rowCountCallback(reinterpret_cast<uintptr_t>(this), (void *)reinterpret_cast<uintptr_t>(&parent));
         }
         else
         {
@@ -46,13 +46,13 @@ public:
 
     virtual QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override
     {
-        nativeCallbackPointer dataCallback = appConfig->callbackMapGet((char *)"data", reinterpret_cast<long>(this));
+        nativeCallbackPointer dataCallback = appConfig->callbackMapGet((char *)"data", reinterpret_cast<uintptr_t>(this));
         if (dataCallback != nullptr)
         {
             CjDataLongInt data = {
-                .p1 = reinterpret_cast<long>(&index),
+                .p1 = reinterpret_cast<uintptr_t>(&index),
                 .p2 = role};
-            QVariant *variant = (QVariant *)dataCallback(reinterpret_cast<long>(this), (void *)&data);
+            QVariant *variant = (QVariant *)dataCallback(reinterpret_cast<uintptr_t>(this), (void *)&data);
             return *variant;
         }
         else

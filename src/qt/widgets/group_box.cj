@@ -6,7 +6,7 @@
  * @file
  *
  */
-package qt.widgets
+package cjqt.qt.widgets
 
 foreign func nativeGroupBoxCreate(parentPtr: Int64): Int64
 foreign func nativeGroupBoxSetTitle(ptr: Int64, title: CString): Unit
@@ -55,7 +55,7 @@ public class QGroupBox <: QWidget {
      */
     public func setTitle(title: String) {
         unsafe {
-            nativeGroupBoxSetTitle(ptr, CString(title))
+            nativeGroupBoxSetTitle(ptr, LibC.mallocCString(title))
         }
     }
 

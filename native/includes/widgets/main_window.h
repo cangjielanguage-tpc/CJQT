@@ -5,8 +5,8 @@
 #include "widget.h"
 extern "C"
 {
-long nativeMainWindowCreate(long parentPtr);
-long nativeMainWindowMenuBar(long ptr);
+uintptr_t nativeMainWindowCreate(uintptr_t parentPtr);
+uintptr_t nativeMainWindowMenuBar(uintptr_t ptr);
 }
 
 class CjQtMainWindow : public QMainWindow

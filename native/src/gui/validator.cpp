@@ -2,7 +2,7 @@
 
 extern "C"
 {
-    long nativeValidatorCreate(long parentPtr)
+    uintptr_t nativeValidatorCreate(uintptr_t parentPtr)
     {
         CjValidator *validator;
         if (parentPtr == 0L)
@@ -14,28 +14,28 @@ extern "C"
             QObject *object = reinterpret_cast<QObject *>(static_cast<uintptr_t>(parentPtr));
             validator = new CjValidator(object);
         }
-        return reinterpret_cast<long>(validator);
+        return reinterpret_cast<uintptr_t>(validator);
     }
 
-    void nativeValidatorDelete(long ptr)
+    void nativeValidatorDelete(uintptr_t ptr)
     {
         QValidator *instance = reinterpret_cast<QValidator *>(static_cast<uintptr_t>(ptr));
         delete instance;
     }
-    void nativeValidatorFixup(long ptr, char *input)
+    void nativeValidatorFixup(uintptr_t ptr, char *input)
     {
         QValidator *instance = reinterpret_cast<QValidator *>(static_cast<uintptr_t>(ptr));
         QString str = QString(input);
         instance->fixup(str);
     }
-    int nativeValidatorValidate(long ptr, char *input, int pos)
+    int nativeValidatorValidate(uintptr_t ptr, char *input, int pos)
     {
         QValidator *instance = reinterpret_cast<QValidator *>(static_cast<uintptr_t>(ptr));
         QString str = QString(input);
         return instance->validate(str, pos);
     }
     // Signal
-    void nativeValidatorConnectChanged(long ptr, long code, nativeConnectCallback callback)
+    void nativeValidatorConnectChanged(uintptr_t ptr, uintptr_t code, nativeConnectCallback callback)
     {
         QValidator *instance = reinterpret_cast<QValidator *>(static_cast<uintptr_t>(ptr));
         QObject::connect(instance, &QValidator::changed, [=]()

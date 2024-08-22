@@ -3,7 +3,7 @@
 #include <string.h>
 
 typedef void (*nativeEventCallback)(long, long);
-typedef void (*nativeConnectCallback)(long);
+typedef void (*nativeConnectCallback)(uintptr_t);
 typedef void (*nativeConnectCallbackChar)(long, char *);
 typedef void (*nativeConnectCallbackInt)(long, int);
 typedef void (*nativeConnectCallbackIntInt)(long, int, int);
@@ -46,12 +46,12 @@ public:
     char **argv;
     
     // hideEvent
-    void hideEventMapPut(long ptr, nativeEventCallback callback)
+    void hideEventMapPut(uintptr_t ptr, nativeEventCallback callback)
     {
         hideEventMap[ptr] = callback;
     }
 
-    nativeEventCallback hideEventMapGet(long ptr)
+    nativeEventCallback hideEventMapGet(uintptr_t ptr)
     {
         std::map<long, nativeEventCallback>::iterator iter;
         iter = hideEventMap.find(ptr);
@@ -62,18 +62,18 @@ public:
         return nullptr;
     }
 
-    void hideEventMapRemove(long ptr)
+    void hideEventMapRemove(uintptr_t ptr)
     {
         hideEventMap.erase(ptr);
     }
 
     // wheelEvent
-    void wheelEventMapPut(long ptr, nativeEventCallback callback)
+    void wheelEventMapPut(uintptr_t ptr, nativeEventCallback callback)
     {
         wheelEventMap[ptr] = callback;
     }
 
-    nativeEventCallback wheelEventMapGet(long ptr)
+    nativeEventCallback wheelEventMapGet(uintptr_t ptr)
     {
         std::map<long, nativeEventCallback>::iterator iter;
         iter = wheelEventMap.find(ptr);
@@ -84,18 +84,18 @@ public:
         return nullptr;
     }
 
-    void wheelEventMapRemove(long ptr)
+    void wheelEventMapRemove(uintptr_t ptr)
     {
         wheelEventMap.erase(ptr);
     }
 
     // contextMenuEvent
-    void contextMenuEventMapPut(long ptr, nativeEventCallback callback)
+    void contextMenuEventMapPut(uintptr_t ptr, nativeEventCallback callback)
     {
         contextMenuEventMap[ptr] = callback;
     }
 
-    nativeEventCallback contextMenuEventMapGet(long ptr)
+    nativeEventCallback contextMenuEventMapGet(uintptr_t ptr)
     {
         std::map<long, nativeEventCallback>::iterator iter;
         iter = contextMenuEventMap.find(ptr);
@@ -106,17 +106,17 @@ public:
         return nullptr;
     }
 
-    void contextMenuEventMapRemove(long ptr)
+    void contextMenuEventMapRemove(uintptr_t ptr)
     {
         contextMenuEventMap.erase(ptr);
     }
     // dragEnterEventMap
-    void dragEnterEventMapPut(long ptr, nativeEventCallback callback)
+    void dragEnterEventMapPut(uintptr_t ptr, nativeEventCallback callback)
     {
         dragEnterEventMap[ptr] = callback;
     }
 
-    nativeEventCallback dragEnterEventMapGet(long ptr)
+    nativeEventCallback dragEnterEventMapGet(uintptr_t ptr)
     {
         std::map<long, nativeEventCallback>::iterator iter;
         iter = dragEnterEventMap.find(ptr);
@@ -127,18 +127,18 @@ public:
         return nullptr;
     }
 
-    void dragEnterEventMapRemove(long ptr)
+    void dragEnterEventMapRemove(uintptr_t ptr)
     {
         dragEnterEventMap.erase(ptr);
     }
 
     // dragLeaveEventMap
-    void dragLeaveEventMapPut(long ptr, nativeEventCallback callback)
+    void dragLeaveEventMapPut(uintptr_t ptr, nativeEventCallback callback)
     {
         dragLeaveEventMap[ptr] = callback;
     }
 
-    nativeEventCallback dragLeaveEventMapGet(long ptr)
+    nativeEventCallback dragLeaveEventMapGet(uintptr_t ptr)
     {
         std::map<long, nativeEventCallback>::iterator iter;
         iter = dragLeaveEventMap.find(ptr);
@@ -149,18 +149,18 @@ public:
         return nullptr;
     }
 
-    void dragLeaveEventMapRemove(long ptr)
+    void dragLeaveEventMapRemove(uintptr_t ptr)
     {
         dragLeaveEventMap.erase(ptr);
     }
 
     // dragMoveEventMap
-    void dragMoveEventMapPut(long ptr, nativeEventCallback callback)
+    void dragMoveEventMapPut(uintptr_t ptr, nativeEventCallback callback)
     {
         dragMoveEventMap[ptr] = callback;
     }
 
-    nativeEventCallback dragMoveEventMapGet(long ptr)
+    nativeEventCallback dragMoveEventMapGet(uintptr_t ptr)
     {
         std::map<long, nativeEventCallback>::iterator iter;
         iter = dragMoveEventMap.find(ptr);
@@ -171,18 +171,18 @@ public:
         return nullptr;
     }
 
-    void dragMoveEventMapRemove(long ptr)
+    void dragMoveEventMapRemove(uintptr_t ptr)
     {
         dragMoveEventMap.erase(ptr);
     }
 
     // dropEventMap
-    void dropEventMapPut(long ptr, nativeEventCallback callback)
+    void dropEventMapPut(uintptr_t ptr, nativeEventCallback callback)
     {
         dropEventMap[ptr] = callback;
     }
 
-    nativeEventCallback dropEventMapGet(long ptr)
+    nativeEventCallback dropEventMapGet(uintptr_t ptr)
     {
         std::map<long, nativeEventCallback>::iterator iter;
         iter = dropEventMap.find(ptr);
@@ -193,17 +193,17 @@ public:
         return nullptr;
     }
 
-    void dropEventMapRemove(long ptr)
+    void dropEventMapRemove(uintptr_t ptr)
     {
         dropEventMap.erase(ptr);
     }
     // focusOutEventMap
-    void focusOutEventMapPut(long ptr, nativeEventCallback callback)
+    void focusOutEventMapPut(uintptr_t ptr, nativeEventCallback callback)
     {
         focusOutEventMap[ptr] = callback;
     }
 
-    nativeEventCallback focusOutEventMapGet(long ptr)
+    nativeEventCallback focusOutEventMapGet(uintptr_t ptr)
     {
         std::map<long, nativeEventCallback>::iterator iter;
         iter = focusOutEventMap.find(ptr);
@@ -214,17 +214,17 @@ public:
         return nullptr;
     }
 
-    void focusOutEventMapRemove(long ptr)
+    void focusOutEventMapRemove(uintptr_t ptr)
     {
         focusOutEventMap.erase(ptr);
     }
     // helpEventMap
-    void helpEventMapPut(long ptr, nativeEventCallback callback)
+    void helpEventMapPut(uintptr_t ptr, nativeEventCallback callback)
     {
         helpEventMap[ptr] = callback;
     }
 
-    nativeEventCallback helpEventMapGet(long ptr)
+    nativeEventCallback helpEventMapGet(uintptr_t ptr)
     {
         std::map<long, nativeEventCallback>::iterator iter;
         iter = helpEventMap.find(ptr);
@@ -235,17 +235,17 @@ public:
         return nullptr;
     }
 
-    void helpEventMapRemove(long ptr)
+    void helpEventMapRemove(uintptr_t ptr)
     {
         helpEventMap.erase(ptr);
     }
     // inputMethodEventMap
-    void inputMethodEventMapPut(long ptr, nativeEventCallback callback)
+    void inputMethodEventMapPut(uintptr_t ptr, nativeEventCallback callback)
     {
         inputMethodEventMap[ptr] = callback;
     }
 
-    nativeEventCallback inputMethodEventMapGet(long ptr)
+    nativeEventCallback inputMethodEventMapGet(uintptr_t ptr)
     {
         std::map<long, nativeEventCallback>::iterator iter;
         iter = inputMethodEventMap.find(ptr);
@@ -256,17 +256,17 @@ public:
         return nullptr;
     }
 
-    void inputMethodEventMapRemove(long ptr)
+    void inputMethodEventMapRemove(uintptr_t ptr)
     {
         inputMethodEventMap.erase(ptr);
     }
     // keyReleaseEventMap
-    void keyReleaseEventMapPut(long ptr, nativeEventCallback callback)
+    void keyReleaseEventMapPut(uintptr_t ptr, nativeEventCallback callback)
     {
         keyReleaseEventMap[ptr] = callback;
     }
 
-    nativeEventCallback keyReleaseEventMapGet(long ptr)
+    nativeEventCallback keyReleaseEventMapGet(uintptr_t ptr)
     {
         std::map<long, nativeEventCallback>::iterator iter;
         iter = keyReleaseEventMap.find(ptr);
@@ -277,17 +277,17 @@ public:
         return nullptr;
     }
 
-    void keyReleaseEventMapRemove(long ptr)
+    void keyReleaseEventMapRemove(uintptr_t ptr)
     {
         keyReleaseEventMap.erase(ptr);
     }
     // mouseDoubleClickEventMap
-    void mouseDoubleClickEventMapPut(long ptr, nativeEventCallback callback)
+    void mouseDoubleClickEventMapPut(uintptr_t ptr, nativeEventCallback callback)
     {
         mouseDoubleClickEventMap[ptr] = callback;
     }
 
-    nativeEventCallback mouseDoubleClickEventMapGet(long ptr)
+    nativeEventCallback mouseDoubleClickEventMapGet(uintptr_t ptr)
     {
         std::map<long, nativeEventCallback>::iterator iter;
         iter = mouseDoubleClickEventMap.find(ptr);
@@ -298,7 +298,7 @@ public:
         return nullptr;
     }
 
-    void mouseDoubleClickEventMapRemove(long ptr)
+    void mouseDoubleClickEventMapRemove(uintptr_t ptr)
     {
         mouseDoubleClickEventMap.erase(ptr);
     }
@@ -306,13 +306,13 @@ public:
     
 
     // universalCallback
-    void callbackMapPut(char *type, long ptr, nativeCallbackPointer callback)
+    void callbackMapPut(char *type, uintptr_t ptr, nativeCallbackPointer callback)
     {
         std::string ptrStr = getPtrStr(type, ptr);
         callbackMap[ptrStr] = callback;
     }
 
-    nativeCallbackPointer callbackMapGet(char *type, long ptr)
+    nativeCallbackPointer callbackMapGet(char *type, uintptr_t ptr)
     {
         std::string ptrStr = getPtrStr(type, ptr);
         std::map<std::string, nativeCallbackPointer>::iterator iter;
@@ -324,13 +324,13 @@ public:
         return nullptr;
     }
 
-    void callbackMapRemove(char *type, long ptr)
+    void callbackMapRemove(char *type, uintptr_t ptr)
     {
         std::string ptrStr = getPtrStr(type, ptr);
         callbackMap.erase(ptrStr);
     }
 
-    std::string getPtrStr(char *type, long ptr)
+    std::string getPtrStr(char *type, uintptr_t ptr)
     {
         std::string result(type);
         return result + std::to_string(ptr);

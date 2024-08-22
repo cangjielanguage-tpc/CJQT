@@ -6,7 +6,7 @@
  * @file
  *
  */
-package qt.gui
+package cjqt.qt.gui
 
 foreign func nativeBrushCreate(colorPtr: Int64): Int64
 foreign func nativeBrushCreateWithBrush(brushPtr: Int64): Int64

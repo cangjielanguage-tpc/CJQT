@@ -1,4 +1,6 @@
-package qt.widgets
+package cjqt.qt.widgets
+
+import cjqt.qt.core.*
 
 foreign func nativeAbstractItemViewSetModel(ptr: Int64, modelPtr: Int64): Unit
 foreign func nativeAbstractItemViewModel(ptr: Int64): Int64

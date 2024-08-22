@@ -6,7 +6,7 @@ extern "C"
 
     // QMenuBar
 
-    long nativeMenuBarCreate(long parentPtr)
+    uintptr_t nativeMenuBarCreate(uintptr_t parentPtr)
     {
         APPLICATION_CREATE
         CjQtMenuBar *menuBar;
@@ -19,43 +19,43 @@ extern "C"
             QWidget *parent = reinterpret_cast<QWidget *>(static_cast<uintptr_t>(parentPtr));
             menuBar = new CjQtMenuBar(parent);
         }
-        return reinterpret_cast<long>(menuBar);
+        return reinterpret_cast<uintptr_t>(menuBar);
     }
 
-    long nativeMenuBarAddActionStr(long ptr, const char *action)
+    uintptr_t nativeMenuBarAddActionStr(uintptr_t ptr, const char *action)
     {
         QMenuBar *instance = reinterpret_cast<QMenuBar *>(static_cast<uintptr_t>(ptr));
-        return reinterpret_cast<long>(instance->addAction(action));
+        return reinterpret_cast<uintptr_t>(instance->addAction(action));
     }
 
-    void nativeMenuBarAddAction(long ptr, long actionPtr)
+    void nativeMenuBarAddAction(uintptr_t ptr, uintptr_t actionPtr)
     {
         QMenuBar *instance = reinterpret_cast<QMenuBar *>(static_cast<uintptr_t>(ptr));
         QAction *action = reinterpret_cast<QAction *>(static_cast<uintptr_t>(actionPtr));
         instance->addAction(action);
     }
 
-    long nativeMenuBarAddMenuStr(long ptr, const char *menu)
+    uintptr_t nativeMenuBarAddMenuStr(uintptr_t ptr, const char *menu)
     {
         QMenuBar *instance = reinterpret_cast<QMenuBar *>(static_cast<uintptr_t>(ptr));
-        return reinterpret_cast<long>(instance->addMenu(menu));
+        return reinterpret_cast<uintptr_t>(instance->addMenu(menu));
     }
 
-    long nativeMenuBarAddMenuStrIcon(long ptr, long iconPtr, const char *action)
+    uintptr_t nativeMenuBarAddMenuStrIcon(uintptr_t ptr, uintptr_t iconPtr, const char *action)
     {
         QMenuBar *instance = reinterpret_cast<QMenuBar *>(static_cast<uintptr_t>(ptr));
         QIcon *icon = reinterpret_cast<QIcon *>(static_cast<uintptr_t>(iconPtr));
-        return reinterpret_cast<long>(instance->addMenu(*icon, action));
+        return reinterpret_cast<uintptr_t>(instance->addMenu(*icon, action));
     }
 
-    long nativeMenuBarAddMenu(long ptr, long menuPtr)
+    uintptr_t nativeMenuBarAddMenu(uintptr_t ptr, uintptr_t menuPtr)
     {
         QMenuBar *instance = reinterpret_cast<QMenuBar *>(static_cast<uintptr_t>(ptr));
         QMenu *menu = reinterpret_cast<QMenu *>(static_cast<uintptr_t>(menuPtr));
-        return reinterpret_cast<long>(instance->addMenu(menu));
+        return reinterpret_cast<uintptr_t>(instance->addMenu(menu));
     }
 
-    void nativeMenuBarDelete(long ptr)
+    void nativeMenuBarDelete(uintptr_t ptr)
     {
         CjQtMenuBar *instance = reinterpret_cast<CjQtMenuBar *>(static_cast<uintptr_t>(ptr));
         delete instance;

@@ -6,7 +6,7 @@
  * @file
  *
  */
-package qt.core
+package cjqt.qt.core
 
 /**
  * The enum is Alignment

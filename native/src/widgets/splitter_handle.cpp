@@ -6,7 +6,7 @@ extern "C"
 
     // QSplitterHandle
 
-    long nativeSplitterHandleCreate(int orientation, long parentPtr)
+    uintptr_t nativeSplitterHandleCreate(int orientation, uintptr_t parentPtr)
     {
         APPLICATION_CREATE
         CjQtSplitterHandle *handle;
@@ -19,43 +19,43 @@ extern "C"
             QSplitter *parent = reinterpret_cast<QSplitter *>(static_cast<uintptr_t>(parentPtr));
             handle = new CjQtSplitterHandle(Qt::Orientation(orientation), parent);
         }
-        return reinterpret_cast<long>(handle);
+        return reinterpret_cast<uintptr_t>(handle);
     }
 
-    void nativeSplitterHandleDelete(long ptr)
+    void nativeSplitterHandleDelete(uintptr_t ptr)
     {
         CjQtSplitterHandle *instance = reinterpret_cast<CjQtSplitterHandle *>(static_cast<uintptr_t>(ptr));
         delete instance;
     }
 
-    void nativeSplitterHandleSetOrientation(long ptr, int orientation)
+    void nativeSplitterHandleSetOrientation(uintptr_t ptr, int orientation)
     {
         QSplitterHandle *instance = reinterpret_cast<QSplitterHandle *>(static_cast<uintptr_t>(ptr));
         instance->setOrientation(Qt::Orientation(orientation));
     }
 
-    int nativeSplitterHandleOrientation(long ptr)
+    int nativeSplitterHandleOrientation(uintptr_t ptr)
     {
         QSplitterHandle *instance = reinterpret_cast<QSplitterHandle *>(static_cast<uintptr_t>(ptr));
         return instance->orientation();
     }
 
-    bool nativeSplitterHandleOpaqueResize(long ptr)
+    bool nativeSplitterHandleOpaqueResize(uintptr_t ptr)
     {
         QSplitterHandle *instance = reinterpret_cast<QSplitterHandle *>(static_cast<uintptr_t>(ptr));
         return instance->opaqueResize();
     }
-    long nativeSplitterHandleSplitter(long ptr)
+    uintptr_t nativeSplitterHandleSplitter(uintptr_t ptr)
     {
         QSplitterHandle *instance = reinterpret_cast<QSplitterHandle *>(static_cast<uintptr_t>(ptr));
         QSplitter *splitter = instance->splitter();
-        return reinterpret_cast<long>(splitter);
+        return reinterpret_cast<uintptr_t>(splitter);
     }
 
-    long nativeSplitterHandleSizeHint(long ptr)
+    uintptr_t nativeSplitterHandleSizeHint(uintptr_t ptr)
     {
         QSplitterHandle *instance = reinterpret_cast<QSplitterHandle *>(static_cast<uintptr_t>(ptr));
         QSize size = instance->sizeHint();
-        return reinterpret_cast<long>(&size);
+        return reinterpret_cast<uintptr_t>(&size);
     }
 }

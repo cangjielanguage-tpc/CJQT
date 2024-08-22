@@ -1,4 +1,4 @@
-package qt.core
+package cjqt.qt.core
 
 foreign func nativeModelIndexCreate(): Int64
 foreign func nativeModelIndexDelete(ptr: Int64): Unit

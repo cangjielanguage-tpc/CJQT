@@ -1,5 +1,5 @@
-from cjqt import qt.core.*
-from std import fs.*
+import cjqt.qt.core.*
+import fs.*
 
 public class NotepadWindow <: QMainWindow {
     let textEdit: QTextEdit

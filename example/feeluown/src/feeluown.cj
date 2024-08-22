@@ -1,4 +1,4 @@
-from cjqt import qt.widgets.*
+import cjqt.qt.widgets.*
 import gui.*
 
 

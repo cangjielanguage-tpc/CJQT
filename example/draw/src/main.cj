@@ -1,6 +1,6 @@
-from cjqt import qt.core.*
-from cjqt import qt.gui.*
-from cjqt import qt.widgets.*
+import cjqt.qt.core.*
+import cjqt.qt.gui.*
+import cjqt.qt.widgets.*
 main(){
     QApplication.create()
 

@@ -6,7 +6,7 @@
  * @file
  *
  */
-package qt.gui
+package cjqt.qt.gui
 
 foreign func nativePaletteCreate(): Int64
 foreign func nativePaletteCreateForColor(colorPtr: Int64): Int64

@@ -6,7 +6,7 @@
  * @file
  *
  */
-package qt.widgets
+package cjqt.qt.widgets
 
 foreign func nativePushButtonCreate(parentPtr: Int64): Int64
 foreign func nativePushButtonSetText(ptr: Int64, text: CString): Unit
@@ -71,7 +71,7 @@ public class QPushButton <: QWidget {
      */
     public func setText(text: String) {
         unsafe {
-            nativePushButtonSetText(ptr, CString(text))
+            nativePushButtonSetText(ptr, LibC.mallocCString(text))
         }
     }
 

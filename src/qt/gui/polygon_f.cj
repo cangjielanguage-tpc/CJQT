@@ -1,4 +1,7 @@
-package qt.gui
+package cjqt.qt.gui
+
+import cjqt.qt.core.QRectF
+import cjqt.qt.core.QPointF
 
 //foreign function
 foreign func nativePolygonFCreate(): Int64

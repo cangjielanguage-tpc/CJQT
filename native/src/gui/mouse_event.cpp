@@ -3,62 +3,62 @@
 extern "C"
 {
 
-    int nativeMouseEventGetX(long vptr)
+    int nativeMouseEventGetX(uintptr_t vptr)
     {
         QMouseEvent *engine = reinterpret_cast<QMouseEvent *>(static_cast<uintptr_t>(vptr));
         return engine->x();
     }
 
-    int nativeMouseEventGetY(long vptr)
+    int nativeMouseEventGetY(uintptr_t vptr)
     {
         QMouseEvent *engine = reinterpret_cast<QMouseEvent *>(static_cast<uintptr_t>(vptr));
         return engine->y();
     }
 
-    int nativeMouseEventGetGlobalX(long vptr)
+    int nativeMouseEventGetGlobalX(uintptr_t vptr)
     {
         QMouseEvent *engine = reinterpret_cast<QMouseEvent *>(static_cast<uintptr_t>(vptr));
         return engine->globalX();
     }
 
-    int nativeMouseEventGetGlobalY(long vptr)
+    int nativeMouseEventGetGlobalY(uintptr_t vptr)
     {
         QMouseEvent *engine = reinterpret_cast<QMouseEvent *>(static_cast<uintptr_t>(vptr));
         return engine->globalY();
     }
 
-    long nativeMouseEventGetPos(long vptr)
+    uintptr_t nativeMouseEventGetPos(uintptr_t vptr)
     {
         QMouseEvent *engine = reinterpret_cast<QMouseEvent *>(static_cast<uintptr_t>(vptr));
         QPoint point = engine->pos();
         QPoint *p = new QPoint(point.x(), point.y());
-        return reinterpret_cast<long>(p);
+        return reinterpret_cast<uintptr_t>(p);
     }
 
-    long nativeMouseEventGetScreenPos(long vptr)
+    uintptr_t nativeMouseEventGetScreenPos(uintptr_t vptr)
     {
         QMouseEvent *engine = reinterpret_cast<QMouseEvent *>(static_cast<uintptr_t>(vptr));
         QPointF pointF = engine->screenPos();
-        return reinterpret_cast<long>(&pointF);
+        return reinterpret_cast<uintptr_t>(&pointF);
     }
 
-    long nativeMouseEventGetWindowPos(long vptr)
+    uintptr_t nativeMouseEventGetWindowPos(uintptr_t vptr)
     {
         QMouseEvent *engine = reinterpret_cast<QMouseEvent *>(static_cast<uintptr_t>(vptr));
         QPointF pointF = engine->windowPos();
-        return reinterpret_cast<long>(&pointF);
+        return reinterpret_cast<uintptr_t>(&pointF);
     }
 
-    long nativeMouseEventGetGlobalPos(long vptr)
+    uintptr_t nativeMouseEventGetGlobalPos(uintptr_t vptr)
     {
         QMouseEvent *engine = reinterpret_cast<QMouseEvent *>(static_cast<uintptr_t>(vptr));
         QPoint point = engine->globalPos();
-        return reinterpret_cast<long>(&point);
+        return reinterpret_cast<uintptr_t>(&point);
     }
 
-    long nativeMouseEventGetLocalPos(long vptr)
+    uintptr_t nativeMouseEventGetLocalPos(uintptr_t vptr)
     {
         QMouseEvent *engine = reinterpret_cast<QMouseEvent *>(static_cast<uintptr_t>(vptr));
-        return reinterpret_cast<long>(&engine->localPos());
+        return reinterpret_cast<uintptr_t>(&engine->localPos());
     }
 }

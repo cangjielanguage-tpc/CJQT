@@ -223,7 +223,7 @@ cpm update
 
 新建src/main.cj文件
 ```cangjie
-from cjqt import qt.widgets.*
+import cjqt.qt.widgets.*
 
 main() {
     QApplication.create()
@@ -279,4 +279,4 @@ source ~/.bashrc
 
 主要写参与贡献的人以及个人主页链接
 
-[@chinesebear](https://gitee.com/chinesebear) [@wathinst](https://gitee.com/wathinst) [@helin4576](https://gitee.com/helin4576)
+[@Chinesebear](https://gitee.com/chinesebear) [@wathinst](https://gitee.com/wathinst) [@helin4576](https://gitee.com/helin4576)

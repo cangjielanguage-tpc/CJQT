@@ -6,7 +6,10 @@
  * @file
  *
  */
-package qt.widgets
+package cjqt.qt.widgets
+
+import cjqt.qt.gui.*
+import cjqt.qt.core.*
 
 foreign func nativeTextEditCreate(parentPtr: Int64): Int64
 foreign func nativeTextEditAppend(ptr: Int64, text: CString): Unit
@@ -69,7 +72,7 @@ public class QTextEdit <: QWidget {
      */
     public func append(text: String) {
         unsafe {
-            nativeTextEditAppend(ptr, CString(text))
+            nativeTextEditAppend(ptr, LibC.mallocCString(text))
         }
     }
 
@@ -80,7 +83,7 @@ public class QTextEdit <: QWidget {
      */
     public func setFontFamily(fontFamily: String) {
         unsafe {
-            nativeTextEditSetFontFamily(ptr, CString(fontFamily))
+            nativeTextEditSetFontFamily(ptr, LibC.mallocCString(fontFamily))
         }
     }
 
@@ -91,7 +94,7 @@ public class QTextEdit <: QWidget {
      */
     public func setPlainText(plainText: String) {
         unsafe {
-            nativeTextEditSetPlainText(ptr, CString(plainText))
+            nativeTextEditSetPlainText(ptr, LibC.mallocCString(plainText))
         }
     }
 
@@ -102,7 +105,7 @@ public class QTextEdit <: QWidget {
      */
     public func setHtml(html: String) {
         unsafe {
-            nativeTextEditSetHtml(ptr, CString(html))
+            nativeTextEditSetHtml(ptr, LibC.mallocCString(html))
         }
     }
 
@@ -113,7 +116,7 @@ public class QTextEdit <: QWidget {
      */
     public func setMarkdown(markdown: String) {
         unsafe {
-            nativeTextEditSetMarkdown(ptr, CString(markdown))
+            nativeTextEditSetMarkdown(ptr, LibC.mallocCString(markdown))
         }
     }
 
@@ -124,7 +127,7 @@ public class QTextEdit <: QWidget {
      */
     public func setText(text: String) {
         unsafe {
-            nativeTextEditSetText(ptr, CString(text))
+            nativeTextEditSetText(ptr, LibC.mallocCString(text))
         }
     }
 

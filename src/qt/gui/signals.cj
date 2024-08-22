@@ -6,10 +6,10 @@
  * @file
  *
  */
-package qt.gui
-import qt.tools.*
+package cjqt.qt.gui
+import cjqt.qt.tools.*
 
-@c
+@C
 func connectUnitCallback(code: Int64): Unit {
     try {
         QCallbackMap.connect[code]()
@@ -18,7 +18,7 @@ func connectUnitCallback(code: Int64): Unit {
     }
 }
 
-@c
+@C
 func connectInt64Callback(code: Int64, data: Int32): Unit {
     try {
         QCallbackMap.connectInt64[code](Int64(data))
@@ -27,7 +27,7 @@ func connectInt64Callback(code: Int64, data: Int32): Unit {
     }
 }
 
-@c
+@C
 func connectBoolCallback(code: Int64, data: Bool): Unit {
     try {
         QCallbackMap.connectBool[code](data)
@@ -36,7 +36,7 @@ func connectBoolCallback(code: Int64, data: Bool): Unit {
     }
 }
 
-@c
+@C
 func connectCStringCallback(code: Int64, data: CString): Unit {
     try {
         QCallbackMap.connectString[code](data.toString())
@@ -45,7 +45,7 @@ func connectCStringCallback(code: Int64, data: CString): Unit {
     }
 }
 
-@c
+@C
 func connectInt32Int32Callback(code: Int64, data1: Int32, data2: Int32): Unit {
     try {
         QCallbackMap.connectInt64Int64[code](Int64(data1), Int64(data2))
@@ -54,7 +54,7 @@ func connectInt32Int32Callback(code: Int64, data1: Int32, data2: Int32): Unit {
     }
 }
 
-@c
+@C
 func connectFloat64Callback(code: Int64, data: Float64): Unit {
     try {
         QCallbackMap.connectFloat64[code](data)

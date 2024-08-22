@@ -3,37 +3,37 @@
 
 extern "C"
 {
-    long nativePenCreate(long colorPtr, int thickness)
+    uintptr_t nativePenCreate(uintptr_t colorPtr, int thickness)
     {
         QColor *color = reinterpret_cast<QColor *>(static_cast<uintptr_t>(colorPtr));
-        return reinterpret_cast<long>(new QPen(*color, thickness, Qt::SolidLine));
+        return reinterpret_cast<uintptr_t>(new QPen(*color, thickness, Qt::SolidLine));
     }
-    long nativePenCreateWithColor(long colorPtr)
+    uintptr_t nativePenCreateWithColor(uintptr_t colorPtr)
     {
         QColor *color = reinterpret_cast<QColor *>(static_cast<uintptr_t>(colorPtr));
-        return reinterpret_cast<long>(new QPen(*color));
+        return reinterpret_cast<uintptr_t>(new QPen(*color));
     }
-    long nativePenCreateWithStyle(int style)
+    uintptr_t nativePenCreateWithStyle(int style)
     {
-        return reinterpret_cast<long>(new QPen(Qt::PenStyle(style)));
+        return reinterpret_cast<uintptr_t>(new QPen(Qt::PenStyle(style)));
     }
-    void nativePenDelete(long ptr)
+    void nativePenDelete(uintptr_t ptr)
     {
         QPen *instance = reinterpret_cast<QPen *>(static_cast<uintptr_t>(ptr));
         delete instance;
     }
 
-    void nativePenSetWidth(long ptr, int width)
+    void nativePenSetWidth(uintptr_t ptr, int width)
     {
         QPen *instance = reinterpret_cast<QPen *>(static_cast<uintptr_t>(ptr));
         instance->setWidth(width);
     }
-    void nativePenSetWidthF(long ptr, double width)
+    void nativePenSetWidthF(uintptr_t ptr, double width)
     {
         QPen *instance = reinterpret_cast<QPen *>(static_cast<uintptr_t>(ptr));
         instance->setWidthF(width);
     }
-    void nativePenSetColor(long ptr, const long colorPtr)
+    void nativePenSetColor(uintptr_t ptr, const uintptr_t colorPtr)
     {
         QPen *instance = reinterpret_cast<QPen *>(static_cast<uintptr_t>(ptr));
         QColor *color = reinterpret_cast<QColor *>(static_cast<uintptr_t>(colorPtr));

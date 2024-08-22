@@ -1,0 +1,17 @@
+[dependencies]
+
+[ffi]
+  [ffi.c]
+    nativeQt = {path = "./native/build"}
+
+[package]
+  cjc-version = "0.32.5"
+  compile-option = ""
+  description = "nothing here"
+  link-option = ""
+  name = "cjqt"
+  output-type = "dynamic"
+  src-dir = "src"
+  target-dir = ""
+  version = "0.0.1"
+  package-configuration = {}

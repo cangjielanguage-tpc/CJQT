@@ -2,15 +2,15 @@
 
 extern "C"
 {
-    long nativePainterEventGetRect(long vptr)
+    uintptr_t nativePainterEventGetRect(uintptr_t vptr)
     {
         QPaintEvent *engine = reinterpret_cast<QPaintEvent *>(static_cast<uintptr_t>(vptr));
-        return reinterpret_cast<long>(&engine->rect());
+        return reinterpret_cast<uintptr_t>(&engine->rect());
     }
 
-    long nativePainterEventGetRegion(long vptr)
+    uintptr_t nativePainterEventGetRegion(uintptr_t vptr)
     {
         QPaintEvent *engine = reinterpret_cast<QPaintEvent *>(static_cast<uintptr_t>(vptr));
-        return reinterpret_cast<long>(&engine->region());
+        return reinterpret_cast<uintptr_t>(&engine->region());
     }
 }

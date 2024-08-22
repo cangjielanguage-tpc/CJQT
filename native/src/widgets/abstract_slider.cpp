@@ -2,7 +2,7 @@
 
 extern "C"
 {
-    long nativeAbstractSliderCreate(long parentPtr)
+    uintptr_t nativeAbstractSliderCreate(uintptr_t parentPtr)
     {
         CjAbstractSlider *slider;
         if (parentPtr == 0L)
@@ -14,9 +14,9 @@ extern "C"
             QWidget *parent = reinterpret_cast<QWidget *>(static_cast<uintptr_t>(parentPtr));
             slider = new CjAbstractSlider(parent);
         }
-        return reinterpret_cast<long>(slider);
+        return reinterpret_cast<uintptr_t>(slider);
     }
-    void nativeAbstractSliderDelete(long ptr)
+    void nativeAbstractSliderDelete(uintptr_t ptr)
     {
         CjAbstractSlider *instance = reinterpret_cast<CjAbstractSlider *>(static_cast<uintptr_t>(ptr));
         delete instance;

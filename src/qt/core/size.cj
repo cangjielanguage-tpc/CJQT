@@ -1,4 +1,4 @@
-package qt.core
+package cjqt.qt.core
 
 //C
 foreign func nativeSizeCreate(): Int64

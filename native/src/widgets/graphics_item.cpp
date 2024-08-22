@@ -12,7 +12,7 @@ void CjGraphicsItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *op
 };
 extern "C"
 {
-    long nativeGraphicsItemCreate(long parentPtr)
+    uintptr_t nativeGraphicsItemCreate(uintptr_t parentPtr)
     {
         CjGraphicsItem *item;
         if (parentPtr == 0L)
@@ -24,10 +24,10 @@ extern "C"
             QGraphicsItem *parent = reinterpret_cast<QGraphicsItem *>(static_cast<uintptr_t>(parentPtr));
             item = new CjGraphicsItem(parent);
         }
-        return reinterpret_cast<long>(item);
+        return reinterpret_cast<uintptr_t>(item);
     }
 
-    void nativeGraphicsItemDelete(long ptr)
+    void nativeGraphicsItemDelete(uintptr_t ptr)
     {
         CjGraphicsItem *instance = reinterpret_cast<CjGraphicsItem *>(static_cast<uintptr_t>(ptr));
         delete instance;

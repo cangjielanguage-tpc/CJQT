@@ -1,4 +1,4 @@
-package qt.tools
+package cjqt.qt.tools
 
 foreign func nativeCPointerToInt(pointer: CPointer<Unit>): Int32
 foreign func nativeCPointerToString(pointer: CPointer<Unit>): CString
@@ -71,7 +71,7 @@ public class QConversion {
 
     public static func stringToCPointer(data: String): CPointer<Unit> {
         let result = unsafe {
-            nativeStringToCPointer(CString(data))
+            nativeStringToCPointer(LibC.mallocCString(data))
         }
         return result
     }
@@ -84,25 +84,25 @@ public class QConversion {
     }
 }
 
-@c
+@C
 public struct CjDataIntInt {
     public var p1: Int32 = 0
     public var p2: Int32 = 0
 }
 
-@c
+@C
 public struct CjDataLongInt {
     public var p1: Int64 = 0
     public var p2: Int32 = 0
 }
 
-@c
+@C
 public struct CjDataLongLong {
     public var p1: Int64 = 0
     public var p2: Int64 = 0
 }
 
-@c
+@C
 public struct CjDataLongLongLong {
     public var p1: Int64 = 0
     public var p2: Int64 = 0

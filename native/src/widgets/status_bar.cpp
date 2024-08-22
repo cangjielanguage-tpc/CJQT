@@ -6,7 +6,7 @@ extern "C"
 
     // QStatusBar
 
-    long nativeStatusBarCreate(long parentPtr)
+    uintptr_t nativeStatusBarCreate(uintptr_t parentPtr)
     {
         APPLICATION_CREATE
         CjQtStatusBar *statusBar;
@@ -19,64 +19,64 @@ extern "C"
             QWidget *parent = reinterpret_cast<QWidget *>(static_cast<uintptr_t>(parentPtr));
             statusBar = new CjQtStatusBar(parent);
         }
-        return reinterpret_cast<long>(statusBar);
+        return reinterpret_cast<uintptr_t>(statusBar);
     }
 
-    void nativeStatusBarDelete(long ptr)
+    void nativeStatusBarDelete(uintptr_t ptr)
     {
         CjQtStatusBar *instance = reinterpret_cast<CjQtStatusBar *>(static_cast<uintptr_t>(ptr));
         delete instance;
     }
 
-    void nativeStatusBarAddWidget(long ptr, long widgetPtr, int stretch)
+    void nativeStatusBarAddWidget(uintptr_t ptr, uintptr_t widgetPtr, int stretch)
     {
         QStatusBar *instance = reinterpret_cast<QStatusBar *>(static_cast<uintptr_t>(ptr));
         QWidget *widget = reinterpret_cast<QWidget *>(static_cast<uintptr_t>(widgetPtr));
         instance->addWidget(widget, stretch);
     }
 
-    void nativeStatusBarInsertWidget(long ptr, int index, long widgetPtr, int stretch)
+    void nativeStatusBarInsertWidget(uintptr_t ptr, int index, uintptr_t widgetPtr, int stretch)
     {
         QStatusBar *instance = reinterpret_cast<QStatusBar *>(static_cast<uintptr_t>(ptr));
         QWidget *widget = reinterpret_cast<QWidget *>(static_cast<uintptr_t>(widgetPtr));
         instance->insertWidget(index, widget, stretch);
     }
 
-    void nativeStatusBarAddPermanentWidget(long ptr, long widgetPtr, int stretch)
+    void nativeStatusBarAddPermanentWidget(uintptr_t ptr, uintptr_t widgetPtr, int stretch)
     {
         QStatusBar *instance = reinterpret_cast<QStatusBar *>(static_cast<uintptr_t>(ptr));
         QWidget *widget = reinterpret_cast<QWidget *>(static_cast<uintptr_t>(widgetPtr));
         instance->addPermanentWidget(widget, stretch);
     }
 
-    void nativeStatusBarInsertPermanentWidget(long ptr, int index, long widgetPtr, int stretch)
+    void nativeStatusBarInsertPermanentWidget(uintptr_t ptr, int index, uintptr_t widgetPtr, int stretch)
     {
         QStatusBar *instance = reinterpret_cast<QStatusBar *>(static_cast<uintptr_t>(ptr));
         QWidget *widget = reinterpret_cast<QWidget *>(static_cast<uintptr_t>(widgetPtr));
         instance->insertPermanentWidget(index, widget, stretch);
     }
 
-    void nativeStatusBarRemoveWidget(long ptr, long widgetPtr)
+    void nativeStatusBarRemoveWidget(uintptr_t ptr, uintptr_t widgetPtr)
     {
         QStatusBar *instance = reinterpret_cast<QStatusBar *>(static_cast<uintptr_t>(ptr));
         QWidget *widget = reinterpret_cast<QWidget *>(static_cast<uintptr_t>(widgetPtr));
         instance->removeWidget(widget);
     }
 
-    const char *nativeStatusBarCurrentMessage(long ptr)
+    const char *nativeStatusBarCurrentMessage(uintptr_t ptr)
     {
         QStatusBar *instance = reinterpret_cast<QStatusBar *>(static_cast<uintptr_t>(ptr));
         QString str = instance->currentMessage();
         return qstrdup(str.toUtf8());
     }
 
-    void nativeStatusBarShowMessage(long ptr, const char *message, int timeout)
+    void nativeStatusBarShowMessage(uintptr_t ptr, const char *message, int timeout)
     {
         QStatusBar *instance = reinterpret_cast<QStatusBar *>(static_cast<uintptr_t>(ptr));
         instance->showMessage(message, timeout);
     }
 
-    void nativeStatusBarClearMessage(long ptr)
+    void nativeStatusBarClearMessage(uintptr_t ptr)
     {
         QStatusBar *instance = reinterpret_cast<QStatusBar *>(static_cast<uintptr_t>(ptr));
         instance->clearMessage();

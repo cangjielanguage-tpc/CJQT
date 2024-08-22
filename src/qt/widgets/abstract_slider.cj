@@ -1,4 +1,6 @@
-package qt.widgets
+package cjqt.qt.widgets
+
+import cjqt.qt.core.*
 
 //C
 foreign func nativeAbstractSliderCreate(parentPtr: Int64): Int64

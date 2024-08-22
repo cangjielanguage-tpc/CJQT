@@ -2,25 +2,25 @@
 
 extern "C"
 {
-    long nativeTimerCreate(nativeTimerCallback callback, int interval){
+    uintptr_t nativeTimerCreate(nativeTimerCallback callback, int interval){
         CjQtTimer *timer = new CjQtTimer(callback);
         timer->setInterval(interval);
-        return reinterpret_cast<long>(timer);
+        return reinterpret_cast<uintptr_t>(timer);
     }
 
-    void nativeTimerDelete(long ptr)
+    void nativeTimerDelete(uintptr_t ptr)
     {
         CjQtTimer *instance = reinterpret_cast<CjQtTimer *>(static_cast<uintptr_t>(ptr));
         delete instance;
     }
 
-    void nativeTimerStart(long ptr)
+    void nativeTimerStart(uintptr_t ptr)
     {
         CjQtTimer *instance = reinterpret_cast<CjQtTimer *>(static_cast<uintptr_t>(ptr));
         instance->start();
     }
 
-    void nativeTimerStop(long ptr)
+    void nativeTimerStop(uintptr_t ptr)
     {
         CjQtTimer *instance = reinterpret_cast<CjQtTimer *>(static_cast<uintptr_t>(ptr));
         instance->stop();

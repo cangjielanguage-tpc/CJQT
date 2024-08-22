@@ -5,7 +5,7 @@ extern "C"
 
     // QSplitter
 
-    long nativeSplitterCreate(long parentPtr)
+    uintptr_t nativeSplitterCreate(uintptr_t parentPtr)
     {
         APPLICATION_CREATE
         CjQtSplitter *splitter;
@@ -18,145 +18,145 @@ extern "C"
             QWidget *parent = reinterpret_cast<QWidget *>(static_cast<uintptr_t>(parentPtr));
             splitter = new CjQtSplitter(parent);
         }
-        return reinterpret_cast<long>(splitter);
+        return reinterpret_cast<uintptr_t>(splitter);
     }
 
-    void nativeSplitterDelete(long ptr)
+    void nativeSplitterDelete(uintptr_t ptr)
     {
         QSplitter *instance = reinterpret_cast<QSplitter *>(static_cast<uintptr_t>(ptr));
         delete instance;
     }
 
-    void nativeSplitterAddWidget(long ptr, long widgetPtr)
+    void nativeSplitterAddWidget(uintptr_t ptr, uintptr_t widgetPtr)
     {
         QSplitter *instance = reinterpret_cast<QSplitter *>(static_cast<uintptr_t>(ptr));
         QWidget *widget = reinterpret_cast<QWidget *>(static_cast<uintptr_t>(widgetPtr));
         instance->addWidget(widget);
     }
 
-    void nativeSplitterInsertWidget(long ptr, int index, long widgetPtr)
+    void nativeSplitterInsertWidget(uintptr_t ptr, int index, uintptr_t widgetPtr)
     {
         QSplitter *instance = reinterpret_cast<QSplitter *>(static_cast<uintptr_t>(ptr));
         QWidget *widget = reinterpret_cast<QWidget *>(static_cast<uintptr_t>(widgetPtr));
         instance->insertWidget(index, widget);
     }
 
-    long nativeSplitterReplaceWidget(long ptr, int index, long widgetPtr)
+    uintptr_t nativeSplitterReplaceWidget(uintptr_t ptr, int index, uintptr_t widgetPtr)
     {
         QSplitter *instance = reinterpret_cast<QSplitter *>(static_cast<uintptr_t>(ptr));
         QWidget *widget = reinterpret_cast<QWidget *>(static_cast<uintptr_t>(widgetPtr));
         QWidget *replaceWidget = instance->replaceWidget(index, widget);
-        return reinterpret_cast<long>(replaceWidget);
+        return reinterpret_cast<uintptr_t>(replaceWidget);
     }
 
-    void nativeSplitterSetOrientation(long ptr, int orientation)
+    void nativeSplitterSetOrientation(uintptr_t ptr, int orientation)
     {
         QSplitter *instance = reinterpret_cast<QSplitter *>(static_cast<uintptr_t>(ptr));
         instance->setOrientation(Qt::Orientation(orientation));
     }
 
-    int nativeSplitterOrientation(long ptr)
+    int nativeSplitterOrientation(uintptr_t ptr)
     {
         QSplitter *instance = reinterpret_cast<QSplitter *>(static_cast<uintptr_t>(ptr));
         return instance->orientation();
     }
 
-    void nativeSplitterSetChildrenCollapsible(long ptr, bool collapsible)
+    void nativeSplitterSetChildrenCollapsible(uintptr_t ptr, bool collapsible)
     {
         QSplitter *instance = reinterpret_cast<QSplitter *>(static_cast<uintptr_t>(ptr));
         instance->setChildrenCollapsible(collapsible);
     }
 
-    bool nativeSplitterChildrenCollapsible(long ptr)
+    bool nativeSplitterChildrenCollapsible(uintptr_t ptr)
     {
         QSplitter *instance = reinterpret_cast<QSplitter *>(static_cast<uintptr_t>(ptr));
         return instance->childrenCollapsible();
     }
 
-    void nativeSplitterSetCollapsible(long ptr, int index, bool collapsible)
+    void nativeSplitterSetCollapsible(uintptr_t ptr, int index, bool collapsible)
     {
         QSplitter *instance = reinterpret_cast<QSplitter *>(static_cast<uintptr_t>(ptr));
         instance->setCollapsible(index, collapsible);
     }
 
-    bool nativeSplitterCollapsible(long ptr, int index)
+    bool nativeSplitterCollapsible(uintptr_t ptr, int index)
     {
         QSplitter *instance = reinterpret_cast<QSplitter *>(static_cast<uintptr_t>(ptr));
         return instance->isCollapsible(index);
     }
 
-    void nativeSplitterSetOpaqueResize(long ptr, bool resize)
+    void nativeSplitterSetOpaqueResize(uintptr_t ptr, bool resize)
     {
         QSplitter *instance = reinterpret_cast<QSplitter *>(static_cast<uintptr_t>(ptr));
         instance->setOpaqueResize(resize);
     }
 
-    bool nativeSplitterOpaqueResize(long ptr)
+    bool nativeSplitterOpaqueResize(uintptr_t ptr)
     {
         QSplitter *instance = reinterpret_cast<QSplitter *>(static_cast<uintptr_t>(ptr));
         return instance->opaqueResize();
     }
 
-    void nativeSplitterRefresh(long ptr)
+    void nativeSplitterRefresh(uintptr_t ptr)
     {
         QSplitter *instance = reinterpret_cast<QSplitter *>(static_cast<uintptr_t>(ptr));
         instance->refresh();
     }
 
-    long nativeSplitterSizeHint(long ptr)
+    uintptr_t nativeSplitterSizeHint(uintptr_t ptr)
     {
         QSplitter *instance = reinterpret_cast<QSplitter *>(static_cast<uintptr_t>(ptr));
         QSize size = instance->sizeHint();
-        return reinterpret_cast<long>(&size);
+        return reinterpret_cast<uintptr_t>(&size);
     }
 
-    long nativeSplitterMinimumSizeHint(long ptr)
+    uintptr_t nativeSplitterMinimumSizeHint(uintptr_t ptr)
     {
         QSplitter *instance = reinterpret_cast<QSplitter *>(static_cast<uintptr_t>(ptr));
         QSize size = instance->minimumSizeHint();
-        return reinterpret_cast<long>(&size);
+        return reinterpret_cast<uintptr_t>(&size);
     }
 
-    void nativeSplitterSetHandleWidth(long ptr, int width)
+    void nativeSplitterSetHandleWidth(uintptr_t ptr, int width)
     {
         QSplitter *instance = reinterpret_cast<QSplitter *>(static_cast<uintptr_t>(ptr));
         instance->setHandleWidth(width);
     }
 
-    int nativeSplitterHandleWidth(long ptr)
+    int nativeSplitterHandleWidth(uintptr_t ptr)
     {
         QSplitter *instance = reinterpret_cast<QSplitter *>(static_cast<uintptr_t>(ptr));
         return instance->handleWidth();
     }
 
-    int nativeSplitterIndexOf(long ptr, long widgetPtr)
+    int nativeSplitterIndexOf(uintptr_t ptr, uintptr_t widgetPtr)
     {
         QSplitter *instance = reinterpret_cast<QSplitter *>(static_cast<uintptr_t>(ptr));
         QWidget *widget = reinterpret_cast<QWidget *>(static_cast<uintptr_t>(widgetPtr));
         return instance->indexOf(widget);
     }
 
-    long nativeSplitterWidget(long ptr, int index)
+    uintptr_t nativeSplitterWidget(uintptr_t ptr, int index)
     {
         QSplitter *instance = reinterpret_cast<QSplitter *>(static_cast<uintptr_t>(ptr));
         QWidget *widget = instance->widget(index);
-        return reinterpret_cast<long>(widget);
+        return reinterpret_cast<uintptr_t>(widget);
     }
 
-    int nativeSplitterCount(long ptr)
+    int nativeSplitterCount(uintptr_t ptr)
     {
         QSplitter *instance = reinterpret_cast<QSplitter *>(static_cast<uintptr_t>(ptr));
         return instance->count();
     }
 
-    long nativeSplitterHandle(long ptr, int index)
+    uintptr_t nativeSplitterHandle(uintptr_t ptr, int index)
     {
         QSplitter *instance = reinterpret_cast<QSplitter *>(static_cast<uintptr_t>(ptr));
         QSplitterHandle *handle = instance->handle(index);
-        return reinterpret_cast<long>(handle);
+        return reinterpret_cast<uintptr_t>(handle);
     }
 
-    void nativeSplitterSetStretchFactor(long ptr, int index, int stretch)
+    void nativeSplitterSetStretchFactor(uintptr_t ptr, int index, int stretch)
     {
         QSplitter *instance = reinterpret_cast<QSplitter *>(static_cast<uintptr_t>(ptr));
         instance->setStretchFactor(index, stretch);

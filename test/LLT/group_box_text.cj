@@ -1,8 +1,8 @@
 // EXEC: cjc %import-path %L %l %f
 // EXEC: ./main
-from cjqt import qt.gui.*
-from cjqt import qt.core.*
-from cjqt import qt.widgets.*
+import cjqt.qt.gui.*
+import cjqt.qt.core.*
+import cjqt.qt.widgets.*
 
 main() {
     QApplication.create()

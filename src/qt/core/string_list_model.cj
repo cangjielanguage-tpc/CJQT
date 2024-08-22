@@ -1,4 +1,4 @@
-package qt.core
+package cjqt.qt.core
 
 foreign func nativeStringListModelCreate(listPtr: Int64): Int64
 foreign func nativeStringListModelDelete(ptr: Int64): Unit

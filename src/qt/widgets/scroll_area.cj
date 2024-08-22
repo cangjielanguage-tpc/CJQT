@@ -1,4 +1,7 @@
-package qt.widgets
+package cjqt.qt.widgets
+
+import cjqt.qt.gui.*
+import cjqt.qt.core.*
 
 foreign func nativeScrollAreaCreate(parentPtr: Int64): Int64
 foreign func nativeScrollAreaDelete(ptr: Int64): Unit

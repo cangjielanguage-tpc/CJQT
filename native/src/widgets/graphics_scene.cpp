@@ -2,7 +2,7 @@
 
 extern "C"
 {
-    long nativeGraphicsSceneCreate(double x, double y, double width, double heigh, long parentPtr)
+    uintptr_t nativeGraphicsSceneCreate(double x, double y, double width, double heigh, uintptr_t parentPtr)
     {
         CjGraphicsScene *graphicsScene;
         if (parentPtr == 0L)
@@ -14,9 +14,9 @@ extern "C"
             QObject *parent = reinterpret_cast<QObject *>(static_cast<uintptr_t>(parentPtr));
             graphicsScene = new CjGraphicsScene(x, y, width, heigh, parent);
         }
-        return reinterpret_cast<long>(graphicsScene);
+        return reinterpret_cast<uintptr_t>(graphicsScene);
     }
-    long nativeGraphicsSceneCreateWithRectF(const long rectFPtr, long parentPtr)
+    uintptr_t nativeGraphicsSceneCreateWithRectF(const uintptr_t rectFPtr, uintptr_t parentPtr)
     {
         CjGraphicsScene *graphicsScene;
         QRectF *rectF = reinterpret_cast<QRectF *>(static_cast<uintptr_t>(rectFPtr));
@@ -29,9 +29,9 @@ extern "C"
             QObject *parent = reinterpret_cast<QObject *>(static_cast<uintptr_t>(parentPtr));
             graphicsScene = new CjGraphicsScene(*rectF, parent);
         }
-        return reinterpret_cast<long>(graphicsScene);
+        return reinterpret_cast<uintptr_t>(graphicsScene);
     }
-    long nativeGraphicsSceneCreateWithParent(long parentPtr)
+    uintptr_t nativeGraphicsSceneCreateWithParent(uintptr_t parentPtr)
     {
         CjGraphicsScene *graphicsScene;
         if (parentPtr == 0L)
@@ -43,46 +43,46 @@ extern "C"
             QObject *parent = reinterpret_cast<QObject *>(static_cast<uintptr_t>(parentPtr));
             graphicsScene = new CjGraphicsScene(parent);
         }
-        return reinterpret_cast<long>(graphicsScene);
+        return reinterpret_cast<uintptr_t>(graphicsScene);
     }
-    void nativeGraphicsSceneDelete(long ptr)
+    void nativeGraphicsSceneDelete(uintptr_t ptr)
     {
         CjGraphicsScene *instance = reinterpret_cast<CjGraphicsScene *>(static_cast<uintptr_t>(ptr));
         delete instance;
     }
 
-    long nativeGraphicsSceneScenRect(long ptr)
+    uintptr_t nativeGraphicsSceneScenRect(uintptr_t ptr)
     {
         QGraphicsScene *scene = reinterpret_cast<QGraphicsScene *>(static_cast<uintptr_t>(ptr));
         QRectF rectF = scene->sceneRect();
         QRectF *p = new QRectF(rectF);
-        return reinterpret_cast<long>(p);
+        return reinterpret_cast<uintptr_t>(p);
     }
-    void nativeGraphicsSceneSetScenRectWithRect(long ptr, const long rectFPtr)
+    void nativeGraphicsSceneSetScenRectWithRect(uintptr_t ptr, const uintptr_t rectFPtr)
     {
         QGraphicsScene *scene = reinterpret_cast<QGraphicsScene *>(static_cast<uintptr_t>(ptr));
         QRectF *rectF = reinterpret_cast<QRectF *>(static_cast<uintptr_t>(rectFPtr));
         scene->setSceneRect(*rectF);
     }
-    void nativeGraphicsSceneSetScenRect(long ptr, double x, double y, double w, double h)
+    void nativeGraphicsSceneSetScenRect(uintptr_t ptr, double x, double y, double w, double h)
     {
         QGraphicsScene *scene = reinterpret_cast<QGraphicsScene *>(static_cast<uintptr_t>(ptr));
         scene->setSceneRect(x, y, w, h);
     }
-    long nativeGraphicsSceneBackgroundBrush(long ptr)
+    uintptr_t nativeGraphicsSceneBackgroundBrush(uintptr_t ptr)
     {
         QGraphicsScene *scene = reinterpret_cast<QGraphicsScene *>(static_cast<uintptr_t>(ptr));
         QBrush brush = scene->backgroundBrush();
         QBrush *p = new QBrush(brush);
-        return reinterpret_cast<long>(p);
+        return reinterpret_cast<uintptr_t>(p);
     }
-    void nativeGraphicsSceneSetBackgroundBrush(long ptr, const long brushPtr)
+    void nativeGraphicsSceneSetBackgroundBrush(uintptr_t ptr, const uintptr_t brushPtr)
     {
         QGraphicsScene *scene = reinterpret_cast<QGraphicsScene *>(static_cast<uintptr_t>(ptr));
         QBrush *brush = reinterpret_cast<QBrush *>(static_cast<uintptr_t>(brushPtr));
         scene->setBackgroundBrush(*brush);
     }
-    void nativeGraphicsSceneAddItem(long ptr, const long itemPtr)
+    void nativeGraphicsSceneAddItem(uintptr_t ptr, const uintptr_t itemPtr)
     {
         QGraphicsScene *scene = reinterpret_cast<QGraphicsScene *>(static_cast<uintptr_t>(ptr));
         QGraphicsItem *item = reinterpret_cast<QGraphicsItem *>(static_cast<uintptr_t>(itemPtr));
@@ -91,91 +91,91 @@ extern "C"
 
     // Graphics Event
 
-    void nativeGraphicsSceneContextMenuEvent(long ptr, long eventPtr)
+    void nativeGraphicsSceneContextMenuEvent(uintptr_t ptr, uintptr_t eventPtr)
     {
         CjGraphicsScene *instance = reinterpret_cast<CjGraphicsScene *>(static_cast<uintptr_t>(ptr));
         QGraphicsSceneContextMenuEvent *event = reinterpret_cast<QGraphicsSceneContextMenuEvent *>(static_cast<uintptr_t>(eventPtr));
         instance->doContextMenuEvent(event);
     }
-    void nativeGraphicsSceneDragEnterEvent(long ptr, long eventPtr)
+    void nativeGraphicsSceneDragEnterEvent(uintptr_t ptr, uintptr_t eventPtr)
     {
         CjGraphicsScene *instance = reinterpret_cast<CjGraphicsScene *>(static_cast<uintptr_t>(ptr));
         QGraphicsSceneDragDropEvent *event = reinterpret_cast<QGraphicsSceneDragDropEvent *>(static_cast<uintptr_t>(eventPtr));
         instance->doDragEnterEvent(event);
     }
-    void nativeGraphicsSceneDragLeaveEvent(long ptr, long eventPtr)
+    void nativeGraphicsSceneDragLeaveEvent(uintptr_t ptr, uintptr_t eventPtr)
     {
         CjGraphicsScene *instance = reinterpret_cast<CjGraphicsScene *>(static_cast<uintptr_t>(ptr));
         QGraphicsSceneDragDropEvent *event = reinterpret_cast<QGraphicsSceneDragDropEvent *>(static_cast<uintptr_t>(eventPtr));
         instance->doDragLeaveEvent(event);
     }
-    void nativeGraphicsSceneDragMoveEvent(long ptr, long eventPtr)
+    void nativeGraphicsSceneDragMoveEvent(uintptr_t ptr, uintptr_t eventPtr)
     {
         CjGraphicsScene *instance = reinterpret_cast<CjGraphicsScene *>(static_cast<uintptr_t>(ptr));
         QGraphicsSceneDragDropEvent *event = reinterpret_cast<QGraphicsSceneDragDropEvent *>(static_cast<uintptr_t>(eventPtr));
         instance->doDragMoveEvent(event);
     }
-    void nativeGraphicsSceneDropEvent(long ptr, long eventPtr)
+    void nativeGraphicsSceneDropEvent(uintptr_t ptr, uintptr_t eventPtr)
     {
         CjGraphicsScene *instance = reinterpret_cast<CjGraphicsScene *>(static_cast<uintptr_t>(ptr));
         QGraphicsSceneDragDropEvent *event = reinterpret_cast<QGraphicsSceneDragDropEvent *>(static_cast<uintptr_t>(eventPtr));
         instance->doDropEvent(event);
     }
-    void nativeGraphicsSceneFocusOutEvent(long ptr, long eventPtr)
+    void nativeGraphicsSceneFocusOutEvent(uintptr_t ptr, uintptr_t eventPtr)
     {
         CjGraphicsScene *instance = reinterpret_cast<CjGraphicsScene *>(static_cast<uintptr_t>(ptr));
         QFocusEvent *event = reinterpret_cast<QFocusEvent *>(static_cast<uintptr_t>(eventPtr));
         instance->doFocusOutEvent(event);
     }
-    void nativeGraphicsSceneHelpEvent(long ptr, long eventPtr)
+    void nativeGraphicsSceneHelpEvent(uintptr_t ptr, uintptr_t eventPtr)
     {
         CjGraphicsScene *instance = reinterpret_cast<CjGraphicsScene *>(static_cast<uintptr_t>(ptr));
         QGraphicsSceneHelpEvent *event = reinterpret_cast<QGraphicsSceneHelpEvent *>(static_cast<uintptr_t>(eventPtr));
         instance->doHelpEvent(event);
     }
-    void nativeGraphicsSceneInputMethodEvent(long ptr, long eventPtr)
+    void nativeGraphicsSceneInputMethodEvent(uintptr_t ptr, uintptr_t eventPtr)
     {
         CjGraphicsScene *instance = reinterpret_cast<CjGraphicsScene *>(static_cast<uintptr_t>(ptr));
         QInputMethodEvent *event = reinterpret_cast<QInputMethodEvent *>(static_cast<uintptr_t>(eventPtr));
         instance->doInputMethodEvent(event);
     }
-    void nativeGraphicsSceneMouseDoubleClickEvent(long ptr, long eventPtr)
+    void nativeGraphicsSceneMouseDoubleClickEvent(uintptr_t ptr, uintptr_t eventPtr)
     {
         CjGraphicsScene *instance = reinterpret_cast<CjGraphicsScene *>(static_cast<uintptr_t>(ptr));
         QGraphicsSceneMouseEvent *event = reinterpret_cast<QGraphicsSceneMouseEvent *>(static_cast<uintptr_t>(eventPtr));
         instance->doMouseDoubleClickEvent(event);
     }
-    void nativeGraphicsSceneMouseMoveEvent(long ptr, long eventPtr)
+    void nativeGraphicsSceneMouseMoveEvent(uintptr_t ptr, uintptr_t eventPtr)
     {
         CjGraphicsScene *instance = reinterpret_cast<CjGraphicsScene *>(static_cast<uintptr_t>(ptr));
         QGraphicsSceneMouseEvent *event = reinterpret_cast<QGraphicsSceneMouseEvent *>(static_cast<uintptr_t>(eventPtr));
         instance->doMouseMoveEvent(event);
     }
-    void nativeGraphicsSceneMousePressEvent(long ptr, long eventPtr)
+    void nativeGraphicsSceneMousePressEvent(uintptr_t ptr, uintptr_t eventPtr)
     {
         CjGraphicsScene *instance = reinterpret_cast<CjGraphicsScene *>(static_cast<uintptr_t>(ptr));
         QGraphicsSceneMouseEvent *event = reinterpret_cast<QGraphicsSceneMouseEvent *>(static_cast<uintptr_t>(eventPtr));
         instance->doMousePressEvent(event);
     }
-    void nativeGraphicsSceneMouseReleaseEvent(long ptr, long eventPtr)
+    void nativeGraphicsSceneMouseReleaseEvent(uintptr_t ptr, uintptr_t eventPtr)
     {
         CjGraphicsScene *instance = reinterpret_cast<CjGraphicsScene *>(static_cast<uintptr_t>(ptr));
         QGraphicsSceneMouseEvent *event = reinterpret_cast<QGraphicsSceneMouseEvent *>(static_cast<uintptr_t>(eventPtr));
         instance->doMouseReleaseEvent(event);
     }
-    void nativeGraphicsSceneKeyPressEvent(long ptr, long eventPtr)
+    void nativeGraphicsSceneKeyPressEvent(uintptr_t ptr, uintptr_t eventPtr)
     {
         CjGraphicsScene *instance = reinterpret_cast<CjGraphicsScene *>(static_cast<uintptr_t>(ptr));
         QKeyEvent *event = reinterpret_cast<QKeyEvent *>(static_cast<uintptr_t>(eventPtr));
         instance->doKeyPressEvent(event);
     }
-    void nativeGraphicsSceneKeyReleaseEvent(long ptr, long eventPtr)
+    void nativeGraphicsSceneKeyReleaseEvent(uintptr_t ptr, uintptr_t eventPtr)
     {
         CjGraphicsScene *instance = reinterpret_cast<CjGraphicsScene *>(static_cast<uintptr_t>(ptr));
         QKeyEvent *event = reinterpret_cast<QKeyEvent *>(static_cast<uintptr_t>(eventPtr));
         instance->doKeyReleaseEvent(event);
     }
-    void nativeGraphicsSceneWheelEvent(long ptr, long eventPtr)
+    void nativeGraphicsSceneWheelEvent(uintptr_t ptr, uintptr_t eventPtr)
     {
         CjGraphicsScene *instance = reinterpret_cast<CjGraphicsScene *>(static_cast<uintptr_t>(ptr));
         QGraphicsSceneWheelEvent *event = reinterpret_cast<QGraphicsSceneWheelEvent *>(static_cast<uintptr_t>(eventPtr));
@@ -183,63 +183,63 @@ extern "C"
     }
     // Set  Graphics Event
 
-    void nativeGraphicsSceneSetContextMenuEvent(long ptr, nativeEventCallback callback)
+    void nativeGraphicsSceneSetContextMenuEvent(uintptr_t ptr, nativeEventCallback callback)
     {
         appConfig->contextMenuEventMapPut(ptr, callback);
     }
-    void nativeGraphicsSceneSetDragEnterEvent(long ptr, nativeEventCallback callback)
+    void nativeGraphicsSceneSetDragEnterEvent(uintptr_t ptr, nativeEventCallback callback)
     {
         appConfig->dragEnterEventMapPut(ptr, callback);
     }
-    void nativeGraphicsSceneSetDragLeaveEvent(long ptr, nativeEventCallback callback)
+    void nativeGraphicsSceneSetDragLeaveEvent(uintptr_t ptr, nativeEventCallback callback)
     {
         appConfig->dragLeaveEventMapPut(ptr, callback);
     }
-    void nativeGraphicsSceneSetDragMoveEvent(long ptr, nativeEventCallback callback)
+    void nativeGraphicsSceneSetDragMoveEvent(uintptr_t ptr, nativeEventCallback callback)
     {
         appConfig->dragMoveEventMapPut(ptr, callback);
     }
-    void nativeGraphicsSceneSetDropEvent(long ptr, nativeEventCallback callback)
+    void nativeGraphicsSceneSetDropEvent(uintptr_t ptr, nativeEventCallback callback)
     {
         appConfig->dropEventMapPut(ptr, callback);
     }
-    void nativeGraphicsSceneSetFocusOutEvent(long ptr, nativeEventCallback callback)
+    void nativeGraphicsSceneSetFocusOutEvent(uintptr_t ptr, nativeEventCallback callback)
     {
         appConfig->focusOutEventMapPut(ptr, callback);
     }
-    void nativeGraphicsSceneSetHelpEvent(long ptr, nativeEventCallback callback)
+    void nativeGraphicsSceneSetHelpEvent(uintptr_t ptr, nativeEventCallback callback)
     {
         appConfig->helpEventMapPut(ptr, callback);
     }
-    void nativeGraphicsSceneSetInputMethodEvent(long ptr, nativeEventCallback callback)
+    void nativeGraphicsSceneSetInputMethodEvent(uintptr_t ptr, nativeEventCallback callback)
     {
         appConfig->inputMethodEventMapPut(ptr, callback);
     }
-    void nativeGraphicsSceneSetMouseDoubleClickEvent(long ptr, nativeEventCallback callback)
+    void nativeGraphicsSceneSetMouseDoubleClickEvent(uintptr_t ptr, nativeEventCallback callback)
     {
         appConfig->mouseDoubleClickEventMapPut(ptr, callback);
     }
-    void nativeGraphicsSceneSetMouseMoveEvent(long ptr, nativeCallbackPointer callback)
+    void nativeGraphicsSceneSetMouseMoveEvent(uintptr_t ptr, nativeCallbackPointer callback)
     {
         appConfig->callbackMapPut((char *)"graphicsMouseMoveEvent", ptr, callback);
     }
-    void nativeGraphicsSceneSetMousePressEvent(long ptr, nativeCallbackPointer callback)
+    void nativeGraphicsSceneSetMousePressEvent(uintptr_t ptr, nativeCallbackPointer callback)
     {
         appConfig->callbackMapPut((char *)"graphicsMousePressEvent", ptr, callback);
     }
-    void nativeGraphicsSceneSetMouseReleaseEvent(long ptr, nativeCallbackPointer callback)
+    void nativeGraphicsSceneSetMouseReleaseEvent(uintptr_t ptr, nativeCallbackPointer callback)
     {
         appConfig->callbackMapPut((char *)"graphicsMouseReleaseEvent", ptr, callback);
     }
-    void nativeGraphicsSceneSetKeyPressEvent(long ptr, nativeCallbackPointer callback)
+    void nativeGraphicsSceneSetKeyPressEvent(uintptr_t ptr, nativeCallbackPointer callback)
     {
         appConfig->callbackMapPut((char *)"graphicsKeyPressEvent", ptr, callback);
     }
-    void nativeGraphicsSceneSetKeyReleaseEvent(long ptr, nativeEventCallback callback)
+    void nativeGraphicsSceneSetKeyReleaseEvent(uintptr_t ptr, nativeEventCallback callback)
     {
         appConfig->keyReleaseEventMapPut(ptr, callback);
     }
-    void nativeGraphicsSceneSetWheelEvent(long ptr, nativeEventCallback callback)
+    void nativeGraphicsSceneSetWheelEvent(uintptr_t ptr, nativeEventCallback callback)
     {
         appConfig->wheelEventMapPut(ptr, callback);
     }

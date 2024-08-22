@@ -1,4 +1,8 @@
-package qt.widgets
+package cjqt.qt.widgets
+
+import cjqt.qt.gui.*
+import cjqt.qt.core.*
+import cjqt.qt.tools.*
 
 foreign func nativeStyledItemDelegateCreate(): Int64
 foreign func nativeStyledItemDelegateDelete(ptr: Int64): Unit
@@ -6,7 +10,7 @@ foreign func nativeStyledItemDelegateDelete(ptr: Int64): Unit
 foreign func nativeStyledItemDelegateSetPaintCallback(ptr: Int64, callback: CFunc<(Int64, CPointer<Unit>) -> Unit>): Unit
 foreign func nativeStyledItemDelegateSetSizeHintCallback(ptr: Int64, callback: CFunc<(Int64, CPointer<Unit>) -> Int64>): Unit
 
-@c
+@C
 func styledItemDelegatePaintCallback(ptr: Int64, dataPtr: CPointer<Unit>): Unit {
     let data = QConversion.cPointerToCjDataLongLongLong(dataPtr)
     let painter = QPainter(ptr: data.p1)
@@ -18,7 +22,7 @@ func styledItemDelegatePaintCallback(ptr: Int64, dataPtr: CPointer<Unit>): Unit 
     }
 }
 
-@c
+@C
 func styledItemDelegateSizeHintCallback(ptr: Int64, dataPtr: CPointer<Unit>): Int64 {
     let data = QConversion.cPointerToCjDataLongLong(dataPtr)
     let index = QModelIndex(data.p2)

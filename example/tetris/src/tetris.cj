@@ -1,6 +1,6 @@
-from std import random.*
-from std import math.*
-from std import collection.*
+import random.*
+import math.*
+import std.collection.*
 
 public class Tetris {
     static let MAX_X = 10 //显示窗口的横向格数

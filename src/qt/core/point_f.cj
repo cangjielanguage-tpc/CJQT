@@ -1,4 +1,4 @@
-package qt.core
+package cjqt.qt.core
 
 //foreign function
 foreign func nativePointFCreate(xpos: Float64, ypos: Float64): Int64

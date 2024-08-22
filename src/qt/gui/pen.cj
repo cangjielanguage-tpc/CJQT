@@ -6,7 +6,9 @@
  * @file
  *
  */
-package qt.gui
+package cjqt.qt.gui
+
+import cjqt.qt.core.PenStyle
 
 foreign func nativePenCreate(colorPtr: Int64, thickness: Int32): Int64
 foreign func nativePenCreateWithColor(colorPtr: Int64): Int64

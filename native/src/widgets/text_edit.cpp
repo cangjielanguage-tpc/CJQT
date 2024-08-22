@@ -5,7 +5,7 @@ extern "C"
 
     // QTextEdit
 
-    long nativeTextEditCreate(long parentPtr)
+    uintptr_t nativeTextEditCreate(uintptr_t parentPtr)
     {
         APPLICATION_CREATE
         CjTextEdit *textEdit;
@@ -18,112 +18,112 @@ extern "C"
             QWidget *parent = reinterpret_cast<QWidget *>(static_cast<uintptr_t>(parentPtr));
             textEdit = new CjTextEdit(parent);
         }
-        return reinterpret_cast<long>(textEdit);
+        return reinterpret_cast<uintptr_t>(textEdit);
     }
 
-    void nativeTextEditAppend(long ptr, const char *text)
+    void nativeTextEditAppend(uintptr_t ptr, const char *text)
     {
         QTextEdit *instance = reinterpret_cast<QTextEdit *>(static_cast<uintptr_t>(ptr));
         instance->append(text);
     }
 
-    void nativeTextEditSetFontFamily(long ptr, const char *fontFamily)
+    void nativeTextEditSetFontFamily(uintptr_t ptr, const char *fontFamily)
     {
         QTextEdit *instance = reinterpret_cast<QTextEdit *>(static_cast<uintptr_t>(ptr));
         instance->setFontFamily(fontFamily);
     }
 
-    void nativeTextEditSetPlainText(long ptr, const char *plainText)
+    void nativeTextEditSetPlainText(uintptr_t ptr, const char *plainText)
     {
         QTextEdit *instance = reinterpret_cast<QTextEdit *>(static_cast<uintptr_t>(ptr));
         instance->setPlainText(plainText);
     }
 
-    void nativeTextEditSetHtml(long ptr, const char *html)
+    void nativeTextEditSetHtml(uintptr_t ptr, const char *html)
     {
         QTextEdit *instance = reinterpret_cast<QTextEdit *>(static_cast<uintptr_t>(ptr));
         instance->setHtml(html);
     }
 
-    void nativeTextEditSetMarkdown(long ptr, const char *markdown)
+    void nativeTextEditSetMarkdown(uintptr_t ptr, const char *markdown)
     {
         QTextEdit *instance = reinterpret_cast<QTextEdit *>(static_cast<uintptr_t>(ptr));
         instance->setMarkdown(markdown);
     }
 
-    void nativeTextEditSetText(long ptr, const char *text)
+    void nativeTextEditSetText(uintptr_t ptr, const char *text)
     {
         QTextEdit *instance = reinterpret_cast<QTextEdit *>(static_cast<uintptr_t>(ptr));
         instance->setText(text);
     }
 
-    const char *nativeTextEditToPlainText(long ptr)
+    const char *nativeTextEditToPlainText(uintptr_t ptr)
     {
         QTextEdit *instance = reinterpret_cast<QTextEdit *>(static_cast<uintptr_t>(ptr));
         QString str = instance->toPlainText();
         return qstrdup(str.toUtf8());
     }
 
-    const char *nativeTextEditToHtml(long ptr)
+    const char *nativeTextEditToHtml(uintptr_t ptr)
     {
         QTextEdit *instance = reinterpret_cast<QTextEdit *>(static_cast<uintptr_t>(ptr));
         QString str = instance->toHtml();
         return qstrdup(str.toUtf8());
     }
 
-    const char *nativeTextEditToMarkdown(long ptr)
+    const char *nativeTextEditToMarkdown(uintptr_t ptr)
     {
         QTextEdit *instance = reinterpret_cast<QTextEdit *>(static_cast<uintptr_t>(ptr));
         QString str = instance->toMarkdown();
         return qstrdup(str.toUtf8());
     }
 
-    void nativeTextEditSetFontWeight(long ptr, int fontWeight)
+    void nativeTextEditSetFontWeight(uintptr_t ptr, int fontWeight)
     {
         QTextEdit *instance = reinterpret_cast<QTextEdit *>(static_cast<uintptr_t>(ptr));
         instance->setFontWeight(fontWeight);
     }
 
-    void nativeTextEditSetFontUnderline(long ptr, bool fontUnderline)
+    void nativeTextEditSetFontUnderline(uintptr_t ptr, bool fontUnderline)
     {
         QTextEdit *instance = reinterpret_cast<QTextEdit *>(static_cast<uintptr_t>(ptr));
         instance->setFontUnderline(fontUnderline);
     }
 
-    void nativeTextEditSetFontItalic(long ptr, bool fontItalic)
+    void nativeTextEditSetFontItalic(uintptr_t ptr, bool fontItalic)
     {
         QTextEdit *instance = reinterpret_cast<QTextEdit *>(static_cast<uintptr_t>(ptr));
         instance->setFontItalic(fontItalic);
     }
 
-    void nativeTextEditSetCurrentFont(long ptr, long fontPtr)
+    void nativeTextEditSetCurrentFont(uintptr_t ptr, uintptr_t fontPtr)
     {
         QTextEdit *instance = reinterpret_cast<QTextEdit *>(static_cast<uintptr_t>(ptr));
         QFont *font = reinterpret_cast<QFont *>(static_cast<uintptr_t>(fontPtr));
         instance->setCurrentFont(*font);
     }
 
-    void nativeTextEditSetTextColor(long ptr, long colorPtr)
+    void nativeTextEditSetTextColor(uintptr_t ptr, uintptr_t colorPtr)
     {
         QTextEdit *instance = reinterpret_cast<QTextEdit *>(static_cast<uintptr_t>(ptr));
         QColor *color = reinterpret_cast<QColor *>(static_cast<uintptr_t>(colorPtr));
         instance->setTextColor(*color);
     }
 
-    void nativeTextEditSetTextBackgroundColor(long ptr, long colorPtr)
+    void nativeTextEditSetTextBackgroundColor(uintptr_t ptr, uintptr_t colorPtr)
     {
         QTextEdit *instance = reinterpret_cast<QTextEdit *>(static_cast<uintptr_t>(ptr));
         QColor *color = reinterpret_cast<QColor *>(static_cast<uintptr_t>(colorPtr));
         instance->setTextBackgroundColor(*color);
     }
 
-    void nativeTextEditDelete(long ptr)
+    void nativeTextEditDelete(uintptr_t ptr)
     {
         CjTextEdit *instance = reinterpret_cast<CjTextEdit *>(static_cast<uintptr_t>(ptr));
         delete instance;
     }
 
-    void nativeTextEditCopy(long ptr)
+    void nativeTextEditCopy(uintptr_t ptr)
     {
         QTextEdit *instance = reinterpret_cast<QTextEdit *>(static_cast<uintptr_t>(ptr));
 #if QT_CONFIG(clipboard)
@@ -131,7 +131,7 @@ extern "C"
 #endif
     }
 
-    void nativeTextEditCut(long ptr)
+    void nativeTextEditCut(uintptr_t ptr)
     {
         QTextEdit *instance = reinterpret_cast<QTextEdit *>(static_cast<uintptr_t>(ptr));
 #if QT_CONFIG(clipboard)
@@ -139,7 +139,7 @@ extern "C"
 #endif
     }
 
-    void nativeTextEditPaste(long ptr)
+    void nativeTextEditPaste(uintptr_t ptr)
     {
         QTextEdit *instance = reinterpret_cast<QTextEdit *>(static_cast<uintptr_t>(ptr));
 #if QT_CONFIG(clipboard)
@@ -147,13 +147,13 @@ extern "C"
 #endif
     }
 
-    void nativeTextEditUndo(long ptr)
+    void nativeTextEditUndo(uintptr_t ptr)
     {
         QTextEdit *instance = reinterpret_cast<QTextEdit *>(static_cast<uintptr_t>(ptr));
         instance->undo();
     }
 
-    void nativeTextEditRedo(long ptr)
+    void nativeTextEditRedo(uintptr_t ptr)
     {
         QTextEdit *instance = reinterpret_cast<QTextEdit *>(static_cast<uintptr_t>(ptr));
         instance->redo();

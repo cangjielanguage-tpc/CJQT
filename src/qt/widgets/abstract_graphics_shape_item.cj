@@ -1,4 +1,7 @@
-package qt.widgets
+package cjqt.qt.widgets
+
+import cjqt.qt.gui.QBrush
+import cjqt.qt.gui.QPen
 
 //foreign function
 foreign func nativeAbstractGraphicsShapeItemCreate(parentPtr: Int64): Int64

@@ -1,4 +1,10 @@
-package qt.widgets
+package cjqt.qt.widgets
+
+import cjqt.qt.tools.QCallbackMap
+
+import cjqt.qt.gui.*
+import cjqt.qt.core.*
+import std.collection.*
 
 public class QGraphicsSceneCallbackMap <: QCallbackMap {
     /* let member contextMenuEvent */
@@ -48,7 +54,7 @@ public class QGraphicsSceneCallbackMap <: QCallbackMap {
 }
 
 //C
-@c
+@C
 func graphicsSceneContextMenuEventCallback(ptr: Int64, eventPtr: Int64): Unit {
     let event = QGraphicsSceneContextMenuEvent(eventPtr)
     try {
@@ -58,7 +64,7 @@ func graphicsSceneContextMenuEventCallback(ptr: Int64, eventPtr: Int64): Unit {
     }
 }
 
-@c
+@C
 func graphicsSceneDragEnterEventCallback(ptr: Int64, eventPtr: Int64): Unit {
     let event = QGraphicsSceneDragDropEvent(eventPtr)
     try {
@@ -68,7 +74,7 @@ func graphicsSceneDragEnterEventCallback(ptr: Int64, eventPtr: Int64): Unit {
     }
 }
 
-@c
+@C
 func graphicsSceneDragLeaveEventCallback(ptr: Int64, eventPtr: Int64): Unit {
     let event = QGraphicsSceneDragDropEvent(eventPtr)
     try {
@@ -78,7 +84,7 @@ func graphicsSceneDragLeaveEventCallback(ptr: Int64, eventPtr: Int64): Unit {
     }
 }
 
-@c
+@C
 func graphicsSceneDragMoveEventCallback(ptr: Int64, eventPtr: Int64): Unit {
     let event = QGraphicsSceneDragDropEvent(eventPtr)
     try {
@@ -88,7 +94,7 @@ func graphicsSceneDragMoveEventCallback(ptr: Int64, eventPtr: Int64): Unit {
     }
 }
 
-@c
+@C
 func graphicsSceneDropEventCallback(ptr: Int64, eventPtr: Int64): Unit {
     let event = QGraphicsSceneDragDropEvent(eventPtr)
     try {
@@ -98,7 +104,7 @@ func graphicsSceneDropEventCallback(ptr: Int64, eventPtr: Int64): Unit {
     }
 }
 
-@c
+@C
 func graphicsSceneFocusOutEventCallback(ptr: Int64, eventPtr: Int64): Unit {
     let event = QFocusEvent(eventPtr)
     try {
@@ -108,7 +114,7 @@ func graphicsSceneFocusOutEventCallback(ptr: Int64, eventPtr: Int64): Unit {
     }
 }
 
-@c
+@C
 func graphicsSceneHelpEventCallback(ptr: Int64, eventPtr: Int64): Unit {
     let event = QGraphicsSceneHelpEvent(eventPtr)
     try {
@@ -118,7 +124,7 @@ func graphicsSceneHelpEventCallback(ptr: Int64, eventPtr: Int64): Unit {
     }
 }
 
-@c
+@C
 func graphicsSceneInputMethodEventCallback(ptr: Int64, eventPtr: Int64): Unit {
     let event = QInputMethodEvent(eventPtr)
     try {
@@ -128,7 +134,7 @@ func graphicsSceneInputMethodEventCallback(ptr: Int64, eventPtr: Int64): Unit {
     }
 }
 
-@c
+@C
 func graphicsSceneMouseDoubleClickEventCallback(ptr: Int64, eventPtr: Int64): Unit {
     let event = QGraphicsSceneMouseEvent(eventPtr)
     try {
@@ -138,7 +144,7 @@ func graphicsSceneMouseDoubleClickEventCallback(ptr: Int64, eventPtr: Int64): Un
     }
 }
 
-@c
+@C
 func graphicsSceneMouseMoveEventCallback(ptr: Int64, eventPtr: Int64): Unit {
     let event = QGraphicsSceneMouseEvent(eventPtr)
     try {
@@ -148,7 +154,7 @@ func graphicsSceneMouseMoveEventCallback(ptr: Int64, eventPtr: Int64): Unit {
     }
 }
 
-@c
+@C
 func graphicsSceneMousePressEventCallback(ptr: Int64, eventPtr: Int64): Unit {
     let event = QGraphicsSceneMouseEvent(eventPtr)
     try {
@@ -158,7 +164,7 @@ func graphicsSceneMousePressEventCallback(ptr: Int64, eventPtr: Int64): Unit {
     }
 }
 
-@c
+@C
 func graphicsSceneMouseReleaseEventCallback(ptr: Int64, eventPtr: Int64): Unit {
     let event = QGraphicsSceneMouseEvent(eventPtr)
     try {
@@ -168,7 +174,7 @@ func graphicsSceneMouseReleaseEventCallback(ptr: Int64, eventPtr: Int64): Unit {
     }
 }
 
-@c
+@C
 func graphicsSceneKeyPressEventCallback(ptr: Int64, eventPtr: Int64): Unit {
     let event = QKeyEvent(eventPtr)
     try {
@@ -178,7 +184,7 @@ func graphicsSceneKeyPressEventCallback(ptr: Int64, eventPtr: Int64): Unit {
     }
 }
 
-@c
+@C
 func graphicsSceneKeyReleaseEventCallback(ptr: Int64, eventPtr: Int64): Unit {
     let event = QKeyEvent(eventPtr)
     try {
@@ -188,7 +194,7 @@ func graphicsSceneKeyReleaseEventCallback(ptr: Int64, eventPtr: Int64): Unit {
     }
 }
 
-@c
+@C
 func graphicsSceneWheelEventCallback(ptr: Int64, eventPtr: Int64): Unit {
     let event = QGraphicsSceneWheelEvent(eventPtr)
     try {

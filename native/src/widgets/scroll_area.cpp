@@ -4,7 +4,7 @@ extern "C"
 {
 
     // QScrollArea
-    long nativeScrollAreaCreate(long parentPtr)
+    uintptr_t nativeScrollAreaCreate(uintptr_t parentPtr)
     {
         APPLICATION_CREATE
         CjQtScrollArea *scrollArea;
@@ -17,80 +17,80 @@ extern "C"
             QWidget *parent = reinterpret_cast<QWidget *>(static_cast<uintptr_t>(parentPtr));
             scrollArea = new CjQtScrollArea(parent);
         }
-        return reinterpret_cast<long>(scrollArea);
+        return reinterpret_cast<uintptr_t>(scrollArea);
     }
 
-    void nativeScrollAreaDelete(long ptr)
+    void nativeScrollAreaDelete(uintptr_t ptr)
     {
         CjQtScrollArea *instance = reinterpret_cast<CjQtScrollArea *>(static_cast<uintptr_t>(ptr));
         delete instance;
     }
 
-    void nativeScrollAreaSetWidget(long ptr, long widgetPtr)
+    void nativeScrollAreaSetWidget(uintptr_t ptr, uintptr_t widgetPtr)
     {
         CjQtScrollArea *instance = reinterpret_cast<CjQtScrollArea *>(static_cast<uintptr_t>(ptr));
         QWidget *widget = reinterpret_cast<QWidget *>(static_cast<uintptr_t>(widgetPtr));
         instance->setWidget(widget);
     }
 
-    long nativeScrollAreaWidget(long ptr)
+    uintptr_t nativeScrollAreaWidget(uintptr_t ptr)
     {
         CjQtScrollArea *instance = reinterpret_cast<CjQtScrollArea *>(static_cast<uintptr_t>(ptr));
         QWidget *widget = instance->widget();
-        return reinterpret_cast<long>(widget);
+        return reinterpret_cast<uintptr_t>(widget);
     }
 
-    long nativeScrollAreaTakeWidget(long ptr)
+    uintptr_t nativeScrollAreaTakeWidget(uintptr_t ptr)
     {
         CjQtScrollArea *instance = reinterpret_cast<CjQtScrollArea *>(static_cast<uintptr_t>(ptr));
         QWidget *widget = instance->takeWidget();
-        return reinterpret_cast<long>(widget);
+        return reinterpret_cast<uintptr_t>(widget);
     }
 
-    bool nativeScrollAreaWidgetResizable(long ptr)
+    bool nativeScrollAreaWidgetResizable(uintptr_t ptr)
     {
         CjQtScrollArea *instance = reinterpret_cast<CjQtScrollArea *>(static_cast<uintptr_t>(ptr));
         return instance->widgetResizable();
     }
 
-    void nativeScrollAreaSetWidgetResizable(long ptr, bool resizable)
+    void nativeScrollAreaSetWidgetResizable(uintptr_t ptr, bool resizable)
     {
         CjQtScrollArea *instance = reinterpret_cast<CjQtScrollArea *>(static_cast<uintptr_t>(ptr));
         instance->setWidgetResizable(resizable);
     }
 
-    long nativeScrollAreaSizeHint(long ptr)
+    uintptr_t nativeScrollAreaSizeHint(uintptr_t ptr)
     {
         CjQtScrollArea *instance = reinterpret_cast<CjQtScrollArea *>(static_cast<uintptr_t>(ptr));
         QSize size = instance->sizeHint();
-        return reinterpret_cast<long>(&size);
+        return reinterpret_cast<uintptr_t>(&size);
     }
 
-    bool nativeScrollAreaFocusNextPrevChild(long ptr, bool next)
+    bool nativeScrollAreaFocusNextPrevChild(uintptr_t ptr, bool next)
     {
         CjQtScrollArea *instance = reinterpret_cast<CjQtScrollArea *>(static_cast<uintptr_t>(ptr));
         return instance->focusNextPrevChild(next);
     }
 
-    int nativeScrollAreaAlignment(long ptr)
+    int nativeScrollAreaAlignment(uintptr_t ptr)
     {
         CjQtScrollArea *instance = reinterpret_cast<CjQtScrollArea *>(static_cast<uintptr_t>(ptr));
         return instance->alignment();
     }
 
-    void nativeScrollAreaSetAlignment(long ptr, int alignment)
+    void nativeScrollAreaSetAlignment(uintptr_t ptr, int alignment)
     {
         CjQtScrollArea *instance = reinterpret_cast<CjQtScrollArea *>(static_cast<uintptr_t>(ptr));
         instance->setAlignment(Qt::Alignment(alignment));
     }
 
-    void nativeScrollAreaEnsureVisible(long ptr, int x, int y, int xmargin, int ymargin)
+    void nativeScrollAreaEnsureVisible(uintptr_t ptr, int x, int y, int xmargin, int ymargin)
     {
         CjQtScrollArea *instance = reinterpret_cast<CjQtScrollArea *>(static_cast<uintptr_t>(ptr));
         instance->ensureVisible(x, y, xmargin, ymargin);
     }
 
-    void nativeScrollAreaEnsureWidgetVisible(long ptr, long childWidgetPtr, int xmargin, int ymargin)
+    void nativeScrollAreaEnsureWidgetVisible(uintptr_t ptr, uintptr_t childWidgetPtr, int xmargin, int ymargin)
     {
         CjQtScrollArea *instance = reinterpret_cast<CjQtScrollArea *>(static_cast<uintptr_t>(ptr));
         QWidget *childWidget = reinterpret_cast<QWidget *>(static_cast<uintptr_t>(childWidgetPtr));

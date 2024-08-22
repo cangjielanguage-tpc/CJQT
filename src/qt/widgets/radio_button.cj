@@ -6,7 +6,7 @@
  * @file
  *
  */
-package qt.widgets
+package cjqt.qt.widgets
 
 foreign func nativeRadioButtonCreate(parentPtr: Int64): Int64
 foreign func nativeRadioButtonSetText(ptr: Int64, text: CString): Unit
@@ -44,7 +44,7 @@ public class QRadioButton <: QWidget {
      */
     public func setText(text: String) {
         unsafe {
-            nativeRadioButtonSetText(ptr, CString(text))
+            nativeRadioButtonSetText(ptr, LibC.mallocCString(text))
         }
     }
 

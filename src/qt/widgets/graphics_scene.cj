@@ -1,4 +1,7 @@
-package qt.widgets
+package cjqt.qt.widgets
+
+import cjqt.qt.gui.*
+import cjqt.qt.core.*
 
 //foreign function
 foreign func nativeGraphicsSceneCreate(x: Float64, y: Float64, width: Float64, heigh: Float64, parentPtr: Int64): Int64

@@ -2,13 +2,13 @@
 
 extern "C"
 {
-    long nativeAbstractItemDelegateCreate()
+    uintptr_t nativeAbstractItemDelegateCreate()
     {
         CjAbstractItemDelegate *event = new CjAbstractItemDelegate();
-        return reinterpret_cast<long>(event);
+        return reinterpret_cast<uintptr_t>(event);
     }
 
-    void nativeAbstractItemDelegateDelete(long ptr)
+    void nativeAbstractItemDelegateDelete(uintptr_t ptr)
     {
         appConfig->callbackMapRemove((char *)"paint", ptr);
         appConfig->callbackMapRemove((char *)"sizeHint", ptr);
@@ -16,12 +16,12 @@ extern "C"
         delete instance;
     }
 
-    void nativeAbstractItemDelegateSetPaintCallback(long ptr, nativeCallbackPointer callback)
+    void nativeAbstractItemDelegateSetPaintCallback(uintptr_t ptr, nativeCallbackPointer callback)
     {
         appConfig->callbackMapPut((char *)"paint", ptr, callback);
     }
 
-    void nativeAbstractItemDelegateSetSizeHintCallback(long ptr, nativeCallbackPointer callback)
+    void nativeAbstractItemDelegateSetSizeHintCallback(uintptr_t ptr, nativeCallbackPointer callback)
     {
         appConfig->callbackMapPut((char *)"sizeHint", ptr, callback);
     }

@@ -6,9 +6,9 @@
  * @file
  *
  */
-package qt.widgets
+package cjqt.qt.widgets
 
-import qt.core.*
+import cjqt.qt.core.*
 
 // foreign C Functions
 foreign func nativeFrameCreate(parentPtr: Int64, f: UInt32): Int64

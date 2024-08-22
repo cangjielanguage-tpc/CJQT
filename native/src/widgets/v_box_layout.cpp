@@ -3,7 +3,7 @@
 extern "C" {
     // QVBoxLayout
 
-    long nativeVBoxLayoutCreate(long parentPtr)
+    uintptr_t nativeVBoxLayoutCreate(uintptr_t parentPtr)
     {
         APPLICATION_CREATE
         CjQtVBoxLayout *layout;
@@ -16,10 +16,10 @@ extern "C" {
             QWidget *parent = reinterpret_cast<QWidget *>(static_cast<uintptr_t>(parentPtr));
             layout = new CjQtVBoxLayout(parent);
         }
-        return reinterpret_cast<long>(layout);
+        return reinterpret_cast<uintptr_t>(layout);
     }
 
-    void nativeVBoxLayoutDelete(long ptr)
+    void nativeVBoxLayoutDelete(uintptr_t ptr)
     {
         CjQtVBoxLayout *instance = reinterpret_cast<CjQtVBoxLayout *>(static_cast<uintptr_t>(ptr));
         delete instance;

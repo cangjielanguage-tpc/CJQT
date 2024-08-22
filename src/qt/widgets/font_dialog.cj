@@ -6,7 +6,9 @@
  * @file
  *
  */
-package qt.widgets
+package cjqt.qt.widgets
+
+import cjqt.qt.gui.*
 
 foreign func nativeFileDialogGetFont(parentPtr: Int64): Int64
 

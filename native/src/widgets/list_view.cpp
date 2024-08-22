@@ -3,7 +3,7 @@
 extern "C"
 {
     // QListView
-    long nativeListViewCreate(long parentPtr)
+    uintptr_t nativeListViewCreate(uintptr_t parentPtr)
     {
         APPLICATION_CREATE
         CjListView *listView;
@@ -16,11 +16,11 @@ extern "C"
             QWidget *parent = reinterpret_cast<QWidget *>(static_cast<uintptr_t>(parentPtr));
             listView = new CjListView(parent);
         }
-        return reinterpret_cast<long>(listView);
+        return reinterpret_cast<uintptr_t>(listView);
     }
 
     
-    void nativeListViewDelete(long ptr)
+    void nativeListViewDelete(uintptr_t ptr)
     {
         CjListView *instance = reinterpret_cast<CjListView *>(static_cast<uintptr_t>(ptr));
         delete instance;

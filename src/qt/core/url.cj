@@ -6,7 +6,7 @@
  * @file
  *
  */
-package qt.core
+package cjqt.qt.core
 
 foreign func nativeUrlCreate(url: CString, parsingMode: Int32): Int64
 foreign func nativeUrlToString(ptr: Int64): CString
@@ -37,7 +37,7 @@ public class QUrl {
      */
     public init(url: String) {
         ptr = unsafe {
-            nativeUrlCreate(CString(url), 1)
+            nativeUrlCreate(LibC.mallocCString(url), 1)
         }
     }
 
@@ -49,7 +49,7 @@ public class QUrl {
      */
     public init(url: String, parsingMode: Int32) {
         ptr = unsafe {
-            nativeUrlCreate(CString(url), parsingMode)
+            nativeUrlCreate(LibC.mallocCString(url), parsingMode)
         }
     }
 

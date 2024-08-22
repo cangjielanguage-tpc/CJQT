@@ -6,7 +6,7 @@
  * @file
  *
  */
-package qt.widgets
+package cjqt.qt.widgets
 
 foreign func nativeStatusBarCreate(parentPtr: Int64): Int64
 foreign func nativeStatusBarDelete(ptr: Int64): Unit
@@ -128,7 +128,7 @@ public class QStatusBar <: QWidget {
      */
     public func showMessage(message: String, timeout!: Int64 = 0) {
         unsafe {
-            nativeStatusBarShowMessage(ptr, CString(message), Int32(timeout))
+            nativeStatusBarShowMessage(ptr, LibC.mallocCString(message), Int32(timeout))
         }
     }
 

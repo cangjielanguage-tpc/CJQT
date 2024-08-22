@@ -4,8 +4,8 @@
 
 创建main.cj文件
 ```cangjie
-from cjqt import qt.widgets.*
-from cjqt import qt.gui.*
+import cjqt.qt.widgets.*
+import cjqt.qt.gui.*
 
 main() {
     QApplication.create()
