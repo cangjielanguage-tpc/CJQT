@@ -1,6 +1,8 @@
+package scrollBar
 import cjqt.core.*
-import cjqt.gui.*
-import cjqt.widgets.*
+import cjqt.gui.QMouseEvent
+import cjqt.widgets.QWidget
+import cjqt.widgets.QScrollBar
 
 public class myScrollBar <: QScrollBar {
     public init(orientation: Orientation, parent: QWidget) {

@@ -1,4 +1,10 @@
 
+package tetris
+import cjqt.core.*
+import cjqt.gui.*
+import cjqt.widgets.*
+import std.collection.ArrayList
+
 public class TetrisBox <: QWidget {
     var block = Block() //用来储存Tetris中block的数据
     let widthVal: Int64

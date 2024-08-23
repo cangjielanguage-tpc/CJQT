@@ -1,7 +1,10 @@
-package gui
+package feeluown.gui
+import std.math.min
+import cjqt.core.*
+import cjqt.gui.*
+import cjqt.widgets.*
+internal import feeluown.widgets.TextlistView
 
-import math.*
-import widgets.*
 
 public class ListViewContainer <: QFrame {
     let btnTextHide: String = "△"

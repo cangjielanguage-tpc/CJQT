@@ -1,5 +1,8 @@
+package notepad
 import cjqt.core.*
-import fs.*
+import cjqt.gui.*
+import cjqt.widgets.*
+import std.fs.*
 
 public class NotepadWindow <: QMainWindow {
     let textEdit: QTextEdit
@@ -220,7 +223,7 @@ public class NotepadWindow <: QMainWindow {
 
         var file: File = File(currentFile, OpenOption.Create(false))
         if (File.exists(currentFile)) {
-            file.write(textEdit.toPlainText().toUtf8Array())
+            file.write(textEdit.toPlainText().toArray())
             file.flush()
             file.close()
         }
@@ -241,7 +244,7 @@ public class NotepadWindow <: QMainWindow {
         
         var file: File = File(currentFile, OpenOption.Create(false))
         if (File.exists(currentFile)) {
-            file.write(textEdit.toPlainText().toUtf8Array())
+            file.write(textEdit.toPlainText().toArray())
             file.flush()
             file.close()
         }

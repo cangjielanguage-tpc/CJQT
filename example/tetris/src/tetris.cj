@@ -1,5 +1,7 @@
-import random.*
-import math.*
+package tetris
+import cjqt.gui.QColor
+import std.random.*
+import std.math.*
 import std.collection.*
 
 public class Tetris {

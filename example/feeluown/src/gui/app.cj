@@ -1,4 +1,4 @@
-package gui
+package feeluown.gui
 
 import cjqt.widgets.*
 import cjqt.gui.*

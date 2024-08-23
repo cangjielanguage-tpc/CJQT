@@ -1,6 +1,7 @@
-import cjqt.widgets.*
-import gui.*
+package feeluown
 
+import cjqt.widgets.*
+internal import feeluown.gui.*
 
 main() {
     QApplication.create()

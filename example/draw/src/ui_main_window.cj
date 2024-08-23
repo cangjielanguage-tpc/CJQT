@@ -1,3 +1,4 @@
+package draw
 import cjqt.core.*
 import cjqt.gui.*
 import cjqt.widgets.*
@@ -142,7 +143,7 @@ public class Ui_MainWindow {
     public func initGraphics() {
         graphicsView.setCacheMode(QGraphicsViewCacheMode.CacheBackground)
         graphicsView.setScene(scene)
-        graphicsView.setStyleSheel("padding:0px; border:0px;")
+        graphicsView.setStyleSheet("padding:0px; border:0px;")
         graphicsView.setAlignment(AlignLeft)
         //graphicsView.setAlignment(AlignTop)
 
@@ -175,6 +176,7 @@ public class Ui_MainWindow {
     }
 
     public func on_selectAct_triggerd(checked: Bool): Unit {
+        print("on_selectAct_triggerd")
         scene.m_drawShapeState = DrawShapeState.selection
     }
     public func on_lineAct_triggerd(checked: Bool): Unit {

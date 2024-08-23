@@ -1,3 +1,4 @@
+package draw
 import cjqt.core.*
 import cjqt.gui.*
 import cjqt.widgets.*

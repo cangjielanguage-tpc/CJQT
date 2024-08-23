@@ -1,4 +1,7 @@
-package gui
+package feeluown.gui
+import cjqt.gui.QIcon
+import cjqt.widgets.QSplitter
+import cjqt.widgets.QVBoxLayout
 
 public class Ui {
     var mainLayout: QVBoxLayout //mainLayout

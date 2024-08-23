@@ -1,3 +1,4 @@
+package scrollBar
 import cjqt.core.*
 import cjqt.gui.*
 import cjqt.widgets.*

@@ -1,3 +1,4 @@
+package notepad
 import cjqt.widgets.*
 import cjqt.gui.*
 

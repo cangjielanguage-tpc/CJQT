@@ -1,0 +1,14 @@
+[dependencies]
+  cjqt = {path = "../../", version = "0.0.1"}
+
+[package]
+  cjc-version = "0.53.4"
+  compile-option = ""
+  description = "nothing here"
+  link-option = ""
+  name = "lineEdit"
+  output-type = "executable"
+  src-dir = "src"
+  target-dir = ""
+  version = "1.0.0"
+  package-configuration = {}

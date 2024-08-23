@@ -1,10 +1,10 @@
-package widgets
+package feeluown.widgets
 
-import cjqt.widgets.*
-import cjqt.gui.*
-import cjqt.core.*
-import cjqt.tools.*
-import std.collection.*
+internal import cjqt.widgets.*
+internal import cjqt.gui.*
+internal import cjqt.core.*
+internal import cjqt.tools.*
+internal import std.collection.*
 
 public class TextlistModel <: QAbstractListModel {
     let items = ArrayList<QVariant>()
@@ -58,11 +58,11 @@ public class TextlistDelegate <: QStyledItemDelegate {
         setSizeHint()
     }
 
-    func paint(painter: QPainter, index: QModelIndex) {
+    public func paint(painter: QPainter, index: QModelIndex) {
         super.paint(painter, index)
     }
 
-    func sizeHint(index: QModelIndex): QSize {
+    public func sizeHint(index: QModelIndex): QSize {
         let size = super.sizeHint(index)
         if (size.isValid()) {
             return QSize(size.width(), 25)

@@ -1,4 +1,7 @@
+package tetris
 import cjqt.core.*
+import cjqt.gui.*
+import cjqt.widgets.*
 
 public class TetrisWindow <: QMainWindow {
     //游戏的状态
@@ -100,11 +103,11 @@ public class TetrisWindow <: QMainWindow {
         setKeyPressEvent(handleEvent)
     }
 
-    func updateScore() {
+   public func updateScore() {
         scoreLabel.setText("${tetris.score}")
     }
 
-    func handleEvent(event: QKeyEvent) {
+    public func handleEvent(event: QKeyEvent) {
         match {
             case event.key() == QKeyEvent.KEY_W => rotateTetris()
             case event.key() == QKeyEvent.KEY_A => moveLeft()

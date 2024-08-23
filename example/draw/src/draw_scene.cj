@@ -1,3 +1,18 @@
+package draw
+import cjqt.core.QObject
+import cjqt.core.QPointF
+import cjqt.core.QRectF
+import cjqt.widgets.QGraphicsScene
+import cjqt.widgets.QGraphicsItem
+import cjqt.widgets.QGraphicsRectItem
+import cjqt.widgets.QGraphicsSceneMouseEvent
+import cjqt.widgets.QPainter
+import cjqt.gui.QPolygonF
+import cjqt.gui.QColor
+import cjqt.gui.QPixmap
+import cjqt.gui.QBrush
+import cjqt.gui.QPen
+
 public enum DrawShapeState {
     selection | line | rectangle | ellipse | polygon | polyLine | none
 }

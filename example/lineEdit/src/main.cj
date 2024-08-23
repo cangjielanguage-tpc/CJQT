@@ -1,3 +1,4 @@
+package lineEdit
 import cjqt.widgets.*
 import cjqt.gui.*
 

@@ -1,4 +1,9 @@
 
+package tetris
+import cjqt.core.*
+import cjqt.gui.*
+import cjqt.widgets.*
+
 public class NextTetrisBox <: QWidget {
     let RESTX = (Tetris.MAX_X - Tetris.NEXT_MAX_X) / 2 //方块x坐标的转换常数
     let RESTY = 4 //方块y坐标的转换常数

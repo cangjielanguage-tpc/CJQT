@@ -1,3 +1,4 @@
+package tetris
 import cjqt.widgets.*
 import cjqt.gui.*
 
