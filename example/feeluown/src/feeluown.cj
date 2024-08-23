@@ -1,4 +1,4 @@
-import cjqt.qt.widgets.*
+import cjqt.widgets.*
 import gui.*
 
 

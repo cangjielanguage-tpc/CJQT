@@ -1,4 +1,4 @@
-package cjqt.qt.core
+package cjqt.core
 
 @Test
 public class Mytest{

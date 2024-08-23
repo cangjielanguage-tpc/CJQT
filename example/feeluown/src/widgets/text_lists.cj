@@ -1,9 +1,9 @@
 package widgets
 
-import cjqt.qt.widgets.*
-import cjqt.qt.gui.*
-import cjqt.qt.core.*
-import cjqt.qt.tools.*
+import cjqt.widgets.*
+import cjqt.gui.*
+import cjqt.core.*
+import cjqt.tools.*
 import std.collection.*
 
 public class TextlistModel <: QAbstractListModel {

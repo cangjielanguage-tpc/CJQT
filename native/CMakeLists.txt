@@ -21,6 +21,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 set (CMAKE_PREFIX_PATH $ENV{QT_HOME})
 # set (CMAKE_PREFIX_PATH ~/qtsource/qt-everywhere-src-5.14.2/out/aarch64-qt)
+# set (CMAKE_PREFIX_PATH D:\Software\Qt\Qt5.14.2\Tools\mingw730_64)
 
 set (INC_DIR ./includes 
         ./includes/widgets

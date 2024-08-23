@@ -1,8 +1,8 @@
 // EXEC: cjc %import-path %L %l %f
 // EXEC: ./main
-import cjqt.qt.gui.*
-import cjqt.qt.core.*
-import cjqt.qt.widgets.*
+import cjqt.gui.*
+import cjqt.core.*
+import cjqt.widgets.*
 
 main() {
     let url = QUrl("./README.md")

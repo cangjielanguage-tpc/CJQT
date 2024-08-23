@@ -1,6 +1,6 @@
-import cjqt.qt.core.*
-import cjqt.qt.gui.*
-import cjqt.qt.widgets.*
+import cjqt.core.*
+import cjqt.gui.*
+import cjqt.widgets.*
 main(){
     QApplication.create()
 

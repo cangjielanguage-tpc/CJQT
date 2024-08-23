@@ -103,8 +103,16 @@ sudo apt-get install libxkbcommon-x11-0
 
 执行命令：
 
+Linux下：
+
 ```shell
 ./example/hello/run.sh 
+```
+
+Windows下：
+
+```shell
+.\example\hello\run.ps1 
 ```
 
 执行效果：
@@ -223,7 +231,7 @@ cpm update
 
 新建src/main.cj文件
 ```cangjie
-import cjqt.qt.widgets.*
+import cjqt.widgets.*
 
 main() {
     QApplication.create()

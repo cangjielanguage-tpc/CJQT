@@ -1,8 +1,8 @@
 package gui
 
-import cjqt.qt.widgets.*
-import cjqt.qt.gui.*
-import cjqt.qt.core.*
+import cjqt.widgets.*
+import cjqt.gui.*
+import cjqt.core.*
 import std.collection.*
 
 public class GuiApp <: QWidget {

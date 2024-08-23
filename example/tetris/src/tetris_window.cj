@@ -1,4 +1,4 @@
-import cjqt.qt.core.*
+import cjqt.core.*
 
 public class TetrisWindow <: QMainWindow {
     //游戏的状态

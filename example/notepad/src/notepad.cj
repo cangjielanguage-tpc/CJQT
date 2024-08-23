@@ -1,4 +1,4 @@
-import cjqt.qt.core.*
+import cjqt.core.*
 import fs.*
 
 public class NotepadWindow <: QMainWindow {

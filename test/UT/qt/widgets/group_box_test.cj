@@ -1,4 +1,4 @@
-package cjqt.qt.widgets
+package cjqt.widgets
 
 @Test
 public class GroupBoxTest{

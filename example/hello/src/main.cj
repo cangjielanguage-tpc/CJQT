@@ -1,7 +1,7 @@
 package hello
 
-import cjqt.qt.widgets.*
-import cjqt.qt.gui.*
+import cjqt.widgets.*
+import cjqt.gui.*
 
 main() {
     QApplication.create()
