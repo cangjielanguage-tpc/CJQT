@@ -1,5 +1,6 @@
 .git/
 .gitee/
+.gitcode/
 .vscode/
 .idea/
 .cache/
@@ -19,10 +20,14 @@ log.*
 ci_test/ci_src/
 ci_test/test_temp/
 ci_lib/
-
 output/
 
 *.gcda*
 *.gcno*
 
+#cjpm build
+cjpm.lock
+*.cjo
+*.cjt
+*.macrocall
 module-resolve.json

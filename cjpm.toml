@@ -5,7 +5,7 @@
     nativeQt = {path = "./native/build"}
 
 [package]
-  cjc-version = "0.32.5"
+  cjc-version = "0.53.4"
   compile-option = ""
   description = "nothing here"
   link-option = ""

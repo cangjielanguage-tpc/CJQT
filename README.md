@@ -56,9 +56,13 @@ CjQt是Qt的仓颉语言绑定，提供仓颉语言风格的Qt类和函数的API
 │   ├── proposal.md
 │   └── xxx_lib.md 
 ├── example
+│   ├── draw
+│   ├── feeluown
+│   ├── frame
 │   ├── hello
 │   └── lineEdit
 │   ├── notepad
+│   ├── scrollBar
 │   └── tetris
 ├── native
 │   ├── src
