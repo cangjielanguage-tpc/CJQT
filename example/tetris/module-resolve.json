@@ -14,7 +14,7 @@
       "requires": [],
       "package_requires": {},
       "foreign_requires": {
-        "nativeQt": "/home/wathinst/cjProject/qt/native/lib"
+        "nativeQt": "/home/wathinst/cjProject/qt/native/lib/x86_64"
       },
       "cross_compile_configuration": {}
     },
@@ -32,7 +32,7 @@
       "requires": [],
       "package_requires": {},
       "foreign_requires": {
-        "nativeQt": "/home/wathinst/cjProject/qt/native/lib"
+        "nativeQt": "/home/wathinst/cjProject/qt/native/lib/x86_64"
       },
       "cross_compile_configuration": {}
     },
@@ -50,7 +50,7 @@
       "requires": [],
       "package_requires": {},
       "foreign_requires": {
-        "nativeQt": "/home/wathinst/cjProject/qt/native/lib"
+        "nativeQt": "/home/wathinst/cjProject/qt/native/lib/x86_64"
       },
       "cross_compile_configuration": {}
     },
@@ -71,7 +71,7 @@
       ],
       "package_requires": {},
       "foreign_requires": {
-        "nativeQt": "/home/wathinst/cjProject/qt/native/lib"
+        "nativeQt": "/home/wathinst/cjProject/qt/native/lib/x86_64"
       },
       "cross_compile_configuration": {}
     },

@@ -8,7 +8,7 @@
 	"package_requires": {},
 	"foreign_requires": {
 		"nativeQt": {
-			"path": "./native/lib",
+			"path": "./native/lib/x86_64",
 			"export": []
 		}
 	},
