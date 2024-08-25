@@ -11,3 +11,5 @@ fi
 cd $BUILD_PATH
 cmake ..
 make
+
+cp build/libnativeQt.so lib/libnativeQt.so
