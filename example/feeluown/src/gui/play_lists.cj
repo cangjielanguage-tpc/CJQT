@@ -3,6 +3,11 @@ package gui
 public class TextlistModel <: QAbstractListModel {
     let items = ArrayList<Int64>()
 
+    public init() {
+        setRowCountCallback()
+        setDataCallback()
+    }
+
     public func add(item: Int64) {
         let start = items.size
         let end = start + 1

@@ -10,7 +10,6 @@ package qt.widgets
 
 foreign func nativePushButtonCreate(parentPtr: Int64): Int64
 foreign func nativePushButtonSetText(ptr: Int64, text: CString): Unit
-foreign func nativePushButtonSetStyleSheet(ptr: Int64, style: CString): Unit
 foreign func nativePushButtonConnect(ptr: Int64, code: Int64, callback: CFunc<(Int64, CPointer<Unit>) -> Unit>): Unit
 foreign func nativePushButtonDelete(ptr: Int64): Unit
 
@@ -73,17 +72,6 @@ public class QPushButton <: QWidget {
     public func setText(text: String) {
         unsafe {
             nativePushButtonSetText(ptr, CString(text))
-        }
-    }
-
-    /**
-     * The Function is setStyleSheet
-     *
-     * @param style of String
-     */
-    public func setStyleSheet(style: String) {
-        unsafe {
-            nativePushButtonSetStyleSheet(ptr, CString(style))
         }
     }
 

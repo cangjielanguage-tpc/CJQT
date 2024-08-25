@@ -5,7 +5,10 @@
 	"description": "nothing here",
 	"version": "0.0.1",
 	"requires": {},
-	"package_requires": {},
+	"package_requires": {
+		"package_option": {},
+		"path_option": []
+	  },
 	"foreign_requires": {
 		"nativeQt": {
 			"path": "./native/lib/x86_64",

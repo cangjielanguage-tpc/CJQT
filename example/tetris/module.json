@@ -11,7 +11,10 @@
       "path": "../../"
     }
   },
-  "package_requires": {},
+  "package_requires": {
+    "package_option": {},
+    "path_option": []
+  },
   "foreign_requires": {},
   "output_type": "executable",
   "command_option": "",

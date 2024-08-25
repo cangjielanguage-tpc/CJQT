@@ -29,11 +29,6 @@ extern "C"
         instance->setText(text);
     }
 
-    void nativeLabelSetStyleSheet(long ptr, const char *style){
-        QLabel *instance = reinterpret_cast<QLabel *>(static_cast<uintptr_t>(ptr));
-        instance->setStyleSheet(style);
-    }
-
 	void nativeLabelDelete(long ptr)
 	{
 		CjQtLabel *instance = reinterpret_cast<CjQtLabel *>(static_cast<uintptr_t>(ptr));

@@ -427,7 +427,7 @@ public open class QWidget <: QObject {
      *
      * @param styleSheet of String
      */
-    public func setStyleSheel(styleSheet: String) {
+    public func setStyleSheet(styleSheet: String) {
         unsafe {
             nativeWidgetSetStyleSheet(ptr, CString(styleSheet))
         }

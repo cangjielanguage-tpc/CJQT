@@ -14,6 +14,7 @@ public class ListViewContainer <: QFrame {
         this.label = label
         this.view = view
         toggleBtn = QPushButton()
+        toggleBtn.setStyleSheet("QPushButton{border:none;background:transparent;}")
         toggleBtn.setText(btnTextHide)
 
         let layout = QVBoxLayout(parent: this)

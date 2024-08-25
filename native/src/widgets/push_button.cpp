@@ -29,12 +29,6 @@ extern "C"
         instance->setText(text);
     }
 
-    void nativePushButtonSetStyleSheet(long ptr, const char *style)
-    {
-        QPushButton *instance = reinterpret_cast<QPushButton *>(static_cast<uintptr_t>(ptr));
-        instance->setStyleSheet(style);
-    }
-
     void nativePushButtonConnect(long ptr, long code, nativeConnectCallbackPointer callback)
     {
         QPushButton *instance = reinterpret_cast<QPushButton *>(static_cast<uintptr_t>(ptr));

@@ -82,14 +82,14 @@ public abstract class QAbstractListModel {
         }
     }
 
-    private func setRowCountCallback() {
+    protected func setRowCountCallback() {
         QCoreCallbackMap.rowCountCallback.put(ptr, rowCount)
         unsafe {
             nativeAbstractListModelSetRowCountCallback(ptr, rowCountCallback)
         }
     }
 
-    private func setDataCallback() {
+    protected func setDataCallback() {
         QCoreCallbackMap.dataCallback.put(ptr, data)
         unsafe {
             nativeAbstractListModelSetDataCallback(ptr, dataCallback)

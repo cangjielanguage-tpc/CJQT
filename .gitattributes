@@ -1,2 +1,3 @@
 native/lib/libicudata.so.56 filter=lfs diff=lfs merge=lfs -text
 native/lib/x86_64/libicudata.so.56 filter=lfs diff=lfs merge=lfs -text
+native/lib/x86_64/libnativeQt.so filter=lfs diff=lfs merge=lfs -text

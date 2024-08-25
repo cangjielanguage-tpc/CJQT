@@ -10,7 +10,6 @@ package qt.widgets
 
 foreign func nativeLabelCreate(parentPtr: Int64): Int64
 foreign func nativeLabelSetText(ptr: Int64, text:CString): Unit
-foreign func nativeLabelSetStyleSheet(ptr: Int64, style:CString): Unit
 foreign func nativeLabelDelete(ptr: Int64): Unit
 
 /**
@@ -60,17 +59,6 @@ public class QLabel <: QWidget{
     public func setText(text:String) {
         unsafe {
             nativeLabelSetText(ptr, CString(text))
-        }
-    }
-
-    /**
-     * The Function is setStyleSheet
-     *
-     * @param style of String
-     */
-    public func setStyleSheet(style:String) {
-        unsafe {
-            nativeLabelSetStyleSheet(ptr, CString(style))
         }
     }
 
