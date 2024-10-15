@@ -9,7 +9,8 @@ internal import std.collection.*
 public class TextlistModel <: QAbstractListModel {
     let items = ArrayList<QVariant>()
 
-    public init() {
+    public init(ptr:Int64) {
+        super(ptr)
         setRowCountCallback()
         setDataCallback()
     }
@@ -72,7 +73,7 @@ public class TextlistDelegate <: QStyledItemDelegate {
 }
 
 public class TextlistView <: QListView {
-    let listModel = TextlistModel()
+    let listModel = TextlistModel(0)
 
     public init(parent: QWidget) {
         super(parent: parent)
