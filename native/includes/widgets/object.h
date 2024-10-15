@@ -5,6 +5,7 @@
 #include <QKeyEvent>
 #include <QPainter>
 #include <QString>
+#include <QDebug>
 
 #include "config.h"
 
@@ -295,7 +296,7 @@
 #define GRAPHICS_MOUSE_MOVE_EVENT(func)                                                                                                          \
     void mouseMoveEvent(QGraphicsSceneMouseEvent *event)                                                                                         \
     {                                                                                                                                            \
-        nativeCallbackPointer mouseMoveEventCallback = appConfig->callbackMapGet((char *)"graphicsKeyPressEvent", reinterpret_cast<uintptr_t>(this)); \
+        nativeCallbackPointer mouseMoveEventCallback = appConfig->callbackMapGet((char *)"graphicsMouseMoveEvent", reinterpret_cast<uintptr_t>(this)); \
         if (mouseMoveEventCallback != nullptr)                                                                                                   \
         {                                                                                                                                        \
             mouseMoveEventCallback(reinterpret_cast<uintptr_t>(this), (void *)reinterpret_cast<uintptr_t>(event));                                         \

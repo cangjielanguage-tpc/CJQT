@@ -51,6 +51,9 @@ set (SRC_DIR ./src/widgets/application.cpp
         ./src/widgets/status_bar.cpp
         ./src/widgets/tool_bar.cpp
         ./src/widgets/dialog.cpp
+        ./src/widgets/dialog_button_box.cpp
+        ./src/widgets/table_view.cpp
+        ./src/widgets/header_view.cpp
         ./src/widgets/font_dialog.cpp
         ./src/widgets/line_edit.cpp
         ./src/widgets/frame.cpp
@@ -110,6 +113,8 @@ set (SRC_DIR ./src/widgets/application.cpp
         ./src/gui/transform.cpp
         ./src/gui/polygon.cpp
         ./src/gui/polygon_f.cpp
+        ./src/gui/standard_item_model.cpp
+        ./src/gui/standard_item.cpp
 
 )
 
@@ -118,9 +123,12 @@ set (MOC_INC_DIR
         ./includes/core/cj_object.h
         ./includes/gui/validator.h
         ./includes/gui/paint_device.h
+        ./includes/gui/standard_item_model.h
         ./includes/widgets/dialog.h
+        ./includes/widgets/dialog_button_box.h
+        ./includes/widgets/table_view.h
         ./includes/widgets/grid_layout.h
-        ./includes/widgets/dialog.h
+        ./includes/widgets/application.h
         ./includes/widgets/menu.h
         ./includes/widgets/menu_bar.h
         ./includes/widgets/main_window.h

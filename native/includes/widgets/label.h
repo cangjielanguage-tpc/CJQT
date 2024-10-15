@@ -9,6 +9,7 @@ class CjQtLabel : public QLabel
     // Q_OBJECT
 public:
     CjQtLabel(QWidget *parent = nullptr) : QLabel(parent) {}
+    CjQtLabel(const QString &text,QWidget *parent = nullptr) : QLabel(text,parent) {}
 
 protected:
     PAINT_EVENT(QLabel::paintEvent(event))

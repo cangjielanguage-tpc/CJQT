@@ -1,0 +1,82 @@
+#include "standard_item_model.h"
+
+extern "C"
+{
+    uintptr_t nativeStandardItemModelCreate(uintptr_t parentPtr){
+        QStandardItemModel *itemModel;
+        if (parentPtr == 0L)
+        {
+            itemModel = new QStandardItemModel();
+        }
+        else
+        {
+            QObject *parent = reinterpret_cast<QObject *>(static_cast<uintptr_t>(parentPtr));
+            itemModel = new QStandardItemModel(parent);
+        }
+        return reinterpret_cast<uintptr_t>(itemModel);
+    }
+
+    uintptr_t nativeStandardItemModelCreateRC(int rows,int columns,uintptr_t parentPtr){
+        QStandardItemModel *itemModel;
+        if (parentPtr == 0L)
+        {
+            itemModel = new QStandardItemModel(rows,columns);
+        }
+        else
+        {
+            QObject *parent = reinterpret_cast<QObject *>(static_cast<uintptr_t>(parentPtr));
+            itemModel = new QStandardItemModel(rows,columns,parent);
+        }
+//        QStandardItem *item=new QStandardItem("123");
+//        itemModel->setItem(0,0,item);
+        return reinterpret_cast<uintptr_t>(itemModel);
+
+    }
+    void nativeStandardItemModelDelete(uintptr_t ptr){
+        QStandardItemModel *parent = reinterpret_cast<QStandardItemModel *>(static_cast<uintptr_t>(ptr));
+        delete parent;
+    }
+    void nativeStandardItemModelSetItem(int rows,int columns,uintptr_t ptr,uintptr_t itemPtr){
+        QStandardItem *item = reinterpret_cast<QStandardItem *>(static_cast<uintptr_t>(itemPtr));
+        QStandardItemModel *model = reinterpret_cast<QStandardItemModel *>(static_cast<uintptr_t>(ptr));
+        model->setItem(rows,columns,item);
+    }
+
+    void nativeStandardItemModelSetHorizontalHeaderLabels(uintptr_t ptr,uintptr_t labelsPtr){
+        QStandardItemModel *model = reinterpret_cast<QStandardItemModel *>(static_cast<uintptr_t>(ptr));
+        QStringList *labels = reinterpret_cast<QStringList *>(static_cast<uintptr_t>(labelsPtr));
+        model->setHorizontalHeaderLabels(*labels);
+    }
+
+    void nativeStandardItemModelSetVerticalHeaderLabels(uintptr_t ptr,uintptr_t labelsPtr){
+        QStandardItemModel *model = reinterpret_cast<QStandardItemModel *>(static_cast<uintptr_t>(ptr));
+        QStringList *labels = reinterpret_cast<QStringList *>(static_cast<uintptr_t>(labelsPtr));
+        model->setVerticalHeaderLabels(*labels);
+    }
+
+    uintptr_t nativeStandardItemModelRemoveColumn(uintptr_t ptr,int column )
+    {
+
+        QStandardItemModel *itemModel = reinterpret_cast<QStandardItemModel *>(static_cast<uintptr_t>(ptr));
+        itemModel->removeColumn(column);
+    };
+
+    uintptr_t nativeStandardItemModelRemoveColumns(uintptr_t ptr,int column,int count )
+    {
+
+        QStandardItemModel *itemModel = reinterpret_cast<QStandardItemModel *>(static_cast<uintptr_t>(ptr));
+        itemModel->removeColumns(column,count);
+    };
+    uintptr_t nativeStandardItemModelRemoveRow(uintptr_t ptr,int row )
+    {
+
+        QStandardItemModel *itemModel = reinterpret_cast<QStandardItemModel *>(static_cast<uintptr_t>(ptr));
+        itemModel->removeRow(row);
+    };
+    uintptr_t nativeStandardItemModelRemoveRows(uintptr_t ptr,int row,int count )
+    {
+
+        QStandardItemModel *itemModel = reinterpret_cast<QStandardItemModel *>(static_cast<uintptr_t>(ptr));
+        itemModel->removeRows(row,count);
+    };
+}

@@ -158,4 +158,16 @@ extern "C"
         QTextEdit *instance = reinterpret_cast<QTextEdit *>(static_cast<uintptr_t>(ptr));
         instance->redo();
     }
+
+    bool nativeTextEditIsReadOnly(uintptr_t ptr)
+    {
+        QTextEdit *instance = reinterpret_cast<QTextEdit *>(static_cast<uintptr_t>(ptr));
+        return instance->isReadOnly();
+    }
+
+    void nativeTextEditSetReadOnly(uintptr_t ptr, bool b)
+    {
+        QTextEdit *instance = reinterpret_cast<QTextEdit *>(static_cast<uintptr_t>(ptr));
+        return instance->setReadOnly(b);
+    }
 }

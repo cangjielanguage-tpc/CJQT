@@ -7,7 +7,8 @@ extern "C"
 
     uintptr_t nativeDialogCreate(uintptr_t parentPtr)
 	{
-		CjQtDialog *dialog;
+        APPLICATION_CREATE
+        CjQtDialog *dialog;
 		if (parentPtr == 0L)
 		{
 			dialog = new CjQtDialog();
@@ -24,6 +25,13 @@ extern "C"
 	{
 		CjQtDialog *instance = reinterpret_cast<CjQtDialog *>(static_cast<uintptr_t>(ptr));
 		delete instance;
-	}
+    }
+
+
+    void nativeDialogExec(uintptr_t ptr)
+    {
+        CjQtDialog *instance = reinterpret_cast<CjQtDialog *>(static_cast<uintptr_t>(ptr));
+        instance->exec();
+    }
 
 }

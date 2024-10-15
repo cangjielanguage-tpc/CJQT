@@ -1,17 +1,19 @@
 #include <map>
 #include <QApplication>
 #include <string.h>
+#include <iostream>
 
-typedef void (*nativeEventCallback)(long, long);
+
+typedef void (*nativeEventCallback)(uintptr_t, uintptr_t);
 typedef void (*nativeConnectCallback)(uintptr_t);
-typedef void (*nativeConnectCallbackChar)(long, char *);
-typedef void (*nativeConnectCallbackInt)(long, int);
-typedef void (*nativeConnectCallbackIntInt)(long, int, int);
-typedef void (*nativeConnectCallbackBool)(long, bool);
-typedef void (*nativeConnectCallbackDouble)(long, double);
-typedef void (*nativeConnectCallbackPointer)(long, void *);
+typedef void (*nativeConnectCallbackChar)(uintptr_t, char *);
+typedef void (*nativeConnectCallbackInt)(uintptr_t, int);
+typedef void (*nativeConnectCallbackIntInt)(uintptr_t, int, int);
+typedef void (*nativeConnectCallbackBool)(uintptr_t, bool);
+typedef void (*nativeConnectCallbackDouble)(uintptr_t, double);
+typedef void (*nativeConnectCallbackPointer)(uintptr_t, void *);
 
-typedef void *(*nativeCallbackPointer)(long, void *);
+typedef void *(*nativeCallbackPointer)(uintptr_t, void *);
 
 #define APPLICATION_CREATE                                                   \
     if (appConfig->appInit && appConfig->app == nullptr)                     \

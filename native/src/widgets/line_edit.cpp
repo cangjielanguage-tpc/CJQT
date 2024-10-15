@@ -139,7 +139,7 @@ extern "C"
         QLineEdit *lineEditObj = reinterpret_cast<QLineEdit *>(static_cast<uintptr_t>(ptr));
         return lineEditObj->dragEnabled();
     }
-    int nativeLineEditEchMode(uintptr_t ptr)
+    int nativeLineEditEchoMode(uintptr_t ptr)
     {
         QLineEdit *lineEditObj = reinterpret_cast<QLineEdit *>(static_cast<uintptr_t>(ptr));
         return lineEditObj->echoMode();
@@ -273,7 +273,7 @@ extern "C"
         QLineEdit *lineEditObj = reinterpret_cast<QLineEdit *>(static_cast<uintptr_t>(ptr));
         return lineEditObj->setDragEnabled(b);
     }
-    void nativeLineEditSetEchMode(uintptr_t ptr, int echMode)
+    void nativeLineEditSetEchoMode(uintptr_t ptr, int echMode)
     {
         QLineEdit *lineEditObj = reinterpret_cast<QLineEdit *>(static_cast<uintptr_t>(ptr));
         return lineEditObj->setEchoMode(QLineEdit::EchoMode(echMode));

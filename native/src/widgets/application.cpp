@@ -5,6 +5,7 @@
 #include <unistd.h>
 #include "main_window.h"
 #include "menu_bar.h"
+#include "application.h"
 
 namespace
 {
@@ -18,7 +19,6 @@ namespace
 
 extern "C"
 {
-	Config *appConfig;
 
 	void nativeApplicationInit()
 	{

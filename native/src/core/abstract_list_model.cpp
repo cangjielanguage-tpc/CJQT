@@ -2,9 +2,11 @@
 
 extern "C"
 {
-    uintptr_t nativeAbstractListModelCreate()
+    uintptr_t nativeAbstractListModelCreate(uintptr_t ptr)
     {
-        CjAbstractListModel *event = new CjAbstractListModel();
+
+        QObject *obj = reinterpret_cast<QObject *>(static_cast<uintptr_t>(ptr));
+        CjAbstractListModel *event = new CjAbstractListModel(obj);
         return reinterpret_cast<uintptr_t>(event);
     }
 

@@ -6,9 +6,9 @@
 extern "C"
 {
 
-    int nativeCPointerToInt(void *data)
+    intptr_t nativeCPointerToInt(void *data)
     {
-        return (int)(intptr_t)data;
+        return (intptr_t)data;
     }
 
     char *nativeCPointerToString(void *data)
