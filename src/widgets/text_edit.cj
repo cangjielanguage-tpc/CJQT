@@ -35,6 +35,10 @@ foreign func nativeTextEditPaste(ptr: Int64): Unit
 foreign func nativeTextEditUndo(ptr: Int64): Unit
 foreign func nativeTextEditRedo(ptr: Int64): Unit
 
+
+foreign func nativeTextEditIsReadOnly(ptr: Int64): Bool
+foreign func nativeTextEditSetReadOnly(ptr: Int64, b: Bool): Unit
+
 /**
  * The class is QTextEdit inherited from QWidget
  * @author wathinst
@@ -290,6 +294,22 @@ public class QTextEdit <: QWidget {
     public func redo() {
         unsafe {
             nativeTextEditRedo(ptr)
+        }
+    }
+    public func setReadOnly(b: Bool): Unit {
+        unsafe {
+            nativeTextEditSetReadOnly(this.ptr, b)
+        }
+    }
+
+    /**
+     * The Function is isReadOnly
+     *
+     * @return Type of Bool
+     */
+    public func isReadOnly(): Bool {
+        return unsafe {
+            nativeTextEditIsReadOnly(this.ptr)
         }
     }
 }

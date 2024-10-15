@@ -2,7 +2,7 @@ package cjqt.core
 
 import cjqt.tools.QConversion
 
-foreign func nativeAbstractListModelCreate(): Int64
+foreign func nativeAbstractListModelCreate(ptr: Int64): Int64
 foreign func nativeAbstractListModelDelete(ptr: Int64): Unit
 
 foreign func nativeAbstractItemModelBeginInsertRows(ptr: Int64, parentPtr: Int64, first: Int32, last: Int32): Unit
@@ -37,19 +37,15 @@ func dataCallback(ptr: Int64, dataPtr: CPointer<Unit>): CPointer<Unit> {
     return QVariant().ptr
 }
 
-public abstract class QAbstractListModel {
-    public let ptr: Int64
-
-    public init() {
-        this.ptr = unsafe {
-            nativeAbstractListModelCreate()
-        }
-        //setRowCountCallback()
-        //setDataCallback()
-    }
+public abstract class QAbstractListModel<:QAbstractItemModel {
 
     public init(ptr: Int64) {
-        this.ptr = ptr
+        // this.ptr = ptr
+        super(
+            unsafe {
+                nativeAbstractListModelCreate(ptr)
+            }
+        )
         //setRowCountCallback()
         //setDataCallback()
     }

@@ -102,7 +102,7 @@ foreign func nativeLineEditAlignment(ptr: Int64): Int16
        return lineEditObj->dragEnabled();
    }
  * ***************/
-foreign func nativeLineEditEchMode(ptr: Int64): Int32
+foreign func nativeLineEditEchoMode(ptr: Int64): Int32
 
 /***************
 
@@ -212,7 +212,7 @@ foreign func nativeLineEditSetAlignment(ptr: Int64, flag: Int16): Unit
        return lineEditObj->setDragEnabled(b);
    }
  * **********************/
-foreign func nativeLineEditSetEchMode(ptr: Int64, echMode: Int32): Unit
+foreign func nativeLineEditSetEchoMode(ptr: Int64, echMode: Int32): Unit
 foreign func nativeLineEditSetInputMask(ptr: Int64, inputMask: CString): Unit
 foreign func nativeLineEditSetFrame(ptr: Int64, b: Bool): Unit
 foreign func nativeLineEditSetMaxLength(ptr: Int64, length: Int32): Unit
@@ -556,9 +556,9 @@ public open class QLineEdit <: QWidget {
      *
      * @param echMode of Enum EchoMode
      */
-    public func setEchMod(echMode: EchoMode): Unit {
+    public func setEchoMode(echMode: EchoMode): Unit {
         unsafe {
-            nativeLineEditSetEchMode(this.ptr, echMode.value())
+            nativeLineEditSetEchoMode(this.ptr, echMode.value())
         }
     }
 
@@ -567,9 +567,9 @@ public open class QLineEdit <: QWidget {
      *
      * @return Type of Enum EchoMode
      */
-    public func echMode(): EchoMode {
+    public func echoMode(): EchoMode {
         let num = unsafe {
-            nativeLineEditEchMode(this.ptr)
+            nativeLineEditEchoMode(this.ptr)
         }
         return EchoMode.convert(num)
     }

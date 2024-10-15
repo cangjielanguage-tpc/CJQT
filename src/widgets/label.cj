@@ -12,6 +12,7 @@ import cjqt.gui.*
 import cjqt.core.*
 
 foreign func nativeLabelCreate(parentPtr: Int64): Int64
+foreign func nativeLabelCreateText(text:CString,parentPtr: Int64): Int64
 foreign func nativeLabelSetText(ptr: Int64, text:CString): Unit
 foreign func nativeLabelDelete(ptr: Int64): Unit
 
@@ -19,7 +20,7 @@ foreign func nativeLabelDelete(ptr: Int64): Unit
  * The class is QLabel inherited from QWidget
  * @author wathinst
  */
-public class QLabel <: QWidget{
+public open class QLabel <: QWidget{
 
     /**
      * The Function is init constructor
@@ -38,9 +39,8 @@ public class QLabel <: QWidget{
      */
     public init(text:String) {
         super(unsafe {
-            nativeLabelCreate(0)
+            nativeLabelCreateText(LibC.mallocCString(text),0)
         })
-        setText(text)
     }
 
     /**
@@ -54,12 +54,35 @@ public class QLabel <: QWidget{
         })
     }
 
+
+    /**
+     * The Function is init constructor
+     *
+     * @param parent of QWidget
+     */
+    public init(ptr: Int64) {
+        super(unsafe {
+            nativeLabelCreate(ptr)
+        })
+    }
+
+    /**
+     * The Function is init constructor
+     *
+     * @param parent of QWidget
+     */
+    public init(text:String,parent: QWidget) {
+        super(unsafe {
+            nativeLabelCreateText(LibC.mallocCString(text),parent.ptr)
+        })
+    }
+
     /**
      * The Function is setText
      *
      * @param text of String
      */
-    public func setText(text:String) {
+    public open func setText(text:String) {
         unsafe {
             nativeLabelSetText(ptr, LibC.mallocCString(text))
         }

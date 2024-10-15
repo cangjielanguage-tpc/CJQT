@@ -1,0 +1,42 @@
+package cjqt.gui
+
+//foreign function
+foreign func nativeStandardItemCreate(): Int64
+foreign func nativeStandardItemCreateText(text: CString): Int64
+foreign func nativeStandardItemCreateIcon(iconPtr: Int64,text:CString): Int64
+foreign func nativeStandardItemCreateRC(rows:Int32,columns:Int32): Int64
+foreign func nativeStandardItemDelete(ptr: Int64): Unit
+
+public open class QStandardItem {    
+    public let ptr: Int64
+
+    public init() {
+        this.ptr = unsafe {
+            nativeStandardItemCreate()
+        }
+    }
+    public init(text:String) {
+        this.ptr = unsafe {
+            nativeStandardItemCreateText( LibC.mallocCString(text))
+        }
+    }    
+    
+    public init(icon:QIcon,text:String) {
+        this.ptr = unsafe {
+            nativeStandardItemCreateIcon(icon.ptr,  LibC.mallocCString(text))
+        }
+    }
+
+    public init(rows:Int32,columns:Int32) {
+        this.ptr = unsafe {
+            nativeStandardItemCreateRC(rows,columns)
+        }
+    }
+
+    public func delete() {
+        unsafe {
+            nativeStandardItemDelete(this.ptr)
+        }
+    }
+
+}

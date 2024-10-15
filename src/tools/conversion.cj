@@ -1,6 +1,6 @@
 package cjqt.tools
 
-foreign func nativeCPointerToInt(pointer: CPointer<Unit>): Int32
+foreign func nativeCPointerToInt(pointer: CPointer<Unit>): Int64
 foreign func nativeCPointerToString(pointer: CPointer<Unit>): CString
 foreign func nativeCPointerToBool(pointer: CPointer<Unit>): Bool
 foreign func nativeCPointerToCjDataIntInt(pointer: CPointer<Unit>): CjDataIntInt

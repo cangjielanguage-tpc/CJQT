@@ -64,6 +64,16 @@ public class QPushButton <: QWidget {
         clicked = QPushButtonClickedSignal<Unit>(ptr)
     }
 
+    
+    public init(ptr: Int64) {
+        super(
+            unsafe {
+                nativePushButtonCreate(ptr)
+            }
+        )
+        clicked = QPushButtonClickedSignal<Unit>(ptr)
+    }
+
     /**
      * The Function is setText
      *

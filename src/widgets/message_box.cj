@@ -22,6 +22,14 @@ foreign func nativeMessageBoxAbout(
     text: CString
 ): Unit
 
+
+foreign func nativeMessageBoxCritical(
+    parentPtr: Int64,
+    title: CString,
+    text: CString,
+    buttonsPtr: Int64,
+    defaultButtonPtr: Int64
+): Unit
 /**
  * The class is QMessageBox inherited from QWidget
  * @author wathinst
@@ -50,6 +58,12 @@ public class QMessageBox <: QWidget {
     static public func about(parent: QWidget, title: String, text: String) {
         unsafe {
             nativeMessageBoxAbout(parent.ptr, LibC.mallocCString(title), LibC.mallocCString(text))
+        }
+    }
+    
+    static public func critical(parent: QWidget, title: String, text: String) {
+        unsafe {
+            nativeMessageBoxCritical(parent.ptr, LibC.mallocCString(title), LibC.mallocCString(text), 0, 0)
         }
     }
 }

@@ -33,7 +33,8 @@ public open class QWidgetSignal<T> {
      * @param callback of (T)->Unit
      */
     public func connect(callback: (T) -> Unit) {
-        QCallbackMap.connectAny.put(QMapKey(signalType, ptr).hashCode(), callback)
+        let hashStr = signalType+ptr.toString();
+        QCallbackMap.connectAny.put(QMapKey(signalType, ptr.toString()).hashCode(), callback)
 
         let connectCPointerCallback: CFunc<(Int64, CPointer<Unit>) -> Unit> = {
             code, pointer => try {
@@ -58,8 +59,8 @@ public open class QWidgetSignal<T> {
         }
 
         match (connectCb) {
-            case Some(cb) => cb(QMapKey(signalType, ptr).hashCode(), connectCPointerCallback)
-            case None => nativeConnect(QMapKey(signalType, ptr).hashCode(), connectCPointerCallback)
+            case Some(cb) => cb(QMapKey(signalType, ptr.toString()).hashCode(), connectCPointerCallback)
+            case None => nativeConnect(QMapKey(signalType, ptr.toString()).hashCode(), connectCPointerCallback)
         }
     }
 
@@ -76,7 +77,7 @@ public open class QWidgetSignal<T> {
      *
      */
     public func remove() {
-        QCallbackMap.connectAny.remove(QMapKey(signalType, ptr).hashCode())
+        QCallbackMap.connectAny.remove(QMapKey(signalType, ptr.toString()).hashCode())
         return
     }
 }

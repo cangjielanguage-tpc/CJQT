@@ -39,7 +39,7 @@ public open class QCallbackMap {
  */
 public class QMapKey {
     /** var member ptr type is Int64 */
-    public var ptr: Int64
+    public var ptr: String
     /** var member mapType type is String */
     public var mapType: String
 
@@ -49,7 +49,7 @@ public class QMapKey {
      * @param mapType of String
      * @param ptr of Int64
      */
-    public init(mapType: String, ptr: Int64) {
+    public init(mapType: String, ptr: String) {
         this.ptr = ptr
         this.mapType = mapType
     }
@@ -60,7 +60,7 @@ public class QMapKey {
      * @return Type of Int64
      */
     public func hashCode(): Int64 {
-        let hashStr = "${mapType}${ptr}"
+        let hashStr = mapType+ptr.toString();
         return hashStr.hashCode()
     }
 }
