@@ -54,13 +54,6 @@ extern "C"
         return reinterpret_cast<uintptr_t>(&sibling);
     }
 
-    uintptr_t nativeModelIndexData(uintptr_t ptr, int role = Qt::DisplayRole)
-    {
-        QModelIndex *instance = reinterpret_cast<QModelIndex *>(static_cast<uintptr_t>(ptr));
-        QVariant data = instance->data(Qt::ItemDataRole(role));
-        return reinterpret_cast<uintptr_t>(&data);
-    }
-
     bool nativeModelIndexIsValid(uintptr_t ptr)
     {
         QModelIndex *instance = reinterpret_cast<QModelIndex *>(static_cast<uintptr_t>(ptr));

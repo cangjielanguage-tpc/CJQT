@@ -36,7 +36,13 @@ extern "C"
         QStandardItemModel *parent = reinterpret_cast<QStandardItemModel *>(static_cast<uintptr_t>(ptr));
         delete parent;
     }
-    void nativeStandardItemModelSetItem(int rows,int columns,uintptr_t ptr,uintptr_t itemPtr){
+    
+    uintptr_t nativeStandardItemModelItem(uintptr_t ptr,int row,int column){
+        QStandardItemModel *model = reinterpret_cast<QStandardItemModel *>(static_cast<uintptr_t>(ptr));
+        QStandardItem *item=model->item(row,column);
+        return reinterpret_cast<uintptr_t>(item);
+    }
+    void nativeStandardItemModelSetItem(uintptr_t ptr,int rows,int columns,uintptr_t itemPtr){
         QStandardItem *item = reinterpret_cast<QStandardItem *>(static_cast<uintptr_t>(itemPtr));
         QStandardItemModel *model = reinterpret_cast<QStandardItemModel *>(static_cast<uintptr_t>(ptr));
         model->setItem(rows,columns,item);
@@ -78,5 +84,48 @@ extern "C"
 
         QStandardItemModel *itemModel = reinterpret_cast<QStandardItemModel *>(static_cast<uintptr_t>(ptr));
         itemModel->removeRows(row,count);
+    };
+    
+    void nativeStandardItemModelAppendRow(uintptr_t ptr,uintptr_t itemsPtr){
+
+        QStandardItemModel *model = reinterpret_cast<QStandardItemModel *>(static_cast<uintptr_t>(ptr));
+        QStringList *strs = reinterpret_cast<QStringList *>(static_cast<uintptr_t>(itemsPtr));
+        QList<QStandardItem*> items;
+        for(const QString& str:*strs){
+            QStandardItem* item=new QStandardItem(str);
+            items.append(item);
+        }
+        model->appendRow(items);
+        
+    };
+    void nativeStandardItemModelAppendColumn(uintptr_t ptr,uintptr_t itemsPtr){
+        QStandardItemModel *model = reinterpret_cast<QStandardItemModel *>(static_cast<uintptr_t>(ptr));
+        QStringList *strs = reinterpret_cast<QStringList *>(static_cast<uintptr_t>(itemsPtr));
+        QList<QStandardItem*> items;
+        for(const QString& str:*strs){
+            QStandardItem* item=new QStandardItem(str);
+            items.append(item);
+        }
+        model->appendColumn(items);
+    };
+    void nativeStandardItemModelInsertRow(uintptr_t ptr,int row,uintptr_t itemsPtr) {
+        QStandardItemModel *model = reinterpret_cast<QStandardItemModel *>(static_cast<uintptr_t>(ptr));
+        QStringList *strs = reinterpret_cast<QStringList *>(static_cast<uintptr_t>(itemsPtr));
+        QList<QStandardItem*> items;
+        for(const QString& str:*strs){
+            QStandardItem* item=new QStandardItem(str);
+            items.append(item);
+        }
+        model->insertRow(row,items);
+    };
+    void nativeStandardItemModelInsertColumn(uintptr_t ptr,int column,uintptr_t itemsPtr){
+        QStandardItemModel *model = reinterpret_cast<QStandardItemModel *>(static_cast<uintptr_t>(ptr));
+        QStringList *strs = reinterpret_cast<QStringList *>(static_cast<uintptr_t>(itemsPtr));
+        QList<QStandardItem*> items;
+        for(const QString& str:*strs){
+            QStandardItem* item=new QStandardItem(str);
+            items.append(item);
+        }
+        model->insertColumn(column,items);
     };
 }

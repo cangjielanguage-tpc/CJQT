@@ -96,6 +96,7 @@ set (SRC_DIR ./src/widgets/application.cpp
         ./src/core/string_list_model.cpp
         ./src/core/model_index.cpp
         ./src/core/variant.cpp
+        ./src/core/item_selection_model.cpp
         ./src/gui/mouse_event.cpp
         ./src/gui/key_event.cpp
         ./src/gui/painter_event.cpp

@@ -9,7 +9,13 @@ extern "C"
 	{
 		QWidget *parent = reinterpret_cast<QWidget *>(static_cast<uintptr_t>(parentPtr));
         QMessageBox::information(parent, title, text);
-	}
+    }
+
+    int nativeMessageBoxQuestion(uintptr_t parentPtr, const char *title, const char *text, uintptr_t buttonsPtr, uintptr_t defaultButtonPtr)
+    {
+        QWidget *parent = reinterpret_cast<QWidget *>(static_cast<uintptr_t>(parentPtr));
+        return QMessageBox::question(parent, title, text);
+    }
 
 	void nativeMessageBoxAbout(uintptr_t parentPtr, const char *title, const char *text)
 	{

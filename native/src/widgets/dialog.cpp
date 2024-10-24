@@ -28,10 +28,24 @@ extern "C"
     }
 
 
-    void nativeDialogExec(uintptr_t ptr)
+    int nativeDialogExec(uintptr_t ptr)
     {
         CjQtDialog *instance = reinterpret_cast<CjQtDialog *>(static_cast<uintptr_t>(ptr));
-        instance->exec();
+        return instance->exec();
+    }
+
+
+    void nativeDialogReject(uintptr_t ptr)
+    {
+        CjQtDialog *instance = reinterpret_cast<CjQtDialog *>(static_cast<uintptr_t>(ptr));
+        instance->reject();
+    }
+
+
+    void nativeDialogAccept(uintptr_t ptr)
+    {
+        CjQtDialog *instance = reinterpret_cast<CjQtDialog *>(static_cast<uintptr_t>(ptr));
+        instance->accept();
     }
 
 }

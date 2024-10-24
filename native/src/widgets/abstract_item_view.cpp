@@ -36,6 +36,12 @@ extern "C"
         return instance->setSelectionBehavior(QAbstractItemView::SelectionBehavior(behavior));
     }
 
+    uintptr_t nativeAbstractItemViewSelectionModel(uintptr_t ptr)
+    {
+        QAbstractItemView *instance = reinterpret_cast<QAbstractItemView *>(static_cast<uintptr_t>(ptr));
+        QItemSelectionModel *model= instance->selectionModel();
+        return reinterpret_cast<uintptr_t>(model);
+    }
 
     void nativeAbstractItemViewConnectClicked(uintptr_t ptr, uintptr_t code, nativeConnectCallbackPointer callback)
     {
