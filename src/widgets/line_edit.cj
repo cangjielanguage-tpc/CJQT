@@ -410,6 +410,16 @@ public open class QLineEdit <: QWidget {
         textChanged = QLineEditTextChangedSignal(this.ptr)
         textEdited = QLineEditTextEditedSignal(this.ptr)
     }
+    public init(ptr:Int64){
+        super(ptr)
+        cursorPositionChanged = QLineEditCursorPositionChangedSignal(this.ptr)
+        editingFinished = QLineEditEditingFinishedSignal(this.ptr)
+        inputRejected = QLineEditInputRejectedSignal(this.ptr)
+        returnPressed = QLineEditReturnPressedSignal(this.ptr)
+        selectionChanged = QLineEditSelectionChangedSignal(this.ptr)
+        textChanged = QLineEditTextChangedSignal(this.ptr)
+        textEdited = QLineEditTextEditedSignal(this.ptr)
+    }
 
     /**
      * The Function is init constructor

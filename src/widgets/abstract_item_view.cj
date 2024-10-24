@@ -7,6 +7,7 @@ foreign func nativeAbstractItemViewModel(ptr: Int64): Int64
 foreign func nativeAbstractItemViewSetItemDelegate(ptr: Int64, delegatePtr: Int64): Unit
 foreign func nativeAbstractItemViewItemDelegate(ptr: Int64): Int64
 foreign func nativeAbstractItemViewSetSelectionBehavior(ptr: Int64,behavior:Int32): Unit
+foreign func nativeAbstractItemViewSelectionModel(ptr: Int64): Int64
 
 foreign func nativeAbstractItemViewConnectClicked(ptr: Int64, code: Int64, callback: CFunc<(Int64, CPointer<Unit>) -> Unit>): Unit
 
@@ -83,6 +84,12 @@ public open class QAbstractItemView <: QAbstractScrollArea {
     public func setSelectionBehavior(behavior:SelectionBehavior): Unit {
         unsafe {
             nativeAbstractItemViewSetSelectionBehavior(this.ptr,behavior.value())
+        }
+    }
+    
+    public func selectionModel(): Int64 {
+        unsafe {
+            nativeAbstractItemViewSelectionModel(this.ptr)
         }
     }
 }

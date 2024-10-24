@@ -6,7 +6,8 @@ internal import cjqt.core.*
 foreign func nativeStandardItemModelCreate(ptr: Int64): Int64
 foreign func nativeStandardItemModelCreateRC(rows:Int32,columns:Int32,ptr: Int64): Int64
 foreign func nativeStandardItemModelDelete(ptr: Int64): Unit
-foreign func nativeStandardItemModelSetItem(rows:Int32,columns:Int32,ptr: Int64,itemPtr: Int64): Unit
+foreign func nativeStandardItemModelSetItem(ptr: Int64,rows:Int32,columns:Int32,itemPtr: Int64): Unit
+foreign func nativeStandardItemModelItem(ptr: Int64,row:Int32,column:Int32): Int64
 
 foreign func nativeStandardItemModelSetHorizontalHeaderLabels(ptr:Int64,labelsPtr:Int64): Unit
 foreign func nativeStandardItemModelSetVerticalHeaderLabels(ptr:Int64,labelsPtr:Int64): Unit
@@ -16,6 +17,11 @@ foreign func nativeStandardItemModelRemoveColumn(ptr: Int64, column: Int32): Uni
 foreign func nativeStandardItemModelRemoveColumns(ptr: Int64, column: Int32, count: Int32): Unit
 foreign func nativeStandardItemModelRemoveRow(ptr: Int64,row: Int32): Unit
 foreign func nativeStandardItemModelRemoveRows(ptr: Int64,row: Int32, count: Int32): Unit
+
+foreign func nativeStandardItemModelAppendRow(ptr:Int64,itemsPtr:Int64): Unit
+foreign func nativeStandardItemModelAppendColumn(ptr:Int64,itemsPtr:Int64): Unit
+foreign func nativeStandardItemModelInsertRow(ptr:Int64,row:Int32,itemsPtr:Int64): Unit
+foreign func nativeStandardItemModelInsertColumn(ptr:Int64,column:Int32,itemsPtr:Int64): Unit
 
 public open class QStandardItemModel<:QAbstractItemModel {    
     public init(parent:QObject) {
@@ -44,9 +50,15 @@ public open class QStandardItemModel<:QAbstractItemModel {
         }
     }    
 
+    public func item(row:Int32,column:Int32) {
+        unsafe {
+            nativeStandardItemModelItem(this.ptr,row,column)
+        }
+    }
+
     public func setItem(row:Int32,column:Int32,item:QStandardItem) {
         unsafe {
-            nativeStandardItemModelSetItem(row,column,this.ptr,item.ptr)
+            nativeStandardItemModelSetItem(this.ptr,row,column,item.ptr)
         }
     }
 
@@ -86,6 +98,27 @@ public open class QStandardItemModel<:QAbstractItemModel {
     public func removeRows(row: Int32, count: Int32): Unit {
         return unsafe {
             nativeStandardItemModelRemoveRows(this.ptr,row,count)
+        }
+    }
+    public func appendRow(items:QStringList){
+        return unsafe {
+            nativeStandardItemModelAppendRow(this.ptr,items.ptr)
+        }
+    }
+    public func appendColumn(items:QStringList){
+        return unsafe {
+            nativeStandardItemModelAppendColumn(this.ptr,items.ptr)
+        }
+    }
+    public func insertRow(row:Int32, items:QStringList){
+        return unsafe {
+            nativeStandardItemModelInsertRow(this.ptr,row,items.ptr)
+        }
+    }
+
+    public func insertColumn(column:Int32, items:QStringList){
+        return unsafe {
+            nativeStandardItemModelInsertColumn(this.ptr,column,items.ptr)
         }
     }
 

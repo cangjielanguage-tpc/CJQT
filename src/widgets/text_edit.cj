@@ -55,6 +55,10 @@ public class QTextEdit <: QWidget {
             }
         )
     }
+    
+    public init(ptr:Int64){
+        super(ptr)
+    }
 
     /**
      * The Function is init constructor

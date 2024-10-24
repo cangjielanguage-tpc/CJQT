@@ -16,7 +16,9 @@ internal import cjqt.core.*
 
 foreign func nativeDialogCreate(parentPtr: Int64): Int64
 foreign func nativeDialogDelete(ptr: Int64): Unit
-foreign func nativeDialogExec(ptr: Int64): Unit
+foreign func nativeDialogExec(ptr: Int64): Int32
+foreign func nativeDialogReject(ptr: Int64): Unit
+foreign func nativeDialogAccept(ptr: Int64): Unit
 
 
 /**
@@ -73,9 +75,19 @@ public open class QDialog <: QWidget {
         }
     }
 
-    public func exec() {
+    public func exec():Int32 {
         unsafe {
             nativeDialogExec(ptr)
+        }
+    }
+    public func reject():Unit{
+        unsafe {
+            nativeDialogReject(ptr)
+        }
+    }
+    public func accept():Unit{
+        unsafe {
+            nativeDialogAccept(ptr)
         }
     }
 

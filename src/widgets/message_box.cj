@@ -16,6 +16,14 @@ foreign func nativeMessageBoxInformation(
     defaultButtonPtr: Int64
 ): Unit
 
+foreign func nativeMessageBoxQuestion(
+    parentPtr: Int64,
+    title: CString,
+    text: CString,
+    buttonsPtr: Int64,
+    defaultButtonPtr: Int64
+): Int32
+
 foreign func nativeMessageBoxAbout(
     parentPtr: Int64,
     title: CString,
@@ -30,11 +38,14 @@ foreign func nativeMessageBoxCritical(
     buttonsPtr: Int64,
     defaultButtonPtr: Int64
 ): Unit
+
+
 /**
  * The class is QMessageBox inherited from QWidget
  * @author wathinst
  */
 public class QMessageBox <: QWidget {
+
     /**
      * The Function is information
      *
@@ -46,6 +57,13 @@ public class QMessageBox <: QWidget {
         unsafe {
             nativeMessageBoxInformation(parent.ptr, LibC.mallocCString(title), LibC.mallocCString(text), 0, 0)
         }
+    }
+
+    static public func question(parent: QWidget, title: String, text: String):StandardButton {
+        let btn=unsafe {
+            nativeMessageBoxQuestion(parent.ptr, LibC.mallocCString(title), LibC.mallocCString(text), 0, 0)
+        }
+        return StandardButton.convert(btn)
     }
 
     /**
