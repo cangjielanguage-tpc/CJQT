@@ -14,6 +14,7 @@ foreign func nativeMainWindowSetMenuBar(ptr: Int64, menuBarPtr: Int64): Unit
 foreign func nativeMainWindowMenuBar(ptr: Int64): Int64
 foreign func nativeMainWindowAddToolBar(ptr: Int64, toolBarPtr: Int64): Unit
 foreign func nativeMainWindowDelete(ptr: Int64): Unit
+foreign func nativeMainWindowAddDockWidget(ptr: Int64,area:Int16,dockPtr:Int64): Unit
 
 /**
  * The class is QMainWindow inherited from QWidget
@@ -97,6 +98,11 @@ public open class QMainWindow <: QWidget {
     public override func delete() {
         unsafe {
             nativeMainWindowDelete(ptr)
+        }
+    }
+    public func addDockWidget(area:DockWidgetArea, dockwidget:QDockWidget){
+        unsafe {
+            nativeMainWindowAddDockWidget(ptr,area.value(),dockwidget.ptr)
         }
     }
 }

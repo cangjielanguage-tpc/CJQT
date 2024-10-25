@@ -78,6 +78,7 @@ set (SRC_DIR ./src/widgets/application.cpp
         ./src/widgets/abstract_item_view.cpp
         ./src/widgets/abstract_item_delegate.cpp
         ./src/widgets/styled_item_delegate.cpp
+        ./src/widgets/dock_widget.cpp
         ./src/core/url.cpp
         ./src/core/timer.cpp
         ./src/core/rect.cpp
@@ -153,6 +154,7 @@ set (MOC_INC_DIR
         ./includes/widgets/splitter_handle.h
         ./includes/widgets/scroll_area.h
         ./includes/widgets/list_view.h
+        ./includes/widgets/dock_widget.h
 )
 
 find_package(Qt5 COMPONENTS Core Gui Widgets REQUIRED )
