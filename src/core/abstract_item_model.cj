@@ -8,10 +8,24 @@ public open class QAbstractItemModel<:QObject {
         super(ptr)
     }
     
-    public func index(row:Int32, column:Int32, parent:Int64): Int64 {
-        return unsafe {
+    public func index(row:Int32, column:Int32): QModelIndex {
+        var ptr=  unsafe {
+            nativeAbstractItemModelIndex(this.ptr, row, column, 0)
+        }
+        var model= QModelIndex(ptr)
+        model.setIrow(row)
+        model.setIcol(column)
+        return model
+    }
+    
+    public func index(row:Int32, column:Int32, parent:Int64): QModelIndex {
+        var ptr= unsafe {
             nativeAbstractItemModelIndex(this.ptr, row, column, parent)
         }
+        var model= QModelIndex(ptr)
+        model.setIrow(row)
+        model.setIcol(column)
+        return model
     }
     
     public func data(index:Int64,role!:Int32=0):Int64{

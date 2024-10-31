@@ -27,4 +27,13 @@ extern "C"
         QStandardItem *parent = reinterpret_cast<QStandardItem *>(static_cast<uintptr_t>(ptr));
         delete parent;
     }
+
+
+    void nativeStandardItemAppendRow(uintptr_t ptr,uintptr_t itemPtr){
+
+        QStandardItem *model = reinterpret_cast<QStandardItem *>(static_cast<uintptr_t>(ptr));
+        QStandardItem *item = reinterpret_cast<QStandardItem *>(static_cast<uintptr_t>(itemPtr));
+        model->appendRow(item);
+
+    };
 }

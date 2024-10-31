@@ -4,7 +4,7 @@ foreign func nativeTableViewCreate(parentPtr: Int64): Int64
 foreign func nativeTableViewDelete(ptr: Int64): Unit
 foreign func nativeTableViewVerticalHeader(ptr: Int64):Int64
 foreign func nativeTableViewHorizontalHeader(ptr: Int64):Int64
-foreign func nativeTableViewCurrentIndex(ptr: Int64):Int64
+
 
 public open class QTableView <: QAbstractItemView {
     
@@ -14,6 +14,9 @@ public open class QTableView <: QAbstractItemView {
                 nativeTableViewCreate(parent.ptr)
             }
         )
+    }
+    public init(ptr:Int64) {
+        super(ptr)
     }
 
     public override func delete() {
@@ -37,12 +40,5 @@ public open class QTableView <: QAbstractItemView {
         return QHeaderView(hhPtr)
     }
     
-    public func currentIndex():QModelIndex  {
-        let ciPtr=unsafe {
-            nativeTableViewCurrentIndex(ptr)
-        }
-        
-        return QModelIndex(ciPtr)
-    }
 
 }

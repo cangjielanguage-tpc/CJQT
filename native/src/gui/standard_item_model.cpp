@@ -86,7 +86,7 @@ extern "C"
         itemModel->removeRows(row,count);
     };
     
-    void nativeStandardItemModelAppendRow(uintptr_t ptr,uintptr_t itemsPtr){
+    void nativeStandardItemModelAppendRowItems(uintptr_t ptr,uintptr_t itemsPtr){
 
         QStandardItemModel *model = reinterpret_cast<QStandardItemModel *>(static_cast<uintptr_t>(ptr));
         QStringList *strs = reinterpret_cast<QStringList *>(static_cast<uintptr_t>(itemsPtr));
@@ -96,6 +96,14 @@ extern "C"
             items.append(item);
         }
         model->appendRow(items);
+        
+    };
+    
+    void nativeStandardItemModelAppendRow(uintptr_t ptr,uintptr_t itemPtr){
+
+        QStandardItemModel *model = reinterpret_cast<QStandardItemModel *>(static_cast<uintptr_t>(ptr));
+        QStandardItem *item = reinterpret_cast<QStandardItem *>(static_cast<uintptr_t>(itemPtr));
+        model->appendRow(item);
         
     };
     void nativeStandardItemModelAppendColumn(uintptr_t ptr,uintptr_t itemsPtr){
@@ -127,5 +135,12 @@ extern "C"
             items.append(item);
         }
         model->insertColumn(column,items);
+    };
+    uintptr_t nativeStandardItemModelItemFromIndex(uintptr_t ptr,uintptr_t indexPtr){
+        QStandardItemModel *model = reinterpret_cast<QStandardItemModel *>(static_cast<uintptr_t>(ptr));
+        QModelIndex *modelIndex = reinterpret_cast<QModelIndex *>(static_cast<uintptr_t>(indexPtr));
+        QStandardItem *item=model->itemFromIndex(*modelIndex);
+        return reinterpret_cast<uintptr_t>(item);
+
     };
 }

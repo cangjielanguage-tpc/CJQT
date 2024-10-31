@@ -19,9 +19,12 @@ foreign func nativeStandardItemModelRemoveRow(ptr: Int64,row: Int32): Unit
 foreign func nativeStandardItemModelRemoveRows(ptr: Int64,row: Int32, count: Int32): Unit
 
 foreign func nativeStandardItemModelAppendRow(ptr:Int64,itemsPtr:Int64): Unit
+foreign func nativeStandardItemModelAppendRowItems(ptr:Int64,itemsPtr:Int64): Unit
 foreign func nativeStandardItemModelAppendColumn(ptr:Int64,itemsPtr:Int64): Unit
 foreign func nativeStandardItemModelInsertRow(ptr:Int64,row:Int32,itemsPtr:Int64): Unit
 foreign func nativeStandardItemModelInsertColumn(ptr:Int64,column:Int32,itemsPtr:Int64): Unit
+
+foreign func nativeStandardItemModelItemFromIndex(ptr:Int64,indexPtr:Int64):Int64
 
 public open class QStandardItemModel<:QAbstractItemModel {    
     public init(parent:QObject) {
@@ -30,11 +33,26 @@ public open class QStandardItemModel<:QAbstractItemModel {
                 nativeStandardItemModelCreate(parent.ptr)
             }
         )
+    }   
+    public init() {
+        super(
+            unsafe {
+                nativeStandardItemModelCreate(0)
+            }
+        )
     }  
 
     public init(ptr:Int64) {
         super(ptr)
     }   
+
+    public init(rows:Int32,columns:Int32) {
+        super(
+            unsafe {
+                nativeStandardItemModelCreateRC(rows,columns,0)
+            }
+        )
+    } 
 
     public init(rows:Int32,columns:Int32,parent:QObject) {
         super(
@@ -102,7 +120,13 @@ public open class QStandardItemModel<:QAbstractItemModel {
     }
     public func appendRow(items:QStringList){
         return unsafe {
-            nativeStandardItemModelAppendRow(this.ptr,items.ptr)
+            nativeStandardItemModelAppendRowItems(this.ptr,items.ptr)
+        }
+    }
+    
+    public func appendRow(item:QStandardItem){
+        return unsafe {
+            nativeStandardItemModelAppendRow(this.ptr,item.ptr)
         }
     }
     public func appendColumn(items:QStringList){
@@ -121,5 +145,12 @@ public open class QStandardItemModel<:QAbstractItemModel {
             nativeStandardItemModelInsertColumn(this.ptr,column,items.ptr)
         }
     }
+    public func itemFromIndex(index:QModelIndex):QStandardItem{
+        let itemPtr= unsafe {
+            nativeStandardItemModelItemFromIndex(this.ptr,index.ptr)
+        }
+        return QStandardItem(itemPtr)
+    }
+
 
 }

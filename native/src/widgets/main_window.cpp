@@ -54,4 +54,10 @@ extern "C"
         CjQtMainWindow *instance = reinterpret_cast<CjQtMainWindow *>(static_cast<uintptr_t>(ptr));
         delete instance;
     }
+    void nativeMainWindowAddDockWidget(uintptr_t ptr,short area,uintptr_t dockPtr)
+    {
+        CjQtMainWindow *instance = reinterpret_cast<CjQtMainWindow *>(static_cast<uintptr_t>(ptr));
+        QDockWidget *dock = reinterpret_cast<QDockWidget *>(static_cast<uintptr_t>(dockPtr));
+        instance->addDockWidget(Qt::DockWidgetArea(area),dock);
+    }
 }

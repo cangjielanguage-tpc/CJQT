@@ -1,4 +1,5 @@
 #include <QModelIndex>
+#include<QDebug>
 
 extern "C"
 {
@@ -65,6 +66,12 @@ extern "C"
         QModelIndex *instance = reinterpret_cast<QModelIndex *>(static_cast<uintptr_t>(ptr));
         const QAbstractItemModel *model = instance->model();
         return reinterpret_cast<uintptr_t>(model);
+    }
+    char* nativeModelIndexData(uintptr_t ptr)
+    {
+        QModelIndex *instance = reinterpret_cast<QModelIndex *>(static_cast<uintptr_t>(ptr));
+        QVariant q=instance->data();
+        return qstrdup(instance->data().toString().toUtf8());
     }
 
 }

@@ -10,6 +10,9 @@ foreign func nativeAbstractItemViewSetSelectionBehavior(ptr: Int64,behavior:Int3
 foreign func nativeAbstractItemViewSelectionModel(ptr: Int64): Int64
 
 foreign func nativeAbstractItemViewConnectClicked(ptr: Int64, code: Int64, callback: CFunc<(Int64, CPointer<Unit>) -> Unit>): Unit
+foreign func nativeAbstractItemViewCurrentIndex(ptr: Int64):Int64
+foreign func nativeAbstractItemViewSetIndexWidget(ptr: Int64,indexRow: Int32,indexCol: Int32,widgetPtr: Int64): Unit
+
 
 public enum SelectionBehavior {
         SelectItems|        SelectRows|        SelectColumns
@@ -50,7 +53,7 @@ public open class QAbstractItemView <: QAbstractScrollArea {
     
     public let clicked: QAbstractItemViewClickedSignal<Int64>
 
-    protected init(ptr: Int64) {
+    public init(ptr: Int64) {
         super(ptr)
         clicked = QAbstractItemViewClickedSignal<Int64>(ptr)
     }
@@ -90,6 +93,21 @@ public open class QAbstractItemView <: QAbstractScrollArea {
     public func selectionModel(): Int64 {
         unsafe {
             nativeAbstractItemViewSelectionModel(this.ptr)
+        }
+    }
+
+
+    public func currentIndex():QModelIndex  {
+        let ciPtr=unsafe {
+            nativeAbstractItemViewCurrentIndex(ptr)
+        }
+        
+        return QModelIndex(ciPtr)
+    }
+
+    public func setIndexWidget(index:QModelIndex,  widget:QWidget):Unit  {
+        unsafe {
+            nativeAbstractItemViewSetIndexWidget(ptr,index.row(),index.column(),widget.ptr)
         }
     }
 }

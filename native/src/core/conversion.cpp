@@ -41,7 +41,7 @@ extern "C"
         return *(CjDataLongLongLong *)data;
     }
     
-    void *nativeIntToCPointer(int data)
+    void *nativeIntToCPointer(intptr_t data)
     {
         return (void *)(intptr_t)data;
     }

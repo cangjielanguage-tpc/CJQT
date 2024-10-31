@@ -1,12 +1,14 @@
 #include "abstract_item_view.h"
 #include <QDebug>
+#include <QPushButton>
+#include <QStandardItemModel>
 extern "C"
 {
     void nativeAbstractItemViewSetModel(uintptr_t ptr, uintptr_t modelPtr)
     {
         QAbstractItemView *instance = reinterpret_cast<QAbstractItemView *>(static_cast<uintptr_t>(ptr));
         QAbstractItemModel *model = reinterpret_cast<QAbstractItemModel *>(static_cast<uintptr_t>(modelPtr));
-        return instance->setModel(model);
+        instance->setModel(model);
     }
 
     uintptr_t nativeAbstractItemViewModel(uintptr_t ptr)
@@ -48,23 +50,25 @@ extern "C"
         QAbstractItemView *instance = reinterpret_cast<QAbstractItemView *>(static_cast<uintptr_t>(ptr));
         QObject::connect(instance, &QAbstractItemView::clicked, [=](QModelIndex index)
         {
-
-//            QModelIndex *p=new QModelIndex(index);
-
-//            callback(code, (void *)p);
-
             QModelIndex *modelIndex=new QModelIndex(index);
-//            qDebug()<<"^^^^^^^^^^^^"<<(void *)reinterpret_cast<uintptr_t>(modelIndex)<<endl;
-//            qDebug()<<"^^^^^^^^^^^^"<<reinterpret_cast<void *>(modelIndex)<<endl;
-//            return reinterpret_cast<uintptr_t>(p);
-//            callback(code,  (void *)&index);
-//            uintptr_t p=reinterpret_cast<uintptr_t>(modelIndex);
-//            uintptr_t *value=&p;
-//            qDebug()<<reinterpret_cast<void*>(modelIndex)<<endl;
             void* voidPtr = reinterpret_cast<void*>(modelIndex);
-//            println(voidPtr)
             callback(code, (void*)voidPtr);
 
         });
+    }
+    
+    uintptr_t nativeAbstractItemViewCurrentIndex(uintptr_t ptr){
+        QAbstractItemView *instance = reinterpret_cast<QAbstractItemView *>(static_cast<uintptr_t>(ptr));
+        QModelIndex modelIndex = instance->currentIndex();
+        QModelIndex *model = new QModelIndex(modelIndex);
+        return reinterpret_cast<uintptr_t>(model);
+    }
+    void nativeAbstractItemViewSetIndexWidget(uintptr_t ptr,int indexRow,int indexCol,uintptr_t widgetPtr){
+        QAbstractItemView *instance = reinterpret_cast<QAbstractItemView *>(static_cast<uintptr_t>(ptr));
+        QWidget *widget = reinterpret_cast<QWidget *>(static_cast<uintptr_t>(widgetPtr));
+
+        QAbstractItemModel *model = instance->model();
+        QModelIndex modelIndex = model->index(indexRow,indexCol);
+        instance->setIndexWidget( modelIndex,widget);
     }
 }

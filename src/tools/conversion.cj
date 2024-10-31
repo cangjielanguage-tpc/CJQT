@@ -8,7 +8,7 @@ foreign func nativeCPointerToCjDataLongInt(pointer: CPointer<Unit>): CjDataLongI
 foreign func nativeCPointerToCjDataLongLong(pointer: CPointer<Unit>): CjDataLongLong
 foreign func nativeCPointerToCjDataLongLongLong(pointer: CPointer<Unit>): CjDataLongLongLong
 
-foreign func nativeIntToCPointer(data: Int32): CPointer<Unit>
+foreign func nativeIntToCPointer(data: Int64): CPointer<Unit>
 foreign func nativeStringToCPointer(data: CString): CPointer<Unit>
 foreign func nativeBoolToCPointer(data: Bool): CPointer<Unit>
 
@@ -64,7 +64,9 @@ public class QConversion {
 
     public static func intToCPointer(data: Int64): CPointer<Unit> {
         let result = unsafe {
-            nativeIntToCPointer(Int32(data))
+            // println("data:${data}")
+            // println(Int32(data))
+            nativeIntToCPointer(Int64(data))
         }
         return result
     }
