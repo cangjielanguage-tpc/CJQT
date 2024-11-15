@@ -28,12 +28,12 @@ extern "C" {
         return qstrdup(str.toUtf8());
     }
 
-    void nativeGroupBoxSetAlignment(uintptr_t ptr, int alignment){
+    void nativeGroupBoxSetAlignment(uintptr_t ptr, short alignment){
         QGroupBox *instance = reinterpret_cast<QGroupBox *>(static_cast<uintptr_t>(ptr));
         instance->setAlignment(alignment);
     }
 
-    int nativeGroupBoxAlignment(uintptr_t ptr){
+    short nativeGroupBoxAlignment(uintptr_t ptr){
         QGroupBox *instance = reinterpret_cast<QGroupBox *>(static_cast<uintptr_t>(ptr));
         return instance->alignment();
     }

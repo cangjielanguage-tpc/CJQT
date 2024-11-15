@@ -33,10 +33,10 @@ extern "C"
 		instance->setVerticalSpacing(spacing);
 	}
 
-	void nativeGridLayoutSetAlignment(uintptr_t ptr)
+	void nativeGridLayoutSetAlignment(uintptr_t ptr,short alignment)
 	{
 		CjQtGridLayout *instance = reinterpret_cast<CjQtGridLayout *>(static_cast<uintptr_t>(ptr));
-		instance->setAlignment(Qt::AlignCenter);
+        instance->setAlignment(Qt::AlignmentFlag(alignment));
 	}
 
 	void nativeGridLayoutAddWidget(uintptr_t ptr, uintptr_t widgetPtr)
