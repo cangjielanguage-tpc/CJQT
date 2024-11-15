@@ -426,7 +426,7 @@ public open class QWidget <: QObject {
     }
 
     /**
-     * The Function is setStyleSheel
+     * The Function is setStyleSheet
      *
      * @param styleSheet of String
      */

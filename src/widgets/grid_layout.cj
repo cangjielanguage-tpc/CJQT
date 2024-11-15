@@ -11,7 +11,7 @@ package cjqt.widgets
 foreign func nativeGridLayoutCreate(parentPtr: Int64): Int64
 foreign func nativeGridLayoutSetHorizontalSpacing(ptr: Int64, spacing: Int32): Unit
 foreign func nativeGridLayoutSetVerticalSpacing(ptr: Int64, spacing: Int32): Unit
-foreign func nativeGridLayoutSetAlignment(ptr: Int64): Unit
+foreign func nativeGridLayoutSetAlignment(ptr: Int64,alignment:Int16): Unit
 foreign func nativeGridLayoutAddWidget(ptr: Int64, widgetPtr: Int64): Unit
 foreign func nativeGridLayoutAddWidgetWithNum(ptr: Int64, widgetPtr: Int64, row: Int32, column: Int32): Unit
 foreign func nativeGridLayoutAddWidgetWithNumAndSpan(
@@ -78,11 +78,11 @@ public class QGridLayout <: QLayout {
 
     /**
      * The Function is setAlignment
-     *
+     * 此接口待完善
      */
-    public func setAlignment() {
+    public func setAlignment(alignment:Alignment) {
         unsafe {
-            nativeGridLayoutSetAlignment(ptr)
+            nativeGridLayoutSetAlignment(ptr,alignment.value())
         }
     }
 

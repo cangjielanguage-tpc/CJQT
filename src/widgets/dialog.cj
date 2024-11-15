@@ -75,17 +75,17 @@ public open class QDialog <: QWidget {
         }
     }
 
-    public func exec():Int32 {
+    public open func exec():Int32 {
         unsafe {
             nativeDialogExec(ptr)
         }
     }
-    public func reject():Unit{
+    public open func reject():Unit{
         unsafe {
             nativeDialogReject(ptr)
         }
     }
-    public func accept():Unit{
+    public open func accept():Unit{
         unsafe {
             nativeDialogAccept(ptr)
         }

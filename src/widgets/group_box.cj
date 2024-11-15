@@ -11,8 +11,8 @@ package cjqt.widgets
 foreign func nativeGroupBoxCreate(parentPtr: Int64): Int64
 foreign func nativeGroupBoxSetTitle(ptr: Int64, title: CString): Unit
 foreign func nativeGroupBoxTitle(ptr: Int64): CString
-foreign func nativeGroupBoxSetAlignment(ptr: Int64, alignment: Int32): Unit
-foreign func nativeGroupBoxAlignment(ptr: Int64): Int32
+foreign func nativeGroupBoxSetAlignment(ptr: Int64, alignment: Int16): Unit
+foreign func nativeGroupBoxAlignment(ptr: Int64): Int16
 foreign func nativeGroupBoxSetFlat(ptr: Int64, flat: Bool): Unit
 foreign func nativeGroupBoxIsFlat(ptr: Int64): Bool
 foreign func nativeGroupBoxSetCheckable(ptr: Int64, checkable: Bool): Unit
@@ -76,9 +76,9 @@ public class QGroupBox <: QWidget {
      *
      * @param alignment of Int64
      */
-    public func setAlignment(alignment: Int64) {
+    public func setAlignment(alignment: Alignment) {
         unsafe {
-            nativeGroupBoxSetAlignment(ptr, Int32(alignment))
+            nativeGroupBoxSetAlignment(ptr, alignment.value())
         }
     }
 
@@ -87,11 +87,11 @@ public class QGroupBox <: QWidget {
      *
      * @return Type of Int64
      */
-    public func alignment(): Int64 {
+    public func alignment(): Int16 {
         let alignment = unsafe {
             nativeGroupBoxAlignment(ptr)
         }
-        return Int64(alignment)
+        return alignment
     }
 
     /**
