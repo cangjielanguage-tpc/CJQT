@@ -1,5 +1,6 @@
 // EXEC: cjc %import-path %L %l %f
 // EXEC: ./main
+package cjqt
 import cjqt.gui.*
 import cjqt.core.*
 import cjqt.widgets.*
@@ -12,6 +13,7 @@ main() {
     initEnum()
     widget.delete()
     QApplication.delete()
+    println("test OK!")
     return 0
 }
 
@@ -21,7 +23,7 @@ func initFrameTest(widget: QWidget): Unit {
     frame1.setMidLineWidth(3)
     frame1.setFrameShape(QFrameShape.Box)
     frame1.setFrameShadow(QFrameShadow.Raised)
-    frame1.setStyleSheel("background-color:cyan")
+    frame1.setStyleSheet("background-color:cyan")
     frame1.setFrameRect(QRect(0, 0, 40, 40))
     frame1.setFrameStyle(Int64(QFrameShadow.Raised.value()))
     frame1.frameShadow()

@@ -1,5 +1,6 @@
 // EXEC: cjc %import-path %L %l %f
 // EXEC: ./main
+
 import cjqt.gui.*
 import cjqt.core.*
 import cjqt.widgets.*

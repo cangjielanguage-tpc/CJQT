@@ -1,5 +1,6 @@
 // EXEC: cjc %import-path %L %l %f
 // EXEC: ./main
+package cjqt
 import cjqt.gui.*
 import cjqt.core.*
 import cjqt.widgets.*
@@ -24,6 +25,7 @@ main() {
     signalTest()
     widget.delete()
     QApplication.delete()
+    println("test OK!")
     return 0
 }
 public func InitTest(widget: QWidget): Unit {
@@ -63,12 +65,12 @@ public func setEchModTest() {
     let lineEdit = QLineEdit()
     let lineEdit1 = QLineEdit()
     let lineEdit2 = QLineEdit()
-    lineEdit.setEchMod(EchoMode.Password)
-    lineEdit1.setEchMod(EchoMode.PasswordEchoOnEdit)
-    lineEdit2.setEchMod(EchoMode.convert(Int32(5)))
-    lineEdit.echMode()
-    lineEdit1.echMode()
-    lineEdit2.echMode()
+    lineEdit.setEchoMode(EchoMode.Password)
+    lineEdit1.setEchoMode(EchoMode.PasswordEchoOnEdit)
+    lineEdit2.setEchoMode(EchoMode.convert(Int32(5)))
+    lineEdit.echoMode()
+    lineEdit1.echoMode()
+    lineEdit2.echoMode()
     lineEdit.delete()
     lineEdit1.delete()
     lineEdit2.delete()

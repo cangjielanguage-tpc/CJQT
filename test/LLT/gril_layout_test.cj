@@ -1,5 +1,6 @@
 // EXEC: cjc %import-path %L %l %f
 // EXEC: ./main
+package cjqt
 import cjqt.gui.*
 import cjqt.core.*
 import cjqt.widgets.*
@@ -11,6 +12,7 @@ main() {
     setAlignmentTest()
     addWidgetTest()
     QApplication.delete()
+    println("test OK!")
     return 0
 }
 
@@ -30,7 +32,7 @@ func setSpacingTest() {
 
 func setAlignmentTest() {
     let layout = QGridLayout()
-    layout.setAlignment()
+    layout.setAlignment(Alignment.AlignCenter)
     layout.delete()
 }
 
