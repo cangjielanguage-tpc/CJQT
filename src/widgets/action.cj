@@ -113,7 +113,7 @@ public class QAction {
     }
 
     /**
-     * 获取动作动作
+     * 获取动作图标
      *
      * @return 图标
      */

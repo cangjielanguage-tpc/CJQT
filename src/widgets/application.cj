@@ -13,12 +13,13 @@ foreign func nativeApplicationExec(): Bool
 foreign func nativeApplicationIsCreate(): Bool
 foreign func nativeApplicationQuit(): Unit
 foreign func nativeApplicationDelete(): Unit
+// foreign func nativeApplicationDesktop():Int64
 
 /**
  * The class is QApplication
  * @author wathinst
  */
-public class QApplication {
+public class QApplication<:QGuiApplication {
     /**
      * The Function is create
      *
@@ -50,6 +51,13 @@ public class QApplication {
             nativeApplicationIsCreate()
         }
     }
+    // static public func desktop(): QDesktopWidget {
+    //     var ptr= unsafe {
+    //         nativeApplicationDesktop()
+    //     }
+    //     return QDesktopWidget(ptr)
+    // }
+
 
     /**
      * The Function is quit

@@ -20,6 +20,9 @@ foreign func nativePainterSetBrush(ptr: Int64, brushPtr: Int64): Unit
 foreign func nativePainterSetOpacity(ptr: Int64, opacity: Float32): Unit
 foreign func nativePainterDrawLine(ptr: Int64, x: Int32, y: Int32, x1: Int32, y1: Int32): Unit
 foreign func nativePainterDrawRect(ptr: Int64, x: Int32, y: Int32, width: Int32, height: Int32): Unit
+foreign func nativePainterDrawRoundedRect(ptr: Int64, x: Int32, y: Int32, width: Int32, height: Int32,xRadius:Float64,yRadius:Float64): Unit
+foreign func nativePainterDrawRoundedRectR(ptr: Int64, rectPtr: Int64, xRadius:Float64,yRadius:Float64, mode: Int32): Unit
+foreign func nativePainterDrawRoundedRectF(ptr: Int64, rectPtr: Int64, xRadius:Float64,yRadius:Float64, mode: Int32): Unit
 foreign func nativePainterDrawPixmap(ptr: Int64, x: Int32, y: Int32, width: Int32, height: Int32, pixmapPtr: Int64): Unit
 foreign func nativePainterTranslate(ptr: Int64, dx: Float64, dy: Float64): Unit
 foreign func nativePainterTranslateWithPoint(ptr: Int64, pointPrt: Int64): Unit
@@ -113,6 +116,26 @@ public class QPainter {
     public func drawRect(x: Int64, y: Int64, width: Int64, height: Int64) {
         unsafe {
             nativePainterDrawRect(ptr, Int32(x), Int32(y), Int32(width), Int32(height))
+        }
+    }
+
+    public func drawRoundedRect(x: Int32, y: Int32, width: Int32, height: Int32,  xRadius:Float64,  yRadius:Float64){
+        unsafe {
+            nativePainterDrawRoundedRect(ptr, Int32(x), Int32(y), Int32(width), Int32(height),xRadius,yRadius)
+        }
+    }
+    
+
+    public func drawRoundedRect(rect:QRectF,  xRadius:Float64,  yRadius:Float64){
+        unsafe {
+            nativePainterDrawRoundedRectF(this.ptr,rect.ptr, xRadius,yRadius,0)
+        }
+    }
+    
+
+    public func drawRoundedRect(rect:QRect,  xRadius:Float64,  yRadius:Float64){
+        unsafe {
+            nativePainterDrawRoundedRectR(this.ptr,rect.ptr, xRadius,yRadius,0)
         }
     }
 
