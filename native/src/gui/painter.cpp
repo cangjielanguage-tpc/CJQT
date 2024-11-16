@@ -60,6 +60,17 @@ extern "C"
     {
         QPainter *instance = reinterpret_cast<QPainter *>(static_cast<uintptr_t>(ptr));
         instance->drawRect(x, y, width, height);
+    }    
+    void nativePainterDrawRoundedRectF(uintptr_t ptr, uintptr_t rect, qreal xRadius, qreal yRadius,int mode)
+    {
+        QPainter *instance = reinterpret_cast<QPainter *>(static_cast<uintptr_t>(ptr));
+        QRectF *rectf = reinterpret_cast<QRectF *>(static_cast<uintptr_t>(rect));
+        instance->drawRoundedRect(*rectf, xRadius, yRadius,Qt::SizeMode(mode) );
+    }
+    void nativePainterDrawRoundedRect(uintptr_t ptr, int x, int y, int width, int height,double xRadius,double yRadius)
+    {
+        QPainter *instance = reinterpret_cast<QPainter *>(static_cast<uintptr_t>(ptr));
+        instance->drawRoundedRect(x, y, width, height,xRadius,yRadius);
     }
     void nativePainterDrawPixmap(uintptr_t ptr, int x, int y,
                                  int width, int height, uintptr_t pixmapPtr)
@@ -97,5 +108,12 @@ extern "C"
         QPainter *instance = reinterpret_cast<QPainter *>(static_cast<uintptr_t>(ptr));
         QPolygonF *polygon = reinterpret_cast<QPolygonF *>(static_cast<uintptr_t>(polygonFPtr));
         instance->drawPolyline(*polygon);
+    }
+    void nativePainterDrawRoundedRectR(uintptr_t ptr,uintptr_t rectPtr, double xRadius,double yRadius,int mode)
+    {
+        QPainter *painter = reinterpret_cast<QPainter *>(static_cast<uintptr_t>(ptr));
+        QRect *rect = reinterpret_cast<QRect *>(static_cast<uintptr_t>(rectPtr));
+//        QPolygonF *polygon = reinterpret_cast<QPolygonF *>(static_cast<uintptr_t>(polygonFPtr));
+        painter->drawRoundedRect(*rect,xRadius,yRadius,Qt::SizeMode(mode));
     }
 }

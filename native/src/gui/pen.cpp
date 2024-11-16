@@ -3,7 +3,7 @@
 
 extern "C"
 {
-    uintptr_t nativePenCreate(uintptr_t colorPtr, int thickness)
+    uintptr_t nativePenCreate(uintptr_t colorPtr, double thickness)
     {
         QColor *color = reinterpret_cast<QColor *>(static_cast<uintptr_t>(colorPtr));
         return reinterpret_cast<uintptr_t>(new QPen(*color, thickness, Qt::SolidLine));

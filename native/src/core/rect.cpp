@@ -12,4 +12,24 @@ extern "C"
         QRect *instance = reinterpret_cast<QRect *>(static_cast<uintptr_t>(ptr));
         delete instance;
     }
+    int nativeRectWidth(uintptr_t ptr)
+    {
+        QRect *instance = reinterpret_cast<QRect *>(static_cast<uintptr_t>(ptr));
+        return instance->width();
+    }
+    int nativeRectHeight(uintptr_t ptr)
+    {
+        QRect *instance = reinterpret_cast<QRect *>(static_cast<uintptr_t>(ptr));
+        return instance->height();
+    }
+    int nativeRectX(uintptr_t ptr)
+    {
+        QRect *instance = reinterpret_cast<QRect *>(static_cast<uintptr_t>(ptr));
+        return instance->x();
+    }
+    int nativeRectY(uintptr_t ptr)
+    {
+        QRect *instance = reinterpret_cast<QRect *>(static_cast<uintptr_t>(ptr));
+        return instance->y();
+    }
 }

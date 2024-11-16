@@ -118,6 +118,8 @@ set (SRC_DIR ./src/widgets/application.cpp
         ./src/gui/polygon_f.cpp
         ./src/gui/standard_item_model.cpp
         ./src/gui/standard_item.cpp
+        ./src/gui/gui_application.cpp
+        ./src/gui/screen.cpp
 
 )
 
@@ -127,6 +129,8 @@ set (MOC_INC_DIR
         ./includes/gui/validator.h
         ./includes/gui/paint_device.h
         ./includes/gui/standard_item_model.h
+        ./includes/gui/gui_application.h
+        ./includes/gui/screen.h
         ./includes/widgets/dialog.h
         ./includes/widgets/dialog_button_box.h
         ./includes/widgets/table_view.h
