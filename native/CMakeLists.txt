@@ -64,6 +64,7 @@ set (SRC_DIR ./src/widgets/application.cpp
         ./src/widgets/graphics_view.cpp
         ./src/widgets/graphics_item.cpp
         ./src/widgets/graphics_line_item.cpp
+        ./src/widgets/graphics_ellipse_item.cpp
         ./src/widgets/action_group.cpp
         ./src/widgets/graphics_scene_mouse_event.cpp
         ./src/widgets/graphics_scene_event.cpp
