@@ -4,7 +4,7 @@
 QCore:
 
 QAbstractAnimation        ░░░░░░░░░░         QAbstractEventDispatcher     ░░░░░░░░░░
-QAbstractItemModel        ░░░░░░░░░░         QAbstractListModel           ░░░░░░░░░░
+QAbstractItemModel        ▓░░░░░░░░░         QAbstractListModel           ▓░░░░░░░░░
 QAbstractNativeEventFilter░░░░░░░░░░         QAbstractProxyModel          ░░░░░░░░░░
 QAbstractTableModel       ░░░░░░░░░░         QAdoptSharedDataTag          ░░░░░░░░░░
 QAndroidActivityResultReceiver░░░░░░░░░░     QAndroidBinder               ░░░░░░░░░░
@@ -34,7 +34,7 @@ QDebug                    ░░░░░░░░░░         QDebugStateSave
 QDir                      ░░░░░░░░░░         QDirIterator                 ░░░░░░░░░░
 QDynamicPropertyChangeEvent░░░░░░░░░░        QEasingCurve                 ░░░░░░░░░░
 QElapsedTimer             ░░░░░░░░░░         QEnableSharedFromThis        ░░░░░░░░░░
-QEvent                    ░░░░░░░░░░         QEventLoop                   ░░░░░░░░░░
+QEvent                    ▓▓▓▓▓▓▓▓░░         QEventLoop                   ░░░░░░░░░░
 QEventLoopLocker          ░░░░░░░░░░         QException                   ░░░░░░░░░░
 QExplicitlySharedDataPointer░░░░░░░░░░       QFile                        ░░░░░░░░░░
 QFileDevice               ░░░░░░░░░░         QFileInfo                    ░░░░░░░░░░
@@ -47,7 +47,7 @@ QGlobalStatic             ░░░░░░░░░░         QGregorianCalen
 QHash                     ░░░░░░░░░░         QHashIterator                ░░░░░░░░░░
 QHashSeed                 ░░░░░░░░░░         QIODevice                    ░░░░░░░░░░
 QIODeviceBase             ░░░░░░░░░░         QIdentityProxyModel          ░░░░░░░░░░
-QItemSelection            ░░░░░░░░░░         QItemSelectionModel          ░░░░░░░░░░
+QItemSelection            ░░░░░░░░░░         QItemSelectionModel          ▓░░░░░░░░░
 QItemSelectionRange       ░░░░░░░░░░         QIterable                    ░░░░░░░░░░
 QIterator                 ░░░░░░░░░░         QJalaliCalendar              ░░░░░░░░░░
 QJniEnvironment           ░░░░░░░░░░         QJniObject                   ░░░░░░░░░░
@@ -58,7 +58,7 @@ QKeyCombination           ░░░░░░░░░░         QKeyValueIterat
 QLEInteger                ░░░░░░░░░░         QLatin1Char                  ░░░░░░░░░░
 QLatin1String             ░░░░░░░░░░         QLibrary                     ░░░░░░░░░░
 QLibraryInfo              ░░░░░░░░░░         QLine                        ░░░░░░░░░░
-QLineF                    ░░░░░░░░░░         QList                        ░░░░░░░░░░
+QLineF                    ▓▓░░░░░░░░         QList                        ░░░░░░░░░░
 QListIterator             ░░░░░░░░░░         QLocale                      ░░░░░░░░░░
 QLockFile                 ░░░░░░░░░░         QLoggingCategory             ░░░░░░░░░░
 QMap                      ░░░░░░░░░░         QMapIterator                 ░░░░░░░░░░
@@ -70,19 +70,19 @@ QMetaObject               ░░░░░░░░░░         QMetaProperty  
 QMetaSequence             ░░░░░░░░░░         QMetaType                    ░░░░░░░░░░
 QMilankovicCalendar       ░░░░░░░░░░         QMimeData                    ░░░░░░░░░░
 QMimeDatabase             ░░░░░░░░░░         QMimeType                    ░░░░░░░░░░
-QModelIndex               ░░░░░░░░░░         QModelRoleData               ░░░░░░░░░░
+QModelIndex               ▓▓▓░░░░░░░         QModelRoleData               ░░░░░░░░░░
 QModelRoleDataSpan        ░░░░░░░░░░         QMultiHash                   ░░░░░░░░░░
 QMultiMap                 ░░░░░░░░░░         QMultiMapIterator            ░░░░░░░░░░
 QMutableHashIterator      ░░░░░░░░░░         QMutableListIterator         ░░░░░░░░░░
 QMutableMapIterator       ░░░░░░░░░░         QMutableMultiMapIterator     ░░░░░░░░░░
 QMutableSetIterator       ░░░░░░░░░░         QMutex                       ░░░░░░░░░░
-QMutexLocker              ░░░░░░░░░░         QObject                      ░░░░░░░░░░
+QMutexLocker              ░░░░░░░░░░         QObject                      ▓░░░░░░░░░
 QObjectBindableProperty   ░░░░░░░░░░         QObjectCleanupHandler        ░░░░░░░░░░
 QObjectComputedProperty   ░░░░░░░░░░         QOperatingSystemVersion      ░░░░░░░░░░
 QParallelAnimationGroup   ░░░░░░░░░░         QPartialOrdering             ░░░░░░░░░░
 QPauseAnimation           ░░░░░░░░░░         QPersistentModelIndex        ░░░░░░░░░░
-QPluginLoader             ░░░░░░░░░░         QPoint                       ░░░░░░░░░░
-QPointF                   ░░░░░░░░░░         QPointer                     ░░░░░░░░░░
+QPluginLoader             ░░░░░░░░░░         QPoint                       ▓░░░░░░░░░
+QPointF                   ▓▓▓▓▓▓▓▓░░         QPointer                     ░░░░░░░░░░
 QProcess                  ░░░░░░░░░░         QProcessEnvironment          ░░░░░░░░░░
 QPromise                  ░░░░░░░░░░         QProperty                    ░░░░░░░░░░
 QPropertyAnimation        ░░░░░░░░░░         QPropertyBindingError        ░░░░░░░░░░
@@ -90,7 +90,7 @@ QPropertyChangeHandler    ░░░░░░░░░░         QPropertyData  
 QPropertyNotifier         ░░░░░░░░░░         QQueue                       ░░░░░░░░░░
 QRandomGenerator          ░░░░░░░░░░         QRandomGenerator64           ░░░░░░░░░░
 QReadLocker               ░░░░░░░░░░         QReadWriteLock               ░░░░░░░░░░
-QRect                     ░░░░░░░░░░         QRectF                       ░░░░░░░░░░
+QRect                     ▓░░░░░░░░░         QRectF                       ▓░░░░░░░░░
 QRecursiveMutex           ░░░░░░░░░░         QRegularExpression           ░░░░░░░░░░
 QRegularExpressionMatch   ░░░░░░░░░░         QRegularExpressionMatchIterator░░░░░░░░░░
 QResource                 ░░░░░░░░░░         QRomanCalendar               ░░░░░░░░░░
@@ -103,14 +103,14 @@ QSet                      ░░░░░░░░░░         QSetIterator   
 QSettings                 ░░░░░░░░░░         QSharedData                  ░░░░░░░░░░
 QSharedDataPointer        ░░░░░░░░░░         QSharedMemory                ░░░░░░░░░░
 QSharedPointer            ░░░░░░░░░░         QSignalBlocker               ░░░░░░░░░░
-QSignalMapper             ░░░░░░░░░░         QSize                        ░░░░░░░░░░
-QSizeF                    ░░░░░░░░░░         QSocketNotifier              ░░░░░░░░░░
+QSignalMapper             ░░░░░░░░░░         QSize                        ▓▓░░░░░░░░
+QSizeF                    ▓▓░░░░░░░░         QSocketNotifier              ░░░░░░░░░░
 QSortFilterProxyModel     ░░░░░░░░░░         QStack                       ░░░░░░░░░░
 QStandardPaths            ░░░░░░░░░░         QStaticByteArrayMatcher      ░░░░░░░░░░
 QStaticPlugin             ░░░░░░░░░░         QStorageInfo                 ░░░░░░░░░░
 QString                   ░░░░░░░░░░         QStringConverter             ░░░░░░░░░░
 QStringDecoder            ░░░░░░░░░░         QStringEncoder               ░░░░░░░░░░
-QStringList               ░░░░░░░░░░         QStringListModel             ░░░░░░░░░░
+QStringList               ▓░░░░░░░░░         QStringListModel             ▓▓░░░░░░░░
 QStringMatcher            ░░░░░░░░░░         QStringTokenizer             ░░░░░░░░░░
 QStringView               ░░░░░░░░░░         QSysInfo                     ░░░░░░░░░░
 QSystemSemaphore          ░░░░░░░░░░         QTaggedIterator              ░░░░░░░░░░
@@ -125,7 +125,7 @@ QTypeRevision             ░░░░░░░░░░         QUnhandledExcep
 QUntypedBindable          ░░░░░░░░░░         QUrl                         ▓░░░░░░░░░
 QUrlQuery                 ░░░░░░░░░░         QUtf8StringView              ░░░░░░░░░░
 QUuid                     ░░░░░░░░░░         QVarLengthArray              ░░░░░░░░░░
-QVariant                  ░░░░░░░░░░         QVariantAnimation            ░░░░░░░░░░
+QVariant                  ▓░░░░░░░░░░        QVariantAnimation            ░░░░░░░░░░
 QVariantConstPointer      ░░░░░░░░░░         QVariantPointer              ░░░░░░░░░░
 QVariantRef               ░░░░░░░░░░         QVector                      ░░░░░░░░░░
 QVersionNumber            ░░░░░░░░░░         QWaitCondition               ░░░░░░░░░░
