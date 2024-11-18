@@ -1,8 +1,4 @@
 <p align="center">
-<img src="./doc/assets/logo.png" width="30%" >
-</p>
-
-<p align="center">
 <img alt="" src="https://badg.now.sh/badge/release/v0.0.1?color=green" style="display: inline-block;" />
 <img alt="" src="https://badg.now.sh/badge/build/pass?color=green" style="display: inline-block;" />
 <img alt="" src="https://badg.now.sh/badge/cjc/v0.35.6?color=green" style="display: inline-block;" />
@@ -18,19 +14,15 @@ Qt是一个跨平台的C++图形开发框架，是目前主流的跨平台GUI库
 
 CjQt是Qt的仓颉语言绑定，提供仓颉语言风格的Qt类和函数的API封装。
 
-项目基于QT5.14.2版本构建，在windows上测试
-
-目前仓颉仅支持64位系统，因此需要在相应64位系统上安装64位的C++环境及QT5.14.2
+项目基于QT5.14.2版本构建，在wsl2+Ubuntu20.04上测试
 
 ### 路线
 
-- 近期目标：实现Demo运行
+- 近期目标：实现Demo运行，实现俄罗斯方块游戏
 - 中期目标：常用QT类封装
 - 长期目标：完成QT类封装，结合领域eDSL实现声明式UI框架
 
-<p align="center">
-<img src="./doc/assets/milestone.png" width="100%" >
-</p>
+
 
 ### 当前进度
 
@@ -41,11 +33,6 @@ CjQt是Qt的仓颉语言绑定，提供仓颉语言风格的Qt类和函数的API
 
 ##    <img alt="" src="./doc/assets/readme-icon-framework.png" style="display: inline-block;" width=3%/> 软件架构
 
-### 架构图
-
-<p align="center">
-<img src="./doc/assets/framework.png" width="60%" >
-</p>
 
 ### 源码目录
 
@@ -121,12 +108,6 @@ Windows下：
 .\example\hello\run.ps1 
 ```
 
-执行效果：
-
-<p align="center">
-<img src="./doc/assets/qt_demo.png" width="60%" >
-</p>
-
 
 ### 俄罗斯方块游戏示例
 
@@ -139,11 +120,7 @@ Windows下：
 ./example/tetris/run.sh
 ```
 
-执行效果：
 
-<p align="center">
-<img src="./doc/assets/tetris_demo.png" width="60%" >
-</p>
 
 ### 记事本示例
 
@@ -155,11 +132,6 @@ Windows下：
 ./example/notepad/run.sh
 ```
 
-执行效果：
-
-<p align="center">
-<img src="./doc/assets/notepad_demo.png" width="60%" >
-</p>
 
 ### 单行文本编辑器使用示例
 
@@ -171,11 +143,6 @@ Windows下：
 ./example/lineEdit/run.sh
 ```
 
-执行效果：
-
-<p align="center">
-<img src="./doc/assets/lineEdit_demo.png" width="60%" >
-</p>
 
 ### QFrame使用示例
 
@@ -187,11 +154,6 @@ Windows下：
 ./example/frame/run.sh
 ```
 
-执行效果：
-
-<p align="center">
-<img src="./doc/assets/QFrame_demo.png" width="60%" >
-</p>
 
 ### 项目使用（源码引用方式）
 
@@ -292,5 +254,7 @@ source ~/.bashrc
 ## <img alt="" src="./doc/assets/readme-icon-contribute.png" style="display: inline-block;" width=3%/>参与贡献
 
 主要写参与贡献的人以及个人主页链接
+
+上海双洪信息技术有限公司(http://www.honhand.com)
 
 [@Chinesebear](https://gitee.com/chinesebear) [@wathinst](https://gitee.com/wathinst) [@helin4576](https://gitee.com/helin4576)
