@@ -14,7 +14,7 @@ public class maniWindow <: QMainWindow {
         mainLayout.setVerticalSpacing(10)
 
         //设置mainLayout居中
-        mainLayout.setAlignment()
+        mainLayout.setAlignment(Alignment.AlignCenter)
         let widget = QWidget(this)
         let srollBar1 = QScrollBar(Orientation.Horizontal, widget)
         mainLayout.addWidget(srollBar1, 60, 10, 10, 40)
