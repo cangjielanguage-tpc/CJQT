@@ -35,7 +35,7 @@ public class maniWindow <: QMainWindow {
         mainLayout.setVerticalSpacing(10)
 
         //设置mainLayout居中
-        mainLayout.setAlignment()
+        mainLayout.setAlignment(Alignment.AlignCenter)
 
         label1 = QLabel("默认的文本编辑框")
         lineEdit1 = QLineEdit()
@@ -67,7 +67,7 @@ public class maniWindow <: QMainWindow {
         label3 = QLabel("密码输入框")
         lineEdit3 = QLineEdit()
         lineEdit3.setPlaceholderText("Password")
-        lineEdit3.setEchMod(EchoMode.Password)
+        lineEdit3.setEchoMode(EchoMode.Password)
         mainLayout.addWidget(label3, 6, 0, 1, 80)
         mainLayout.addWidget(lineEdit3, 7, 0, 1, 80)
 
