@@ -1,8 +1,8 @@
 package draw
-import cjqt.core.QObject
+import cjqt.core.*
 import cjqt.core.QPointF
 import cjqt.core.QRectF
-import cjqt.widgets.QGraphicsScene
+import cjqt.widgets.*
 import cjqt.widgets.QGraphicsItem
 import cjqt.widgets.QGraphicsRectItem
 import cjqt.widgets.QGraphicsSceneMouseEvent
@@ -68,6 +68,18 @@ public class DrawScene <: QGraphicsScene {
                 item.setPen(QPen(penColor))
                 addItem(item)
                 m_addItem = item
+            case ellipse => 
+                var item = QGraphicsEllipseItem(m_downPoint.x(), m_downPoint.y(), 0.0, 0.0)
+                item.setPen(QPen(penColor))
+                addItem(item)
+                m_addItem = item
+                
+            case line => 
+                var item = QGraphicsLineItem(m_downPoint.x(), m_downPoint.y(), 0.0, 0.0)
+                item.setPen(QPen(penColor))
+                addItem(item)
+                m_addItem = item
+            
             case _ => super.mousePressEvent(mouseEvent)
         }
         m_downPoint.delete()
@@ -98,6 +110,16 @@ public class DrawScene <: QGraphicsScene {
                 if (m_addItem is QGraphicsRectItem) {
                     var rect = (m_addItem as QGraphicsRectItem).getOrThrow()
                     rect.setRect(QRectF(x1, y1, x2, y2))
+                }
+            case ellipse =>
+                if (m_addItem is QGraphicsEllipseItem) {
+                    var rect = (m_addItem as QGraphicsEllipseItem).getOrThrow()
+                    rect.setRect(QRectF(x1, y1, x2, y2))
+                }
+            case line =>
+                if (m_addItem is QGraphicsLineItem) {
+                    var line = (m_addItem as QGraphicsLineItem).getOrThrow()
+                    line.setLine(QLineF(x1, y1, x2, y2))
                 }
             case _ => super.mousePressEvent(mouseEvent)
         }

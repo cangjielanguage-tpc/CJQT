@@ -45,7 +45,7 @@ public enum Alignment {
     }
 
     /**
-     * The Static Function is conver
+     * The Static Function is convert
      *
      * @return Type  is  Int16
      */
@@ -243,3 +243,14 @@ public enum PenStyle {
         }
     }
 }
+public enum SizeMode {
+        |AbsoluteSize
+        |RelativeSize
+    
+    public func value(): Int32 {
+        match (this) {
+            case AbsoluteSize => 0
+            case RelativeSize => 1
+        }
+    }
+};
