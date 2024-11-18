@@ -1,5 +1,5 @@
 package feeluown.gui
-// import std.math.min
+import std.math.min
 import cjqt.core.*
 import cjqt.gui.*
 import cjqt.widgets.*

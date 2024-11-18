@@ -54,7 +54,7 @@ public class TetrisWindow <: QMainWindow {
         mainLayout.setVerticalSpacing(20)
 
         //设置mainLayout居中
-        mainLayout.setAlignment()
+        mainLayout.setAlignment(Alignment.AlignCenter)
 
         // 添加各个widget
         mainLayout.addWidget(tetrisBox, 0, 0, 14, 1)

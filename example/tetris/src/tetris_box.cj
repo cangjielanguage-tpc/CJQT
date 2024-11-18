@@ -33,12 +33,12 @@ public class TetrisBox <: QWidget {
             event =>
             let painter = QPainter(this)
 
-            painter.setPen(QPen(QColor.Black, 1))
+            painter.setPen(QPen(QColor.Black, 1.0))
             painter.setBrush(QBrush(QColor.LightGray))
 
             painter.drawRect(0, 0, widthVal - 2, heightVal - 2)
 
-            painter.setPen(QPen(QColor.White, 0))
+            painter.setPen(QPen(QColor.White, 0.0))
             painter.setBrush(QBrush(QColor.White))
 
             for (i in 0..Tetris.MAX_Y) {
@@ -53,7 +53,7 @@ public class TetrisBox <: QWidget {
             for (i in 0..Tetris.MAX_X) {
                 for (j in 0..Tetris.MAX_Y) {
                     if (box[i][j].show) {
-                        painter.setPen(QPen(QColor.Gray, 1))
+                        painter.setPen(QPen(QColor.Gray, 1.0))
                         painter.setBrush(QBrush(box[i][j].color))
                         let x = i * Tetris.WIDTH + i * Tetris.INTERVAL
                         let y = j * Tetris.HEIGHT + j * Tetris.INTERVAL
@@ -62,7 +62,7 @@ public class TetrisBox <: QWidget {
                 }
             }
 
-            painter.setPen(QPen(QColor.Gray, 1))
+            painter.setPen(QPen(QColor.Gray, 1.0))
             painter.setBrush(QBrush(block.color))
 
             for (i in 0..Tetris.COUNT) {

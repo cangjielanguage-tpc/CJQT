@@ -22,12 +22,12 @@ public class NextTetrisBox <: QWidget {
             event =>
             let painter = QPainter(this)
 
-            painter.setPen(QPen(QColor.Black, 1))
+            painter.setPen(QPen(QColor.Black, 1.0))
             painter.setBrush(QBrush(QColor.LightGray))
 
             painter.drawRect(0, 0, Tetris.getNextWidth() - 2, Tetris.getNextHeight() - 2)
 
-            painter.setPen(QPen(QColor.White, 0))
+            painter.setPen(QPen(QColor.White, 0.0))
             painter.setBrush(QBrush(QColor.White))
 
             for (i in 0..Tetris.NEXT_MAX_Y) {
@@ -39,7 +39,7 @@ public class NextTetrisBox <: QWidget {
                 painter.drawRect(x + (Tetris.INTERVAL / 2), 1, 0, Tetris.getNextHeight() - 4)
             }
 
-            painter.setPen(QPen(QColor.Gray, 1))
+            painter.setPen(QPen(QColor.Gray, 1.0))
             painter.setBrush(QBrush(nextBlock.color))
 
             for (i in 0..Tetris.COUNT) {
