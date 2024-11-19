@@ -156,8 +156,8 @@ Windows下：
 
 ## <img alt="" src="./doc/assets/readme-icon-contribute.png" style="display: inline-block;" width=3%/>参与贡献
 
-主要写参与贡献的人以及个人主页链接
+主要写参与贡献的公司以及个人主页链接
 
 上海双洪信息技术有限公司(http://www.honhand.com)
 
-[@Chinesebear](https://gitee.com/chinesebear) [@wathinst](https://gitee.com/wathinst) [@helin4576](https://gitee.com/helin4576)
+[@wathinst-cj](https://gitcode.com/wathinst-cj) [@qq_21780589](https://gitcode.com/qq_21780589) [@libor_zhou](https://gitcode.com/libor_zhou)
