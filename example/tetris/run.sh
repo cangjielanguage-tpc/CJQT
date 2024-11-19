@@ -22,8 +22,8 @@ sh $CUR_DIR/../../build.sh
 cd $CUR_DIR
 
 # cpm build
-cpm update
-cpm build
+cjpm update
+cjpm build
 
 # run
 ./build/bin/main

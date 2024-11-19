@@ -22,8 +22,8 @@ export QT_QPA_PLATFORM_PLUGIN_PATH=$QT_PLATFORM_URL/platforms
 cd $CUR_DIR
 
 # cpm build
-cpm update
-cpm build
+cjpm update
+cjpm build
 
 # run
 ./build/bin/main
