@@ -14,13 +14,15 @@ Qt是一个跨平台的C++图形开发框架，是目前主流的跨平台GUI库
 
 CjQt是Qt的仓颉语言绑定，提供仓颉语言风格的Qt类和函数的API封装。
 
-项目基于QT5.14.2版本构建，在wsl2+Ubuntu20.04上测试
+项目基于QT5.14.2版本构建，基于windows环境测试
+
+目前仓颉仅支持64位系统，因此需要在相应64位系统上安装64位的C++环境及QT5.14.2
 
 ### 路线
 
-- 近期目标：实现Demo运行，实现俄罗斯方块游戏
+- 近期目标：实现Demo运行
 - 中期目标：常用QT类封装
-- 长期目标：完成QT类封装，结合领域eDSL实现声明式UI框架
+- 长期目标：完成QT类封装
 
 
 
@@ -40,42 +42,47 @@ CjQt是Qt的仓颉语言绑定，提供仓颉语言风格的Qt类和函数的API
 .
 ├── README.md
 ├── doc
+│   ├── api
 │   ├── assets     
-│   ├── design.md  
-│   ├── proposal.md
-│   └── xxx_lib.md 
+│   ├── cjcov  
+│   └── develop 
 ├── example
 │   ├── draw
 │   ├── feeluown
 │   ├── frame
 │   ├── hello
-│   └── lineEdit
+│   ├── lineEdit
 │   ├── notepad
 │   ├── scrollBar
 │   └── tetris
 ├── native
+│   ├── build
+│   ├── includes
+│   │   ├── core
+│   │   ├── gui
+│   │   └── widgets
+│   ├── lib
 │   ├── src
 │   │   ├── core
 │   │   ├── gui
 │   │   └── widgets
 │   └── CMakeLists.txt
 ├── src
-│   ├── qt
-│   │   ├── core
-│   │   ├── gui
-│   │   └── widgets
-│   └── main.cj
+│   └── qt
+│       ├── core。、
+│       ├── gui
+│       ├── tools
+│       ├── widgets
+│       └── main.cj
 └── test   
-    ├── HLT
-    ├── LLT
-    └── UT
+    └── LLT
 ```
 
 - `doc`是库的设计文档、提案、库的使用文档
 - `example`是cjqt项目的使用示例
 - `native`是C语言绑定QT库源码目录
 - `src`是库源码目录
-- `test`是存放测试用例，包括HLT用例、LLT 用例和UT用例
+- `test`是存放测试用例，包括LLT 用例
 
 ## <img alt="" src="./doc/assets/readme-icon-compile.png" style="display: inline-block;" width=3%/>编译执行
 
@@ -83,18 +90,57 @@ CjQt是Qt的仓颉语言绑定，提供仓颉语言风格的Qt类和函数的API
 
 cjqt类和成员函数说明，详情见 [API](./doc/api/index.html)
 
-### 安装依赖
+### Linux环境安装依赖
 
-安装 libxkbcommon-x11
+Linux环境需安装 libxkbcommon-x11
 ```shell
 sudo apt-get install libxkbcommon-x11-0
 ```
 
-### hello示例
 
-[hello示例详情](./example/hello)
+### 项目使用（源码引用方式）
 
-执行命令：
+克隆cjqt项目到本地
+```shell
+https://gitcode.com/Cangjie-TPC/CJQT.git
+```
+
+
+### 项目编译
+
+1.安装p配置64位c++环境
+
+2.下载安装QT
+
+下载QT文件[qt-opensource-linux-x64-5.14.2.run](https://download.qt.io/archive/qt/5.14/5.14.2/)到安装目录
+
+安装 QT
+```shell
+chmod +x qt-opensource-linux-x64-5.14.2.run
+./qt-opensource-linux-x64-5.14.2.run
+```
+
+配置QT_HOME环境变量如下：其中 D:\Qt 为qt安装路径
+
+3.编译native
+使用 Qt Creator构建native项目
+打开项目，选择CJQT\native\CMakeLists.txt，打开nativeQT项目，之后进行使用64位gcc构建，例如使用mingw64进行构建，构建目录建议为 CJQT\native\build
+
+4.编译cjqt项目
+使用cjpm build进行构建。如native构建目录选择其他目录，则需要相应修改cjqt项目下cjpm.toml文件中的nativeQt配置
+
+5.设置运行环境变量
+将QT、native、CJQT都添加到环境变量path中
+D:\Qt\Qt5.14.2\5.14.2\mingw73_64\bin      #D:\Qt为qt安装目录
+D:\Qt\Qt5.14.2\Tools\mingw730_64\bin
+D:\work\CJQT\native\build                 #D:\work\CJQT为cjqt代码所在目录
+D:\work\CJQT\target\release\cjqt
+
+6.example示例运行
+例如选择example\hello项目，使用cjpm build进行构建，之后运行target\release\bin\main文件
+
+
+也可执行命令如下：
 
 Linux下：
 
@@ -106,149 +152,6 @@ Windows下：
 
 ```shell
 .\example\hello\run.ps1 
-```
-
-
-### 俄罗斯方块游戏示例
-
-[俄罗斯方块示例详情](./example/tetris)
-
-
-执行命令：
-
-```shell
-./example/tetris/run.sh
-```
-
-
-
-### 记事本示例
-
-[记事本示例详情](./example/notepad)
-
-执行命令：
-
-```shell
-./example/notepad/run.sh
-```
-
-
-### 单行文本编辑器使用示例
-
-[单行文本编辑器使用示例详情](./example/lineEdit)
-
-执行命令：
-
-```shell
-./example/lineEdit/run.sh
-```
-
-
-### QFrame使用示例
-
-[QFrame使用示例详情](./example/frame)
-
-执行命令：
-
-```shell
-./example/frame/run.sh
-```
-
-
-### 项目使用（源码引用方式）
-
-克隆cjqt项目到本地
-```shell
-https://gitee.com/HW-PLLab/qt.git
-```
-
-创建demo项目并初始化工程
-```shell
-mkdir demo && cd demo
-cpm new demo demo
-```
-
-修改module.json文件并引入cjqt
-`path` 为qt的项目路径
-```json
-{
-  "cjc_version": "0.30.4",
-  "organization": "demo",
-  "name": "demo",
-  "description": "nothing here",
-  "version": "1.0.0",
-  "requires": {
-    "cjqt": {
-      "organization": "cangjie",
-      "version": "0.0.1",
-      "path": "../qt"
-    }
-  },
-  "package_requires": {},
-  "foreign_requires": {},
-  "output_type": "executable",
-  "command_option": "",
-  "cross_compile_configuration": {}
-}
-```
-
-更新项目
-```shell
-cpm update
-```
-
-新建src/main.cj文件
-```cangjie
-import cjqt.widgets.*
-
-main() {
-    QApplication.create()
-    
-    let win = QMainWindow()
-    win.setWindowTitle("CJQT Demo")
-    win.resize(400, 300)
-    win.show()
-
-    QApplication.exec()
-
-    win.delete()
-    QApplication.delete()
-}
-```
-
-编译与运行
-```shell
-export LD_LIBRARY_PATH=../qt/native/lib:${LD_LIBRARY_PATH}
-export LD_LIBRARY_PATH=../qt/build/cjqt:${LD_LIBRARY_PATH}
-export QT_QPA_PLATFORM_PLUGIN_PATH=../qt/native/lib/platforms
-./../qt/build.sh
-cpm build
-./bin/main
-```
-
-### 项目编译
-
-下载QT文件[qt-opensource-linux-x64-5.14.2.run](https://download.qt.io/archive/qt/5.14/5.14.2/)到安装目录
-
-
-安装 QT
-```shell
-chmod +x qt-opensource-linux-x64-5.14.2.run
-./qt-opensource-linux-x64-5.14.2.run
-```
-
-配置环境变量
-```shell
-vim ~/.bashrc
-export QT_HOME=/home/wathinst/Qt5.14.2/5.14.2/gcc_64(自己的安装目录)
-source ~/.bashrc
-```
-
-编译项目源码
-
-```shell
-./build_native.sh  
-./build.sh
 ```
 
 ## <img alt="" src="./doc/assets/readme-icon-contribute.png" style="display: inline-block;" width=3%/>参与贡献
