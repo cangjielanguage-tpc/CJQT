@@ -1,0 +1,14 @@
+[dependencies]
+  cjqt = {path = "../../", version = "0.1.0"}
+
+[package]
+  cjc-version = "0.32.5"
+  compile-option = ""
+  description = "nothing here"
+  link-option = ""
+  name = "hello"
+  output-type = "executable"
+  src-dir = "src"
+  target-dir = ""
+  version = "1.0.0"
+  package-configuration = {}

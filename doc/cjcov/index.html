@@ -1,0 +1,1495 @@
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Cangjie Code Coverage Report</title>
+  <style media="screen" type="text/css">
+  body
+{
+  color: #000000;
+  background-color: #FFFFFF;
+}
+
+/* Link formats: use maroon w/underlines */
+a:link
+{
+  color: navy;
+  text-decoration: underline;
+}
+a:visited
+{
+  color: maroon;
+  text-decoration: underline;
+}
+a:active
+{
+  color: navy;
+  text-decoration: underline;
+}
+
+/*** TD formats ***/
+td
+{
+  font-family: sans-serif;
+}
+td.title
+{
+  text-align: center;
+  padding-bottom: 10px;
+  font-size: 20pt;
+  font-weight: bold;
+}
+
+/* TD Header Information */
+td.headerName
+{
+  text-align: right;
+  color: black;
+  padding-right: 6px;
+  font-weight: bold;
+  vertical-align: top;
+  white-space: nowrap;
+}
+td.headerValue
+{
+  text-align: left;
+  color: #284FA8;
+  font-family: sans-serif;
+  font-weight: bold;
+  white-space: nowrap;
+}
+
+td.headerTableEntry
+{
+  text-align: right;
+  color: black;
+  font-weight: bold;
+  white-space: nowrap;
+  padding-left: 12px;
+  padding-right: 4px;
+  background-color: LightBlue;
+}
+td.headerValueLeg
+{
+  text-align: left;
+  color: black;
+  font-size: 80%;
+  white-space: nowrap;
+  padding-top: 2px;
+}
+
+/* Color of horizontal ruler */
+td.hr
+{
+  background-color: navy;
+  height:3px;
+}
+/* Footer format */
+td.footer
+{
+  text-align: center;
+  padding-top: 3px;
+  font-family: sans-serif;
+}
+
+/* Coverage Table */
+
+td.coverTableHead
+{
+  text-align: center;
+  color: white;
+  background-color: SteelBlue;
+  font-family: sans-serif;
+  font-size: 120%;
+  white-space: nowrap;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+td.coverFile
+{
+  text-align: left;
+  padding-left: 10px;
+  padding-right: 20px;
+  color: black;
+  background-color: LightBlue;
+  font-family: monospace;
+  font-weight: bold;
+  font-size: 110%;
+}
+td.coverBar
+{
+  padding-left: 10px;
+  padding-right: 10px;
+  background-color: LightBlue;
+}
+td.coverBarOutline
+{
+  background-color: white;
+}
+td.coverValue
+{
+  padding-top: 2px;
+  text-align: right;
+  padding-left: 10px;
+  padding-right: 10px;
+  font-family: sans-serif;
+  white-space: nowrap;
+  font-weight: bold;
+}
+
+/* Link Details */
+a.detail:link
+{
+  color: #B8D0FF;
+  font-size:80%;
+}
+a.detail:visited
+{
+  color: #B8D0FF;
+  font-size:80%;
+}
+a.detail:active
+{
+  color: #FFFFFF;
+  font-size:80%;
+}
+
+.graphcont{
+    color:#000;
+    font-weight:700;
+    float:left
+}
+
+.graph{
+    float:left;
+    background-color: white;
+    position:relative;
+    width:280px;
+    padding:0
+}
+
+.graph .bar{
+    display:block;
+    position:relative;
+    border:black 1px solid;
+    text-align:center;
+    color:#fff;
+    height:10px;
+    font-family:Arial,Helvetica,sans-serif;
+    font-size:12px;
+    line-height:1.9em
+}
+
+.graph .bar span{
+    position:absolute;
+    left:1em
+}
+
+td.coveredLine,
+span.coveredLine
+{
+    background-color: LightGreen!important;
+}
+
+td.uncoveredLine,
+span.uncoveredLine
+{
+    background-color: LightPink!important;
+}
+
+.linebranch, .linecount
+{
+    border-right: 1px gray solid;
+    background-color: lightgray;
+}
+
+.linebranchDetails
+{
+    position: relative;
+}
+.linebranchSummary
+{
+    cursor: help;
+}
+.linebranchContents
+{
+    font-family: sans-serif;
+    font-size: small;
+    text-align: left;
+    position: absolute;
+    width: 15em;
+    padding: 1em;
+    background: white;
+    border: solid gray 1px;
+    box-shadow: 5px 5px 10px gray;
+    z-index: 1; /* show in front of the table entries */
+}
+
+.takenBranch
+{
+    color: Green!important;
+    cursor: help;
+}
+
+.notTakenBranch
+{
+    color: Red!important;
+    cursor: help;
+}
+
+.src
+{
+    padding-left: 12px;
+}
+
+.srcHeader,
+span.takenBranch,
+span.notTakenBranch
+{
+    font-family: monospace;
+    font-weight: bold;
+}
+
+pre
+{
+    height : 15px;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.lineno
+{
+    background-color: #EFE383;
+    border-right: 1px solid #BBB15F;
+}
+  </style>
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title">Cangjie Code Coverage Report</td></tr>
+    <tr><td class="hr"></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td class="headerName">Files:</td>
+            <td class="headerValue">104</td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerValue" style="text-align:right;">Hit</td>
+            <td width="10%" class="headerValue" style="text-align:right;">Total</td>
+            <td width="15%" class="headerValue" style="text-align:right;">Coverage</td>
+          </tr>
+          <tr>
+            <td class="headerName">Date:</td>
+            <td class="headerValue">2022-09-25 19:33:00</td>
+            <td></td>
+            <td class="headerName">Lines:</td>
+            <td class="headerTableEntry">2172</td>
+            <td class="headerTableEntry">3581</td>
+            <td class="headerTableEntry" style="background-color:LightPink">60.7 %</td>
+          </tr>
+          <tr>
+            <td class="headerName">Legend:</td>
+            <td class="headerValueLeg">
+              <span style="background-color:LightPink">low: &lt; 75.0 %</span>
+              <span style="background-color:Yellow">medium: &gt;= 75.0 %</span>
+              <span style="background-color:LightGreen">high: &gt;= 90.0 %</span>
+            </td>
+            <td></td>
+            <td class="headerName">Branches:</td>
+            <td class="headerTableEntry">-</td>
+            <td class="headerTableEntry">-</td>
+            <td class="headerTableEntry" style="background-color:LightGreen">- </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="hr"></td></tr>
+  </table>
+
+  <center>
+  <table width="80%" cellpadding=1 cellspacing=1 border=0>
+    <tr>
+      <td width="44%"><br></td>
+      <td width="8%"></td>
+      <td width="8%"></td>
+      <td width="8%"></td>
+      <td width="8%"></td>
+      <td width="8%"></td>
+    </tr>
+    <tr>
+      <td class="coverTableHead">File</td>
+      <td class="coverTableHead" colspan=3>Lines</td>
+      <td class="coverTableHead" colspan=2>Branches</td>
+    </tr>
+
+    <tr>
+    <td class="coverFile" ><a href="ci_test_test_temp_run_action_test_cj_1664105570_826932_action_test.cj.html">ci_test/test_temp/run/action_test_cj_1664105570_826932/action_test.cj</a></td>
+    <td class="coverBar" align="center" >
+    <table border=0 cellspacing=0 cellpadding=1><tr><td class="coverBarOutline">
+            <div class="graph"><strong class="bar" style="width:97.9%; background-color:green"></strong></div>
+            </td></tr></table>
+    </td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightGreen;">46 / 47</td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightGreen;">97.9 %</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+</tr> <tr>
+    <td class="coverFile" style="background-color:LightSteelBlue"><a href="ci_test_test_temp_run_application_test_cj_1664105566_0022683_application_test.cj.html">ci_test/test_temp/run/application_test_cj_1664105566_0022683/application_test.cj</a></td>
+    <td class="coverBar" align="center" style="background-color:LightSteelBlue">
+    <table border=0 cellspacing=0 cellpadding=1><tr><td class="coverBarOutline">
+            <div class="graph"><strong class="bar" style="width:100.0%; background-color:green"></strong></div>
+            </td></tr></table>
+    </td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightGreen;">12 / 12</td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightGreen;">100.0 %</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+</tr> <tr>
+    <td class="coverFile" ><a href="ci_test_test_temp_run_box_layout_test_cj_1664105535_2385454_box_layout_test.cj.html">ci_test/test_temp/run/box_layout_test_cj_1664105535_2385454/box_layout_test.cj</a></td>
+    <td class="coverBar" align="center" >
+    <table border=0 cellspacing=0 cellpadding=1><tr><td class="coverBarOutline">
+            <div class="graph"><strong class="bar" style="width:100.0%; background-color:green"></strong></div>
+            </td></tr></table>
+    </td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightGreen;">37 / 37</td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightGreen;">100.0 %</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+</tr> <tr>
+    <td class="coverFile" style="background-color:LightSteelBlue"><a href="ci_test_test_temp_run_check_box_test_cj_1664105525_864078_check_box_test.cj.html">ci_test/test_temp/run/check_box_test_cj_1664105525_864078/check_box_test.cj</a></td>
+    <td class="coverBar" align="center" style="background-color:LightSteelBlue">
+    <table border=0 cellspacing=0 cellpadding=1><tr><td class="coverBarOutline">
+            <div class="graph"><strong class="bar" style="width:100.0%; background-color:green"></strong></div>
+            </td></tr></table>
+    </td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightGreen;">21 / 21</td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightGreen;">100.0 %</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+</tr> <tr>
+    <td class="coverFile" ><a href="ci_test_test_temp_run_frame_test_cj_1664105562_8380282_frame_test.cj.html">ci_test/test_temp/run/frame_test_cj_1664105562_8380282/frame_test.cj</a></td>
+    <td class="coverBar" align="center" >
+    <table border=0 cellspacing=0 cellpadding=1><tr><td class="coverBarOutline">
+            <div class="graph"><strong class="bar" style="width:100.0%; background-color:green"></strong></div>
+            </td></tr></table>
+    </td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightGreen;">54 / 54</td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightGreen;">100.0 %</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+</tr> <tr>
+    <td class="coverFile" style="background-color:LightSteelBlue"><a href="ci_test_test_temp_run_gril_layout_test_cj_1664105521_5153363_gril_layout_test.cj.html">ci_test/test_temp/run/gril_layout_test_cj_1664105521_5153363/gril_layout_test.cj</a></td>
+    <td class="coverBar" align="center" style="background-color:LightSteelBlue">
+    <table border=0 cellspacing=0 cellpadding=1><tr><td class="coverBarOutline">
+            <div class="graph"><strong class="bar" style="width:100.0%; background-color:green"></strong></div>
+            </td></tr></table>
+    </td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightGreen;">34 / 34</td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightGreen;">100.0 %</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+</tr> <tr>
+    <td class="coverFile" ><a href="ci_test_test_temp_run_group_box_text_cj_1664105526_9220002_group_box_text.cj.html">ci_test/test_temp/run/group_box_text_cj_1664105526_9220002/group_box_text.cj</a></td>
+    <td class="coverBar" align="center" >
+    <table border=0 cellspacing=0 cellpadding=1><tr><td class="coverBarOutline">
+            <div class="graph"><strong class="bar" style="width:100.0%; background-color:green"></strong></div>
+            </td></tr></table>
+    </td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightGreen;">40 / 40</td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightGreen;">100.0 %</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+</tr> <tr>
+    <td class="coverFile" style="background-color:LightSteelBlue"><a href="ci_test_test_temp_run_label_test_cj_1664105516_5650215_label_test.cj.html">ci_test/test_temp/run/label_test_cj_1664105516_5650215/label_test.cj</a></td>
+    <td class="coverBar" align="center" style="background-color:LightSteelBlue">
+    <table border=0 cellspacing=0 cellpadding=1><tr><td class="coverBarOutline">
+            <div class="graph"><strong class="bar" style="width:100.0%; background-color:green"></strong></div>
+            </td></tr></table>
+    </td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightGreen;">29 / 29</td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightGreen;">100.0 %</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+</tr> <tr>
+    <td class="coverFile" ><a href="ci_test_test_temp_run_line_edit_test_cj_1664105522_6036453_line_edit_test.cj.html">ci_test/test_temp/run/line_edit_test_cj_1664105522_6036453/line_edit_test.cj</a></td>
+    <td class="coverBar" align="center" >
+    <table border=0 cellspacing=0 cellpadding=1><tr><td class="coverBarOutline">
+            <div class="graph"><strong class="bar" style="width:94.3%; background-color:green"></strong></div>
+            </td></tr></table>
+    </td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightGreen;">133 / 141</td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightGreen;">94.3 %</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+</tr> <tr>
+    <td class="coverFile" style="background-color:LightSteelBlue"><a href="ci_test_test_temp_run_main_window_test_cj_1664105536_3047924_main_window_test.cj.html">ci_test/test_temp/run/main_window_test_cj_1664105536_3047924/main_window_test.cj</a></td>
+    <td class="coverBar" align="center" style="background-color:LightSteelBlue">
+    <table border=0 cellspacing=0 cellpadding=1><tr><td class="coverBarOutline">
+            <div class="graph"><strong class="bar" style="width:100.0%; background-color:green"></strong></div>
+            </td></tr></table>
+    </td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightGreen;">32 / 32</td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightGreen;">100.0 %</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+</tr> <tr>
+    <td class="coverFile" ><a href="ci_test_test_temp_run_menu_bar_test_cj_1664105567_4936366_menu_bar_test.cj.html">ci_test/test_temp/run/menu_bar_test_cj_1664105567_4936366/menu_bar_test.cj</a></td>
+    <td class="coverBar" align="center" >
+    <table border=0 cellspacing=0 cellpadding=1><tr><td class="coverBarOutline">
+            <div class="graph"><strong class="bar" style="width:100.0%; background-color:green"></strong></div>
+            </td></tr></table>
+    </td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightGreen;">51 / 51</td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightGreen;">100.0 %</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+</tr> <tr>
+    <td class="coverFile" style="background-color:LightSteelBlue"><a href="ci_test_test_temp_run_menu_test_cj_1664105561_6813967_menu_test.cj.html">ci_test/test_temp/run/menu_test_cj_1664105561_6813967/menu_test.cj</a></td>
+    <td class="coverBar" align="center" style="background-color:LightSteelBlue">
+    <table border=0 cellspacing=0 cellpadding=1><tr><td class="coverBarOutline">
+            <div class="graph"><strong class="bar" style="width:100.0%; background-color:green"></strong></div>
+            </td></tr></table>
+    </td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightGreen;">47 / 47</td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightGreen;">100.0 %</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+</tr> <tr>
+    <td class="coverFile" ><a href="ci_test_test_temp_run_painter_test_cj_1664105569_7274773_painter_test.cj.html">ci_test/test_temp/run/painter_test_cj_1664105569_7274773/painter_test.cj</a></td>
+    <td class="coverBar" align="center" >
+    <table border=0 cellspacing=0 cellpadding=1><tr><td class="coverBarOutline">
+            <div class="graph"><strong class="bar" style="width:100.0%; background-color:green"></strong></div>
+            </td></tr></table>
+    </td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightGreen;">4 / 4</td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightGreen;">100.0 %</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+</tr> <tr>
+    <td class="coverFile" style="background-color:LightSteelBlue"><a href="ci_test_test_temp_run_push_button_test_cj_1664105532_6044645_push_button_test.cj.html">ci_test/test_temp/run/push_button_test_cj_1664105532_6044645/push_button_test.cj</a></td>
+    <td class="coverBar" align="center" style="background-color:LightSteelBlue">
+    <table border=0 cellspacing=0 cellpadding=1><tr><td class="coverBarOutline">
+            <div class="graph"><strong class="bar" style="width:100.0%; background-color:green"></strong></div>
+            </td></tr></table>
+    </td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightGreen;">19 / 19</td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightGreen;">100.0 %</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+</tr> <tr>
+    <td class="coverFile" ><a href="ci_test_test_temp_run_radio_button_test_cj_1664105564_995766_radio_button_test.cj.html">ci_test/test_temp/run/radio_button_test_cj_1664105564_995766/radio_button_test.cj</a></td>
+    <td class="coverBar" align="center" >
+    <table border=0 cellspacing=0 cellpadding=1><tr><td class="coverBarOutline">
+            <div class="graph"><strong class="bar" style="width:100.0%; background-color:green"></strong></div>
+            </td></tr></table>
+    </td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightGreen;">21 / 21</td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightGreen;">100.0 %</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+</tr> <tr>
+    <td class="coverFile" style="background-color:LightSteelBlue"><a href="ci_test_test_temp_run_status_bar_test_cj_1664105563_9724169_status_bar_test.cj.html">ci_test/test_temp/run/status_bar_test_cj_1664105563_9724169/status_bar_test.cj</a></td>
+    <td class="coverBar" align="center" style="background-color:LightSteelBlue">
+    <table border=0 cellspacing=0 cellpadding=1><tr><td class="coverBarOutline">
+            <div class="graph"><strong class="bar" style="width:100.0%; background-color:green"></strong></div>
+            </td></tr></table>
+    </td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightGreen;">46 / 46</td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightGreen;">100.0 %</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+</tr> <tr>
+    <td class="coverFile" ><a href="ci_test_test_temp_run_tab_bar_test_cj_1664105568_5545304_tab_bar_test.cj.html">ci_test/test_temp/run/tab_bar_test_cj_1664105568_5545304/tab_bar_test.cj</a></td>
+    <td class="coverBar" align="center" >
+    <table border=0 cellspacing=0 cellpadding=1><tr><td class="coverBarOutline">
+            <div class="graph"><strong class="bar" style="width:100.0%; background-color:green"></strong></div>
+            </td></tr></table>
+    </td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightGreen;">64 / 64</td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightGreen;">100.0 %</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+</tr> <tr>
+    <td class="coverFile" style="background-color:LightSteelBlue"><a href="ci_test_test_temp_run_tab_widget_test_cj_1664105533_7752762_tab_widget_test.cj.html">ci_test/test_temp/run/tab_widget_test_cj_1664105533_7752762/tab_widget_test.cj</a></td>
+    <td class="coverBar" align="center" style="background-color:LightSteelBlue">
+    <table border=0 cellspacing=0 cellpadding=1><tr><td class="coverBarOutline">
+            <div class="graph"><strong class="bar" style="width:100.0%; background-color:green"></strong></div>
+            </td></tr></table>
+    </td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightGreen;">68 / 68</td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightGreen;">100.0 %</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+</tr> <tr>
+    <td class="coverFile" ><a href="ci_test_test_temp_run_text_edit_test_cj_1664105539_7252557_text_edit_test.cj.html">ci_test/test_temp/run/text_edit_test_cj_1664105539_7252557/text_edit_test.cj</a></td>
+    <td class="coverBar" align="center" >
+    <table border=0 cellspacing=0 cellpadding=1><tr><td class="coverBarOutline">
+            <div class="graph"><strong class="bar" style="width:100.0%; background-color:green"></strong></div>
+            </td></tr></table>
+    </td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightGreen;">59 / 59</td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightGreen;">100.0 %</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+</tr> <tr>
+    <td class="coverFile" style="background-color:LightSteelBlue"><a href="ci_test_test_temp_run_tool_bar_test_cj_1664105538_6021218_tool_bar_test.cj.html">ci_test/test_temp/run/tool_bar_test_cj_1664105538_6021218/tool_bar_test.cj</a></td>
+    <td class="coverBar" align="center" style="background-color:LightSteelBlue">
+    <table border=0 cellspacing=0 cellpadding=1><tr><td class="coverBarOutline">
+            <div class="graph"><strong class="bar" style="width:100.0%; background-color:green"></strong></div>
+            </td></tr></table>
+    </td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightGreen;">60 / 60</td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightGreen;">100.0 %</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+</tr> <tr>
+    <td class="coverFile" ><a href="ci_test_test_temp_run_url_test_cj_1664105537_5732439_url_test.cj.html">ci_test/test_temp/run/url_test_cj_1664105537_5732439/url_test.cj</a></td>
+    <td class="coverBar" align="center" >
+    <table border=0 cellspacing=0 cellpadding=1><tr><td class="coverBarOutline">
+            <div class="graph"><strong class="bar" style="width:100.0%; background-color:green"></strong></div>
+            </td></tr></table>
+    </td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightGreen;">9 / 9</td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightGreen;">100.0 %</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+</tr> <tr>
+    <td class="coverFile" style="background-color:LightSteelBlue"><a href="ci_test_test_temp_run_widget_test_cj_1664105527_9039702_widget_test.cj.html">ci_test/test_temp/run/widget_test_cj_1664105527_9039702/widget_test.cj</a></td>
+    <td class="coverBar" align="center" style="background-color:LightSteelBlue">
+    <table border=0 cellspacing=0 cellpadding=1><tr><td class="coverBarOutline">
+            <div class="graph"><strong class="bar" style="width:96.4%; background-color:green"></strong></div>
+            </td></tr></table>
+    </td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightGreen;">134 / 139</td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightGreen;">96.4 %</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+</tr> <tr>
+    <td class="coverFile" ><a href="src_qt_core_event.cj.html">src/qt/core/event.cj</a></td>
+    <td class="coverBar" align="center" >
+    <table border=0 cellspacing=0 cellpadding=1><tr><td class="coverBarOutline">
+            <div class="graph"><strong class="bar" style="width:0.0%; border:white; background-color:red"></strong></div>
+            </td></tr></table>
+    </td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightPink;">0 / 232</td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightPink;">0.0 %</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+</tr> <tr>
+    <td class="coverFile" style="background-color:LightSteelBlue"><a href="src_qt_core_line_f.cj.html">src/qt/core/line_f.cj</a></td>
+    <td class="coverBar" align="center" style="background-color:LightSteelBlue">
+    <table border=0 cellspacing=0 cellpadding=1><tr><td class="coverBarOutline">
+            <div class="graph"><strong class="bar" style="width:0.0%; border:white; background-color:red"></strong></div>
+            </td></tr></table>
+    </td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightPink;">0 / 12</td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightPink;">0.0 %</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+</tr> <tr>
+    <td class="coverFile" ><a href="src_qt_core_namespace.cj.html">src/qt/core/namespace.cj</a></td>
+    <td class="coverBar" align="center" >
+    <table border=0 cellspacing=0 cellpadding=1><tr><td class="coverBarOutline">
+            <div class="graph"><strong class="bar" style="width:24.7%; background-color:red"></strong></div>
+            </td></tr></table>
+    </td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightPink;">24 / 97</td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightPink;">24.7 %</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+</tr> <tr>
+    <td class="coverFile" style="background-color:LightSteelBlue"><a href="src_qt_core_object.cj.html">src/qt/core/object.cj</a></td>
+    <td class="coverBar" align="center" style="background-color:LightSteelBlue">
+    <table border=0 cellspacing=0 cellpadding=1><tr><td class="coverBarOutline">
+            <div class="graph"><strong class="bar" style="width:22.2%; background-color:red"></strong></div>
+            </td></tr></table>
+    </td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightPink;">2 / 9</td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightPink;">22.2 %</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+</tr> <tr>
+    <td class="coverFile" ><a href="src_qt_core_point.cj.html">src/qt/core/point.cj</a></td>
+    <td class="coverBar" align="center" >
+    <table border=0 cellspacing=0 cellpadding=1><tr><td class="coverBarOutline">
+            <div class="graph"><strong class="bar" style="width:10.0%; background-color:red"></strong></div>
+            </td></tr></table>
+    </td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightPink;">2 / 20</td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightPink;">10.0 %</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+</tr> <tr>
+    <td class="coverFile" style="background-color:LightSteelBlue"><a href="src_qt_core_point_f.cj.html">src/qt/core/point_f.cj</a></td>
+    <td class="coverBar" align="center" style="background-color:LightSteelBlue">
+    <table border=0 cellspacing=0 cellpadding=1><tr><td class="coverBarOutline">
+            <div class="graph"><strong class="bar" style="width:0.0%; border:white; background-color:red"></strong></div>
+            </td></tr></table>
+    </td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightPink;">0 / 30</td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightPink;">0.0 %</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+</tr> <tr>
+    <td class="coverFile" ><a href="src_qt_core_rect.cj.html">src/qt/core/rect.cj</a></td>
+    <td class="coverBar" align="center" >
+    <table border=0 cellspacing=0 cellpadding=1><tr><td class="coverBarOutline">
+            <div class="graph"><strong class="bar" style="width:71.4%; background-color:red"></strong></div>
+            </td></tr></table>
+    </td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightPink;">5 / 7</td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightPink;">71.4 %</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+</tr> <tr>
+    <td class="coverFile" style="background-color:LightSteelBlue"><a href="src_qt_core_rect_f.cj.html">src/qt/core/rect_f.cj</a></td>
+    <td class="coverBar" align="center" style="background-color:LightSteelBlue">
+    <table border=0 cellspacing=0 cellpadding=1><tr><td class="coverBarOutline">
+            <div class="graph"><strong class="bar" style="width:0.0%; border:white; background-color:red"></strong></div>
+            </td></tr></table>
+    </td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightPink;">0 / 15</td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightPink;">0.0 %</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+</tr> <tr>
+    <td class="coverFile" ><a href="src_qt_core_size.cj.html">src/qt/core/size.cj</a></td>
+    <td class="coverBar" align="center" >
+    <table border=0 cellspacing=0 cellpadding=1><tr><td class="coverBarOutline">
+            <div class="graph"><strong class="bar" style="width:50.0%; background-color:red"></strong></div>
+            </td></tr></table>
+    </td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightPink;">5 / 10</td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightPink;">50.0 %</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+</tr> <tr>
+    <td class="coverFile" style="background-color:LightSteelBlue"><a href="src_qt_core_size_f.cj.html">src/qt/core/size_f.cj</a></td>
+    <td class="coverBar" align="center" style="background-color:LightSteelBlue">
+    <table border=0 cellspacing=0 cellpadding=1><tr><td class="coverBarOutline">
+            <div class="graph"><strong class="bar" style="width:0.0%; border:white; background-color:red"></strong></div>
+            </td></tr></table>
+    </td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightPink;">0 / 10</td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightPink;">0.0 %</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+</tr> <tr>
+    <td class="coverFile" ><a href="src_qt_core_timer.cj.html">src/qt/core/timer.cj</a></td>
+    <td class="coverBar" align="center" >
+    <table border=0 cellspacing=0 cellpadding=1><tr><td class="coverBarOutline">
+            <div class="graph"><strong class="bar" style="width:47.4%; background-color:red"></strong></div>
+            </td></tr></table>
+    </td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightPink;">9 / 19</td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightPink;">47.4 %</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+</tr> <tr>
+    <td class="coverFile" style="background-color:LightSteelBlue"><a href="src_qt_core_url.cj.html">src/qt/core/url.cj</a></td>
+    <td class="coverBar" align="center" style="background-color:LightSteelBlue">
+    <table border=0 cellspacing=0 cellpadding=1><tr><td class="coverBarOutline">
+            <div class="graph"><strong class="bar" style="width:100.0%; background-color:green"></strong></div>
+            </td></tr></table>
+    </td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightGreen;">14 / 14</td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightGreen;">100.0 %</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+</tr> <tr>
+    <td class="coverFile" ><a href="src_qt_gui_brush.cj.html">src/qt/gui/brush.cj</a></td>
+    <td class="coverBar" align="center" >
+    <table border=0 cellspacing=0 cellpadding=1><tr><td class="coverBarOutline">
+            <div class="graph"><strong class="bar" style="width:0.0%; border:white; background-color:red"></strong></div>
+            </td></tr></table>
+    </td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightPink;">0 / 13</td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightPink;">0.0 %</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+</tr> <tr>
+    <td class="coverFile" style="background-color:LightSteelBlue"><a href="src_qt_gui_color.cj.html">src/qt/gui/color.cj</a></td>
+    <td class="coverBar" align="center" style="background-color:LightSteelBlue">
+    <table border=0 cellspacing=0 cellpadding=1><tr><td class="coverBarOutline">
+            <div class="graph"><strong class="bar" style="width:92.9%; background-color:green"></strong></div>
+            </td></tr></table>
+    </td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightGreen;">26 / 28</td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightGreen;">92.9 %</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+</tr> <tr>
+    <td class="coverFile" ><a href="src_qt_gui_context_menu_event.cj.html">src/qt/gui/context_menu_event.cj</a></td>
+    <td class="coverBar" align="center" >
+    <table border=0 cellspacing=0 cellpadding=1><tr><td class="coverBarOutline">
+            <div class="graph"><strong class="bar" style="width:0.0%; border:white; background-color:red"></strong></div>
+            </td></tr></table>
+    </td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightPink;">0 / 2</td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightPink;">0.0 %</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+</tr> <tr>
+    <td class="coverFile" style="background-color:LightSteelBlue"><a href="src_qt_gui_double_validator.cj.html">src/qt/gui/double_validator.cj</a></td>
+    <td class="coverBar" align="center" style="background-color:LightSteelBlue">
+    <table border=0 cellspacing=0 cellpadding=1><tr><td class="coverBarOutline">
+            <div class="graph"><strong class="bar" style="width:29.6%; background-color:red"></strong></div>
+            </td></tr></table>
+    </td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightPink;">21 / 71</td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightPink;">29.6 %</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+</tr> <tr>
+    <td class="coverFile" ><a href="src_qt_gui_focus_event.cj.html">src/qt/gui/focus_event.cj</a></td>
+    <td class="coverBar" align="center" >
+    <table border=0 cellspacing=0 cellpadding=1><tr><td class="coverBarOutline">
+            <div class="graph"><strong class="bar" style="width:0.0%; border:white; background-color:red"></strong></div>
+            </td></tr></table>
+    </td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightPink;">0 / 2</td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightPink;">0.0 %</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+</tr> <tr>
+    <td class="coverFile" style="background-color:LightSteelBlue"><a href="src_qt_gui_font.cj.html">src/qt/gui/font.cj</a></td>
+    <td class="coverBar" align="center" style="background-color:LightSteelBlue">
+    <table border=0 cellspacing=0 cellpadding=1><tr><td class="coverBarOutline">
+            <div class="graph"><strong class="bar" style="width:54.5%; background-color:red"></strong></div>
+            </td></tr></table>
+    </td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightPink;">12 / 22</td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightPink;">54.5 %</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+</tr> <tr>
+    <td class="coverFile" ><a href="src_qt_gui_hide_event.cj.html">src/qt/gui/hide_event.cj</a></td>
+    <td class="coverBar" align="center" >
+    <table border=0 cellspacing=0 cellpadding=1><tr><td class="coverBarOutline">
+            <div class="graph"><strong class="bar" style="width:0.0%; border:white; background-color:red"></strong></div>
+            </td></tr></table>
+    </td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightPink;">0 / 2</td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightPink;">0.0 %</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+</tr> <tr>
+    <td class="coverFile" style="background-color:LightSteelBlue"><a href="src_qt_gui_icon.cj.html">src/qt/gui/icon.cj</a></td>
+    <td class="coverBar" align="center" style="background-color:LightSteelBlue">
+    <table border=0 cellspacing=0 cellpadding=1><tr><td class="coverBarOutline">
+            <div class="graph"><strong class="bar" style="width:32.3%; background-color:red"></strong></div>
+            </td></tr></table>
+    </td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightPink;">10 / 31</td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightPink;">32.3 %</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+</tr> <tr>
+    <td class="coverFile" ><a href="src_qt_gui_input_method_event.cj.html">src/qt/gui/input_method_event.cj</a></td>
+    <td class="coverBar" align="center" >
+    <table border=0 cellspacing=0 cellpadding=1><tr><td class="coverBarOutline">
+            <div class="graph"><strong class="bar" style="width:0.0%; border:white; background-color:red"></strong></div>
+            </td></tr></table>
+    </td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightPink;">0 / 2</td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightPink;">0.0 %</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+</tr> <tr>
+    <td class="coverFile" style="background-color:LightSteelBlue"><a href="src_qt_gui_key_event.cj.html">src/qt/gui/key_event.cj</a></td>
+    <td class="coverBar" align="center" style="background-color:LightSteelBlue">
+    <table border=0 cellspacing=0 cellpadding=1><tr><td class="coverBarOutline">
+            <div class="graph"><strong class="bar" style="width:0.0%; border:white; background-color:red"></strong></div>
+            </td></tr></table>
+    </td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightPink;">0 / 10</td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightPink;">0.0 %</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+</tr> <tr>
+    <td class="coverFile" ><a href="src_qt_gui_mouse_event.cj.html">src/qt/gui/mouse_event.cj</a></td>
+    <td class="coverBar" align="center" >
+    <table border=0 cellspacing=0 cellpadding=1><tr><td class="coverBarOutline">
+            <div class="graph"><strong class="bar" style="width:0.0%; border:white; background-color:red"></strong></div>
+            </td></tr></table>
+    </td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightPink;">0 / 6</td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightPink;">0.0 %</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+</tr> <tr>
+    <td class="coverFile" style="background-color:LightSteelBlue"><a href="src_qt_gui_paint_device.cj.html">src/qt/gui/paint_device.cj</a></td>
+    <td class="coverBar" align="center" style="background-color:LightSteelBlue">
+    <table border=0 cellspacing=0 cellpadding=1><tr><td class="coverBarOutline">
+            <div class="graph"><strong class="bar" style="width:0.0%; border:white; background-color:red"></strong></div>
+            </td></tr></table>
+    </td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightPink;">0 / 6</td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightPink;">0.0 %</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+</tr> <tr>
+    <td class="coverFile" ><a href="src_qt_gui_painter_event.cj.html">src/qt/gui/painter_event.cj</a></td>
+    <td class="coverBar" align="center" >
+    <table border=0 cellspacing=0 cellpadding=1><tr><td class="coverBarOutline">
+            <div class="graph"><strong class="bar" style="width:0.0%; border:white; background-color:red"></strong></div>
+            </td></tr></table>
+    </td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightPink;">0 / 2</td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightPink;">0.0 %</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+</tr> <tr>
+    <td class="coverFile" style="background-color:LightSteelBlue"><a href="src_qt_gui_palette.cj.html">src/qt/gui/palette.cj</a></td>
+    <td class="coverBar" align="center" style="background-color:LightSteelBlue">
+    <table border=0 cellspacing=0 cellpadding=1><tr><td class="coverBarOutline">
+            <div class="graph"><strong class="bar" style="width:60.0%; background-color:red"></strong></div>
+            </td></tr></table>
+    </td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightPink;">12 / 20</td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightPink;">60.0 %</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+</tr> <tr>
+    <td class="coverFile" ><a href="src_qt_gui_pen.cj.html">src/qt/gui/pen.cj</a></td>
+    <td class="coverBar" align="center" >
+    <table border=0 cellspacing=0 cellpadding=1><tr><td class="coverBarOutline">
+            <div class="graph"><strong class="bar" style="width:0.0%; border:white; background-color:red"></strong></div>
+            </td></tr></table>
+    </td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightPink;">0 / 19</td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightPink;">0.0 %</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+</tr> <tr>
+    <td class="coverFile" style="background-color:LightSteelBlue"><a href="src_qt_gui_pixmap.cj.html">src/qt/gui/pixmap.cj</a></td>
+    <td class="coverBar" align="center" style="background-color:LightSteelBlue">
+    <table border=0 cellspacing=0 cellpadding=1><tr><td class="coverBarOutline">
+            <div class="graph"><strong class="bar" style="width:0.0%; border:white; background-color:red"></strong></div>
+            </td></tr></table>
+    </td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightPink;">0 / 15</td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightPink;">0.0 %</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+</tr> <tr>
+    <td class="coverFile" ><a href="src_qt_gui_polygon.cj.html">src/qt/gui/polygon.cj</a></td>
+    <td class="coverBar" align="center" >
+    <table border=0 cellspacing=0 cellpadding=1><tr><td class="coverBarOutline">
+            <div class="graph"><strong class="bar" style="width:0.0%; border:white; background-color:red"></strong></div>
+            </td></tr></table>
+    </td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightPink;">0 / 11</td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightPink;">0.0 %</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+</tr> <tr>
+    <td class="coverFile" style="background-color:LightSteelBlue"><a href="src_qt_gui_polygon_f.cj.html">src/qt/gui/polygon_f.cj</a></td>
+    <td class="coverBar" align="center" style="background-color:LightSteelBlue">
+    <table border=0 cellspacing=0 cellpadding=1><tr><td class="coverBarOutline">
+            <div class="graph"><strong class="bar" style="width:0.0%; border:white; background-color:red"></strong></div>
+            </td></tr></table>
+    </td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightPink;">0 / 21</td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightPink;">0.0 %</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+</tr> <tr>
+    <td class="coverFile" ><a href="src_qt_gui_signals.cj.html">src/qt/gui/signals.cj</a></td>
+    <td class="coverBar" align="center" >
+    <table border=0 cellspacing=0 cellpadding=1><tr><td class="coverBarOutline">
+            <div class="graph"><strong class="bar" style="width:18.3%; background-color:red"></strong></div>
+            </td></tr></table>
+    </td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightPink;">15 / 82</td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightPink;">18.3 %</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+</tr> <tr>
+    <td class="coverFile" style="background-color:LightSteelBlue"><a href="src_qt_gui_transform.cj.html">src/qt/gui/transform.cj</a></td>
+    <td class="coverBar" align="center" style="background-color:LightSteelBlue">
+    <table border=0 cellspacing=0 cellpadding=1><tr><td class="coverBarOutline">
+            <div class="graph"><strong class="bar" style="width:0.0%; border:white; background-color:red"></strong></div>
+            </td></tr></table>
+    </td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightPink;">0 / 10</td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightPink;">0.0 %</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+</tr> <tr>
+    <td class="coverFile" ><a href="src_qt_gui_validator.cj.html">src/qt/gui/validator.cj</a></td>
+    <td class="coverBar" align="center" >
+    <table border=0 cellspacing=0 cellpadding=1><tr><td class="coverBarOutline">
+            <div class="graph"><strong class="bar" style="width:17.2%; background-color:red"></strong></div>
+            </td></tr></table>
+    </td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightPink;">5 / 29</td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightPink;">17.2 %</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+</tr> <tr>
+    <td class="coverFile" style="background-color:LightSteelBlue"><a href="src_qt_gui_wheel_event.cj.html">src/qt/gui/wheel_event.cj</a></td>
+    <td class="coverBar" align="center" style="background-color:LightSteelBlue">
+    <table border=0 cellspacing=0 cellpadding=1><tr><td class="coverBarOutline">
+            <div class="graph"><strong class="bar" style="width:0.0%; border:white; background-color:red"></strong></div>
+            </td></tr></table>
+    </td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightPink;">0 / 2</td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightPink;">0.0 %</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+</tr> <tr>
+    <td class="coverFile" ><a href="src_qt_tools_callback_map.cj.html">src/qt/tools/callback_map.cj</a></td>
+    <td class="coverBar" align="center" >
+    <table border=0 cellspacing=0 cellpadding=1><tr><td class="coverBarOutline">
+            <div class="graph"><strong class="bar" style="width:93.3%; background-color:green"></strong></div>
+            </td></tr></table>
+    </td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightGreen;">14 / 15</td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightGreen;">93.3 %</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+</tr> <tr>
+    <td class="coverFile" style="background-color:LightSteelBlue"><a href="src_qt_tools_conversion.cj.html">src/qt/tools/conversion.cj</a></td>
+    <td class="coverBar" align="center" style="background-color:LightSteelBlue">
+    <table border=0 cellspacing=0 cellpadding=1><tr><td class="coverBarOutline">
+            <div class="graph"><strong class="bar" style="width:42.1%; background-color:red"></strong></div>
+            </td></tr></table>
+    </td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightPink;">8 / 19</td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightPink;">42.1 %</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+</tr> <tr>
+    <td class="coverFile" ><a href="src_qt_widgets_abstract_graphics_shape_item.cj.html">src/qt/widgets/abstract_graphics_shape_item.cj</a></td>
+    <td class="coverBar" align="center" >
+    <table border=0 cellspacing=0 cellpadding=1><tr><td class="coverBarOutline">
+            <div class="graph"><strong class="bar" style="width:0.0%; border:white; background-color:red"></strong></div>
+            </td></tr></table>
+    </td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightPink;">0 / 22</td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightPink;">0.0 %</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+</tr> <tr>
+    <td class="coverFile" style="background-color:LightSteelBlue"><a href="src_qt_widgets_abstract_scroll_area.cj.html">src/qt/widgets/abstract_scroll_area.cj</a></td>
+    <td class="coverBar" align="center" style="background-color:LightSteelBlue">
+    <table border=0 cellspacing=0 cellpadding=1><tr><td class="coverBarOutline">
+            <div class="graph"><strong class="bar" style="width:0.0%; border:white; background-color:red"></strong></div>
+            </td></tr></table>
+    </td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightPink;">0 / 16</td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightPink;">0.0 %</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+</tr> <tr>
+    <td class="coverFile" ><a href="src_qt_widgets_abstract_slider.cj.html">src/qt/widgets/abstract_slider.cj</a></td>
+    <td class="coverBar" align="center" >
+    <table border=0 cellspacing=0 cellpadding=1><tr><td class="coverBarOutline">
+            <div class="graph"><strong class="bar" style="width:0.0%; border:white; background-color:red"></strong></div>
+            </td></tr></table>
+    </td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightPink;">0 / 10</td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightPink;">0.0 %</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+</tr> <tr>
+    <td class="coverFile" style="background-color:LightSteelBlue"><a href="src_qt_widgets_action.cj.html">src/qt/widgets/action.cj</a></td>
+    <td class="coverBar" align="center" style="background-color:LightSteelBlue">
+    <table border=0 cellspacing=0 cellpadding=1><tr><td class="coverBarOutline">
+            <div class="graph"><strong class="bar" style="width:100.0%; background-color:green"></strong></div>
+            </td></tr></table>
+    </td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightGreen;">44 / 44</td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightGreen;">100.0 %</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+</tr> <tr>
+    <td class="coverFile" ><a href="src_qt_widgets_action_group.cj.html">src/qt/widgets/action_group.cj</a></td>
+    <td class="coverBar" align="center" >
+    <table border=0 cellspacing=0 cellpadding=1><tr><td class="coverBarOutline">
+            <div class="graph"><strong class="bar" style="width:0.0%; border:white; background-color:red"></strong></div>
+            </td></tr></table>
+    </td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightPink;">0 / 10</td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightPink;">0.0 %</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+</tr> <tr>
+    <td class="coverFile" style="background-color:LightSteelBlue"><a href="src_qt_widgets_application.cj.html">src/qt/widgets/application.cj</a></td>
+    <td class="coverBar" align="center" style="background-color:LightSteelBlue">
+    <table border=0 cellspacing=0 cellpadding=1><tr><td class="coverBarOutline">
+            <div class="graph"><strong class="bar" style="width:90.9%; background-color:green"></strong></div>
+            </td></tr></table>
+    </td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightGreen;">10 / 11</td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightGreen;">90.9 %</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+</tr> <tr>
+    <td class="coverFile" ><a href="src_qt_widgets_box_layout.cj.html">src/qt/widgets/box_layout.cj</a></td>
+    <td class="coverBar" align="center" >
+    <table border=0 cellspacing=0 cellpadding=1><tr><td class="coverBarOutline">
+            <div class="graph"><strong class="bar" style="width:100.0%; background-color:green"></strong></div>
+            </td></tr></table>
+    </td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightGreen;">9 / 9</td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightGreen;">100.0 %</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+</tr> <tr>
+    <td class="coverFile" style="background-color:LightSteelBlue"><a href="src_qt_widgets_check_box.cj.html">src/qt/widgets/check_box.cj</a></td>
+    <td class="coverBar" align="center" style="background-color:LightSteelBlue">
+    <table border=0 cellspacing=0 cellpadding=1><tr><td class="coverBarOutline">
+            <div class="graph"><strong class="bar" style="width:100.0%; background-color:green"></strong></div>
+            </td></tr></table>
+    </td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightGreen;">19 / 19</td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightGreen;">100.0 %</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+</tr> <tr>
+    <td class="coverFile" ><a href="src_qt_widgets_file_dialog.cj.html">src/qt/widgets/file_dialog.cj</a></td>
+    <td class="coverBar" align="center" >
+    <table border=0 cellspacing=0 cellpadding=1><tr><td class="coverBarOutline">
+            <div class="graph"><strong class="bar" style="width:0.0%; border:white; background-color:red"></strong></div>
+            </td></tr></table>
+    </td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightPink;">0 / 21</td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightPink;">0.0 %</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+</tr> <tr>
+    <td class="coverFile" style="background-color:LightSteelBlue"><a href="src_qt_widgets_font_dialog.cj.html">src/qt/widgets/font_dialog.cj</a></td>
+    <td class="coverBar" align="center" style="background-color:LightSteelBlue">
+    <table border=0 cellspacing=0 cellpadding=1><tr><td class="coverBarOutline">
+            <div class="graph"><strong class="bar" style="width:0.0%; border:white; background-color:red"></strong></div>
+            </td></tr></table>
+    </td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightPink;">0 / 5</td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightPink;">0.0 %</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+</tr> <tr>
+    <td class="coverFile" ><a href="src_qt_widgets_frame.cj.html">src/qt/widgets/frame.cj</a></td>
+    <td class="coverBar" align="center" >
+    <table border=0 cellspacing=0 cellpadding=1><tr><td class="coverBarOutline">
+            <div class="graph"><strong class="bar" style="width:100.0%; background-color:green"></strong></div>
+            </td></tr></table>
+    </td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightGreen;">82 / 82</td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightGreen;">100.0 %</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+</tr> <tr>
+    <td class="coverFile" style="background-color:LightSteelBlue"><a href="src_qt_widgets_graphics_item.cj.html">src/qt/widgets/graphics_item.cj</a></td>
+    <td class="coverBar" align="center" style="background-color:LightSteelBlue">
+    <table border=0 cellspacing=0 cellpadding=1><tr><td class="coverBarOutline">
+            <div class="graph"><strong class="bar" style="width:0.0%; border:white; background-color:red"></strong></div>
+            </td></tr></table>
+    </td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightPink;">0 / 7</td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightPink;">0.0 %</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+</tr> <tr>
+    <td class="coverFile" ><a href="src_qt_widgets_graphics_line_item.cj.html">src/qt/widgets/graphics_line_item.cj</a></td>
+    <td class="coverBar" align="center" >
+    <table border=0 cellspacing=0 cellpadding=1><tr><td class="coverBarOutline">
+            <div class="graph"><strong class="bar" style="width:0.0%; border:white; background-color:red"></strong></div>
+            </td></tr></table>
+    </td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightPink;">0 / 27</td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightPink;">0.0 %</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+</tr> <tr>
+    <td class="coverFile" style="background-color:LightSteelBlue"><a href="src_qt_widgets_graphics_rect_item.cj.html">src/qt/widgets/graphics_rect_item.cj</a></td>
+    <td class="coverBar" align="center" style="background-color:LightSteelBlue">
+    <table border=0 cellspacing=0 cellpadding=1><tr><td class="coverBarOutline">
+            <div class="graph"><strong class="bar" style="width:0.0%; border:white; background-color:red"></strong></div>
+            </td></tr></table>
+    </td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightPink;">0 / 20</td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightPink;">0.0 %</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+</tr> <tr>
+    <td class="coverFile" ><a href="src_qt_widgets_graphics_scene.cj.html">src/qt/widgets/graphics_scene.cj</a></td>
+    <td class="coverBar" align="center" >
+    <table border=0 cellspacing=0 cellpadding=1><tr><td class="coverBarOutline">
+            <div class="graph"><strong class="bar" style="width:0.0%; border:white; background-color:red"></strong></div>
+            </td></tr></table>
+    </td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightPink;">0 / 129</td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightPink;">0.0 %</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+</tr> <tr>
+    <td class="coverFile" style="background-color:LightSteelBlue"><a href="src_qt_widgets_graphics_scene_callback_map.cj.html">src/qt/widgets/graphics_scene_callback_map.cj</a></td>
+    <td class="coverBar" align="center" style="background-color:LightSteelBlue">
+    <table border=0 cellspacing=0 cellpadding=1><tr><td class="coverBarOutline">
+            <div class="graph"><strong class="bar" style="width:16.5%; background-color:red"></strong></div>
+            </td></tr></table>
+    </td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightPink;">15 / 91</td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightPink;">16.5 %</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+</tr> <tr>
+    <td class="coverFile" ><a href="src_qt_widgets_graphics_scene_context_menu_event.cj.html">src/qt/widgets/graphics_scene_context_menu_event.cj</a></td>
+    <td class="coverBar" align="center" >
+    <table border=0 cellspacing=0 cellpadding=1><tr><td class="coverBarOutline">
+            <div class="graph"><strong class="bar" style="width:0.0%; border:white; background-color:red"></strong></div>
+            </td></tr></table>
+    </td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightPink;">0 / 2</td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightPink;">0.0 %</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+</tr> <tr>
+    <td class="coverFile" style="background-color:LightSteelBlue"><a href="src_qt_widgets_graphics_scene_drag_drop_event.cj.html">src/qt/widgets/graphics_scene_drag_drop_event.cj</a></td>
+    <td class="coverBar" align="center" style="background-color:LightSteelBlue">
+    <table border=0 cellspacing=0 cellpadding=1><tr><td class="coverBarOutline">
+            <div class="graph"><strong class="bar" style="width:0.0%; border:white; background-color:red"></strong></div>
+            </td></tr></table>
+    </td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightPink;">0 / 2</td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightPink;">0.0 %</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+</tr> <tr>
+    <td class="coverFile" ><a href="src_qt_widgets_graphics_scene_event.cj.html">src/qt/widgets/graphics_scene_event.cj</a></td>
+    <td class="coverBar" align="center" >
+    <table border=0 cellspacing=0 cellpadding=1><tr><td class="coverBarOutline">
+            <div class="graph"><strong class="bar" style="width:0.0%; border:white; background-color:red"></strong></div>
+            </td></tr></table>
+    </td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightPink;">0 / 2</td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightPink;">0.0 %</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+</tr> <tr>
+    <td class="coverFile" style="background-color:LightSteelBlue"><a href="src_qt_widgets_graphics_scene_help_event.cj.html">src/qt/widgets/graphics_scene_help_event.cj</a></td>
+    <td class="coverBar" align="center" style="background-color:LightSteelBlue">
+    <table border=0 cellspacing=0 cellpadding=1><tr><td class="coverBarOutline">
+            <div class="graph"><strong class="bar" style="width:0.0%; border:white; background-color:red"></strong></div>
+            </td></tr></table>
+    </td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightPink;">0 / 2</td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightPink;">0.0 %</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+</tr> <tr>
+    <td class="coverFile" ><a href="src_qt_widgets_graphics_scene_mouse_event.cj.html">src/qt/widgets/graphics_scene_mouse_event.cj</a></td>
+    <td class="coverBar" align="center" >
+    <table border=0 cellspacing=0 cellpadding=1><tr><td class="coverBarOutline">
+            <div class="graph"><strong class="bar" style="width:0.0%; border:white; background-color:red"></strong></div>
+            </td></tr></table>
+    </td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightPink;">0 / 18</td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightPink;">0.0 %</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+</tr> <tr>
+    <td class="coverFile" style="background-color:LightSteelBlue"><a href="src_qt_widgets_graphics_scene_wheel_event.cj.html">src/qt/widgets/graphics_scene_wheel_event.cj</a></td>
+    <td class="coverBar" align="center" style="background-color:LightSteelBlue">
+    <table border=0 cellspacing=0 cellpadding=1><tr><td class="coverBarOutline">
+            <div class="graph"><strong class="bar" style="width:0.0%; border:white; background-color:red"></strong></div>
+            </td></tr></table>
+    </td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightPink;">0 / 2</td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightPink;">0.0 %</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+</tr> <tr>
+    <td class="coverFile" ><a href="src_qt_widgets_graphics_view.cj.html">src/qt/widgets/graphics_view.cj</a></td>
+    <td class="coverBar" align="center" >
+    <table border=0 cellspacing=0 cellpadding=1><tr><td class="coverBarOutline">
+            <div class="graph"><strong class="bar" style="width:0.0%; border:white; background-color:red"></strong></div>
+            </td></tr></table>
+    </td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightPink;">0 / 156</td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightPink;">0.0 %</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+</tr> <tr>
+    <td class="coverFile" style="background-color:LightSteelBlue"><a href="src_qt_widgets_grid_layout.cj.html">src/qt/widgets/grid_layout.cj</a></td>
+    <td class="coverBar" align="center" style="background-color:LightSteelBlue">
+    <table border=0 cellspacing=0 cellpadding=1><tr><td class="coverBarOutline">
+            <div class="graph"><strong class="bar" style="width:100.0%; background-color:green"></strong></div>
+            </td></tr></table>
+    </td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightGreen;">21 / 21</td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightGreen;">100.0 %</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+</tr> <tr>
+    <td class="coverFile" ><a href="src_qt_widgets_group_box.cj.html">src/qt/widgets/group_box.cj</a></td>
+    <td class="coverBar" align="center" >
+    <table border=0 cellspacing=0 cellpadding=1><tr><td class="coverBarOutline">
+            <div class="graph"><strong class="bar" style="width:91.1%; background-color:green"></strong></div>
+            </td></tr></table>
+    </td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightGreen;">41 / 45</td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightGreen;">91.1 %</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+</tr> <tr>
+    <td class="coverFile" style="background-color:LightSteelBlue"><a href="src_qt_widgets_h_box_layout.cj.html">src/qt/widgets/h_box_layout.cj</a></td>
+    <td class="coverBar" align="center" style="background-color:LightSteelBlue">
+    <table border=0 cellspacing=0 cellpadding=1><tr><td class="coverBarOutline">
+            <div class="graph"><strong class="bar" style="width:100.0%; background-color:green"></strong></div>
+            </td></tr></table>
+    </td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightGreen;">5 / 5</td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightGreen;">100.0 %</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+</tr> <tr>
+    <td class="coverFile" ><a href="src_qt_widgets_label.cj.html">src/qt/widgets/label.cj</a></td>
+    <td class="coverBar" align="center" >
+    <table border=0 cellspacing=0 cellpadding=1><tr><td class="coverBarOutline">
+            <div class="graph"><strong class="bar" style="width:100.0%; background-color:green"></strong></div>
+            </td></tr></table>
+    </td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightGreen;">24 / 24</td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightGreen;">100.0 %</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+</tr> <tr>
+    <td class="coverFile" style="background-color:LightSteelBlue"><a href="src_qt_widgets_layout.cj.html">src/qt/widgets/layout.cj</a></td>
+    <td class="coverBar" align="center" style="background-color:LightSteelBlue">
+    <table border=0 cellspacing=0 cellpadding=1><tr><td class="coverBarOutline">
+            <div class="graph"><strong class="bar" style="width:100.0%; background-color:green"></strong></div>
+            </td></tr></table>
+    </td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightGreen;">3 / 3</td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightGreen;">100.0 %</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+</tr> <tr>
+    <td class="coverFile" ><a href="src_qt_widgets_line_edit.cj.html">src/qt/widgets/line_edit.cj</a></td>
+    <td class="coverBar" align="center" >
+    <table border=0 cellspacing=0 cellpadding=1><tr><td class="coverBarOutline">
+            <div class="graph"><strong class="bar" style="width:100.0%; background-color:green"></strong></div>
+            </td></tr></table>
+    </td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightGreen;">171 / 171</td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightGreen;">100.0 %</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+</tr> <tr>
+    <td class="coverFile" style="background-color:LightSteelBlue"><a href="src_qt_widgets_main_window.cj.html">src/qt/widgets/main_window.cj</a></td>
+    <td class="coverBar" align="center" style="background-color:LightSteelBlue">
+    <table border=0 cellspacing=0 cellpadding=1><tr><td class="coverBarOutline">
+            <div class="graph"><strong class="bar" style="width:100.0%; background-color:green"></strong></div>
+            </td></tr></table>
+    </td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightGreen;">18 / 18</td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightGreen;">100.0 %</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+</tr> <tr>
+    <td class="coverFile" ><a href="src_qt_widgets_menu.cj.html">src/qt/widgets/menu.cj</a></td>
+    <td class="coverBar" align="center" >
+    <table border=0 cellspacing=0 cellpadding=1><tr><td class="coverBarOutline">
+            <div class="graph"><strong class="bar" style="width:100.0%; background-color:green"></strong></div>
+            </td></tr></table>
+    </td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightGreen;">28 / 28</td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightGreen;">100.0 %</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+</tr> <tr>
+    <td class="coverFile" style="background-color:LightSteelBlue"><a href="src_qt_widgets_menu_bar.cj.html">src/qt/widgets/menu_bar.cj</a></td>
+    <td class="coverBar" align="center" style="background-color:LightSteelBlue">
+    <table border=0 cellspacing=0 cellpadding=1><tr><td class="coverBarOutline">
+            <div class="graph"><strong class="bar" style="width:100.0%; background-color:green"></strong></div>
+            </td></tr></table>
+    </td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightGreen;">28 / 28</td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightGreen;">100.0 %</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+</tr> <tr>
+    <td class="coverFile" ><a href="src_qt_widgets_message_box.cj.html">src/qt/widgets/message_box.cj</a></td>
+    <td class="coverBar" align="center" >
+    <table border=0 cellspacing=0 cellpadding=1><tr><td class="coverBarOutline">
+            <div class="graph"><strong class="bar" style="width:0.0%; border:white; background-color:red"></strong></div>
+            </td></tr></table>
+    </td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightPink;">0 / 5</td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightPink;">0.0 %</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+</tr> <tr>
+    <td class="coverFile" style="background-color:LightSteelBlue"><a href="src_qt_widgets_painter.cj.html">src/qt/widgets/painter.cj</a></td>
+    <td class="coverBar" align="center" style="background-color:LightSteelBlue">
+    <table border=0 cellspacing=0 cellpadding=1><tr><td class="coverBarOutline">
+            <div class="graph"><strong class="bar" style="width:0.0%; border:white; background-color:red"></strong></div>
+            </td></tr></table>
+    </td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightPink;">0 / 27</td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightPink;">0.0 %</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+</tr> <tr>
+    <td class="coverFile" ><a href="src_qt_widgets_push_button.cj.html">src/qt/widgets/push_button.cj</a></td>
+    <td class="coverBar" align="center" >
+    <table border=0 cellspacing=0 cellpadding=1><tr><td class="coverBarOutline">
+            <div class="graph"><strong class="bar" style="width:91.7%; background-color:green"></strong></div>
+            </td></tr></table>
+    </td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightGreen;">22 / 24</td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightGreen;">91.7 %</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+</tr> <tr>
+    <td class="coverFile" style="background-color:LightSteelBlue"><a href="src_qt_widgets_radio_button.cj.html">src/qt/widgets/radio_button.cj</a></td>
+    <td class="coverBar" align="center" style="background-color:LightSteelBlue">
+    <table border=0 cellspacing=0 cellpadding=1><tr><td class="coverBarOutline">
+            <div class="graph"><strong class="bar" style="width:100.0%; background-color:green"></strong></div>
+            </td></tr></table>
+    </td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightGreen;">19 / 19</td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightGreen;">100.0 %</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+</tr> <tr>
+    <td class="coverFile" ><a href="src_qt_widgets_scroll_bar.cj.html">src/qt/widgets/scroll_bar.cj</a></td>
+    <td class="coverBar" align="center" >
+    <table border=0 cellspacing=0 cellpadding=1><tr><td class="coverBarOutline">
+            <div class="graph"><strong class="bar" style="width:0.0%; border:white; background-color:red"></strong></div>
+            </td></tr></table>
+    </td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightPink;">0 / 34</td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightPink;">0.0 %</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+</tr> <tr>
+    <td class="coverFile" style="background-color:LightSteelBlue"><a href="src_qt_widgets_signal.cj.html">src/qt/widgets/signal.cj</a></td>
+    <td class="coverBar" align="center" style="background-color:LightSteelBlue">
+    <table border=0 cellspacing=0 cellpadding=1><tr><td class="coverBarOutline">
+            <div class="graph"><strong class="bar" style="width:80.0%; background-color:yellow"></strong></div>
+            </td></tr></table>
+    </td>
+    <td class="CoverValue" style="font-weight:bold; background-color:Yellow;">24 / 30</td>
+    <td class="CoverValue" style="font-weight:bold; background-color:Yellow;">80.0 %</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+</tr> <tr>
+    <td class="coverFile" ><a href="src_qt_widgets_status_bar.cj.html">src/qt/widgets/status_bar.cj</a></td>
+    <td class="coverBar" align="center" >
+    <table border=0 cellspacing=0 cellpadding=1><tr><td class="coverBarOutline">
+            <div class="graph"><strong class="bar" style="width:100.0%; background-color:green"></strong></div>
+            </td></tr></table>
+    </td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightGreen;">23 / 23</td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightGreen;">100.0 %</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+</tr> <tr>
+    <td class="coverFile" style="background-color:LightSteelBlue"><a href="src_qt_widgets_tab_bar.cj.html">src/qt/widgets/tab_bar.cj</a></td>
+    <td class="coverBar" align="center" style="background-color:LightSteelBlue">
+    <table border=0 cellspacing=0 cellpadding=1><tr><td class="coverBarOutline">
+            <div class="graph"><strong class="bar" style="width:95.4%; background-color:green"></strong></div>
+            </td></tr></table>
+    </td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightGreen;">104 / 109</td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightGreen;">95.4 %</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+</tr> <tr>
+    <td class="coverFile" ><a href="src_qt_widgets_tab_widget.cj.html">src/qt/widgets/tab_widget.cj</a></td>
+    <td class="coverBar" align="center" >
+    <table border=0 cellspacing=0 cellpadding=1><tr><td class="coverBarOutline">
+            <div class="graph"><strong class="bar" style="width:96.0%; background-color:green"></strong></div>
+            </td></tr></table>
+    </td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightGreen;">95 / 99</td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightGreen;">96.0 %</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+</tr> <tr>
+    <td class="coverFile" style="background-color:LightSteelBlue"><a href="src_qt_widgets_text_edit.cj.html">src/qt/widgets/text_edit.cj</a></td>
+    <td class="coverBar" align="center" style="background-color:LightSteelBlue">
+    <table border=0 cellspacing=0 cellpadding=1><tr><td class="coverBarOutline">
+            <div class="graph"><strong class="bar" style="width:100.0%; background-color:green"></strong></div>
+            </td></tr></table>
+    </td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightGreen;">54 / 54</td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightGreen;">100.0 %</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+</tr> <tr>
+    <td class="coverFile" ><a href="src_qt_widgets_tool_bar.cj.html">src/qt/widgets/tool_bar.cj</a></td>
+    <td class="coverBar" align="center" >
+    <table border=0 cellspacing=0 cellpadding=1><tr><td class="coverBarOutline">
+            <div class="graph"><strong class="bar" style="width:100.0%; background-color:green"></strong></div>
+            </td></tr></table>
+    </td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightGreen;">31 / 31</td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightGreen;">100.0 %</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+</tr> <tr>
+    <td class="coverFile" style="background-color:LightSteelBlue"><a href="src_qt_widgets_v_box_layout.cj.html">src/qt/widgets/v_box_layout.cj</a></td>
+    <td class="coverBar" align="center" style="background-color:LightSteelBlue">
+    <table border=0 cellspacing=0 cellpadding=1><tr><td class="coverBarOutline">
+            <div class="graph"><strong class="bar" style="width:100.0%; background-color:green"></strong></div>
+            </td></tr></table>
+    </td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightGreen;">5 / 5</td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightGreen;">100.0 %</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+</tr> <tr>
+    <td class="coverFile" ><a href="src_qt_widgets_widget.cj.html">src/qt/widgets/widget.cj</a></td>
+    <td class="coverBar" align="center" >
+    <table border=0 cellspacing=0 cellpadding=1><tr><td class="coverBarOutline">
+            <div class="graph"><strong class="bar" style="width:58.3%; background-color:red"></strong></div>
+            </td></tr></table>
+    </td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightPink;">67 / 115</td>
+    <td class="CoverValue" style="font-weight:bold; background-color:LightPink;">58.3 %</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+</tr> <tr>
+    <td class="coverFile" style="background-color:LightSteelBlue"><a href="src_qt_widgets_widget_callback_map.cj.html">src/qt/widgets/widget_callback_map.cj</a></td>
+    <td class="coverBar" align="center" style="background-color:LightSteelBlue">
+    <table border=0 cellspacing=0 cellpadding=1><tr><td class="coverBarOutline">
+            <div class="graph"><strong class="bar" style="width:85.7%; background-color:yellow"></strong></div>
+            </td></tr></table>
+    </td>
+    <td class="CoverValue" style="font-weight:bold; background-color:Yellow;">6 / 7</td>
+    <td class="CoverValue" style="font-weight:bold; background-color:Yellow;">85.7 %</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+    <td class="CoverValue" style="background-color:LightGreen;">-</td>
+</tr>
+
+    <tr>
+      <td width="44%"><br></td>
+      <td width="8%"></td>
+      <td width="8%"></td>
+      <td width="8%"></td>
+      <td width="8%"></td>
+      <td width="8%"></td>
+    </tr>
+  </table>
+  </center>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="hr"><td></tr>
+    <tr><td class="footer">Generated by: cjcov (Version 1.0.0)</a></td></tr>
+  </table>
+  <br>
+
+</body>
+
+</html>

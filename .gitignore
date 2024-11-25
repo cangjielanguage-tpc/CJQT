@@ -1,0 +1,33 @@
+.git/
+.gitee/
+.gitcode/
+.vscode/
+.idea/
+.cache/
+
+build/
+bin/
+target/
+
+# native
+native/build/
+native/.vscode/
+
+#log
+log.*
+
+# ci_test/
+ci_test/ci_src/
+ci_test/test_temp/
+ci_lib/
+output/
+
+*.gcda*
+*.gcno*
+
+#cjpm build
+cjpm.lock
+*.cjo
+*.cjt
+*.macrocall
+module-resolve.json
