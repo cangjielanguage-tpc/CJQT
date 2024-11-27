@@ -3,6 +3,8 @@
 #include <QPen>
 #include <QBrush>
 #include <QPixmap>
+#include <QStaticText>
+#include <QFont>
 
 extern "C"
 {
@@ -40,6 +42,12 @@ extern "C"
         QPen *pen = reinterpret_cast<QPen *>(static_cast<uintptr_t>(penPtr));
         instance->setPen(*pen);
     }
+
+    void nativePainterSetFont(uintptr_t ptr, uintptr_t fontPtr){
+        QPainter *instance = reinterpret_cast<QPainter *>(static_cast<uintptr_t>(ptr));
+        QFont *font = reinterpret_cast<QFont *>(static_cast<uintptr_t>(fontPtr));
+        instance->setFont(*font);
+    }
     void nativePainterSetBrush(uintptr_t ptr, uintptr_t brushPtr)
     {
         QPainter *instance = reinterpret_cast<QPainter *>(static_cast<uintptr_t>(ptr));
@@ -56,11 +64,18 @@ extern "C"
         QPainter *instance = reinterpret_cast<QPainter *>(static_cast<uintptr_t>(ptr));
         instance->drawLine(x, y, x2, y2);
     }
+    void nativePainterDrawLineF(uintptr_t ptr,uintptr_t p1ptr, uintptr_t p2ptr)
+    {
+        QPainter *instance = reinterpret_cast<QPainter *>(static_cast<uintptr_t>(ptr));
+        QPointF *p1 = reinterpret_cast<QPointF *>(static_cast<uintptr_t>(p1ptr));
+        QPointF *p2 = reinterpret_cast<QPointF *>(static_cast<uintptr_t>(p2ptr));
+        instance->drawLine(*p1, *p2);
+    }
     void nativePainterDrawRect(uintptr_t ptr, int x, int y, int width, int height)
     {
         QPainter *instance = reinterpret_cast<QPainter *>(static_cast<uintptr_t>(ptr));
         instance->drawRect(x, y, width, height);
-    }    
+    }
     void nativePainterDrawRoundedRectF(uintptr_t ptr, uintptr_t rect, qreal xRadius, qreal yRadius,int mode)
     {
         QPainter *instance = reinterpret_cast<QPainter *>(static_cast<uintptr_t>(ptr));
@@ -115,5 +130,52 @@ extern "C"
         QRect *rect = reinterpret_cast<QRect *>(static_cast<uintptr_t>(rectPtr));
 //        QPolygonF *polygon = reinterpret_cast<QPolygonF *>(static_cast<uintptr_t>(polygonFPtr));
         painter->drawRoundedRect(*rect,xRadius,yRadius,Qt::SizeMode(mode));
+    }
+
+
+    void nativePainterDrawStaticTextPointF(uintptr_t ptr, uintptr_t topLeftPositionPtr, const char *text){
+        QPainter *painter = reinterpret_cast<QPainter *>(static_cast<uintptr_t>(ptr));
+        QPointF *topLeftPosition = reinterpret_cast<QPointF *>(static_cast<uintptr_t>(topLeftPositionPtr));
+        painter->drawStaticText(*topLeftPosition,QStaticText(text));
+
+    }
+    void nativePainterDrawStaticTextPoint(uintptr_t ptr, uintptr_t topLeftPositionPtr, const char *text){
+        QPainter *painter = reinterpret_cast<QPainter *>(static_cast<uintptr_t>(ptr));
+        QPoint *topLeftPosition = reinterpret_cast<QPoint *>(static_cast<uintptr_t>(topLeftPositionPtr));
+        painter->drawStaticText(*topLeftPosition,QStaticText(text));
+    }
+
+    void nativePainterDrawStaticText(uintptr_t ptr,int x, int y, const char *text) {
+        QPainter *painter = reinterpret_cast<QPainter *>(static_cast<uintptr_t>(ptr));
+        painter->drawStaticText(x,y,QStaticText(text));
+    }
+    void nativePainterDrawTextPointF(uintptr_t ptr,uintptr_t topLeftPositionPtr, const char *text){
+        QPainter *painter = reinterpret_cast<QPainter *>(static_cast<uintptr_t>(ptr));
+        QPointF *topLeftPosition = reinterpret_cast<QPointF *>(static_cast<uintptr_t>(topLeftPositionPtr));
+        painter->drawText(*topLeftPosition,text);
+    }
+    void nativePainterDrawTextPoint(uintptr_t ptr,uintptr_t topLeftPositionPtr, const char *text){
+        QPainter *painter = reinterpret_cast<QPainter *>(static_cast<uintptr_t>(ptr));
+        QPoint *topLeftPosition = reinterpret_cast<QPoint *>(static_cast<uintptr_t>(topLeftPositionPtr));
+        painter->drawText(*topLeftPosition,text);
+
+    }
+    void nativePainterDrawText(uintptr_t ptr, int x, int y, const char *text){
+        QPainter *painter = reinterpret_cast<QPainter *>(static_cast<uintptr_t>(ptr));
+        painter->drawText(x,y,text);
+
+    }
+    void nativePainterDrawTextOption(uintptr_t ptr,uintptr_t rPtr, const char *text,  uintptr_t oPtr){
+        QPainter *painter = reinterpret_cast<QPainter *>(static_cast<uintptr_t>(ptr));
+        QRectF *rectF = reinterpret_cast<QRectF *>(static_cast<uintptr_t>(rPtr));
+        if(oPtr==0){
+            painter->drawText(*rectF,text);
+        }
+        else{
+            QTextOption *o = reinterpret_cast<QTextOption *>(static_cast<uintptr_t>(oPtr));
+            painter->drawText(*rectF,text,*o);
+        }
+
+
     }
 }

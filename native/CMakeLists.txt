@@ -121,6 +121,7 @@ set (SRC_DIR ./src/widgets/application.cpp
         ./src/gui/standard_item.cpp
         ./src/gui/gui_application.cpp
         ./src/gui/screen.cpp
+        ./src/gui/text_option.cpp
 
 )
 
