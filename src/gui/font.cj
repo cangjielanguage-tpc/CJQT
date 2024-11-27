@@ -9,8 +9,14 @@
 package cjqt.gui
 
 foreign func nativeFontCreate(fontPtr: Int64): Int64
+foreign func nativeFontCreateFPWI(family:CString,pointSize:Int32,weight:Int32,italic:Bool): Int64
 foreign func nativeFontSetPointSize(ptr: Int64, size: Int32): Unit
 foreign func nativeFontDelete(ptr: Int64): Unit
+
+foreign func nativeFontSetFamily(ptr: Int64, family:CString): Unit
+foreign func nativeFontSetWeight(ptr: Int64, weight:Int32): Unit
+foreign func nativeFontSetItalic(ptr: Int64, enable:Bool): Unit
+
 
 /**
  * The class is QFont
@@ -27,6 +33,12 @@ public class QFont {
     public init() {
         ptr = unsafe {
             nativeFontCreate(0)
+        }
+    }
+
+    public init(family:String,pointSize: Int32,weight:Int32,italic:Bool) {
+        ptr = unsafe {
+            nativeFontCreateFPWI(LibC.mallocCString(family),pointSize,weight,italic)
         }
     }
 
@@ -55,9 +67,24 @@ public class QFont {
      *
      * @param size of Int64
      */
-    public func setPointSize(size: Int64) {
+    public func setPointSize(size: Int32) {
         unsafe {
-            nativeFontSetPointSize(ptr, Int32(size))
+            nativeFontSetPointSize(ptr, size)
+        }
+    }
+    public func setFamily(family:String){
+        unsafe {
+            nativeFontSetFamily(ptr, LibC.mallocCString(family))
+        }
+    }
+    public func setWeight(weight:Int32){
+        unsafe {
+            nativeFontSetWeight(ptr, weight)
+        }
+    }
+    public func setItalic(enable:Bool){
+        unsafe {
+            nativeFontSetItalic(ptr, enable)
         }
     }
 

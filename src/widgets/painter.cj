@@ -16,6 +16,7 @@ foreign func nativePainterCreateWithDevice(devicePtr: Int64): Int64
 foreign func nativePainterDelete(ptr: Int64): Unit
 
 foreign func nativePainterSetPen(ptr: Int64, penPtr: Int64): Unit
+foreign func nativePainterSetFont(ptr: Int64, fontPtr: Int64): Unit
 foreign func nativePainterSetBrush(ptr: Int64, brushPtr: Int64): Unit
 foreign func nativePainterSetOpacity(ptr: Int64, opacity: Float32): Unit
 foreign func nativePainterDrawLine(ptr: Int64, x: Int32, y: Int32, x1: Int32, y1: Int32): Unit
@@ -28,6 +29,15 @@ foreign func nativePainterTranslate(ptr: Int64, dx: Float64, dy: Float64): Unit
 foreign func nativePainterTranslateWithPoint(ptr: Int64, pointPrt: Int64): Unit
 foreign func nativePainterTranslateWithPointF(ptr: Int64, pointFPrt: Int64): Unit
 foreign func nativePainterDrawPolyline(ptr: Int64, polygonFPtr: Int64): Unit
+foreign func nativePainterDrawLineF(ptr: Int64,p1: Int64, p2: Int64): Unit
+
+foreign func nativePainterDrawStaticTextPointF(ptr:Int64, topLeftPositionPtr:Int64,staticText:CString): Unit
+foreign func nativePainterDrawStaticTextPoint(ptr:Int64, topLeftPositionPtr:Int64,staticText:CString): Unit
+foreign func nativePainterDrawStaticText(ptr:Int64, x:Int32, y:Int32,staticText:CString): Unit
+foreign func nativePainterDrawTextPointF(ptr:Int64, topLeftPositionPtr:Int64,text:CString): Unit
+foreign func nativePainterDrawTextPoint(ptr:Int64, topLeftPositionPtr:Int64,text:CString): Unit
+foreign func nativePainterDrawText(ptr:Int64, x:Int32, y:Int32,text:CString): Unit
+foreign func nativePainterDrawTextOption(ptr:Int64,rPtr:Int64, text:CString, optionPtr:Int64): Unit
 
 /**
  * The class is QPainter
@@ -46,8 +56,7 @@ public class QPainter {
             nativePainterCreate(ptr)
         }
     }
-
-    /**
+	/**
      * The Function is init constructor
      *
      * @param widget of QWidget
@@ -79,6 +88,13 @@ public class QPainter {
             nativePainterSetPen(ptr, pen.ptr)
         }
     }
+    
+    public func setFont(font:QFont){
+        unsafe {
+            nativePainterSetFont(ptr, font.ptr)
+        }
+    }
+
 
     /**
      * The Function is setBrush
@@ -104,6 +120,13 @@ public class QPainter {
             nativePainterDrawLine(ptr, Int32(x), Int32(y), Int32(x1), Int32(y1))
         }
     }
+
+    public func drawLine(p1: QPointF, p2: QPointF) {
+        unsafe {
+            nativePainterDrawLineF(ptr,p1.ptr, p2.ptr)
+        }
+    }
+
 
     /**
      * The Function is drawRect
@@ -191,6 +214,48 @@ public class QPainter {
     public func drawPolyline(points: QPolygonF): Unit {
         unsafe {
             nativePainterDrawPolyline(this.ptr, points.ptr)
+        }
+    }
+    public func drawStaticText(topLeftPosition:QPointF, staticText:String): Unit {
+        unsafe {
+            nativePainterDrawStaticTextPointF(this.ptr, topLeftPosition.ptr,LibC.mallocCString(staticText))
+        }
+    }
+    public func drawStaticText(topLeftPosition:QPoint,staticText:String): Unit {        
+        unsafe {
+            nativePainterDrawStaticTextPoint(this.ptr, topLeftPosition.ptr,LibC.mallocCString(staticText))
+        }
+    }
+    public func drawStaticText(left:Int32, top:Int32, staticText:String): Unit {        
+        unsafe {
+            nativePainterDrawStaticText(this.ptr, left,top,LibC.mallocCString(staticText))
+        }
+    }
+
+    public func  drawText(p:QPointF, s:String): Unit {        
+        unsafe {
+            nativePainterDrawTextPointF(this.ptr, p.ptr,LibC.mallocCString(s))
+        }
+    }
+    public func drawText(p:QPoint, s:String): Unit {        
+        unsafe {
+            nativePainterDrawTextPoint(this.ptr, p.ptr,LibC.mallocCString(s))
+        }
+    }
+    public func drawText(x:Int32, y:Int32, s:String): Unit {        
+        unsafe {
+            nativePainterDrawText(this.ptr, x,y,LibC.mallocCString(s))
+        }
+    }
+    public func drawText(r:QRectF, text:String, o:QTextOption): Unit {        
+        unsafe {
+            nativePainterDrawTextOption(this.ptr, r.ptr,LibC.mallocCString(text),o.ptr)
+        }
+    }
+    
+    public func drawText(r:QRectF, text:String): Unit {        
+        unsafe {
+            nativePainterDrawTextOption(this.ptr, r.ptr,LibC.mallocCString(text),0)
         }
     }
 }

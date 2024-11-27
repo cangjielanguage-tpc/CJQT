@@ -114,7 +114,7 @@ public open class QLabel <: QWidget{
      *
      * @param size of Int64
      */
-    public func setFontSize(size :Int64){
+    public func setFontSize(size :Int32){
         let font = QFont()
         font.setPointSize(size)
         setFont(font)
