@@ -9,9 +9,9 @@
 package cjqt.gui
 
 foreign func nativePaletteCreate(): Int64
-foreign func nativePaletteCreateForColor(colorPtr: Int64): Int64
+foreign func nativePaletteCreateForColor(colorPtr: UInt32): Int64
 foreign func nativePaletteCreateForPalette(palettePtr: Int64): Int64
-foreign func nativePaletteSetColor(ptr: Int64, colorRole: Int32, colorPtr: Int64): Unit
+foreign func nativePaletteSetColor(ptr: Int64, colorRole: Int32, argb: UInt32): Unit
 foreign func nativePaletteDelete(ptr: Int64): Unit
 
 /**

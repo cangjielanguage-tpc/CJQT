@@ -10,13 +10,14 @@ package cjqt.gui
 
 import cjqt.core.PenStyle
 
-foreign func nativePenCreate(colorPtr: Int64, thickness: Float64): Int64
-foreign func nativePenCreateWithColor(colorPtr: Int64): Int64
+// foreign func nativePenCreate(colorPtr: Int64, thickness: Float64): Int64
+foreign func nativePenCreateArgb(argb: UInt32, thickness: Float64): Int64
+foreign func nativePenCreateWithColor(argb: UInt32): Int64
 foreign func nativePenCreateWithStyle(style: Int32): Int64
 foreign func nativePenDelete(ptr: Int64): Unit
 foreign func nativePenSetWidth(ptr: Int64, width: Int32): Unit
 foreign func nativePenSetWidthF(ptr: Int64, width: Float64): Unit
-foreign func nativePenSetColor(ptr: Int64, colorPtr: Int64): Unit
+foreign func nativePenSetColor(ptr: Int64, colorPtr: UInt32): Unit
 
 /**
  * The class is QPen
@@ -34,7 +35,13 @@ public class QPen {
      */
     public init(color: QColor, thickness: Float64) {
         ptr = unsafe {
-            nativePenCreate(color.ptr, thickness)
+            // if(color.ptr==0){
+                nativePenCreateArgb(color.ptr, thickness)
+            // }
+            // else{
+            //     nativePenCreate(color.ptr, thickness)
+            // }
+            
         }
     }
 

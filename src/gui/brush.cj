@@ -8,7 +8,7 @@
  */
 package cjqt.gui
 
-foreign func nativeBrushCreate(colorPtr: Int64): Int64
+foreign func nativeBrushCreate(colorPtr: UInt32): Int64
 foreign func nativeBrushCreateWithBrush(brushPtr: Int64): Int64
 foreign func nativeBrushCreateWithPixmap(pixmapPtr: Int64): Int64
 foreign func nativeBrushDelete(ptr: Int64): Unit

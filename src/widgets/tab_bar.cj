@@ -16,8 +16,8 @@ foreign func nativeTabBarIsTabEnabled(ptr: Int64, index: Int32): Bool
 foreign func nativeTabBarSetTabEnabled(ptr: Int64, index: Int32, enabl: Bool): Unit
 foreign func nativeTabBarSetTabText(ptr: Int64, index: Int32, text: CString): Unit
 foreign func nativeTabBarTabText(ptr: Int64, index: Int32): CString
-foreign func nativeTabBarSetTabTextColor(ptr: Int64, index: Int32, colorPtr: Int64): Unit
-foreign func nativeTabBarTabTextColor(ptr: Int64, index: Int32): Int64
+foreign func nativeTabBarSetTabTextColor(ptr: Int64, index: Int32, colorPtr: UInt32): Unit
+foreign func nativeTabBarTabTextColor(ptr: Int64, index: Int32): UInt32
 foreign func nativeTabBarSetTabIcon(ptr: Int64, index: Int32, iconPtr: Int64): Unit
 foreign func nativeTabBarTabIcon(ptr: Int64, index: Int32): Int64
 foreign func nativeTabBarTabRect(ptr: Int64, index: Int32): Int64
@@ -198,7 +198,7 @@ public class QTabBar <: QWidget {
         let colorPtr = unsafe {
             nativeTabBarTabTextColor(ptr, Int32(index))
         }
-        return QColor(ptr: colorPtr)
+        return QColor( colorPtr)
     }
 
     public func setTabTextColor(index: Int64, color: QColor) {

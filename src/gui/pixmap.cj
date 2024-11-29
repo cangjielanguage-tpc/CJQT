@@ -5,7 +5,7 @@ foreign func nativePixmapCreateWithWH(w: Int32, h: Int32): Int64
 foreign func nativePixmapGetWidth(ptr: Int64): Int32
 foreign func nativePixmapGetHeight(ptr: Int64): Int32
 foreign func nativePixmapDelete(ptr: Int64): Unit
-foreign func nativePixmapFill(ptr: Int64, colorPtr: Int64): Unit
+foreign func nativePixmapFill(ptr: Int64, colorPtr: UInt32): Unit
 
 public open class QPixmap <: QPaintDevice {
     public init(ptr: Int64) {

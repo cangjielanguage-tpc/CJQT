@@ -14,14 +14,18 @@ package cjqt.core
  */
 public enum Alignment {
     | AlignLeft
+    | AlignLeading
     | AlignRight
+    | AlignTrailing
     | AlignHCenter
     | AlignJustify
     | AlignAbsolute
+    | AlignHorizontal_Mask
     | AlignTop
     | AlignBottom
     | AlignVCenter
     | AlignBaseline
+    | AlignVertical_Mask
     | AlignCenter
 
     /**
@@ -32,14 +36,18 @@ public enum Alignment {
     public func value(): Int16 {
         match (this) {
             case AlignLeft => 0x0001
-            case AlignRight => 0x0002
+            case AlignLeading => 0x0001
+            case AlignRight => 0x0002 
+            case AlignTrailing => 0x0002
             case AlignHCenter => 0x0004
             case AlignJustify => 0x0008
             case AlignAbsolute => 0x0010
+            case AlignHorizontal_Mask =>  0x0001 | 0x0002 | 0x0004 | 0x0008 | 0x0010
             case AlignTop => 0x0020
             case AlignBottom => 0x0040
             case AlignVCenter => 0x0080
             case AlignBaseline => 0x0100
+            case AlignVertical_Mask => 0x0020 | 0x0040 | 0x0080 | 0x0100
             case AlignCenter => 0x0004 | 0x0080
         }
     }
@@ -56,10 +64,13 @@ public enum Alignment {
             case 0x0004 => AlignHCenter
             case 0x0008 => AlignJustify
             case 0x0010 => AlignAbsolute
+            case 0x0001 | 0x0002 | 0x0004 | 0x0008 | 0x0010 => AlignHorizontal_Mask 
             case 0x0020 => AlignTop
             case 0x0040 => AlignBottom
             case 0x0080 => AlignVCenter
             case 0x0100 => AlignBaseline
+            case 0x0020 | 0x0040 | 0x0080 | 0x0100 => AlignVertical_Mask 
+            case 0x0004 | 0x0080 => AlignCenter
             case _ => AlignLeft
         }
     }

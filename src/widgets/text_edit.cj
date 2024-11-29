@@ -25,8 +25,8 @@ foreign func nativeTextEditSetFontWeight(ptr: Int64, fontWeight: Int32): Unit
 foreign func nativeTextEditSetFontUnderline(ptr: Int64, fontUnderline: Bool): Unit
 foreign func nativeTextEditSetFontItalic(ptr: Int64, fontItalic: Bool): Unit
 foreign func nativeTextEditSetCurrentFont(ptr: Int64, fontPtr: Int64): Unit
-foreign func nativeTextEditSetTextColor(ptr: Int64, colorPtr: Int64): Unit
-foreign func nativeTextEditSetTextBackgroundColor(ptr: Int64, colorPtr: Int64): Unit
+foreign func nativeTextEditSetTextColor(ptr: Int64, colorPtr: UInt32): Unit
+foreign func nativeTextEditSetTextBackgroundColor(ptr: Int64, colorPtr: UInt32): Unit
 foreign func nativeTextEditDelete(ptr: Int64): Unit
 
 foreign func nativeTextEditCopy(ptr: Int64): Unit

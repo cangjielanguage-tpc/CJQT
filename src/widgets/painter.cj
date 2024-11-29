@@ -31,12 +31,18 @@ foreign func nativePainterTranslateWithPointF(ptr: Int64, pointFPrt: Int64): Uni
 foreign func nativePainterDrawPolyline(ptr: Int64, polygonFPtr: Int64): Unit
 foreign func nativePainterDrawLineF(ptr: Int64,p1: Int64, p2: Int64): Unit
 
+foreign func nativePainterDrawPolygonF(ptr: Int64, polygonFPtr: Int64): Unit
+foreign func nativePainterDrawPolygon(ptr: Int64, polygontr: Int64): Unit
+
 foreign func nativePainterDrawStaticTextPointF(ptr:Int64, topLeftPositionPtr:Int64,staticText:CString): Unit
 foreign func nativePainterDrawStaticTextPoint(ptr:Int64, topLeftPositionPtr:Int64,staticText:CString): Unit
 foreign func nativePainterDrawStaticText(ptr:Int64, x:Int32, y:Int32,staticText:CString): Unit
 foreign func nativePainterDrawTextPointF(ptr:Int64, topLeftPositionPtr:Int64,text:CString): Unit
 foreign func nativePainterDrawTextPoint(ptr:Int64, topLeftPositionPtr:Int64,text:CString): Unit
 foreign func nativePainterDrawText(ptr:Int64, x:Int32, y:Int32,text:CString): Unit
+foreign func nativePainterDrawTextRectFFlag(ptr:Int64, r:Int64, flags:Int16, text:CString): Unit
+foreign func nativePainterDrawTextRectFlag(ptr:Int64, r:Int64, flags:Int16, text:CString): Unit
+foreign func drawnativePainterDrawTextXYFlag(ptr:Int64, x:Int32, y:Int32, w:Int32, h:Int32, flags:Int16,text:CString): Unit
 foreign func nativePainterDrawTextOption(ptr:Int64,rPtr:Int64, text:CString, optionPtr:Int64): Unit
 
 /**
@@ -216,6 +222,20 @@ public class QPainter {
             nativePainterDrawPolyline(this.ptr, points.ptr)
         }
     }
+    
+ 
+    public func drawPolygon(points:QPolygonF): Unit{
+        unsafe {
+            nativePainterDrawPolygonF(this.ptr, points.ptr)
+        }
+    }
+
+    public func drawPolygon(points:QPolygon): Unit{
+        unsafe {
+            nativePainterDrawPolygon(this.ptr, points.ptr)
+        }
+    }
+
     public func drawStaticText(topLeftPosition:QPointF, staticText:String): Unit {
         unsafe {
             nativePainterDrawStaticTextPointF(this.ptr, topLeftPosition.ptr,LibC.mallocCString(staticText))
@@ -247,6 +267,26 @@ public class QPainter {
             nativePainterDrawText(this.ptr, x,y,LibC.mallocCString(s))
         }
     }
+    
+    public func drawText(r:QRectF, flags:Alignment, text:String): Unit {        
+        unsafe {
+            nativePainterDrawTextRectFFlag(ptr,r.ptr, flags.value(),LibC.mallocCString(text))
+        }
+    }
+    
+    public func drawText(r:QRect, flags:Alignment, text:String): Unit {        
+        unsafe {
+            nativePainterDrawTextRectFlag(ptr,r.ptr, flags.value(),LibC.mallocCString(text))
+        }
+    }
+    
+    public func drawText(x:Int32, y:Int32,w:Int32, h:Int32, flags:Alignment, text:String): Unit {        
+        unsafe {
+            drawnativePainterDrawTextXYFlag(ptr,x, y, w, h, flags.value(),LibC.mallocCString(text))
+        }
+    }
+    
+
     public func drawText(r:QRectF, text:String, o:QTextOption): Unit {        
         unsafe {
             nativePainterDrawTextOption(this.ptr, r.ptr,LibC.mallocCString(text),o.ptr)
