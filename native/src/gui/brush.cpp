@@ -3,18 +3,18 @@
 
 extern "C"
 {
-    uintptr_t nativeBrushCreate(uintptr_t colorPtr)
+    uintptr_t nativeBrushCreate(quint32 colorPtr)
     {
-        QBrush *brush;
-        if (colorPtr == 0L)
-        {
-            brush = new QBrush();
-        }
-        else
-        {
-            QColor *color = reinterpret_cast<QColor *>(static_cast<uintptr_t>(colorPtr));
-            brush = new QBrush(*color);
-        }
+//         QBrush *brush;
+        // if (colorPtr == 0L)
+        // {
+        //     brush = new QBrush();
+        // }
+        // else
+        // {
+            QColor *color = new QColor(colorPtr);
+            QBrush *brush = new QBrush(*color);
+        // }
         return reinterpret_cast<uintptr_t>(brush);
     }
     uintptr_t nativeBrushCreateWithBrush(const uintptr_t brushPtr)

@@ -9,8 +9,8 @@ extern "C"
 
     uintptr_t nativePaletteCreateForColor(uintptr_t colorPtr)
     {
-        QColor *color = reinterpret_cast<QColor *>(static_cast<uintptr_t>(colorPtr));
-        return reinterpret_cast<uintptr_t>(new QPalette(*color));
+        QColor color = QColor(colorPtr);
+        return reinterpret_cast<uintptr_t>(new QPalette(color));
     }
 
     uintptr_t nativePaletteCreateForPalette(uintptr_t palettePtr)
@@ -19,11 +19,11 @@ extern "C"
         return reinterpret_cast<uintptr_t>(new QPalette(*palette));
     }
 
-    void nativePaletteSetColor(uintptr_t ptr, int colorRole, uintptr_t colorPtr)
+    void nativePaletteSetColor(uintptr_t ptr, int colorRole, quint32 colorPtr)
     {
         QPalette *instance = reinterpret_cast<QPalette *>(static_cast<uintptr_t>(ptr));
-        QColor *color = reinterpret_cast<QColor *>(static_cast<uintptr_t>(colorPtr));
-        instance->setColor(QPalette::ColorRole(colorRole), *color);
+        QColor color = QColor(colorPtr);
+        instance->setColor(QPalette::ColorRole(colorRole), color);
     }
 
     void nativePaletteDelete(uintptr_t ptr)

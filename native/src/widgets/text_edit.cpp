@@ -103,18 +103,18 @@ extern "C"
         instance->setCurrentFont(*font);
     }
 
-    void nativeTextEditSetTextColor(uintptr_t ptr, uintptr_t colorPtr)
+    void nativeTextEditSetTextColor(uintptr_t ptr, quint32 colorPtr)
     {
         QTextEdit *instance = reinterpret_cast<QTextEdit *>(static_cast<uintptr_t>(ptr));
-        QColor *color = reinterpret_cast<QColor *>(static_cast<uintptr_t>(colorPtr));
-        instance->setTextColor(*color);
+        QColor color = QColor(colorPtr);
+        instance->setTextColor(color);
     }
 
-    void nativeTextEditSetTextBackgroundColor(uintptr_t ptr, uintptr_t colorPtr)
+    void nativeTextEditSetTextBackgroundColor(uintptr_t ptr, quint32 colorPtr)
     {
         QTextEdit *instance = reinterpret_cast<QTextEdit *>(static_cast<uintptr_t>(ptr));
-        QColor *color = reinterpret_cast<QColor *>(static_cast<uintptr_t>(colorPtr));
-        instance->setTextBackgroundColor(*color);
+        QColor color = QColor(colorPtr);
+        instance->setTextBackgroundColor(color);
     }
 
     void nativeTextEditDelete(uintptr_t ptr)
