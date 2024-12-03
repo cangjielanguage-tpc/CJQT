@@ -14,10 +14,10 @@ extern "C"
     {
         return reinterpret_cast<uintptr_t>(new QPen(QColor(argb), thickness, Qt::SolidLine));
     }
-    uintptr_t nativePenCreateWithColor(uintptr_t colorPtr)
+    uintptr_t nativePenCreateWithColor(quint32 colorPtr)
     {
-        QColor *color = reinterpret_cast<QColor *>(static_cast<uintptr_t>(colorPtr));
-        return reinterpret_cast<uintptr_t>(new QPen(*color));
+        QColor color = QColor(colorPtr);
+        return reinterpret_cast<uintptr_t>(new QPen(color));
     }
     uintptr_t nativePenCreateWithStyle(int style)
     {
