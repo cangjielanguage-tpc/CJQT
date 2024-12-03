@@ -42,7 +42,7 @@ public class DrawScene <: QGraphicsScene {
         myPolygon2 << QPointF(5.0, 0.0) << QPointF(5.0, 10.0)
 
         var pix=QPixmap(10,10)
-        pix.fill(QColor.Transparent)
+        pix.fill(QColor.White)
         var painter=QPainter(pix)
         var pen=QPen(DashLine)
         pen.setColor(QColor.Cyan)
@@ -124,7 +124,7 @@ public class DrawScene <: QGraphicsScene {
             case _ => super.mousePressEvent(mouseEvent)
         }
         Qd.delete()
-        penColor.delete()
+        // penColor.delete()
     }
     protected override func mouseReleaseEvent(mouseEvent: QGraphicsSceneMouseEvent): Unit {}
 }
