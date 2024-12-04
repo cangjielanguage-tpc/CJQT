@@ -7,6 +7,7 @@
 #include <QFont>
 #include <QPolygonF>
 #include <QPolygon>
+#include <QDebug>
 
 extern "C"
 {
@@ -207,7 +208,9 @@ extern "C"
             QTextOption *o = reinterpret_cast<QTextOption *>(static_cast<uintptr_t>(oPtr));
             painter->drawText(*rectF,text,*o);
         }
-
-
+    }
+    void nativePainterSetRenderHints(uintptr_t ptr, short hints,bool on){
+        QPainter *painter = reinterpret_cast<QPainter *>(static_cast<uintptr_t>(ptr));
+        painter->setRenderHints(QPainter::RenderHints(hints),on);
     }
 }
