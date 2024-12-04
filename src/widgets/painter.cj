@@ -45,10 +45,52 @@ foreign func nativePainterDrawTextRectFlag(ptr:Int64, r:Int64, flags:Int16, text
 foreign func drawnativePainterDrawTextXYFlag(ptr:Int64, x:Int32, y:Int32, w:Int32, h:Int32, flags:Int16,text:CString): Unit
 foreign func nativePainterDrawTextOption(ptr:Int64,rPtr:Int64, text:CString, optionPtr:Int64): Unit
 
+foreign func nativePainterSetRenderHints(ptr:Int64, hints:Int16,on:Bool): Unit
+
 /**
  * The class is QPainter
  * @author wathinst
  */
+public enum RenderHint {
+    Antialiasing | TextAntialiasing | SmoothPixmapTransform | HighQualityAntialiasing |NonCosmeticDefaultPen|Qt4CompatiblePainting|LosslessImageRendering
+
+    /**
+     * The Function is value
+     *
+     * @return Type  of  Int16
+     */
+    public func value(): Int16 {
+        match (this) {
+            case Antialiasing => 0x01
+            case TextAntialiasing => 0x02
+            case SmoothPixmapTransform => 0x04
+            case HighQualityAntialiasing => 0x08
+            case NonCosmeticDefaultPen=> 0x10
+            case Qt4CompatiblePainting => 0x20
+            case LosslessImageRendering=> 0x40
+        }
+    }
+
+    /**
+     * The Function is conver
+     *
+     * @param RenderHint of Int16
+     *
+     * @return Type  of   Enum RenderHint
+     */
+    public static func convert(renderHint: Int16): RenderHint {
+        match (renderHint) {
+            case 0x01 => Antialiasing
+            case 0x02 => TextAntialiasing
+            case 0x04 => SmoothPixmapTransform
+            case 0x08 => HighQualityAntialiasing
+            case 0x10 => NonCosmeticDefaultPen
+            case 0x20 => Qt4CompatiblePainting
+            case 0x40 => LosslessImageRendering
+            case _ => Antialiasing
+        }
+    }
+}
 public class QPainter {
     /** let member ptr type is Int64 */
     public let ptr: Int64
@@ -298,4 +340,20 @@ public class QPainter {
             nativePainterDrawTextOption(this.ptr, r.ptr,LibC.mallocCString(text),0)
         }
     }
+    
+
+    public func setRenderHint(hint:RenderHint ){
+        unsafe {
+            nativePainterSetRenderHints(this.ptr, hint.value(),true)
+        }
+
+    }
+
+    public func setRenderHints(hints:Int16){
+        unsafe {
+            nativePainterSetRenderHints(this.ptr, hints,true)
+        }
+
+    }
+
 }
