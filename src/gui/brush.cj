@@ -11,7 +11,9 @@ package cjqt.gui
 foreign func nativeBrushCreate(colorPtr: UInt32): Int64
 foreign func nativeBrushCreateWithBrush(brushPtr: Int64): Int64
 foreign func nativeBrushCreateWithPixmap(pixmapPtr: Int64): Int64
+foreign func nativeBrushCreateWithGradient(gradientPtr: Int64): Int64
 foreign func nativeBrushDelete(ptr: Int64): Unit
+
 
 /**
  * The class is QBrush
@@ -60,6 +62,11 @@ public class QBrush {
     public init(pixmap: QPixmap) {
         ptr = unsafe {
             nativeBrushCreateWithPixmap(pixmap.ptr)
+        }
+    }
+    public init(gradient:QGradient){
+        ptr = unsafe {
+            nativeBrushCreateWithGradient(gradient.ptr)
         }
     }
 

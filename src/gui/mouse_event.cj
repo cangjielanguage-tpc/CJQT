@@ -12,6 +12,10 @@ import cjqt.core.QEvent
 import cjqt.core.QPoint
 
 foreign func nativeMouseEventGetPos(vptr: Int64): Int64
+foreign func nativeMouseEventGetScreenPos(vptr: Int64): Int64
+foreign func nativeMouseEventGetWindowPos(vptr: Int64): Int64
+foreign func nativeMouseEventGetGlobalPos(vptr: Int64): Int64
+foreign func nativeMouseEventGetLocalPos(vptr: Int64): Int64
 
 /**
  * The class is QMouseEvent
@@ -32,5 +36,31 @@ public class QMouseEvent <: QEvent {
             nativeMouseEventGetPos(this.ptr)
         }
         return QPoint(pointPtr)
+    }
+    public func screenPos(): QPointF {
+        let pointPtr = unsafe {
+            nativeMouseEventGetScreenPos(this.ptr)
+        }
+        return QPointF(pointPtr)
+    }
+    
+    public func windowPos(): QPointF{
+        let pointPtr = unsafe {
+            nativeMouseEventGetWindowPos(this.ptr)
+        }
+        return QPointF(pointPtr)
+    }
+    
+    public func globalPos(): QPoint{
+        let pointPtr = unsafe {
+            nativeMouseEventGetGlobalPos(this.ptr)
+        }
+        return QPoint(pointPtr)
+    }
+    public func localPos(): QPointF{
+        let pointPtr = unsafe {
+            nativeMouseEventGetLocalPos(this.ptr)
+        }
+        return QPointF(pointPtr)
     }
 }

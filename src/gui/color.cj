@@ -22,6 +22,11 @@ public class QColor {
 
     public var ptr:UInt32= 0xFF000000 
 
+    public var red:UInt32=0X00
+    public var green:UInt32=0X00
+    public var blue:UInt32=0X00
+    public var alpha:UInt32=0XFF
+
     /** let member Black */
     public static let Black = QColor(0xFF000000)
 
@@ -67,10 +72,10 @@ public class QColor {
         // if (ptr != 0) {
         //     this.ptr = ptr
         // } else {
-            let a = (argb >> 24) & 0xFF
-            let r = (argb >> 16) & 0xFF
-            let g = (argb >> 8) & 0xFF
-            let b = argb & 0xFF
+            alpha = (argb >> 24) & 0xFF
+            red = (argb >> 16) & 0xFF
+            green = (argb >> 8) & 0xFF
+            blue = argb & 0xFF
             this.ptr=argb
             // ptr=argb
             // this.ptr = unsafe {
@@ -88,11 +93,28 @@ public class QColor {
      * @param a of UInt8
      */
     public init(r: UInt8, g: UInt8, b: UInt8, a!: UInt8 = 255) {
+        red=UInt32(r)
+        green=UInt32(g)
+        blue=UInt32(b)
+        alpha=UInt32(a)
         ptr= UInt32(a) << 24|UInt32(r) << 16 |UInt32(g )<< 8|UInt32(b)
         // ptr = unsafe {
         //     nativeColorCreate(Int32(r), Int32(g), Int32(b), Int32(a))
         // }
     }
+
+    public func setRed(r:UInt32){
+        red=r
+    }
+    
+    public func setBlue(b:UInt32){
+        blue=b
+    }
+
+    public func setGreen(g:UInt32){
+        green=g
+    }
+
 
     // public init(ptr: Int64) {
     //     this.ptr = ptr
