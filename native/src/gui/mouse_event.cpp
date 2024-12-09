@@ -1,4 +1,5 @@
 #include <QMouseEvent>
+#include <QDebug>
 
 extern "C"
 {
@@ -39,26 +40,32 @@ extern "C"
     {
         QMouseEvent *engine = reinterpret_cast<QMouseEvent *>(static_cast<uintptr_t>(vptr));
         QPointF pointF = engine->screenPos();
-        return reinterpret_cast<uintptr_t>(&pointF);
+        QPointF *p = new QPointF(pointF.x(), pointF.y());
+        return reinterpret_cast<uintptr_t>(p);
     }
 
     uintptr_t nativeMouseEventGetWindowPos(uintptr_t vptr)
     {
         QMouseEvent *engine = reinterpret_cast<QMouseEvent *>(static_cast<uintptr_t>(vptr));
         QPointF pointF = engine->windowPos();
-        return reinterpret_cast<uintptr_t>(&pointF);
+        QPointF *p = new QPointF(pointF.x(), pointF.y());
+        return reinterpret_cast<uintptr_t>(p);
     }
 
     uintptr_t nativeMouseEventGetGlobalPos(uintptr_t vptr)
     {
         QMouseEvent *engine = reinterpret_cast<QMouseEvent *>(static_cast<uintptr_t>(vptr));
         QPoint point = engine->globalPos();
-        return reinterpret_cast<uintptr_t>(&point);
+        QPoint *p = new QPoint(point.x(), point.y());
+        return reinterpret_cast<uintptr_t>(p);
     }
 
     uintptr_t nativeMouseEventGetLocalPos(uintptr_t vptr)
     {
         QMouseEvent *engine = reinterpret_cast<QMouseEvent *>(static_cast<uintptr_t>(vptr));
-        return reinterpret_cast<uintptr_t>(&engine->localPos());
+        QPointF point = engine->localPos();
+        QPointF *p = new QPointF(point.x(), point.y());
+        qDebug()<<"x:"<<point.x()<<"y:"<<point.y()<<endl;
+        return reinterpret_cast<uintptr_t>(p);
     }
 }

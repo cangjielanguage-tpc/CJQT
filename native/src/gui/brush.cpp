@@ -1,5 +1,6 @@
 #include <QBrush>
 #include <QColor>
+#include <QGradient>
 
 extern "C"
 {
@@ -28,6 +29,11 @@ extern "C"
     {
         QPixmap *pix = reinterpret_cast<QPixmap *>(static_cast<uintptr_t>(pixmapPtr));
         return reinterpret_cast<uintptr_t>(new QBrush(*pix));
+    }
+    uintptr_t nativeBrushCreateWithGradient(uintptr_t gradientPtr)
+    {
+        QGradient *gradient = reinterpret_cast<QGradient *>(static_cast<uintptr_t>(gradientPtr));
+        return reinterpret_cast<uintptr_t>(new QBrush(*gradient));
     }
     void nativeBrushDelete(uintptr_t ptr)
     {
