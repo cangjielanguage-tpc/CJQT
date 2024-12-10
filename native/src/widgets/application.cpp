@@ -6,6 +6,7 @@
 #include "main_window.h"
 #include "menu_bar.h"
 #include "application.h"
+#include<QDebug>
 
 namespace
 {
@@ -48,6 +49,23 @@ extern "C"
 	{
 		return appConfig->app != nullptr;
 	}
+
+	void nativeApplicationBeep()
+    {
+        if (appConfig->app != nullptr){
+            appConfig->app->beep();
+        }
+        appConfig->app->primaryScreen();
+	}
+
+    uintptr_t nativeApplicationPrimaryScreen(){
+//        int n=0;
+        if (appConfig->app != nullptr){
+            return reinterpret_cast<uintptr_t>(appConfig->app->primaryScreen());
+        }
+        return 0;
+
+    }
 
 	void nativeApplicationQuit()
 	{
