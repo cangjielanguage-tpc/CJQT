@@ -8,7 +8,7 @@
  */
 package cjqt.gui
 
-foreign func nativeScreenGeometry(ptr: Int64): Int64
+foreign func nativeScreenGeometry(ptr: Int64): QRect
 
 /**
  * The class is QIcon
@@ -34,7 +34,8 @@ public class QScreen<:QObject {
         let rect = unsafe {
             nativeScreenGeometry(this.ptr)
         }
-        return QRect(rect)
+        // return QRect(rect)
+        return rect
     }
 
 }

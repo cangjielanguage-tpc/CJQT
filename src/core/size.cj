@@ -9,59 +9,63 @@ foreign func nativeSizeHeight(ptr: Int64): Int32
 foreign func nativeSizeIsNull(ptr: Int64): Bool
 foreign func nativeSizeIsEmpty(ptr: Int64): Bool
 foreign func nativeSizeIsValid(ptr: Int64): Bool
+@C
+public  struct QSize {
+    public let width: Int32
+    public let height: Int32
 
-public open class QSize {
-    public let ptr: Int64
-    public init() {
-        this.ptr = unsafe {
-            nativeSizeCreate()
-        }
-    }
-    public init(ptr: Int64) {
-        this.ptr = ptr
-    }
-    public init(width: Int64, height: Int64) {
-        this.ptr = unsafe {
-            nativeSizeCreateWithWidth(Int32(width), Int32(height))
-        }
+    // public init() {
+    //     this.ptr = unsafe {
+    //         nativeSizeCreate()
+    //     }
+    // }
+    // public init(ptr: Int64) {
+    //     this.ptr = ptr
+    // }
+    public init(width: Int32, height: Int32) {
+        this.width=width
+        this.height=height
+        // this.ptr = unsafe {
+        //     nativeSizeCreateWithWidth(Int32(width), Int32(height))
+        // }
     }
     public func delete(): Unit {
-        unsafe {
-            nativeSizeDelete(this.ptr)
-        }
+        // unsafe {
+        //     nativeSizeDelete(this.ptr)
+        // }
     }
 
     /**
      * The Function is width
      *
      */
-    public func width(): Int64 {
-        let result = unsafe {
-            nativeSizeWidth(ptr)
-        }
-        return Int64(result)
-    }
+    // public func width(): Int64 {
+    //     let result = unsafe {
+    //         nativeSizeWidth(ptr)
+    //     }
+    //     return Int64(result)
+    // }
 
     /**
      * The Function is height
      *
      */
-    public func height(): Int64 {
-        let result = unsafe {
-            nativeSizeHeight(ptr)
-        }
-        return Int64(result)
-    }
+    // public func height(): Int64 {
+    //     let result = unsafe {
+    //         nativeSizeHeight(ptr)
+    //     }
+    //     return Int64(result)
+    // }
 
     /**
      * The Function is isNull
      *
      */
     public func isNull(): Bool {
-        let result = unsafe {
-            nativeSizeIsNull(ptr)
-        }
-        return result
+        // let result = unsafe {
+        //     nativeSizeIsNull(ptr)
+        // }
+        return (width==0&&height==0)
     }
 
     /**
@@ -69,10 +73,10 @@ public open class QSize {
      *
      */
     public func isEmpty(): Bool {
-        let result = unsafe {
-            nativeSizeIsEmpty(ptr)
-        }
-        return result
+        // let result = unsafe {
+        //     nativeSizeIsEmpty(ptr)
+        // }
+        return (width<=0||height<=0)
     }
 
     /**
@@ -80,9 +84,9 @@ public open class QSize {
      *
      */
     public func isValid(): Bool {
-        let result = unsafe {
-            nativeSizeIsValid(ptr)
-        }
-        return result
+        // let result = unsafe {
+        //     nativeSizeIsValid(ptr)
+        // }
+        return (width>=0&&height>=0)
     }
 }

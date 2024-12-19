@@ -131,7 +131,7 @@ public class QIcon {
      */
     public func delete() {
         unsafe {
-            nativeColorDelete(ptr)
+            nativeIconDelete(ptr)
         }
     }
 }

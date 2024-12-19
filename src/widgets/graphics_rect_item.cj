@@ -11,11 +11,10 @@ foreign func nativeGraphicsRectItemCreateWithXYWH(
     height: Float64,
     parentPtr: Int64
 ): Int64
-foreign func nativeGraphicsRectItemCreateWithRect(rectPtr: Int64, parentPtr: Int64): Int64
+foreign func nativeGraphicsRectItemCreateWithRect(x: Float64,y: Float64,width: Float64,height: Float64, parentPtr: Int64): Int64
 foreign func nativeGraphicsRectItemCreate(parentPtr: Int64): Int64
 foreign func nativeGraphicsRectItemDelete(ptr: Int64): Unit
-foreign func nativeGraphicsRectItemRect(ptr: Int64): Int64
-foreign func nativeGraphicsRectItemSetRectWithRect(ptr: Int64, rectanglePtr: Int64): Unit
+foreign func nativeGraphicsRectItemRect(ptr: Int64): QRectF
 foreign func nativeGraphicsRectItemSetRect(ptr: Int64, x: Float64, y: Float64, width: Float64, height: Float64): Unit
 
 public open class QGraphicsRectItem <: QAbstractGraphicsShapeItem {
@@ -39,7 +38,7 @@ public open class QGraphicsRectItem <: QAbstractGraphicsShapeItem {
     public init(rect: QRectF, parent!: QGraphicsItem = QGraphicsItem(0)) {
         super(
             unsafe {
-                nativeGraphicsRectItemCreateWithRect(rect.ptr, parent.ptr)
+                nativeGraphicsRectItemCreateWithRect(rect.x,rect.y,rect.width,rect.height, parent.ptr)
             }
         )
     }
@@ -47,11 +46,11 @@ public open class QGraphicsRectItem <: QAbstractGraphicsShapeItem {
         unsafe { nativeGraphicsRectItemDelete(this.ptr) }
     }
     public func rect(): QRectF {
-        let rectFPtr = unsafe { nativeGraphicsRectItemRect(this.ptr) }
-        return QRectF(rectFPtr)
+        let rectF = unsafe { nativeGraphicsRectItemRect(this.ptr) }
+        return rectF
     }
     public func setRect(rectangle: QRectF): Unit {
-        unsafe { nativeGraphicsRectItemSetRectWithRect(this.ptr, rectangle.ptr) }
+        unsafe { nativeGraphicsRectItemSetRect(this.ptr, rectangle.x,rectangle.y,rectangle.width,rectangle.height) }
     }
     public func setRect(x: Float64, y: Float64, width: Float64, height: Float64): Unit {
         unsafe { nativeGraphicsRectItemSetRect(this.ptr, x, y, width, height) }

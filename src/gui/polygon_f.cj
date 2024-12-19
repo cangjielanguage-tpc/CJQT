@@ -6,13 +6,13 @@ import cjqt.core.QPointF
 //foreign function
 foreign func nativePolygonFCreate(): Int64
 foreign func nativePolygonFCreateWithSize(size: Int32): Int64
-foreign func nativePolygonFCreateWithRect(rectFPtr: Int64): Int64
+foreign func nativePolygonFCreateWithRect(x: Float64,y: Float64,width: Float64,height: Float64): Int64
 foreign func nativePolygonFCreateWithPolygon(polygonPtr: Int64): Int64
 foreign func nativePolygonFCreateWithPolygonF(polygonFPtr: Int64): Int64
 foreign func nativePolygonFDelete(ptr: Int64): Unit
 
 // Operator <<
-foreign func nativePolygonFOperatorLeftMove(ptr: Int64, pointPtr: Int64): Int64
+foreign func nativePolygonFOperatorLeftMove(ptr: Int64, pointX: Float64, pointY: Float64): Int64
 
 public open class QPolygonF {
     public let ptr: Int64
@@ -28,7 +28,7 @@ public open class QPolygonF {
     }
     public init(rectangle: QRectF) {
         this.ptr = unsafe {
-            nativePolygonFCreateWithRect(rectangle.ptr)
+            nativePolygonFCreateWithRect(rectangle.x,rectangle.y,rectangle.width,rectangle.height)
         }
     }
     public init(polygon: QPolygon) {
@@ -47,7 +47,7 @@ public open class QPolygonF {
 
     public operator func <<(pointF: QPointF): QPolygonF {
         let vptr = unsafe {
-            nativePolygonFOperatorLeftMove(this.ptr, pointF.ptr)
+            nativePolygonFOperatorLeftMove(this.ptr, pointF.x,pointF.y)
         }
         return QPolygonF(vptr)
     }

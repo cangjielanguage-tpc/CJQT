@@ -103,18 +103,18 @@ extern "C"
         instance->refresh();
     }
 
-    uintptr_t nativeSplitterSizeHint(uintptr_t ptr)
+    QSize nativeSplitterSizeHint(uintptr_t ptr)
     {
         QSplitter *instance = reinterpret_cast<QSplitter *>(static_cast<uintptr_t>(ptr));
-        QSize size = instance->sizeHint();
-        return reinterpret_cast<uintptr_t>(&size);
+        // QSize size = instance->sizeHint();
+        return instance->sizeHint();
     }
 
-    uintptr_t nativeSplitterMinimumSizeHint(uintptr_t ptr)
+    QSize nativeSplitterMinimumSizeHint(uintptr_t ptr)
     {
         QSplitter *instance = reinterpret_cast<QSplitter *>(static_cast<uintptr_t>(ptr));
-        QSize size = instance->minimumSizeHint();
-        return reinterpret_cast<uintptr_t>(&size);
+        // QSize size = instance->minimumSizeHint();
+        return instance->minimumSizeHint();
     }
 
     void nativeSplitterSetHandleWidth(uintptr_t ptr, int width)

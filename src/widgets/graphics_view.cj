@@ -52,13 +52,13 @@ foreign func nativeGraphicsViewMapFromScene(ptr: Int64, pointFPtr: Int64): Int64
 foreign func nativeGraphicsViewMapFromSceneWithRectF(ptr: Int64, rectFPt: Int64): Int64
 foreign func nativeGraphicsViewMapFromSceneWithPolygonF(ptr: Int64, polygonFPtr: Int64): Int64
 foreign func nativeGraphicsViewMapFromSceneWithPainterPath(ptr: Int64, painterPathPtr: Int64): Int64
-foreign func nativeGraphicsViewMapFromSceneWithXY(ptr: Int64, x: Float64, y: Float64): Int64
+foreign func nativeGraphicsViewMapFromSceneWithXY(ptr: Int64, x: Float64, y: Float64): QPoint
 foreign func nativeGraphicsViewMapFromSceneWithXYWH(ptr: Int64, x: Float64, y: Float64, w: Float64, h: Float64): Int64
 foreign func nativeGraphicsViewMapToScene(ptr: Int64, pointPtr: Int64): Int64
-foreign func nativeGraphicsViewMapToSceneWithRect(ptr: Int64, rectPtr: Int64): Int64
+// foreign func nativeGraphicsViewMapToSceneWithRect(ptr: Int64, rectPtr: Int64): Int64
 foreign func nativeGraphicsViewMapToSceneWithPolygon(ptr: Int64, polygonPtr: Int64): Int64
 foreign func nativeGraphicsViewMapToSceneWithPainterPath(ptr: Int64, painterPathPtr: Int64): Int64
-foreign func nativeGraphicsViewMapToSceneWithXY(ptr: Int64, x: Int32, y: Int32): Int64
+foreign func nativeGraphicsViewMapToSceneWithXY(ptr: Int64, x: Int32, y: Int32): QPointF
 foreign func nativeGraphicsViewMapToSceneWithXYWH(ptr: Int64, x: Int32, y: Int32, w: Int32, h: Int32): Int64
 foreign func nativeGraphicsViewOptimizationFlags(ptr: Int64): Int16
 foreign func nativeGraphicsViewSetOptimizationFlag(ptr: Int64, flag: Int16, enabled: Bool): Unit
@@ -84,7 +84,7 @@ foreign func nativeGraphicsViewSetRubberBandSelectionMode(ptr: Int64, selectionM
 foreign func nativeGraphicsViewScale(ptr: Int64, sx: Float64, sy: Float64): Unit
 foreign func nativeGraphicsViewScene(ptr: Int64): Int64
 foreign func nativeGraphicsViewSetScene(ptr: Int64, scenePtr: Int64): Unit
-foreign func nativeGraphicsViewSceneRect(ptr: Int64): Int64
+foreign func nativeGraphicsViewSceneRect(ptr: Int64): QRectF
 foreign func nativeGraphicsViewSetSceneRectWithRect(ptr: Int64, rectFPtr: Int64): Unit
 foreign func nativeGraphicsViewSetSceneRect(ptr: Int64, x: Float64, y: Float64, w: Float64, h: Float64): Unit
 foreign func nativeGraphicsViewSetViewportUpdateMode(ptr: Int64, updateMode: Int32): Unit
@@ -206,7 +206,7 @@ public open class QGraphicsView <: QAbstractScrollArea {
     }
     public func centerOn(pos: QPointF): Unit {
         unsafe {
-            nativeGraphicsViewCenterOn(this.ptr, pos.ptr)
+            nativeGraphicsViewCenterOnWithXY(this.ptr, pos.x,pos.y)
         }
     }
     public func centerOn(x: Float64, y: Float64): Unit {
@@ -232,7 +232,7 @@ public open class QGraphicsView <: QAbstractScrollArea {
     }
     public func ensureVisible(rect: QRectF, xmargin!: Int64 = 50, ymargin!: Int64 = 50): Unit {
         unsafe {
-            nativeGraphicsViewEnsureVisibleWithRect(this.ptr, rect.ptr, Int32(xmargin), Int32(ymargin))
+            nativeGraphicsViewEnsureVisible(this.ptr, rect.x,rect.y,rect.width,rect.height, Int32(xmargin), Int32(ymargin))
         }
     }
 
@@ -259,7 +259,7 @@ public open class QGraphicsView <: QAbstractScrollArea {
     }
 
     public func fitlnView(rect: QRectF, aspectRatioMode!: AspectRatioMode = AspectRatioMode.IgnoreAspectRatio): Unit {
-        unsafe { nativeGraphicsViewFitlnViewWithRect(this.ptr, rect.ptr, aspectRatioMode.value()) }
+        unsafe { nativeGraphicsViewFitlnView(this.ptr, rect.x,rect.y,rect.width,rect.height, aspectRatioMode.value()) }
     }
     public func fitlnView(
         x: Float64,
@@ -304,7 +304,7 @@ public open class QGraphicsView <: QAbstractScrollArea {
     }
     public func itemAt(pos: QPoint): QGraphicsItem {
         let itemPtr = unsafe {
-            nativeGraphicsViewItemAtWithPoint(this.ptr, pos.ptr)
+            nativeGraphicsViewItemAtWithXY(this.ptr, pos.x, pos.y)
         }
         return QGraphicsItem(itemPtr)
     }
@@ -315,14 +315,14 @@ public open class QGraphicsView <: QAbstractScrollArea {
         return QGraphicsItem(itemPtr)
     }
     public func mapFromScene(point: QPointF): QPoint {
-        let pointPtr = unsafe {
-            nativeGraphicsViewMapFromScene(this.ptr, point.ptr)
+        let pointF = unsafe {
+            nativeGraphicsViewMapFromSceneWithXY(this.ptr, point.x, point.y)
         }
-        return QPoint(pointPtr)
+        return pointF
     }
     public func mapFromScene(rect: QRectF): QPolygon {
         let polygongPtr = unsafe {
-            nativeGraphicsViewMapFromSceneWithRectF(this.ptr, rect.ptr)
+            nativeGraphicsViewMapFromSceneWithXYWH(this.ptr, rect.x, rect.y, rect.width, rect.height)
         }
         return QPolygon(polygongPtr)
     }
@@ -333,10 +333,10 @@ public open class QGraphicsView <: QAbstractScrollArea {
         return QPolygon(polygongPtr)
     }
     public func mapFromScene(x: Float64, y: Float64): QPoint {
-        let pointPtr = unsafe {
+        let point= unsafe {
             nativeGraphicsViewMapFromSceneWithXY(this.ptr, x, y)
         }
-        return QPoint(pointPtr)
+        return point
     }
     public func mapFromScene(x: Float64, y: Float64, w: Float64, h: Float64): QPolygon {
         let polygongPtr = unsafe {
@@ -346,14 +346,14 @@ public open class QGraphicsView <: QAbstractScrollArea {
     }
 
     public func mapToScene(point: QPoint): QPointF {
-        let pointFPtr = unsafe {
-            nativeGraphicsViewMapToScene(this.ptr, point.ptr)
+        let pointF = unsafe {
+            nativeGraphicsViewMapToSceneWithXY(this.ptr, point.x,point.y)
         }
-        return QPointF(pointFPtr)
+        return pointF
     }
     public func mapToScene(rect: QRect): QPolygonF {
         let polygonFPtr = unsafe {
-            nativeGraphicsViewMapToSceneWithRect(this.ptr, rect.ptr)
+            nativeGraphicsViewMapToSceneWithXYWH(this.ptr, rect.x,rect.y,rect.width,rect.height)
         }
         return QPolygonF(polygonFPtr)
     }
@@ -364,10 +364,10 @@ public open class QGraphicsView <: QAbstractScrollArea {
         return QPolygonF(polygonFPtr)
     }
     public func mapToScene(x: Int64, y: Int64): QPointF {
-        let pointFPtr = unsafe {
+        let pointF = unsafe {
             nativeGraphicsViewMapToSceneWithXY(this.ptr, Int32(x), Int32(y))
         }
-        return QPointF(pointFPtr)
+        return pointF
     }
     public func mapToScene(x: Int64, y: Int64, w: Int64, h: Int64): QPolygonF {
         let polygonFPtr = unsafe {
@@ -380,14 +380,14 @@ public open class QGraphicsView <: QAbstractScrollArea {
         return QGraphicsScene(scenePtr)
     }
     public func sceneRect(): QRectF {
-        let rectFPtr = unsafe { nativeGraphicsViewSceneRect(this.ptr) }
-        return QRectF(rectFPtr)
+        let rectF = unsafe { nativeGraphicsViewSceneRect(this.ptr) }
+        return rectF
     }
     public func setScene(scene: QGraphicsScene): Unit {
         unsafe { nativeGraphicsViewSetScene(this.ptr, scene.ptr) }
     }
     public func setSceneRect(rect: QRectF): Unit {
-        unsafe { nativeGraphicsViewSetSceneRectWithRect(this.ptr, rect.ptr) }
+        unsafe { nativeGraphicsViewSetSceneRect(this.ptr, rect.x, rect.y, rect.width, rect.height) }
     }
     public func setSceneRect(x: Float64, y: Float64, w: Float64, h: Float64): Unit {
         unsafe { nativeGraphicsViewSetSceneRect(this.ptr, x, y, w, h) }

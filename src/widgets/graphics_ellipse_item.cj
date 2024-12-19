@@ -11,11 +11,11 @@ foreign func nativeGraphicsEllipseItemCreateWithXYWH(
     height: Float64,
     parentPtr: Int64
 ): Int64
-foreign func nativeGraphicsEllipseItemCreateWithRect(rectPtr: Int64, parentPtr: Int64): Int64
+foreign func nativeGraphicsEllipseItemCreateWithRect(x: Float64,y:Float64,width:Float64,height:Float64, parentPtr: Int64): Int64
 foreign func nativeGraphicsEllipseItemCreate(parentPtr: Int64): Int64
 foreign func nativeGraphicsEllipseItemDelete(ptr: Int64): Unit
-foreign func nativeGraphicsEllipseItemRect(ptr: Int64): Int64
-foreign func nativeGraphicsEllipseItemSetRectWithRect(ptr: Int64, rectanglePtr: Int64): Unit
+foreign func nativeGraphicsEllipseItemRect(ptr: Int64): QRectF
+foreign func nativeGraphicsEllipseItemSetRectWithRect(ptr: Int64, x: Float64, y: Float64, width: Float64, height: Float64): Unit
 foreign func nativeGraphicsEllipseItemSetRect(ptr: Int64, x: Float64, y: Float64, width: Float64, height: Float64): Unit
 
 public open class QGraphicsEllipseItem <: QAbstractGraphicsShapeItem {
@@ -39,7 +39,7 @@ public open class QGraphicsEllipseItem <: QAbstractGraphicsShapeItem {
     public init(rect: QRectF, parent!: QGraphicsItem = QGraphicsItem(0)) {
         super(
             unsafe {
-                nativeGraphicsEllipseItemCreateWithRect(rect.ptr, parent.ptr)
+                nativeGraphicsEllipseItemCreateWithRect(rect.x,rect.y,rect.width,rect.height, parent.ptr)
             }
         )
     }
@@ -47,11 +47,11 @@ public open class QGraphicsEllipseItem <: QAbstractGraphicsShapeItem {
         unsafe { nativeGraphicsEllipseItemDelete(this.ptr) }
     }
     public func rect(): QRectF {
-        let rectFPtr = unsafe { nativeGraphicsEllipseItemRect(this.ptr) }
-        return QRectF(rectFPtr)
+        let rectF= unsafe { nativeGraphicsEllipseItemRect(this.ptr) }
+        return rectF
     }
     public func setRect(rectangle: QRectF): Unit {
-        unsafe { nativeGraphicsEllipseItemSetRectWithRect(this.ptr, rectangle.ptr) }
+        unsafe { nativeGraphicsEllipseItemSetRectWithRect(this.ptr, rectangle.x,rectangle.y,rectangle.width,rectangle.height) }
     }
     public func setRect(x: Float64, y: Float64, width: Float64, height: Float64): Unit {
         unsafe { nativeGraphicsEllipseItemSetRect(this.ptr, x, y, width, height) }

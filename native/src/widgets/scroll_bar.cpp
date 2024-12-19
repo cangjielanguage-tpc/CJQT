@@ -44,12 +44,12 @@ extern "C"
         QEvent *event = reinterpret_cast<QEvent *>(static_cast<uintptr_t>(eventPtr));
         return instance->event(event);
     }
-    uintptr_t nativeScrollBarSizeHint(uintptr_t ptr)
+    QSize nativeScrollBarSizeHint(uintptr_t ptr)
     {
         CjScrollBar *instance = reinterpret_cast<CjScrollBar *>(static_cast<uintptr_t>(ptr));
-        QSize size = instance->sizeHint();
-        QSize *p = new QSize(size);
-        return reinterpret_cast<uintptr_t>(p);
+        // QSize size = instance->sizeHint();
+        // QSize *p = new QSize(size);
+        return instance->sizeHint();
     }
     // do event
     void nativeScrollBarPaintEvent(uintptr_t ptr, uintptr_t eventPtr)

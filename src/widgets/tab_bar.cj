@@ -20,14 +20,14 @@ foreign func nativeTabBarSetTabTextColor(ptr: Int64, index: Int32, colorPtr: UIn
 foreign func nativeTabBarTabTextColor(ptr: Int64, index: Int32): UInt32
 foreign func nativeTabBarSetTabIcon(ptr: Int64, index: Int32, iconPtr: Int64): Unit
 foreign func nativeTabBarTabIcon(ptr: Int64, index: Int32): Int64
-foreign func nativeTabBarTabRect(ptr: Int64, index: Int32): Int64
-foreign func nativeTabBarTabAt(ptr: Int64, pointPtr: Int64): Int32
+foreign func nativeTabBarTabRect(ptr: Int64, index: Int32): QRect
+foreign func nativeTabBarTabAt(ptr: Int64, x: Int32, y: Int32): Int32
 foreign func nativeTabBarCurrentIndex(ptr: Int64): Int32
 foreign func nativeTabBarCount(ptr: Int64): Int32
 foreign func nativeTabBarDrawBase(ptr: Int64): Bool
 foreign func nativeTabBarSetDrawBase(ptr: Int64, drawTheBase: Bool): Unit
-foreign func nativeTabBarIconSize(ptr: Int64): Int64
-foreign func nativeTabBarSetIconSize(ptr: Int64, sizePtr: Int64): Unit
+foreign func nativeTabBarIconSize(ptr: Int64): QSize
+foreign func nativeTabBarSetIconSize(ptr: Int64, sizeW: Int32, sizeH: Int32): Unit
 foreign func nativeTabBarUsesScrollButtons(ptr: Int64): Bool
 foreign func nativeTabBarSetUsesScrollButtons(ptr: Int64, useButtons: Bool): Unit
 foreign func nativeTabBarTabsClosable(ptr: Int64): Bool
@@ -221,15 +221,15 @@ public class QTabBar <: QWidget {
     }
 
     public func tabRect(index: Int64): QRect {
-        let rectPtr = unsafe {
+        let rect = unsafe {
             nativeTabBarTabRect(ptr, Int32(index))
         }
-        return QRect(rectPtr)
+        return rect
     }
 
     public func tabAt(point: QPoint): Int64 {
         let index = unsafe {
-            nativeTabBarTabAt(ptr, point.ptr)
+            nativeTabBarTabAt(ptr, point.x,point.y)
         }
         return Int64(index)
     }
@@ -261,15 +261,15 @@ public class QTabBar <: QWidget {
     }
 
     public func iconSize(): QSize {
-        let sizePtr = unsafe {
+        let size = unsafe {
             nativeTabBarIconSize(ptr)
         }
-        return QSize(sizePtr)
+        return size
     }
 
     public func setIconSize(size: QSize) {
         unsafe {
-            nativeTabBarSetIconSize(ptr, size.ptr)
+            nativeTabBarSetIconSize(ptr, size.width,size.height)
         }
     }
 

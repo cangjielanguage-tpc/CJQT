@@ -36,9 +36,11 @@ public class QFont {
         }
     }
 
-    public init(family:String,pointSize: Int32,weight:Int32,italic:Bool) {
-        ptr = unsafe {
-            nativeFontCreateFPWI(LibC.mallocCString(family),pointSize,weight,italic)
+    public init(family:String,pointSize: Int32,weight:Int32,italic:Bool) {        
+        unsafe {
+            let f=LibC.mallocCString(family);
+            ptr = nativeFontCreateFPWI(f,pointSize,weight,italic)
+            LibC.free(f)
         }
     }
 
@@ -74,7 +76,9 @@ public class QFont {
     }
     public func setFamily(family:String){
         unsafe {
-            nativeFontSetFamily(ptr, LibC.mallocCString(family))
+            let f=LibC.mallocCString(family);
+            nativeFontSetFamily(ptr, f)            
+            LibC.free(f)
         }
     }
     public func setWeight(weight:Int32){

@@ -13,8 +13,8 @@ extern "C"
         // }
         // else
         // {
-            QColor *color = new QColor(colorPtr);
-            QBrush *brush = new QBrush(*color);
+            QColor color(colorPtr);
+            QBrush *brush = new QBrush(color);
         // }
         return reinterpret_cast<uintptr_t>(brush);
     }

@@ -9,7 +9,7 @@
 package cjqt.gui
 
 foreign func nativeColorCreate(r: Int32, g: Int32, b: Int32, a: Int32): Int64
-foreign func nativeColorDelete(ptr: Int64): Unit
+// foreign func nativeColorDelete(ptr: Int64): Unit
 
 /**
  * The class is QColor

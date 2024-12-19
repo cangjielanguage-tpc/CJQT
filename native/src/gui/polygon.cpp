@@ -1,4 +1,5 @@
 #include <QPolygon>
+#include<QRect>
 
 extern "C"
 {
@@ -12,10 +13,10 @@ extern "C"
         QPolygon *polygon = new QPolygon(size);
         return reinterpret_cast<uintptr_t>(polygon);
     }
-    uintptr_t nativePolygonCreateWithRect(const uintptr_t rectPtr, bool closed)
+    uintptr_t nativePolygonCreateWithRect(int x,int y,int width,int height, bool closed)
     {
-        QRect *rect = reinterpret_cast<QRect *>(static_cast<uintptr_t>(rectPtr));
-        QPolygon *polygon = new QPolygon(*rect, closed);
+        QRect rect(x,y,width,height) ;
+        QPolygon *polygon = new QPolygon(rect, closed);
         return reinterpret_cast<uintptr_t>(polygon);
     }
     void nativePolygonDelete(uintptr_t ptr)

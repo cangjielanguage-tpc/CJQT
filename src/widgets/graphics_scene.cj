@@ -8,8 +8,8 @@ foreign func nativeGraphicsSceneCreate(x: Float64, y: Float64, width: Float64, h
 foreign func nativeGraphicsSceneCreateWithRectF(rectFPtr: Int64, parentPtr: Int64): Int64
 foreign func nativeGraphicsSceneCreateWithParent(parentPtr: Int64): Int64
 foreign func nativeGraphicsSceneDelete(ptr: Int64): Int64
-foreign func nativeGraphicsSceneScenRect(ptr: Int64): Int64
-foreign func nativeGraphicsSceneSetScenRectWithRect(ptr: Int64, rectFPtr: Int64): Unit
+foreign func nativeGraphicsSceneScenRect(ptr: Int64): QRectF
+// foreign func nativeGraphicsSceneSetScenRectWithRect(ptr: Int64, rectFPtr: Int64): Unit
 foreign func nativeGraphicsSceneSetScenRect(ptr: Int64, x: Float64, y: Float64, w: Float64, h: Float64): Unit
 foreign func nativeGraphicsSceneBackgroundBrush(ptr: Int64): Int64
 foreign func nativeGraphicsSceneSetBackgroundBrush(ptr: Int64, brushPtr: Int64): Unit
@@ -58,23 +58,23 @@ public open class QGraphicsScene <: QObject {
     }
 
     public init(sceneRect: QRectF, parent!: QObject = QObject(0)) {
-        super(unsafe { nativeGraphicsSceneCreateWithRectF(sceneRect.ptr, parent.ptr) })
+        super(unsafe { nativeGraphicsSceneCreate(sceneRect.x,sceneRect.y,sceneRect.width,sceneRect.height, parent.ptr) })
     }
     public init(parent!: QObject = QObject(0)) {
         super(unsafe { nativeGraphicsSceneCreateWithParent(parent.ptr) })
     }
 
     public open func delete(): Unit {
-        unsafe { nativeGraphicsSceneDelete(this.ptr) }
+        // unsafe { nativeGraphicsSceneDelete(this.ptr) }
     }
 
     public func sceneRect(): QRectF {
-        let rectFPtr = unsafe { nativeGraphicsSceneScenRect(this.ptr) }
-        return QRectF(rectFPtr)
+        let rectF = unsafe { nativeGraphicsSceneScenRect(this.ptr) }
+        return rectF
     }
 
     public func setSceneRect(rect: QRectF): Unit {
-        unsafe { nativeGraphicsSceneSetScenRectWithRect(this.ptr, rect.ptr) }
+        unsafe { nativeGraphicsSceneSetScenRect(this.ptr, rect.x,rect.y,rect.width,rect.height) }
     }
     public func setSceneRect(x: Float64, y: Float64, w: Float64, h: Float64): Unit {
         unsafe { nativeGraphicsSceneSetScenRect(this.ptr, x, y, w, h) }

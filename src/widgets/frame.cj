@@ -13,20 +13,20 @@ import cjqt.core.*
 // foreign C Functions
 foreign func nativeFrameCreate(parentPtr: Int64, f: UInt32): Int64
 foreign func nativeFrameDelete(ptr: Int64): Unit
-foreign func nativeFrameFrameRect(ptr: Int64): Int64
+foreign func nativeFrameFrameRect(ptr: Int64): QRect
 foreign func nativeFrameFrameShadow(ptr: Int64): Int16
 foreign func nativeFrameFrameShape(ptr: Int64): Int16
 foreign func nativeFrameFrameStyle(ptr: Int64): Int32
 foreign func nativeFrameFrameWidth(ptr: Int64): Int32
 foreign func nativeFrameLineWidth(ptr: Int64): Int32
 foreign func nativeFrameMidLineWidth(ptr: Int64): Int32
-foreign func nativeFrameSetFrameRect(ptr: Int64, rectPtr: Int64): Unit
+foreign func nativeFrameSetFrameRect(ptr: Int64, x: Int32,y:Int32,width:Int32,height:Int32): Unit
 foreign func nativeFrameSetFrameShadow(ptr: Int64, shadow: Int16): Unit
 foreign func nativeFrameSetFrameShape(ptr: Int64, shape: Int16): Unit
 foreign func nativeFrameSetFrameStyle(ptr: Int64, style: Int32): Unit
 foreign func nativeFrameSetLineWidth(ptr: Int64, width: Int32): Unit
 foreign func nativeFrameSetMidLineWidth(ptr: Int64, width: Int32): Unit
-foreign func nativeFrameSizeHint(ptr: Int64): Int64
+foreign func nativeFrameSizeHint(ptr: Int64): QSize
 
 /**
  * The enum is ActionPosition
@@ -179,10 +179,10 @@ public open class QFrame <: QWidget {
      * @return Type  of QRect
      */
     public func frameRect(): QRect {
-        let rectPtr = unsafe {
+        let rect= unsafe {
             nativeFrameFrameRect(this.ptr)
         }
-        return QRect(rectPtr)
+        return rect
     }
 
     /**
@@ -263,7 +263,7 @@ public open class QFrame <: QWidget {
      * @param rect of QRect
      */
     public func setFrameRect(rect: QRect): Unit {
-        return unsafe { nativeFrameSetFrameRect(this.ptr, rect.ptr) }
+        return unsafe { nativeFrameSetFrameRect(this.ptr, rect.x,rect.y,rect.width,rect.height) }
     }
 
     /**
@@ -317,7 +317,7 @@ public open class QFrame <: QWidget {
      * @return Type of QSize
      */
     public open func sizeHint(): QSize {
-        let sizePtr = unsafe { nativeFrameSizeHint(this.ptr) }
-        return QSize(sizePtr)
+        let size = unsafe { nativeFrameSizeHint(this.ptr) }
+        return size
     }
 }

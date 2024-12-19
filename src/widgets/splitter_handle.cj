@@ -19,7 +19,7 @@ foreign func nativeSplitterHandleOrientation(ptr: Int64): Int32
 
 foreign func nativeSplitterHandleOpaqueResize(ptr: Int64): Bool
 foreign func nativeSplitterHandleSplitter(ptr: Int64): Int64
-foreign func nativeSplitterHandleSizeHint(ptr: Int64): Int64
+foreign func nativeSplitterHandleSizeHint(ptr: Int64): QSize
 
 public class QSplitterHandle <: QWidget {
     public init(orientation!:Int64 = 1, parent!: QSplitter = QSplitter()) {
@@ -66,9 +66,9 @@ public class QSplitterHandle <: QWidget {
     }
 
     public func sizeHint(): QSize {
-        let result = unsafe {
+        let size = unsafe {
             nativeSplitterHandleSizeHint(ptr)
         }
-        return QSize(result)
+        return size
     }
 }

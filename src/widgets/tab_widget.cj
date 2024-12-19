@@ -22,8 +22,8 @@ foreign func nativeTabWidgetCurrentWidget(ptr: Int64): Int64
 foreign func nativeTabWidgetWidget(ptr: Int64, index: Int32): Int64
 foreign func nativeTabWidgetIndexOf(ptr: Int64, widgetPtr: Int64): Int32
 foreign func nativeTabWidgetCount(ptr: Int64): Int32
-foreign func nativeTabWidgetIconSize(ptr: Int64): Int64
-foreign func nativeTabWidgetSetIconSize(ptr: Int64, sizePtr: Int64): Unit
+foreign func nativeTabWidgetIconSize(ptr: Int64): QSize
+foreign func nativeTabWidgetSetIconSize(ptr: Int64, sizeW: Int32,sizeH: Int32): Unit
 foreign func nativeTabWidgetUsesScrollButtons(ptr: Int64): Bool
 foreign func nativeTabWidgetSetUsesScrollButtons(ptr: Int64, useButtons: Bool): Unit
 foreign func nativeTabWidgetTabsClosable(ptr: Int64): Bool
@@ -213,15 +213,15 @@ public class QTabWidget <: QWidget {
     }
 
     public func iconSize(): QSize {
-        let sizePtr = unsafe {
+        let size = unsafe {
             nativeTabWidgetIconSize(ptr)
         }
-        return QSize(sizePtr)
+        return size
     }
 
     public func setIconSize(size: QSize) {
         unsafe {
-            nativeTabWidgetSetIconSize(ptr, size.ptr)
+            nativeTabWidgetSetIconSize(ptr, size.width,size.height)
         }
     }
 

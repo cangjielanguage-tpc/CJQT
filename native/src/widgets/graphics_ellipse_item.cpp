@@ -1,5 +1,4 @@
 #include <QGraphicsEllipseItem>
-
 extern "C"
 {
     uintptr_t nativeGraphicsEllipseItemCreateWithXYWH(double x, double y, double width, double height, uintptr_t parentPtr)
@@ -16,19 +15,19 @@ extern "C"
         }
         return reinterpret_cast<uintptr_t>(item);
     }
-    uintptr_t nativeGraphicsEllipseItemCreateWithRect(const uintptr_t rectPtr, uintptr_t parentPtr)
+    uintptr_t nativeGraphicsEllipseItemCreateWithRect(qreal x,qreal y,qreal width,qreal height, uintptr_t parentPtr)
     {
         QGraphicsEllipseItem *item;
-        QRectF *rect = reinterpret_cast<QRectF *>(static_cast<uintptr_t>(rectPtr));
+        QRectF rect(x,y,width,height) ;
 
         if (parentPtr == 0L)
         {
-            item = new QGraphicsEllipseItem(*rect);
+            item = new QGraphicsEllipseItem(rect);
         }
         else
         {
             QGraphicsItem *parent = reinterpret_cast<QGraphicsItem *>(static_cast<uintptr_t>(parentPtr));
-            item = new QGraphicsEllipseItem(*rect, parent);
+            item = new QGraphicsEllipseItem(rect, parent);
         }
         return reinterpret_cast<uintptr_t>(item);
     }
@@ -51,18 +50,18 @@ extern "C"
         QGraphicsEllipseItem *instance = reinterpret_cast<QGraphicsEllipseItem *>(static_cast<uintptr_t>(ptr));
         delete instance;
     }
-    uintptr_t nativeGraphicsEllipseItemRect(uintptr_t ptr)
+    QRectF nativeGraphicsEllipseItemRect(uintptr_t ptr)
     {
         QGraphicsEllipseItem *instance = reinterpret_cast<QGraphicsEllipseItem *>(static_cast<uintptr_t>(ptr));
-        QRectF rectF = instance->rect();
-        QRectF *p = new QRectF(rectF);
-        return reinterpret_cast<uintptr_t>(p);
+       // QRectF rectF = instance->rect();
+        // QRectF *p = new QRectF(rectF);
+        return instance->rect();
     }
-    void nativeGraphicsEllipseItemSetRectWithRect(uintptr_t ptr, const uintptr_t rectanglePtr)
+    void nativeGraphicsEllipseItemSetRectWithRect(uintptr_t ptr, qreal x,qreal y,qreal width,qreal height)
     {
         QGraphicsEllipseItem *instance = reinterpret_cast<QGraphicsEllipseItem *>(static_cast<uintptr_t>(ptr));
-        QRectF *rectangle = reinterpret_cast<QRectF *>(static_cast<uintptr_t>(rectanglePtr));
-        instance->setRect(*rectangle);
+        QRectF rectangle(x,y,width,height);
+        instance->setRect(rectangle);
     }
     void nativeGraphicsEllipseItemSetRect(uintptr_t ptr, double x, double y, double width, double height)
     {

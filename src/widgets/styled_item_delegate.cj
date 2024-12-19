@@ -8,7 +8,7 @@ foreign func nativeStyledItemDelegateCreate(): Int64
 foreign func nativeStyledItemDelegateDelete(ptr: Int64): Unit
 
 foreign func nativeStyledItemDelegateSetPaintCallback(ptr: Int64, callback: CFunc<(Int64, CPointer<Unit>) -> Unit>): Unit
-foreign func nativeStyledItemDelegateSetSizeHintCallback(ptr: Int64, callback: CFunc<(Int64, CPointer<Unit>) -> Int64>): Unit
+foreign func nativeStyledItemDelegateSetSizeHintCallback(ptr: Int64, callback: CFunc<(Int64, CPointer<Unit>) -> QSize>): Unit
 
 @C
 func styledItemDelegatePaintCallback(ptr: Int64, dataPtr: CPointer<Unit>): Unit {
@@ -23,15 +23,15 @@ func styledItemDelegatePaintCallback(ptr: Int64, dataPtr: CPointer<Unit>): Unit 
 }
 
 @C
-func styledItemDelegateSizeHintCallback(ptr: Int64, dataPtr: CPointer<Unit>): Int64 {
+func styledItemDelegateSizeHintCallback(ptr: Int64, dataPtr: CPointer<Unit>): QSize {
     let data = QConversion.cPointerToCjDataLongLong(dataPtr)
     let index = QModelIndex(data.p2)
     try {
-        return QWidgetCallbackMap.sizeHintCallback[ptr](index).ptr
+        return QWidgetCallbackMap.sizeHintCallback[ptr](index)
     } catch (e: Exception) {
         println(e)
     }
-    return 0
+    return QSize(0,0)
 }
 
 public open class QStyledItemDelegate <: QAbstractItemDelegate {
@@ -76,6 +76,6 @@ public open class QStyledItemDelegate <: QAbstractItemDelegate {
     public open func paint(painter: QPainter, index: QModelIndex): Unit {}
 
     public open func sizeHint(index: QModelIndex): QSize {
-        return QSize()
+        return QSize(0,0)
     }
 }

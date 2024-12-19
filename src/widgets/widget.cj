@@ -41,7 +41,7 @@ foreign func nativeWidgetSetFont(ptr: Int64, fontPtr: Int64): Unit
 foreign func nativeWidgetDelete(ptr: Int64): Unit
 foreign func nativeWidgetSetStyleSheet(ptr: Int64, styleSheet: CString): Unit
 foreign func nativeWidgetSetWindowIcon(ptr: Int64, iconPtr: Int64): Unit
-foreign func nativeWidgetRect(ptr: Int64): Int64
+foreign func nativeWidgetRect(ptr: Int64): QRect
 foreign func nativeWidgetSetMinimumWidth(ptr: Int64, width: Int32): Unit
 foreign func nativeWidgetSetMinimumHeight(ptr: Int64, height: Int32): Unit
 foreign func nativeWidgetSetMaximumWidth(ptr: Int64, width: Int32): Unit
@@ -265,11 +265,11 @@ public open class QWidget <: QObject {
      * The Function is width
      *
      */
-    public func width(): Int64 {
+    public func width(): Int32 {
         let result = unsafe {
             nativeWidgetWidth(ptr)
         }
-        return Int64(result)
+        return Int32(result)
     }
 
     /**
@@ -352,7 +352,9 @@ public open class QWidget <: QObject {
      */
     public func setWindowTitle(title: String) {
         unsafe {
-            nativeWidgetSetWindowTitle(ptr, LibC.mallocCString(title))
+            let t=LibC.mallocCString(title)
+            nativeWidgetSetWindowTitle(ptr, t)
+            LibC.free(t)
         }
     }
 
@@ -453,10 +455,10 @@ public open class QWidget <: QObject {
      * @return Type of  QRect
      */
     public func rect(): QRect {
-        let rectPtr = unsafe {
+        let rect = unsafe {
             nativeWidgetRect(this.ptr)
         }
-        return QRect(rectPtr)
+        return rect
     }
 
     /**

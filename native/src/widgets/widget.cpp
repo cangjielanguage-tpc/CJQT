@@ -212,12 +212,12 @@ extern "C"
         QIcon *icon = reinterpret_cast<QIcon *>(static_cast<uintptr_t>(iconPtr));
         instance->setWindowIcon(*icon);
     }
-    uintptr_t nativeWidgetRect(uintptr_t ptr)
+    QRect nativeWidgetRect(uintptr_t ptr)
     {
         QWidget *instance = reinterpret_cast<QWidget *>(static_cast<uintptr_t>(ptr));
-        QRect rect = instance->rect();
-        QRect *pRect = new QRect(rect);
-        return reinterpret_cast<uintptr_t>(pRect);
+      //  QRect rect = instance->rect();
+        // QRect *pRect = new QRect(rect);
+        return instance->rect();
     }
 
     void nativeWidgetSetMinimumWidth(uintptr_t ptr, int width)

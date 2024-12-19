@@ -12,9 +12,9 @@ import cjqt.gui.*
 import cjqt.core.*
 
 //foreign function
-foreign func nativeGraphicsSceneMouseEventScenePos(ptr: Int64): Int64
-foreign func nativeGraphicsSceneMouseEventScreenPos(ptr: Int64): Int64
-foreign func nativeGraphicsSceneMouseEventPos(ptr: Int64): Int64
+foreign func nativeGraphicsSceneMouseEventScenePos(ptr: Int64): QPointF
+foreign func nativeGraphicsSceneMouseEventScreenPos(ptr: Int64): QPoint
+foreign func nativeGraphicsSceneMouseEventPos(ptr: Int64): QPointF
 foreign func nativeGraphicsSceneMouseEventDelete(ptr: Int64): Unit
 
 /**
@@ -37,12 +37,12 @@ public class QGraphicsSceneMouseEvent <: QGraphicsSceneEvent {
      * @return Type   of QPointF
      */
     public func scenePos(): QPointF {
-        let pointFPtr = unsafe {
+        let pointF = unsafe {
             nativeGraphicsSceneMouseEventScenePos(this.ptr)
         }
-        var pointF = QPointF(pointFPtr)
-        var newPointF = QPointF(pointF.rx(), pointF.ry())
-        return newPointF
+        // var pointF = QPointF(pointFPtr)
+        // var newPointF = QPointF(pointF.rx(), pointF.ry())
+        return pointF
     }
 
     /**
@@ -51,10 +51,10 @@ public class QGraphicsSceneMouseEvent <: QGraphicsSceneEvent {
      * @return Type   of QPoint
      */
     public func screenPos(): QPoint {
-        let pointPtr = unsafe {
+        let point = unsafe {
             nativeGraphicsSceneMouseEventScreenPos(this.ptr)
         }
-        return QPoint(pointPtr)
+        return point
     }
 
     /**
@@ -63,10 +63,10 @@ public class QGraphicsSceneMouseEvent <: QGraphicsSceneEvent {
      * @return Type   of QPointF
      */
     public func pos(): QPointF {
-        let pointFPtr = unsafe {
+        let pointF = unsafe {
             nativeGraphicsSceneMouseEventPos(this.ptr)
         }
-        return QPointF(pointFPtr)
+        return pointF
     }
 
     /**
