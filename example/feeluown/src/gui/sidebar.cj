@@ -75,7 +75,7 @@ public class LeftPanel <: QScrollArea {
     public override func sizeHint(): QSize {
         let size = sizeHint()
         let width = min(app.width() / 4, 240)
-        return QSize(width, size.height())
+        return QSize(width, size.height)
     }
 }
 

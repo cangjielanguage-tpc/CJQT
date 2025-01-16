@@ -148,7 +148,7 @@ public class Ui_MainWindow {
         //graphicsView.setAlignment(AlignTop)
 
         var rect = graphicsView.rect()
-        scene.setSceneRect(QRectF(rect))
+        scene.setSceneRect(QRectF(Float64(rect.x),Float64(rect.y),Float64(rect.width),Float64(rect.height)))
         scene.setBackgroundBrush(QBrush(QColor(255, 255, 255)))
 
         selectAct.setChecked(true)

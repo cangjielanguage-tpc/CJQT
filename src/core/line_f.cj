@@ -7,7 +7,7 @@ foreign func nativeLineFCreateWithTwoPoint(pointF1Ptr: Int64, pointF2Ptr: Int64)
 foreign func nativeLineFCreate(): Int64
 foreign func nativeLineFDelete(ptr: Int64): Unit
 
-public open class QLineF {
+public  class QLineF {
     public let ptr: Int64
 
     public init() {
@@ -25,11 +25,18 @@ public open class QLineF {
 
     public init(p1: QPointF, p2: QPointF) {
         this.ptr = unsafe {
-            nativeLineFCreateWithTwoPoint(p1.ptr, p2.ptr)
+            nativeLineFCreateWithXY(p1.x,p1.y, p2.x, p2.y)
         }
     }
 
-    public open func delete() {
+    public  func delete() {
         unsafe { nativeLineFDelete(this.ptr) }
+    }
+
+    ~init(){
+        println("QLineF ~initial()")
+        unsafe {
+        nativeLineFDelete(this.ptr)
+        }
     }
 }

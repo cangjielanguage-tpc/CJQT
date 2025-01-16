@@ -66,9 +66,9 @@ public class TextlistDelegate <: QStyledItemDelegate {
     public func sizeHint(index: QModelIndex): QSize {
         let size = super.sizeHint(index)
         if (size.isValid()) {
-            return QSize(size.width(), 25)
+            return QSize(size.width, 25)
         }
-        return QSize()
+        return QSize(0,0)
     }
 }
 

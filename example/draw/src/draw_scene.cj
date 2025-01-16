@@ -60,22 +60,22 @@ public class DrawScene <: QGraphicsScene {
         match (m_drawShapeState) {
             case none => super.mousePressEvent(mouseEvent)
             case selection =>
-                m_selectRectItem = QGraphicsRectItem(m_downPoint.x(), m_downPoint.y(), 0.0, 0.0)
+                m_selectRectItem = QGraphicsRectItem(m_downPoint.x, m_downPoint.y, 0.0, 0.0)
                 m_selectRectItem.setPen(QPen(penColor))
                 addItem(m_selectRectItem)
             case rectangle =>
-                var item = QGraphicsRectItem(m_downPoint.x(), m_downPoint.y(), 0.0, 0.0)
+                var item = QGraphicsRectItem(m_downPoint.x, m_downPoint.y, 0.0, 0.0)
                 item.setPen(QPen(penColor))
                 addItem(item)
                 m_addItem = item
             case ellipse => 
-                var item = QGraphicsEllipseItem(m_downPoint.x(), m_downPoint.y(), 0.0, 0.0)
+                var item = QGraphicsEllipseItem(m_downPoint.x, m_downPoint.y, 0.0, 0.0)
                 item.setPen(QPen(penColor))
                 addItem(item)
                 m_addItem = item
                 
             case line => 
-                var item = QGraphicsLineItem(m_downPoint.x(), m_downPoint.y(), 0.0, 0.0)
+                var item = QGraphicsLineItem(m_downPoint.x, m_downPoint.y, 0.0, 0.0)
                 item.setPen(QPen(penColor))
                 addItem(item)
                 m_addItem = item
@@ -87,21 +87,21 @@ public class DrawScene <: QGraphicsScene {
     protected override func mouseMoveEvent(mouseEvent: QGraphicsSceneMouseEvent): Unit {
         var Qd = mouseEvent.scenePos()
         var penColor = QColor(0, 0, 255)
-        var x1 = match (Qd.x() > m_downPoint.x()) {
-            case true => m_downPoint.x()
-            case _ => Qd.x()
+        var x1 = match (Qd.x > m_downPoint.x) {
+            case true => m_downPoint.x
+            case _ => Qd.x
         }
-        var y1 = match (Qd.y() > m_downPoint.y()) {
-            case true => m_downPoint.y()
-            case _ => Qd.y()
+        var y1 = match (Qd.y > m_downPoint.y) {
+            case true => m_downPoint.y
+            case _ => Qd.y
         }
-        var x2 = match ((Qd.x() - m_downPoint.x()) >= 0.0) {
-            case true => Qd.x() - m_downPoint.x()
-            case _ => -(Qd.x() - m_downPoint.x())
+        var x2 = match ((Qd.x - m_downPoint.x) >= 0.0) {
+            case true => Qd.x - m_downPoint.x
+            case _ => -(Qd.x - m_downPoint.x)
         }
-        var y2 = match ((Qd.y() - m_downPoint.y()) >= 0.0) {
-            case true => Qd.y() - m_downPoint.y()
-            case _ => -(Qd.y() - m_downPoint.y())
+        var y2 = match ((Qd.y - m_downPoint.y) >= 0.0) {
+            case true => Qd.y - m_downPoint.y
+            case _ => -(Qd.y - m_downPoint.y)
         }
         match (m_drawShapeState) {
             case none => super.mousePressEvent(mouseEvent)
