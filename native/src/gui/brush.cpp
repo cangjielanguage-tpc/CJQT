@@ -1,6 +1,7 @@
 #include <QBrush>
 #include <QColor>
 #include <QGradient>
+#include <QDebug>
 
 extern "C"
 {
@@ -39,5 +40,11 @@ extern "C"
     {
         QBrush *instance = reinterpret_cast<QBrush *>(static_cast<uintptr_t>(ptr));
         delete instance;
+    }
+    void nativeBrushSetColor(uintptr_t ptr,quint32 colorPtr)
+    {
+        QBrush *instance = reinterpret_cast<QBrush *>(static_cast<uintptr_t>(ptr));
+        QColor color(colorPtr);
+        instance->setColor(color);
     }
 }

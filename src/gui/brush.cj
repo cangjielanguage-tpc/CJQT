@@ -14,6 +14,7 @@ foreign func nativeBrushCreateWithPixmap(pixmapPtr: Int64): Int64
 foreign func nativeBrushCreateWithGradient(gradientPtr: Int64): Int64
 foreign func nativeBrushDelete(ptr: Int64): Unit
 
+foreign func nativeBrushSetColor(ptr: Int64,colorPtr: UInt32): Unit
 
 /**
  * The class is QBrush
@@ -77,6 +78,13 @@ public class QBrush {
     public func delete() {
         unsafe {
             nativeBrushDelete(ptr)
+        }
+    }
+
+    
+    public func setColor(color: QColor) {
+        unsafe {
+            nativeBrushSetColor(ptr,color.ptr)
         }
     }
 }
