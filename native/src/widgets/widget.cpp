@@ -280,4 +280,8 @@ extern "C"
         QWidget *instance = reinterpret_cast<QWidget *>(static_cast<uintptr_t>(ptr));
         instance->setAttribute(Qt::WidgetAttribute(attribute), on);
     }
+    void nativeWidgetUpdate(uintptr_t ptr){
+        QWidget *instance = reinterpret_cast<QWidget *>(static_cast<uintptr_t>(ptr));
+        instance->update();
+    }
 }
