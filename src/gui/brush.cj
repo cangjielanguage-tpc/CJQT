@@ -3,10 +3,11 @@
  */
 
 /**
- * @file
+ * @filecj
  *
  */
 package cjqt.gui
+
 
 foreign func nativeBrushCreate(colorPtr: UInt32): Int64
 foreign func nativeBrushCreateWithBrush(brushPtr: Int64): Int64
@@ -14,7 +15,8 @@ foreign func nativeBrushCreateWithPixmap(pixmapPtr: Int64): Int64
 foreign func nativeBrushCreateWithGradient(gradientPtr: Int64): Int64
 foreign func nativeBrushDelete(ptr: Int64): Unit
 
-
+foreign func nativeBrushSetColor(ptr: Int64,colorPtr: UInt32): Unit
+foreign func nativeBrushColor(ptr:Int64):UInt32
 /**
  * The class is QBrush
  * @author wathinst
@@ -78,5 +80,19 @@ public class QBrush {
         unsafe {
             nativeBrushDelete(ptr)
         }
+    }
+
+    
+    public func setColor(color: QColor) {
+        unsafe {
+            nativeBrushSetColor(ptr,color.ptr)
+        }
+    }
+
+    public func color():QColor{
+       let color =unsafe{
+           nativeBrushColor(ptr)
+        }
+        return QColor(color);
     }
 }

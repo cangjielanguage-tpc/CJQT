@@ -115,6 +115,9 @@ public class QColor {
         green=g
     }
 
+   public func rgba():UInt32 {
+    return ptr;
+   }
 
     // public init(ptr: Int64) {
     //     this.ptr = ptr

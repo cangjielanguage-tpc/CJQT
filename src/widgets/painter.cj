@@ -48,6 +48,9 @@ foreign func nativePainterDrawTextOption(ptr:Int64,x:Float64,y:Float64,w:Float64
 
 foreign func nativePainterSetRenderHints(ptr:Int64, hints:Int16,on:Bool): Unit
 
+foreign func nativePainterSave(ptr:Int64):Unit
+foreign func nativePainterRestore(ptr:Int64):Unit
+
 /**
  * The class is QPainter
  * @author wathinst
@@ -365,4 +368,14 @@ public class QPainter {
 
     }
 
+    public func save(){
+        unsafe{
+            nativePainterSave(ptr)
+        }
+    }
+    public func restore(){
+        unsafe{
+            nativePainterRestore(ptr)  
+        }
+    }
 }

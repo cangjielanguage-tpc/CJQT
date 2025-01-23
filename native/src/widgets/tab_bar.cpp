@@ -96,13 +96,13 @@ extern "C"
     {
         QTabBar *instance = reinterpret_cast<QTabBar *>(static_cast<uintptr_t>(ptr));
         QColor color = instance->tabTextColor(index);
-        int alpha = color.alpha(); // 获取alpha值
-           int red = color.red(); // 获取红色值
-           int green = color.green(); // 获取绿色值
-           int blue = color.blue(); // 获取蓝色值
+        // int alpha = color.alpha(); // 获取alpha值
+        //    int red = color.red(); // 获取红色值
+        //    int green = color.green(); // 获取绿色值
+        //    int blue = color.blue(); // 获取蓝色值
 
            // 将四个值合成为一个32位整数
-           quint32 argb = (alpha << 24) | (red << 16) | (green << 8) | blue;
+           quint32 argb = color.rgba();
 
 //           return 0;
         return argb;

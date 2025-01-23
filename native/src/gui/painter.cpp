@@ -53,7 +53,6 @@ extern "C"
         QPen *pen = reinterpret_cast<QPen *>(static_cast<uintptr_t>(penPtr));
         instance->setPen(*pen);
     }
-
     void nativePainterSetFont(uintptr_t ptr, uintptr_t fontPtr){
         QPainter *instance = reinterpret_cast<QPainter *>(static_cast<uintptr_t>(ptr));
         QFont *font = reinterpret_cast<QFont *>(static_cast<uintptr_t>(fontPtr));
@@ -220,5 +219,13 @@ extern "C"
     void nativePainterSetRenderHints(uintptr_t ptr, short hints,bool on){
         QPainter *painter = reinterpret_cast<QPainter *>(static_cast<uintptr_t>(ptr));
         painter->setRenderHints(QPainter::RenderHints(hints),on);
+    }
+    void nativePainterSave(uintptr_t ptr){
+       QPainter *painter = reinterpret_cast<QPainter *>(static_cast<uintptr_t>(ptr));
+       painter ->save();
+    }
+    void nativePainterRestore(uintptr_t ptr){
+        QPainter *painter = reinterpret_cast<QPainter *>(static_cast<uintptr_t>(ptr));
+        painter ->restore();
     }
 }
