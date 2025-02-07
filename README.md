@@ -137,27 +137,120 @@ D:\work\CJQT\native\build                 #D:\work\CJQT为cjqt代码所在目录
 D:\work\CJQT\target\release\cjqt
 
 6.example示例运行
-例如选择example\hello项目，使用cjpm build进行构建，之后运行target\release\bin\main文件
 
+### hello示例
+
+[hello示例详情](./example/hello)
+
+选择example\hello项目，使用cjpm build进行构建，之后运行target\release\bin\main文件
 
 也可执行命令如下：
 
 Linux下：
-
 ```shell
 ./example/hello/run.sh 
 ```
 
 Windows下：
-
 ```shell
 .\example\hello\run.ps1 
 ```
 
+执行效果：
+<p align="center">
+<img src="./doc/assets/qt_demo.png" width="60%" >
+</p>
+
+### 俄罗斯方块游戏示例
+
+[俄罗斯方块示例详情](./example/tetris)
+
+选择example\hello项目，使用cjpm build进行构建，之后运行target\release\bin\main文件
+
+也可执行命令如下：
+
+Linux下：
+```shell
+./example/tetris/run.sh
+```
+
+Windows下：
+```shell
+.\example\tetris\run.ps1 
+```
+
+执行效果：
+<p align="center">
+<img src="./doc/assets/tetris_demo.png" width="60%" >
+</p>
+
+### 记事本示例
+
+[记事本示例详情](./example/notepad)
+
+执行命令：
+
+Linux下：
+```shell
+./example/notepad/run.sh
+```
+
+Windows下：
+```shell
+.\example\notepad\run.ps1 
+```
+
+执行效果：
+<p align="center">
+<img src="./doc/assets/notepad_demo.png" width="60%" >
+</p>
+
+### 单行文本编辑器使用示例
+
+[单行文本编辑器使用示例详情](./example/lineEdit)
+
+执行命令：
+
+Linux下：
+```shell
+./example/lineEdit/run.sh
+```
+
+Windows下：
+```shell
+.\example\lineEdit\run.ps1 
+```
+
+执行效果：
+<p align="center">
+<img src="./doc/assets/lineEdit_demo.png" width="60%" >
+</p>
+
+### QFrame使用示例
+
+[QFrame使用示例详情](./example/frame)
+
+执行命令：
+
+Linux下：
+```shell
+./example/frame/run.sh
+```
+
+Windows下：
+```shell
+.\example\frame\run.ps1 
+```
+
+执行效果：
+<p align="center">
+<img src="./doc/assets/QFrame_demo.png" width="60%" >
+</p>
+
 ## <img alt="" src="./doc/assets/readme-icon-contribute.png" style="display: inline-block;" width=3%/>参与贡献
 
-主要写参与贡献的公司以及个人主页链接
+主要参与贡献的公司以及个人主页链接
 
 上海双洪信息技术有限公司(http://www.honhand.com)
 
-[@wathinst-cj](https://gitcode.com/wathinst-cj) [@qq_21780589](https://gitcode.com/qq_21780589) [@libor_zhou](https://gitcode.com/libor_zhou)
+[@qq_21780589](https://gitcode.com/qq_21780589) [@wathinst-cj](https://gitcode.com/wathinst-cj) [@libor_zhou](https://gitcode.com/libor_zhou)
