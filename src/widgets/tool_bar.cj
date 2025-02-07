@@ -57,8 +57,11 @@ public class QToolBar <: QWidget {
      * @return Type of QAction
      */
     public func addAction(action: String): QAction {
-        let actionPrt = unsafe {
-            nativeToolBarAddActionStr(ptr, LibC.mallocCString(action))
+       var actionPrt :Int64
+       unsafe {
+            let a=LibC.mallocCString(action)
+            actionPrt=nativeToolBarAddActionStr(ptr, a)
+            LibC.free(a)
         }
         return QAction(actionPrt)
     }
@@ -72,8 +75,11 @@ public class QToolBar <: QWidget {
      * @return Type of QAction
      */
     public func addAction(icon: QIcon, action: String): QAction {
-        let actionPrt = unsafe {
-            nativeToolBarAddActionStrIcon(ptr, icon.ptr, LibC.mallocCString(action))
+        var actionPrt :Int64
+        unsafe {
+            let a= LibC.mallocCString(action)
+            actionPrt=nativeToolBarAddActionStrIcon(ptr, icon.ptr, a)
+            LibC.free(a)
         }
         return QAction(actionPrt)
     }

@@ -22,14 +22,18 @@ public open class QStandardItem {
     }
 
     public init(text:String) {
-        this.ptr = unsafe {
-            nativeStandardItemCreateText( LibC.mallocCString(text))
+         unsafe {
+            let t =LibC.mallocCString(text)
+            this.ptr =nativeStandardItemCreateText(t)
+            LibC.free(t)
         }
     }    
     
     public init(icon:QIcon,text:String) {
-        this.ptr = unsafe {
-            nativeStandardItemCreateIcon(icon.ptr,  LibC.mallocCString(text))
+         unsafe {
+            let t =LibC.mallocCString(text)
+            this.ptr = nativeStandardItemCreateIcon(icon.ptr,t)
+            LibC.free(t)
         }
     }
 

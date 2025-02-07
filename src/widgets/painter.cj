@@ -50,8 +50,8 @@ foreign func nativePainterSetRenderHints(ptr:Int64, hints:Int16,on:Bool): Unit
 
 foreign func nativePainterSave(ptr:Int64):Unit
 foreign func nativePainterRestore(ptr:Int64):Unit
-foreign func nativePainterBrush(ptr:Int64):Unit
-foreign func nativePainterFont(ptr:Int64):Unit
+foreign func nativePainterBrush(ptr:Int64):Int64
+foreign func nativePainterFont(ptr:Int64):Int64
 
 /**
  * The class is QPainter
@@ -294,64 +294,86 @@ public class QPainter {
 
     public func drawStaticText(topLeftPosition:QPointF, staticText:String): Unit {
         unsafe {
-            nativePainterDrawStaticTextPointF(this.ptr, topLeftPosition.x,topLeftPosition.y,LibC.mallocCString(staticText))
+            let s=LibC.mallocCString(staticText);
+            nativePainterDrawStaticTextPointF(this.ptr,topLeftPosition.x,topLeftPosition.y,s)
+            LibC.free(s)
         }
     }
     public func drawStaticText(topLeftPosition:QPoint,staticText:String): Unit {        
         unsafe {
-            nativePainterDrawStaticText(this.ptr, topLeftPosition.x,topLeftPosition.y,LibC.mallocCString(staticText))
+            let s=LibC.mallocCString(staticText);
+            nativePainterDrawStaticText(this.ptr, topLeftPosition.x,topLeftPosition.y,s)
+            LibC.free(s)
         }
     }
     public func drawStaticText(left:Int32, top:Int32, staticText:String): Unit {        
         unsafe {
-            nativePainterDrawStaticText(this.ptr, left,top,LibC.mallocCString(staticText))
+            let s=LibC.mallocCString(staticText);
+            nativePainterDrawStaticText(this.ptr, left,top,s)
+            LibC.free(s)
         }
     }
 
-    public func  drawText(p:QPointF, s:String): Unit {        
+    public func  drawText(p:QPointF, str:String): Unit {        
         unsafe {
-            nativePainterDrawTextPointF(this.ptr, p.x,p.y,LibC.mallocCString(s))
+            let s=LibC.mallocCString(str)
+            nativePainterDrawTextPointF(this.ptr, p.x,p.y,s)
+            LibC.free(s)
         }
     }
-    public func drawText(p:QPoint, s:String): Unit {        
+    public func drawText(p:QPoint, str:String): Unit {        
         unsafe {
-            nativePainterDrawText(this.ptr, p.x,p.y,LibC.mallocCString(s))
+            let s=LibC.mallocCString(str)
+            nativePainterDrawText(this.ptr, p.x,p.y,s)
+            LibC.free(s)
         }
     }
-    public func drawText(x:Int32, y:Int32, s:String): Unit {        
+    public func drawText(x:Int32, y:Int32, str:String): Unit {        
         unsafe {
-            nativePainterDrawText(this.ptr, x,y,LibC.mallocCString(s))
+            let s=LibC.mallocCString(str)
+            nativePainterDrawText(this.ptr, x,y,s)
+            LibC.free(s)
         }
     }
     
     public func drawText(r:QRectF, flags:Alignment, text:String): Unit {        
         unsafe {
-            nativePainterDrawTextRectFFlag(ptr,r.x,r.y,r.width,r.height, flags.value(),LibC.mallocCString(text))
+            let t=LibC.mallocCString(text)
+            nativePainterDrawTextRectFFlag(ptr,r.x,r.y,r.width,r.height, flags.value(),t)
+            LibC.free(t)
         }
     }
     
     public func drawText(r:QRect, flags:Alignment, text:String): Unit {        
         unsafe {
-            drawnativePainterDrawTextXYFlag(ptr,r.x,r.y,r.width,r.height, flags.value(),LibC.mallocCString(text))
+            let t=LibC.mallocCString(text)
+            drawnativePainterDrawTextXYFlag(ptr,r.x,r.y,r.width,r.height, flags.value(),t)
+            LibC.free(t)
         }
     }
     
     public func drawText(x:Int32, y:Int32,w:Int32, h:Int32, flags:Alignment, text:String): Unit {        
         unsafe {
-            drawnativePainterDrawTextXYFlag(ptr,x, y, w, h, flags.value(),LibC.mallocCString(text))
+            let t=LibC.mallocCString(text)
+            drawnativePainterDrawTextXYFlag(ptr,x, y, w, h, flags.value(),t)
+            LibC.free(t)
         }
     }
     
 
     public func drawText(r:QRectF, text:String, o:QTextOption): Unit {        
         unsafe {
-            nativePainterDrawTextOption(this.ptr, r.x,r.y,r.width,r.height,LibC.mallocCString(text),o.ptr)
+            let t=LibC.mallocCString(text)
+            nativePainterDrawTextOption(this.ptr, r.x,r.y,r.width,r.height,t,o.ptr)
+            LibC.free(t)
         }
     }
     
     public func drawText(r:QRectF, text:String): Unit {        
         unsafe {
-            nativePainterDrawTextOption(this.ptr, r.x,r.y,r.width,r.height,LibC.mallocCString(text),0)
+            let t=LibC.mallocCString(text)
+            nativePainterDrawTextOption(this.ptr, r.x,r.y,r.width,r.height,t,0)
+            LibC.free(t)
         }
     }
     
@@ -381,13 +403,15 @@ public class QPainter {
         }
     }
     public func brush(){
-        unsafe{
-            nativePainterBrush(ptr)  
+        let brushPtr= unsafe{
+        	nativePainterBrush(ptr)
         }
+        return QBrush(brushPtr)
     }
     public func font(){
-        unsafe{
-            nativePainterFont(ptr)  
+        let fontPtr =unsafe{
+            nativePainterFont(ptr)
         }
+        return QFont(fontPtr)
     }
 }

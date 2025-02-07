@@ -55,7 +55,9 @@ public class QGroupBox <: QWidget {
      */
     public func setTitle(title: String) {
         unsafe {
-            nativeGroupBoxSetTitle(ptr, LibC.mallocCString(title))
+            let t=LibC.mallocCString(title)
+            nativeGroupBoxSetTitle(ptr, t)
+            LibC.free(t)
         }
     }
 

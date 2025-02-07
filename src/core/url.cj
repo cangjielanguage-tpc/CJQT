@@ -36,8 +36,10 @@ public class QUrl {
      * @param url of String
      */
     public init(url: String) {
-        ptr = unsafe {
-            nativeUrlCreate(LibC.mallocCString(url), 1)
+         unsafe {
+           let u =LibC.mallocCString(url)
+           ptr = nativeUrlCreate(u, 1)
+           LibC.free(u)
         }
     }
 
@@ -48,8 +50,10 @@ public class QUrl {
      * @param parsingMode of Int32
      */
     public init(url: String, parsingMode: Int32) {
-        ptr = unsafe {
-            nativeUrlCreate(LibC.mallocCString(url), parsingMode)
+         unsafe {
+            let u =LibC.mallocCString(url)
+            ptr =nativeUrlCreate(u, parsingMode)
+            LibC.free(u)
         }
     }
 

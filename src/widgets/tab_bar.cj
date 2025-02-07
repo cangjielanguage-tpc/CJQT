@@ -135,25 +135,33 @@ public class QTabBar <: QWidget {
 
     public func addTab(text: String) {
         unsafe {
-            nativeTabBarAddTab(ptr, LibC.mallocCString(text))
+            let t=LibC.mallocCString(text)
+            nativeTabBarAddTab(ptr, t)
+            LibC.free(t)
         }
     }
 
     public func addTab(icon: QIcon, text: String) {
         unsafe {
-            nativeTabBarAddTabWithIcon(ptr, icon.ptr, LibC.mallocCString(text))
+            let t=LibC.mallocCString(text)
+            nativeTabBarAddTabWithIcon(ptr, icon.ptr, t)
+            LibC.free(t)
         }
     }
 
     public func insertTab(index: Int64, text: String) {
         unsafe {
-            nativeTabBarInsertTab(ptr, Int32(index), LibC.mallocCString(text))
+            let t=LibC.mallocCString(text)
+            nativeTabBarInsertTab(ptr, Int32(index), t)
+            LibC.free(t)
         }
     }
 
     public func insertTab(index: Int64, icon: QIcon, text: String) {
         unsafe {
-            nativeTabBarInsertTabWithIcon(ptr, Int32(index), icon.ptr, LibC.mallocCString(text))
+             let t=LibC.mallocCString(text)
+            nativeTabBarInsertTabWithIcon(ptr, Int32(index), icon.ptr, t)
+            LibC.free(t)
         }
     }
 
@@ -190,7 +198,9 @@ public class QTabBar <: QWidget {
 
     public func setTabText(index: Int64, text: String) {
         unsafe {
-            nativeTabBarSetTabText(ptr, Int32(index), LibC.mallocCString(text))
+            let t=LibC.mallocCString(text)
+            nativeTabBarSetTabText(ptr, Int32(index), t)
+            LibC.free(t)
         }
     }
 

@@ -435,7 +435,9 @@ public open class QWidget <: QObject {
      */
     public func setStyleSheet(styleSheet: String) {
         unsafe {
-            nativeWidgetSetStyleSheet(ptr, LibC.mallocCString(styleSheet))
+            let s=LibC.mallocCString(styleSheet)
+            nativeWidgetSetStyleSheet(ptr,s )
+            LibC.free(s)
         }
     }
 
@@ -530,7 +532,9 @@ public open class QWidget <: QObject {
 
     public func setToolTip(tip: String) {
         unsafe {
-            nativeWidgetSetToolTip(ptr, LibC.mallocCString(tip))
+            let t=LibC.mallocCString(tip)
+            nativeWidgetSetToolTip(ptr, t)
+            LibC.free(t)
         }
     }
 

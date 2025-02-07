@@ -128,7 +128,9 @@ public class QStatusBar <: QWidget {
      */
     public func showMessage(message: String, timeout!: Int64 = 0) {
         unsafe {
-            nativeStatusBarShowMessage(ptr, LibC.mallocCString(message), Int32(timeout))
+            let m=LibC.mallocCString(message)
+            nativeStatusBarShowMessage(ptr, m, Int32(timeout))
+            LibC.free(m)
         }
     }
 

@@ -42,8 +42,10 @@ public class QIcon {
      * @param fileName of String
      */
     public init(fileName: String) {
-        ptr = unsafe {
-            nativeIconCreateWithFileName(LibC.mallocCString(fileName))
+        unsafe {
+            let f=LibC.mallocCString(fileName)
+            ptr =nativeIconCreateWithFileName(f)
+            LibC.free(f)
         }
     }
 

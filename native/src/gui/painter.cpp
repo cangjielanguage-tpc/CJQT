@@ -228,12 +228,16 @@ extern "C"
         QPainter *painter = reinterpret_cast<QPainter *>(static_cast<uintptr_t>(ptr));
         painter ->restore();
     }
-    void nativePainterBrush(uintptr_t ptr){
-        QPainter *painter = reinterpret_cast<QPainter *>(static_cast<uintptr_t>(ptr));
-        painter -> brush();
+    uintptr_t nativePainterBrush(uintptr_t ptr)
+    {
+        QPainter *instance = reinterpret_cast<QPainter *>(static_cast<uintptr_t>(ptr));
+        return reinterpret_cast<uintptr_t>(&instance->brush());
     }
-    void nativePainterFont(uintptr_t ptr){
-        QPainter *painter = reinterpret_cast<QPainter *>(static_cast<uintptr_t>(ptr));
-        painter -> font();
+
+    uintptr_t nativePainterFont(uintptr_t ptr)
+    {
+        QPainter *instance = reinterpret_cast<QPainter *>(static_cast<uintptr_t>(ptr));
+        return reinterpret_cast<uintptr_t>(&instance->font());
     }
+
 }

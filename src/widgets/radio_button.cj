@@ -44,7 +44,9 @@ public class QRadioButton <: QWidget {
      */
     public func setText(text: String) {
         unsafe {
-            nativeRadioButtonSetText(ptr, LibC.mallocCString(text))
+            let t=LibC.mallocCString(text)
+            nativeRadioButtonSetText(ptr, t)
+            LibC.free(t)
         }
     }
 

@@ -111,25 +111,33 @@ public class QTabWidget <: QWidget {
 
     public func addTab(widget: QWidget, text: String) {
         unsafe {
-            nativeTabWidgetAddTab(ptr, widget.ptr, LibC.mallocCString(text))
+            let t=LibC.mallocCString(text)
+            nativeTabWidgetAddTab(ptr, widget.ptr, t)
+            LibC.free(t)
         }
     }
 
     public func addTab(widget: QWidget, icon: QIcon, text: String) {
         unsafe {
-            nativeTabWidgetAddTabWithIcon(ptr, widget.ptr, icon.ptr, LibC.mallocCString(text))
+            let t=LibC.mallocCString(text)
+            nativeTabWidgetAddTabWithIcon(ptr, widget.ptr, icon.ptr, t)
+            LibC.free(t)
         }
     }
 
     public func insertTab(index: Int64, widget: QWidget, text: String) {
         unsafe {
-            nativeTabWidgetInsertTab(ptr, widget.ptr, Int32(index), LibC.mallocCString(text))
+            let t=LibC.mallocCString(text)
+            nativeTabWidgetInsertTab(ptr, widget.ptr, Int32(index), t)
+            LibC.free(t)
         }
     }
 
     public func insertTab(index: Int64, widget: QWidget, icon: QIcon, text: String) {
         unsafe {
-            nativeTabWidgetInsertTabWithIcon(ptr, widget.ptr, Int32(index), icon.ptr, LibC.mallocCString(text))
+            let t=LibC.mallocCString(text)
+            nativeTabWidgetInsertTabWithIcon(ptr, widget.ptr, Int32(index), icon.ptr, t)
+            LibC.free(t)
         }
     }
 
@@ -160,7 +168,9 @@ public class QTabWidget <: QWidget {
 
     public func setTabText(index: Int64, text: String) {
         unsafe {
-            nativeTabWidgetSetTabText(ptr, Int32(index), LibC.mallocCString(text))
+            let t=LibC.mallocCString(text)
+            nativeTabWidgetSetTabText(ptr, Int32(index), t)
+            LibC.free(t)
         }
     }
 

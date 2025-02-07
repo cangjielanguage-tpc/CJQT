@@ -61,9 +61,10 @@ public class QDockWidget <: QWidget {
     public init(text: String , parent: QWidget) {
         super(
             unsafe {
-                nativeDockWidgetCreateText(LibC.mallocCString(text),parent.ptr)
+                nativeDockWidgetCreate(parent.ptr)
             }
         )
+        setWindowTitle(text)
     }
 
     public init(parent: QWidget) {

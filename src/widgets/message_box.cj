@@ -55,13 +55,22 @@ public class QMessageBox <: QWidget {
      */
     static public func information(parent: QWidget, title: String, text: String) {
         unsafe {
-            nativeMessageBoxInformation(parent.ptr, LibC.mallocCString(title), LibC.mallocCString(text), 0, 0)
+            let ti=LibC.mallocCString(title)
+            let te= LibC.mallocCString(text)
+            nativeMessageBoxInformation(parent.ptr,ti ,te, 0, 0)
+            LibC.free(ti)
+            LibC.free(te)
         }
     }
 
     static public func question(parent: QWidget, title: String, text: String):StandardButton {
-        let btn=unsafe {
-            nativeMessageBoxQuestion(parent.ptr, LibC.mallocCString(title), LibC.mallocCString(text), 0, 0)
+        var btn:Int32
+        unsafe {
+            let ti=LibC.mallocCString(title)
+            let te= LibC.mallocCString(text)
+            btn=nativeMessageBoxQuestion(parent.ptr, ti ,te, 0, 0)
+            LibC.free(ti)
+            LibC.free(te)
         }
         return StandardButton.convert(btn)
     }
@@ -75,13 +84,21 @@ public class QMessageBox <: QWidget {
      */
     static public func about(parent: QWidget, title: String, text: String) {
         unsafe {
-            nativeMessageBoxAbout(parent.ptr, LibC.mallocCString(title), LibC.mallocCString(text))
+            let ti=LibC.mallocCString(title)
+            let te= LibC.mallocCString(text)
+            nativeMessageBoxAbout(parent.ptr, ti ,te)
+            LibC.free(ti)
+            LibC.free(te)
         }
     }
     
     static public func critical(parent: QWidget, title: String, text: String) {
         unsafe {
-            nativeMessageBoxCritical(parent.ptr, LibC.mallocCString(title), LibC.mallocCString(text), 0, 0)
+            let ti=LibC.mallocCString(title)
+            let te= LibC.mallocCString(text)
+            nativeMessageBoxCritical(parent.ptr, ti ,te, 0, 0)
+            LibC.free(ti)
+            LibC.free(te)
         }
     }
 }
