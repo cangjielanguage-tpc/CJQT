@@ -80,17 +80,20 @@ public class QFileDialog <: QWidget {
     static public func getOpenFileName(parent!: QWidget = QWidget(0), caption!: String = "", dir!: String = "", 
         filter!: String = ""): String {
         /* let member name */
-        var name :CString
+        var name :String
         unsafe {
             let c=LibC.mallocCString(caption)
             let d=LibC.mallocCString(dir)
             let f=LibC.mallocCString(filter)
-            name= nativeFileDialogGetOpenFileName(parent.ptr, c, d,f)
+            let n= nativeFileDialogGetOpenFileName(parent.ptr, c, d,f)
+            name=n.toString()
             LibC.free(c)
             LibC.free(d)
             LibC.free(f)
+            LibC.free(n)
+            
         }
-        return name.toString()
+        return name
     }
 
     /**
@@ -128,16 +131,17 @@ public class QFileDialog <: QWidget {
     static public func getSaveFileName(parent!: QWidget = QWidget(0), caption!: String = "", dir!: String = "", 
         filter!: String = ""): String {
         /* let member name */
-        var name : CString
+        var name : String
         unsafe {
             let c=LibC.mallocCString(caption)
             let d=LibC.mallocCString(dir)
             let f=LibC.mallocCString(filter)
-            name =nativeFileDialogGetSaveFileName(parent.ptr, c, d,f)
+            let n =nativeFileDialogGetSaveFileName(parent.ptr, c, d,f)
+            name=n.toString()
             LibC.free(c)
             LibC.free(d)
             LibC.free(f)
         }
-        return name.toString()
+        return name
     }
 }
