@@ -110,41 +110,6 @@ func keyPressEventCallback(ptr: Int64, eventPtr: Int64): Unit {
     }
 }
 
-@C
-func connectUnitCallback(code: Int64): Unit {
-    try {
-        QCallbackMap.connect[code]()
-    } catch (e: Exception) {
-        println(e)
-    }
-}
-
-@C
-func connectInt64Callback(code: Int64, data: Int32): Unit {
-    try {
-        QCallbackMap.connectInt64[code](Int64(data))
-    } catch (e: Exception) {
-        println(e)
-    }
-}
-
-@C
-func connectBoolCallback(code: Int64, data: Bool): Unit {
-    try {
-        QCallbackMap.connectBool[code](data)
-    } catch (e: Exception) {
-        println(e)
-    }
-}
-
-@C
-func connectCStringCallback(code: Int64, data: CString): Unit {
-    try {
-        QCallbackMap.connectString[code](data.toString())
-    } catch (e: Exception) {
-        println(e)
-    }
-}
 
 /**
  * The class is QWidget
