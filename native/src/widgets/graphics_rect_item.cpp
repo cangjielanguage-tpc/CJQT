@@ -16,19 +16,19 @@ extern "C"
         }
         return reinterpret_cast<uintptr_t>(item);
     }
-    uintptr_t nativeGraphicsRectItemCreateWithRect(const uintptr_t rectPtr, uintptr_t parentPtr)
+    uintptr_t nativeGraphicsRectItemCreateWithRect(qreal x,qreal y,qreal width,qreal height, uintptr_t parentPtr)
     {
         QGraphicsRectItem *item;
-        QRectF *rect = reinterpret_cast<QRectF *>(static_cast<uintptr_t>(rectPtr));
+        QRectF rect(x,y,width,height);
 
         if (parentPtr == 0L)
         {
-            item = new QGraphicsRectItem(*rect);
+            item = new QGraphicsRectItem(rect);
         }
         else
         {
             QGraphicsItem *parent = reinterpret_cast<QGraphicsItem *>(static_cast<uintptr_t>(parentPtr));
-            item = new QGraphicsRectItem(*rect, parent);
+            item = new QGraphicsRectItem(rect, parent);
         }
         return reinterpret_cast<uintptr_t>(item);
     }

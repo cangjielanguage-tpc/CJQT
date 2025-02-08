@@ -28,8 +28,8 @@ foreign func nativeSplitterCollapsible(ptr: Int64, index: Int32): Bool
 foreign func nativeSplitterSetOpaqueResize(ptr: Int64, resize: Bool): Unit
 foreign func nativeSplitterOpaqueResize(ptr: Int64): Bool
 foreign func nativeSplitterRefresh(ptr: Int64): Unit
-foreign func nativeSplitterSizeHint(ptr: Int64): Int64
-foreign func nativeSplitterMinimumSizeHint(ptr: Int64): Int64
+foreign func nativeSplitterSizeHint(ptr: Int64): QSize
+foreign func nativeSplitterMinimumSizeHint(ptr: Int64): QSize
 
 foreign func nativeSplitterSetHandleWidth(ptr: Int64, width: Int32): Unit
 foreign func nativeSplitterHandleWidth(ptr: Int64): Int32
@@ -133,17 +133,17 @@ public class QSplitter <: QWidget {
     }
 
     public func sizeHint(): QSize {
-        let result = unsafe {
+        let size = unsafe {
             nativeSplitterSizeHint(ptr)
         }
-        return QSize(result)
+        return size
     }
 
     public func minimumSizeHint(): QSize {
-        let result = unsafe {
+        let size = unsafe {
             nativeSplitterMinimumSizeHint(ptr)
         }
-        return QSize(result)
+        return size
     }
 
     public func setHandleWidth(width: Int64) {

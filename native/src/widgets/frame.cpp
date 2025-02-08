@@ -1,5 +1,4 @@
 #include "frame.h"
-
 extern "C"
 {
     uintptr_t nativeFrameCreate(uintptr_t parentPtr, uint f)
@@ -22,12 +21,12 @@ extern "C"
         CjFrame *instance = reinterpret_cast<CjFrame *>(static_cast<uintptr_t>(ptr));
         delete instance;
     }
-    uintptr_t nativeFrameFrameRect(uintptr_t ptr)
+    QRect nativeFrameFrameRect(uintptr_t ptr)
     {
         QFrame *instance = reinterpret_cast<QFrame *>(static_cast<uintptr_t>(ptr));
-        QRect rect = instance->frameRect();
-        QRect *p = new QRect(rect);
-        return reinterpret_cast<uintptr_t>(p);
+      //  QRect rect = instance->frameRect();
+        // QRect *p = new QRect(rect);
+        return instance->frameRect();
     }
     short nativeFrameFrameShadow(uintptr_t ptr)
     {
@@ -59,11 +58,11 @@ extern "C"
         QFrame *instance = reinterpret_cast<QFrame *>(static_cast<uintptr_t>(ptr));
         return instance->midLineWidth();
     }
-    void nativeFrameSetFrameRect(uintptr_t ptr, uintptr_t rectPtr)
+    void nativeFrameSetFrameRect(uintptr_t ptr, int x,int y,int width,int height)
     {
         QFrame *instance = reinterpret_cast<QFrame *>(static_cast<uintptr_t>(ptr));
-        QRect *rect = reinterpret_cast<QRect *>(static_cast<uintptr_t>(rectPtr));
-        return instance->setFrameRect(*rect);
+        QRect rect(x,y,width,height) ;
+        return instance->setFrameRect(rect);
     }
     void nativeFrameSetFrameShadow(uintptr_t ptr, short shadow)
     {
@@ -90,11 +89,11 @@ extern "C"
         QFrame *instance = reinterpret_cast<QFrame *>(static_cast<uintptr_t>(ptr));
         return instance->setMidLineWidth(width);
     }
-    uintptr_t nativeFrameSizeHint(uintptr_t ptr)
+    QSize nativeFrameSizeHint(uintptr_t ptr)
     {
         QFrame *instance = reinterpret_cast<QFrame *>(static_cast<uintptr_t>(ptr));
         QSize size = instance->sizeHint();
-        QSize *p = new QSize(size);
-        return reinterpret_cast<uintptr_t>(p);
+        // QSize *p = new QSize(size);
+        return  instance->sizeHint();
     }
 }

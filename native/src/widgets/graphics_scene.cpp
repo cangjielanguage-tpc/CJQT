@@ -51,12 +51,12 @@ extern "C"
         delete instance;
     }
 
-    uintptr_t nativeGraphicsSceneScenRect(uintptr_t ptr)
+    QRectF nativeGraphicsSceneScenRect(uintptr_t ptr)
     {
         QGraphicsScene *scene = reinterpret_cast<QGraphicsScene *>(static_cast<uintptr_t>(ptr));
-        QRectF rectF = scene->sceneRect();
-        QRectF *p = new QRectF(rectF);
-        return reinterpret_cast<uintptr_t>(p);
+      //  QRectF rectF = scene->sceneRect();
+        // QRectF *p = new QRectF(rectF);
+        return scene->sceneRect();
     }
     void nativeGraphicsSceneSetScenRectWithRect(uintptr_t ptr, const uintptr_t rectFPtr)
     {

@@ -74,7 +74,9 @@ public class QAction {
      */
     public func setStatusTip(tip: String) {
         unsafe {
-            nativeActionSetStatusTip(ptr, LibC.mallocCString(tip))
+            let t=LibC.mallocCString(tip)
+            nativeActionSetStatusTip(ptr,t )
+            LibC.free(t)
         }
     }
 
@@ -85,7 +87,9 @@ public class QAction {
      */
     public func setText(text: String) {
         unsafe {
-            nativeActionSetText(ptr, LibC.mallocCString(text))
+            let t= LibC.mallocCString(text) 
+            nativeActionSetText(ptr,t)
+            LibC.free(t)
         }
     }
 

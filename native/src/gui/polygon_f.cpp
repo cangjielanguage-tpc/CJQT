@@ -12,10 +12,10 @@ extern "C"
         QPolygonF *polygon = new QPolygonF(size);
         return reinterpret_cast<uintptr_t>(polygon);
     }
-    uintptr_t nativePolygonFCreateWithRect(const uintptr_t rectFPtr)
+    uintptr_t nativePolygonFCreateWithRect(qreal x,qreal y,qreal width,qreal height)
     {
-        QRectF *rectF = reinterpret_cast<QRectF *>(static_cast<uintptr_t>(rectFPtr));
-        QPolygonF *polygon = new QPolygonF(*rectF);
+        QRectF rectF(x,y,width,height) ;
+        QPolygonF *polygon = new QPolygonF(rectF);
         return reinterpret_cast<uintptr_t>(polygon);
     }
     uintptr_t nativePolygonFCreateWithPolygon(const uintptr_t polygonPtr)
@@ -36,11 +36,11 @@ extern "C"
         delete instance;
     }
     // Operator <<
-    uintptr_t nativePolygonFOperatorLeftMove(uintptr_t ptr, uintptr_t pointPtr)
+    uintptr_t nativePolygonFOperatorLeftMove(uintptr_t ptr, qreal pointX, qreal pointY)
     {
         QPolygonF *instance = reinterpret_cast<QPolygonF *>(static_cast<uintptr_t>(ptr));
-        QPointF *pointF = reinterpret_cast<QPointF *>(static_cast<uintptr_t>(pointPtr));
-        instance->operator<<(*pointF);
+        QPointF pointF(pointX,pointY);
+        instance->operator<<(pointF);
         return reinterpret_cast<uintptr_t>(instance);
     }
 }

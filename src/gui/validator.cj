@@ -106,7 +106,9 @@ public open class QValidator {
      */
     public open func fixup(input: String) {
         unsafe {
-            nativeValidatorFixup(this.ptr, LibC.mallocCString(input))
+            let i =LibC.mallocCString(input)
+            nativeValidatorFixup(this.ptr, i)
+            LibC.free(i)
         }
     }
 
@@ -119,8 +121,11 @@ public open class QValidator {
      *@return Type of enum QValidatorState
      */
     public open func validate(input: String, pos: Int64): QValidatorState {
-        let state = unsafe {
-            nativeValidatorValidate(this.ptr, LibC.mallocCString(input), Int32(pos))
+        var state:Int32=0
+        unsafe {
+            let i=LibC.mallocCString(input)
+            state =nativeValidatorValidate(this.ptr, i, Int32(pos))
+            LibC.free(i)
         }
         return QValidatorState.convert(state)
     }

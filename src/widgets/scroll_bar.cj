@@ -8,7 +8,7 @@ foreign func nativeScrollBarCreate(parentPtr: Int64): Int64
 foreign func nativeScrollBarCreateWithOrietation(orientation: Int16, parentPtr: Int64): Int64
 foreign func nativeScrollBarDelete(ptr: Int64): Unit
 foreign func nativeScrollBarEvent(ptr: Int64, eventPtr: Int64): Bool
-foreign func nativeScrollBarSizeHint(ptr: Int64): Int64
+foreign func nativeScrollBarSizeHint(ptr: Int64): QSize
 
 // do event
 foreign func nativeScrollBarPaintEvent(ptr: Int64, eventPtr: Int64): Unit
@@ -47,10 +47,10 @@ public open class QScrollBar <: QAbstractSlider {
         }
     }
     public open func sizeHint(): QSize {
-        let sizePrt = unsafe {
+        let size = unsafe {
             nativeScrollBarSizeHint(this.ptr)
         }
-        return QSize(sizePrt)
+        return size
     }
 
     /**

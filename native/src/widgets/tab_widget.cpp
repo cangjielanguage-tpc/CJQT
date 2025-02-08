@@ -135,18 +135,18 @@ extern "C"
         return instance->count();
     }
 
-    uintptr_t nativeTabWidgetIconSize(uintptr_t ptr)
+    QSize nativeTabWidgetIconSize(uintptr_t ptr)
     {
         QTabWidget *instance = reinterpret_cast<QTabWidget *>(static_cast<uintptr_t>(ptr));
-        QSize size = instance->iconSize();
-        return reinterpret_cast<uintptr_t>(&size);
+        // QSize size = instance->iconSize();
+        return instance->iconSize();
     }
 
-    void nativeTabWidgetSetIconSize(uintptr_t ptr, uintptr_t sizePtr)
+    void nativeTabWidgetSetIconSize(uintptr_t ptr, int sizeW, int sizeH)
     {
         QTabWidget *instance = reinterpret_cast<QTabWidget *>(static_cast<uintptr_t>(ptr));
-        QSize *size = reinterpret_cast<QSize *>(static_cast<uintptr_t>(sizePtr));
-        instance->setIconSize(*size);
+        QSize size(sizeW,sizeH);
+        instance->setIconSize(size);
     }
 
     void nativeTabWidgetSetUsesScrollButtons(uintptr_t ptr, bool useButtons)

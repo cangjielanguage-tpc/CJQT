@@ -44,7 +44,9 @@ public class QCheckBox <: QWidget {
      */
     public func setText(text: String) {
         unsafe {
-            nativeCheckBoxSetText(ptr, LibC.mallocCString(text))
+            let t= LibC.mallocCString(text)
+            nativeCheckBoxSetText(ptr,t)
+            LibC.free(t)
         }
     }
 

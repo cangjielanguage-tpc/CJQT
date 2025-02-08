@@ -32,10 +32,10 @@ extern "C"
         QPixmap *instance = reinterpret_cast<QPixmap *>(static_cast<uintptr_t>(ptr));
         delete instance;
     }
-    void nativePixmapFill(uintptr_t ptr, const uintptr_t colorPtr)
+    void nativePixmapFill(uintptr_t ptr, const quint32 colorPtr)
     {
         QPixmap *instance = reinterpret_cast<QPixmap *>(static_cast<uintptr_t>(ptr));
-        QColor *color = reinterpret_cast<QColor *>(static_cast<uintptr_t>(colorPtr));
-        instance->fill(*color);
+        QColor color = QColor(colorPtr);
+        instance->fill(color);
     }
 }

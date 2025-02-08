@@ -59,11 +59,11 @@ extern "C"
         instance->setWidgetResizable(resizable);
     }
 
-    uintptr_t nativeScrollAreaSizeHint(uintptr_t ptr)
+    QSize nativeScrollAreaSizeHint(uintptr_t ptr)
     {
         CjQtScrollArea *instance = reinterpret_cast<CjQtScrollArea *>(static_cast<uintptr_t>(ptr));
-        QSize size = instance->sizeHint();
-        return reinterpret_cast<uintptr_t>(&size);
+        // QSize size = instance->sizeHint();
+        return instance->sizeHint();
     }
 
     bool nativeScrollAreaFocusNextPrevChild(uintptr_t ptr, bool next)

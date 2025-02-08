@@ -13,7 +13,7 @@ foreign func nativeScrollAreaTakeWidget(ptr: Int64): Int64
 foreign func nativeScrollAreaSetWidgetResizable(ptr: Int64, resizable: Bool): Unit
 foreign func nativeScrollAreaWidgetResizable(ptr: Int64): Bool
 
-foreign func nativeScrollAreaSizeHint(ptr: Int64): Int64
+foreign func nativeScrollAreaSizeHint(ptr: Int64): QSize
 foreign func nativeScrollAreaFocusNextPrevChild(ptr: Int64, next: Bool): Bool
 
 foreign func nativeScrollAreaSetAlignment(ptr: Int64, alignment: Int32): Unit
@@ -71,10 +71,10 @@ public open class QScrollArea <: QFrame {
     }
 
     public open func sizeHint(): QSize {
-        let result = unsafe {
+        let size = unsafe {
             nativeScrollAreaSizeHint(ptr)
         }
-        return QSize(result)
+        return size
     }
 
     public func focusNextPrevChild(next: Bool): Bool {

@@ -62,8 +62,11 @@ public class QMenuBar <: QWidget {
      * @return Type of QAction
      */
     public func addAction(menu:String): QAction {
-        let actionPrt = unsafe {
-            nativeMenuBarAddActionStr(ptr, LibC.mallocCString(menu))
+        var actionPrt:Int64
+        unsafe {
+            let m=LibC.mallocCString(menu)
+            actionPrt=nativeMenuBarAddActionStr(ptr, m)
+            LibC.free(m)
         }
         return QAction(actionPrt)
     }
@@ -87,8 +90,11 @@ public class QMenuBar <: QWidget {
      * @return Type of QMenu
      */
     public func addMenu(menu:String): QMenu {
-        let menuPrt = unsafe {
-            nativeMenuBarAddMenuStr(ptr, LibC.mallocCString(menu))
+        var menuPrt :Int64
+        unsafe {
+            let m=LibC.mallocCString(menu)
+            menuPrt =nativeMenuBarAddMenuStr(ptr, m)
+            LibC.free(m)
         }
         return QMenu(menuPrt)
     }
@@ -102,8 +108,11 @@ public class QMenuBar <: QWidget {
      * @return Type of QMenu
      */
     public func addMenu(icon: QIcon, menu:String): QMenu {
-        let menuPrt = unsafe {
-            nativeMenuBarAddMenuStrIcon(ptr, icon.ptr, LibC.mallocCString(menu))
+        var menuPrt:Int64
+        unsafe {
+            let m=LibC.mallocCString(menu)
+            menuPrt=nativeMenuBarAddMenuStrIcon(ptr, icon.ptr, m)
+            LibC.free(m)
         }
         return QMenu(menuPrt)
     }

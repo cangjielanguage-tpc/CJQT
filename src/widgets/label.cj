@@ -20,7 +20,7 @@ foreign func nativeLabelDelete(ptr: Int64): Unit
  * The class is QLabel inherited from QWidget
  * @author wathinst
  */
-public open class QLabel <: QWidget{
+public class QLabel <: QWidget{
 
     /**
      * The Function is init constructor
@@ -39,8 +39,9 @@ public open class QLabel <: QWidget{
      */
     public init(text:String) {
         super(unsafe {
-            nativeLabelCreateText(LibC.mallocCString(text),0)
+            nativeLabelCreate(0)
         })
+        setText(text)
     }
 
     /**
@@ -73,8 +74,9 @@ public open class QLabel <: QWidget{
      */
     public init(text:String,parent: QWidget) {
         super(unsafe {
-            nativeLabelCreateText(LibC.mallocCString(text),parent.ptr)
-        })
+            nativeLabelCreate(parent.ptr)
+        })        
+        setText(text)
     }
 
     /**
@@ -82,9 +84,11 @@ public open class QLabel <: QWidget{
      *
      * @param text of String
      */
-    public open func setText(text:String) {
+    public func setText(text:String) {
         unsafe {
-            nativeLabelSetText(ptr, LibC.mallocCString(text))
+            let t=LibC.mallocCString(text)
+            nativeLabelSetText(ptr, t)
+            LibC.free(t)
         }
     }
 
@@ -114,7 +118,7 @@ public open class QLabel <: QWidget{
      *
      * @param size of Int64
      */
-    public func setFontSize(size :Int64){
+    public func setFontSize(size :Int32){
         let font = QFont()
         font.setPointSize(size)
         setFont(font)

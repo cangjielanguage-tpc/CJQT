@@ -217,12 +217,12 @@ extern "C"
         QPainterPath *p = new QPainterPath(pPainterPath);
         return reinterpret_cast<uintptr_t>(p);
     }
-    uintptr_t nativeGraphicsViewMapFromSceneWithXY(uintptr_t ptr, double x, double y)
+    QPoint nativeGraphicsViewMapFromSceneWithXY(uintptr_t ptr, double x, double y)
     {
         QGraphicsView *instance = reinterpret_cast<QGraphicsView *>(static_cast<uintptr_t>(ptr));
-        QPoint point = instance->mapFromScene(x, y);
-        QPoint *p = new QPoint(point);
-        return reinterpret_cast<uintptr_t>(p);
+      //  QPoint point = instance->mapFromScene(x, y);
+        // QPoint *p = new QPoint(point);
+        return instance->mapFromScene(x, y);
     }
     uintptr_t nativeGraphicsViewMapFromSceneWithXYWH(uintptr_t ptr, double x, double y, double w, double h)
     {
@@ -263,12 +263,12 @@ extern "C"
         QPainterPath *p = new QPainterPath(pPainterPath);
         return reinterpret_cast<uintptr_t>(p);
     }
-    uintptr_t nativeGraphicsViewMapToSceneWithXY(uintptr_t ptr, int x, int y)
+    QPointF nativeGraphicsViewMapToSceneWithXY(uintptr_t ptr, int x, int y)
     {
         QGraphicsView *instance = reinterpret_cast<QGraphicsView *>(static_cast<uintptr_t>(ptr));
-        QPointF pointF = instance->mapToScene(x, y);
-        QPointF *p = new QPointF(pointF);
-        return reinterpret_cast<uintptr_t>(p);
+      //  QPointF pointF = instance->mapToScene(x, y);
+       // QPointF *p = new QPointF(pointF);
+        return instance->mapToScene(x, y);
     }
     uintptr_t nativeGraphicsViewMapToSceneWithXYWH(uintptr_t ptr, int x, int y, int w, int h)
     {
@@ -374,12 +374,12 @@ extern "C"
         QGraphicsScene *scene = reinterpret_cast<QGraphicsScene *>(static_cast<uintptr_t>(scenePtr));
         instance->setScene(scene);
     }
-    uintptr_t nativeGraphicsViewSceneRect(uintptr_t ptr)
+    QRectF nativeGraphicsViewSceneRect(uintptr_t ptr)
     {
         QGraphicsView *instance = reinterpret_cast<QGraphicsView *>(static_cast<uintptr_t>(ptr));
-        QRectF rectF = instance->sceneRect();
-        QRectF *p = new QRectF(rectF);
-        return reinterpret_cast<uintptr_t>(p);
+      //  QRectF rectF = instance->sceneRect();
+        // QRectF *p = new QRectF(rectF);
+        return instance->sceneRect();
     }
     void nativeGraphicsViewSetSceneRectWithRect(uintptr_t ptr, const uintptr_t rectFPtr)
     {

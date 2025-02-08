@@ -25,7 +25,9 @@ public class QStringList {
 
     public func append(data: String):QStringList {
         unsafe {
-            nativeStringListAppend(ptr, LibC.mallocCString(data))
+            let d=LibC.mallocCString(data)
+            nativeStringListAppend(ptr,d )
+            LibC.free(d)
         }
         return this
     }

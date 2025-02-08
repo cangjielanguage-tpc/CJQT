@@ -81,9 +81,13 @@ public class QPushButton <: QWidget {
      */
     public func setText(text: String) {
         unsafe {
-            nativePushButtonSetText(ptr, LibC.mallocCString(text))
+            let t=LibC.mallocCString(text)
+            nativePushButtonSetText(ptr, t)
+            LibC.free(t)
         }
     }
+
+    
 
     /**
      * The Function is delete

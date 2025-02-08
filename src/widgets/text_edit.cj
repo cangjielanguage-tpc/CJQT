@@ -25,8 +25,8 @@ foreign func nativeTextEditSetFontWeight(ptr: Int64, fontWeight: Int32): Unit
 foreign func nativeTextEditSetFontUnderline(ptr: Int64, fontUnderline: Bool): Unit
 foreign func nativeTextEditSetFontItalic(ptr: Int64, fontItalic: Bool): Unit
 foreign func nativeTextEditSetCurrentFont(ptr: Int64, fontPtr: Int64): Unit
-foreign func nativeTextEditSetTextColor(ptr: Int64, colorPtr: Int64): Unit
-foreign func nativeTextEditSetTextBackgroundColor(ptr: Int64, colorPtr: Int64): Unit
+foreign func nativeTextEditSetTextColor(ptr: Int64, colorPtr: UInt32): Unit
+foreign func nativeTextEditSetTextBackgroundColor(ptr: Int64, colorPtr: UInt32): Unit
 foreign func nativeTextEditDelete(ptr: Int64): Unit
 
 foreign func nativeTextEditCopy(ptr: Int64): Unit
@@ -80,7 +80,9 @@ public class QTextEdit <: QWidget {
      */
     public func append(text: String) {
         unsafe {
-            nativeTextEditAppend(ptr, LibC.mallocCString(text))
+            let t=LibC.mallocCString(text)
+            nativeTextEditAppend(ptr,t )
+            LibC.free(t)
         }
     }
 
@@ -91,7 +93,9 @@ public class QTextEdit <: QWidget {
      */
     public func setFontFamily(fontFamily: String) {
         unsafe {
-            nativeTextEditSetFontFamily(ptr, LibC.mallocCString(fontFamily))
+            let f=LibC.mallocCString(fontFamily)
+            nativeTextEditSetFontFamily(ptr, f)
+            LibC.free(f)
         }
     }
 
@@ -102,7 +106,9 @@ public class QTextEdit <: QWidget {
      */
     public func setPlainText(plainText: String) {
         unsafe {
-            nativeTextEditSetPlainText(ptr, LibC.mallocCString(plainText))
+            let p=LibC.mallocCString(plainText)
+            nativeTextEditSetPlainText(ptr,p )
+            LibC.free(p)
         }
     }
 
@@ -113,7 +119,9 @@ public class QTextEdit <: QWidget {
      */
     public func setHtml(html: String) {
         unsafe {
-            nativeTextEditSetHtml(ptr, LibC.mallocCString(html))
+            let h=LibC.mallocCString(html)
+            nativeTextEditSetHtml(ptr,h)
+            LibC.free(h)
         }
     }
 
@@ -124,7 +132,9 @@ public class QTextEdit <: QWidget {
      */
     public func setMarkdown(markdown: String) {
         unsafe {
-            nativeTextEditSetMarkdown(ptr, LibC.mallocCString(markdown))
+            let m=LibC.mallocCString(markdown)
+            nativeTextEditSetMarkdown(ptr,m )
+            LibC.free(m)
         }
     }
 
@@ -135,7 +145,9 @@ public class QTextEdit <: QWidget {
      */
     public func setText(text: String) {
         unsafe {
-            nativeTextEditSetText(ptr, LibC.mallocCString(text))
+            let t=LibC.mallocCString(text)
+            nativeTextEditSetText(ptr, t)
+            LibC.free(t)
         }
     }
 

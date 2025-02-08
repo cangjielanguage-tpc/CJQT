@@ -92,18 +92,27 @@ extern "C"
         instance->setTabText(index, text);
     }
 
-    uintptr_t nativeTabBarTabTextColor(uintptr_t ptr, int index)
+    quint32 nativeTabBarTabTextColor(uintptr_t ptr, int index)
     {
         QTabBar *instance = reinterpret_cast<QTabBar *>(static_cast<uintptr_t>(ptr));
         QColor color = instance->tabTextColor(index);
-        return reinterpret_cast<uintptr_t>(&color);
+        // int alpha = color.alpha(); // 获取alpha值
+        //    int red = color.red(); // 获取红色值
+        //    int green = color.green(); // 获取绿色值
+        //    int blue = color.blue(); // 获取蓝色值
+
+           // 将四个值合成为一个32位整数
+           quint32 argb = color.rgba();
+
+//           return 0;
+        return argb;
     }
 
-    void nativeTabBarSetTabTextColor(uintptr_t ptr, int index, uintptr_t colorPtr)
+    void nativeTabBarSetTabTextColor(uintptr_t ptr, int index, quint32 colorPtr)
     {
         QTabBar *instance = reinterpret_cast<QTabBar *>(static_cast<uintptr_t>(ptr));
-        QColor *color = reinterpret_cast<QColor *>(static_cast<uintptr_t>(colorPtr));
-        instance->setTabTextColor(index, *color);
+        QColor color = QColor(colorPtr);
+        instance->setTabTextColor(index, color);
     }
 
     uintptr_t nativeTabBarTabIcon(uintptr_t ptr, int index)
@@ -134,18 +143,18 @@ extern "C"
         instance->setTabData(index, *variant);
     }
 
-    uintptr_t nativeTabBarTabRect(uintptr_t ptr, int index)
+    QRect nativeTabBarTabRect(uintptr_t ptr, int index)
     {
         QTabBar *instance = reinterpret_cast<QTabBar *>(static_cast<uintptr_t>(ptr));
-        QRect rect = instance->tabRect(index);
-        return reinterpret_cast<uintptr_t>(&rect);
+     //   QRect rect = instance->tabRect(index);
+        return instance->tabRect(index);
     }
 
-    int nativeTabBarTabAt(uintptr_t ptr, uintptr_t ponitPtr)
+    int nativeTabBarTabAt(uintptr_t ptr, int x,int y)
     {
         QTabBar *instance = reinterpret_cast<QTabBar *>(static_cast<uintptr_t>(ptr));
-        QPoint *ponit = reinterpret_cast<QPoint *>(static_cast<uintptr_t>(ponitPtr));
-        return instance->tabAt(*ponit);
+        QPoint ponit(x,y) ;
+        return instance->tabAt(ponit);
     }
 
     int nativeTabBarCurrentIndex(uintptr_t ptr)
@@ -172,18 +181,18 @@ extern "C"
         return instance->drawBase();
     }
 
-    uintptr_t nativeTabBarIconSize(uintptr_t ptr)
+    QSize nativeTabBarIconSize(uintptr_t ptr)
     {
         QTabBar *instance = reinterpret_cast<QTabBar *>(static_cast<uintptr_t>(ptr));
-        QSize size = instance->iconSize();
-        return reinterpret_cast<uintptr_t>(&size);
+        // QSize size = instance->iconSize();
+        return instance->iconSize();
     }
 
-    void nativeTabBarSetIconSize(uintptr_t ptr, uintptr_t sizePtr)
+    void nativeTabBarSetIconSize(uintptr_t ptr, int sizeW,int sizeH)
     {
         QTabBar *instance = reinterpret_cast<QTabBar *>(static_cast<uintptr_t>(ptr));
-        QSize *size = reinterpret_cast<QSize *>(static_cast<uintptr_t>(sizePtr));
-        instance->setIconSize(*size);
+        QSize size(sizeW,sizeH) ;
+        instance->setIconSize(size);
     }
 
     void nativeTabBarSetUsesScrollButtons(uintptr_t ptr, bool useButtons)

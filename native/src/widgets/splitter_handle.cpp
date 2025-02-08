@@ -52,10 +52,10 @@ extern "C"
         return reinterpret_cast<uintptr_t>(splitter);
     }
 
-    uintptr_t nativeSplitterHandleSizeHint(uintptr_t ptr)
+    QSize nativeSplitterHandleSizeHint(uintptr_t ptr)
     {
         QSplitterHandle *instance = reinterpret_cast<QSplitterHandle *>(static_cast<uintptr_t>(ptr));
-        QSize size = instance->sizeHint();
-        return reinterpret_cast<uintptr_t>(&size);
+        // QSize size = instance->sizeHint();
+        return instance->sizeHint();
     }
 }

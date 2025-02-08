@@ -72,10 +72,13 @@ public class QConversion {
     }
 
     public static func stringToCPointer(data: String): CPointer<Unit> {
-        let result = unsafe {
-            nativeStringToCPointer(LibC.mallocCString(data))
+         unsafe {
+            let d =LibC.mallocCString(data) 
+            let result =nativeStringToCPointer(d)
+            LibC.free(d)
+            return result
         }
-        return result
+        
     }
 
     public static func boolToCPointer(data: Bool): CPointer<Unit> {

@@ -11,6 +11,8 @@ package cjqt.widgets
 foreign func nativeApplicationInit(): Unit
 foreign func nativeApplicationExec(): Bool
 foreign func nativeApplicationIsCreate(): Bool
+foreign func nativeApplicationBeep(): Unit
+foreign func nativeApplicationPrimaryScreen():Int64
 foreign func nativeApplicationQuit(): Unit
 foreign func nativeApplicationDelete(): Unit
 // foreign func nativeApplicationDesktop():Int64
@@ -57,6 +59,19 @@ public class QApplication<:QGuiApplication {
     //     }
     //     return QDesktopWidget(ptr)
     // }
+    
+    static public func beep(): Unit {
+        unsafe {
+            nativeApplicationBeep()
+        }
+    }
+    static public func primaryScreen(): QScreen {
+        let ptr=unsafe {
+            nativeApplicationPrimaryScreen()
+        }
+        return QScreen(ptr)
+    }
+
 
 
     /**

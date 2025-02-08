@@ -41,7 +41,7 @@ foreign func nativeWidgetSetFont(ptr: Int64, fontPtr: Int64): Unit
 foreign func nativeWidgetDelete(ptr: Int64): Unit
 foreign func nativeWidgetSetStyleSheet(ptr: Int64, styleSheet: CString): Unit
 foreign func nativeWidgetSetWindowIcon(ptr: Int64, iconPtr: Int64): Unit
-foreign func nativeWidgetRect(ptr: Int64): Int64
+foreign func nativeWidgetRect(ptr: Int64): QRect
 foreign func nativeWidgetSetMinimumWidth(ptr: Int64, width: Int32): Unit
 foreign func nativeWidgetSetMinimumHeight(ptr: Int64, height: Int32): Unit
 foreign func nativeWidgetSetMaximumWidth(ptr: Int64, width: Int32): Unit
@@ -59,6 +59,7 @@ foreign func nativeWidgetSetMouseReleaseEvent(ptr: Int64, callback: CFunc<(Int64
 foreign func nativeWidgetSetMouseMoveEvent(ptr: Int64, callback: CFunc<(Int64, Int64) -> Unit>): Unit
 foreign func nativeWidgetSetKeyPressEvent(ptr: Int64, callback: CFunc<(Int64, Int64) -> Unit>): Unit
 
+foreign func nativeWidgetUpdate(ptr: Int64): Unit
 @C
 func paintersEventCallback(ptr: Int64, eventPtr: Int64): Unit {
     let event = QPaintersEvent(eventPtr)
@@ -109,41 +110,6 @@ func keyPressEventCallback(ptr: Int64, eventPtr: Int64): Unit {
     }
 }
 
-@C
-func connectUnitCallback(code: Int64): Unit {
-    try {
-        QCallbackMap.connect[code]()
-    } catch (e: Exception) {
-        println(e)
-    }
-}
-
-@C
-func connectInt64Callback(code: Int64, data: Int32): Unit {
-    try {
-        QCallbackMap.connectInt64[code](Int64(data))
-    } catch (e: Exception) {
-        println(e)
-    }
-}
-
-@C
-func connectBoolCallback(code: Int64, data: Bool): Unit {
-    try {
-        QCallbackMap.connectBool[code](data)
-    } catch (e: Exception) {
-        println(e)
-    }
-}
-
-@C
-func connectCStringCallback(code: Int64, data: CString): Unit {
-    try {
-        QCallbackMap.connectString[code](data.toString())
-    } catch (e: Exception) {
-        println(e)
-    }
-}
 
 /**
  * The class is QWidget
@@ -265,11 +231,11 @@ public open class QWidget <: QObject {
      * The Function is width
      *
      */
-    public func width(): Int64 {
+    public func width(): Int32 {
         let result = unsafe {
             nativeWidgetWidth(ptr)
         }
-        return Int64(result)
+        return Int32(result)
     }
 
     /**
@@ -352,7 +318,9 @@ public open class QWidget <: QObject {
      */
     public func setWindowTitle(title: String) {
         unsafe {
-            nativeWidgetSetWindowTitle(ptr, LibC.mallocCString(title))
+            let t=LibC.mallocCString(title)
+            nativeWidgetSetWindowTitle(ptr, t)
+            LibC.free(t)
         }
     }
 
@@ -432,7 +400,9 @@ public open class QWidget <: QObject {
      */
     public func setStyleSheet(styleSheet: String) {
         unsafe {
-            nativeWidgetSetStyleSheet(ptr, LibC.mallocCString(styleSheet))
+            let s=LibC.mallocCString(styleSheet)
+            nativeWidgetSetStyleSheet(ptr,s )
+            LibC.free(s)
         }
     }
 
@@ -453,10 +423,10 @@ public open class QWidget <: QObject {
      * @return Type of  QRect
      */
     public func rect(): QRect {
-        let rectPtr = unsafe {
+        let rect = unsafe {
             nativeWidgetRect(this.ptr)
         }
-        return QRect(rectPtr)
+        return rect
     }
 
     /**
@@ -527,7 +497,9 @@ public open class QWidget <: QObject {
 
     public func setToolTip(tip: String) {
         unsafe {
-            nativeWidgetSetToolTip(ptr, LibC.mallocCString(tip))
+            let t=LibC.mallocCString(tip)
+            nativeWidgetSetToolTip(ptr, t)
+            LibC.free(t)
         }
     }
 
@@ -632,6 +604,12 @@ public open class QWidget <: QObject {
         QWidgetCallbackMap.keyPressEvent.put(ptr, callback)
         unsafe {
             nativeWidgetSetKeyPressEvent(ptr, keyPressEventCallback)
+        }
+    }
+    
+    public func update(){
+        unsafe {
+            nativeWidgetUpdate(ptr)
         }
     }
 }

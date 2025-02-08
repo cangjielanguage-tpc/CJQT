@@ -1,17 +1,22 @@
 #include <QPen>
 #include <QColor>
+#include <QDebug>
 
 extern "C"
 {
-    uintptr_t nativePenCreate(uintptr_t colorPtr, double thickness)
+    uintptr_t nativePenCreate()
     {
-        QColor *color = reinterpret_cast<QColor *>(static_cast<uintptr_t>(colorPtr));
-        return reinterpret_cast<uintptr_t>(new QPen(*color, thickness, Qt::SolidLine));
+        return reinterpret_cast<uintptr_t>(new QPen());
     }
-    uintptr_t nativePenCreateWithColor(uintptr_t colorPtr)
+
+    uintptr_t nativePenCreateArgb(quint32 argb, double thickness)
     {
-        QColor *color = reinterpret_cast<QColor *>(static_cast<uintptr_t>(colorPtr));
-        return reinterpret_cast<uintptr_t>(new QPen(*color));
+        return reinterpret_cast<uintptr_t>(new QPen(QColor(argb), thickness, Qt::SolidLine));
+    }
+    uintptr_t nativePenCreateWithColor(quint32 colorPtr)
+    {
+        QColor color = QColor(colorPtr);
+        return reinterpret_cast<uintptr_t>(new QPen(color));
     }
     uintptr_t nativePenCreateWithStyle(int style)
     {
@@ -33,10 +38,16 @@ extern "C"
         QPen *instance = reinterpret_cast<QPen *>(static_cast<uintptr_t>(ptr));
         instance->setWidthF(width);
     }
-    void nativePenSetColor(uintptr_t ptr, const uintptr_t colorPtr)
+    void nativePenSetColor(uintptr_t ptr,  quint32 colorPtr)
     {
         QPen *instance = reinterpret_cast<QPen *>(static_cast<uintptr_t>(ptr));
-        QColor *color = reinterpret_cast<QColor *>(static_cast<uintptr_t>(colorPtr));
-        instance->setColor(*color);
+        QColor color = QColor(colorPtr);
+        instance->setColor(color);
+    }
+
+   quint32 nativePenColor(uintptr_t ptr)
+    {
+        QPen *instance = reinterpret_cast<QPen *>(ptr);
+        return  instance ->color().rgba();
     }
 }

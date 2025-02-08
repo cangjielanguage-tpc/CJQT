@@ -5,7 +5,7 @@ import cjqt.core.QRect
 //foreign function
 foreign func nativePolygonCreate(): Int64
 foreign func nativePolygonCreateWithSize(size: Int32): Int64
-foreign func nativePolygonCreateWithRect(rectPtr: Int64, closed: Bool): Int64
+foreign func nativePolygonCreateWithRect(rectX: Int32,rectY: Int32,width:Int32,height:Int32, closed: Bool): Int64
 foreign func nativePolygonDelete(ptr: Int64): Unit
 
 public open class QPolygon {
@@ -22,7 +22,7 @@ public open class QPolygon {
     }
     public init(rectangle: QRect, closed!: Bool = false) {
         this.ptr = unsafe {
-            nativePolygonCreateWithRect(rectangle.ptr, closed)
+            nativePolygonCreateWithRect(rectangle.x,rectangle.y,rectangle.width,rectangle.height, closed)
         }
     }
 

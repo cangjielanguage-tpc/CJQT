@@ -370,7 +370,7 @@ public enum EchoMode {
  * The class is QLineEdit
  * @author helin
  */
-public open class QLineEdit <: QWidget {
+public class QLineEdit <: QWidget {
     /** let member cursorPositionChanged type is QLineEditCursorPositionChangedSignal */
     public let cursorPositionChanged: QLineEditCursorPositionChangedSignal<(Int64, Int64)>
 
@@ -449,7 +449,7 @@ public open class QLineEdit <: QWidget {
     public init(contents: String) {
         super(
             unsafe {
-                nativeLineEditCreateWithString(LibC.mallocCString(contents), 0)
+                nativeLineEditCreate( 0)
             }
         )
         cursorPositionChanged = QLineEditCursorPositionChangedSignal(this.ptr)
@@ -459,6 +459,7 @@ public open class QLineEdit <: QWidget {
         selectionChanged = QLineEditSelectionChangedSignal(this.ptr)
         textChanged = QLineEditTextChangedSignal(this.ptr)
         textEdited = QLineEditTextEditedSignal(this.ptr)
+        setText(contents)
     }
 
     /**
@@ -470,7 +471,7 @@ public open class QLineEdit <: QWidget {
     public init(contents: String, parent: QWidget) {
         super(
             unsafe {
-                nativeLineEditCreateWithString(LibC.mallocCString(contents), parent.ptr)
+                nativeLineEditCreate( parent.ptr)
             }
         )
         cursorPositionChanged = QLineEditCursorPositionChangedSignal(this.ptr)
@@ -480,6 +481,7 @@ public open class QLineEdit <: QWidget {
         selectionChanged = QLineEditSelectionChangedSignal(this.ptr)
         textChanged = QLineEditTextChangedSignal(this.ptr)
         textEdited = QLineEditTextEditedSignal(this.ptr)
+        setText(contents)
     }
 
     /**
@@ -557,7 +559,9 @@ public open class QLineEdit <: QWidget {
      */
     public func setPlaceholderText(str: String): Unit {
         unsafe {
-            nativeLineEditSetPlaceholderText(this.ptr, LibC.mallocCString(str))
+            let s=LibC.mallocCString(str)
+            nativeLineEditSetPlaceholderText(this.ptr, s)
+            LibC.free(s)
         }
     }
 
@@ -613,7 +617,9 @@ public open class QLineEdit <: QWidget {
      */
     public func setInputMask(inputMark: String): Unit {
         unsafe {
-            nativeLineEditSetInputMask(this.ptr, LibC.mallocCString(inputMark))
+            let i=LibC.mallocCString(inputMark)
+            nativeLineEditSetInputMask(this.ptr, i)
+            LibC.free(i)
         }
     }
 
@@ -841,7 +847,9 @@ public open class QLineEdit <: QWidget {
      */
     public func setText(str: String): Unit {
         unsafe {
-            nativeLineEditSetText(this.ptr, LibC.mallocCString(str))
+            let s=LibC.mallocCString(str)
+            nativeLineEditSetText(this.ptr, s)
+            LibC.free (s)
         }
     }
 }

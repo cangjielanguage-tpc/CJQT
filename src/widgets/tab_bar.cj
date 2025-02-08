@@ -16,18 +16,18 @@ foreign func nativeTabBarIsTabEnabled(ptr: Int64, index: Int32): Bool
 foreign func nativeTabBarSetTabEnabled(ptr: Int64, index: Int32, enabl: Bool): Unit
 foreign func nativeTabBarSetTabText(ptr: Int64, index: Int32, text: CString): Unit
 foreign func nativeTabBarTabText(ptr: Int64, index: Int32): CString
-foreign func nativeTabBarSetTabTextColor(ptr: Int64, index: Int32, colorPtr: Int64): Unit
-foreign func nativeTabBarTabTextColor(ptr: Int64, index: Int32): Int64
+foreign func nativeTabBarSetTabTextColor(ptr: Int64, index: Int32, colorPtr: UInt32): Unit
+foreign func nativeTabBarTabTextColor(ptr: Int64, index: Int32): UInt32
 foreign func nativeTabBarSetTabIcon(ptr: Int64, index: Int32, iconPtr: Int64): Unit
 foreign func nativeTabBarTabIcon(ptr: Int64, index: Int32): Int64
-foreign func nativeTabBarTabRect(ptr: Int64, index: Int32): Int64
-foreign func nativeTabBarTabAt(ptr: Int64, pointPtr: Int64): Int32
+foreign func nativeTabBarTabRect(ptr: Int64, index: Int32): QRect
+foreign func nativeTabBarTabAt(ptr: Int64, x: Int32, y: Int32): Int32
 foreign func nativeTabBarCurrentIndex(ptr: Int64): Int32
 foreign func nativeTabBarCount(ptr: Int64): Int32
 foreign func nativeTabBarDrawBase(ptr: Int64): Bool
 foreign func nativeTabBarSetDrawBase(ptr: Int64, drawTheBase: Bool): Unit
-foreign func nativeTabBarIconSize(ptr: Int64): Int64
-foreign func nativeTabBarSetIconSize(ptr: Int64, sizePtr: Int64): Unit
+foreign func nativeTabBarIconSize(ptr: Int64): QSize
+foreign func nativeTabBarSetIconSize(ptr: Int64, sizeW: Int32, sizeH: Int32): Unit
 foreign func nativeTabBarUsesScrollButtons(ptr: Int64): Bool
 foreign func nativeTabBarSetUsesScrollButtons(ptr: Int64, useButtons: Bool): Unit
 foreign func nativeTabBarTabsClosable(ptr: Int64): Bool
@@ -135,25 +135,33 @@ public class QTabBar <: QWidget {
 
     public func addTab(text: String) {
         unsafe {
-            nativeTabBarAddTab(ptr, LibC.mallocCString(text))
+            let t=LibC.mallocCString(text)
+            nativeTabBarAddTab(ptr, t)
+            LibC.free(t)
         }
     }
 
     public func addTab(icon: QIcon, text: String) {
         unsafe {
-            nativeTabBarAddTabWithIcon(ptr, icon.ptr, LibC.mallocCString(text))
+            let t=LibC.mallocCString(text)
+            nativeTabBarAddTabWithIcon(ptr, icon.ptr, t)
+            LibC.free(t)
         }
     }
 
     public func insertTab(index: Int64, text: String) {
         unsafe {
-            nativeTabBarInsertTab(ptr, Int32(index), LibC.mallocCString(text))
+            let t=LibC.mallocCString(text)
+            nativeTabBarInsertTab(ptr, Int32(index), t)
+            LibC.free(t)
         }
     }
 
     public func insertTab(index: Int64, icon: QIcon, text: String) {
         unsafe {
-            nativeTabBarInsertTabWithIcon(ptr, Int32(index), icon.ptr, LibC.mallocCString(text))
+             let t=LibC.mallocCString(text)
+            nativeTabBarInsertTabWithIcon(ptr, Int32(index), icon.ptr, t)
+            LibC.free(t)
         }
     }
 
@@ -190,7 +198,9 @@ public class QTabBar <: QWidget {
 
     public func setTabText(index: Int64, text: String) {
         unsafe {
-            nativeTabBarSetTabText(ptr, Int32(index), LibC.mallocCString(text))
+            let t=LibC.mallocCString(text)
+            nativeTabBarSetTabText(ptr, Int32(index), t)
+            LibC.free(t)
         }
     }
 
@@ -198,7 +208,7 @@ public class QTabBar <: QWidget {
         let colorPtr = unsafe {
             nativeTabBarTabTextColor(ptr, Int32(index))
         }
-        return QColor(ptr: colorPtr)
+        return QColor( colorPtr)
     }
 
     public func setTabTextColor(index: Int64, color: QColor) {
@@ -221,15 +231,15 @@ public class QTabBar <: QWidget {
     }
 
     public func tabRect(index: Int64): QRect {
-        let rectPtr = unsafe {
+        let rect = unsafe {
             nativeTabBarTabRect(ptr, Int32(index))
         }
-        return QRect(rectPtr)
+        return rect
     }
 
     public func tabAt(point: QPoint): Int64 {
         let index = unsafe {
-            nativeTabBarTabAt(ptr, point.ptr)
+            nativeTabBarTabAt(ptr, point.x,point.y)
         }
         return Int64(index)
     }
@@ -261,15 +271,15 @@ public class QTabBar <: QWidget {
     }
 
     public func iconSize(): QSize {
-        let sizePtr = unsafe {
+        let size = unsafe {
             nativeTabBarIconSize(ptr)
         }
-        return QSize(sizePtr)
+        return size
     }
 
     public func setIconSize(size: QSize) {
         unsafe {
-            nativeTabBarSetIconSize(ptr, size.ptr)
+            nativeTabBarSetIconSize(ptr, size.width,size.height)
         }
     }
 

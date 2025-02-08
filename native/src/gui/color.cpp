@@ -7,9 +7,9 @@ extern "C"
         return reinterpret_cast<uintptr_t>(new QColor(r, g, b, a));
     }
 
-    void nativeColorDelete(uintptr_t ptr)
-    {
-        QColor *instance = reinterpret_cast<QColor *>(static_cast<uintptr_t>(ptr));
-        delete instance;
-    }
+    // void nativeColorDelete(uintptr_t ptr)
+    // {
+    //     QColor *instance = reinterpret_cast<QColor *>(static_cast<uintptr_t>(ptr));
+    //     delete instance;
+    // }
 }
