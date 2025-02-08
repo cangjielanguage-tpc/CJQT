@@ -5,7 +5,8 @@ var searchData=
   ['redo_2',['redo',['../classcjqt_1_1widgets_1_1_q_line_edit.html#a308c18a8d8e12c59a880ef67d8307c5e',1,'cjqt.widgets.QLineEdit.redo()'],['../classcjqt_1_1widgets_1_1_q_text_edit.html#a1edea4d53297a96228704513e39e968e',1,'cjqt.widgets.QTextEdit.redo()']]],
   ['remove_3',['remove',['../classcjqt_1_1gui_1_1_q_signal.html#a72699647201d7694807077d5c39ffc2e',1,'cjqt.gui.QSignal.remove()'],['../classcjqt_1_1gui_1_1_q_signal_unit.html#a9757833d0e5d196f265307bac89b9a11',1,'cjqt.gui.QSignalUnit.remove()'],['../classcjqt_1_1gui_1_1_q_signal_int64.html#ab9e8a11b106cb18875c12e6c7b5225fc',1,'cjqt.gui.QSignalInt64.remove()'],['../classcjqt_1_1gui_1_1_q_signal_bool.html#afb6a096cab61c0a47a81c759a0414f07',1,'cjqt.gui.QSignalBool.remove()'],['../classcjqt_1_1gui_1_1_q_signal_int64_int64.html#aab7f21cf6c999709dea3abfcaf9b38d7',1,'cjqt.gui.QSignalInt64Int64.remove()'],['../classcjqt_1_1gui_1_1_q_signal_string.html#aad23e637526cd2345d4a0dc93d2ff5e6',1,'cjqt.gui.QSignalString.remove()'],['../classcjqt_1_1gui_1_1_q_signal_float64.html#a02b59f8b7329bbe7f13be5552667526f',1,'cjqt.gui.QSignalFloat64.remove()'],['../classcjqt_1_1widgets_1_1_q_widget_signal.html#adf931c03d9d07026dea90922fcb37af3',1,'cjqt.widgets.QWidgetSignal.remove()']]],
   ['removewidget_4',['removeWidget',['../classcjqt_1_1widgets_1_1_q_status_bar.html#ad24b445c3f39f0546f080677494ec726',1,'cjqt::widgets::QStatusBar']]],
-  ['repaint_5',['repaint',['../classcjqt_1_1widgets_1_1_q_widget.html#a3a8e55296d4a7bff76b11f59a7bd84b5',1,'cjqt::widgets::QWidget']]],
-  ['resize_6',['resize',['../classcjqt_1_1widgets_1_1_q_widget.html#a3795465d0ccd8378e23667103a78ffcf',1,'cjqt::widgets::QWidget']]],
-  ['resizemode_7',['ResizeMode',['../enumcjqt_1_1widgets_1_1_resize_mode.html',1,'cjqt::widgets']]]
+  ['renderhint_5',['RenderHint',['../enumcjqt_1_1widgets_1_1_render_hint.html',1,'cjqt::widgets']]],
+  ['repaint_6',['repaint',['../classcjqt_1_1widgets_1_1_q_widget.html#a3a8e55296d4a7bff76b11f59a7bd84b5',1,'cjqt::widgets::QWidget']]],
+  ['resize_7',['resize',['../classcjqt_1_1widgets_1_1_q_widget.html#a3795465d0ccd8378e23667103a78ffcf',1,'cjqt::widgets::QWidget']]],
+  ['resizemode_8',['ResizeMode',['../enumcjqt_1_1widgets_1_1_resize_mode.html',1,'cjqt::widgets']]]
 ];
