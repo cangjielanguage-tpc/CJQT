@@ -465,3 +465,31 @@ public func testQInputMethod() {
     QInputMethod.setVisible(false)
     @Assert(!QInputMethod.isVisible())
 }
+
+@Test
+public func testQStaticText() {
+    let text = QStaticText("static text")
+    @Assert(text.text() == "static text")
+    text.setText("updated")
+    @Assert(text.text() == "updated")
+    text.delete()
+}
+
+@Test
+public func testQPdfWriter() {
+    let writer = QPdfWriter("/tmp/cjqt_ut.pdf")
+    writer.setTitle("CJQT Doc")
+    writer.setCreator("cjqt")
+    @Assert(writer.width() > 0)
+    @Assert(writer.height() > 0)
+    writer.delete()
+}
+
+@Test
+public func testQTextLayout() {
+    let layout = QTextLayout("hello layout")
+    @Assert(layout.text() == "hello layout")
+    layout.setText("changed")
+    @Assert(layout.text() == "changed")
+    layout.delete()
+}

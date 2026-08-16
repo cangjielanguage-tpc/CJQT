@@ -864,3 +864,21 @@ public func testSizeGrip() {
     grip.delete()
     parent.delete()
 }
+
+@Test
+public func testUndoStack() {
+    QApplication.create()
+    let stack = QUndoStack()
+    @Assert(stack.count() == 0)
+    @Assert(!stack.canUndo())
+    @Assert(stack.isClean())
+    stack.undo()
+    stack.redo()
+    stack.clear()
+    stack.delete()
+    let command = QUndoCommand("do something")
+    @Assert(command.text() == "do something")
+    command.setText("renamed")
+    @Assert(command.text() == "renamed")
+    command.delete()
+}

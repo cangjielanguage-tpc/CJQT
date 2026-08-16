@@ -14,9 +14,9 @@
 
 | 分类 | 数量 |
 | :--- | :--- |
-| 已完成 | 42 |
+| 已完成 | 45 |
 | 进行中 | 22 |
-| 未移植 | 49+ |
+| 未移植 | 46+ |
 
 ## 已完成
 
@@ -40,7 +40,8 @@ QHoverEvent               ▓▓▓▓▓▓▓▓░░         QImageReader   
 QInputMethod              ▓▓▓▓▓▓▓▓░░
 QImageWriter              ▓▓▓▓▓▓▓▓░░         QMoveEvent                ▓▓▓▓▓▓▓▓░░
 QResizeEvent              ▓▓▓▓▓▓▓▓░░         QShowEvent                ▓▓▓▓▓▓▓▓░░
-QTextDocument             ▓▓▓▓▓▓▓▓░░
+QPdfWriter                ▓▓▓▓▓▓▓▓░░         QStaticText               ▓▓▓▓▓▓▓▓░░
+QTextDocument             ▓▓▓▓▓▓▓▓░░         QTextLayout               ▓▓▓▓▓▓▓▓░░
 QPainterPath              ▓▓▓▓▓▓▓▓░░         QPalette                  ▓▓▓▓▓▓▓░░░
 QPen                      ▓▓▓▓▓▓▓░░░         QPixmap                   ▓▓▓▓▓▓▓░░░
 QPixmapCache              ▓▓▓▓▓▓▓▓░░         QStandardItemModel        ▓▓▓▓▓▓▓▓░░
