@@ -525,3 +525,41 @@ public func testQTextDocumentFragment() {
     @Assert(fragment.toHtml().contains("fragment text"))
     fragment.delete()
 }
+
+@Test
+public func testQWindow() {
+    QApplication.create()
+    let dummy = QWidget()
+    dummy.delete()
+    let win = QWindow()
+    win.setTitle("test window")
+    @Assert(win.title() == "test window")
+    @Assert(!win.isVisible())
+    win.delete()
+}
+
+@Test
+public func testQSurfaceFormat() {
+    let format = QSurfaceFormat()
+    format.setRedBufferSize(8)
+    @Assert(format.redBufferSize() == 8)
+    format.setDepthBufferSize(24)
+    @Assert(format.depthBufferSize() == 24)
+    format.setSwapInterval(1)
+    @Assert(format.swapInterval() == 1)
+    format.delete()
+}
+
+@Test
+public func testQColorSpace() {
+    let space = QColorSpace()
+    @Assert(!space.isValid())
+    space.delete()
+}
+
+@Test
+public func testQPicture() {
+    let picture = QPicture()
+    @Assert(picture.isNull())
+    picture.delete()
+}

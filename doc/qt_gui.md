@@ -14,9 +14,9 @@
 
 | 分类 | 数量 |
 | :--- | :--- |
-| 已完成 | 48 |
+| 已完成 | 52 |
 | 进行中 | 22 |
-| 未移植 | 43+ |
+| 未移植 | 39+ |
 
 ## 已完成
 
@@ -43,7 +43,9 @@ QResizeEvent              ▓▓▓▓▓▓▓▓░░         QShowEvent     
 QPdfWriter                ▓▓▓▓▓▓▓▓░░         QStaticText               ▓▓▓▓▓▓▓▓░░
 QTextBlockFormat          ▓▓▓▓▓▓▓▓░░         QTextCharFormat           ▓▓▓▓▓▓▓▓░░
 QTextDocument             ▓▓▓▓▓▓▓▓░░         QTextDocumentFragment     ▓▓▓▓▓▓▓▓░░
-QTextLayout               ▓▓▓▓▓▓▓▓░░
+QColorSpace               ▓▓▓▓▓▓▓▓░░         QPicture                  ▓▓▓▓▓▓▓▓░░
+QSurfaceFormat            ▓▓▓▓▓▓▓▓░░         QTextLayout               ▓▓▓▓▓▓▓▓░░
+QWindow                   ▓▓▓▓▓▓▓▓░░
 QPainterPath              ▓▓▓▓▓▓▓▓░░         QPalette                  ▓▓▓▓▓▓▓░░░
 QPen                      ▓▓▓▓▓▓▓░░░         QPixmap                   ▓▓▓▓▓▓▓░░░
 QPixmapCache              ▓▓▓▓▓▓▓▓░░         QStandardItemModel        ▓▓▓▓▓▓▓▓░░
