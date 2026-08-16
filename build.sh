@@ -1,8 +1,8 @@
 #bin/sh
 
-# cpm build
-cpm update
-cpm build
+# cjpm build
+cjpm update
+cjpm build
 
 # get_arch=`arch`
 # if [[ $get_arch =~ "x86_64" ]];then

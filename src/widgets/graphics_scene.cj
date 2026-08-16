@@ -99,7 +99,7 @@ public open class QGraphicsScene <: QObject {
      * @param callback of (QGraphicsSceneContextMenuEvent)->Unit
      */
     public func setContextMenuEvent(callback: (QGraphicsSceneContextMenuEvent) -> Unit) {
-        QGraphicsSceneCallbackMap.contextMenuEvent.put(ptr, callback)
+        QGraphicsSceneCallbackMap.contextMenuEvent.add(ptr, callback)
         unsafe {
             nativeGraphicsSceneSetContextMenuEvent(ptr, graphicsSceneContextMenuEventCallback)
         }
@@ -126,7 +126,7 @@ public open class QGraphicsScene <: QObject {
      * @param callback of (QGraphicsSceneDragDropEvent)->Unit
      */
     public func setDragEnterEven(callback: (QGraphicsSceneDragDropEvent) -> Unit) {
-        QGraphicsSceneCallbackMap.dragEnterEvent.put(ptr, callback)
+        QGraphicsSceneCallbackMap.dragEnterEvent.add(ptr, callback)
         unsafe {
             nativeGraphicsSceneSetDragEnterEvent(ptr, graphicsSceneDragEnterEventCallback)
         }
@@ -152,7 +152,7 @@ public open class QGraphicsScene <: QObject {
      * @param callback of (QGraphicsSceneDragDropEvent)->Unit
      */
     public func setDragLeaveEvent(callback: (QGraphicsSceneDragDropEvent) -> Unit) {
-        QGraphicsSceneCallbackMap.dragLeaveEvent.put(ptr, callback)
+        QGraphicsSceneCallbackMap.dragLeaveEvent.add(ptr, callback)
         unsafe {
             nativeGraphicsSceneSetDragLeaveEvent(ptr, graphicsSceneDragLeaveEventCallback)
         }
@@ -178,7 +178,7 @@ public open class QGraphicsScene <: QObject {
      * @param callback of (QGraphicsSceneDragDropEvent)->Unit
      */
     public func setDragMoveEvent(callback: (QGraphicsSceneDragDropEvent) -> Unit) {
-        QGraphicsSceneCallbackMap.dragMoveEvent.put(ptr, callback)
+        QGraphicsSceneCallbackMap.dragMoveEvent.add(ptr, callback)
         unsafe {
             nativeGraphicsSceneSetDragMoveEvent(ptr, graphicsSceneDragMoveEventCallback)
         }
@@ -203,7 +203,7 @@ public open class QGraphicsScene <: QObject {
      * @param callback of (QGraphicsSceneDragDropEvent)->Unit
      */
     public func setDropEvent(callback: (QGraphicsSceneDragDropEvent) -> Unit) {
-        QGraphicsSceneCallbackMap.dropEvent.put(ptr, callback)
+        QGraphicsSceneCallbackMap.dropEvent.add(ptr, callback)
         unsafe {
             nativeGraphicsSceneSetDropEvent(ptr, graphicsSceneDropEventCallback)
         }
@@ -228,7 +228,7 @@ public open class QGraphicsScene <: QObject {
      * @param callback of (QFocusEvent)->Unit
      */
     public func setFocusOutEvent(callback: (QFocusEvent) -> Unit) {
-        QGraphicsSceneCallbackMap.focusOutEvent.put(ptr, callback)
+        QGraphicsSceneCallbackMap.focusOutEvent.add(ptr, callback)
         unsafe {
             nativeGraphicsSceneSetFocusOutEvent(ptr, graphicsSceneFocusOutEventCallback)
         }
@@ -253,7 +253,7 @@ public open class QGraphicsScene <: QObject {
      * @param callback of (QGraphicsSceneHelpEvent)->Unit
      */
     public func setHelpEvent(callback: (QGraphicsSceneHelpEvent) -> Unit) {
-        QGraphicsSceneCallbackMap.helpEvent.put(ptr, callback)
+        QGraphicsSceneCallbackMap.helpEvent.add(ptr, callback)
         unsafe {
             nativeGraphicsSceneSetHelpEvent(ptr, graphicsSceneHelpEventCallback)
         }
@@ -278,7 +278,7 @@ public open class QGraphicsScene <: QObject {
      * @param callback of (QInputMethodEvent)->Unit
      */
     public func setInputMethodEvent(callback: (QInputMethodEvent) -> Unit) {
-        QGraphicsSceneCallbackMap.inputMethodEvent.put(ptr, callback)
+        QGraphicsSceneCallbackMap.inputMethodEvent.add(ptr, callback)
         unsafe {
             nativeGraphicsSceneSetInputMethodEvent(ptr, graphicsSceneInputMethodEventCallback)
         }
@@ -304,7 +304,7 @@ public open class QGraphicsScene <: QObject {
      * @param callback of (QGraphicsSceneMouseEvent)->Unit
      */
     public func setMouseDoubleClickEvent(callback: (QGraphicsSceneMouseEvent) -> Unit) {
-        QGraphicsSceneCallbackMap.mouseDoubleClickEvent.put(ptr, callback)
+        QGraphicsSceneCallbackMap.mouseDoubleClickEvent.add(ptr, callback)
         unsafe {
             nativeGraphicsSceneSetMouseDoubleClickEvent(ptr, graphicsSceneMouseDoubleClickEventCallback)
         }
@@ -329,7 +329,7 @@ public open class QGraphicsScene <: QObject {
      * @param callback of (QGraphicsSceneMouseEvent)->Unit
      */
     public func setMouseMoveEvent(callback: (QGraphicsSceneMouseEvent) -> Unit) {
-        QGraphicsSceneCallbackMap.mouseMoveEvent.put(ptr, callback)
+        QGraphicsSceneCallbackMap.mouseMoveEvent.add(ptr, callback)
         unsafe {
             nativeGraphicsSceneSetMouseMoveEvent(ptr, graphicsSceneMouseMoveEventCallback)
         }
@@ -354,7 +354,7 @@ public open class QGraphicsScene <: QObject {
      * @param callback of (QGraphicsSceneMouseEvent)->Unit
      */
     public func setMousePressEvent(callback: (QGraphicsSceneMouseEvent) -> Unit) {
-        QGraphicsSceneCallbackMap.mousePressEvent.put(ptr, callback)
+        QGraphicsSceneCallbackMap.mousePressEvent.add(ptr, callback)
         unsafe {
             nativeGraphicsSceneSetMousePressEvent(ptr, graphicsSceneMousePressEventCallback)
         }
@@ -379,7 +379,7 @@ public open class QGraphicsScene <: QObject {
      * @param callback of (QGraphicsSceneMouseEvent)->Unit
      */
     public func setMouseReleaseEvent(callback: (QGraphicsSceneMouseEvent) -> Unit) {
-        QGraphicsSceneCallbackMap.mouseReleaseEvent.put(ptr, callback)
+        QGraphicsSceneCallbackMap.mouseReleaseEvent.add(ptr, callback)
         unsafe {
             nativeGraphicsSceneSetMouseReleaseEvent(ptr, graphicsSceneMouseReleaseEventCallback)
         }
@@ -404,7 +404,7 @@ public open class QGraphicsScene <: QObject {
      * @param callback of (QKeyEvent)->Unit
      */
     public func setKeyPressEvent(callback: (QKeyEvent) -> Unit) {
-        QGraphicsSceneCallbackMap.keyPressEvent.put(ptr, callback)
+        QGraphicsSceneCallbackMap.keyPressEvent.add(ptr, callback)
         unsafe {
             nativeGraphicsSceneSetKeyPressEvent(ptr, graphicsSceneKeyPressEventCallback)
         }
@@ -429,7 +429,7 @@ public open class QGraphicsScene <: QObject {
      * @param callback of (QKeyEvent)->Unit
      */
     public func setKeyReleaseEvent(callback: (QKeyEvent) -> Unit) {
-        QGraphicsSceneCallbackMap.keyReleaseEvent.put(ptr, callback)
+        QGraphicsSceneCallbackMap.keyReleaseEvent.add(ptr, callback)
         unsafe {
             nativeGraphicsSceneSetKeyReleaseEvent(ptr, graphicsSceneKeyReleaseEventCallback)
         }
@@ -454,7 +454,7 @@ public open class QGraphicsScene <: QObject {
      * @param callback of (QGraphicsSceneWheelEvent)->Unit
      */
     public func setWheelEvent(callback: (QGraphicsSceneWheelEvent) -> Unit) {
-        QGraphicsSceneCallbackMap.wheelEvent.put(ptr, callback)
+        QGraphicsSceneCallbackMap.wheelEvent.add(ptr, callback)
         unsafe {
             nativeGraphicsSceneSetWheelEvent(ptr, graphicsSceneWheelEventCallback)
         }

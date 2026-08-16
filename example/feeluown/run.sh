@@ -1,4 +1,4 @@
-#bin/sh
+#!/bin/bash
 
 CUR_DIR=$(cd $(dirname $0) && pwd)
 
@@ -11,19 +11,24 @@ else
     QT_PLATFORM_URL=$CUR_DIR/../../native/lib
 fi
 
+if [ -n "$QT_HOME" ]; then
+    export LD_LIBRARY_PATH=$QT_HOME/lib:${LD_LIBRARY_PATH}
+fi
+
+if [ -n "$CANGJIE_HOME" ]; then
+    export LD_LIBRARY_PATH=$CANGJIE_HOME/runtime/lib/linux_${GET_ARCH}_cjnative:${LD_LIBRARY_PATH}
+    export LD_LIBRARY_PATH=$CANGJIE_HOME/tools/lib:${LD_LIBRARY_PATH}
+fi
+
 export LD_LIBRARY_PATH=$QT_PLATFORM_URL:${LD_LIBRARY_PATH}
-export LD_LIBRARY_PATH=$CUR_DIR/build/cjqt:${LD_LIBRARY_PATH}
+export LD_LIBRARY_PATH=$CUR_DIR/target/release/cjqt:${LD_LIBRARY_PATH}
 
 export QT_QPA_PLATFORM_PLUGIN_PATH=$QT_PLATFORM_URL/platforms
 
-# native build
-# sh $CUR_DIR/../../build.sh
-
 cd $CUR_DIR
 
-# cpm build
 cjpm update
 cjpm build
 
 # run
-./build/bin/main
+./target/release/bin/main

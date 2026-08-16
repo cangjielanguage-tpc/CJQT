@@ -28,8 +28,8 @@ cd `cjqtPath` # cjqt源码路径
 ./build.sh
 
 cd `path` # 项目路径
-cpm update
-cpm build
+cjpm update
+cjpm build
 
 export LD_LIBRARY_PATH=`cjqtPath`/native/build:${LD_LIBRARY_PATH}  # 添加cjqt native动态库路径
 

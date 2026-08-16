@@ -47,7 +47,7 @@ def build_other_file(build_file):
         cmd = "{} {}".format(bash, build_file_path)
         output = subprocess.Popen(cmd, shell=True, cwd=parent_dir, stderr=PIPE, stdout=PIPE)
         out, err = log_output(output, output.args, parent_dir)
-        if b"cpm build success" in out:
+        if b"cjpmbuild success" in out:
             LOG.info("other build success!!")
         else:
             LOG.error("other build error..")
@@ -81,7 +81,7 @@ def runBuild(coverage, libs_cmd):
         ## 复制 lib 到 build里
         copy_lib_to_build()
     else:
-        LOG.info("Please use cpm to build. cjc compilation is not supported now....")
+        LOG.info("Please use cjpmto build. cjc compilation is not supported now....")
         # loop_dir(root_dir, lambda file: src_files(file))
         # cmd1 = "{0} {1} -o lib.o -c".format(CJC_TOOLS, SRC_FILES)
         # cmd1 = cmd1 + libs_cmd + subcmd
@@ -126,14 +126,14 @@ def cpmbuild(subcmd):
     for file in os.listdir(parent_dir):
         if file == 'module-resolve.json':
             os.remove(os.path.join(parent_dir, 'module-resolve.json'))
-    cmd1 = "cpm build --verbose {}".format(subcmd)
+    cmd1 = "cjpmbuild --verbose {}".format(subcmd)
     output = subprocess.Popen(cmd1, shell=True, cwd=parent_dir, stderr=subprocess.PIPE,
                               stdout=subprocess.PIPE)
     out, err = log_output(output, output.args, parent_dir)
-    if err and "cpm build failed" in str(err):
-        LOG.error("cpm build error..")
+    if err and "cjpmbuild failed" in str(err):
+        LOG.error("cjpmbuild error..")
         exit(1)
-    LOG.info("cpm build success!!")
+    LOG.info("cjpmbuild success!!")
 
 
 def src_files(file):

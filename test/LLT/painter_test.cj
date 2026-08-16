@@ -34,7 +34,7 @@ func newPainterTest(widget:QWidget) {
     
     let painter = QPainter(widget)
 
-    painter.setPen(QPen(QColor.Black, 1))
+    painter.setPen(QPen(QColor.Black, 1.0))
     painter.setBrush(QBrush(QColor.LightGray))
     painter.drawRect(0, 0, 200, 300)
     painter.delete()
@@ -43,7 +43,7 @@ func newPainterTest(widget:QWidget) {
 
 func setPenTest(widget:QWidget) {
     let painter = QPainter(widget)
-    let pen = QPen(QColor.Black, 2)
+    let pen = QPen(QColor.Black, 2.0)
     painter.setPen(pen)
     pen.delete()
     painter.delete()

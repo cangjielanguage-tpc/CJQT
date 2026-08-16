@@ -553,7 +553,7 @@ public open class QWidget <: QObject {
      * @param callback of (QPaintersEvent)->Unit
      */
     public func setPaintEvent(callback: (QPaintersEvent) -> Unit) {
-        QWidgetCallbackMap.paintersEvent.put(ptr, callback)
+        QWidgetCallbackMap.paintersEvent.add(ptr, callback)
         unsafe {
             nativeWidgetSetPaintEvent(ptr, paintersEventCallback)
         }
@@ -565,7 +565,7 @@ public open class QWidget <: QObject {
      * @param callback of (QMouseEvent)->Unit
      */
     public func setMousePressEvent(callback: (QMouseEvent) -> Unit) {
-        QWidgetCallbackMap.mousePressEvent.put(ptr, callback)
+        QWidgetCallbackMap.mousePressEvent.add(ptr, callback)
         unsafe {
             nativeWidgetSetMousePressEvent(ptr, mousePressEventCallback)
         }
@@ -577,7 +577,7 @@ public open class QWidget <: QObject {
      * @param callback of (QMouseEvent)->Unit
      */
     public func setMouseReleaseEvent(callback: (QMouseEvent) -> Unit) {
-        QWidgetCallbackMap.mouseReleaseEvent.put(ptr, callback)
+        QWidgetCallbackMap.mouseReleaseEvent.add(ptr, callback)
         unsafe {
             nativeWidgetSetMouseReleaseEvent(ptr, mouseReleaseEventCallback)
         }
@@ -589,7 +589,7 @@ public open class QWidget <: QObject {
      * @param callback of (QMouseEvent)->Unit
      */
     public func setMouseMoveEvent(callback: (QMouseEvent) -> Unit) {
-        QWidgetCallbackMap.mouseMoveEvent.put(ptr, callback)
+        QWidgetCallbackMap.mouseMoveEvent.add(ptr, callback)
         unsafe {
             nativeWidgetSetMouseMoveEvent(ptr, mouseMoveEventCallback)
         }
@@ -601,7 +601,7 @@ public open class QWidget <: QObject {
      * @param callback of (QKeyEvent)->Unit
      */
     public func setKeyPressEvent(callback: (QKeyEvent) -> Unit) {
-        QWidgetCallbackMap.keyPressEvent.put(ptr, callback)
+        QWidgetCallbackMap.keyPressEvent.add(ptr, callback)
         unsafe {
             nativeWidgetSetKeyPressEvent(ptr, keyPressEventCallback)
         }

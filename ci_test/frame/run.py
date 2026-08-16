@@ -234,7 +234,7 @@ def unittest():
                     if path != ut_src_dir:
                         sub_ut_src_dir = path.split(ut_src_dir+"/")[1]
                         ut_dir_temp = sub_ut_src_dir + "/" + ut_dir
-                    ut_test_cmd = "cpm test {}/src/{}".format(parent_dir, ut_dir_temp)
+                    ut_test_cmd = "cjpmtest {}/src/{}".format(parent_dir, ut_dir_temp)
                     # if
                     is_sub_file_cj = False
                     for _, _, sub_files in os.walk("{}/src/{}".format(parent_dir, ut_dir_temp)):
@@ -258,7 +258,7 @@ def unittest():
                                                       stdout=subprocess.PIPE)
                             out, err = log_output(output, output.args, ROOT_DIR)
                     if is_top_file:
-                        ut_test_cmd = "cpm test {}/src".format(parent_dir)
+                        ut_test_cmd = "cjpmtest {}/src".format(parent_dir)
                         output = subprocess.Popen(ut_test_cmd, shell=True, cwd=parent_dir, stderr=subprocess.PIPE,
                                                   stdout=subprocess.PIPE)
                         out, err = log_output(output, output.args, ROOT_DIR)

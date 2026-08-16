@@ -184,6 +184,6 @@ public class QLabel <: QWidget{
 
 ```shell
 $ ./build.sh
-cpm update success
-cpm build success
+cjpmupdate success
+cjpmbuild success
 ```

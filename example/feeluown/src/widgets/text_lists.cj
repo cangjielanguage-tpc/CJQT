@@ -19,14 +19,14 @@ public class TextlistModel <: QAbstractListModel {
         let start = items.size
         let end = start + 1
         beginInsertRows(QModelIndex(), start, end)
-        items.append(item)
+        items.add(item)
         endInsertRows()
     }
 
     public func remove(index: Int64) {
         let row = index
         beginRemoveRows(QModelIndex(), row, row + 1)
-        items.remove(index)
+        items.remove(index..index + 1)
         endRemoveRows()
     }
 

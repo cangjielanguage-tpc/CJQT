@@ -198,11 +198,9 @@ public class NotepadWindow <: QMainWindow {
         currentFile = fileName
         setWindowTitle(fileName)
 
-        var file: File = File(fileName, OpenOption.Open(true, false))
-        if (File.exists(fileName)) {
-            let data = String.fromUtf8(file.readToEnd())
+        if (exists(fileName)) {
+            let data = String.fromUtf8(File.readFrom(fileName))
             textEdit.setText(data)
-            file.close()
         }
     }
 
@@ -221,8 +219,8 @@ public class NotepadWindow <: QMainWindow {
             setWindowTitle(fileName)
         }
 
-        var file: File = File(currentFile, OpenOption.Create(false))
-        if (File.exists(currentFile)) {
+        let file: File = File(currentFile, OpenMode.Write)
+        if (exists(currentFile)) {
             file.write(textEdit.toPlainText().toArray())
             file.flush()
             file.close()
@@ -242,8 +240,8 @@ public class NotepadWindow <: QMainWindow {
         currentFile = fileName
         setWindowTitle(fileName)
         
-        var file: File = File(currentFile, OpenOption.Create(false))
-        if (File.exists(currentFile)) {
+        let file: File = File(currentFile, OpenMode.Write)
+        if (exists(currentFile)) {
             file.write(textEdit.toPlainText().toArray())
             file.flush()
             file.close()

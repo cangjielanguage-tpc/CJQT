@@ -83,14 +83,14 @@ public abstract class QAbstractListModel<:QAbstractItemModel {
     }
 
     protected func setRowCountCallback() {
-        QCoreCallbackMap.rowCountCallback.put(ptr, rowCount)
+        QCoreCallbackMap.rowCountCallback.add(ptr, rowCount)
         unsafe {
             nativeAbstractListModelSetRowCountCallback(ptr, rowCountCallback)
         }
     }
 
     protected func setDataCallback() {
-        QCoreCallbackMap.dataCallback.put(ptr, data)
+        QCoreCallbackMap.dataCallback.add(ptr, data)
         unsafe {
             nativeAbstractListModelSetDataCallback(ptr, dataCallback)
         }

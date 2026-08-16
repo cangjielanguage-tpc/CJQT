@@ -129,7 +129,6 @@ func setPaletteTest() {
     let color = QColor(128, 128, 128, a: 128)
     let palette = QPalette(color)
     widget.setPalette(palette)
-    color.delete()
     palette.delete()
     widget.delete()
 }

@@ -1,5 +1,4 @@
 package feeluown.gui
-import std.math.min
 import cjqt.core.*
 import cjqt.gui.*
 import cjqt.widgets.*
@@ -74,8 +73,9 @@ public class LeftPanel <: QScrollArea {
 
     public override func sizeHint(): QSize {
         let size = sizeHint()
-        let width = min(app.width() / 4, 240)
-        return QSize(width, size.height)
+        let width = app.width() / 4
+        let resultWidth = if (width < 240) { width } else { Int32(240) }
+        return QSize(resultWidth, size.height)
     }
 }
 

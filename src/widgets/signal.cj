@@ -34,7 +34,7 @@ public open class QWidgetSignal<T> {
      */
     public func connect(callback: (T) -> Unit) {
         let hashStr = signalType+ptr.toString();
-        QCallbackMap.connectAny.put(QMapKey(signalType, ptr.toString()).hashCode(), callback)
+        QCallbackMap.connectAny.add(QMapKey(signalType, ptr.toString()).hashCode(), callback)
 
         let connectCPointerCallback: CFunc<(Int64, CPointer<Unit>) -> Unit> = {
             code, pointer => try {

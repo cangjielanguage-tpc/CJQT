@@ -49,7 +49,7 @@ public class QTimer {
         ptr = unsafe {
             nativeTimerCreate(timerCallback, interval)
         }
-        QCallbackMap.timer.put(ptr, callback)
+        QCallbackMap.timer.add(ptr, callback)
     }
 
     /**

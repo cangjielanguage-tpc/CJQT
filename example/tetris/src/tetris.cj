@@ -27,9 +27,9 @@ public class Tetris {
         for (i in 0..MAX_X) {
             let arr: ArrayList<BoxItem> = ArrayList()
             for (j in 0..MAX_Y) {
-                arr.append(BoxItem())
+                arr.add(BoxItem())
             }
-            box.append(arr)
+            box.add(arr)
         }
         createNextBlock()
     }
@@ -246,8 +246,8 @@ public class Tetris {
     //可以移动就对block进行变换，返回true
     //否则返回false
     private func move(dx: Int64, dy: Int64): Bool {
-        var newX = Array<Int64>(COUNT, item: 0)
-        var newY = Array<Int64>(COUNT, item: 0)
+        var newX = Array<Int64>(COUNT, repeat: 0)
+        var newY = Array<Int64>(COUNT, repeat: 0)
         var newCenterX = 0
         var newCenterY = 0
         for (i in 0..COUNT) {
@@ -290,8 +290,8 @@ public class Tetris {
     //可以旋转就对block进行变换，返回true
     //否则返回false
     private func isRotatable(): Bool {
-        var newX = Array<Int64>(COUNT, item: 0)
-        var newY = Array<Int64>(COUNT, item: 0)
+        var newX = Array<Int64>(COUNT, repeat: 0)
+        var newY = Array<Int64>(COUNT, repeat: 0)
         var newCenterX = 0
         var newCenterY = 0
 
@@ -369,8 +369,8 @@ public class Tetris {
 }
 
 public struct Block {
-    public var x = Array<Int64>(Tetris.COUNT, item: -1) //方块单格的x坐标
-    public var y = Array<Int64>(Tetris.COUNT, item: -1) //方块单格的y坐标
+    public var x = Array<Int64>(Tetris.COUNT, repeat: -1) //方块单格的x坐标
+    public var y = Array<Int64>(Tetris.COUNT, repeat: -1) //方块单格的y坐标
     public var centerX: Int64 = -1 //方块的中心x坐标
     public var centerY: Int64 = -1 //方块的中心y坐标
     public var id: Int64 = 0 //方块的ID

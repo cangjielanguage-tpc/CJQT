@@ -59,14 +59,14 @@ public abstract class QAbstractItemDelegate {
     }
 
     protected open func setPaint() {
-        QWidgetCallbackMap.paintCallback.put(ptr, paint)
+        QWidgetCallbackMap.paintCallback.add(ptr, paint)
         unsafe {
             nativeAbstractItemDelegateSetPaintCallback(ptr, abstractItemDelegatePaintCallback)
         }
     }
 
     protected open func setSizeHint() {
-        QWidgetCallbackMap.sizeHintCallback.put(ptr, sizeHint)
+        QWidgetCallbackMap.sizeHintCallback.add(ptr, sizeHint)
         unsafe {
             nativeAbstractItemDelegateSetSizeHintCallback(ptr, abstractItemDelegateSizeHintCallback)
         }

@@ -60,14 +60,14 @@ public open class QStyledItemDelegate <: QAbstractItemDelegate {
     }
 
     protected func setPaint() {
-        QWidgetCallbackMap.paintCallback.put(ptr, paint)
+        QWidgetCallbackMap.paintCallback.add(ptr, paint)
         unsafe {
             nativeStyledItemDelegateSetPaintCallback(ptr, styledItemDelegatePaintCallback)
         }
     }
 
     protected func setSizeHint() {
-        QWidgetCallbackMap.sizeHintCallback.put(ptr, sizeHint)
+        QWidgetCallbackMap.sizeHintCallback.add(ptr, sizeHint)
         unsafe {
             nativeStyledItemDelegateSetSizeHintCallback(ptr, styledItemDelegateSizeHintCallback)
         }

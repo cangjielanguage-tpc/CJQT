@@ -1,3 +1,3 @@
-# cpm build
+# cjpmbuild
 cjpm update
 cjpm build

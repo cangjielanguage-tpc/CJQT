@@ -123,7 +123,7 @@ public open class QSignalUnit <: QSignal {
      * @param callback of ()->Unit
      */
     public func connect(callback: () -> Unit) {
-        QCallbackMap.connect.put(QMapKey(signalType, ptr.toString()).hashCode(), callback)
+        QCallbackMap.connect.add(QMapKey(signalType, ptr.toString()).hashCode(), callback)
         nativeConnect(QMapKey(signalType, ptr.toString()).hashCode(), connectUnitCallback)
     }
 
@@ -166,7 +166,7 @@ public open class QSignalInt64 <: QSignal {
      * @param callback of (Int64)->Unit
      */
     public func connect(callback: (Int64) -> Unit) {
-        QCallbackMap.connectInt64.put(QMapKey(signalType, ptr.toString()).hashCode(), callback)
+        QCallbackMap.connectInt64.add(QMapKey(signalType, ptr.toString()).hashCode(), callback)
         nativeConnect(QMapKey(signalType, ptr.toString()).hashCode(), connectInt64Callback)
     }
 
@@ -209,7 +209,7 @@ public open class QSignalBool <: QSignal {
      * @param callback of (Bool)->Unit
      */
     public func connect(callback: (Bool) -> Unit) {
-        QCallbackMap.connectBool.put(QMapKey(signalType, ptr.toString()).hashCode(), callback)
+        QCallbackMap.connectBool.add(QMapKey(signalType, ptr.toString()).hashCode(), callback)
         nativeConnect(QMapKey(signalType, ptr.toString()).hashCode(), connectBoolCallback)
     }
 
@@ -252,7 +252,7 @@ public open class QSignalInt64Int64 <: QSignal {
      * @param callback of (Int64,Int64)->Unit
      */
     public func connect(callback: (Int64, Int64) -> Unit) {
-        QCallbackMap.connectInt64Int64.put(QMapKey(signalType, ptr.toString()).hashCode(), callback)
+        QCallbackMap.connectInt64Int64.add(QMapKey(signalType, ptr.toString()).hashCode(), callback)
         nativeConnect(QMapKey(signalType, ptr.toString()).hashCode(), connectInt32Int32Callback)
     }
 
@@ -295,7 +295,7 @@ public open class QSignalString <: QSignal {
      * @param callback of (String)->Unit
      */
     public func connect(callback: (String) -> Unit) {
-        QCallbackMap.connectString.put(QMapKey(signalType, ptr.toString()).hashCode(), callback)
+        QCallbackMap.connectString.add(QMapKey(signalType, ptr.toString()).hashCode(), callback)
         nativeConnect(QMapKey(signalType, ptr.toString()).hashCode(), connectCStringCallback)
     }
 
@@ -338,7 +338,7 @@ public open class QSignalFloat64 <: QSignal {
      * @param callback of (Float64)->Unit
      */
     public func connect(callback: (Float64) -> Unit) {
-        QCallbackMap.connectFloat64.put(QMapKey(signalType, ptr.toString()).hashCode(), callback)
+        QCallbackMap.connectFloat64.add(QMapKey(signalType, ptr.toString()).hashCode(), callback)
         nativeConnect(QMapKey(signalType, ptr.toString()).hashCode(), connectFloat64Callback)
     }
 
