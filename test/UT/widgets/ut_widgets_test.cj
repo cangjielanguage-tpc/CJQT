@@ -359,3 +359,129 @@ public func testAction() {
     action.delete()
     QApplication.delete()
 }
+
+@Test
+public func testComboBox() {
+    QApplication.create()
+    let combo = QComboBox()
+    combo.addItem("apple")
+    combo.addItem("banana")
+    combo.addItem("cherry")
+    @Assert(combo.count() == 3)
+    @Assert(combo.currentIndex() == 0)
+    @Assert(combo.currentText() == "apple")
+    @Assert(combo.itemText(1) == "banana")
+    combo.setCurrentIndex(2)
+    @Assert(combo.currentText() == "cherry")
+    combo.setEditable(true)
+    @Assert(combo.isEditable())
+    combo.removeItem(0)
+    @Assert(combo.count() == 2)
+    combo.delete()
+    QApplication.delete()
+}
+
+@Test
+public func testSlider() {
+    QApplication.create()
+    let slider = QSlider()
+    slider.setRange(0, 100)
+    @Assert(slider.minimum() == 0)
+    @Assert(slider.maximum() == 100)
+    slider.setValue(42)
+    @Assert(slider.value() == 42)
+    slider.setTickInterval(10)
+    slider.setSingleStep(5)
+    slider.delete()
+    let v = QSlider(Orientation.Vertical)
+    v.delete()
+    QApplication.delete()
+}
+
+@Test
+public func testProgressBar() {
+    QApplication.create()
+    let bar = QProgressBar()
+    bar.setRange(0, 100)
+    bar.setValue(60)
+    @Assert(bar.value() == 60)
+    @Assert(bar.minimum() == 0)
+    @Assert(bar.maximum() == 100)
+    bar.setFormat("%p%")
+    @Assert(bar.text().contains("%"))
+    bar.setTextVisible(false)
+    @Assert(!bar.isTextVisible())
+    bar.delete()
+    QApplication.delete()
+}
+
+@Test
+public func testSpinBox() {
+    QApplication.create()
+    let spin = QSpinBox()
+    spin.setRange(0, 100)
+    @Assert(spin.minimum() == 0)
+    @Assert(spin.maximum() == 100)
+    spin.setValue(25)
+    @Assert(spin.value() == 25)
+    spin.setPrefix("$")
+    spin.setSuffix("元")
+    @Assert(spin.text().contains("$"))
+    spin.setSingleStep(5)
+    spin.delete()
+    QApplication.delete()
+}
+
+@Test
+public func testStackedWidget() {
+    QApplication.create()
+    let stack = QStackedWidget()
+    let p1 = QWidget()
+    let p2 = QWidget()
+    @Assert(stack.addWidget(p1) == 0)
+    @Assert(stack.addWidget(p2) == 1)
+    @Assert(stack.count() == 2)
+    stack.setCurrentIndex(1)
+    @Assert(stack.currentIndex() == 1)
+    stack.setCurrentIndex(0)
+    @Assert(stack.currentIndex() == 0)
+    stack.delete()
+    QApplication.delete()
+}
+
+@Test
+public func testToolBox() {
+    QApplication.create()
+    let box = QToolBox()
+    let p1 = QWidget()
+    let p2 = QWidget()
+    @Assert(box.addItem(p1, "tab1") == 0)
+    @Assert(box.addItem(p2, "tab2") == 1)
+    @Assert(box.count() == 2)
+    @Assert(box.itemText(0) == "tab1")
+    box.setItemText(1, "renamed")
+    @Assert(box.itemText(1) == "renamed")
+    box.setCurrentIndex(1)
+    @Assert(box.currentIndex() == 1)
+    box.delete()
+    QApplication.delete()
+}
+
+@Test
+public func testButtonGroup() {
+    QApplication.create()
+    let group = QButtonGroup()
+    @Assert(group.isExclusive())
+    let b1 = QCheckBox()
+    let b2 = QCheckBox()
+    group.addButton(b1, 1)
+    group.addButton(b2, 2)
+    b1.setChecked(true)
+    @Assert(group.checkedId() == 1)
+    group.setExclusive(false)
+    @Assert(!group.isExclusive())
+    b1.delete()
+    b2.delete()
+    group.delete()
+    QApplication.delete()
+}

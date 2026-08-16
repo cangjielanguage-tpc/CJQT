@@ -12,6 +12,7 @@ extern "C"
 }
 
 void run_core_tests();
+void run_core_new_tests();
 void run_gui_tests();
 void run_widgets_tests();
 
@@ -36,6 +37,7 @@ int main()
     nativeWidgetDelete(dummy);
 
     run_core_tests();
+    run_core_new_tests();
     run_gui_tests();
     run_widgets_tests();
 

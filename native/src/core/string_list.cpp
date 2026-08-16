@@ -1,4 +1,5 @@
 #include <QStringList>
+#include "native_string.h"
 
 extern "C"
 {
@@ -18,5 +19,29 @@ extern "C"
     {
         QStringList *instance = reinterpret_cast<QStringList *>(static_cast<uintptr_t>(ptr));
         instance->append(QString(data));
+    }
+
+    int nativeStringListCount(uintptr_t ptr)
+    {
+        QStringList *instance = reinterpret_cast<QStringList *>(static_cast<uintptr_t>(ptr));
+        return instance->size();
+    }
+
+    char *nativeStringListAt(uintptr_t ptr, int index)
+    {
+        QStringList *instance = reinterpret_cast<QStringList *>(static_cast<uintptr_t>(ptr));
+        return cjqt_to_cstring(instance->at(index));
+    }
+
+    bool nativeStringListIsEmpty(uintptr_t ptr)
+    {
+        QStringList *instance = reinterpret_cast<QStringList *>(static_cast<uintptr_t>(ptr));
+        return instance->isEmpty();
+    }
+
+    void nativeStringListClear(uintptr_t ptr)
+    {
+        QStringList *instance = reinterpret_cast<QStringList *>(static_cast<uintptr_t>(ptr));
+        instance->clear();
     }
 }

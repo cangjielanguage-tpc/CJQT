@@ -12,9 +12,9 @@
 
 | 分类 | 数量 |
 | :--- | :--- |
-| 已完成 | 29 |
+| 已完成 | 36 |
 | 进行中 | 29 |
-| 未移植 | 130+ |
+| 未移植 | 125+ |
 
 ## 常用控件
 
@@ -42,6 +42,13 @@
 - `QMainWindow` 主窗口控件
 - `QGraphicsView` / `QGraphicsScene` 图形视图/场景
 - `QPainter` 绘图（QtGui 类，封装于 widgets 包）
+- `QComboBox` 下拉选择框
+- `QSlider` 滑块控件
+- `QProgressBar` 进度条
+- `QSpinBox` 数字调节控件
+- `QStackedWidget` 堆叠布局控件
+- `QToolBox` 成列的 Tab 控件
+- `QButtonGroup` 按钮组合容器
 
 ### 进行中
 
@@ -57,16 +64,10 @@
 
 ### 未移植
 
-- `QComboBox` 下拉选择框
 - `QTimeEdit` / `QDateEdit` / `QDateTimeEdit` 时间日期编辑控件
-- `QProgressBar` 进度条
-- `QSlider` 滑块（仅封装抽象基类 `QAbstractSlider`）
 - `QSizeGrip` 视窗缩放控件
-- `QToolBox` 成列的 Tab 控件
 - `QToolButton` 快速访问按钮控件
-- `QButtonGroup` 按钮组合容器
-- `QStackedWidget` 堆叠布局控件
-- `QSpinBox` / `QDoubleSpinBox` 数字调节控件
+- `QDoubleSpinBox` 浮点数字调节控件
 - `QListWidget` / `QTableWidget` / `QTreeWidget` 项控件
 - `QCalendarWidget` / `QLCDNumber` / `QDial` 等
 
@@ -79,6 +80,7 @@ QWidgets:
 
 QAction                   ▓▓▓▓▓▓▓▓░░         QAbstractItemView        ▓▓▓▓▓▓░░░░
 QApplication              ▓▓▓▓▓▓▓▓░░         QBoxLayout               ▓▓▓▓▓▓░░░░
+QButtonGroup              ▓▓▓▓▓▓▓▓░░         QComboBox                ▓▓▓▓▓▓▓▓░░
 QDialog                   ▓▓▓▓▓▓░░░░         QDialogButtonBox         ▓▓▓▓▓▓░░░░
 QFileDialog               ▓▓▓▓▓▓░░░░         QFrame                   ▓▓▓▓▓▓▓▓▓░
 QGraphicsScene            ▓▓▓▓▓▓▓▓▓░         QGraphicsView            ▓▓▓▓▓▓▓▓▓░
@@ -86,12 +88,14 @@ QGridLayout               ▓▓▓▓▓▓▓░░░         QGroupBox      
 QHBoxLayout               ▓▓▓▓▓▓░░░░         QLineEdit                ▓▓▓▓▓▓▓▓▓░
 QMainWindow               ▓▓▓▓▓▓▓░░░         QMenu                    ▓▓▓▓▓▓▓░░░
 QMenuBar                  ▓▓▓▓▓▓▓░░░         QPainter                 ▓▓▓▓▓▓▓▓▓░
-QScrollArea               ▓▓▓▓▓▓▓░░░         QScrollBar               ▓▓▓▓▓▓░░░░
-QSplitter                 ▓▓▓▓▓▓▓▓▓░         QSplitterHandle          ▓▓▓▓▓▓░░░░
+QProgressBar              ▓▓▓▓▓▓▓▓░░         QScrollArea              ▓▓▓▓▓▓▓░░░
+QScrollBar                ▓▓▓▓▓▓░░░░         QSlider                  ▓▓▓▓▓▓▓▓░░
+QSpinBox                  ▓▓▓▓▓▓▓▓░░         QSplitter                ▓▓▓▓▓▓▓▓▓░
+QSplitterHandle           ▓▓▓▓▓▓░░░░         QStackedWidget           ▓▓▓▓▓▓▓▓░░
 QStatusBar                ▓▓▓▓▓▓▓░░░         QTabBar                  ▓▓▓▓▓▓▓▓▓░
 QTabWidget                ▓▓▓▓▓▓▓▓▓░         QTextEdit                ▓▓▓▓▓▓▓▓░░
-QToolBar                  ▓▓▓▓▓▓▓░░░         QVBoxLayout              ▓▓▓▓▓▓░░░░
-QWidget                   ▓▓▓▓▓▓▓▓▓░
+QToolBar                  ▓▓▓▓▓▓▓░░░         QToolBox                 ▓▓▓▓▓▓▓▓░░
+QVBoxLayout               ▓▓▓▓▓▓░░░░         QWidget                  ▓▓▓▓▓▓▓▓▓░
 ```
 
 ### 进行中
@@ -124,9 +128,9 @@ QTreeView                 ▓▓▓░░░░░░░
 QWidgets:
 
 QAbstractButton           ░░░░░░░░░░         QAbstractSpinBox          ░░░░░░░░░░
-QButtonGroup              ░░░░░░░░░░         QCalendarWidget           ░░░░░░░░░░
+QCalendarWidget           ░░░░░░░░░░         QColorDialog              ░░░░░░░░░░
 QColorDialog              ░░░░░░░░░░         QColumnView               ░░░░░░░░░░
-QComboBox                 ░░░░░░░░░░         QCommandLinkButton        ░░░░░░░░░░
+QCommandLinkButton        ░░░░░░░░░░         QDateEdit                 ░░░░░░░░░░
 QDateEdit                 ░░░░░░░░░░         QDateTimeEdit             ░░░░░░░░░░
 QDial                     ░░░░░░░░░░         QDoubleSpinBox            ░░░░░░░░░░
 QErrorMessage             ░░░░░░░░░░         QFileIconProvider         ░░░░░░░░░░
@@ -142,18 +146,18 @@ QInputDialog              ░░░░░░░░░░         QItemDelegate  
 QItemEditorFactory        ░░░░░░░░░░         QLCDNumber                ░░░░░░░░░░
 QListWidget               ░░░░░░░░░░         QListWidgetItem           ░░░░░░░░░░
 QMdiSubWindow             ░░░░░░░░░░         QOpenGLWidget             ░░░░░░░░░░
-QPlainTextEdit            ░░░░░░░░░░         QProgressBar              ░░░░░░░░░░
+QPlainTextEdit            ░░░░░░░░░░         QProgressDialog           ░░░░░░░░░░
 QProgressDialog           ░░░░░░░░░░         QRubberBand               ░░░░░░░░░░
 QScroller                 ░░░░░░░░░░         QShortcut                 ░░░░░░░░░░
 QSizeGrip                 ░░░░░░░░░░         QSizePolicy               ░░░░░░░░░░
-QSlider                   ░░░░░░░░░░         QSpacerItem               ░░░░░░░░░░
-QSpinBox                  ░░░░░░░░░░         QSplashScreen             ░░░░░░░░░░
-QStackedLayout            ░░░░░░░░░░         QStackedWidget            ░░░░░░░░░░
+QSpacerItem               ░░░░░░░░░░         QSplashScreen             ░░░░░░░░░░
+QSplashScreen             ░░░░░░░░░░         QStackedLayout            ░░░░░░░░░░
+QStackedLayout            ░░░░░░░░░░         QStyle                    ░░░░░░░░░░
 QStyle                    ░░░░░░░░░░         QStyleFactory             ░░░░░░░░░░
 QStyleOption*             ░░░░░░░░░░         QSystemTrayIcon           ░░░░░░░░░░
 QTableWidget              ░░░░░░░░░░         QTableWidgetItem          ░░░░░░░░░░
 QTextBrowser              ░░░░░░░░░░         QTimeEdit                 ░░░░░░░░░░
-QToolBox                  ░░░░░░░░░░         QToolButton               ░░░░░░░░░░
+QToolButton               ░░░░░░░░░░         QToolTip                  ░░░░░░░░░░
 QToolTip                  ░░░░░░░░░░         QTreeWidget               ░░░░░░░░░░
 QTreeWidgetItem           ░░░░░░░░░░         QUndoCommand              ░░░░░░░░░░
 QUndoStack                ░░░░░░░░░░         QWizard                   ░░░░░░░░░░
@@ -165,4 +169,4 @@ QWizardPage               ░░░░░░░░░░         QWidgetAction  
 - 信号封装：`QWidgetSignal<T>`（`signal.cj`）提供通用信号连接框架，`QLineEdit`、`QPushButton`、`QGroupBox`、`QDialogButtonBox`、`QAbstractItemView`、`QAction` 等均基于其派生具体信号。
 - 事件回调映射：`QWidgetCallbackMap`（`widget_callback_map.cj`）与 `QGraphicsSceneCallbackMap`（`graphics_scene_callback_map.cj`）管理各组件事件回调。
 - `QAbstractScrollArea`/`QAbstractItemView`/`QAbstractSlider` 等抽象基类已封装，为 `QScrollArea`/`QListView`、`QTableView`、`QTreeView`、`QScrollBar` 等提供继承基础。
-- 未移植类中，`QSlider` 仅有抽象基类 `QAbstractSlider`，具体控件待封装；`QProgressBar`、`QComboBox`、`QStackedWidget`、`QToolBox`、`QSpinBox` 等为后续 RoadMap 重点。
+- 高频控件（`QComboBox`、`QSlider`、`QProgressBar`、`QSpinBox`、`QStackedWidget`、`QToolBox`、`QButtonGroup`）已新增封装。未移植类中，`QTimeEdit`/`QDateEdit`/`QDateTimeEdit`、`QDoubleSpinBox`、`QToolButton`、`QListWidget`/`QTableWidget`/`QTreeWidget` 等为后续 RoadMap 重点。

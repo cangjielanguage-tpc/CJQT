@@ -1,6 +1,7 @@
 package cjqt.gui
 
-import cjqt.core.QVariant
+import cjqt.core.*
+import cjqt.widgets.*
 import std.unittest.*
 
 @Test
@@ -113,4 +114,91 @@ public func testVariantFromGui() {
     let v = QVariant("gui test")
     @Assert(v.toString() == "gui test")
     v.delete()
+}
+
+@Test
+public func testQImage() {
+    QApplication.create()
+    let image = QImage(100, 80, QImageFormat.Format_RGB32)
+    @Assert(!image.isNull())
+    @Assert(image.width() == 100)
+    @Assert(image.height() == 80)
+    image.fill(QColor.White)
+    image.setPixelColor(10, 10, QColor(255, 0, 0))
+    let c = image.pixelColor(10, 10)
+    @Assert(c.rgba() == QColor(255, 0, 0).rgba())
+    @Assert(image.save("/tmp/cjqt_ut_image.png"))
+    let loaded = QImage("/tmp/cjqt_ut_image.png")
+    @Assert(!loaded.isNull())
+    @Assert(loaded.width() == 100)
+    loaded.delete()
+    image.delete()
+    QApplication.delete()
+}
+
+@Test
+public func testQPainterPath() {
+    let path = QPainterPath()
+    @Assert(path.isEmpty())
+    path.moveTo(0.0, 0.0)
+    path.lineTo(10.0, 0.0)
+    path.lineTo(10.0, 10.0)
+    path.closeSubpath()
+    @Assert(!path.isEmpty())
+    @Assert(path.contains(5.0, 5.0))
+    @Assert(!path.contains(20.0, 20.0))
+    @Assert(path.elementCount() >= 4)
+    path.delete()
+}
+
+@Test
+public func testQFontMetrics() {
+    QApplication.create()
+    let dummy = QWidget()
+    dummy.delete()
+    let font = QFont()
+    font.setPointSize(12)
+    let metrics = QFontMetrics(font)
+    @Assert(metrics.height() > 0)
+    @Assert(metrics.ascent() > 0)
+    @Assert(metrics.width("hello") > 0)
+    metrics.delete()
+    font.delete()
+    QApplication.delete()
+}
+
+@Test
+public func testQIntValidator() {
+    let validator = QIntValidator(0, 100)
+    @Assert(validator.bottom() == 0)
+    @Assert(validator.top() == 100)
+    @Assert(validator.validate("50").value() == QValidatorState.Acceptable.value())
+    @Assert(validator.validate("150").value() == QValidatorState.Intermediate.value())
+    @Assert(validator.validate("abc").value() == QValidatorState.Invalid.value())
+    validator.setRange(-10, 10)
+    @Assert(validator.bottom() == -10)
+    validator.delete()
+}
+
+@Test
+public func testQKeySequence() {
+    let seq = QKeySequence("Ctrl+C")
+    @Assert(!seq.isEmpty())
+    @Assert(seq.count() == 1)
+    @Assert(seq.toString().contains("Ctrl"))
+    seq.delete()
+}
+
+@Test
+public func testQCursor() {
+    QApplication.create()
+    let dummy = QWidget()
+    dummy.delete()
+    let cursor = QCursor()
+    @Assert(cursor.shape().value() == CursorShape.ArrowCursor.value())
+    let hand = QCursor(CursorShape.PointingHandCursor)
+    @Assert(hand.shape().value() == CursorShape.PointingHandCursor.value())
+    hand.delete()
+    cursor.delete()
+    QApplication.delete()
 }

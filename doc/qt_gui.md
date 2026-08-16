@@ -14,20 +14,23 @@
 
 | 分类 | 数量 |
 | :--- | :--- |
-| 已完成 | 9 |
+| 已完成 | 16 |
 | 进行中 | 22 |
-| 未移植 | 80+ |
+| 未移植 | 75+ |
 
 ## 已完成
 
 ```
 QGui:
 
-QBrush                    ▓▓▓▓▓▓▓░░░         QColor                    ▓▓▓▓▓▓▓▓░░
+QBrush                    ▓▓▓▓▓▓▓░░░         QClipboard                ▓▓▓▓▓▓▓▓▓░
+QColor                    ▓▓▓▓▓▓▓▓░░         QCursor                   ▓▓▓▓▓▓▓▓░░
 QDoubleValidator          ▓▓▓▓▓▓▓▓▓░         QFont                     ▓▓▓▓▓▓▓░░░
-QPainter                  ▓▓▓▓▓▓▓▓▓░         QPalette                  ▓▓▓▓▓▓▓░░░
-QPen                      ▓▓▓▓▓▓▓░░░         QPixmap                   ▓▓▓▓▓▓▓░░░
-QStandardItemModel        ▓▓▓▓▓▓▓▓░░
+QFontMetrics              ▓▓▓▓▓▓▓▓░░         QImage                    ▓▓▓▓▓▓▓▓░░
+QIntValidator             ▓▓▓▓▓▓▓▓░░         QKeySequence              ▓▓▓▓▓▓▓▓░░
+QPainter                  ▓▓▓▓▓▓▓▓▓░         QPainterPath              ▓▓▓▓▓▓▓▓░░
+QPalette                  ▓▓▓▓▓▓▓░░░         QPen                      ▓▓▓▓▓▓▓░░░
+QPixmap                   ▓▓▓▓▓▓▓░░░         QStandardItemModel        ▓▓▓▓▓▓▓▓░░
 ```
 
 ## 进行中
@@ -57,29 +60,29 @@ QGui:
 
 QAbstractTextDocumentLayout ░░░░░░░░░░      QAccessible               ░░░░░░░░░░
 QBackingStore             ░░░░░░░░░░         QBitmap                   ░░░░░░░░░░
-QClipboard                ░░░░░░░░░░         QCloseEvent               ░░░░░░░░░░
+QCloseEvent               ░░░░░░░░░░         QColorSpace               ░░░░░░░░░░
 QColorSpace               ░░░░░░░░░░         QColorTransform           ░░░░░░░░░░
-QCursor                   ░░░░░░░░░░         QDesktopServices          ░░░░░░░░░░
+QDesktopServices          ░░░░░░░░░░         QDrag                     ░░░░░░░░░░
 QDrag                     ░░░░░░░░░░         QDragEnterEvent           ░░░░░░░░░░
 QDragLeaveEvent           ░░░░░░░░░░         QDragMoveEvent            ░░░░░░░░░░
 QDropEvent                ░░░░░░░░░░         QEnterEvent               ░░░░░░░░░░
 QEventPoint               ░░░░░░░░░░         QExposeEvent              ░░░░░░░░░░
 QFileOpenEvent            ░░░░░░░░░░         QFileSystemModel          ░░░░░░░░░░
 QFontDatabase             ░░░░░░░░░░         QFontInfo                 ░░░░░░░░░░
-QFontMetrics              ░░░░░░░░░░         QFontMetricsF             ░░░░░░░░░░
+QFontMetricsF             ░░░░░░░░░░         QGenericMatrix            ░░░░░░░░░░
 QGenericMatrix            ░░░░░░░░░░         QGlyphRun                 ░░░░░░░░░░
 QHelpEvent                ░░░░░░░░░░         QHoverEvent               ░░░░░░░░░░
-QIconEngine               ░░░░░░░░░░         QImage                    ░░░░░░░░░░
+QIconEngine               ░░░░░░░░░░         QImageReader              ░░░░░░░░░░
 QImageReader              ░░░░░░░░░░         QImageWriter              ░░░░░░░░░░
 QInputMethod              ░░░░░░░░░░         QInputMethodQueryEvent    ░░░░░░░░░░
-QIntValidator             ░░░░░░░░░░         QKeySequence              ░░░░░░░░░░
+QMoveEvent                ░░░░░░░░░░         QMovie                    ░░░░░░░░░░
 QMoveEvent                ░░░░░░░░░░         QMovie                    ░░░░░░░░░░
 QNativeGestureEvent       ░░░░░░░░░░         QOffscreenSurface         ░░░░░░░░░░
 QOpenGLContext            ░░░░░░░░░░         QOpenGLFunctions          ░░░░░░░░░░
 QOpenGLTexture            ░░░░░░░░░░         QPageLayout               ░░░░░░░░░░
 QPageSize                 ░░░░░░░░░░         QPagedPaintDevice         ░░░░░░░░░░
 QPaintEngine              ░░░░░░░░░░         QPaintEngineState         ░░░░░░░░░░
-QPainterPath              ░░░░░░░░░░         QPainterPathStroker       ░░░░░░░░░░
+QPainterPathStroker       ░░░░░░░░░░         QPdfWriter                ░░░░░░░░░░
 QPdfWriter                ░░░░░░░░░░         QPicture                  ░░░░░░░░░░
 QPixelFormat              ░░░░░░░░░░         QPixmapCache              ░░░░░░░░░░
 QPointerEvent             ░░░░░░░░░░         QPointingDevice           ░░░░░░░░░░

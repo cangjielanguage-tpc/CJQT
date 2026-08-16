@@ -82,6 +82,8 @@ set (SRC_DIR ./src/widgets/application.cpp
         ./src/widgets/dock_widget.cpp
         ./src/widgets/tree_view.cpp
         ./src/widgets/mdi_area.cpp
+        ./src/widgets/widgets_controls.cpp
+        ./src/widgets/widgets_containers.cpp
         ./src/core/url.cpp
         ./src/core/timer.cpp
         ./src/core/rect.cpp
@@ -98,6 +100,17 @@ set (SRC_DIR ./src/widgets/application.cpp
         ./src/core/abstract_list_model.cpp
         ./src/core/string_list.cpp
         ./src/core/string_list_model.cpp
+        ./src/core/file.cpp
+        ./src/core/date_time.cpp
+        ./src/core/utility.cpp
+        ./src/core/regex_uuid.cpp
+        ./src/core/process_settings.cpp
+        ./src/core/misc.cpp
+        ./src/core/bytearray_stream.cpp
+        ./src/core/json.cpp
+        ./src/core/thread_watch.cpp
+        ./src/core/query_random.cpp
+        ./src/core/hash_loop_iterator.cpp
         ./src/core/model_index.cpp
         ./src/core/variant.cpp
         ./src/core/item_selection_model.cpp
@@ -105,6 +118,8 @@ set (SRC_DIR ./src/widgets/application.cpp
         ./src/gui/key_event.cpp
         ./src/gui/painter_event.cpp
         ./src/gui/painter.cpp
+        ./src/gui/drawing.cpp
+        ./src/gui/gui_misc.cpp
         ./src/gui/pen.cpp
         ./src/gui/color.cpp
         ./src/gui/brush.cpp
