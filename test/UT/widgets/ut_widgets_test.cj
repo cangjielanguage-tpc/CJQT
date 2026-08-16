@@ -660,3 +660,46 @@ public func testTreeWidget() {
     @Assert(tree.topLevelItemCount() == 0)
     tree.delete()
 }
+
+@Test
+public func testSplashScreen() {
+    QApplication.create()
+    let pixmap = QPixmap(200, 100)
+    let splash = QSplashScreen(pixmap)
+    splash.showMessage("loading...")
+    splash.clearMessage()
+    splash.delete()
+    pixmap.delete()
+}
+
+@Test
+public func testProgressDialog() {
+    QApplication.create()
+    let dialog = QProgressDialog("working", "cancel", 0, 100)
+    @Assert(dialog.minimum() == 0)
+    @Assert(dialog.maximum() == 100)
+    dialog.setValue(50)
+    @Assert(dialog.value() == 50)
+    dialog.setLabelText("half done")
+    @Assert(dialog.labelText() == "half done")
+    @Assert(!dialog.wasCanceled())
+    dialog.delete()
+}
+
+@Test
+public func testTextBrowser() {
+    QApplication.create()
+    let browser = QTextBrowser()
+    browser.setHtml("<b>hello browser</b>")
+    @Assert(browser.toPlainText().contains("hello browser"))
+    browser.setText("plain text")
+    @Assert(browser.toPlainText() == "plain text")
+    browser.delete()
+}
+
+@Test
+public func testItemDelegate() {
+    QApplication.create()
+    let delegate = QItemDelegate()
+    delegate.delete()
+}

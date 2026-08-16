@@ -12,9 +12,9 @@
 
 | 分类 | 数量 |
 | :--- | :--- |
-| 已完成 | 51 |
+| 已完成 | 55 |
 | 进行中 | 29 |
-| 未移植 | 110+ |
+| 未移植 | 106+ |
 
 ## 常用控件
 
@@ -60,6 +60,10 @@
 - `QCalendarWidget` 日历控件
 - `QInputDialog` 输入对话框
 - `QListWidget` / `QTableWidget` / `QTreeWidget` 项视图控件
+- `QSplashScreen` 启动画面
+- `QProgressDialog` 进度对话框
+- `QTextBrowser` 富文本浏览器
+- `QItemDelegate` 项委托
 
 ### 进行中
 
@@ -104,8 +108,11 @@ QDial                     ▓▓▓▓▓▓▓▓░░         QDoubleSpinBox 
 QFormLayout               ▓▓▓▓▓▓▓▓░░         QInputDialog              ▓▓▓▓▓▓▓▓░░
 QLCDNumber                ▓▓▓▓▓▓▓▓░░         QListWidget               ▓▓▓▓▓▓▓▓░░
 QTableWidget              ▓▓▓▓▓▓▓▓░░         QTreeWidget               ▓▓▓▓▓▓▓▓░░
-QPlainTextEdit            ▓▓▓▓▓▓▓▓░░         QTabWidget               ▓▓▓▓▓▓▓▓▓░
-QTextEdit                 ▓▓▓▓▓▓▓▓░░         QTimeEdit                ▓▓▓▓▓▓▓▓░░
+QItemDelegate             ▓▓▓▓▓▓▓▓░░         QPlainTextEdit            ▓▓▓▓▓▓▓▓░░
+QProgressDialog           ▓▓▓▓▓▓▓▓░░         QSplashScreen             ▓▓▓▓▓▓▓▓░░
+QTabWidget                ▓▓▓▓▓▓▓▓▓░
+QTextBrowser              ▓▓▓▓▓▓▓▓░░         QTextEdit                 ▓▓▓▓▓▓▓▓░░
+QTimeEdit                 ▓▓▓▓▓▓▓▓░░
 QToolBar                  ▓▓▓▓▓▓▓░░░         QToolBox                 ▓▓▓▓▓▓▓▓░░
 QToolButton               ▓▓▓▓▓▓▓▓░░         QVBoxLayout              ▓▓▓▓▓▓░░░░
 QWidget                   ▓▓▓▓▓▓▓▓▓░
