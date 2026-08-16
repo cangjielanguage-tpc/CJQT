@@ -314,3 +314,53 @@ public func testQDrag() {
     drag.delete()
     dummy.delete()
 }
+
+@Test
+public func testQImageReaderWriter() {
+    QApplication.create()
+    let dummy = QWidget()
+    dummy.delete()
+    let path = "/tmp/cjqt_ut_io.png"
+    let image = QImage(64, 48, QImageFormat.Format_RGB32)
+    image.fill(QColor(10, 200, 30))
+    let writer = QImageWriter(path)
+    writer.setFormat("png")
+    @Assert(writer.canWrite())
+    @Assert(writer.write(image))
+    @Assert(writer.errorString().size >= 0)
+    writer.delete()
+    image.delete()
+
+    let reader = QImageReader(path)
+    @Assert(reader.canRead())
+    @Assert(reader.width() == 64)
+    @Assert(reader.height() == 48)
+    let loaded = reader.read()
+    @Assert(!loaded.isNull())
+    @Assert(loaded.width() == 64)
+    loaded.delete()
+    reader.delete()
+    QFile.removePath(path)
+}
+
+@Test
+public func testQVersionNumber() {
+    let v = QVersionNumber(1, 2, 3)
+    @Assert(v.majorVersion() == 1)
+    @Assert(v.minorVersion() == 2)
+    @Assert(v.patchVersion() == 3)
+    @Assert(v.toString() == "1.2.3")
+    @Assert(!v.isNull())
+    v.delete()
+    let parsed = QVersionNumber.fromString("10.20.30")
+    @Assert(parsed.majorVersion() == 10)
+    @Assert(parsed.minorVersion() == 20)
+    parsed.delete()
+}
+
+@Test
+public func testQMimeType() {
+    let mime = QMimeType()
+    @Assert(!mime.isValid())
+    mime.delete()
+}

@@ -12,7 +12,7 @@
 
 | 分类 | 数量 |
 | :--- | :--- |
-| 已完成 | 50 |
+| 已完成 | 52 |
 | 进行中 | 12 |
 | 未移植 | 200+ |
 
@@ -33,6 +33,7 @@ QJsonDocument             ▓▓▓▓▓▓▓▓░░         QJsonObject    
 QJsonValue                ▓▓▓▓▓▓▓▓░░         QLibrary                  ▓▓▓▓▓▓▓▓░░
 QLibraryInfo              ▓▓▓▓▓▓▓▓░░         QLocale                   ▓▓▓▓▓▓▓▓░░
 QMargins                  ▓▓▓▓▓▓▓▓▓░         QMimeData                 ▓▓▓▓▓▓▓▓░░
+QMimeType                 ▓▓▓▓▓▓▓▓░░
 QModelIndex               ▓▓▓▓▓▓▓▓░░         QMutex                    ▓▓▓▓▓▓▓▓░░
 QPersistentModelIndex     ▓▓▓▓▓▓▓▓░░         QPointF                   ▓▓▓▓▓▓▓▓▓░
 QProcess                  ▓▓▓▓▓▓▓▓░░         QProcessEnvironment       ▓▓▓▓▓▓▓▓░░
@@ -46,7 +47,7 @@ QThread                   ▓▓▓▓▓▓▓▓░░         QTime          
 QTimeZone                 ▓▓▓▓▓▓▓▓░░         QTimer                    ▓▓▓▓▓▓▓▓░░
 QTranslator               ▓▓▓▓▓▓▓▓░░         QUrl                      ▓▓▓▓▓▓▓▓░░
 QUrlQuery                 ▓▓▓▓▓▓▓▓░░         QUuid                     ▓▓▓▓▓▓▓▓░░
-QVariant                  ▓▓▓▓▓▓▓▓░░
+QVariant                  ▓▓▓▓▓▓▓▓░░         QVersionNumber            ▓▓▓▓▓▓▓▓░░
 ```
 
 ## 进行中
@@ -106,7 +107,7 @@ QTextBoundaryFinder       ░░░░░░░░░░         QTimeLine      
 QTimeZone                 ░░░░░░░░░░         QTimerEvent              ░░░░░░░░░░
 QTranslator               ░░░░░░░░░░         QTransposeProxyModel     ░░░░░░░░░░
 QVariantAnimation         ░░░░░░░░░░         QVector                  ░░░░░░░░░░
-QVersionNumber            ░░░░░░░░░░         QWaitCondition           ░░░░░░░░░░
+         QWaitCondition           ░░░░░░░░░░
 QWeakPointer              ░░░░░░░░░░         QXmlStreamReader         ░░░░░░░░░░
 QXmlStreamWriter          ░░░░░░░░░░         QXmlStreamAttribute      ░░░░░░░░░░
 ```
