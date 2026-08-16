@@ -119,6 +119,7 @@ set (SRC_DIR ./src/widgets/application.cpp
         ./src/core/hash_loop_iterator.cpp
         ./src/core/core_more.cpp
         ./src/core/version_mime.cpp
+        ./src/core/proxy_model.cpp
         ./src/core/model_index.cpp
         ./src/core/variant.cpp
         ./src/core/item_selection_model.cpp
@@ -134,6 +135,7 @@ set (SRC_DIR ./src/widgets/application.cpp
         ./src/gui/image_io.cpp
         ./src/gui/drag_events.cpp
         ./src/gui/font_metrics_f_region.cpp
+        ./src/gui/text_format_stroker.cpp
         ./src/gui/pen.cpp
         ./src/gui/color.cpp
         ./src/gui/brush.cpp

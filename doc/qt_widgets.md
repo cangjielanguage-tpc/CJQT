@@ -12,9 +12,9 @@
 
 | 分类 | 数量 |
 | :--- | :--- |
-| 已完成 | 60 |
+| 已完成 | 61 |
 | 进行中 | 29 |
-| 未移植 | 101+ |
+| 未移植 | 100+ |
 
 ## 常用控件
 
@@ -144,6 +144,7 @@ QHeaderView               ▓▓▓▓░░░░░░         QLabel         
 QLayout                   ▓▓▓░░░░░░░         QListView                ▓▓▓░░░░░░░
 QMdiArea                  ▓▓▓░░░░░░░         QMessageBox              ▓▓▓▓▓░░░░░
 QPushButton               ▓▓▓▓▓░░░░░         QRadioButton             ▓▓▓▓▓░░░░░
+QSizePolicy               ▓▓▓▓▓▓▓▓░░
 QRubberBand               ▓▓▓▓▓▓▓▓░░         QShortcut                ▓▓▓▓▓▓▓▓░░
 QStyledItemDelegate       ▓▓▓▓░░░░░░         QTableView               ▓▓▓▓░░░░░░
 QTreeView                 ▓▓▓░░░░░░░

@@ -763,3 +763,10 @@ public func testShortcut() {
     shortcut.delete()
     parent.delete()
 }
+
+@Test
+public func testQSizePolicy() {
+    let policy = QSizePolicy(QSizePolicyPolicy.Expanding, QSizePolicyPolicy.Fixed)
+    @Assert(policy.horizontal().value() == QSizePolicyPolicy.Expanding.value())
+    @Assert(policy.vertical().value() == QSizePolicyPolicy.Fixed.value())
+}

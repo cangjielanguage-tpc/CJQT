@@ -413,3 +413,30 @@ public func testQRegion() {
     @Assert(empty.isEmpty())
     empty.delete()
 }
+
+@Test
+public func testQTextFormat() {
+    let format = QTextFormat()
+    @Assert(format.isEmpty())
+    @Assert(!format.isValid())
+    format.setFontPointSize(14.0)
+    @Assert(format.fontPointSize() == 14.0)
+    format.setProperty(1, "custom")
+    @Assert(format.stringProperty(1) == "custom")
+    format.delete()
+}
+
+@Test
+public func testQPainterPathStroker() {
+    let stroker = QPainterPathStroker()
+    stroker.setWidth(5.0)
+    @Assert(stroker.width() == 5.0)
+    let path = QPainterPath()
+    path.moveTo(0.0, 0.0)
+    path.lineTo(10.0, 10.0)
+    let stroke = stroker.createStroke(path)
+    @Assert(!stroke.isEmpty())
+    stroke.delete()
+    path.delete()
+    stroker.delete()
+}

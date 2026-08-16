@@ -818,3 +818,15 @@ public func testQPersistentModelIndex() {
     @Assert(!index.isValid())
     index.delete()
 }
+
+@Test
+public func testQSortFilterProxyModel() {
+    let proxy = QSortFilterProxyModel()
+    proxy.setFilterKeyColumn(0)
+    @Assert(proxy.filterKeyColumn() == 0)
+    proxy.setDynamicSortFilter(true)
+    proxy.setSortRole(0)
+    @Assert(proxy.sortRole() == 0)
+    proxy.sort(0, QSortOrder.AscendingOrder)
+    proxy.delete()
+}
