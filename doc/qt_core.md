@@ -12,7 +12,7 @@
 
 | 分类 | 数量 |
 | :--- | :--- |
-| 已完成 | 55 |
+| 已完成 | 57 |
 | 进行中 | 11 |
 | 未移植 | 200+ |
 
@@ -37,7 +37,8 @@ QMimeType                 ▓▓▓▓▓▓▓▓░░
 QModelIndex               ▓▓▓▓▓▓▓▓░░         QMutex                    ▓▓▓▓▓▓▓▓░░
 QPersistentModelIndex     ▓▓▓▓▓▓▓▓░░         QPointF                   ▓▓▓▓▓▓▓▓▓░
 QProcess                  ▓▓▓▓▓▓▓▓░░         QProcessEnvironment       ▓▓▓▓▓▓▓▓░░
-QRandomGenerator          ▓▓▓▓▓▓▓▓░░         QRegularExpression        ▓▓▓▓▓▓▓▓░░
+QItemSelection            ▓▓▓▓▓▓▓▓░░         QRandomGenerator          ▓▓▓▓▓▓▓▓░░
+QRandomGenerator64         ▓▓▓▓▓▓▓▓░░         QRegularExpression        ▓▓▓▓▓▓▓▓░░
 QRegularExpressionMatch   ▓▓▓▓▓▓▓▓░░         QSaveFile                 ▓▓▓▓▓▓▓▓░░
 QSemaphore                ▓▓▓▓▓▓▓▓░░         QSettings                 ▓▓▓▓▓▓▓▓░░
 QAbstractTableModel       ▓▓▓▓▓▓▓▓░░         QIODevice                 ▓▓▓▓▓▓▓▓░░

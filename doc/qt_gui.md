@@ -14,9 +14,9 @@
 
 | 分类 | 数量 |
 | :--- | :--- |
-| 已完成 | 41 |
+| 已完成 | 42 |
 | 进行中 | 22 |
-| 未移植 | 50+ |
+| 未移植 | 49+ |
 
 ## 已完成
 
@@ -37,6 +37,7 @@ QCloseEvent               ▓▓▓▓▓▓▓▓░░         QDrag          
 QDragEnterEvent           ▓▓▓▓▓▓▓▓░░         QDragLeaveEvent           ▓▓▓▓▓▓▓▓░░
 QDragMoveEvent            ▓▓▓▓▓▓▓▓░░         QDropEvent                ▓▓▓▓▓▓▓▓░░
 QHoverEvent               ▓▓▓▓▓▓▓▓░░         QImageReader              ▓▓▓▓▓▓▓▓░░
+QInputMethod              ▓▓▓▓▓▓▓▓░░
 QImageWriter              ▓▓▓▓▓▓▓▓░░         QMoveEvent                ▓▓▓▓▓▓▓▓░░
 QResizeEvent              ▓▓▓▓▓▓▓▓░░         QShowEvent                ▓▓▓▓▓▓▓▓░░
 QTextDocument             ▓▓▓▓▓▓▓▓░░

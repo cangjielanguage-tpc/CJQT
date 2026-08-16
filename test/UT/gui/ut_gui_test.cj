@@ -455,3 +455,13 @@ public func testQTextBlock() {
     third.delete()
     doc.delete()
 }
+
+@Test
+public func testQInputMethod() {
+    QApplication.create()
+    let dummy = QWidget()
+    dummy.delete()
+    @Assert(QInputMethod.cursorRectangleX() >= -1)
+    QInputMethod.setVisible(false)
+    @Assert(!QInputMethod.isVisible())
+}

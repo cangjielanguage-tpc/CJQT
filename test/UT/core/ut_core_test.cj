@@ -844,3 +844,19 @@ public func testQIODevice() {
     device.delete()
 }
 
+
+@Test
+public func testQRandomGenerator64() {
+    let gen = QRandomGenerator64()
+    let v = gen.generate64()
+    @Assert(v != 0)
+    gen.delete()
+}
+
+@Test
+public func testQItemSelection() {
+    let selection = QItemSelection()
+    @Assert(selection.isEmpty())
+    @Assert(selection.count() == 0)
+    selection.delete()
+}

@@ -124,6 +124,7 @@ set (SRC_DIR ./src/widgets/application.cpp
         ./src/core/proxy_model.cpp
         ./src/core/abstract_table_model.cpp
         ./src/core/io_device.cpp
+        ./src/core/random64_selection.cpp
         ./src/core/model_index.cpp
         ./src/core/variant.cpp
         ./src/core/item_selection_model.cpp
@@ -141,6 +142,7 @@ set (SRC_DIR ./src/widgets/application.cpp
         ./src/gui/font_metrics_f_region.cpp
         ./src/gui/text_format_stroker.cpp
         ./src/gui/text_block.cpp
+        ./src/gui/input_method.cpp
         ./src/gui/pen.cpp
         ./src/gui/color.cpp
         ./src/gui/brush.cpp
