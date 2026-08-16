@@ -493,3 +493,35 @@ public func testQTextLayout() {
     @Assert(layout.text() == "changed")
     layout.delete()
 }
+
+@Test
+public func testQTextCharFormat() {
+    let format = QTextCharFormat()
+    format.setFontWeight(700)
+    @Assert(format.fontWeight() == 700)
+    format.setFontItalic(true)
+    @Assert(format.fontItalic())
+    format.setFontUnderline(true)
+    @Assert(format.fontUnderline())
+    format.setFontPointSize(16.0)
+    @Assert(format.fontPointSize() == 16.0)
+    format.delete()
+}
+
+@Test
+public func testQTextBlockFormat() {
+    let format = QTextBlockFormat()
+    format.setTopMargin(10.0)
+    @Assert(format.topMargin() == 10.0)
+    format.setAlignment(1)
+    @Assert(format.alignment() == 1)
+    format.delete()
+}
+
+@Test
+public func testQTextDocumentFragment() {
+    let fragment = QTextDocumentFragment("fragment text")
+    @Assert(fragment.toPlainText() == "fragment text")
+    @Assert(fragment.toHtml().contains("fragment text"))
+    fragment.delete()
+}

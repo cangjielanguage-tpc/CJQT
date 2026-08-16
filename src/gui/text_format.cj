@@ -11,7 +11,7 @@ foreign func nativeTextFormatStringProperty(ptr: Int64, propertyId: Int32): CStr
 foreign func nativeTextFormatSetFontPointSize(ptr: Int64, size: Float64): Unit
 foreign func nativeTextFormatFontPointSize(ptr: Int64): Float64
 
-public class QTextFormat {
+public open class QTextFormat {
     public let ptr: Int64
 
     public init(ptr: Int64) {
@@ -22,7 +22,7 @@ public class QTextFormat {
         this.ptr = unsafe { nativeTextFormatCreate() }
     }
 
-    public func delete(): Unit {
+    public open func delete(): Unit {
         unsafe { nativeTextFormatDelete(ptr) }
     }
 
@@ -56,11 +56,11 @@ public class QTextFormat {
         }
     }
 
-    public func setFontPointSize(size: Float64) {
+    public open func setFontPointSize(size: Float64) {
         unsafe { nativeTextFormatSetFontPointSize(ptr, size) }
     }
 
-    public func fontPointSize(): Float64 {
+    public open func fontPointSize(): Float64 {
         return unsafe { nativeTextFormatFontPointSize(ptr) }
     }
 }
