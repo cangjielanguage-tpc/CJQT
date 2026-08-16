@@ -89,6 +89,7 @@ set (SRC_DIR ./src/widgets/application.cpp
         ./src/widgets/item_views.cpp
         ./src/widgets/widgets_misc.cpp
         ./src/widgets/tray_tooltip.cpp
+        ./src/widgets/layout_shortcut.cpp
         ./src/core/url.cpp
         ./src/core/timer.cpp
         ./src/core/rect.cpp
@@ -132,6 +133,7 @@ set (SRC_DIR ./src/widgets/application.cpp
         ./src/gui/gui_events.cpp
         ./src/gui/image_io.cpp
         ./src/gui/drag_events.cpp
+        ./src/gui/font_metrics_f_region.cpp
         ./src/gui/pen.cpp
         ./src/gui/color.cpp
         ./src/gui/brush.cpp

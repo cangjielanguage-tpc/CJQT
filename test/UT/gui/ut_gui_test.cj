@@ -384,3 +384,32 @@ public func testDragEvents() {
     let leave = QDragLeaveEvent()
     leave.delete()
 }
+
+@Test
+public func testQFontMetricsF() {
+    QApplication.create()
+    let dummy = QWidget()
+    dummy.delete()
+    let font = QFont()
+    font.setPointSize(12)
+    let metrics = QFontMetricsF(font)
+    @Assert(metrics.height() > 0.0)
+    @Assert(metrics.width("hello") > 0.0)
+    metrics.delete()
+    font.delete()
+}
+
+@Test
+public func testQRegion() {
+    let region = QRegion(10, 10, 100, 50)
+    @Assert(!region.isEmpty())
+    @Assert(!region.isNull())
+    @Assert(region.contains(50, 30))
+    @Assert(!region.contains(5, 5))
+    @Assert(region.boundingRectWidth() == 100)
+    @Assert(region.boundingRectHeight() == 50)
+    region.delete()
+    let empty = QRegion()
+    @Assert(empty.isEmpty())
+    empty.delete()
+}

@@ -722,3 +722,44 @@ public func testToolTip() {
     @Assert(QToolTip.text().size >= 0)
     QToolTip.hideText()
 }
+
+@Test
+public func testStackedLayout() {
+    QApplication.create()
+    let widget = QWidget()
+    let layout = QStackedLayout()
+    let p1 = QWidget()
+    let p2 = QWidget()
+    @Assert(layout.addWidget(p1) == 0)
+    @Assert(layout.addWidget(p2) == 1)
+    @Assert(layout.count() == 2)
+    layout.setCurrentIndex(1)
+    @Assert(layout.currentIndex() == 1)
+    widget.setLayout(layout)
+    widget.delete()
+}
+
+@Test
+public func testRubberBand() {
+    QApplication.create()
+    let parent = QWidget()
+    let band = QRubberBand(QRubberBandShape.Rectangle, parent)
+    band.moveBand(10, 10)
+    band.resizeBand(100, 50)
+    @Assert(band.rubberBandWidth() == 100)
+    @Assert(band.rubberBandHeight() == 50)
+    band.delete()
+    parent.delete()
+}
+
+@Test
+public func testShortcut() {
+    QApplication.create()
+    let parent = QWidget()
+    let shortcut = QShortcut("Ctrl+C", parent)
+    @Assert(shortcut.isEnabled())
+    shortcut.setEnabled(false)
+    @Assert(!shortcut.isEnabled())
+    shortcut.delete()
+    parent.delete()
+}

@@ -12,9 +12,9 @@
 
 | 分类 | 数量 |
 | :--- | :--- |
-| 已完成 | 57 |
+| 已完成 | 60 |
 | 进行中 | 29 |
-| 未移植 | 104+ |
+| 未移植 | 101+ |
 
 ## 常用控件
 
@@ -66,6 +66,9 @@
 - `QItemDelegate` 项委托
 - `QSystemTrayIcon` 系统托盘图标
 - `QToolTip` 工具提示
+- `QStackedLayout` 堆叠布局
+- `QRubberBand` 橡皮筋选区
+- `QShortcut` 快捷键
 
 ### 进行中
 
@@ -102,6 +105,7 @@ QMenuBar                  ▓▓▓▓▓▓▓░░░         QPainter       
 QProgressBar              ▓▓▓▓▓▓▓▓░░         QScrollArea              ▓▓▓▓▓▓▓░░░
 QScrollBar                ▓▓▓▓▓▓░░░░         QSlider                  ▓▓▓▓▓▓▓▓░░
 QSpinBox                  ▓▓▓▓▓▓▓▓░░         QSplitter                ▓▓▓▓▓▓▓▓▓░
+QStackedLayout            ▓▓▓▓▓▓▓▓░░
 QSplitterHandle           ▓▓▓▓▓▓░░░░         QStackedWidget           ▓▓▓▓▓▓▓▓░░
 QStatusBar                ▓▓▓▓▓▓▓░░░         QSystemTrayIcon          ▓▓▓▓▓▓▓▓░░
 QTabBar                   ▓▓▓▓▓▓▓▓▓░
@@ -140,6 +144,7 @@ QHeaderView               ▓▓▓▓░░░░░░         QLabel         
 QLayout                   ▓▓▓░░░░░░░         QListView                ▓▓▓░░░░░░░
 QMdiArea                  ▓▓▓░░░░░░░         QMessageBox              ▓▓▓▓▓░░░░░
 QPushButton               ▓▓▓▓▓░░░░░         QRadioButton             ▓▓▓▓▓░░░░░
+QRubberBand               ▓▓▓▓▓▓▓▓░░         QShortcut                ▓▓▓▓▓▓▓▓░░
 QStyledItemDelegate       ▓▓▓▓░░░░░░         QTableView               ▓▓▓▓░░░░░░
 QTreeView                 ▓▓▓░░░░░░░
 ```
