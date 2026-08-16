@@ -93,6 +93,7 @@ set (SRC_DIR ./src/widgets/application.cpp
         ./src/widgets/widgets_remaining.cpp
         ./src/widgets/wizard_grip.cpp
         ./src/widgets/undo_stack.cpp
+        ./src/widgets/widgets_base.cpp
         ./src/core/url.cpp
         ./src/core/timer.cpp
         ./src/core/rect.cpp

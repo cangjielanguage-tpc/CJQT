@@ -882,3 +882,38 @@ public func testUndoStack() {
     @Assert(command.text() == "renamed")
     command.delete()
 }
+
+@Test
+public func testMdiSubWindow() {
+    QApplication.create()
+    let sub = QMdiSubWindow()
+    let content = QWidget()
+    sub.setWidget(content)
+    @Assert(sub.widget().ptr == content.ptr)
+    sub.delete()
+}
+
+@Test
+public func testColumnView() {
+    QApplication.create()
+    let view = QColumnView()
+    view.delete()
+}
+
+@Test
+public func testItemEditorFactory() {
+    let factory = QItemEditorFactory()
+    factory.delete()
+}
+
+@Test
+public func testFileIconProvider() {
+    QApplication.create()
+    let dummy = QWidget()
+    dummy.delete()
+    let provider = QFileIconProvider()
+    let icon = provider.icon("/tmp")
+    @Assert(!icon.isNull())
+    icon.delete()
+    provider.delete()
+}
