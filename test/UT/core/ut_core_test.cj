@@ -860,3 +860,45 @@ public func testQItemSelection() {
     @Assert(selection.count() == 0)
     selection.delete()
 }
+
+@Test
+public func testQBuffer() {
+    let buffer = QBuffer()
+    buffer.setData("buffer data")
+    @Assert(buffer.open(QIODeviceOpenMode.ReadWrite))
+    @Assert(buffer.data().size > 0)
+    buffer.delete()
+}
+
+@Test
+public func testQEasingCurve() {
+    let curve = QEasingCurve(QEasingCurveType.Linear)
+    @Assert(curve.curveType().value() == QEasingCurveType.Linear.value())
+    @Assert(curve.valueForProgress(0.0) == 0.0)
+    @Assert(curve.valueForProgress(1.0) == 1.0)
+    curve.delete()
+}
+
+@Test
+public func testQTimeLine() {
+    let line = QTimeLine.withDuration(1000)
+    @Assert(line.duration() == 1000)
+    @Assert(line.state().value() == QTimeLineState.NotRunning.value())
+    line.setLoopCount(1)
+    line.delete()
+}
+
+@Test
+public func testQXmlStreamReader() {
+    let xml = "<root><item>value1</item></root>"
+    let reader = QXmlStreamReader(xml)
+    var foundRoot = false
+    while (!reader.atEnd()) {
+        reader.readNext()
+        if (reader.isStartElement() && reader.name() == "root") {
+            foundRoot = true
+        }
+    }
+    @Assert(foundRoot)
+    reader.delete()
+}

@@ -125,6 +125,8 @@ set (SRC_DIR ./src/widgets/application.cpp
         ./src/core/abstract_table_model.cpp
         ./src/core/io_device.cpp
         ./src/core/random64_selection.cpp
+        ./src/core/buffer_easing.cpp
+        ./src/core/xml_reader.cpp
         ./src/core/model_index.cpp
         ./src/core/variant.cpp
         ./src/core/item_selection_model.cpp
