@@ -126,6 +126,7 @@ set (SRC_DIR ./src/widgets/application.cpp
         ./src/gui/gui_misc.cpp
         ./src/gui/gui_text.cpp
         ./src/gui/text_document.cpp
+        ./src/gui/gui_events.cpp
         ./src/gui/pen.cpp
         ./src/gui/color.cpp
         ./src/gui/brush.cpp

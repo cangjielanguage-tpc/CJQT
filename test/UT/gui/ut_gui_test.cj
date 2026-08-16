@@ -283,3 +283,34 @@ public func testQRegularExpressionValidator() {
     @Assert(validator.validate("12a").value() == QValidatorState.Invalid.value())
     validator.delete()
 }
+
+@Test
+public func testResizeEvent() {
+    let event = QResizeEvent(QSize(100, 80), QSize(50, 40))
+    @Assert(event.width() == 100)
+    @Assert(event.height() == 80)
+    let old = event.oldSize()
+    @Assert(old.width == 50)
+    event.delete()
+}
+
+@Test
+public func testShowCloseEvent() {
+    let show = QShowEvent()
+    show.delete()
+    let close = QCloseEvent()
+    @Assert(close.isAccepted())
+    close.delete()
+}
+
+@Test
+public func testQDrag() {
+    QApplication.create()
+    let dummy = QWidget()
+    let drag = QDrag(dummy.ptr)
+    let mime = QMimeData()
+    mime.setText("drag data")
+    drag.setMimeData(mime)
+    drag.delete()
+    dummy.delete()
+}

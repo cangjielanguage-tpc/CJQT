@@ -14,9 +14,9 @@
 
 | 分类 | 数量 |
 | :--- | :--- |
-| 已完成 | 24 |
+| 已完成 | 30 |
 | 进行中 | 22 |
-| 未移植 | 67+ |
+| 未移植 | 61+ |
 
 ## 已完成
 
@@ -31,6 +31,9 @@ QFontMetrics              ▓▓▓▓▓▓▓▓░░         QImage         
 QIntValidator             ▓▓▓▓▓▓▓▓░░         QKeySequence              ▓▓▓▓▓▓▓▓░░
 QMovie                    ▓▓▓▓▓▓▓▓░░         QPainter                  ▓▓▓▓▓▓▓▓▓░
 QRegularExpressionValidator ▓▓▓▓▓▓▓▓░░       QTextCursor               ▓▓▓▓▓▓▓▓░░
+QCloseEvent               ▓▓▓▓▓▓▓▓░░         QDrag                     ▓▓▓▓▓▓▓▓░░
+QHoverEvent               ▓▓▓▓▓▓▓▓░░         QMoveEvent                ▓▓▓▓▓▓▓▓░░
+QResizeEvent              ▓▓▓▓▓▓▓▓░░         QShowEvent                ▓▓▓▓▓▓▓▓░░
 QTextDocument             ▓▓▓▓▓▓▓▓░░
 QPainterPath              ▓▓▓▓▓▓▓▓░░         QPalette                  ▓▓▓▓▓▓▓░░░
 QPen                      ▓▓▓▓▓▓▓░░░         QPixmap                   ▓▓▓▓▓▓▓░░░
