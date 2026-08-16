@@ -12,8 +12,8 @@
 
 | 分类 | 数量 |
 | :--- | :--- |
-| 已完成 | 53 |
-| 进行中 | 12 |
+| 已完成 | 55 |
+| 进行中 | 11 |
 | 未移植 | 200+ |
 
 ## 已完成
@@ -40,6 +40,7 @@ QProcess                  ▓▓▓▓▓▓▓▓░░         QProcessEnviron
 QRandomGenerator          ▓▓▓▓▓▓▓▓░░         QRegularExpression        ▓▓▓▓▓▓▓▓░░
 QRegularExpressionMatch   ▓▓▓▓▓▓▓▓░░         QSaveFile                 ▓▓▓▓▓▓▓▓░░
 QSemaphore                ▓▓▓▓▓▓▓▓░░         QSettings                 ▓▓▓▓▓▓▓▓░░
+QAbstractTableModel       ▓▓▓▓▓▓▓▓░░         QIODevice                 ▓▓▓▓▓▓▓▓░░
 QSize                     ▓▓▓▓▓▓▓▓░░         QSortFilterProxyModel     ▓▓▓▓▓▓▓▓░░
 QStandardPaths            ▓▓▓▓▓▓▓▓▓░
 QSysInfo                  ▓▓▓▓▓▓▓▓░░         QTemporaryDir             ▓▓▓▓▓▓▓▓░░

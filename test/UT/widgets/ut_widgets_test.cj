@@ -770,3 +770,33 @@ public func testQSizePolicy() {
     @Assert(policy.horizontal().value() == QSizePolicyPolicy.Expanding.value())
     @Assert(policy.vertical().value() == QSizePolicyPolicy.Fixed.value())
 }
+
+@Test
+public func testQAbstractTableModelSubclass() {
+    QApplication.create()
+    let model = WidgetTableModel(0)
+    @Assert(model.rowCount(QModelIndex()) == 3)
+    @Assert(model.columnCount(QModelIndex()) == 2)
+    model.delete()
+}
+
+public class WidgetTableModel <: QAbstractTableModel {
+    public init(ptr: Int64) {
+        super(ptr)
+        setRowCountCallback()
+        setColumnCountCallback()
+        setDataCallback()
+    }
+
+    public override func rowCount(parent: QModelIndex): Int32 {
+        return 3
+    }
+
+    public override func columnCount(parent: QModelIndex): Int32 {
+        return 2
+    }
+
+    public override func data(index: QModelIndex, role: Int32): QVariant {
+        return QVariant("cell")
+    }
+}

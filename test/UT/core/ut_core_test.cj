@@ -830,3 +830,17 @@ public func testQSortFilterProxyModel() {
     proxy.sort(0, QSortOrder.AscendingOrder)
     proxy.delete()
 }
+
+@Test
+public func testQIODevice() {
+    let device = QIODevice()
+    @Assert(device.open(QIODeviceOpenMode.WriteOnly))
+    @Assert(device.isOpen())
+    @Assert(device.isWritable())
+    device.write("hello device")
+    @Assert(device.size() > 0)
+    device.close()
+    @Assert(!device.isOpen())
+    device.delete()
+}
+
