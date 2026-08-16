@@ -12,7 +12,7 @@
 
 | 分类 | 数量 |
 | :--- | :--- |
-| 已完成 | 61 |
+| 已完成 | 64 |
 | 进行中 | 11 |
 | 未移植 | 200+ |
 
@@ -22,7 +22,7 @@
 QCore:
 
 QBuffer                   ▓▓▓▓▓▓▓▓░░         QByteArray                ▓▓▓▓▓▓▓▓░░
-QCryptographicHash        ▓▓▓▓▓▓▓▓░░
+QCommandLineParser        ▓▓▓▓▓▓▓▓░░         QCryptographicHash        ▓▓▓▓▓▓▓▓░░
 QCoreApplication          ▓▓▓▓▓▓▓▓░░         QDataStream               ▓▓▓▓▓▓▓▓░░
 QDate                     ▓▓▓▓▓▓▓▓░░         QDateTime                 ▓▓▓▓▓▓▓▓░░
 QDeadlineTimer            ▓▓▓▓▓▓▓▓░░         QDir                      ▓▓▓▓▓▓▓▓░░
@@ -35,7 +35,7 @@ QJsonDocument             ▓▓▓▓▓▓▓▓░░         QJsonObject    
 QJsonValue                ▓▓▓▓▓▓▓▓░░         QLibrary                  ▓▓▓▓▓▓▓▓░░
 QLibraryInfo              ▓▓▓▓▓▓▓▓░░         QLocale                   ▓▓▓▓▓▓▓▓░░
 QMargins                  ▓▓▓▓▓▓▓▓▓░         QMimeData                 ▓▓▓▓▓▓▓▓░░
-QMimeType                 ▓▓▓▓▓▓▓▓░░
+QMimeDatabase             ▓▓▓▓▓▓▓▓░░         QMimeType                 ▓▓▓▓▓▓▓▓░░
 QModelIndex               ▓▓▓▓▓▓▓▓░░         QMutex                    ▓▓▓▓▓▓▓▓░░
 QPersistentModelIndex     ▓▓▓▓▓▓▓▓░░         QPointF                   ▓▓▓▓▓▓▓▓▓░
 QProcess                  ▓▓▓▓▓▓▓▓░░         QProcessEnvironment       ▓▓▓▓▓▓▓▓░░
@@ -54,7 +54,7 @@ QTimer                    ▓▓▓▓▓▓▓▓░░
 QTranslator               ▓▓▓▓▓▓▓▓░░         QUrl                      ▓▓▓▓▓▓▓▓░░
 QUrlQuery                 ▓▓▓▓▓▓▓▓░░         QUuid                     ▓▓▓▓▓▓▓▓░░
 QVariant                  ▓▓▓▓▓▓▓▓░░         QVersionNumber            ▓▓▓▓▓▓▓▓░░
-QXmlStreamReader          ▓▓▓▓▓▓▓▓░░
+QXmlStreamReader          ▓▓▓▓▓▓▓▓░░         QXmlStreamWriter          ▓▓▓▓▓▓▓▓░░
 ```
 
 ## 进行中
@@ -115,8 +115,8 @@ QTimeZone                 ░░░░░░░░░░         QTimerEvent    
 QTranslator               ░░░░░░░░░░         QTransposeProxyModel     ░░░░░░░░░░
 QVariantAnimation         ░░░░░░░░░░         QVector                  ░░░░░░░░░░
          QWaitCondition           ░░░░░░░░░░
-QWeakPointer              ░░░░░░░░░░         QXmlStreamReader         ░░░░░░░░░░
-QXmlStreamWriter          ░░░░░░░░░░         QXmlStreamAttribute      ░░░░░░░░░░
+QWeakPointer              ░░░░░░░░░░
+QXmlStreamAttribute      ░░░░░░░░░░
 ```
 
 ## 说明
