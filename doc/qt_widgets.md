@@ -12,9 +12,9 @@
 
 | 分类 | 数量 |
 | :--- | :--- |
-| 已完成 | 69 |
+| 已完成 | 74 |
 | 进行中 | 29 |
-| 未移植 | 92+ |
+| 未移植 | 87+ |
 
 ## 常用控件
 
@@ -133,7 +133,9 @@ QTimeEdit                 ▓▓▓▓▓▓▓▓░░
 QToolBar                  ▓▓▓▓▓▓▓░░░         QToolBox                 ▓▓▓▓▓▓▓▓░░
 QToolButton               ▓▓▓▓▓▓▓▓░░         QUndoCommand             ▓▓▓▓▓▓▓▓░░
 QUndoStack                ▓▓▓▓▓▓▓▓░░         QVBoxLayout              ▓▓▓▓▓▓░░░░
-QWizard                   ▓▓▓▓▓▓▓▓░░
+QAbstractSpinBox          ▓▓▓▓▓▓▓▓░░         QColumnView               ▓▓▓▓▓▓▓▓░░
+QFileIconProvider         ▓▓▓▓▓▓▓▓░░         QItemEditorFactory        ▓▓▓▓▓▓▓▓░░
+QMdiSubWindow             ▓▓▓▓▓▓▓▓░░         QWizard                   ▓▓▓▓▓▓▓▓░░
 QWidget                   ▓▓▓▓▓▓▓▓▓░
 ```
 
