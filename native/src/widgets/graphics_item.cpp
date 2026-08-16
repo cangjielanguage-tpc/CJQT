@@ -14,6 +14,7 @@ extern "C"
 {
     uintptr_t nativeGraphicsItemCreate(uintptr_t parentPtr)
     {
+        APPLICATION_CREATE
         CjGraphicsItem *item;
         if (parentPtr == 0L)
         {

@@ -4,6 +4,7 @@ extern "C"
 {
     uintptr_t nativeScrollBarCreate(uintptr_t parentPtr)
     {
+        APPLICATION_CREATE
         CjScrollBar *bar;
         if (parentPtr == 0L)
         {
@@ -19,6 +20,7 @@ extern "C"
     }
     uintptr_t nativeScrollBarCreateWithOrietation(short orientation, uintptr_t parentPtr)
     {
+        APPLICATION_CREATE
         CjScrollBar *bar;
         if (parentPtr == 0L)
         {

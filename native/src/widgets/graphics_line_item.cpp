@@ -1,9 +1,11 @@
 #include <QGraphicsLineItem>
+#include "object.h"
 #include <QPen>
 extern "C"
 {
     uintptr_t nativeGraphicsLineItemCreateWithParent(uintptr_t parentPtr)
     {
+        APPLICATION_CREATE
         QGraphicsLineItem *item;
         if (parentPtr == 0L)
         {
@@ -18,6 +20,7 @@ extern "C"
     }
     uintptr_t nativeGraphicsLineItemCreate(double x1, double y1, double x2, double y2, uintptr_t parentPtr)
     {
+        APPLICATION_CREATE
         QGraphicsLineItem *item;
         if (parentPtr == 0L)
         {
@@ -32,6 +35,7 @@ extern "C"
     }
     uintptr_t nativeGraphicsLineItemCreateWithLine(const uintptr_t lineFPtr, uintptr_t parentPtr)
     {
+        APPLICATION_CREATE
         QGraphicsLineItem *item;
         QLineF *lineF = reinterpret_cast<QLineF *>(static_cast<uintptr_t>(lineFPtr));
         if (parentPtr == 0L)

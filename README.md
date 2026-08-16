@@ -75,14 +75,22 @@ CjQt是Qt的仓颉语言绑定，提供仓颉语言风格的Qt类和函数的API
 │       ├── widgets
 │       └── main.cj
 └── test   
-    └── LLT
+    ├── LLT
+    ├── UT
+    │   ├── core
+    │   ├── gui
+    │   └── widgets
+    └── native
 ```
 
 - `doc`是库的设计文档、提案、库的使用文档
 - `example`是cjqt项目的使用示例
 - `native`是C语言绑定QT库源码目录
 - `src`是库源码目录
-- `test`是存放测试用例，包括LLT 用例
+- `test`是存放测试用例的目录
+  - `test/LLT`是仓颉端 LLT 回归用例
+  - `test/UT`是仓颉端单元测试用例（`@Test` 风格）
+  - `test/native`是 native 层 C++ 单元测试
 
 ## <img alt="" src="./doc/assets/readme-icon-compile.png" style="display: inline-block;" width=3%/>编译执行
 

@@ -4,6 +4,7 @@ extern "C"
 {
     uintptr_t nativeGraphicsViewCreateWithScene(uintptr_t scenePtr, uintptr_t parentPtr)
     {
+        APPLICATION_CREATE
 
         CjGraphicsView *viewObj;
         QGraphicsScene *scene = reinterpret_cast<QGraphicsScene *>(static_cast<uintptr_t>(scenePtr));
@@ -20,6 +21,7 @@ extern "C"
     }
     uintptr_t nativeGraphicsViewCreate(uintptr_t parentPtr)
     {
+        APPLICATION_CREATE
         CjGraphicsView *viewObj;
         if (parentPtr == 0L)
         {

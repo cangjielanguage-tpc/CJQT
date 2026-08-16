@@ -4,6 +4,7 @@ extern "C"
 {
     uintptr_t nativeGraphicsSceneCreate(double x, double y, double width, double heigh, uintptr_t parentPtr)
     {
+        APPLICATION_CREATE
         CjGraphicsScene *graphicsScene;
         if (parentPtr == 0L)
         {
@@ -18,6 +19,7 @@ extern "C"
     }
     uintptr_t nativeGraphicsSceneCreateWithRectF(const uintptr_t rectFPtr, uintptr_t parentPtr)
     {
+        APPLICATION_CREATE
         CjGraphicsScene *graphicsScene;
         QRectF *rectF = reinterpret_cast<QRectF *>(static_cast<uintptr_t>(rectFPtr));
         if (parentPtr == 0L)
@@ -33,6 +35,7 @@ extern "C"
     }
     uintptr_t nativeGraphicsSceneCreateWithParent(uintptr_t parentPtr)
     {
+        APPLICATION_CREATE
         CjGraphicsScene *graphicsScene;
         if (parentPtr == 0L)
         {

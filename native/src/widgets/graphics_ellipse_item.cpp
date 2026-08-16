@@ -1,8 +1,10 @@
 #include <QGraphicsEllipseItem>
+#include "object.h"
 extern "C"
 {
     uintptr_t nativeGraphicsEllipseItemCreateWithXYWH(double x, double y, double width, double height, uintptr_t parentPtr)
     {
+        APPLICATION_CREATE
         QGraphicsEllipseItem *item;
         if (parentPtr == 0L)
         {
@@ -17,6 +19,7 @@ extern "C"
     }
     uintptr_t nativeGraphicsEllipseItemCreateWithRect(qreal x,qreal y,qreal width,qreal height, uintptr_t parentPtr)
     {
+        APPLICATION_CREATE
         QGraphicsEllipseItem *item;
         QRectF rect(x,y,width,height) ;
 
@@ -33,6 +36,7 @@ extern "C"
     }
     uintptr_t nativeGraphicsEllipseItemCreate(uintptr_t parentPtr)
     {
+        APPLICATION_CREATE
         QGraphicsEllipseItem *item;
         if (parentPtr == 0L)
         {

@@ -1,10 +1,12 @@
 #include <QHeaderView>
 #include "object.h"
+#include "object.h"
 
 extern "C"
 {
    uintptr_t nativeHeaderViewCreate(int orientation,uintptr_t parentPtr)
    {
+        APPLICATION_CREATE
        QWidget *instance = reinterpret_cast<QWidget *>(static_cast<uintptr_t>(parentPtr));
        QHeaderView *header= new QHeaderView(Qt::Orientation(orientation),instance);
 

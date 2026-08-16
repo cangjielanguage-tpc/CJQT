@@ -4,6 +4,7 @@ extern "C"
 {
     uintptr_t nativeDockWidgetCreate(uintptr_t parentPtr)
     {
+        APPLICATION_CREATE
         QWidget *parent = reinterpret_cast<QWidget *>(static_cast<uintptr_t>(parentPtr));
         QDockWidget *dock = new QDockWidget(parent);
         return reinterpret_cast<uintptr_t>(dock);
@@ -11,6 +12,7 @@ extern "C"
 
     uintptr_t nativeDockWidgetCreateText(const char *contents,uintptr_t parentPtr)
     {
+        APPLICATION_CREATE
         QWidget *parent = reinterpret_cast<QWidget *>(static_cast<uintptr_t>(parentPtr));
         QDockWidget *dock = new QDockWidget(QString(contents),parent);
         return reinterpret_cast<uintptr_t>(dock);

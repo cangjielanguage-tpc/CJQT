@@ -7,6 +7,7 @@ extern "C"
 
 	uintptr_t nativeActionCreate(uintptr_t parentPtr)
 	{
+        APPLICATION_CREATE
 		CjQtAction *label;
 		if (parentPtr == 0L)
 		{

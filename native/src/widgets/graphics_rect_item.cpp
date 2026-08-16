@@ -1,9 +1,11 @@
 #include <QGraphicsRectItem>
+#include "object.h"
 
 extern "C"
 {
     uintptr_t nativeGraphicsRectItemCreateWithXYWH(double x, double y, double width, double height, uintptr_t parentPtr)
     {
+        APPLICATION_CREATE
         QGraphicsRectItem *item;
         if (parentPtr == 0L)
         {
@@ -18,6 +20,7 @@ extern "C"
     }
     uintptr_t nativeGraphicsRectItemCreateWithRect(qreal x,qreal y,qreal width,qreal height, uintptr_t parentPtr)
     {
+        APPLICATION_CREATE
         QGraphicsRectItem *item;
         QRectF rect(x,y,width,height);
 
@@ -34,6 +37,7 @@ extern "C"
     }
     uintptr_t nativeGraphicsRectItemCreate(uintptr_t parentPtr)
     {
+        APPLICATION_CREATE
         QGraphicsRectItem *item;
         if (parentPtr == 0L)
         {

@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdint.h>
 #include <string>
+#include <cstring>
 #include "data_type.h"
 
 extern "C"
@@ -48,7 +49,13 @@ extern "C"
 
     void *nativeStringToCPointer(char *data)
     {
-        return (void *)data;
+        if (data == nullptr)
+        {
+            return nullptr;
+        }
+        char *copy = new char[std::strlen(data) + 1];
+        std::strcpy(copy, data);
+        return (void *)copy;
     }
 
     void *nativeBoolToCPointer(bool data)

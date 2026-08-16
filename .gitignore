@@ -13,6 +13,11 @@ target/
 native/build/
 native/.vscode/
 
+# test build artifacts
+test/native/build/
+target/release/ut/
+target/release/llt/
+
 #log
 log.*
 

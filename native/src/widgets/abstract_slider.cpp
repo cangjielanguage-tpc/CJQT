@@ -1,9 +1,11 @@
 #include "abstract_slider.h"
+#include "object.h"
 
 extern "C"
 {
     uintptr_t nativeAbstractSliderCreate(uintptr_t parentPtr)
     {
+        APPLICATION_CREATE
         CjAbstractSlider *slider;
         if (parentPtr == 0L)
         {

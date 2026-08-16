@@ -1,9 +1,11 @@
 #include <QPixmap>
+#include "object.h"
 
 extern "C"
 {
     uintptr_t nativePixmapCreate(const char *filepath)
     {
+        APPLICATION_CREATE
         QPixmap *pixmap = new QPixmap();
         int r = pixmap->load(filepath);
         if (r)
@@ -13,6 +15,7 @@ extern "C"
     }
     uintptr_t nativePixmapCreateWithWH(int w, int h)
     {
+        APPLICATION_CREATE
         QPixmap *pixmap = new QPixmap(w, h);
         return reinterpret_cast<uintptr_t>(pixmap);
     }

@@ -3,6 +3,7 @@ extern "C"
 {
     uintptr_t nativeFrameCreate(uintptr_t parentPtr, uint f)
     {
+        APPLICATION_CREATE
         CjFrame *frame;
         if (parentPtr == 0L)
         {

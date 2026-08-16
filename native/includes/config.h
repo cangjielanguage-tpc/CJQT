@@ -1,3 +1,6 @@
+#ifndef CJQT_CONFIG_H_
+#define CJQT_CONFIG_H_
+
 #include <map>
 #include <QApplication>
 #include <string.h>
@@ -338,3 +341,5 @@ public:
         return result + std::to_string(ptr);
     }
 };
+
+#endif

@@ -1,9 +1,11 @@
 #include "abstract_scroll_area.h"
+#include "object.h"
 
 extern "C"
 {
     uintptr_t nativeAbstractScrollAreaCreate(uintptr_t parentPtr)
     {
+        APPLICATION_CREATE
         CjAbstractScrollArea *scrollArea;
         if (parentPtr == 0L)
         {

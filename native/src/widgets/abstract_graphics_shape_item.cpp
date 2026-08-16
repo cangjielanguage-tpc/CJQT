@@ -1,4 +1,5 @@
 #include "abstract_graphics_shape_item.h"
+#include "object.h"
 #include <QBrush>
 #include <QPen>
 QRectF CjAbstractGraphicsShapeItem::boundingRect() const
@@ -16,6 +17,7 @@ extern "C"
 {
     uintptr_t nativeAbstractGraphicsShapeItemCreate(uintptr_t parentPtr)
     {
+        APPLICATION_CREATE
         CjAbstractGraphicsShapeItem *item;
         if (parentPtr == 0L)
         {

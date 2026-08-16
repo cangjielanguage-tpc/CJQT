@@ -4,6 +4,7 @@ extern "C"
 {
     uintptr_t nativeAbstractItemDelegateCreate()
     {
+        APPLICATION_CREATE
         CjAbstractItemDelegate *event = new CjAbstractItemDelegate();
         return reinterpret_cast<uintptr_t>(event);
     }

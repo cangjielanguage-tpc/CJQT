@@ -4,6 +4,7 @@ extern "C"
 {
     uintptr_t nativeStyledItemDelegateCreate()
     {
+        APPLICATION_CREATE
         CjStyledItemDelegate *event = new CjStyledItemDelegate();
         return reinterpret_cast<uintptr_t>(event);
     }

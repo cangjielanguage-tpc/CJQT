@@ -1,9 +1,11 @@
 #include <QActionGroup>
+#include "object.h"
 
 extern "C"
 {
     uintptr_t nativeActionGroupCreate(uintptr_t parentPtr)
     {
+        APPLICATION_CREATE
         QObject *parent = reinterpret_cast<QObject *>(static_cast<uintptr_t>(parentPtr));
         QActionGroup *group = new QActionGroup(parent);
         return reinterpret_cast<uintptr_t>(group);
