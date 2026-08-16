@@ -12,9 +12,9 @@
 
 | 分类 | 数量 |
 | :--- | :--- |
-| 已完成 | 43 |
+| 已完成 | 48 |
 | 进行中 | 29 |
-| 未移植 | 118+ |
+| 未移植 | 113+ |
 
 ## 常用控件
 
@@ -51,11 +51,14 @@
 - `QButtonGroup` 按钮组合容器
 - `QPlainTextEdit` 纯文本编辑器
 - `QToolButton` 工具按钮
-- `QTimeEdit` 时间编辑控件
+- `QTimeEdit` / `QDateEdit` / `QDateTimeEdit` 时间日期编辑控件
 - `QDoubleSpinBox` 浮点数字调节控件
 - `QLCDNumber` LCD 数字显示
 - `QFormLayout` 表单布局
 - `QColorDialog` 颜色选择对话框
+- `QDial` 旋钮控件
+- `QCalendarWidget` 日历控件
+- `QInputDialog` 输入对话框
 
 ### 进行中
 
@@ -70,7 +73,6 @@
 - `QFontDialog` 字体对话框
 
 ### 未移植
-- `QDateEdit` / `QDateTimeEdit` 日期时间编辑控件
 - `QSizeGrip` 视窗缩放控件
 - `QListWidget` / `QTableWidget` / `QTreeWidget` 项控件
 - `QCalendarWidget` / `QDial` 等
@@ -96,8 +98,11 @@ QScrollBar                ▓▓▓▓▓▓░░░░         QSlider        
 QSpinBox                  ▓▓▓▓▓▓▓▓░░         QSplitter                ▓▓▓▓▓▓▓▓▓░
 QSplitterHandle           ▓▓▓▓▓▓░░░░         QStackedWidget           ▓▓▓▓▓▓▓▓░░
 QStatusBar                ▓▓▓▓▓▓▓░░░         QTabBar                  ▓▓▓▓▓▓▓▓▓░
-QColorDialog              ▓▓▓▓▓▓▓▓░░         QDoubleSpinBox           ▓▓▓▓▓▓▓▓░░
-QFormLayout               ▓▓▓▓▓▓▓▓░░         QLCDNumber               ▓▓▓▓▓▓▓▓░░
+QCalendarWidget           ▓▓▓▓▓▓▓▓░░         QColorDialog              ▓▓▓▓▓▓▓▓░░
+QDateEdit                 ▓▓▓▓▓▓▓▓░░         QDateTimeEdit             ▓▓▓▓▓▓▓▓░░
+QDial                     ▓▓▓▓▓▓▓▓░░         QDoubleSpinBox           ▓▓▓▓▓▓▓▓░░
+QFormLayout               ▓▓▓▓▓▓▓▓░░         QInputDialog              ▓▓▓▓▓▓▓▓░░
+QLCDNumber                ▓▓▓▓▓▓▓▓░░
 QPlainTextEdit            ▓▓▓▓▓▓▓▓░░         QTabWidget               ▓▓▓▓▓▓▓▓▓░
 QTextEdit                 ▓▓▓▓▓▓▓▓░░         QTimeEdit                ▓▓▓▓▓▓▓▓░░
 QToolBar                  ▓▓▓▓▓▓▓░░░         QToolBox                 ▓▓▓▓▓▓▓▓░░

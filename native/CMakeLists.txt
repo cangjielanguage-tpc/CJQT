@@ -85,6 +85,7 @@ set (SRC_DIR ./src/widgets/application.cpp
         ./src/widgets/widgets_controls.cpp
         ./src/widgets/widgets_containers.cpp
         ./src/widgets/widgets_text.cpp
+        ./src/widgets/widgets_date.cpp
         ./src/core/url.cpp
         ./src/core/timer.cpp
         ./src/core/rect.cpp
@@ -123,6 +124,7 @@ set (SRC_DIR ./src/widgets/application.cpp
         ./src/gui/drawing.cpp
         ./src/gui/gui_misc.cpp
         ./src/gui/gui_text.cpp
+        ./src/gui/text_document.cpp
         ./src/gui/pen.cpp
         ./src/gui/color.cpp
         ./src/gui/brush.cpp

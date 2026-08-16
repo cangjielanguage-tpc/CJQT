@@ -550,3 +550,58 @@ public func testColorDialog() {
     @Assert(c.rgba() == QColor(10, 20, 30).rgba())
     dialog.delete()
 }
+
+@Test
+public func testDateEdit() {
+    QApplication.create()
+    let edit = QDateEdit()
+    edit.setDate(QDate(2024, 5, 20))
+    let d = edit.date()
+    @Assert(d.year() == 2024)
+    @Assert(d.month() == 5)
+    @Assert(d.day() == 20)
+    d.delete()
+    edit.setDisplayFormat("yyyy/MM/dd")
+    edit.setDateRange(QDate(2000, 1, 1), QDate(2099, 12, 31))
+    edit.delete()
+}
+
+@Test
+public func testDateTimeEdit() {
+    QApplication.create()
+    let edit = QDateTimeEdit()
+    edit.setDateTime(QDateTime(2024, 5, 20, 10, 30, 0, 0))
+    let dt = edit.dateTime()
+    @Assert(dt.toString().contains("2024"))
+    @Assert(dt.toString().contains("10:30"))
+    dt.delete()
+    edit.setDisplayFormat("yyyy-MM-dd HH:mm")
+    edit.delete()
+}
+
+@Test
+public func testDial() {
+    QApplication.create()
+    let dial = QDial()
+    dial.setRange(0, 100)
+    @Assert(dial.minimum() == 0)
+    @Assert(dial.maximum() == 100)
+    dial.setValue(42)
+    @Assert(dial.value() == 42)
+    dial.setNotchesVisible(true)
+    @Assert(dial.notchesVisible())
+    dial.delete()
+}
+
+@Test
+public func testCalendarWidget() {
+    QApplication.create()
+    let cal = QCalendarWidget()
+    cal.setSelectedDate(QDate(2024, 6, 15))
+    let d = cal.selectedDate()
+    @Assert(d.year() == 2024)
+    @Assert(d.month() == 6)
+    d.delete()
+    @Assert(cal.yearShown() > 0)
+    cal.delete()
+}

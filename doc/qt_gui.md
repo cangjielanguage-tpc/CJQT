@@ -14,9 +14,9 @@
 
 | 分类 | 数量 |
 | :--- | :--- |
-| 已完成 | 21 |
+| 已完成 | 24 |
 | 进行中 | 22 |
-| 未移植 | 70+ |
+| 未移植 | 67+ |
 
 ## 已完成
 
@@ -30,6 +30,8 @@ QFontDatabase             ▓▓▓▓▓▓▓▓░░         QFontInfo      
 QFontMetrics              ▓▓▓▓▓▓▓▓░░         QImage                    ▓▓▓▓▓▓▓▓░░
 QIntValidator             ▓▓▓▓▓▓▓▓░░         QKeySequence              ▓▓▓▓▓▓▓▓░░
 QMovie                    ▓▓▓▓▓▓▓▓░░         QPainter                  ▓▓▓▓▓▓▓▓▓░
+QRegularExpressionValidator ▓▓▓▓▓▓▓▓░░       QTextCursor               ▓▓▓▓▓▓▓▓░░
+QTextDocument             ▓▓▓▓▓▓▓▓░░
 QPainterPath              ▓▓▓▓▓▓▓▓░░         QPalette                  ▓▓▓▓▓▓▓░░░
 QPen                      ▓▓▓▓▓▓▓░░░         QPixmap                   ▓▓▓▓▓▓▓░░░
 QPixmapCache              ▓▓▓▓▓▓▓▓░░         QStandardItemModel        ▓▓▓▓▓▓▓▓░░

@@ -247,3 +247,39 @@ public func testQMovie() {
     @Assert(!movie.isRunning())
     movie.delete()
 }
+
+@Test
+public func testQTextDocument() {
+    let doc = QTextDocument()
+    doc.setPlainText("hello rich text")
+    @Assert(doc.toPlainText() == "hello rich text")
+    @Assert(doc.characterCount() > 10)
+    doc.setHtml("<b>bold</b>")
+    @Assert(doc.toPlainText() == "bold")
+    doc.setModified(true)
+    @Assert(doc.isModified())
+    doc.delete()
+}
+
+@Test
+public func testQTextCursor() {
+    let doc = QTextDocument()
+    let cursor = QTextCursor(doc)
+    cursor.insertText("abc")
+    @Assert(cursor.position() == 3)
+    cursor.setPosition(1)
+    cursor.insertText("X")
+    @Assert(doc.toPlainText() == "aXbc")
+    cursor.selectAll()
+    @Assert(cursor.hasSelection())
+    cursor.delete()
+    doc.delete()
+}
+
+@Test
+public func testQRegularExpressionValidator() {
+    let validator = QRegularExpressionValidator("^\\d{3}$")
+    @Assert(validator.validate("123").value() == QValidatorState.Acceptable.value())
+    @Assert(validator.validate("12a").value() == QValidatorState.Invalid.value())
+    validator.delete()
+}
