@@ -12,7 +12,7 @@
 
 | 分类 | 数量 |
 | :--- | :--- |
-| 已完成 | 39 |
+| 已完成 | 50 |
 | 进行中 | 12 |
 | 未移植 | 200+ |
 
@@ -22,25 +22,31 @@
 QCore:
 
 QByteArray                ▓▓▓▓▓▓▓▓░░         QCryptographicHash        ▓▓▓▓▓▓▓▓░░
-QDataStream               ▓▓▓▓▓▓▓▓░░         QDate                     ▓▓▓▓▓▓▓▓░░
-QDateTime                 ▓▓▓▓▓▓▓▓░░         QDir                      ▓▓▓▓▓▓▓▓░░
+QCoreApplication          ▓▓▓▓▓▓▓▓░░         QDataStream               ▓▓▓▓▓▓▓▓░░
+QDate                     ▓▓▓▓▓▓▓▓░░         QDateTime                 ▓▓▓▓▓▓▓▓░░
+QDeadlineTimer            ▓▓▓▓▓▓▓▓░░         QDir                      ▓▓▓▓▓▓▓▓░░
 QDirIterator              ▓▓▓▓▓▓▓▓░░         QElapsedTimer             ▓▓▓▓▓▓▓▓▓░
 QEvent                    ▓▓▓▓▓▓▓▓▓░         QEventLoop                ▓▓▓▓▓▓▓▓░░
 QFile                     ▓▓▓▓▓▓▓▓░░         QFileInfo                 ▓▓▓▓▓▓▓▓░░
 QFileSystemWatcher        ▓▓▓▓▓▓▓▓░░         QJsonArray                ▓▓▓▓▓▓▓▓░░
 QJsonDocument             ▓▓▓▓▓▓▓▓░░         QJsonObject               ▓▓▓▓▓▓▓▓░░
 QJsonValue                ▓▓▓▓▓▓▓▓░░         QLibrary                  ▓▓▓▓▓▓▓▓░░
-QLocale                   ▓▓▓▓▓▓▓▓░░         QMargins                  ▓▓▓▓▓▓▓▓▓░
-QMimeData                 ▓▓▓▓▓▓▓▓░░         QModelIndex               ▓▓▓▓▓▓▓▓░░
-QPointF                   ▓▓▓▓▓▓▓▓▓░         QProcess                  ▓▓▓▓▓▓▓▓░░
+QLibraryInfo              ▓▓▓▓▓▓▓▓░░         QLocale                   ▓▓▓▓▓▓▓▓░░
+QMargins                  ▓▓▓▓▓▓▓▓▓░         QMimeData                 ▓▓▓▓▓▓▓▓░░
+QModelIndex               ▓▓▓▓▓▓▓▓░░         QMutex                    ▓▓▓▓▓▓▓▓░░
+QPersistentModelIndex     ▓▓▓▓▓▓▓▓░░         QPointF                   ▓▓▓▓▓▓▓▓▓░
+QProcess                  ▓▓▓▓▓▓▓▓░░         QProcessEnvironment       ▓▓▓▓▓▓▓▓░░
 QRandomGenerator          ▓▓▓▓▓▓▓▓░░         QRegularExpression        ▓▓▓▓▓▓▓▓░░
-QRegularExpressionMatch   ▓▓▓▓▓▓▓▓░░         QSettings                 ▓▓▓▓▓▓▓▓░░
+QRegularExpressionMatch   ▓▓▓▓▓▓▓▓░░         QSaveFile                 ▓▓▓▓▓▓▓▓░░
+QSemaphore                ▓▓▓▓▓▓▓▓░░         QSettings                 ▓▓▓▓▓▓▓▓░░
 QSize                     ▓▓▓▓▓▓▓▓░░         QStandardPaths            ▓▓▓▓▓▓▓▓▓░
-QTemporaryDir             ▓▓▓▓▓▓▓▓░░         QTemporaryFile            ▓▓▓▓▓▓▓▓░░
-QTextStream               ▓▓▓▓▓▓▓▓░░         QThread                   ▓▓▓▓▓▓▓▓░░
-QTime                     ▓▓▓▓▓▓▓▓░░         QTimer                    ▓▓▓▓▓▓▓▓░░
-QUrl                      ▓▓▓▓▓▓▓▓░░         QUrlQuery                 ▓▓▓▓▓▓▓▓░░
-QUuid                     ▓▓▓▓▓▓▓▓░░         QVariant                  ▓▓▓▓▓▓▓▓░░
+QSysInfo                  ▓▓▓▓▓▓▓▓░░         QTemporaryDir             ▓▓▓▓▓▓▓▓░░
+QTemporaryFile            ▓▓▓▓▓▓▓▓░░         QTextStream               ▓▓▓▓▓▓▓▓░░
+QThread                   ▓▓▓▓▓▓▓▓░░         QTime                     ▓▓▓▓▓▓▓▓░░
+QTimeZone                 ▓▓▓▓▓▓▓▓░░         QTimer                    ▓▓▓▓▓▓▓▓░░
+QTranslator               ▓▓▓▓▓▓▓▓░░         QUrl                      ▓▓▓▓▓▓▓▓░░
+QUrlQuery                 ▓▓▓▓▓▓▓▓░░         QUuid                     ▓▓▓▓▓▓▓▓░░
+QVariant                  ▓▓▓▓▓▓▓▓░░
 ```
 
 ## 进行中

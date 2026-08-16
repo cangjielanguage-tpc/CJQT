@@ -133,7 +133,6 @@ public func testQImage() {
     @Assert(loaded.width() == 100)
     loaded.delete()
     image.delete()
-    QApplication.delete()
 }
 
 @Test
@@ -164,7 +163,6 @@ public func testQFontMetrics() {
     @Assert(metrics.width("hello") > 0)
     metrics.delete()
     font.delete()
-    QApplication.delete()
 }
 
 @Test
@@ -200,5 +198,52 @@ public func testQCursor() {
     @Assert(hand.shape().value() == CursorShape.PointingHandCursor.value())
     hand.delete()
     cursor.delete()
-    QApplication.delete()
+}
+
+@Test
+public func testQFontDatabase() {
+    QApplication.create()
+    let dummy = QWidget()
+    dummy.delete()
+    let families = QFontDatabase.families()
+    @Assert(families.count() > 0)
+    families.delete()
+}
+
+@Test
+public func testQFontInfo() {
+    QApplication.create()
+    let dummy = QWidget()
+    dummy.delete()
+    let font = QFont()
+    font.setPointSize(14)
+    let info = QFontInfo(font)
+    @Assert(info.pointSize() > 0)
+    @Assert(info.family().size > 0)
+    info.delete()
+    font.delete()
+}
+
+@Test
+public func testQPixmapCache() {
+    QApplication.create()
+    let dummy = QWidget()
+    dummy.delete()
+    @Assert(QPixmapCache.cacheLimit() > 0)
+    QPixmapCache.setCacheLimit(2048)
+    @Assert(QPixmapCache.cacheLimit() == 2048)
+    let pixmap = QPixmap(32, 32)
+    @Assert(QPixmapCache.insert("test_key", pixmap))
+    QPixmapCache.remove("test_key")
+    QPixmapCache.clear()
+    pixmap.delete()
+    QPixmapCache.setCacheLimit(1024)
+}
+
+@Test
+public func testQMovie() {
+    QApplication.create()
+    let movie = QMovie()
+    @Assert(!movie.isRunning())
+    movie.delete()
 }

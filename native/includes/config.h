@@ -5,6 +5,7 @@
 #include <QApplication>
 #include <string.h>
 #include <iostream>
+#include <mutex>
 
 
 typedef void (*nativeEventCallback)(uintptr_t, uintptr_t);
@@ -18,11 +19,10 @@ typedef void (*nativeConnectCallbackPointer)(uintptr_t, void *);
 
 typedef void *(*nativeCallbackPointer)(uintptr_t, void *);
 
-#define APPLICATION_CREATE                                                   \
-    if (appConfig->appInit && appConfig->app == nullptr)                     \
-    {                                                                        \
-        appConfig->app = new QApplication(appConfig->argc, appConfig->argv); \
-    }
+extern void cjqt_application_ensure();
+
+#define APPLICATION_CREATE \
+    cjqt_application_ensure();
 
 class Config
 {

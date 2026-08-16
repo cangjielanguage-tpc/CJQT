@@ -84,6 +84,7 @@ set (SRC_DIR ./src/widgets/application.cpp
         ./src/widgets/mdi_area.cpp
         ./src/widgets/widgets_controls.cpp
         ./src/widgets/widgets_containers.cpp
+        ./src/widgets/widgets_text.cpp
         ./src/core/url.cpp
         ./src/core/timer.cpp
         ./src/core/rect.cpp
@@ -111,6 +112,7 @@ set (SRC_DIR ./src/widgets/application.cpp
         ./src/core/thread_watch.cpp
         ./src/core/query_random.cpp
         ./src/core/hash_loop_iterator.cpp
+        ./src/core/core_more.cpp
         ./src/core/model_index.cpp
         ./src/core/variant.cpp
         ./src/core/item_selection_model.cpp
@@ -120,6 +122,7 @@ set (SRC_DIR ./src/widgets/application.cpp
         ./src/gui/painter.cpp
         ./src/gui/drawing.cpp
         ./src/gui/gui_misc.cpp
+        ./src/gui/gui_text.cpp
         ./src/gui/pen.cpp
         ./src/gui/color.cpp
         ./src/gui/brush.cpp

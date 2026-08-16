@@ -1,4 +1,5 @@
 #include <QApplication>
+#include <mutex>
 #include "widget.h"
 
 #include <sys/types.h>
@@ -14,6 +15,18 @@ namespace
 	{
 		qRegisterMetaType<QVector<int>>();
 	}
+
+	std::mutex g_appMutex;
+}
+
+// thread-safe application ensure: constructs QApplication on first use
+void cjqt_application_ensure()
+{
+	std::lock_guard<std::mutex> lock(g_appMutex);
+	if (appConfig != nullptr && appConfig->appInit && appConfig->app == nullptr)
+	{
+		appConfig->app = new QApplication(appConfig->argc, appConfig->argv);
+	}
 }
 
 // QApplication
@@ -23,14 +36,22 @@ extern "C"
 
 	void nativeApplicationInit()
 	{
+		std::lock_guard<std::mutex> lock(g_appMutex);
 		register_meta_types();
-		appConfig = new Config();
-		appConfig->appInit = true;
+		if (appConfig == nullptr){
+			appConfig = new Config();
+			appConfig->appInit = true;
+		}
 	}
 
 	void nativeApplicationInitWithArg(int argc, char *argv[])
 	{
+		std::lock_guard<std::mutex> lock(g_appMutex);
 		register_meta_types();
+		if (appConfig != nullptr){
+			delete appConfig;
+			appConfig = nullptr;
+		}
 		appConfig = new Config();
 		appConfig->appInit = true;
 		appConfig->argc = argc;
@@ -39,7 +60,7 @@ extern "C"
 
 	bool nativeApplicationExec()
 	{
-		if (appConfig->app != nullptr){
+		if (appConfig != nullptr && appConfig->app != nullptr){
 			return appConfig->app->exec();
 		}
 		return false;
@@ -47,20 +68,19 @@ extern "C"
 
 	bool nativeApplicationIsCreate()
 	{
-		return appConfig->app != nullptr;
+		return appConfig != nullptr && appConfig->app != nullptr;
 	}
 
 	void nativeApplicationBeep()
     {
-        if (appConfig->app != nullptr){
+        if (appConfig != nullptr && appConfig->app != nullptr){
             appConfig->app->beep();
+            appConfig->app->primaryScreen();
         }
-        appConfig->app->primaryScreen();
 	}
 
     uintptr_t nativeApplicationPrimaryScreen(){
-//        int n=0;
-        if (appConfig->app != nullptr){
+        if (appConfig != nullptr && appConfig->app != nullptr){
             return reinterpret_cast<uintptr_t>(appConfig->app->primaryScreen());
         }
         return 0;
@@ -69,16 +89,22 @@ extern "C"
 
 	void nativeApplicationQuit()
 	{
-		if (appConfig->app != nullptr){
+		if (appConfig != nullptr && appConfig->app != nullptr){
 			appConfig->app->quit();
 		}
 	}
 
 	void nativeApplicationDelete()
 	{
-		delete appConfig;
+		std::lock_guard<std::mutex> lock(g_appMutex);
+		if (appConfig == nullptr){
+			return;
+		}
 		if (appConfig->app != nullptr){
 			delete appConfig->app;
+			appConfig->app = nullptr;
 		}
+		delete appConfig;
+		appConfig = nullptr;
 	}
 }

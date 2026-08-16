@@ -697,3 +697,124 @@ public func testQDirIterator() {
     cleanup.removeRecursively()
     cleanup.delete()
 }
+
+@Test
+public func testQSaveFile() {
+    let path = "/tmp/cjqt_ut_save.txt"
+    if (QFile.existsPath(path)) {
+        QFile.removePath(path)
+    }
+    let save = QSaveFile(path)
+    @Assert(save.open())
+    save.write("atomic data")
+    @Assert(save.commit())
+    save.delete()
+    @Assert(QFile.existsPath(path))
+    let f = QFile(path)
+    f.open(QIODeviceOpenMode.ReadOnly)
+    @Assert(f.readAll() == "atomic data")
+    f.close()
+    f.delete()
+    QFile.removePath(path)
+}
+
+@Test
+public func testQProcessEnvironment() {
+    let env = QProcessEnvironment.systemEnvironment()
+    @Assert(!env.isEmpty())
+    @Assert(env.contains("PATH"))
+    @Assert(env.value("PATH").size > 0)
+    env.delete()
+    let custom = QProcessEnvironment()
+    custom.insert("MY_KEY", "my_value")
+    @Assert(custom.contains("MY_KEY"))
+    @Assert(custom.value("MY_KEY") == "my_value")
+    custom.remove("MY_KEY")
+    @Assert(!custom.contains("MY_KEY"))
+    custom.delete()
+}
+
+@Test
+public func testQDeadlineTimer() {
+    let timer = QDeadlineTimer.withTimeout(100)
+    @Assert(!timer.isForever())
+    @Assert(!timer.hasExpired())
+    let remaining = timer.remainingTime()
+    @Assert(remaining > 0)
+    timer.delete()
+    let forever = QDeadlineTimer.forever()
+    @Assert(forever.isForever())
+    forever.delete()
+}
+
+@Test
+public func testQCoreApplication() {
+    QCoreApplication.setApplicationName("cjqt-test")
+    @Assert(QCoreApplication.applicationName() == "cjqt-test")
+    QCoreApplication.setApplicationVersion("1.2.3")
+    @Assert(QCoreApplication.applicationVersion() == "1.2.3")
+    QCoreApplication.processEvents()
+}
+
+@Test
+public func testQTranslator() {
+    let translator = QTranslator()
+    @Assert(translator.isEmpty())
+    translator.delete()
+}
+
+@Test
+public func testQSysInfo() {
+    @Assert(QSysInfo.kernelType().size > 0)
+    @Assert(QSysInfo.productType().size > 0)
+    @Assert(QSysInfo.wordSize() == 64)
+}
+
+@Test
+public func testQLibraryInfo() {
+    let version = QLibraryInfo.version()
+    @Assert(version.contains("5."))
+    let path = QLibraryInfo.location(QLibraryLocation.TranslationsPath)
+    @Assert(path.size > 0)
+}
+
+@Test
+public func testQTimeZone() {
+    let tz = QTimeZone("Asia/Shanghai")
+    @Assert(tz.isValid())
+    let sys = QTimeZone.systemTimeZone()
+    @Assert(sys.isValid())
+    tz.delete()
+    sys.delete()
+}
+
+@Test
+public func testQSemaphore() {
+    let sem = QSemaphore.withCount(2)
+    @Assert(sem.available() == 2)
+    sem.acquire()
+    @Assert(sem.available() == 1)
+    @Assert(sem.tryAcquire())
+    @Assert(!sem.tryAcquire())
+    sem.release(n: 2)
+    @Assert(sem.available() == 2)
+    sem.delete()
+}
+
+@Test
+public func testQMutex() {
+    let mutex = QMutex()
+    @Assert(mutex.tryLock())
+    @Assert(!mutex.tryLock())
+    mutex.unlock()
+    @Assert(mutex.tryLock())
+    mutex.unlock()
+    mutex.delete()
+}
+
+@Test
+public func testQPersistentModelIndex() {
+    let index = QPersistentModelIndex()
+    @Assert(!index.isValid())
+    index.delete()
+}

@@ -7,7 +7,6 @@ import std.unittest.*
 @Test
 public func testApplication() {
     QApplication.create()
-    QApplication.delete()
     @Assert(true)
 }
 
@@ -28,7 +27,6 @@ public func testWidgetBasics() {
     @Assert(!widget.isVisible())
     widget.close()
     widget.delete()
-    QApplication.delete()
 }
 
 @Test
@@ -37,7 +35,6 @@ public func testLabel() {
     let label = QLabel("hello")
     label.setText("world")
     label.delete()
-    QApplication.delete()
     @Assert(true)
 }
 
@@ -47,7 +44,6 @@ public func testPushButton() {
     let button = QPushButton()
     button.setText("click")
     button.delete()
-    QApplication.delete()
     @Assert(true)
 }
 
@@ -61,7 +57,6 @@ public func testCheckBox() {
     box.setText("box")
     @Assert(box.text() == "box")
     box.delete()
-    QApplication.delete()
 }
 
 @Test
@@ -73,7 +68,6 @@ public func testRadioButton() {
     radio.setText("radio")
     @Assert(radio.text() == "radio")
     radio.delete()
-    QApplication.delete()
 }
 
 @Test
@@ -90,7 +84,6 @@ public func testLineEdit() {
     edit.clear()
     @Assert(edit.text() == "")
     edit.delete()
-    QApplication.delete()
 }
 
 @Test
@@ -104,7 +97,6 @@ public func testTextEdit() {
     edit.setReadOnly(true)
     @Assert(edit.isReadOnly())
     edit.delete()
-    QApplication.delete()
 }
 
 @Test
@@ -118,7 +110,6 @@ public func testGroupBox() {
     box.setChecked(true)
     @Assert(box.isChecked())
     box.delete()
-    QApplication.delete()
 }
 
 @Test
@@ -129,7 +120,6 @@ public func testFrame() {
     frame.setLineWidth(2)
     @Assert(frame.lineWidth() == 2)
     frame.delete()
-    QApplication.delete()
 }
 
 @Test
@@ -141,7 +131,6 @@ public func testMainWindow() {
     win.setWindowTitle("main")
     @Assert(win.windowTitle() == "main")
     win.delete()
-    QApplication.delete()
 }
 
 @Test
@@ -153,7 +142,6 @@ public func testMenuBar() {
     fileMenu.addAction("打开")
     fileMenu.addSeparator()
     win.delete()
-    QApplication.delete()
     @Assert(true)
 }
 
@@ -166,7 +154,6 @@ public func testStatusBar() {
     bar.clearMessage()
     @Assert(bar.currentMessage() == "")
     bar.delete()
-    QApplication.delete()
 }
 
 @Test
@@ -178,7 +165,6 @@ public func testToolBar() {
     bar.addAction("action1")
     bar.addSeparator()
     win.delete()
-    QApplication.delete()
     @Assert(true)
 }
 
@@ -196,7 +182,6 @@ public func testTabWidget() {
     @Assert(tabs.currentIndex() == 0)
     @Assert(tabs.currentWidget().ptr == page1.ptr)
     tabs.delete()
-    QApplication.delete()
 }
 
 @Test
@@ -211,7 +196,6 @@ public func testTabBar() {
     bar.removeTab(0)
     @Assert(bar.count() == 1)
     bar.delete()
-    QApplication.delete()
 }
 
 @Test
@@ -221,7 +205,6 @@ public func testScrollBar() {
     bar.delete()
     let hbar = QScrollBar(Orientation.Horizontal)
     hbar.delete()
-    QApplication.delete()
     @Assert(true)
 }
 
@@ -236,7 +219,6 @@ public func testScrollArea() {
     @Assert(area.widgetResizable())
     area.takeWidget()
     area.delete()
-    QApplication.delete()
 }
 
 @Test
@@ -251,7 +233,6 @@ public func testSplitter() {
     @Assert(splitter.widget(0).ptr == w1.ptr)
     splitter.setHandleWidth(5)
     splitter.delete()
-    QApplication.delete()
 }
 
 @Test
@@ -268,7 +249,6 @@ public func testLayouts() {
     vbox.addStretch(0)
     vbox.addSpacing(4)
     widget.delete()
-    QApplication.delete()
     @Assert(true)
 }
 
@@ -285,7 +265,6 @@ public func testGridLayout() {
     grid.setVerticalSpacing(6)
     widget.setLayout(grid)
     widget.delete()
-    QApplication.delete()
     @Assert(true)
 }
 
@@ -300,7 +279,6 @@ public func testGraphicsSceneAndItems() {
     line.setLine(0.0, 0.0, 10.0, 10.0)
     scene.addItem(line)
     scene.delete()
-    QApplication.delete()
     @Assert(true)
 }
 
@@ -314,7 +292,6 @@ public func testGraphicsView() {
     view.setSceneRect(0.0, 0.0, 100.0, 100.0)
     view.delete()
     scene.delete()
-    QApplication.delete()
 }
 
 @Test
@@ -330,7 +307,6 @@ public func testPainterOnPixmap() {
     painter.restore()
     painter.delete()
     pixmap.delete()
-    QApplication.delete()
     @Assert(true)
 }
 
@@ -344,7 +320,6 @@ public func testPixmap() {
     @Assert(pixmap.getHeight() == 80)
     pixmap.fill(QColor.White)
     pixmap.delete()
-    QApplication.delete()
 }
 
 @Test
@@ -357,7 +332,6 @@ public func testAction() {
     action.setChecked(true)
     @Assert(action.isChecked())
     action.delete()
-    QApplication.delete()
 }
 
 @Test
@@ -378,7 +352,6 @@ public func testComboBox() {
     combo.removeItem(0)
     @Assert(combo.count() == 2)
     combo.delete()
-    QApplication.delete()
 }
 
 @Test
@@ -395,7 +368,6 @@ public func testSlider() {
     slider.delete()
     let v = QSlider(Orientation.Vertical)
     v.delete()
-    QApplication.delete()
 }
 
 @Test
@@ -412,7 +384,6 @@ public func testProgressBar() {
     bar.setTextVisible(false)
     @Assert(!bar.isTextVisible())
     bar.delete()
-    QApplication.delete()
 }
 
 @Test
@@ -429,7 +400,6 @@ public func testSpinBox() {
     @Assert(spin.text().contains("$"))
     spin.setSingleStep(5)
     spin.delete()
-    QApplication.delete()
 }
 
 @Test
@@ -446,7 +416,6 @@ public func testStackedWidget() {
     stack.setCurrentIndex(0)
     @Assert(stack.currentIndex() == 0)
     stack.delete()
-    QApplication.delete()
 }
 
 @Test
@@ -464,7 +433,6 @@ public func testToolBox() {
     box.setCurrentIndex(1)
     @Assert(box.currentIndex() == 1)
     box.delete()
-    QApplication.delete()
 }
 
 @Test
@@ -483,5 +451,102 @@ public func testButtonGroup() {
     b1.delete()
     b2.delete()
     group.delete()
-    QApplication.delete()
+}
+
+@Test
+public func testPlainTextEdit() {
+    QApplication.create()
+    let edit = QPlainTextEdit()
+    edit.setPlainText("plain hello")
+    @Assert(edit.toPlainText() == "plain hello")
+    edit.appendPlainText(" world")
+    @Assert(edit.toPlainText().contains("world"))
+    edit.setReadOnly(true)
+    @Assert(edit.isReadOnly())
+    edit.setPlaceholderText("ph")
+    @Assert(edit.placeholderText() == "ph")
+    edit.clear()
+    @Assert(edit.toPlainText() == "")
+    edit.delete()
+}
+
+@Test
+public func testToolButton() {
+    QApplication.create()
+    let btn = QToolButton()
+    btn.setText("open")
+    @Assert(btn.text() == "open")
+    btn.setAutoRaise(true)
+    @Assert(btn.autoRaise())
+    btn.setIcon(QIcon())
+    btn.delete()
+}
+
+@Test
+public func testTimeEdit() {
+    QApplication.create()
+    let edit = QTimeEdit()
+    edit.setTime(QTime(10, 30, 45))
+    let t = edit.time()
+    @Assert(t.hour() == 10)
+    @Assert(t.minute() == 30)
+    @Assert(t.second() == 45)
+    t.delete()
+    edit.setDisplayFormat("HH:mm")
+    edit.setTimeRange(QTime(0, 0, 0), QTime(23, 59, 59))
+    edit.delete()
+}
+
+@Test
+public func testDoubleSpinBox() {
+    QApplication.create()
+    let spin = QDoubleSpinBox()
+    spin.setRange(0.0, 10.0)
+    @Assert(spin.minimum() == 0.0)
+    @Assert(spin.maximum() == 10.0)
+    spin.setValue(3.5)
+    @Assert(spin.value() == 3.5)
+    spin.setDecimals(2)
+    @Assert(spin.decimals() == 2)
+    spin.setPrefix("$")
+    @Assert(spin.text().contains("$"))
+    spin.delete()
+}
+
+@Test
+public func testLcdNumber() {
+    QApplication.create()
+    let lcd = QLCDNumber()
+    lcd.setDigitCount(5)
+    @Assert(lcd.digitCount() == 5)
+    lcd.display(12345)
+    @Assert(lcd.value() == 12345)
+    lcd.delete()
+}
+
+@Test
+public func testFormLayout() {
+    QApplication.create()
+    let widget = QWidget()
+    let form = QFormLayout()
+    let edit1 = QLineEdit()
+    let edit2 = QLineEdit()
+    form.addRow("name:", edit1)
+    form.addRow("age:", edit2)
+    @Assert(form.rowCount() == 2)
+    let span = QPushButton()
+    form.addRow(span)
+    @Assert(form.rowCount() == 3)
+    widget.setLayout(form)
+    widget.delete()
+}
+
+@Test
+public func testColorDialog() {
+    QApplication.create()
+    let dialog = QColorDialog()
+    dialog.setCurrentColor(QColor(10, 20, 30))
+    let c = dialog.currentColor()
+    @Assert(c.rgba() == QColor(10, 20, 30).rgba())
+    dialog.delete()
 }

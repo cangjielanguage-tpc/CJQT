@@ -12,9 +12,9 @@
 
 | 分类 | 数量 |
 | :--- | :--- |
-| 已完成 | 36 |
+| 已完成 | 43 |
 | 进行中 | 29 |
-| 未移植 | 125+ |
+| 未移植 | 118+ |
 
 ## 常用控件
 
@@ -49,6 +49,13 @@
 - `QStackedWidget` 堆叠布局控件
 - `QToolBox` 成列的 Tab 控件
 - `QButtonGroup` 按钮组合容器
+- `QPlainTextEdit` 纯文本编辑器
+- `QToolButton` 工具按钮
+- `QTimeEdit` 时间编辑控件
+- `QDoubleSpinBox` 浮点数字调节控件
+- `QLCDNumber` LCD 数字显示
+- `QFormLayout` 表单布局
+- `QColorDialog` 颜色选择对话框
 
 ### 进行中
 
@@ -63,14 +70,10 @@
 - `QFontDialog` 字体对话框
 
 ### 未移植
-
-- `QTimeEdit` / `QDateEdit` / `QDateTimeEdit` 时间日期编辑控件
+- `QDateEdit` / `QDateTimeEdit` 日期时间编辑控件
 - `QSizeGrip` 视窗缩放控件
-- `QToolButton` 快速访问按钮控件
-- `QDoubleSpinBox` 浮点数字调节控件
 - `QListWidget` / `QTableWidget` / `QTreeWidget` 项控件
-- `QCalendarWidget` / `QLCDNumber` / `QDial` 等
-
+- `QCalendarWidget` / `QDial` 等
 ## 全部类进度
 
 ### 已完成
@@ -93,9 +96,13 @@ QScrollBar                ▓▓▓▓▓▓░░░░         QSlider        
 QSpinBox                  ▓▓▓▓▓▓▓▓░░         QSplitter                ▓▓▓▓▓▓▓▓▓░
 QSplitterHandle           ▓▓▓▓▓▓░░░░         QStackedWidget           ▓▓▓▓▓▓▓▓░░
 QStatusBar                ▓▓▓▓▓▓▓░░░         QTabBar                  ▓▓▓▓▓▓▓▓▓░
-QTabWidget                ▓▓▓▓▓▓▓▓▓░         QTextEdit                ▓▓▓▓▓▓▓▓░░
+QColorDialog              ▓▓▓▓▓▓▓▓░░         QDoubleSpinBox           ▓▓▓▓▓▓▓▓░░
+QFormLayout               ▓▓▓▓▓▓▓▓░░         QLCDNumber               ▓▓▓▓▓▓▓▓░░
+QPlainTextEdit            ▓▓▓▓▓▓▓▓░░         QTabWidget               ▓▓▓▓▓▓▓▓▓░
+QTextEdit                 ▓▓▓▓▓▓▓▓░░         QTimeEdit                ▓▓▓▓▓▓▓▓░░
 QToolBar                  ▓▓▓▓▓▓▓░░░         QToolBox                 ▓▓▓▓▓▓▓▓░░
-QVBoxLayout               ▓▓▓▓▓▓░░░░         QWidget                  ▓▓▓▓▓▓▓▓▓░
+QToolButton               ▓▓▓▓▓▓▓▓░░         QVBoxLayout              ▓▓▓▓▓▓░░░░
+QWidget                   ▓▓▓▓▓▓▓▓▓░
 ```
 
 ### 进行中
@@ -121,49 +128,45 @@ QTreeView                 ▓▓▓░░░░░░░
 ```
 
 ### 未移植
-
 以下 QtWidgets 类尚无封装（仅列常用类）：
-
 ```
 QWidgets:
-
-QAbstractButton           ░░░░░░░░░░         QAbstractSpinBox          ░░░░░░░░░░
-QCalendarWidget           ░░░░░░░░░░         QColorDialog              ░░░░░░░░░░
-QColorDialog              ░░░░░░░░░░         QColumnView               ░░░░░░░░░░
-QCommandLinkButton        ░░░░░░░░░░         QDateEdit                 ░░░░░░░░░░
-QDateEdit                 ░░░░░░░░░░         QDateTimeEdit             ░░░░░░░░░░
-QDial                     ░░░░░░░░░░         QDoubleSpinBox            ░░░░░░░░░░
-QErrorMessage             ░░░░░░░░░░         QFileIconProvider         ░░░░░░░░░░
-QFileSystemModel          ░░░░░░░░░░         QFocusFrame               ░░░░░░░░░░
-QFontComboBox             ░░░░░░░░░░         QFormLayout               ░░░░░░░░░░
-QGraphicsDropShadowEffect ░░░░░░░░░░         QGraphicsEffect           ░░░░░░░░░░
-QGraphicsItemGroup        ░░░░░░░░░░         QGraphicsLayout           ░░░░░░░░░░
-QGraphicsLinearLayout     ░░░░░░░░░░         QGraphicsObject           ░░░░░░░░░░
-QGraphicsPathItem         ░░░░░░░░░░         QGraphicsPixmapItem       ░░░░░░░░░░
-QGraphicsPolygonItem      ░░░░░░░░░░         QGraphicsProxyWidget      ░░░░░░░░░░
-QGraphicsTextItem         ░░░░░░░░░░         QGraphicsWidget           ░░░░░░░░░░
-QInputDialog              ░░░░░░░░░░         QItemDelegate             ░░░░░░░░░░
-QItemEditorFactory        ░░░░░░░░░░         QLCDNumber                ░░░░░░░░░░
-QListWidget               ░░░░░░░░░░         QListWidgetItem           ░░░░░░░░░░
-QMdiSubWindow             ░░░░░░░░░░         QOpenGLWidget             ░░░░░░░░░░
-QPlainTextEdit            ░░░░░░░░░░         QProgressDialog           ░░░░░░░░░░
-QProgressDialog           ░░░░░░░░░░         QRubberBand               ░░░░░░░░░░
-QScroller                 ░░░░░░░░░░         QShortcut                 ░░░░░░░░░░
-QSizeGrip                 ░░░░░░░░░░         QSizePolicy               ░░░░░░░░░░
-QSpacerItem               ░░░░░░░░░░         QSplashScreen             ░░░░░░░░░░
-QSplashScreen             ░░░░░░░░░░         QStackedLayout            ░░░░░░░░░░
-QStackedLayout            ░░░░░░░░░░         QStyle                    ░░░░░░░░░░
-QStyle                    ░░░░░░░░░░         QStyleFactory             ░░░░░░░░░░
-QStyleOption*             ░░░░░░░░░░         QSystemTrayIcon           ░░░░░░░░░░
-QTableWidget              ░░░░░░░░░░         QTableWidgetItem          ░░░░░░░░░░
-QTextBrowser              ░░░░░░░░░░         QTimeEdit                 ░░░░░░░░░░
-QToolButton               ░░░░░░░░░░         QToolTip                  ░░░░░░░░░░
-QToolTip                  ░░░░░░░░░░         QTreeWidget               ░░░░░░░░░░
-QTreeWidgetItem           ░░░░░░░░░░         QUndoCommand              ░░░░░░░░░░
-QUndoStack                ░░░░░░░░░░         QWizard                   ░░░░░░░░░░
-QWizardPage               ░░░░░░░░░░         QWidgetAction             ░░░░░░░░░░
+QAbstractButton  ░░░░░░░░░░  QAbstractSpinBox  ░░░░░░░░░░
+QCalendarWidget  ░░░░░░░░░░  ░░░░░░░░░░
+░░░░░░░░░░  QColumnView  ░░░░░░░░░░
+QCommandLinkButton  ░░░░░░░░░░  QDateEdit  ░░░░░░░░░░
+QDateEdit  ░░░░░░░░░░  QDateTimeEdit  ░░░░░░░░░░
+QDial  ░░░░░░░░░░  ░░░░░░░░░░
+QErrorMessage  ░░░░░░░░░░  QFileIconProvider  ░░░░░░░░░░
+QFileSystemModel  ░░░░░░░░░░  QFocusFrame  ░░░░░░░░░░
+QFontComboBox  ░░░░░░░░░░  ░░░░░░░░░░
+QGraphicsDropShadowEffect ░░░░░░░░░░  QGraphicsEffect  ░░░░░░░░░░
+QGraphicsItemGroup  ░░░░░░░░░░  QGraphicsLayout  ░░░░░░░░░░
+QGraphicsLinearLayout  ░░░░░░░░░░  QGraphicsObject  ░░░░░░░░░░
+QGraphicsPathItem  ░░░░░░░░░░  QGraphicsPixmapItem  ░░░░░░░░░░
+QGraphicsPolygonItem  ░░░░░░░░░░  QGraphicsProxyWidget  ░░░░░░░░░░
+QGraphicsTextItem  ░░░░░░░░░░  QGraphicsWidget  ░░░░░░░░░░
+QInputDialog  ░░░░░░░░░░  QItemDelegate  ░░░░░░░░░░
+QItemEditorFactory  ░░░░░░░░░░  ░░░░░░░░░░
+QListWidget  ░░░░░░░░░░  QListWidgetItem  ░░░░░░░░░░
+QMdiSubWindow  ░░░░░░░░░░  QOpenGLWidget  ░░░░░░░░░░
+░░░░░░░░░░  QProgressDialog  ░░░░░░░░░░
+QProgressDialog  ░░░░░░░░░░  QRubberBand  ░░░░░░░░░░
+QScroller  ░░░░░░░░░░  QShortcut  ░░░░░░░░░░
+QSizeGrip  ░░░░░░░░░░  QSizePolicy  ░░░░░░░░░░
+QSpacerItem  ░░░░░░░░░░  QSplashScreen  ░░░░░░░░░░
+QSplashScreen  ░░░░░░░░░░  QStackedLayout  ░░░░░░░░░░
+QStackedLayout  ░░░░░░░░░░  QStyle  ░░░░░░░░░░
+QStyle  ░░░░░░░░░░  QStyleFactory  ░░░░░░░░░░
+QStyleOption*  ░░░░░░░░░░  QSystemTrayIcon  ░░░░░░░░░░
+QTableWidget  ░░░░░░░░░░  QTableWidgetItem  ░░░░░░░░░░
+QTextBrowser  ░░░░░░░░░░  ░░░░░░░░░░
+░░░░░░░░░░  QToolTip  ░░░░░░░░░░
+QToolTip  ░░░░░░░░░░  QTreeWidget  ░░░░░░░░░░
+QTreeWidgetItem  ░░░░░░░░░░  QUndoCommand  ░░░░░░░░░░
+QUndoStack  ░░░░░░░░░░  QWizard  ░░░░░░░░░░
+QWizardPage  ░░░░░░░░░░  QWidgetAction  ░░░░░░░░░░
 ```
-
 ## 说明
 
 - 信号封装：`QWidgetSignal<T>`（`signal.cj`）提供通用信号连接框架，`QLineEdit`、`QPushButton`、`QGroupBox`、`QDialogButtonBox`、`QAbstractItemView`、`QAction` 等均基于其派生具体信号。
