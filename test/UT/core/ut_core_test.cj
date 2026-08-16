@@ -902,3 +902,46 @@ public func testQXmlStreamReader() {
     @Assert(foundRoot)
     reader.delete()
 }
+
+@Test
+public func testQCommandLineParser() {
+    let parser = QCommandLineParser()
+    parser.setApplicationDescription("test app")
+    parser.addOption("verbose")
+    let args = QStringList()
+    args.append("app")
+    args.append("--verbose")
+    args.append("input.txt")
+    parser.process(args)
+    @Assert(parser.isSet("verbose"))
+    let positional = parser.positionalArguments()
+    @Assert(positional.count() >= 1)
+    positional.delete()
+    args.delete()
+    parser.delete()
+}
+
+@Test
+public func testQXmlStreamWriter() {
+    let writer = QXmlStreamWriter()
+    writer.setAutoFormatting(true)
+    writer.writeStartDocument()
+    writer.writeStartElement("root")
+    writer.writeTextElement("item", "value")
+    writer.writeEndElement()
+    writer.writeEndDocument()
+    let xml = writer.toString()
+    @Assert(xml.contains("<root>"))
+    @Assert(xml.contains("<item>value</item>"))
+    writer.delete()
+}
+
+@Test
+public func testQMimeDatabase() {
+    let db = QMimeDatabase()
+    let mime = db.mimeTypeForName("text/plain")
+    @Assert(mime.isValid())
+    @Assert(mime.name() == "text/plain")
+    mime.delete()
+    db.delete()
+}
