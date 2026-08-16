@@ -86,6 +86,7 @@ set (SRC_DIR ./src/widgets/application.cpp
         ./src/widgets/widgets_containers.cpp
         ./src/widgets/widgets_text.cpp
         ./src/widgets/widgets_date.cpp
+        ./src/widgets/item_views.cpp
         ./src/core/url.cpp
         ./src/core/timer.cpp
         ./src/core/rect.cpp

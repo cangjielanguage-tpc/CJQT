@@ -12,9 +12,9 @@
 
 | 分类 | 数量 |
 | :--- | :--- |
-| 已完成 | 48 |
+| 已完成 | 51 |
 | 进行中 | 29 |
-| 未移植 | 113+ |
+| 未移植 | 110+ |
 
 ## 常用控件
 
@@ -59,6 +59,7 @@
 - `QDial` 旋钮控件
 - `QCalendarWidget` 日历控件
 - `QInputDialog` 输入对话框
+- `QListWidget` / `QTableWidget` / `QTreeWidget` 项视图控件
 
 ### 进行中
 
@@ -74,7 +75,6 @@
 
 ### 未移植
 - `QSizeGrip` 视窗缩放控件
-- `QListWidget` / `QTableWidget` / `QTreeWidget` 项控件
 - `QCalendarWidget` / `QDial` 等
 ## 全部类进度
 
@@ -102,7 +102,8 @@ QCalendarWidget           ▓▓▓▓▓▓▓▓░░         QColorDialog   
 QDateEdit                 ▓▓▓▓▓▓▓▓░░         QDateTimeEdit             ▓▓▓▓▓▓▓▓░░
 QDial                     ▓▓▓▓▓▓▓▓░░         QDoubleSpinBox           ▓▓▓▓▓▓▓▓░░
 QFormLayout               ▓▓▓▓▓▓▓▓░░         QInputDialog              ▓▓▓▓▓▓▓▓░░
-QLCDNumber                ▓▓▓▓▓▓▓▓░░
+QLCDNumber                ▓▓▓▓▓▓▓▓░░         QListWidget               ▓▓▓▓▓▓▓▓░░
+QTableWidget              ▓▓▓▓▓▓▓▓░░         QTreeWidget               ▓▓▓▓▓▓▓▓░░
 QPlainTextEdit            ▓▓▓▓▓▓▓▓░░         QTabWidget               ▓▓▓▓▓▓▓▓▓░
 QTextEdit                 ▓▓▓▓▓▓▓▓░░         QTimeEdit                ▓▓▓▓▓▓▓▓░░
 QToolBar                  ▓▓▓▓▓▓▓░░░         QToolBox                 ▓▓▓▓▓▓▓▓░░

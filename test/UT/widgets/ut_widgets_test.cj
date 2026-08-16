@@ -605,3 +605,58 @@ public func testCalendarWidget() {
     @Assert(cal.yearShown() > 0)
     cal.delete()
 }
+
+@Test
+public func testListWidget() {
+    QApplication.create()
+    let list = QListWidget()
+    list.addItem("apple")
+    list.addItem("banana")
+    @Assert(list.count() == 2)
+    @Assert(list.itemText(0) == "apple")
+    list.setItemText(1, "cherry")
+    @Assert(list.itemText(1) == "cherry")
+    list.setCurrentRow(1)
+    @Assert(list.currentRow() == 1)
+    let item = list.item(0)
+    @Assert(item.text() == "apple")
+    list.clear()
+    @Assert(list.count() == 0)
+    list.delete()
+}
+
+@Test
+public func testTableWidget() {
+    QApplication.create()
+    let table = QTableWidget()
+    table.setRowCount(2)
+    table.setColumnCount(2)
+    @Assert(table.rowCount() == 2)
+    @Assert(table.columnCount() == 2)
+    let item = QTableWidgetItem("cell00")
+    table.setItem(0, 0, item)
+    @Assert(table.itemText(0, 0) == "cell00")
+    let item11 = QTableWidgetItem("cell11")
+    table.setItem(1, 1, item11)
+    @Assert(table.itemText(1, 1) == "cell11")
+    let it = table.item(0, 0)
+    @Assert(it.text() == "cell00")
+    table.delete()
+}
+
+@Test
+public func testTreeWidget() {
+    QApplication.create()
+    let tree = QTreeWidget()
+    let root = QTreeWidgetItem("root")
+    let child = QTreeWidgetItem("child1")
+    root.addChild(child)
+    @Assert(root.childCount() == 1)
+    tree.addTopLevelItem(root)
+    @Assert(tree.topLevelItemCount() == 1)
+    let top = tree.topLevelItem(0)
+    @Assert(top.text() == "root")
+    tree.clear()
+    @Assert(tree.topLevelItemCount() == 0)
+    tree.delete()
+}
