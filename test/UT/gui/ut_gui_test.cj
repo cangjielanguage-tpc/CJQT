@@ -364,3 +364,23 @@ public func testQMimeType() {
     @Assert(!mime.isValid())
     mime.delete()
 }
+
+@Test
+public func testDropEvent() {
+    let mime = QMimeData()
+    mime.setText("drop content")
+    let event = QDropEvent(10, 20, mime.ptr)
+    @Assert(event.posX() == 10)
+    @Assert(event.posY() == 20)
+    @Assert(event.text() == "drop content")
+    event.delete()
+    mime.delete()
+}
+
+@Test
+public func testDragEvents() {
+    let enter = QDragEnterEvent(5, 5, 0)
+    enter.delete()
+    let leave = QDragLeaveEvent()
+    leave.delete()
+}

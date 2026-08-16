@@ -703,3 +703,22 @@ public func testItemDelegate() {
     let delegate = QItemDelegate()
     delegate.delete()
 }
+
+@Test
+public func testSystemTrayIcon() {
+    QApplication.create()
+    let tray = QSystemTrayIcon()
+    tray.setToolTip("tray tip")
+    @Assert(tray.toolTip() == "tray tip")
+    tray.setIcon(QIcon())
+    tray.setVisible(false)
+    @Assert(!tray.isVisible())
+    tray.delete()
+}
+
+@Test
+public func testToolTip() {
+    QApplication.create()
+    @Assert(QToolTip.text().size >= 0)
+    QToolTip.hideText()
+}

@@ -12,9 +12,9 @@
 
 | 分类 | 数量 |
 | :--- | :--- |
-| 已完成 | 55 |
+| 已完成 | 57 |
 | 进行中 | 29 |
-| 未移植 | 106+ |
+| 未移植 | 104+ |
 
 ## 常用控件
 
@@ -64,6 +64,8 @@
 - `QProgressDialog` 进度对话框
 - `QTextBrowser` 富文本浏览器
 - `QItemDelegate` 项委托
+- `QSystemTrayIcon` 系统托盘图标
+- `QToolTip` 工具提示
 
 ### 进行中
 
@@ -101,7 +103,8 @@ QProgressBar              ▓▓▓▓▓▓▓▓░░         QScrollArea    
 QScrollBar                ▓▓▓▓▓▓░░░░         QSlider                  ▓▓▓▓▓▓▓▓░░
 QSpinBox                  ▓▓▓▓▓▓▓▓░░         QSplitter                ▓▓▓▓▓▓▓▓▓░
 QSplitterHandle           ▓▓▓▓▓▓░░░░         QStackedWidget           ▓▓▓▓▓▓▓▓░░
-QStatusBar                ▓▓▓▓▓▓▓░░░         QTabBar                  ▓▓▓▓▓▓▓▓▓░
+QStatusBar                ▓▓▓▓▓▓▓░░░         QSystemTrayIcon          ▓▓▓▓▓▓▓▓░░
+QTabBar                   ▓▓▓▓▓▓▓▓▓░
 QCalendarWidget           ▓▓▓▓▓▓▓▓░░         QColorDialog              ▓▓▓▓▓▓▓▓░░
 QDateEdit                 ▓▓▓▓▓▓▓▓░░         QDateTimeEdit             ▓▓▓▓▓▓▓▓░░
 QDial                     ▓▓▓▓▓▓▓▓░░         QDoubleSpinBox           ▓▓▓▓▓▓▓▓░░
@@ -112,6 +115,7 @@ QItemDelegate             ▓▓▓▓▓▓▓▓░░         QPlainTextEdit 
 QProgressDialog           ▓▓▓▓▓▓▓▓░░         QSplashScreen             ▓▓▓▓▓▓▓▓░░
 QTabWidget                ▓▓▓▓▓▓▓▓▓░
 QTextBrowser              ▓▓▓▓▓▓▓▓░░         QTextEdit                 ▓▓▓▓▓▓▓▓░░
+QToolTip                  ▓▓▓▓▓▓▓▓░░
 QTimeEdit                 ▓▓▓▓▓▓▓▓░░
 QToolBar                  ▓▓▓▓▓▓▓░░░         QToolBox                 ▓▓▓▓▓▓▓▓░░
 QToolButton               ▓▓▓▓▓▓▓▓░░         QVBoxLayout              ▓▓▓▓▓▓░░░░
