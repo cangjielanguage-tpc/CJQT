@@ -12,7 +12,7 @@
 
 | 分类 | 数量 |
 | :--- | :--- |
-| 已完成 | 57 |
+| 已完成 | 61 |
 | 进行中 | 11 |
 | 未移植 | 200+ |
 
@@ -21,10 +21,12 @@
 ```
 QCore:
 
-QByteArray                ▓▓▓▓▓▓▓▓░░         QCryptographicHash        ▓▓▓▓▓▓▓▓░░
+QBuffer                   ▓▓▓▓▓▓▓▓░░         QByteArray                ▓▓▓▓▓▓▓▓░░
+QCryptographicHash        ▓▓▓▓▓▓▓▓░░
 QCoreApplication          ▓▓▓▓▓▓▓▓░░         QDataStream               ▓▓▓▓▓▓▓▓░░
 QDate                     ▓▓▓▓▓▓▓▓░░         QDateTime                 ▓▓▓▓▓▓▓▓░░
 QDeadlineTimer            ▓▓▓▓▓▓▓▓░░         QDir                      ▓▓▓▓▓▓▓▓░░
+QEasingCurve              ▓▓▓▓▓▓▓▓░░
 QDirIterator              ▓▓▓▓▓▓▓▓░░         QElapsedTimer             ▓▓▓▓▓▓▓▓▓░
 QEvent                    ▓▓▓▓▓▓▓▓▓░         QEventLoop                ▓▓▓▓▓▓▓▓░░
 QFile                     ▓▓▓▓▓▓▓▓░░         QFileInfo                 ▓▓▓▓▓▓▓▓░░
@@ -47,10 +49,12 @@ QStandardPaths            ▓▓▓▓▓▓▓▓▓░
 QSysInfo                  ▓▓▓▓▓▓▓▓░░         QTemporaryDir             ▓▓▓▓▓▓▓▓░░
 QTemporaryFile            ▓▓▓▓▓▓▓▓░░         QTextStream               ▓▓▓▓▓▓▓▓░░
 QThread                   ▓▓▓▓▓▓▓▓░░         QTime                     ▓▓▓▓▓▓▓▓░░
-QTimeZone                 ▓▓▓▓▓▓▓▓░░         QTimer                    ▓▓▓▓▓▓▓▓░░
+QTimeLine                 ▓▓▓▓▓▓▓▓░░         QTimeZone                 ▓▓▓▓▓▓▓▓░░
+QTimer                    ▓▓▓▓▓▓▓▓░░
 QTranslator               ▓▓▓▓▓▓▓▓░░         QUrl                      ▓▓▓▓▓▓▓▓░░
 QUrlQuery                 ▓▓▓▓▓▓▓▓░░         QUuid                     ▓▓▓▓▓▓▓▓░░
 QVariant                  ▓▓▓▓▓▓▓▓░░         QVersionNumber            ▓▓▓▓▓▓▓▓░░
+QXmlStreamReader          ▓▓▓▓▓▓▓▓░░
 ```
 
 ## 进行中
