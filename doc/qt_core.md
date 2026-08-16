@@ -12,7 +12,7 @@
 
 | 分类 | 数量 |
 | :--- | :--- |
-| 已完成 | 68 |
+| 已完成 | 71 |
 | 进行中 | 11 |
 | 未移植 | 200+ |
 
@@ -56,7 +56,9 @@ QUrlQuery                 ▓▓▓▓▓▓▓▓░░         QUuid          
 QVariant                  ▓▓▓▓▓▓▓▓░░         QVersionNumber            ▓▓▓▓▓▓▓▓░░
 QXmlStreamReader          ▓▓▓▓▓▓▓▓░░         QXmlStreamWriter          ▓▓▓▓▓▓▓▓░░
 QIdentityProxyModel       ▓▓▓▓▓▓▓▓░░         QLockFile                 ▓▓▓▓▓▓▓▓░░
-QPluginLoader             ▓▓▓▓▓▓▓▓░░         QSignalMapper             ▓▓▓▓▓▓▓▓░░
+QPluginLoader             ▓▓▓▓▓▓▓▓░░         QPropertyAnimation        ▓▓▓▓▓▓▓▓░░
+QSharedMemory             ▓▓▓▓▓▓▓▓░░         QSignalMapper             ▓▓▓▓▓▓▓▓░░
+QVariantAnimation         ▓▓▓▓▓▓▓▓░░
 ```
 
 ## 进行中

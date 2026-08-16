@@ -980,3 +980,26 @@ public func testQSignalMapper() {
     let mapper = QSignalMapper()
     mapper.delete()
 }
+
+@Test
+public func testQVariantAnimation() {
+    let anim = QVariantAnimation()
+    anim.setDuration(1000)
+    @Assert(anim.duration() == 1000)
+    anim.stop()
+    anim.delete()
+}
+
+@Test
+public func testQSharedMemory() {
+    let mem = QSharedMemory("cjqt-test-shm")
+    if (mem.isAttached()) {
+        mem.detach()
+    }
+    @Assert(mem.create(1024))
+    @Assert(mem.isAttached())
+    @Assert(mem.sharedMemorySize() == 1024)
+    mem.detach()
+    @Assert(!mem.isAttached())
+    mem.delete()
+}
