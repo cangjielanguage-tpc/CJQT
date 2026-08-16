@@ -12,9 +12,9 @@
 
 | 分类 | 数量 |
 | :--- | :--- |
-| 已完成 | 65 |
+| 已完成 | 67 |
 | 进行中 | 29 |
-| 未移植 | 96+ |
+| 未移植 | 94+ |
 
 ## 常用控件
 
@@ -73,6 +73,8 @@
 - `QFontComboBox` 字体选择框
 - `QErrorMessage` 错误消息框
 - `QCommandLinkButton` 命令链接按钮
+- `QWizard` 向导对话框
+- `QSizeGrip` 视窗缩放控件
 
 ### 进行中
 
@@ -113,7 +115,8 @@ QScrollBar                ▓▓▓▓▓▓░░░░         QSlider        
 QSpinBox                  ▓▓▓▓▓▓▓▓░░         QSplitter                ▓▓▓▓▓▓▓▓▓░
 QStackedLayout            ▓▓▓▓▓▓▓▓░░
 QSplitterHandle           ▓▓▓▓▓▓░░░░         QStackedWidget           ▓▓▓▓▓▓▓▓░░
-QStatusBar                ▓▓▓▓▓▓▓░░░         QSystemTrayIcon          ▓▓▓▓▓▓▓▓░░
+QSizeGrip                 ▓▓▓▓▓▓▓▓░░         QStatusBar                ▓▓▓▓▓▓▓░░░
+QSystemTrayIcon          ▓▓▓▓▓▓▓▓░░
 QTabBar                   ▓▓▓▓▓▓▓▓▓░
 QCalendarWidget           ▓▓▓▓▓▓▓▓░░         QColorDialog              ▓▓▓▓▓▓▓▓░░
 QDateEdit                 ▓▓▓▓▓▓▓▓░░         QDateTimeEdit             ▓▓▓▓▓▓▓▓░░
@@ -129,6 +132,7 @@ QToolTip                  ▓▓▓▓▓▓▓▓░░
 QTimeEdit                 ▓▓▓▓▓▓▓▓░░
 QToolBar                  ▓▓▓▓▓▓▓░░░         QToolBox                 ▓▓▓▓▓▓▓▓░░
 QToolButton               ▓▓▓▓▓▓▓▓░░         QVBoxLayout              ▓▓▓▓▓▓░░░░
+QWizard                   ▓▓▓▓▓▓▓▓░░
 QWidget                   ▓▓▓▓▓▓▓▓▓░
 ```
 

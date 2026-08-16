@@ -842,3 +842,25 @@ public func testCommandLinkButton() {
     @Assert(btn.description() == "Configure the application")
     btn.delete()
 }
+
+@Test
+public func testWizard() {
+    QApplication.create()
+    let wizard = QWizard()
+    let page1 = QWizardPage()
+    page1.setTitle("Step 1")
+    @Assert(page1.title() == "Step 1")
+    @Assert(wizard.addPage(page1) == 0)
+    @Assert(wizard.pageCount() == 1)
+    wizard.setStartId(0)
+    wizard.delete()
+}
+
+@Test
+public func testSizeGrip() {
+    QApplication.create()
+    let parent = QWidget()
+    let grip = QSizeGrip(parent)
+    grip.delete()
+    parent.delete()
+}

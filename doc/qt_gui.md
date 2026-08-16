@@ -14,9 +14,9 @@
 
 | 分类 | 数量 |
 | :--- | :--- |
-| 已完成 | 40 |
+| 已完成 | 41 |
 | 进行中 | 22 |
-| 未移植 | 51+ |
+| 未移植 | 50+ |
 
 ## 已完成
 
@@ -29,7 +29,7 @@ QDoubleValidator          ▓▓▓▓▓▓▓▓▓░         QFont          
 QFontDatabase             ▓▓▓▓▓▓▓▓░░         QFontInfo                 ▓▓▓▓▓▓▓▓░░
 QFontMetrics              ▓▓▓▓▓▓▓▓░░         QFontMetricsF             ▓▓▓▓▓▓▓▓░░
 QPainterPathStroker       ▓▓▓▓▓▓▓▓░░         QRegion                   ▓▓▓▓▓▓▓▓░░
-QTextFormat               ▓▓▓▓▓▓▓▓░░         QImage                    ▓▓▓▓▓▓▓▓░░
+QTextBlock                ▓▓▓▓▓▓▓▓░░         QTextFormat               ▓▓▓▓▓▓▓▓░░         QImage                    ▓▓▓▓▓▓▓▓░░
 QIntValidator             ▓▓▓▓▓▓▓▓░░         QKeySequence              ▓▓▓▓▓▓▓▓░░
 QMovie                    ▓▓▓▓▓▓▓▓░░         QPainter                  ▓▓▓▓▓▓▓▓▓░
 QRegularExpressionValidator ▓▓▓▓▓▓▓▓░░       QTextCursor               ▓▓▓▓▓▓▓▓░░

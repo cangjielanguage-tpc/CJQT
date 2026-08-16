@@ -440,3 +440,18 @@ public func testQPainterPathStroker() {
     path.delete()
     stroker.delete()
 }
+
+@Test
+public func testQTextBlock() {
+    let doc = QTextDocument()
+    doc.setPlainText("line one\nline two\nline three")
+    let first = QTextBlock.firstBlock(doc)
+    @Assert(first.isValid())
+    @Assert(first.text() == "line one")
+    @Assert(first.blockNumber() == 0)
+    first.delete()
+    let third = QTextBlock.findBlockByNumber(doc, 2)
+    @Assert(third.text() == "line three")
+    third.delete()
+    doc.delete()
+}
