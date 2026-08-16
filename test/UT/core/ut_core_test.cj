@@ -945,3 +945,38 @@ public func testQMimeDatabase() {
     mime.delete()
     db.delete()
 }
+
+@Test
+public func testQLockFile() {
+    let path = "/tmp/cjqt_ut.lock"
+    if (QFile.existsPath(path)) {
+        QFile.removePath(path)
+    }
+    let lock = QLockFile(path)
+    @Assert(lock.tryLock())
+    @Assert(lock.isLocked())
+    lock.unlock()
+    @Assert(!lock.isLocked())
+    lock.delete()
+    QFile.removePath(path)
+}
+
+@Test
+public func testQPluginLoader() {
+    let loader = QPluginLoader("/tmp/nonexistent_plugin.so")
+    @Assert(!loader.isLoaded())
+    @Assert(loader.errorString().size > 0)
+    loader.delete()
+}
+
+@Test
+public func testQIdentityProxyModel() {
+    let proxy = QIdentityProxyModel()
+    proxy.delete()
+}
+
+@Test
+public func testQSignalMapper() {
+    let mapper = QSignalMapper()
+    mapper.delete()
+}

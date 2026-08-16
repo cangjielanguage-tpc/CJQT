@@ -128,6 +128,7 @@ set (SRC_DIR ./src/widgets/application.cpp
         ./src/core/buffer_easing.cpp
         ./src/core/xml_reader.cpp
         ./src/core/parser_writer_mime.cpp
+        ./src/core/lock_plugin_proxy.cpp
         ./src/core/model_index.cpp
         ./src/core/variant.cpp
         ./src/core/item_selection_model.cpp
