@@ -12,9 +12,9 @@
 
 | 分类 | 数量 |
 | :--- | :--- |
-| 已完成 | 61 |
+| 已完成 | 65 |
 | 进行中 | 29 |
-| 未移植 | 100+ |
+| 未移植 | 96+ |
 
 ## 常用控件
 
@@ -69,6 +69,10 @@
 - `QStackedLayout` 堆叠布局
 - `QRubberBand` 橡皮筋选区
 - `QShortcut` 快捷键
+- `QFileSystemModel` 文件系统模型
+- `QFontComboBox` 字体选择框
+- `QErrorMessage` 错误消息框
+- `QCommandLinkButton` 命令链接按钮
 
 ### 进行中
 
@@ -95,8 +99,10 @@ QWidgets:
 QAction                   ▓▓▓▓▓▓▓▓░░         QAbstractItemView        ▓▓▓▓▓▓░░░░
 QApplication              ▓▓▓▓▓▓▓▓░░         QBoxLayout               ▓▓▓▓▓▓░░░░
 QButtonGroup              ▓▓▓▓▓▓▓▓░░         QComboBox                ▓▓▓▓▓▓▓▓░░
-QDialog                   ▓▓▓▓▓▓░░░░         QDialogButtonBox         ▓▓▓▓▓▓░░░░
-QFileDialog               ▓▓▓▓▓▓░░░░         QFrame                   ▓▓▓▓▓▓▓▓▓░
+QCommandLinkButton        ▓▓▓▓▓▓▓▓░░         QDialog                   ▓▓▓▓▓▓░░░░
+QDialogButtonBox         ▓▓▓▓▓▓░░░░         QErrorMessage             ▓▓▓▓▓▓▓▓░░
+QFileDialog               ▓▓▓▓▓▓░░░░         QFileSystemModel         ▓▓▓▓▓▓▓▓░░
+QFontComboBox             ▓▓▓▓▓▓▓▓░░         QFrame                   ▓▓▓▓▓▓▓▓▓░
 QGraphicsScene            ▓▓▓▓▓▓▓▓▓░         QGraphicsView            ▓▓▓▓▓▓▓▓▓░
 QGridLayout               ▓▓▓▓▓▓▓░░░         QGroupBox                ▓▓▓▓▓▓▓▓░░
 QHBoxLayout               ▓▓▓▓▓▓░░░░         QLineEdit                ▓▓▓▓▓▓▓▓▓░

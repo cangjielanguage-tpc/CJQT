@@ -90,6 +90,7 @@ set (SRC_DIR ./src/widgets/application.cpp
         ./src/widgets/widgets_misc.cpp
         ./src/widgets/tray_tooltip.cpp
         ./src/widgets/layout_shortcut.cpp
+        ./src/widgets/widgets_remaining.cpp
         ./src/core/url.cpp
         ./src/core/timer.cpp
         ./src/core/rect.cpp

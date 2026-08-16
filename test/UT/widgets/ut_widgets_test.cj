@@ -800,3 +800,45 @@ public class WidgetTableModel <: QAbstractTableModel {
         return QVariant("cell")
     }
 }
+
+@Test
+public func testFileSystemModel() {
+    QApplication.create()
+    let model = QFileSystemModel()
+    model.setRootPath("/tmp")
+    @Assert(model.rootPath() == "/tmp")
+    model.delete()
+}
+
+@Test
+public func testFontComboBox() {
+    QApplication.create()
+    let combo = QFontComboBox()
+    let font = QFont()
+    font.setFamily("Sans Serif")
+    combo.setCurrentFont(font)
+    @Assert(combo.currentFontFamily().size > 0)
+    let cf = combo.currentFont()
+    @Assert(cf.ptr != 0)
+    cf.delete()
+    font.delete()
+    combo.delete()
+}
+
+@Test
+public func testErrorMessage() {
+    QApplication.create()
+    let box = QErrorMessage()
+    box.showMessage("an error occurred")
+    box.delete()
+}
+
+@Test
+public func testCommandLinkButton() {
+    QApplication.create()
+    let btn = QCommandLinkButton(text: "Open Settings")
+    btn.setDescription("Configure the application")
+    @Assert(btn.text() == "Open Settings")
+    @Assert(btn.description() == "Configure the application")
+    btn.delete()
+}
