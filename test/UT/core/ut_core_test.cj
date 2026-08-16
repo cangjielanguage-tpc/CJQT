@@ -1003,3 +1003,21 @@ public func testQSharedMemory() {
     @Assert(!mem.isAttached())
     mem.delete()
 }
+
+@Test
+public func testAnimationGroups() {
+    let pause = QPauseAnimation.withDuration(500)
+    @Assert(pause.animationDuration() == 500)
+    let group = QSequentialAnimationGroup()
+    group.addAnimation(pause)
+    @Assert(group.animationCount() == 1)
+    group.start()
+    group.stop()
+    @Assert(group.state().value() == QAbstractAnimationState.Stopped.value())
+    group.clear()
+    @Assert(group.animationCount() == 0)
+    group.delete()
+
+    let parallel = QParallelAnimationGroup()
+    parallel.delete()
+}

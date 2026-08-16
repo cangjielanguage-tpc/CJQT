@@ -12,7 +12,7 @@
 
 | 分类 | 数量 |
 | :--- | :--- |
-| 已完成 | 71 |
+| 已完成 | 75 |
 | 进行中 | 11 |
 | 未移植 | 200+ |
 
@@ -57,8 +57,10 @@ QVariant                  ▓▓▓▓▓▓▓▓░░         QVersionNumber 
 QXmlStreamReader          ▓▓▓▓▓▓▓▓░░         QXmlStreamWriter          ▓▓▓▓▓▓▓▓░░
 QIdentityProxyModel       ▓▓▓▓▓▓▓▓░░         QLockFile                 ▓▓▓▓▓▓▓▓░░
 QPluginLoader             ▓▓▓▓▓▓▓▓░░         QPropertyAnimation        ▓▓▓▓▓▓▓▓░░
-QSharedMemory             ▓▓▓▓▓▓▓▓░░         QSignalMapper             ▓▓▓▓▓▓▓▓░░
-QVariantAnimation         ▓▓▓▓▓▓▓▓░░
+QAbstractAnimation       ▓▓▓▓▓▓▓▓░░         QAnimationGroup           ▓▓▓▓▓▓▓▓░░
+QParallelAnimationGroup   ▓▓▓▓▓▓▓▓░░         QPauseAnimation            ▓▓▓▓▓▓▓▓░░
+QSequentialAnimationGroup ▓▓▓▓▓▓▓▓░░         QSharedMemory             ▓▓▓▓▓▓▓▓░░
+QSignalMapper             ▓▓▓▓▓▓▓▓░░         QVariantAnimation         ▓▓▓▓▓▓▓▓░░
 ```
 
 ## 进行中
