@@ -64,3 +64,32 @@ public func testQAudioDeviceInfo() {
     output.delete()
 }
 
+
+@Test
+public func testQCameraInfo() {
+    QApplication.create()
+    let info = QCameraInfo.defaultCamera()
+    @Assert(info.deviceName().size >= 0)
+    info.delete()
+}
+
+@Test
+public func testQCamera() {
+    QApplication.create()
+    let info = QCameraInfo.defaultCamera()
+    let camera = QCamera(info)
+    @Assert(camera.state() >= 0)
+    camera.setCaptureMode(QCameraCaptureMode.CaptureStillImage)
+    camera.stop()
+    camera.delete()
+    info.delete()
+}
+
+@Test
+public func testQVideoWidget() {
+    QApplication.create()
+    let video = QVideoWidget()
+    @Assert(!video.isFullScreen())
+    video.setFullScreen(false)
+    video.delete()
+}
