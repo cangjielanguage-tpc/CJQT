@@ -31,6 +31,7 @@ CjQt是Qt的仓颉语言绑定，提供仓颉语言风格的Qt类和函数的API
 - [QWidgets封装进度](./doc/qt_widgets.md)
 - [QCore封装进度](./doc/qt_core.md)
 - [QGui封装进度](./doc/qt_gui.md)
+- [QMultimedia封装进度](./doc/qt_multimedia.md)
 
 
 ##    <img alt="" src="./doc/assets/readme-icon-framework.png" style="display: inline-block;" width=3%/> 软件架构
@@ -65,12 +66,14 @@ CjQt是Qt的仓颉语言绑定，提供仓颉语言风格的Qt类和函数的API
 │   ├── src
 │   │   ├── core
 │   │   ├── gui
+│   │   ├── multimedia
 │   │   └── widgets
 │   └── CMakeLists.txt
 ├── src
 │   └── qt
-│       ├── core。、
+│       ├── core
 │       ├── gui
+│       ├── multimedia
 │       ├── tools
 │       ├── widgets
 │       └── main.cj
