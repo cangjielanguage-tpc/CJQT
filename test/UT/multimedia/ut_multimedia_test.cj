@@ -43,3 +43,24 @@ public func testQMediaPlaylist() {
     @Assert(playlist.mediaCount() == 0)
     playlist.delete()
 }
+
+@Test
+public func testQAudioFormat() {
+    let format = QAudioFormat()
+    format.setSampleRate(44100)
+    @Assert(format.sampleRate() == 44100)
+    format.setChannelCount(2)
+    @Assert(format.channelCount() == 2)
+    format.setSampleSize(16)
+    @Assert(format.sampleSize() == 16)
+    format.delete()
+}
+
+@Test
+public func testQAudioDeviceInfo() {
+    QApplication.create()
+    let output = QAudioDeviceInfo.defaultOutputDevice()
+    @Assert(output.deviceName().size > 0)
+    output.delete()
+}
+

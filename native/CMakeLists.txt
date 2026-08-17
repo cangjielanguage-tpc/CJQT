@@ -92,6 +92,7 @@ set (SRC_DIR ./src/widgets/application.cpp
         ./src/widgets/layout_shortcut.cpp
         ./src/widgets/widgets_remaining.cpp
         ./src/multimedia/media_player.cpp
+        ./src/multimedia/audio.cpp
         ./src/widgets/wizard_grip.cpp
         ./src/widgets/undo_stack.cpp
         ./src/widgets/widgets_base.cpp
