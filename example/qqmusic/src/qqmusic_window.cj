@@ -25,6 +25,9 @@ public class QQMusicWindow <: QWidget {
     let timer: QTimer
     let navAnimTimer: QTimer
     let navButtons = ArrayList<NavButton>()
+    let lyricsLabel: QLabel
+    var lrcLines = ArrayList<LrcLine>()
+    var currentLrcIndex: Int64 = -1
     var playbackModeIndex = 0
     var isPlaying = false
     var currentSongIndex = -1
@@ -46,6 +49,9 @@ public class QQMusicWindow <: QWidget {
         playBtn = QPushButton()
         playModeBtn = QPushButton()
         volumeTool = VolumeTool()
+        lyricsLabel = QLabel("暂无歌词")
+        lyricsLabel.setStyleSheet(
+            "QLabel { color: #787878; font-size: 18px; }")
         timer = QTimer(500, { => AnimGlobals.progressTick() })
         navAnimTimer = QTimer(120, { => AnimGlobals.navTick() })
 
@@ -240,10 +246,7 @@ public class QQMusicWindow <: QWidget {
         let page = QWidget()
         let layout = QVBoxLayout(parent: page)
         layout.setContentsMargins(20, 20, 20, 20)
-        let lyrics = QLabel("歌词区域")
-        lyrics.setFontSize(18)
-        lyrics.setFontColor(QColor(51, 51, 51))
-        layout.addWidget(lyrics)
+        layout.addWidget(lyricsLabel)
         layout.addStretch(1)
         return page
     }
@@ -412,9 +415,64 @@ public class QQMusicWindow <: QWidget {
             currentSongName = music.name
             musicNameLabel.setText(music.name)
             musicSingerLabel.setText(parseSinger(music.name))
+            loadLrc(music)
             player.play()
             isPlaying = true
             playBtn.setStyleSheet(iconStyle("images/play_on.png"))
+        }
+    }
+
+    func loadLrc(music: MusicInfo) {
+        lrcLines = ArrayList<LrcLine>()
+        currentLrcIndex = -1
+        let lrcPath = replaceExt(music.filePath, ".lrc")
+        let file = QFile(lrcPath)
+        if (file.exists()) {
+            if (file.open(QIODeviceOpenMode.ReadOnly)) {
+                lrcLines = LrcParser.parse(file.readAll())
+                file.close()
+            }
+        }
+        file.delete()
+        if (lrcLines.size > 0) {
+            lyricsLabel.setText(lrcLines[0].text)
+            lyricsLabel.setStyleSheet(
+                "QLabel { color: #1ECE9A; font-size: 22px; }")
+            currentLrcIndex = 0
+        } else {
+            lyricsLabel.setText("暂无歌词")
+            lyricsLabel.setStyleSheet(
+                "QLabel { color: #787878; font-size: 18px; }")
+        }
+    }
+
+    func replaceExt(path: String, newExt: String): String {
+        let dotOpt = path.lastIndexOf(".")
+        match (dotOpt) {
+            case Some(dot) =>
+                return path[0..dot] + newExt
+            case None =>
+                return "${path}${newExt}"
+        }
+    }
+
+    func updateLrc(position: Int64) {
+        if (lrcLines.size == 0) {
+            return
+        }
+        var idx = currentLrcIndex
+        if (idx < 0) {
+            idx = 0
+        }
+        if (position < lrcLines[idx].timeMs) {
+            idx = 0
+        }
+        while (idx + 1 < lrcLines.size && lrcLines[idx + 1].timeMs <= position) {
+            idx += 1
+        }
+        if (idx != currentLrcIndex) {
+            currentLrcIndex = idx
+            lyricsLabel.setText(lrcLines[idx].text)
         }
     }
 
@@ -477,6 +535,7 @@ public class QQMusicWindow <: QWidget {
         }
         currentTimeLabel.setText(formatTime(position))
         totalTimeLabel.setText(formatTime(duration))
+        updateLrc(position)
     }
 
     func formatTime(ms: Int64): String {

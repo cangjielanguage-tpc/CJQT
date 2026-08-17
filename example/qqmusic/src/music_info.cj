@@ -26,11 +26,12 @@ public class MusicLibrary {
         }
         let entries = directory.entryList()
         let count = entries.count()
+        let absDir = directory.absolutePath()
         var i = 0
         while (i < count) {
             let fileName = entries.at(i)
             if (fileName.endsWith(".mp3") || fileName.endsWith(".wav") || fileName.endsWith(".flac")) {
-                musicList.add(MusicInfo(fileName, "${dir}/${fileName}"))
+                musicList.add(MusicInfo(fileName, "${absDir}/${fileName}"))
             }
             i += 1
         }
