@@ -83,7 +83,7 @@ public class QTimer {
     public func delete() {
         unsafe {
             if (ptr != 0) {
-                nativeUrlDelete(ptr)
+                nativeTimerDelete(ptr)
             }
         }
     }

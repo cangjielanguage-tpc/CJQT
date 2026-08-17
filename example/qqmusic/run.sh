@@ -25,6 +25,11 @@ export LD_LIBRARY_PATH=$CUR_DIR/target/release/cjqt:${LD_LIBRARY_PATH}
 
 export QT_QPA_PLATFORM_PLUGIN_PATH=$QT_PLATFORM_URL/platforms
 
+# 多媒体后端（mediaservice）插件路径
+if [ -n "$QT_HOME" ]; then
+    export QT_PLUGIN_PATH=$QT_HOME/plugins
+fi
+
 cd $CUR_DIR
 
 cjpm update

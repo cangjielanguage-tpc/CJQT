@@ -29,10 +29,10 @@ public class RecBox <: QWidget {
         contentLayout.setSpacing(12)
         layout.addWidget(content)
 
-        let titles = ["动感地带", "热门榜单", "新歌首发", "经典老歌", "民谣精选"]
+        let images = ["001", "003", "004", "005", "006"]
         var i = 0
         while (i < cardCount) {
-            contentLayout.addWidget(makeCard("images/rec/00${i + 1}.png", titles[i]))
+            contentLayout.addWidget(makeCard("images/rec/${images[i]}.png", "推荐-${numberText(i)}"))
             i += 1
         }
         contentLayout.addStretch(1)
@@ -42,6 +42,13 @@ public class RecBox <: QWidget {
         downBtn.setStyleSheet(
             "QPushButton { border: none; background-image: url(images/down_page.png); background-repeat: no-repeat; background-position: center center; } QPushButton:hover { background-color: #1ECD97; }")
         layout.addWidget(downBtn)
+    }
+
+    func numberText(i: Int64): String {
+        if (i < 10) {
+            return "00${i}"
+        }
+        return "0${i}"
     }
 
     func makeCard(imagePath: String, title: String): QWidget {
