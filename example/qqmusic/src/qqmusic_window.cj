@@ -22,10 +22,10 @@ public class QQMusicWindow <: QWidget {
     let playBtn: QPushButton
     let playModeBtn: QPushButton
     let volumeTool: VolumeTool
+    let lyricsPage: LyricsPage
     let timer: QTimer
     let navAnimTimer: QTimer
     let navButtons = ArrayList<NavButton>()
-    let lyricsLabel: QLabel
     var lrcLines = ArrayList<LrcLine>()
     var currentLrcIndex: Int64 = -1
     var playbackModeIndex = 0
@@ -49,9 +49,7 @@ public class QQMusicWindow <: QWidget {
         playBtn = QPushButton()
         playModeBtn = QPushButton()
         volumeTool = VolumeTool()
-        lyricsLabel = QLabel("暂无歌词")
-        lyricsLabel.setStyleSheet(
-            "QLabel { color: #787878; font-size: 18px; }")
+        lyricsPage = LyricsPage()
         timer = QTimer(500, { => AnimGlobals.progressTick() })
         navAnimTimer = QTimer(120, { => AnimGlobals.navTick() })
 
@@ -243,12 +241,7 @@ public class QQMusicWindow <: QWidget {
     }
 
     func makeLyricsPage(): QWidget {
-        let page = QWidget()
-        let layout = QVBoxLayout(parent: page)
-        layout.setContentsMargins(20, 20, 20, 20)
-        layout.addWidget(lyricsLabel)
-        layout.addStretch(1)
-        return page
+        return lyricsPage
     }
 
     // ---------- 底部控制栏 ----------
@@ -434,16 +427,7 @@ public class QQMusicWindow <: QWidget {
             }
         }
         file.delete()
-        if (lrcLines.size > 0) {
-            lyricsLabel.setText(lrcLines[0].text)
-            lyricsLabel.setStyleSheet(
-                "QLabel { color: #1ECE9A; font-size: 22px; }")
-            currentLrcIndex = 0
-        } else {
-            lyricsLabel.setText("暂无歌词")
-            lyricsLabel.setStyleSheet(
-                "QLabel { color: #787878; font-size: 18px; }")
-        }
+        lyricsPage.setLrc(lrcLines)
     }
 
     func replaceExt(path: String, newExt: String): String {
@@ -457,23 +441,7 @@ public class QQMusicWindow <: QWidget {
     }
 
     func updateLrc(position: Int64) {
-        if (lrcLines.size == 0) {
-            return
-        }
-        var idx = currentLrcIndex
-        if (idx < 0) {
-            idx = 0
-        }
-        if (position < lrcLines[idx].timeMs) {
-            idx = 0
-        }
-        while (idx + 1 < lrcLines.size && lrcLines[idx + 1].timeMs <= position) {
-            idx += 1
-        }
-        if (idx != currentLrcIndex) {
-            currentLrcIndex = idx
-            lyricsLabel.setText(lrcLines[idx].text)
-        }
+        lyricsPage.updateProgress(position)
     }
 
     func togglePlay() {
