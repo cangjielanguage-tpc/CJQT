@@ -253,6 +253,19 @@ Windows下：
 .\example\frame\run.ps1 
 ```
 
+### QQMusic 音乐播放器示例
+
+[QQMusic 示例详情](./example/qqmusic)
+
+基于 CJQT 库实现的音乐播放器（参照 C++ 版 QQMusic），支持本地音乐扫描、播放控制、进度/音量调节、歌词显示。
+
+执行命令：
+
+Linux下：
+```shell
+./example/qqmusic/run.sh
+```
+
 执行效果：
 <p align="center">
 <img src="./doc/assets/QFrame_demo.png" width="60%" >

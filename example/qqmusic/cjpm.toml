@@ -1,0 +1,14 @@
+[dependencies]
+  cjqt = {path = "../../", version = "0.2.0"}
+
+[package]
+  cjc-version = "1.0.5"
+  compile-option = ""
+  description = "nothing here"
+  link-option = ""
+  name = "qqmusic"
+  output-type = "executable"
+  src-dir = "src"
+  target-dir = ""
+  version = "1.0.0"
+  package-configuration = {}
