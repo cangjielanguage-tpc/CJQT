@@ -25,9 +25,10 @@ export LD_LIBRARY_PATH=$CUR_DIR/target/release/cjqt:${LD_LIBRARY_PATH}
 
 export QT_QPA_PLATFORM_PLUGIN_PATH=$QT_PLATFORM_URL/platforms
 
-# 多媒体后端（mediaservice）插件路径
-if [ -n "$QT_HOME" ]; then
-    export QT_PLUGIN_PATH=$QT_HOME/plugins
+# 多媒体后端（mediaservice）插件路径：优先 Qt 安装目录，其次随库打包的插件
+export QT_PLUGIN_PATH=$QT_PLATFORM_URL/plugins
+if [ -n "$QT_HOME" ] && [ -d "$QT_HOME/plugins" ]; then
+    export QT_PLUGIN_PATH=$QT_HOME/plugins:$QT_PLATFORM_URL/plugins
 fi
 
 cd $CUR_DIR
