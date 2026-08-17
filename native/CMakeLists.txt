@@ -91,6 +91,7 @@ set (SRC_DIR ./src/widgets/application.cpp
         ./src/widgets/tray_tooltip.cpp
         ./src/widgets/layout_shortcut.cpp
         ./src/widgets/widgets_remaining.cpp
+        ./src/multimedia/media_player.cpp
         ./src/widgets/wizard_grip.cpp
         ./src/widgets/undo_stack.cpp
         ./src/widgets/widgets_base.cpp
@@ -221,7 +222,7 @@ set (MOC_INC_DIR
         ./includes/widgets/mdi_area.h
 )
 
-find_package(Qt5 COMPONENTS Core Gui Widgets REQUIRED )
+find_package(Qt5 COMPONENTS Core Gui Widgets Multimedia MultimediaWidgets REQUIRED )
 
 include_directories(${INC_DIR})
 link_directories(${INC_DIR})
@@ -230,4 +231,4 @@ qt5_wrap_cpp(MOC_SRC  ${MOC_INC_DIR})
 
 add_library(nativeQt SHARED ${MOC_SRC} ${SRC_DIR})
 
-target_link_libraries(nativeQt PRIVATE Qt5::Core Qt5::Gui Qt5::Widgets)
+target_link_libraries(nativeQt PRIVATE Qt5::Core Qt5::Gui Qt5::Widgets Qt5::Multimedia Qt5::MultimediaWidgets)

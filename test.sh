@@ -23,7 +23,7 @@ UT_FAIL=0
 for f in $CUR_DIR/test/UT/*/ut_*_test.cj; do
     name=$(basename "$f" .cj)
     if ! cjc --test-only --import-path $LIB_PATH -L $LIB_PATH -L $NATIVE_LIB \
-        -lcjqt -lcjqt.core -lcjqt.gui -lcjqt.widgets -lcjqt.tools -lnativeQt \
+        -lcjqt.multimedia -lcjqt.widgets -lcjqt.gui -lcjqt.core -lcjqt.tools -lcjqt -lnativeQt \
         -o $UT_DIR/$name "$f" 2>/dev/null; then
         echo "COMPILE FAIL $name"
         UT_FAIL=$((UT_FAIL+1))
@@ -60,7 +60,7 @@ FAIL=0
 for f in $CUR_DIR/test/LLT/*.cj; do
     name=$(basename "$f" .cj)
     if ! cjc --import-path $LIB_PATH -L $LIB_PATH -L $NATIVE_LIB \
-        -lcjqt -lcjqt.core -lcjqt.gui -lcjqt.widgets -lcjqt.tools -lnativeQt \
+        -lcjqt.multimedia -lcjqt.widgets -lcjqt.gui -lcjqt.core -lcjqt.tools -lcjqt -lnativeQt \
         -o $TMP_DIR/$name "$f" 2>/dev/null; then
         echo "COMPILE FAIL $name"
         FAIL=$((FAIL+1))
