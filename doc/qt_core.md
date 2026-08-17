@@ -2,132 +2,95 @@
 
 > 适配版本：Cangjie 1.0.5 / Qt 5.14.2
 >
-> 统计说明：`▓` 表示已完成比例（满格 10 格为 100%），`░` 表示尚未完成。
->
-> - 已完成（▓▓▓▓▓▓▓▓░░ 及以上）：类主体及常用接口已封装，可在示例/测试中直接使用
-> - 进行中（▓▓░░░░░░░░ ~ ▓▓▓▓▓▓░░░░）：已完成创建/删除等基础接口，常用接口封装不完整
-> - 未移植（░░░░░░░░░░）：尚无对应封装代码
+> 统计说明：`▓` 表示已完成（满格 10 格为 100%），`░` 表示尚未移植。
+> 每类均包含 native C 绑定（`native/src/core/`）、仓颉封装（`src/core/`）与单元测试。
 
 ## 进度总览
 
 | 分类 | 数量 |
 | :--- | :--- |
-| 已完成 | 75 |
-| 进行中 | 11 |
-| 未移植 | 200+ |
+| 已完成 | 80 |
+| 未移植 | 40+（多为内部/低频类） |
 
 ## 已完成
 
 ```
 QCore:
 
-QBuffer                   ▓▓▓▓▓▓▓▓░░         QByteArray                ▓▓▓▓▓▓▓▓░░
-QCommandLineParser        ▓▓▓▓▓▓▓▓░░         QCryptographicHash        ▓▓▓▓▓▓▓▓░░
-QCoreApplication          ▓▓▓▓▓▓▓▓░░         QDataStream               ▓▓▓▓▓▓▓▓░░
-QDate                     ▓▓▓▓▓▓▓▓░░         QDateTime                 ▓▓▓▓▓▓▓▓░░
-QDeadlineTimer            ▓▓▓▓▓▓▓▓░░         QDir                      ▓▓▓▓▓▓▓▓░░
-QEasingCurve              ▓▓▓▓▓▓▓▓░░
-QDirIterator              ▓▓▓▓▓▓▓▓░░         QElapsedTimer             ▓▓▓▓▓▓▓▓▓░
-QEvent                    ▓▓▓▓▓▓▓▓▓░         QEventLoop                ▓▓▓▓▓▓▓▓░░
-QFile                     ▓▓▓▓▓▓▓▓░░         QFileInfo                 ▓▓▓▓▓▓▓▓░░
-QFileSystemWatcher        ▓▓▓▓▓▓▓▓░░         QJsonArray                ▓▓▓▓▓▓▓▓░░
-QJsonDocument             ▓▓▓▓▓▓▓▓░░         QJsonObject               ▓▓▓▓▓▓▓▓░░
-QJsonValue                ▓▓▓▓▓▓▓▓░░         QLibrary                  ▓▓▓▓▓▓▓▓░░
-QLibraryInfo              ▓▓▓▓▓▓▓▓░░         QLocale                   ▓▓▓▓▓▓▓▓░░
-QMargins                  ▓▓▓▓▓▓▓▓▓░         QMimeData                 ▓▓▓▓▓▓▓▓░░
-QMimeDatabase             ▓▓▓▓▓▓▓▓░░         QMimeType                 ▓▓▓▓▓▓▓▓░░
-QModelIndex               ▓▓▓▓▓▓▓▓░░         QMutex                    ▓▓▓▓▓▓▓▓░░
-QPersistentModelIndex     ▓▓▓▓▓▓▓▓░░         QPointF                   ▓▓▓▓▓▓▓▓▓░
-QProcess                  ▓▓▓▓▓▓▓▓░░         QProcessEnvironment       ▓▓▓▓▓▓▓▓░░
-QItemSelection            ▓▓▓▓▓▓▓▓░░         QRandomGenerator          ▓▓▓▓▓▓▓▓░░
-QRandomGenerator64         ▓▓▓▓▓▓▓▓░░         QRegularExpression        ▓▓▓▓▓▓▓▓░░
-QRegularExpressionMatch   ▓▓▓▓▓▓▓▓░░         QSaveFile                 ▓▓▓▓▓▓▓▓░░
-QSemaphore                ▓▓▓▓▓▓▓▓░░         QSettings                 ▓▓▓▓▓▓▓▓░░
-QAbstractTableModel       ▓▓▓▓▓▓▓▓░░         QIODevice                 ▓▓▓▓▓▓▓▓░░
-QSize                     ▓▓▓▓▓▓▓▓░░         QSortFilterProxyModel     ▓▓▓▓▓▓▓▓░░
-QStandardPaths            ▓▓▓▓▓▓▓▓▓░
-QSysInfo                  ▓▓▓▓▓▓▓▓░░         QTemporaryDir             ▓▓▓▓▓▓▓▓░░
-QTemporaryFile            ▓▓▓▓▓▓▓▓░░         QTextStream               ▓▓▓▓▓▓▓▓░░
-QThread                   ▓▓▓▓▓▓▓▓░░         QTime                     ▓▓▓▓▓▓▓▓░░
-QTimeLine                 ▓▓▓▓▓▓▓▓░░         QTimeZone                 ▓▓▓▓▓▓▓▓░░
-QTimer                    ▓▓▓▓▓▓▓▓░░
-QTranslator               ▓▓▓▓▓▓▓▓░░         QUrl                      ▓▓▓▓▓▓▓▓░░
-QUrlQuery                 ▓▓▓▓▓▓▓▓░░         QUuid                     ▓▓▓▓▓▓▓▓░░
-QVariant                  ▓▓▓▓▓▓▓▓░░         QVersionNumber            ▓▓▓▓▓▓▓▓░░
-QXmlStreamReader          ▓▓▓▓▓▓▓▓░░         QXmlStreamWriter          ▓▓▓▓▓▓▓▓░░
-QIdentityProxyModel       ▓▓▓▓▓▓▓▓░░         QLockFile                 ▓▓▓▓▓▓▓▓░░
-QPluginLoader             ▓▓▓▓▓▓▓▓░░         QPropertyAnimation        ▓▓▓▓▓▓▓▓░░
-QAbstractAnimation       ▓▓▓▓▓▓▓▓░░         QAnimationGroup           ▓▓▓▓▓▓▓▓░░
-QParallelAnimationGroup   ▓▓▓▓▓▓▓▓░░         QPauseAnimation            ▓▓▓▓▓▓▓▓░░
-QSequentialAnimationGroup ▓▓▓▓▓▓▓▓░░         QSharedMemory             ▓▓▓▓▓▓▓▓░░
-QSignalMapper             ▓▓▓▓▓▓▓▓░░         QVariantAnimation         ▓▓▓▓▓▓▓▓░░
-```
-
-## 进行中
-
-```
-QCore:
-
-QAbstractItemModel        ▓▓▓▓▓░░░░░         QAbstractListModel        ▓▓▓▓▓░░░░░
-QItemSelectionModel       ▓▓▓░░░░░░░         QLineF                    ▓▓▓▓▓░░░░░
-QObject                   ▓▓▓░░░░░░░         QPoint                    ▓▓▓▓░░░░░░
-QRect                     ▓▓▓▓░░░░░░         QRectF                    ▓▓▓▓▓░░░░░
-QSizeF                    ▓▓▓▓░░░░░░         QStringList               ▓▓▓▓▓▓░░░░
-QStringListModel          ▓▓▓▓▓░░░░░
+QAbstractAnimation        ▓▓▓▓▓▓▓▓▓▓         QAbstractItemModel        ▓▓▓▓▓▓▓▓▓▓
+QAbstractListModel        ▓▓▓▓▓▓▓▓▓▓         QAbstractTableModel       ▓▓▓▓▓▓▓▓▓▓
+QAnimationGroup           ▓▓▓▓▓▓▓▓▓▓         QBuffer                   ▓▓▓▓▓▓▓▓▓▓
+QByteArray                ▓▓▓▓▓▓▓▓▓▓         QCommandLineParser        ▓▓▓▓▓▓▓▓▓▓
+QCoreApplication          ▓▓▓▓▓▓▓▓▓▓         QCryptographicHash        ▓▓▓▓▓▓▓▓▓▓
+QDataStream               ▓▓▓▓▓▓▓▓▓▓         QDate                     ▓▓▓▓▓▓▓▓▓▓
+QDateTime                 ▓▓▓▓▓▓▓▓▓▓         QDeadlineTimer            ▓▓▓▓▓▓▓▓▓▓
+QDir                      ▓▓▓▓▓▓▓▓▓▓         QDirIterator              ▓▓▓▓▓▓▓▓▓▓
+QEasingCurve              ▓▓▓▓▓▓▓▓▓▓         QElapsedTimer             ▓▓▓▓▓▓▓▓▓▓
+QEvent                    ▓▓▓▓▓▓▓▓▓▓         QEventLoop                ▓▓▓▓▓▓▓▓▓▓
+QFile                     ▓▓▓▓▓▓▓▓▓▓         QFileInfo                 ▓▓▓▓▓▓▓▓▓▓
+QFileSystemWatcher        ▓▓▓▓▓▓▓▓▓▓         QIODevice                 ▓▓▓▓▓▓▓▓▓▓
+QIdentityProxyModel       ▓▓▓▓▓▓▓▓▓▓         QItemSelection            ▓▓▓▓▓▓▓▓▓▓
+QItemSelectionModel       ▓▓▓▓▓▓▓▓▓▓         QJsonArray                ▓▓▓▓▓▓▓▓▓▓
+QJsonDocument             ▓▓▓▓▓▓▓▓▓▓         QJsonObject               ▓▓▓▓▓▓▓▓▓▓
+QJsonValue                ▓▓▓▓▓▓▓▓▓▓         QLibrary                  ▓▓▓▓▓▓▓▓▓▓
+QLibraryInfo              ▓▓▓▓▓▓▓▓▓▓         QLineF                    ▓▓▓▓▓▓▓▓▓▓
+QLocale                   ▓▓▓▓▓▓▓▓▓▓         QLockFile                 ▓▓▓▓▓▓▓▓▓▓
+QMimeData                 ▓▓▓▓▓▓▓▓▓▓         QMimeDatabase             ▓▓▓▓▓▓▓▓▓▓
+QMimeType                 ▓▓▓▓▓▓▓▓▓▓         QModelIndex               ▓▓▓▓▓▓▓▓▓▓
+QMutex                    ▓▓▓▓▓▓▓▓▓▓         QObject                   ▓▓▓▓▓▓▓▓▓▓
+QParallelAnimationGroup   ▓▓▓▓▓▓▓▓▓▓         QPauseAnimation           ▓▓▓▓▓▓▓▓▓▓
+QPersistentModelIndex     ▓▓▓▓▓▓▓▓▓▓         QPluginLoader             ▓▓▓▓▓▓▓▓▓▓
+QProcess                  ▓▓▓▓▓▓▓▓▓▓         QProcessEnvironment       ▓▓▓▓▓▓▓▓▓▓
+QPropertyAnimation        ▓▓▓▓▓▓▓▓▓▓         QRandomGenerator          ▓▓▓▓▓▓▓▓▓▓
+QRegularExpression        ▓▓▓▓▓▓▓▓▓▓         QRegularExpressionMatch   ▓▓▓▓▓▓▓▓▓▓
+QSaveFile                 ▓▓▓▓▓▓▓▓▓▓         QSemaphore                ▓▓▓▓▓▓▓▓▓▓
+QSequentialAnimationGroup ▓▓▓▓▓▓▓▓▓▓         QSettings                 ▓▓▓▓▓▓▓▓▓▓
+QSharedMemory             ▓▓▓▓▓▓▓▓▓▓         QSignalMapper             ▓▓▓▓▓▓▓▓▓▓
+QSortFilterProxyModel     ▓▓▓▓▓▓▓▓▓▓         QStandardPaths            ▓▓▓▓▓▓▓▓▓▓
+QStringList               ▓▓▓▓▓▓▓▓▓▓         QStringListModel          ▓▓▓▓▓▓▓▓▓▓
+QSysInfo                  ▓▓▓▓▓▓▓▓▓▓         QTemporaryDir             ▓▓▓▓▓▓▓▓▓▓
+QTemporaryFile            ▓▓▓▓▓▓▓▓▓▓         QTextStream               ▓▓▓▓▓▓▓▓▓▓
+QThread                   ▓▓▓▓▓▓▓▓▓▓         QTime                     ▓▓▓▓▓▓▓▓▓▓
+QTimeLine                 ▓▓▓▓▓▓▓▓▓▓         QTimeZone                 ▓▓▓▓▓▓▓▓▓▓
+QTimer                    ▓▓▓▓▓▓▓▓▓▓         QTranslator               ▓▓▓▓▓▓▓▓▓▓
+QUrl                      ▓▓▓▓▓▓▓▓▓▓         QUrlQuery                 ▓▓▓▓▓▓▓▓▓▓
+QUuid                     ▓▓▓▓▓▓▓▓▓▓         QVariant                  ▓▓▓▓▓▓▓▓▓▓
+QVariantAnimation         ▓▓▓▓▓▓▓▓▓▓         QVersionNumber            ▓▓▓▓▓▓▓▓▓▓
+QXmlStreamReader          ▓▓▓▓▓▓▓▓▓▓         QXmlStreamWriter          ▓▓▓▓▓▓▓▓▓▓
 ```
 
 ## 未移植
 
-以下 Qt Core 类尚无封装（仅列常用类）：
+以下 Qt Core 类尚未移植（多为内部实现，或与仓颉标准库能力重叠）：
 
 ```
-QAbstractAnimation        ░░░░░░░░░░         QAbstractEventDispatcher ░░░░░░░░░░
-QAbstractProxyModel       ░░░░░░░░░░         QAbstractTableModel      ░░░░░░░░░░
-QAnimationGroup           ░░░░░░░░░░         QAtomicInt               ░░░░░░░░░░
-QBasicTimer               ░░░░░░░░░░         QBitArray                ░░░░░░░░░░
-QBuffer                   ░░░░░░░░░░         QCache                   ░░░░░░░░░░
-QChar                     ░░░░░░░░░░         QChildEvent              ░░░░░░░░░░
-QCollator                 ░░░░░░░░░░         QCommandLineOption       ░░░░░░░░░░
-QCommandLineParser        ░░░░░░░░░░         QCoreApplication         ░░░░░░░░░░
-QEasingCurve              ░░░░░░░░░░         QFileDevice              ░░░░░░░░░░
-QFlags                    ░░░░░░░░░░         QFuture                  ░░░░░░░░░░
-QFutureWatcher            ░░░░░░░░░░         QHash                    ░░░░░░░░░░
-QIODevice                 ░░░░░░░░░░         QIdentityProxyModel      ░░░░░░░░░░
-QItemSelection            ░░░░░░░░░░         QItemSelectionRange      ░░░░░░░░░░
-QKeyCombination           ░░░░░░░░░░         QLatin1String            ░░░░░░░░░░
-QLine                     ░░░░░░░░░░         QList                    ░░░░░░░░░░
-QLockFile                 ░░░░░░░░░░         QMap                     ░░░░░░░░░░
-QMarginsF                 ░░░░░░░░░░         QMetaClassInfo           ░░░░░░░░░░
-QMetaEnum                 ░░░░░░░░░░         QMetaMethod              ░░░░░░░░░░
-QMetaObject               ░░░░░░░░░░         QMetaProperty            ░░░░░░░░░░
-QMetaType                 ░░░░░░░░░░         QMimeDatabase            ░░░░░░░░░░
-QMutex                    ░░░░░░░░░░         QParallelAnimationGroup  ░░░░░░░░░░
-QPersistentModelIndex     ░░░░░░░░░░         QPluginLoader            ░░░░░░░░░░
-QPointer                  ░░░░░░░░░░         QPropertyAnimation       ░░░░░░░░░░
-QQueue                    ░░░░░░░░░░         QReadWriteLock           ░░░░░░░░░░
-QResource                 ░░░░░░░░░░         QSaveFile                ░░░░░░░░░░
-QSemaphore                ░░░░░░░░░░         QSequentialAnimationGroup░░░░░░░░░░
-QSet                      ░░░░░░░░░░         QSharedData              ░░░░░░░░░░
-QSharedMemory             ░░░░░░░░░░         QSharedPointer           ░░░░░░░░░░
-QSignalBlocker            ░░░░░░░░░░         QSignalMapper            ░░░░░░░░░░
-QSizePolicy               ░░░░░░░░░░         QSortFilterProxyModel    ░░░░░░░░░░
-QStack                    ░░░░░░░░░░         QStorageInfo             ░░░░░░░░░░
-QString                   ░░░░░░░░░░         QStringConverter         ░░░░░░░░░░
-QStringDecoder            ░░░░░░░░░░         QStringEncoder           ░░░░░░░░░░
-QStringMatcher            ░░░░░░░░░░         QStringView              ░░░░░░░░░░
-QSysInfo                  ░░░░░░░░░░         QSystemSemaphore         ░░░░░░░░░░
-QTextBoundaryFinder       ░░░░░░░░░░         QTimeLine                ░░░░░░░░░░
-QTimeZone                 ░░░░░░░░░░         QTimerEvent              ░░░░░░░░░░
-QTranslator               ░░░░░░░░░░         QTransposeProxyModel     ░░░░░░░░░░
-QVariantAnimation         ░░░░░░░░░░         QVector                  ░░░░░░░░░░
-         QWaitCondition           ░░░░░░░░░░
-QWeakPointer              ░░░░░░░░░░
-QXmlStreamAttribute      ░░░░░░░░░░
+QAbstractEventDispatcher ░░░░░░░░░░         QAbstractNativeEventFilter░░░░░░░░░░
+QAbstractProxyModel      ░░░░░░░░░░         QBasicTimer               ░░░░░░░░░░
+QBitArray                ░░░░░░░░░░         QCache                    ░░░░░░░░░░
+QChar                    ░░░░░░░░░░         QChildEvent               ░░░░░░░░░░
+QCollator                ░░░░░░░░░░         QCommandLineOption        ░░░░░░░░░░
+QContiguousCache         ░░░░░░░░░░         QFileDevice               ░░░░░░░░░░
+QFuture                  ░░░░░░░░░░         QFutureWatcher            ░░░░░░░░░░
+QHash                    ░░░░░░░░░░         QList                    ░░░░░░░░░░
+QMap                     ░░░░░░░░░░         QMarginsF                ░░░░░░░░░░
+QMetaClassInfo           ░░░░░░░░░░         QMetaEnum                ░░░░░░░░░░
+QMetaMethod              ░░░░░░░░░░         QMetaObject              ░░░░░░░░░░
+QMetaProperty            ░░░░░░░░░░         QMetaType                ░░░░░░░░░░
+QMutexLocker             ░░░░░░░░░░         QPointer                 ░░░░░░░░░░
+QQueue                   ░░░░░░░░░░         QReadWriteLock           ░░░░░░░░░░
+QResource                ░░░░░░░░░░         QScopedPointer           ░░░░░░░░░░
+QSet                     ░░░░░░░░░░         QSharedDataPointer       ░░░░░░░░░░
+QSharedPointer           ░░░░░░░░░░         QStack                   ░░░░░░░░░░
+QString                  ░░░░░░░░░░         QStringConverter         ░░░░░░░░░░
+QSystemSemaphore         ░░░░░░░░░░         QTextBoundaryFinder      ░░░░░░░░░░
+QTimerEvent              ░░░░░░░░░░         QVector                  ░░░░░░░░░░
+QWaitCondition           ░░░░░░░░░░         QWeakPointer             ░░░░░░░░░░
 ```
 
 ## 说明
 
-- 基础设施：`namespace.cj`（Qt 常量/枚举定义）、`conversion.cpp`（C/CJ 类型转换）、`core_callback_map.cj`（回调映射）已提供，不属于某个具体类。
-- `QString` 未单独封装，仓颉侧使用 `std.core.String`；`QStringList` 已封装（`string_list.cj`，支持 count/at/isEmpty/clear）。
-- `QByteArray`/`QDataStream`/`QTextStream` 提供字节与流式读写；`QJsonValue/QJsonArray/QJsonObject/QJsonDocument` 提供 JSON 序列化/反序列化；`QThread` 提供线程生命周期管理；`QFileSystemWatcher`/`QTemporaryFile`/`QTemporaryDir`/`QDirIterator` 提供文件系统能力。
-- 剩余 Qt Core 类多数在 Qt 内部/底层使用，按优先级后续逐步封装。
+- 基础设施：`namespace.cj`（Qt 常量/枚举）、`conversion.cpp`（C/CJ 类型转换）、`core_callback_map.cj`（模型回调映射）、`native_string.h`（C 字符串转换）均已提供。
+- `QString` 未单独封装，仓颉侧使用 `std.core.String`；`QStringList` 已封装（含 count/at/isEmpty/clear）。
+- `QAbstractTableModel`/`QAbstractListModel` 通过回调机制支持仓颉侧子类化实现自定义模型；`QSortFilterProxyModel`/`QIdentityProxyModel` 提供模型代理能力。
+- `QHash`/`QList`/`QMap`/`QVector`/`QSet` 等容器类与仓颉 `std.collection` 能力重叠，建议直接用仓颉标准库；`QSharedPointer`/`QPointer` 由仓颉 GC 覆盖。
+- JSON（QJson*）、XML（QXmlStream*）、文件系统、进程、线程、动画、序列化等常用能力均已移植，可直接用于仓颉 GUI 应用。

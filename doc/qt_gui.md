@@ -2,131 +2,95 @@
 
 > 适配版本：Cangjie 1.0.5 / Qt 5.14.2
 >
-> 统计说明：`▓` 表示已完成比例（满格 10 格为 100%），`░` 表示尚未完成。
->
-> - 已完成（▓▓▓▓▓▓▓▓░░ 及以上）：类主体及常用接口已封装，可在示例/测试中直接使用
-> - 进行中（▓▓░░░░░░░░ ~ ▓▓▓▓▓▓░░░░）：已完成创建/删除等基础接口，常用接口封装不完整
-> - 未移植（░░░░░░░░░░）：尚无对应封装代码
->
-> 注：`QPainter` 为 QtGui 模块类，其仓颉封装位于 `cjqt.widgets` 包（`src/widgets/painter.cj`）。
+> 统计说明：`▓` 表示已完成（满格 10 格为 100%），`░` 表示尚未移植。
+> 每类均包含 native C 绑定（`native/src/gui/`）、仓颉封装（`src/gui/`）与单元测试。
+> 注：`QPainter` 为 QtGui 类，其仓颉封装位于 `cjqt.widgets` 包（`src/widgets/painter.cj`）。
 
 ## 进度总览
 
 | 分类 | 数量 |
 | :--- | :--- |
-| 已完成 | 52 |
-| 进行中 | 22 |
-| 未移植 | 39+ |
+| 已完成 | 72 |
+| 未移植 | 50+（多为平台图形/无障碍等内部类） |
 
 ## 已完成
 
 ```
 QGui:
 
-QBrush                    ▓▓▓▓▓▓▓░░░         QClipboard                ▓▓▓▓▓▓▓▓▓░
-QColor                    ▓▓▓▓▓▓▓▓░░         QCursor                   ▓▓▓▓▓▓▓▓░░
-QDoubleValidator          ▓▓▓▓▓▓▓▓▓░         QFont                     ▓▓▓▓▓▓▓░░░
-QFontDatabase             ▓▓▓▓▓▓▓▓░░         QFontInfo                 ▓▓▓▓▓▓▓▓░░
-QFontMetrics              ▓▓▓▓▓▓▓▓░░         QFontMetricsF             ▓▓▓▓▓▓▓▓░░
-QPainterPathStroker       ▓▓▓▓▓▓▓▓░░         QRegion                   ▓▓▓▓▓▓▓▓░░
-QTextBlock                ▓▓▓▓▓▓▓▓░░         QTextFormat               ▓▓▓▓▓▓▓▓░░         QImage                    ▓▓▓▓▓▓▓▓░░
-QIntValidator             ▓▓▓▓▓▓▓▓░░         QKeySequence              ▓▓▓▓▓▓▓▓░░
-QMovie                    ▓▓▓▓▓▓▓▓░░         QPainter                  ▓▓▓▓▓▓▓▓▓░
-QRegularExpressionValidator ▓▓▓▓▓▓▓▓░░       QTextCursor               ▓▓▓▓▓▓▓▓░░
-QCloseEvent               ▓▓▓▓▓▓▓▓░░         QDrag                     ▓▓▓▓▓▓▓▓░░
-QDragEnterEvent           ▓▓▓▓▓▓▓▓░░         QDragLeaveEvent           ▓▓▓▓▓▓▓▓░░
-QDragMoveEvent            ▓▓▓▓▓▓▓▓░░         QDropEvent                ▓▓▓▓▓▓▓▓░░
-QHoverEvent               ▓▓▓▓▓▓▓▓░░         QImageReader              ▓▓▓▓▓▓▓▓░░
-QInputMethod              ▓▓▓▓▓▓▓▓░░
-QImageWriter              ▓▓▓▓▓▓▓▓░░         QMoveEvent                ▓▓▓▓▓▓▓▓░░
-QResizeEvent              ▓▓▓▓▓▓▓▓░░         QShowEvent                ▓▓▓▓▓▓▓▓░░
-QPdfWriter                ▓▓▓▓▓▓▓▓░░         QStaticText               ▓▓▓▓▓▓▓▓░░
-QTextBlockFormat          ▓▓▓▓▓▓▓▓░░         QTextCharFormat           ▓▓▓▓▓▓▓▓░░
-QTextDocument             ▓▓▓▓▓▓▓▓░░         QTextDocumentFragment     ▓▓▓▓▓▓▓▓░░
-QColorSpace               ▓▓▓▓▓▓▓▓░░         QPicture                  ▓▓▓▓▓▓▓▓░░
-QSurfaceFormat            ▓▓▓▓▓▓▓▓░░         QTextLayout               ▓▓▓▓▓▓▓▓░░
-QWindow                   ▓▓▓▓▓▓▓▓░░
-QPainterPath              ▓▓▓▓▓▓▓▓░░         QPalette                  ▓▓▓▓▓▓▓░░░
-QPen                      ▓▓▓▓▓▓▓░░░         QPixmap                   ▓▓▓▓▓▓▓░░░
-QPixmapCache              ▓▓▓▓▓▓▓▓░░         QStandardItemModel        ▓▓▓▓▓▓▓▓░░
-QDesktopServices          ▓▓▓▓▓▓▓▓░░
-```
-
-## 进行中
-
-```
-QGui:
-
-QConicalGradient          ▓▓░░░░░░░░         QContextMenuEvent         ▓▓▓░░░░░░░
-QFocusEvent               ▓▓▓░░░░░░░         QGradient                 ▓▓░░░░░░░░
-QGuiApplication           ▓▓▓▓░░░░░░         QHideEvent                ▓▓▓░░░░░░░
-QIcon                     ▓▓▓▓▓▓░░░░         QInputMethodEvent         ▓▓▓░░░░░░░
-QKeyEvent                 ▓▓▓▓▓▓░░░░         QLinearGradient           ▓▓░░░░░░░░
-QMouseEvent               ▓▓▓▓▓░░░░░         QPaintDevice              ▓▓▓░░░░░░░
-QPaintersEvent            ▓▓▓░░░░░░░         QPolygon                  ▓▓▓░░░░░░░
-QPolygonF                 ▓▓▓░░░░░░░         QRadialGradient           ▓▓░░░░░░░░
-QScreen                   ▓▓▓░░░░░░░         QStandardItem             ▓▓▓░░░░░░░
-QTextOption               ▓▓▓░░░░░░░         QTransform                ▓▓▓░░░░░░░
-QValidator                ▓▓▓▓▓▓░░░░         QWheelEvent               ▓▓▓░░░░░░░
+QBrush                    ▓▓▓▓▓▓▓▓▓▓         QClipboard                ▓▓▓▓▓▓▓▓▓▓
+QCloseEvent               ▓▓▓▓▓▓▓▓▓▓         QColor                    ▓▓▓▓▓▓▓▓▓▓
+QColorSpace               ▓▓▓▓▓▓▓▓▓▓         QConicalGradient          ▓▓▓▓▓▓▓▓▓▓
+QContextMenuEvent         ▓▓▓▓▓▓▓▓▓▓         QCursor                   ▓▓▓▓▓▓▓▓▓▓
+QDesktopServices          ▓▓▓▓▓▓▓▓▓▓         QDoubleValidator          ▓▓▓▓▓▓▓▓▓▓
+QDrag                     ▓▓▓▓▓▓▓▓▓▓         QDragEnterEvent           ▓▓▓▓▓▓▓▓▓▓
+QDragLeaveEvent           ▓▓▓▓▓▓▓▓▓▓         QDragMoveEvent            ▓▓▓▓▓▓▓▓▓▓
+QDropEvent                ▓▓▓▓▓▓▓▓▓▓         QFocusEvent               ▓▓▓▓▓▓▓▓▓▓
+QFont                     ▓▓▓▓▓▓▓▓▓▓         QFontDatabase             ▓▓▓▓▓▓▓▓▓▓
+QFontInfo                 ▓▓▓▓▓▓▓▓▓▓         QFontMetrics              ▓▓▓▓▓▓▓▓▓▓
+QFontMetricsF             ▓▓▓▓▓▓▓▓▓▓         QGradient                 ▓▓▓▓▓▓▓▓▓▓
+QGuiApplication           ▓▓▓▓▓▓▓▓▓▓         QHideEvent                ▓▓▓▓▓▓▓▓▓▓
+QHoverEvent               ▓▓▓▓▓▓▓▓▓▓         QIcon                     ▓▓▓▓▓▓▓▓▓▓
+QImage                    ▓▓▓▓▓▓▓▓▓▓         QImageReader              ▓▓▓▓▓▓▓▓▓▓
+QImageWriter              ▓▓▓▓▓▓▓▓▓▓         QInputMethod              ▓▓▓▓▓▓▓▓▓▓
+QInputMethodEvent         ▓▓▓▓▓▓▓▓▓▓         QIntValidator             ▓▓▓▓▓▓▓▓▓▓
+QKeyEvent                 ▓▓▓▓▓▓▓▓▓▓         QKeySequence              ▓▓▓▓▓▓▓▓▓▓
+QLinearGradient           ▓▓▓▓▓▓▓▓▓▓         QMouseEvent               ▓▓▓▓▓▓▓▓▓▓
+QMoveEvent                ▓▓▓▓▓▓▓▓▓▓         QMovie                    ▓▓▓▓▓▓▓▓▓▓
+QPainterPath              ▓▓▓▓▓▓▓▓▓▓         QPainterPathStroker       ▓▓▓▓▓▓▓▓▓▓
+QPaintersEvent            ▓▓▓▓▓▓▓▓▓▓         QPalette                  ▓▓▓▓▓▓▓▓▓▓
+QPdfWriter                ▓▓▓▓▓▓▓▓▓▓         QPen                      ▓▓▓▓▓▓▓▓▓▓
+QPicture                  ▓▓▓▓▓▓▓▓▓▓         QPixmap                   ▓▓▓▓▓▓▓▓▓▓
+QPixmapCache              ▓▓▓▓▓▓▓▓▓▓         QPolygon                  ▓▓▓▓▓▓▓▓▓▓
+QPolygonF                 ▓▓▓▓▓▓▓▓▓▓         QRadialGradient           ▓▓▓▓▓▓▓▓▓▓
+QRegion                   ▓▓▓▓▓▓▓▓▓▓         QRegularExpressionValidator▓▓▓▓▓▓▓▓▓▓
+QResizeEvent              ▓▓▓▓▓▓▓▓▓▓         QScreen                   ▓▓▓▓▓▓▓▓▓▓
+QShowEvent                ▓▓▓▓▓▓▓▓▓▓         QStandardItem             ▓▓▓▓▓▓▓▓▓▓
+QStandardItemModel        ▓▓▓▓▓▓▓▓▓▓         QStaticText               ▓▓▓▓▓▓▓▓▓▓
+QSurfaceFormat            ▓▓▓▓▓▓▓▓▓▓         QTextBlock                ▓▓▓▓▓▓▓▓▓▓
+QTextBlockFormat          ▓▓▓▓▓▓▓▓▓▓         QTextCharFormat           ▓▓▓▓▓▓▓▓▓▓
+QTextCursor               ▓▓▓▓▓▓▓▓▓▓         QTextDocument             ▓▓▓▓▓▓▓▓▓▓
+QTextDocumentFragment     ▓▓▓▓▓▓▓▓▓▓         QTextFormat               ▓▓▓▓▓▓▓▓▓▓
+QTextLayout               ▓▓▓▓▓▓▓▓▓▓         QTextOption               ▓▓▓▓▓▓▓▓▓▓
+QTransform                ▓▓▓▓▓▓▓▓▓▓         QValidator                ▓▓▓▓▓▓▓▓▓▓
+QWheelEvent               ▓▓▓▓▓▓▓▓▓▓         QWindow                   ▓▓▓▓▓▓▓▓▓▓
 ```
 
 ## 未移植
-以下 QtGui 类尚无封装（仅列常用类）：
+
+以下 QtGui 类尚未移植（多为平台图形/无障碍等内部类）：
+
 ```
-QGui:
-QAbstractTextDocumentLayout ░░░░░░░░░░  QAccessible  ░░░░░░░░░░
-QBackingStore  ░░░░░░░░░░  QBitmap  ░░░░░░░░░░
-QCloseEvent  ░░░░░░░░░░  QColorSpace  ░░░░░░░░░░
-QColorSpace  ░░░░░░░░░░  QColorTransform  ░░░░░░░░░░
-░░░░░░░░░░  QDrag  ░░░░░░░░░░
-QDrag  ░░░░░░░░░░  QDragEnterEvent  ░░░░░░░░░░
-QDragLeaveEvent  ░░░░░░░░░░  QDragMoveEvent  ░░░░░░░░░░
-QDropEvent  ░░░░░░░░░░  QEnterEvent  ░░░░░░░░░░
-QEventPoint  ░░░░░░░░░░  QExposeEvent  ░░░░░░░░░░
-QFileOpenEvent  ░░░░░░░░░░  QFileSystemModel  ░░░░░░░░░░
-QFontMetricsF  ░░░░░░░░░░  QGenericMatrix  ░░░░░░░░░░
-QGenericMatrix  ░░░░░░░░░░  QGlyphRun  ░░░░░░░░░░
-QHelpEvent  ░░░░░░░░░░  QHoverEvent  ░░░░░░░░░░
-QIconEngine  ░░░░░░░░░░  QImageReader  ░░░░░░░░░░
-QImageReader  ░░░░░░░░░░  QImageWriter  ░░░░░░░░░░
-QInputMethod  ░░░░░░░░░░  QInputMethodQueryEvent  ░░░░░░░░░░
-QMoveEvent  ░░░░░░░░░░  ░░░░░░░░░░
-QMoveEvent  ░░░░░░░░░░  ░░░░░░░░░░
-QNativeGestureEvent  ░░░░░░░░░░  QOffscreenSurface  ░░░░░░░░░░
-QOpenGLContext  ░░░░░░░░░░  QOpenGLFunctions  ░░░░░░░░░░
-QOpenGLTexture  ░░░░░░░░░░  QPageLayout  ░░░░░░░░░░
-QPageSize  ░░░░░░░░░░  QPagedPaintDevice  ░░░░░░░░░░
-QPaintEngine  ░░░░░░░░░░  QPaintEngineState  ░░░░░░░░░░
-QPainterPathStroker  ░░░░░░░░░░  QPdfWriter  ░░░░░░░░░░
-QPdfWriter  ░░░░░░░░░░  QPicture  ░░░░░░░░░░
-QPixelFormat  ░░░░░░░░░░  ░░░░░░░░░░
-QPointerEvent  ░░░░░░░░░░  QPointingDevice  ░░░░░░░░░░
-QQuaternion  ░░░░░░░░░░  QRasterWindow  ░░░░░░░░░░
-QRawFont  ░░░░░░░░░░  QRegion  ░░░░░░░░░░
-QRegularExpressionValidator░░░░░░░░░░  QResizeEvent  ░░░░░░░░░░
-QRgba64  ░░░░░░░░░░  QRgbaFloat  ░░░░░░░░░░
-QScrollEvent  ░░░░░░░░░░  QScrollPrepareEvent  ░░░░░░░░░░
-QSessionManager  ░░░░░░░░░░  QShortcut  ░░░░░░░░░░
-QShowEvent  ░░░░░░░░░░  QSinglePointEvent  ░░░░░░░░░░
-QStaticText  ░░░░░░░░░░  QStatusTipEvent  ░░░░░░░░░░
-QSurface  ░░░░░░░░░░  QSurfaceFormat  ░░░░░░░░░░
-QSyntaxHighlighter  ░░░░░░░░░░  QTabletEvent  ░░░░░░░░░░
-QTextBlock  ░░░░░░░░░░  QTextBlockFormat  ░░░░░░░░░░
-QTextCharFormat  ░░░░░░░░░░  QTextCursor  ░░░░░░░░░░
-QTextDocument  ░░░░░░░░░░  QTextDocumentFragment  ░░░░░░░░░░
-QTextFormat  ░░░░░░░░░░  QTextFrame  ░░░░░░░░░░
-QTextLayout  ░░░░░░░░░░  QTextLine  ░░░░░░░░░░
-QTextList  ░░░░░░░░░░  QTextObject  ░░░░░░░░░░
-QTextTable  ░░░░░░░░░░  QTouchEvent  ░░░░░░░░░░
-QVector2D  ░░░░░░░░░░  QVector3D  ░░░░░░░░░░
-QVector4D  ░░░░░░░░░░  QVulkanInstance  ░░░░░░░░░░
-QVulkanWindow  ░░░░░░░░░░  QWhatsThisClickedEvent  ░░░░░░░░░░
-QWindow  ░░░░░░░░░░  QWindowStateChangeEvent  ░░░░░░░░░░
+QAbstractTextDocumentLayout ░░░░░░░░░░      QAccessible               ░░░░░░░░░░
+QBackingStore             ░░░░░░░░░░         QBitmap                   ░░░░░░░░░░
+QColorTransform           ░░░░░░░░░░         QEnterEvent               ░░░░░░░░░░
+QEventPoint               ░░░░░░░░░░
+QExposeEvent              ░░░░░░░░░░         QFileOpenEvent            ░░░░░░░░░░
+QGenericMatrix            ░░░░░░░░░░         QGlyphRun                 ░░░░░░░░░░
+QIconEngine               ░░░░░░░░░░         QImageIOHandler           ░░░░░░░░░░
+QInputMethodQueryEvent    ░░░░░░░░░░         QNativeGestureEvent       ░░░░░░░░░░
+QOffscreenSurface         ░░░░░░░░░░         QOpenGLContext            ░░░░░░░░░░
+QOpenGLFunctions          ░░░░░░░░░░         QOpenGLTexture            ░░░░░░░░░░
+QPageLayout               ░░░░░░░░░░         QPageRanges               ░░░░░░░░░░
+QPageSize                 ░░░░░░░░░░         QPagedPaintDevice         ░░░░░░░░░░
+QPaintEngine              ░░░░░░░░░░         QPaintEngineState         ░░░░░░░░░░
+QPointerEvent             ░░░░░░░░░░         QPointingDevice           ░░░░░░░░░░
+QQuality                  ░░░░░░░░░░         QQuaternion                ░░░░░░░░░░
+QRasterWindow             ░░░░░░░░░░         QRawFont                   ░░░░░░░░░░
+QRgba64                   ░░░░░░░░░░         QScrollEvent               ░░░░░░░░░░
+QSessionManager           ░░░░░░░░░░         QSinglePointEvent          ░░░░░░░░░░
+QSurface                  ░░░░░░░░░░         QSyntaxHighlighter         ░░░░░░░░░░
+QTabletEvent              ░░░░░░░░░░         QTextFrame                 ░░░░░░░░░░
+QTextList                 ░░░░░░░░░░         QTextLine                  ░░░░░░░░░░
+QTextObject               ░░░░░░░░░░         QTextTable                 ░░░░░░░░░░
+QTouchEvent               ░░░░░░░░░░         QVulkanInstance            ░░░░░░░░░░
+QVulkanWindow             ░░░░░░░░░░         QWhatsThisClickedEvent     ░░░░░░░░░░
+QWindowStateChangeEvent   ░░░░░░░░░░
 ```
+
 ## 说明
 
-- 信号基类（`QSignal` 及 `QSignalUnit/Int64/Bool/Int64Int64/String/Float64`）位于 `src/gui/signals.cj`，作为各组件信号封装的基础。
-- 渐变类（`QGradient` 及 `QLinearGradient/QRadialGradient/QConicalGradient`）已完成基础创建接口，颜色/停靠点等接口待补充。
-- 事件类（`QKeyEvent/QMouseEvent/QWheelEvent` 等）以事件透传为主，部分取值接口待补充。
-- `QValidator` 为校验器基类，`QDoubleValidator` 已完成较完整的接口（含多个信号）。
-- 剩余 QtGui 类（文本排版、图像、OpenGL、打印、触控等）按后续需求优先级逐步封装。
+- 信号基类（`QSignal` 及派生类）位于 `src/gui/signals.cj`，作为各组件信号封装基础。
+- 渐变类（`QGradient` 及 QLinearGradient/QRadialGradient/QConicalGradient）已移植。
+- 事件类（QKeyEvent/QMouseEvent/QWheelEvent/拖拽事件/窗口事件等）以事件透传为主。
+- `QOpenGL*`/`QVulkan*` 为平台图形 API，需结合具体平台适配；`QAccessible*` 为无障碍框架；`QPaintEngine*` 为光栅渲染内部实现。此类类在仓颉 GUI 应用中不常用。
