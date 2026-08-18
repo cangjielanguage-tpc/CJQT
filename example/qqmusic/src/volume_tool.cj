@@ -6,9 +6,9 @@ import cjqt.widgets.*
 import cjqt.tools.*
 
 // 仿参考项目 VolumeTool：自定义绘制音量浮层
-// 白色圆角面板 + 灰色槽线 + 绿色已调音量条 + 圆形滑块 + 百分比 + 静音按钮 + 底部三角 + Popup 窗口
+// 白色圆角面板 + 灰色槽线 + 绿色已调音量条 + 圆形滑块 + 百分比 + 静音按钮
+// 窗口本体即为白色面板（Popup + 无边框），避免透明背景在无合成器环境显示为黑色
 public class VolumeTool <: QWidget {
-    let volumeWidget: QWidget
     let inLine: QFrame
     let outLine: QFrame
     let silderBtn: QPushButton
@@ -20,7 +20,6 @@ public class VolumeTool <: QWidget {
     var muteHandler: (Bool) -> Unit = { m => () }
 
     public init() {
-        volumeWidget = QWidget()
         inLine = QFrame()
         outLine = QFrame()
         silderBtn = QPushButton()
@@ -29,20 +28,13 @@ public class VolumeTool <: QWidget {
 
         setWindowFlag(WindowType.Popup.value(), true)
         setWindowFlag(WindowType.FramelessWindowHint.value(), true)
-        setWindowFlag(WindowType.NoDropShadowWindowHint.value(), true)
-        setAttribute(WidgetAttribute.WA_TranslucentBackground, true)
-        setFixedSize(100, 350)
-        setStyleSheet("QWidget { background: transparent; }")
-
-        // 白色圆角面板（局部坐标 10,10 80x300）
-        volumeWidget.setParent(this)
-        volumeWidget.setGeometry(10, 10, 80, 300)
-        volumeWidget.setStyleSheet(
+        setFixedSize(100, 300)
+        setStyleSheet(
             "QWidget { background-color: #FFFFFF; border-radius: 5px; border: 1px solid #D8D8D8; }")
 
-        // 灰色槽线（面板内 y25 高180 -> this 内 y35）
+        // 灰色槽线（面板内 y25 高180）
         inLine.setParent(this)
-        inLine.setGeometry(48, 35, 4, 180)
+        inLine.setGeometry(48, 25, 4, 180)
         inLine.setStyleSheet("QFrame { background-color: #ECECEC; border: none; }")
 
         // 绿色已调音量条
@@ -65,34 +57,19 @@ public class VolumeTool <: QWidget {
         silenceBtn.setFixedSize(80, 45)
         silenceBtn.setStyleSheet(muteStyle())
 
-        // 静音按钮/百分比位置（面板底部：面板 y225-270 -> this y235-280）
-        silenceBtn.move(10, 265)
-        volumeRatioLabel.setGeometry(10, 235, 80, 30)
+        // 静音按钮/百分比位置
+        silenceBtn.move(10, 235)
+        volumeRatioLabel.setGeometry(10, 205, 80, 30)
 
         updateVolumeUI()
         setupMouse()
-        setupPaint()
 
         silenceBtn.clicked.connect() {
             d => toggleMute()
         }
     }
 
-    // 底部三角绘制（仿参考项目 paintEvent，用三条线闭合勾勒白色三角）
-    func setupPaint() {
-        setPaintEvent() {
-            event =>
-            let painter = QPainter(this)
-            painter.setPen(QPen(QColor.White, 2.0))
-            painter.setBrush(QBrush(QColor.White))
-            painter.drawLine(20, 300, 80, 300)
-            painter.drawLine(20, 300, 50, 320)
-            painter.drawLine(80, 300, 50, 320)
-            painter.delete()
-        }
-    }
-
-    // 鼠标按下/拖动调节音量（仿参考项目 calcVolume）
+    // 鼠标按下/拖动调节音量（仿参考项目 calcVolume，y范围25-205）
     func setupMouse() {
         setMousePressEvent() {
             e => handleVolumeEvent()
@@ -107,8 +84,8 @@ public class VolumeTool <: QWidget {
 
     func handleVolumeEvent() {
         let pos = QCursor.pos()
-        // 音量条局部 y 有效范围 [25,205]（相对 volumeBox，其全局 y=10）
-        var y = Int64(pos.y) - 10
+        // 窗口全局y = 面板y（窗口即面板，无偏移）
+        var y = Int64(pos.y) - globalY()
         if (y < 25) {
             y = 25
         }
@@ -116,9 +93,8 @@ public class VolumeTool <: QWidget {
             y = 205
         }
         let h = 205 - y
-        // outLine 全局 y = 10(volumeBox) + y(局部)
-        outLine.setGeometry(48, Int32(10 + y), 4, Int32(h))
-        silderBtn.move(43, Int32(10 + y - 7))
+        outLine.setGeometry(48, Int32(y), 4, Int32(h))
+        silderBtn.move(43, Int32(y - 7))
         volumeRatio = h * 100 / 180
         if (volumeRatio > 100) {
             volumeRatio = 100
@@ -127,11 +103,16 @@ public class VolumeTool <: QWidget {
         volumeHandler(volumeRatio)
     }
 
+    func globalY(): Int64 {
+        let p = mapToGlobal()
+        return Int64(p.y)
+    }
+
     func updateVolumeUI() {
         let h = volumeRatio * 180 / 100
         let y = 205 - h
-        outLine.setGeometry(48, Int32(10 + y), 4, Int32(h))
-        silderBtn.move(43, Int32(10 + y - 7))
+        outLine.setGeometry(48, Int32(y), 4, Int32(h))
+        silderBtn.move(43, Int32(y - 7))
         volumeRatioLabel.setText("${volumeRatio}%")
     }
 

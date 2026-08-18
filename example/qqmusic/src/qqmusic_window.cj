@@ -100,6 +100,10 @@ public class QQMusicWindow <: QWidget {
                     dragPosX = Int64(g.x) - x()
                     dragPosY = Int64(g.y) - y()
                     isDragging = true
+                    // 点击主窗口任意位置关闭音量浮层（Popup自动关闭在部分WM下不可靠）
+                    if (volumeTool.isVisible()) {
+                        volumeTool.hide()
+                    }
                 }
         }
         setMouseMoveEvent() {
@@ -459,8 +463,8 @@ public class QQMusicWindow <: QWidget {
             // 锚定到音量按钮附近：按钮全局坐标正上方偏左，仿参考项目公式
             if (volumeBtn.ptr != 0) {
                 let p = volumeBtn.mapToGlobal()
-                let x = Int32(Int64(p.x) - 120 / 2 + 15)
-                let y = Int32(Int64(p.y) - 320 + 30)
+                let x = Int32(Int64(p.x) - 100 / 2 + 15)
+                let y = Int32(Int64(p.y) - 300 + 30)
                 volumeTool.move(x, y)
             }
             volumeTool.show()
