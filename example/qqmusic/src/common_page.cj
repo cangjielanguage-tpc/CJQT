@@ -5,78 +5,101 @@ import cjqt.gui.*
 import cjqt.widgets.*
 import std.collection.*
 
-// 仿参考项目 CommonPage：音乐列表页（我喜欢 / 本地下载 / 最近播放）
-// 参考项目：每页不同标题与背景图（ilikebg/localbg/recentbg），每行显示 歌名/歌手/专辑
+// 仿参考项目 CommonPage：音乐列表页（完全按 commonpage.ui 布局）
+// PageTittle + musicPlayBox(图片150+播放全部120) + listLabelBox(歌名/歌手/专辑) + 列表
+// 列表行仿 ListItemBox：likeBtn + 歌名 + 歌手 + 专辑，固定列宽对齐
 public class CommonPage <: QWidget {
+    let titleLabel: QLabel
+    let headerImage: QLabel
     let scrollArea: QScrollArea
     var listContainer: QWidget
     var listLayout: QVBoxLayout
-    let titleLabel: QLabel
-    let headerImage: QLabel
     let rows = ArrayList<QWidget>()
     let names = ArrayList<String>()
     var pageTitle = ""
     var playAllHandler: () -> Unit = { => () }
 
     public init() {
+        titleLabel = QLabel(pageTitle)
+        headerImage = QLabel()
         scrollArea = QScrollArea()
         listContainer = QWidget()
         listLayout = QVBoxLayout(parent: listContainer)
         listLayout.setContentsMargins(0, 0, 0, 0)
         listLayout.setSpacing(0)
-        titleLabel = QLabel(pageTitle)
-        headerImage = QLabel()
         setStyleSheet("QWidget { background-color: #F5F5F5; }")
-        let layout = QVBoxLayout(parent: this)
-        layout.setContentsMargins(16, 12, 16, 12)
-        layout.setSpacing(8)
 
+        let layout = QVBoxLayout(parent: this)
+        layout.setContentsMargins(3, 0, 3, 0)
+        layout.setSpacing(0)
+
+        // PageTittle：30px 高
+        titleLabel.setFixedHeight(30)
         titleLabel.setFontSize(18)
         titleLabel.setFontColor(QColor(51, 51, 51))
         layout.addWidget(titleLabel)
 
-        // 表头行：图片 + 歌名/歌手/专辑列 + 播放全部
-        let header = QWidget()
-        header.setFixedHeight(40)
-        let headerLayout = QHBoxLayout(parent: header)
-        headerLayout.setContentsMargins(12, 0, 12, 0)
-        headerLayout.setSpacing(8)
+        // musicPlayBox：150px 高，水平布局
+        let playBox = QWidget()
+        playBox.setFixedHeight(150)
+        let playBoxLayout = QHBoxLayout(parent: playBox)
+        playBoxLayout.setContentsMargins(0, 0, 0, 0)
+        playBoxLayout.setSpacing(0)
 
-        let image = headerImage
-        image.setFixedSize(120, 36)
-        image.setStyleSheet(
+        // musicImageLabel：150px 宽封面图
+        headerImage.setFixedWidth(150)
+        headerImage.setStyleSheet(
             "QLabel { background-image: url(images/ilikebg.png); background-repeat: no-repeat; background-position: center center; }")
-        headerLayout.addWidget(image)
+        playBoxLayout.addWidget(headerImage)
 
-        let nameHeader = QLabel("歌名")
-        nameHeader.setFontSize(12)
-        nameHeader.setFontColor(QColor(120, 120, 120))
-        nameHeader.setFixedWidth(300)
-        headerLayout.addWidget(nameHeader)
-
-        let singerHeader = QLabel("歌手")
-        singerHeader.setFontSize(12)
-        singerHeader.setFontColor(QColor(120, 120, 120))
-        singerHeader.setFixedWidth(120)
-        headerLayout.addWidget(singerHeader)
-
-        let albumHeader = QLabel("专辑")
-        albumHeader.setFontSize(12)
-        albumHeader.setFontColor(QColor(120, 120, 120))
-        headerLayout.addWidget(albumHeader)
-
-        let playAllBtn = QPushButton("▶ 播放全部")
-        playAllBtn.setFixedSize(120, 32)
+        // playAll：120px 宽，垂直布局(spacer + 播放全部按钮)
+        let playAllBox = QWidget()
+        playAllBox.setFixedWidth(120)
+        let playAllLayout = QVBoxLayout(parent: playAllBox)
+        playAllLayout.setContentsMargins(0, 0, 0, 0)
+        playAllLayout.setSpacing(0)
+        playAllLayout.addStretch(1)
+        let playAllBtn = QPushButton("播放全部")
+        playAllBtn.setFixedSize(100, 30)
         playAllBtn.setStyleSheet(
-            "QPushButton { color: #ffffff; background-color: #31c27c; border: none; border-radius: 16px; font-size: 13px; } QPushButton:hover { background-color: #3dd690; }")
+            "QPushButton { background-color: #E3E3E3; border-radius: 10px; color: #333333; font-size: 13px; border: none; } QPushButton:hover { background-color: #1ECD97; color: #ffffff; }")
         playAllBtn.clicked.connect() {
             d => playAllHandler()
         }
-        headerLayout.addWidget(playAllBtn)
+        playAllLayout.addWidget(playAllBtn)
+        playAllLayout.addStretch(1)
+        playBoxLayout.addWidget(playAllBox)
 
-        layout.addWidget(header)
+        playBoxLayout.addStretch(1)
+        layout.addWidget(playBox)
 
-        // 滚动列表容器：widgetResizable=true 撑满视口，布局默认顶部对齐
+        // listLabelBox：40px 高列头 = 歌名(380) + 歌手(130) + 专辑
+        let labelBox = QWidget()
+        labelBox.setFixedHeight(40)
+        let labelLayout = QHBoxLayout(parent: labelBox)
+        labelLayout.setContentsMargins(0, 0, 0, 0)
+        labelLayout.setSpacing(0)
+
+        let nameHeader = QLabel("歌曲名称")
+        nameHeader.setFontSize(12)
+        nameHeader.setFontColor(QColor(120, 120, 120))
+        nameHeader.setFixedWidth(380)
+        labelLayout.addWidget(nameHeader)
+
+        let singerHeader = QLabel("歌手名称")
+        singerHeader.setFontSize(12)
+        singerHeader.setFontColor(QColor(120, 120, 120))
+        singerHeader.setFixedWidth(130)
+        labelLayout.addWidget(singerHeader)
+
+        let albumHeader = QLabel("专辑名称")
+        albumHeader.setFontSize(12)
+        albumHeader.setFontColor(QColor(120, 120, 120))
+        labelLayout.addWidget(albumHeader)
+
+        layout.addWidget(labelBox)
+
+        // 列表滚动容器
         scrollArea.setWidget(listContainer)
         scrollArea.setWidgetResizable(true)
         scrollArea.setStyleSheet("QScrollArea { border: none; background-color: #ffffff; }")
@@ -97,30 +120,28 @@ public class CommonPage <: QWidget {
         playAllHandler = handler
     }
 
+    // 仿参考项目 ListItemBox：likeBtn + 歌名 + 歌手 + 专辑（固定列宽对齐）
     public func addMusic(name: String, singer: String, album: String) {
         let row = QWidget()
-        row.setFixedHeight(40)
-        row.setStyleSheet("QWidget { background-color: #ffffff; border-bottom: 1px solid #f0f0f0; }")
+        row.setFixedHeight(45)
+        row.setStyleSheet("QWidget { background-color: #ffffff; border-bottom: 1px solid #F0F0F0; }")
         let rowLayout = QHBoxLayout(parent: row)
-        rowLayout.setContentsMargins(12, 0, 0, 0)
-        rowLayout.setSpacing(8)
+        rowLayout.setContentsMargins(0, 0, 0, 0)
+        rowLayout.setSpacing(0)
 
-        // 表头图片占位：与表头的 image(120) + spacing 对齐，保证歌名/歌手/专辑列与表头一致
-        let spacer = QWidget()
-        spacer.setFixedSize(120, 36)
-        spacer.setStyleSheet("QWidget { background: transparent; }")
-        rowLayout.addWidget(spacer)
-
+        // 歌名区：380px 宽（like 图标 + 歌名）
         let nameLabel = QLabel(name)
-        nameLabel.setFixedWidth(300)
-        nameLabel.setStyleSheet("QLabel { color: #333333; font-size: 14px; background: transparent; }")
+        nameLabel.setFixedWidth(380)
+        nameLabel.setStyleSheet("QLabel { color: #333333; font-size: 14px; padding-left: 12px; background: transparent; }")
         rowLayout.addWidget(nameLabel)
 
+        // 歌手区：130px 宽
         let singerLabel = QLabel(singer)
-        singerLabel.setFixedWidth(120)
+        singerLabel.setFixedWidth(130)
         singerLabel.setStyleSheet("QLabel { color: #666666; font-size: 13px; background: transparent; }")
         rowLayout.addWidget(singerLabel)
 
+        // 专辑区
         let albumLabel = QLabel(album)
         albumLabel.setStyleSheet("QLabel { color: #666666; font-size: 13px; background: transparent; }")
         rowLayout.addWidget(albumLabel)
@@ -132,7 +153,6 @@ public class CommonPage <: QWidget {
     }
 
     public func clear() {
-        // QVBoxLayout 无 removeWidget，重建容器
         scrollArea.setWidget(QWidget())
         listContainer = QWidget()
         listLayout = QVBoxLayout(parent: listContainer)
@@ -150,11 +170,11 @@ public class CommonPage <: QWidget {
     public func setCurrentRow(row: Int64) {
         var i: Int64 = 0
         while (i < rows.size) {
-            rows[i].setStyleSheet("QWidget { background-color: #ffffff; border-bottom: 1px solid #f0f0f0; }")
+            rows[i].setStyleSheet("QWidget { background-color: #ffffff; border-bottom: 1px solid #F0F0F0; }")
             i += 1
         }
         if (row >= 0 && row < rows.size) {
-            rows[row].setStyleSheet("QWidget { background-color: #d5f5e8; border-bottom: 1px solid #f0f0f0; }")
+            rows[row].setStyleSheet("QWidget { background-color: #EFEFEF; border-bottom: 1px solid #F0F0F0; }")
         }
     }
 
