@@ -35,35 +35,18 @@ public class CommonPage <: QWidget {
         titleLabel.setFontColor(QColor(51, 51, 51))
         layout.addWidget(titleLabel)
 
-        // 表头行：图片 + 歌名/歌手/专辑列 + 播放全部
+        // 表头行（仿参考项目 commonpage.ui）：图片(150) + 播放全部(120) + 歌名(380) + 歌手(130) + 专辑
         let header = QWidget()
-        header.setFixedHeight(40)
+        header.setFixedHeight(50)
         let headerLayout = QHBoxLayout(parent: header)
-        headerLayout.setContentsMargins(12, 0, 12, 0)
-        headerLayout.setSpacing(8)
+        headerLayout.setContentsMargins(0, 0, 0, 0)
+        headerLayout.setSpacing(0)
 
         let image = headerImage
-        image.setFixedSize(120, 36)
+        image.setFixedSize(150, 50)
         image.setStyleSheet(
             "QLabel { background-image: url(images/ilikebg.png); background-repeat: no-repeat; background-position: center center; }")
         headerLayout.addWidget(image)
-
-        let nameHeader = QLabel("歌名")
-        nameHeader.setFontSize(12)
-        nameHeader.setFontColor(QColor(120, 120, 120))
-        nameHeader.setFixedWidth(300)
-        headerLayout.addWidget(nameHeader)
-
-        let singerHeader = QLabel("歌手")
-        singerHeader.setFontSize(12)
-        singerHeader.setFontColor(QColor(120, 120, 120))
-        singerHeader.setFixedWidth(120)
-        headerLayout.addWidget(singerHeader)
-
-        let albumHeader = QLabel("专辑")
-        albumHeader.setFontSize(12)
-        albumHeader.setFontColor(QColor(120, 120, 120))
-        headerLayout.addWidget(albumHeader)
 
         let playAllBtn = QPushButton("▶ 播放全部")
         playAllBtn.setFixedSize(120, 32)
@@ -73,6 +56,23 @@ public class CommonPage <: QWidget {
             d => playAllHandler()
         }
         headerLayout.addWidget(playAllBtn)
+
+        let nameHeader = QLabel("歌名")
+        nameHeader.setFontSize(12)
+        nameHeader.setFontColor(QColor(120, 120, 120))
+        nameHeader.setFixedWidth(380)
+        headerLayout.addWidget(nameHeader)
+
+        let singerHeader = QLabel("歌手")
+        singerHeader.setFontSize(12)
+        singerHeader.setFontColor(QColor(120, 120, 120))
+        singerHeader.setFixedWidth(130)
+        headerLayout.addWidget(singerHeader)
+
+        let albumHeader = QLabel("专辑")
+        albumHeader.setFontSize(12)
+        albumHeader.setFontColor(QColor(120, 120, 120))
+        headerLayout.addWidget(albumHeader)
 
         layout.addWidget(header)
 
@@ -102,22 +102,22 @@ public class CommonPage <: QWidget {
         row.setFixedHeight(40)
         row.setStyleSheet("QWidget { background-color: #ffffff; border-bottom: 1px solid #f0f0f0; }")
         let rowLayout = QHBoxLayout(parent: row)
-        rowLayout.setContentsMargins(12, 0, 0, 0)
-        rowLayout.setSpacing(8)
+        rowLayout.setContentsMargins(0, 0, 0, 0)
+        rowLayout.setSpacing(0)
 
-        // 表头图片占位：与表头的 image(120) + spacing 对齐，保证歌名/歌手/专辑列与表头一致
+        // 表头图片(150)+播放全部(120)占位，保证歌名/歌手/专辑列与表头对齐
         let spacer = QWidget()
-        spacer.setFixedSize(120, 36)
+        spacer.setFixedSize(270, 40)
         spacer.setStyleSheet("QWidget { background: transparent; }")
         rowLayout.addWidget(spacer)
 
         let nameLabel = QLabel(name)
-        nameLabel.setFixedWidth(300)
+        nameLabel.setFixedWidth(380)
         nameLabel.setStyleSheet("QLabel { color: #333333; font-size: 14px; background: transparent; }")
         rowLayout.addWidget(nameLabel)
 
         let singerLabel = QLabel(singer)
-        singerLabel.setFixedWidth(120)
+        singerLabel.setFixedWidth(130)
         singerLabel.setStyleSheet("QLabel { color: #666666; font-size: 13px; background: transparent; }")
         rowLayout.addWidget(singerLabel)
 
