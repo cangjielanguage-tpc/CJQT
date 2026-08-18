@@ -32,6 +32,7 @@ public class QQMusicWindow <: QWidget {
     var isPlaying = false
     var currentSongIndex = -1
     var currentSongName = ""
+    var maximized = false
     let musicDir = "musics"
 
     public init() {
@@ -54,6 +55,7 @@ public class QQMusicWindow <: QWidget {
         navAnimTimer = QTimer(120, { => AnimGlobals.navTick() })
 
         setWindowTitle("QQ音乐")
+        setWindowFlag(WindowType.FramelessWindowHint.value(), true)
         setFixedSize(1044, 704)
         setStyleSheet("QWidget { background-color: #F5F5F5; }")
 
@@ -108,8 +110,16 @@ public class QQMusicWindow <: QWidget {
         rightLayout.addStretch(1)
 
         rightLayout.addWidget(makeIconButton("images/skin.png"))
-        rightLayout.addWidget(makeIconButton("images/min.png"))
-        rightLayout.addWidget(makeIconButton("images/max.png"))
+        let minBtn = makeIconButton("images/min.png")
+        minBtn.clicked.connect() {
+            d => showMinimized()
+        }
+        let maxBtn = makeIconButton("images/max.png")
+        maxBtn.clicked.connect() {
+            d => toggleMaximize()
+        }
+        rightLayout.addWidget(minBtn)
+        rightLayout.addWidget(maxBtn)
         let quitBtn = makeIconButton("images/quit.png")
         quitBtn.clicked.connect() {
             d => QApplication.quit()
@@ -117,6 +127,16 @@ public class QQMusicWindow <: QWidget {
         rightLayout.addWidget(quitBtn)
         layout.addWidget(headRight)
         return head
+    }
+
+    func toggleMaximize() {
+        if (maximized) {
+            showNormal()
+            maximized = false
+        } else {
+            showMaximized()
+            maximized = true
+        }
     }
 
     func makeIconButton(imagePath: String): QPushButton {

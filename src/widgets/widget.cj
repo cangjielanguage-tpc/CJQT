@@ -31,6 +31,7 @@ foreign func nativeWidgetShowNormal(ptr: Int64): Unit
 foreign func nativeWidgetClose(ptr: Int64): Unit
 foreign func nativeWidgetMove(ptr: Int64, ax: Int32, ay: Int32): Unit
 foreign func nativeWidgetSetWindowTitle(ptr: Int64, title: CString): Unit
+foreign func nativeWidgetSetWindowFlag(ptr: Int64, flag: UInt32, on: Int32): Unit
 foreign func nativeWidgetWindowTitle(ptr: Int64): CString
 foreign func nativeWidgetRepaint(ptr: Int64): Unit
 foreign func nativeWidgetSetLayout(ptr: Int64, layoutPtr: Int64): Unit
@@ -321,6 +322,18 @@ public open class QWidget <: QObject {
             let t=LibC.mallocCString(title)
             nativeWidgetSetWindowTitle(ptr, t)
             LibC.free(t)
+        }
+    }
+
+    /**
+     * The Function is setWindowFlag
+     *
+     * @param flag of UInt32
+     * @param on of Bool
+     */
+    public func setWindowFlag(flag: UInt32, on: Bool) {
+        unsafe {
+            nativeWidgetSetWindowFlag(ptr, flag, if (on) { 1 } else { 0 })
         }
     }
 

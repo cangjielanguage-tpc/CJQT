@@ -163,6 +163,12 @@ extern "C"
         instance->setWindowTitle(title);
     }
 
+    void nativeWidgetSetWindowFlag(uintptr_t ptr, int flag, int on)
+    {
+        QWidget *instance = reinterpret_cast<QWidget *>(static_cast<uintptr_t>(ptr));
+        instance->setWindowFlag(static_cast<Qt::WindowType>(flag), on != 0);
+    }
+
     const char *nativeWidgetWindowTitle(uintptr_t ptr)
     {
         QWidget *instance = reinterpret_cast<QWidget *>(static_cast<uintptr_t>(ptr));
