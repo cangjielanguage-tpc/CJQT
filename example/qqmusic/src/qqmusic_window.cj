@@ -33,6 +33,10 @@ public class QQMusicWindow <: QWidget {
     var currentSongIndex = -1
     var currentSongName = ""
     var maximized = false
+    var normalWidth: Int64 = 0
+    var normalHeight: Int64 = 0
+    var normalX: Int64 = 0
+    var normalY: Int64 = 0
     let musicDir = "musics"
 
     public init() {
@@ -133,12 +137,30 @@ public class QQMusicWindow <: QWidget {
 
     func toggleMaximize() {
         if (maximized) {
-            showNormal()
-            maximized = false
+            restoreNormal()
         } else {
-            showMaximized()
-            maximized = true
+            maximizeToScreen()
         }
+    }
+
+    // 无边框窗口下不用 showMaximized（X11下事件区域异常导致按钮失灵），
+    // 改为手动 resize 到屏幕可用区域模拟最大化
+    func maximizeToScreen() {
+        let screen = QApplication.primaryScreen()
+        let geo = screen.geometry()
+        normalWidth = Int64(width())
+        normalHeight = height()
+        normalX = x()
+        normalY = y()
+        move(0, 0)
+        resize(Int64(geo.width), Int64(geo.height))
+        maximized = true
+    }
+
+    func restoreNormal() {
+        resize(normalWidth, normalHeight)
+        move(Int32(normalX), Int32(normalY))
+        maximized = false
     }
 
     func makeIconButton(imagePath: String): QPushButton {
