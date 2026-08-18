@@ -483,7 +483,8 @@ public class QQMusicWindow <: QWidget {
         localPage.clear()
         var i: Int64 = 0
         while (i < library.size()) {
-            localPage.addMusic(library.at(i).name)
+            let m = library.at(i)
+            localPage.addMusic(m.name, m.singer, m.album)
             i += 1
         }
     }
@@ -493,8 +494,9 @@ public class QQMusicWindow <: QWidget {
         likePage.clear()
         var i: Int64 = 0
         while (i < library.size()) {
-            if (library.at(i).isLike) {
-                likePage.addMusic(library.at(i).name)
+            let m = library.at(i)
+            if (m.isLike) {
+                likePage.addMusic(m.name, m.singer, m.album)
             }
             i += 1
         }
@@ -505,8 +507,9 @@ public class QQMusicWindow <: QWidget {
         recentPage.clear()
         var i: Int64 = 0
         while (i < library.size()) {
-            if (library.at(i).isHistory) {
-                recentPage.addMusic(library.at(i).name)
+            let m = library.at(i)
+            if (m.isHistory) {
+                recentPage.addMusic(m.name, m.singer, m.album)
             }
             i += 1
         }
