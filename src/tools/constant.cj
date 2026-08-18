@@ -7,6 +7,7 @@ public enum WidgetAttribute {
     | WA_ContentsPropagated
     | WA_OpaquePaintEvent
     | WA_MacShowFocusRect
+    | WA_TranslucentBackground
 
     public func value(): Int32 {
         return match (this) {
@@ -16,6 +17,7 @@ public enum WidgetAttribute {
             case WA_ContentsPropagated => 3
             case WA_OpaquePaintEvent => 4
             case WA_MacShowFocusRect => 88
+            case WA_TranslucentBackground => 9
         }
     }
 }
