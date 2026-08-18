@@ -3,14 +3,28 @@ package qqmusic
 import cjqt.core.*
 import cjqt.gui.*
 import cjqt.widgets.*
+import std.collection.*
 
 // 仿参考项目 RecBox：推荐歌曲图片宫格（左右翻页箭头 + 图片卡片）
+// 参考项目：40张图，每页col张，currentIndex循环翻页，点击重建一组
 public class RecBox <: QWidget {
     let cardCount = 5
+    let images = ArrayList<String>()
+    let stack: QStackedWidget
+    var pageCount: Int64 = 0
+    var currentPage: Int64 = 0
 
     public init() {
+        stack = QStackedWidget()
+        stack.setFixedHeight(200)
         setFixedHeight(210)
         setStyleSheet("QWidget { background-color: #F5F5F5; }")
+
+        var i: Int64 = 0
+        while (i < 39) {
+            images.add(recImageName(i))
+            i += 1
+        }
 
         let layout = QHBoxLayout(parent: this)
         layout.setContentsMargins(0, 0, 0, 0)
@@ -22,33 +36,83 @@ public class RecBox <: QWidget {
             "QPushButton { border: none; background-image: url(images/up_page.png); background-repeat: no-repeat; background-position: center center; } QPushButton:hover { background-color: #1ECD97; }")
         layout.addWidget(upBtn)
 
-        let content = QWidget()
-        content.setStyleSheet("QWidget { background-color: #F5F5F5; }")
-        let contentLayout = QHBoxLayout(parent: content)
-        contentLayout.setContentsMargins(0, 0, 0, 0)
-        contentLayout.setSpacing(12)
-        layout.addWidget(content)
-
-        let images = ["001", "003", "004", "005", "006"]
-        var i = 0
-        while (i < cardCount) {
-            contentLayout.addWidget(makeCard("images/rec/${images[i]}.png", "推荐-${numberText(i)}"))
-            i += 1
-        }
-        contentLayout.addStretch(1)
+        layout.addWidget(stack)
 
         let downBtn = QPushButton()
         downBtn.setFixedSize(30, 160)
         downBtn.setStyleSheet(
             "QPushButton { border: none; background-image: url(images/down_page.png); background-repeat: no-repeat; background-position: center center; } QPushButton:hover { background-color: #1ECD97; }")
         layout.addWidget(downBtn)
+
+        buildPages()
+
+        // 上翻：到第一页后循环到最后一页
+        upBtn.clicked.connect() {
+            d => prevPage()
+        }
+        // 下翻：到最后一页后循环到第一页
+        downBtn.clicked.connect() {
+            d => nextPage()
+        }
     }
 
-    func numberText(i: Int64): String {
+    func buildPages() {
+        pageCount = (images.size + cardCount - 1) / cardCount
+        var p: Int64 = 0
+        while (p < pageCount) {
+            let page = QWidget()
+            page.setStyleSheet("QWidget { background-color: #F5F5F5; }")
+            let pageLayout = QHBoxLayout(parent: page)
+            pageLayout.setContentsMargins(0, 0, 0, 0)
+            pageLayout.setSpacing(12)
+            var i: Int64 = 0
+            while (i < cardCount) {
+                let idx = p * cardCount + i
+                if (idx < images.size) {
+                    pageLayout.addWidget(makeCard("images/rec/${images[idx]}.png", "推荐-${images[idx]}"))
+                }
+                i += 1
+            }
+            pageLayout.addStretch(1)
+            stack.addWidget(page)
+            p += 1
+        }
+    }
+
+    func prevPage() {
+        currentPage -= 1
+        if (currentPage < 0) {
+            currentPage = pageCount - 1
+        }
+        stack.setCurrentIndex(currentPage)
+    }
+
+    func nextPage() {
+        currentPage += 1
+        if (currentPage >= pageCount) {
+            currentPage = 0
+        }
+        stack.setCurrentIndex(currentPage)
+    }
+
+    // 参考项目图片列表：001,003,004,...040（缺002），39张
+    static func recImageName(i: Int64): String {
+        let num = i + 1
+        if (num == 2) {
+            return "003"
+        }
+        let n = if (num > 2) { num + 1 } else { num }
+        return numberText(n)
+    }
+
+    static func numberText(i: Int64): String {
         if (i < 10) {
             return "00${i}"
         }
-        return "0${i}"
+        if (i < 100) {
+            return "0${i}"
+        }
+        return "${i}"
     }
 
     func makeCard(imagePath: String, title: String): QWidget {
