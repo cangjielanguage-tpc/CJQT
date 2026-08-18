@@ -128,7 +128,7 @@ public class RecBox <: QWidget {
         let image = QLabel()
         image.setFixedSize(150, 150)
         image.setStyleSheet(
-            "QLabel { background-image: url(${imagePath}); background-repeat: no-repeat; background-position: center center; border-radius: 8px; }")
+            "QLabel { background-image: url(${imagePath}); background-repeat: no-repeat; background-position: center center; background-clip: content; border-radius: 10px; padding: 8px; }")
         image.setMouseTracking(true)
         cardLayout.addWidget(image)
         imageLabels.add(image)
@@ -148,7 +148,7 @@ public class RecBox <: QWidget {
         }
     }
 
-    // 检查鼠标悬停，平滑放大/缩小图片
+    // 检查鼠标悬停，平滑放大/缩小图片（步长4，动画约400ms快速完成，避免卡顿）
     public func tick() {
         var i: Int64 = 0
         while (i < imageLabels.size) {
@@ -158,12 +158,12 @@ public class RecBox <: QWidget {
             if (cur != target) {
                 var next = cur
                 if (target > cur) {
-                    next = cur + 1
+                    next = cur + 4
                     if (next > target) {
                         next = target
                     }
                 } else {
-                    next = cur - 1
+                    next = cur - 4
                     if (next < target) {
                         next = target
                     }
