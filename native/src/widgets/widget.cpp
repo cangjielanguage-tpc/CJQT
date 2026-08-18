@@ -157,6 +157,12 @@ extern "C"
         instance->move(ax, ay);
     }
 
+    QPoint nativeWidgetMapToGlobal(uintptr_t ptr)
+    {
+        QWidget *instance = reinterpret_cast<QWidget *>(static_cast<uintptr_t>(ptr));
+        return instance->mapToGlobal(QPoint(0, 0));
+    }
+
     void nativeWidgetSetWindowTitle(uintptr_t ptr, const char *title)
     {
         QWidget *instance = reinterpret_cast<QWidget *>(static_cast<uintptr_t>(ptr));

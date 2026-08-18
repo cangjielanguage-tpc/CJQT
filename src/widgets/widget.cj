@@ -30,6 +30,7 @@ foreign func nativeWidgetShowFullScreen(ptr: Int64): Unit
 foreign func nativeWidgetShowNormal(ptr: Int64): Unit
 foreign func nativeWidgetClose(ptr: Int64): Unit
 foreign func nativeWidgetMove(ptr: Int64, ax: Int32, ay: Int32): Unit
+foreign func nativeWidgetMapToGlobal(ptr: Int64): QPoint
 foreign func nativeWidgetSetWindowTitle(ptr: Int64, title: CString): Unit
 foreign func nativeWidgetSetWindowFlag(ptr: Int64, flag: UInt32, on: Int32): Unit
 foreign func nativeWidgetSetMouseTracking(ptr: Int64, enabled: Int32): Unit
@@ -311,6 +312,17 @@ public open class QWidget <: QObject {
     public func move(ax: Int32, ay: Int32) {
         unsafe {
             nativeWidgetMove(ptr, ax, ay)
+        }
+    }
+
+    /**
+     * The Function is mapToGlobal
+     *
+     * @return Type of QPoint
+     */
+    public func mapToGlobal(): QPoint {
+        return unsafe {
+            nativeWidgetMapToGlobal(ptr)
         }
     }
 

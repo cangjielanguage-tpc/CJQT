@@ -21,6 +21,7 @@ public class QQMusicWindow <: QWidget {
     let musicSingerLabel: QLabel
     let playBtn: QPushButton
     let playModeBtn: QPushButton
+    let volumeBtn: QPushButton
     let volumeTool: VolumeTool
     let lyricsPage: LyricsPage
     let timer: QTimer
@@ -56,6 +57,7 @@ public class QQMusicWindow <: QWidget {
         musicSingerLabel = QLabel()
         playBtn = QPushButton()
         playModeBtn = QPushButton()
+        volumeBtn = QPushButton()
         volumeTool = VolumeTool()
         lyricsPage = LyricsPage()
         timer = QTimer(500, { => AnimGlobals.progressTick() })
@@ -385,11 +387,12 @@ public class QQMusicWindow <: QWidget {
         }
         play2Layout.addWidget(downBtn)
 
-        let volBtn = makeIconButton("images/volumn.png")
-        volBtn.clicked.connect() {
+        volumeBtn.setFixedSize(30, 30)
+        volumeBtn.setStyleSheet(iconStyle("images/volumn.png"))
+        volumeBtn.clicked.connect() {
             d => toggleVolumeTool()
         }
-        play2Layout.addWidget(volBtn)
+        play2Layout.addWidget(volumeBtn)
 
         let likeBtn = makeIconButton("images/like_1.png")
         likeBtn.clicked.connect() {
@@ -453,6 +456,13 @@ public class QQMusicWindow <: QWidget {
         if (volumeTool.isVisible()) {
             volumeTool.hide()
         } else {
+            // 锚定到音量按钮附近：按钮全局坐标正上方偏左，仿参考项目公式
+            if (volumeBtn.ptr != 0) {
+                let p = volumeBtn.mapToGlobal()
+                let x = Int32(Int64(p.x) - 120 / 2 + 15)
+                let y = Int32(Int64(p.y) - 320 + 30)
+                volumeTool.move(x, y)
+            }
             volumeTool.show()
         }
     }
