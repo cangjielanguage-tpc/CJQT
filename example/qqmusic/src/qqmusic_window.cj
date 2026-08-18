@@ -391,6 +391,12 @@ public class QQMusicWindow <: QWidget {
         }
         play2Layout.addWidget(volBtn)
 
+        let likeBtn = makeIconButton("images/like_1.png")
+        likeBtn.clicked.connect() {
+            d => toggleLikeCurrent(likeBtn)
+        }
+        play2Layout.addWidget(likeBtn)
+
         let addBtn = makeIconButton("images/add.png")
         addBtn.clicked.connect() {
             d => scanMusics()
@@ -453,16 +459,67 @@ public class QQMusicWindow <: QWidget {
 
     func scanMusics() {
         library.scanDirectory(musicDir)
+        refreshLikePage()
+        refreshRecentPage()
+        refreshLocalPage()
+    }
+
+    // 本地下载页数据源：本地目录全部歌曲
+    func refreshLocalPage() {
         localPage.clear()
-        likePage.clear()
-        recentPage.clear()
-        var i = 0
+        var i: Int64 = 0
         while (i < library.size()) {
             localPage.addMusic(library.at(i).name)
-            likePage.addMusic(library.at(i).name)
-            recentPage.addMusic(library.at(i).name)
             i += 1
         }
+    }
+
+    // 我喜欢页数据源：isLike 标记的歌曲
+    func refreshLikePage() {
+        likePage.clear()
+        var i: Int64 = 0
+        while (i < library.size()) {
+            if (library.at(i).isLike) {
+                likePage.addMusic(library.at(i).name)
+            }
+            i += 1
+        }
+    }
+
+    // 最近播放页数据源：isHistory 播放过的歌曲
+    func refreshRecentPage() {
+        recentPage.clear()
+        var i: Int64 = 0
+        while (i < library.size()) {
+            if (library.at(i).isHistory) {
+                recentPage.addMusic(library.at(i).name)
+            }
+            i += 1
+        }
+    }
+
+    // 切换喜欢标记：返回新状态
+    func toggleLike(name: String): Bool {
+        var i: Int64 = 0
+        while (i < library.size()) {
+            let music = library.at(i)
+            if (music.name == name) {
+                music.isLike = !music.isLike
+                refreshLikePage()
+                return music.isLike
+            }
+            i += 1
+        }
+        return false
+    }
+
+    // 控制栏喜欢按钮：切换当前播放歌曲的喜欢状态并更新图标
+    func toggleLikeCurrent(btn: QPushButton) {
+        if (currentSongIndex < 0 || currentSongIndex >= library.size()) {
+            return
+        }
+        let liked = toggleLike(library.at(currentSongIndex).name)
+        btn.setStyleSheet(iconStyle(if (liked) { "images/like_3.png" } else { "images/like_1.png" }))
     }
 
     func playAll() {
@@ -487,6 +544,7 @@ public class QQMusicWindow <: QWidget {
             musicNameLabel.setText(music.name)
             musicSingerLabel.setText(parseSinger(music.name))
             loadLrc(music)
+            music.isHistory = true
             player.play()
             isPlaying = true
             playBtn.setStyleSheet(iconStyle("images/play_on.png"))

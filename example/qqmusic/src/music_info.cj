@@ -6,6 +6,8 @@ import std.collection.*
 public class MusicInfo {
     public var name: String = ""
     public var filePath: String = ""
+    public var isLike: Bool = false
+    public var isHistory: Bool = false
 
     public init() {}
 
