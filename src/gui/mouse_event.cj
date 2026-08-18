@@ -16,6 +16,8 @@ foreign func nativeMouseEventGetScreenPos(vptr: Int64): QPointF
 foreign func nativeMouseEventGetWindowPos(vptr: Int64): QPointF
 foreign func nativeMouseEventGetGlobalPos(vptr: Int64): QPoint
 foreign func nativeMouseEventGetLocalPos(vptr: Int64): QPointF
+foreign func nativeMouseEventButton(vptr: Int64): Int32
+foreign func nativeMouseEventButtons(vptr: Int64): Int32
 
 /**
  * The class is QMouseEvent
@@ -62,5 +64,27 @@ public class QMouseEvent <: QEvent {
             nativeMouseEventGetLocalPos(this.ptr)
         }
         return point
+    }
+
+    /**
+     * The Function is button
+     *
+     * @return Type of Int32
+     */
+    public func button(): Int32 {
+        return unsafe {
+            nativeMouseEventButton(this.ptr)
+        }
+    }
+
+    /**
+     * The Function is buttons
+     *
+     * @return Type of Int32
+     */
+    public func buttons(): Int32 {
+        return unsafe {
+            nativeMouseEventButtons(this.ptr)
+        }
     }
 }

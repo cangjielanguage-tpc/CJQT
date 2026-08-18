@@ -37,6 +37,9 @@ public class QQMusicWindow <: QWidget {
     var normalHeight: Int64 = 0
     var normalX: Int64 = 0
     var normalY: Int64 = 0
+    var dragPosX: Int64 = 0
+    var dragPosY: Int64 = 0
+    var isDragging = false
     let musicDir = "musics"
 
     public init() {
@@ -80,6 +83,31 @@ public class QQMusicWindow <: QWidget {
         timer.start()
         navAnimTimer.start()
         scanMusics()
+        setupWindowDrag()
+    }
+
+    // 无边框窗口拖动：参照参考项目，左键按下记录偏移，移动时 move(globalPos - dragPos)
+    func setupWindowDrag() {
+        setMousePressEvent() {
+            e =>
+                if (e.button() == 1) {
+                    let g = e.globalPos()
+                    dragPosX = Int64(g.x) - x()
+                    dragPosY = Int64(g.y) - y()
+                    isDragging = true
+                }
+        }
+        setMouseMoveEvent() {
+            e =>
+                if (isDragging) {
+                    let g = e.globalPos()
+                    move(Int32(Int64(g.x) - dragPosX), Int32(Int64(g.y) - dragPosY))
+                }
+        }
+        setMouseReleaseEvent() {
+            e =>
+                isDragging = false
+        }
     }
 
     // ---------- 顶部 ----------

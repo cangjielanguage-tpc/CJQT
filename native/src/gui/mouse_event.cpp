@@ -69,4 +69,16 @@ extern "C"
         // qDebug()<<"x:"<<point.x()<<"y:"<<point.y()<<endl;
         return engine->localPos();
     }
+
+    int nativeMouseEventButton(uintptr_t vptr)
+    {
+        QMouseEvent *engine = reinterpret_cast<QMouseEvent *>(static_cast<uintptr_t>(vptr));
+        return static_cast<int>(engine->button());
+    }
+
+    int nativeMouseEventButtons(uintptr_t vptr)
+    {
+        QMouseEvent *engine = reinterpret_cast<QMouseEvent *>(static_cast<uintptr_t>(vptr));
+        return static_cast<int>(engine->buttons());
+    }
 }
