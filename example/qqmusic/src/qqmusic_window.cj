@@ -484,7 +484,7 @@ public class QQMusicWindow <: QWidget {
         var i: Int64 = 0
         while (i < library.size()) {
             let m = library.at(i)
-            localPage.addMusic(m.name, m.singer, m.album)
+            localPage.addMusic(m.name, m.singer, m.album, m.isLike, { liked => setLikeByName(m.name, liked) })
             i += 1
         }
     }
@@ -496,7 +496,7 @@ public class QQMusicWindow <: QWidget {
         while (i < library.size()) {
             let m = library.at(i)
             if (m.isLike) {
-                likePage.addMusic(m.name, m.singer, m.album)
+                likePage.addMusic(m.name, m.singer, m.album, m.isLike, { liked => setLikeByName(m.name, liked) })
             }
             i += 1
         }
@@ -509,10 +509,25 @@ public class QQMusicWindow <: QWidget {
         while (i < library.size()) {
             let m = library.at(i)
             if (m.isHistory) {
-                recentPage.addMusic(m.name, m.singer, m.album)
+                recentPage.addMusic(m.name, m.singer, m.album, m.isLike, { liked => setLikeByName(m.name, liked) })
             }
             i += 1
         }
+    }
+
+    // 按歌名设置喜欢状态并刷新我喜欢页，返回新状态
+    func setLikeByName(name: String, liked: Bool): Bool {
+        var i: Int64 = 0
+        while (i < library.size()) {
+            let music = library.at(i)
+            if (music.name == name) {
+                music.isLike = liked
+                refreshLikePage()
+                return music.isLike
+            }
+            i += 1
+        }
+        return liked
     }
 
     // 切换喜欢标记：返回新状态

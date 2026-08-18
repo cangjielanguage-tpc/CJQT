@@ -46,10 +46,10 @@ public class CommonPage <: QWidget {
         playBoxLayout.setContentsMargins(0, 0, 0, 0)
         playBoxLayout.setSpacing(16)
 
-        // musicImageLabel：150px 宽封面图（加内边距，图片四周留白）
+        // musicImageLabel：150px 宽封面图（拉伸铺满）
         headerImage.setFixedWidth(150)
         headerImage.setStyleSheet(
-            "QLabel { background-image: url(images/ilikebg.png); background-repeat: no-repeat; background-position: center center; background-clip: content; padding: 12px; border-radius: 8px; }")
+            "QLabel { background-image: url(images/ilikebg.png); background-repeat: no-repeat; background-position: center center; }")
         playBoxLayout.addWidget(headerImage)
 
         // playAll：120px 宽，垂直布局(spacer + 播放全部按钮)
@@ -121,7 +121,8 @@ public class CommonPage <: QWidget {
     }
 
     // 仿参考项目 ListItemBox：likeBtn + 歌名 + 歌手 + 专辑（固定列宽对齐）
-    public func addMusic(name: String, singer: String, album: String) {
+    // likeHandler: 点击喜欢按钮时回调，参数为期望状态，返回实际切换后的状态
+    public func addMusic(name: String, singer: String, album: String, isLike: Bool, likeHandler: (Bool) -> Bool) {
         let row = QWidget()
         row.setFixedHeight(45)
         row.setStyleSheet("QWidget { background-color: #ffffff; border-bottom: 1px solid #F0F0F0; }")
@@ -130,10 +131,27 @@ public class CommonPage <: QWidget {
         rowLayout.setSpacing(0)
 
         // 歌名区：380px 宽（like 图标 + 歌名）
+        let nameBox = QWidget()
+        nameBox.setFixedWidth(380)
+        let nameBoxLayout = QHBoxLayout(parent: nameBox)
+        nameBoxLayout.setContentsMargins(0, 0, 0, 0)
+        nameBoxLayout.setSpacing(4)
+
+        let likeBtn = QPushButton()
+        likeBtn.setFixedSize(25, 25)
+        likeBtn.setStyleSheet(likeStyle(isLike))
+        likeBtn.clicked.connect() {
+            d =>
+            let liked = likeHandler(!isLike)
+            likeBtn.setStyleSheet(likeStyle(liked))
+        }
+        nameBoxLayout.addWidget(likeBtn)
+
         let nameLabel = QLabel(name)
-        nameLabel.setFixedWidth(380)
-        nameLabel.setStyleSheet("QLabel { color: #333333; font-size: 14px; padding-left: 12px; background: transparent; }")
-        rowLayout.addWidget(nameLabel)
+        nameLabel.setStyleSheet("QLabel { color: #333333; font-size: 14px; background: transparent; }")
+        nameBoxLayout.addWidget(nameLabel)
+        nameBoxLayout.addStretch(1)
+        rowLayout.addWidget(nameBox)
 
         // 歌手区：130px 宽
         let singerLabel = QLabel(singer)
@@ -150,6 +168,11 @@ public class CommonPage <: QWidget {
         listLayout.addWidget(row)
         rows.add(row)
         names.add(name)
+    }
+
+    func likeStyle(liked: Bool): String {
+        let icon = if (liked) { "images/like_2.png" } else { "images/like_3.png" }
+        return "QPushButton { border: none; background-image: url(${icon}); background-repeat: no-repeat; background-position: center center; }"
     }
 
     public func clear() {
