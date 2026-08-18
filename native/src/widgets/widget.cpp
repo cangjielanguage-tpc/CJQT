@@ -169,6 +169,18 @@ extern "C"
         instance->setWindowFlag(static_cast<Qt::WindowType>(flag), on != 0);
     }
 
+    void nativeWidgetSetMouseTracking(uintptr_t ptr, int enabled)
+    {
+        QWidget *instance = reinterpret_cast<QWidget *>(static_cast<uintptr_t>(ptr));
+        instance->setMouseTracking(enabled != 0);
+    }
+
+    int nativeWidgetUnderMouse(uintptr_t ptr)
+    {
+        QWidget *instance = reinterpret_cast<QWidget *>(static_cast<uintptr_t>(ptr));
+        return instance->underMouse() ? 1 : 0;
+    }
+
     const char *nativeWidgetWindowTitle(uintptr_t ptr)
     {
         QWidget *instance = reinterpret_cast<QWidget *>(static_cast<uintptr_t>(ptr));

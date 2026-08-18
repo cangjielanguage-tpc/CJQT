@@ -59,7 +59,10 @@ public class QQMusicWindow <: QWidget {
         volumeTool = VolumeTool()
         lyricsPage = LyricsPage()
         timer = QTimer(500, { => AnimGlobals.progressTick() })
-        navAnimTimer = QTimer(120, { => AnimGlobals.navTick() })
+        navAnimTimer = QTimer(120, { =>
+            AnimGlobals.navTick()
+            AnimGlobals.recTick()
+        })
 
         setWindowTitle("QQ音乐")
         setWindowFlag(WindowType.FramelessWindowHint.value(), true)

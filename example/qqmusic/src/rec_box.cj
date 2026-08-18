@@ -7,10 +7,13 @@ import std.collection.*
 
 // 仿参考项目 RecBox：推荐歌曲图片宫格（左右翻页箭头 + 图片卡片）
 // 参考项目：40张图，每页col张，currentIndex循环翻页，点击重建一组
+// 悬停放大：定时器轮询underMouse，平滑改变图片尺寸
 public class RecBox <: QWidget {
+    static let instances = ArrayList<RecBox>()
     let cardCount = 5
     let images = ArrayList<String>()
     let stack: QStackedWidget
+    let imageLabels = ArrayList<QLabel>()
     var pageCount: Int64 = 0
     var currentPage: Int64 = 0
 
@@ -19,6 +22,7 @@ public class RecBox <: QWidget {
         stack.setFixedHeight(200)
         setFixedHeight(210)
         setStyleSheet("QWidget { background-color: #F5F5F5; }")
+        instances.add(this)
 
         var i: Int64 = 0
         while (i < 39) {
@@ -64,7 +68,7 @@ public class RecBox <: QWidget {
             page.setStyleSheet("QWidget { background-color: #F5F5F5; }")
             let pageLayout = QHBoxLayout(parent: page)
             pageLayout.setContentsMargins(0, 0, 0, 0)
-            pageLayout.setSpacing(12)
+            pageLayout.setSpacing(20)
             var i: Int64 = 0
             while (i < cardCount) {
                 let idx = p * cardCount + i
@@ -120,16 +124,53 @@ public class RecBox <: QWidget {
         card.setFixedWidth(150)
         let cardLayout = QVBoxLayout(parent: card)
         cardLayout.setContentsMargins(0, 0, 0, 0)
-        cardLayout.setSpacing(4)
+        cardLayout.setSpacing(6)
         let image = QLabel()
         image.setFixedSize(150, 150)
         image.setStyleSheet(
-            "QLabel { background-image: url(${imagePath}); background-repeat: no-repeat; background-position: center center; border-radius: 6px; }")
+            "QLabel { background-image: url(${imagePath}); background-repeat: no-repeat; background-position: center center; border-radius: 8px; }")
+        image.setMouseTracking(true)
         cardLayout.addWidget(image)
+        imageLabels.add(image)
         let name = QLabel(title)
         name.setFontSize(12)
         name.setFontColor(QColor(51, 51, 51))
         cardLayout.addWidget(name)
         return card
+    }
+
+    // 由全局定时器驱动：遍历所有 RecBox 检查悬停
+    public static func tickAll() {
+        var i: Int64 = 0
+        while (i < instances.size) {
+            instances[i].tick()
+            i += 1
+        }
+    }
+
+    // 检查鼠标悬停，平滑放大/缩小图片
+    public func tick() {
+        var i: Int64 = 0
+        while (i < imageLabels.size) {
+            let label = imageLabels[i]
+            let cur = Int64(label.width())
+            let target = if (label.underMouse()) { 160 } else { 150 }
+            if (cur != target) {
+                var next = cur
+                if (target > cur) {
+                    next = cur + 1
+                    if (next > target) {
+                        next = target
+                    }
+                } else {
+                    next = cur - 1
+                    if (next < target) {
+                        next = target
+                    }
+                }
+                label.setFixedSize(next, next)
+            }
+            i += 1
+        }
     }
 }

@@ -9,9 +9,8 @@ import std.collection.*
 public class AnimGlobals {
     public static var progressTick: () -> Unit = { => () }
     public static var navTick: () -> Unit = { => () }
-}
-
-// 仿参考项目 BtForm 的导航按钮：
+    public static var recTick: () -> Unit = { => () }
+}// 仿参考项目 BtForm 的导航按钮：
 // 图标 + 文本，按下时背景变绿（#1ECE9A），并显示 4 条均衡器动画竖线
 public class NavButton <: QWidget {
     let iconLabel: QLabel

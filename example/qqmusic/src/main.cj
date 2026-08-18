@@ -9,6 +9,7 @@ main() {
     let win = QQMusicWindow()
     AnimGlobals.progressTick = { => win.updateProgress() }
     AnimGlobals.navTick = { => win.tickNav() }
+    AnimGlobals.recTick = { => RecBox.tickAll() }
     win.show()
     QApplication.exec()
     win.delete()

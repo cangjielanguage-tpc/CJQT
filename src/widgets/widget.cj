@@ -32,6 +32,8 @@ foreign func nativeWidgetClose(ptr: Int64): Unit
 foreign func nativeWidgetMove(ptr: Int64, ax: Int32, ay: Int32): Unit
 foreign func nativeWidgetSetWindowTitle(ptr: Int64, title: CString): Unit
 foreign func nativeWidgetSetWindowFlag(ptr: Int64, flag: UInt32, on: Int32): Unit
+foreign func nativeWidgetSetMouseTracking(ptr: Int64, enabled: Int32): Unit
+foreign func nativeWidgetUnderMouse(ptr: Int64): Int32
 foreign func nativeWidgetWindowTitle(ptr: Int64): CString
 foreign func nativeWidgetRepaint(ptr: Int64): Unit
 foreign func nativeWidgetSetLayout(ptr: Int64, layoutPtr: Int64): Unit
@@ -334,6 +336,28 @@ public open class QWidget <: QObject {
     public func setWindowFlag(flag: UInt32, on: Bool) {
         unsafe {
             nativeWidgetSetWindowFlag(ptr, flag, if (on) { 1 } else { 0 })
+        }
+    }
+
+    /**
+     * The Function is setMouseTracking
+     *
+     * @param enabled of Bool
+     */
+    public func setMouseTracking(enabled: Bool) {
+        unsafe {
+            nativeWidgetSetMouseTracking(ptr, if (enabled) { 1 } else { 0 })
+        }
+    }
+
+    /**
+     * The Function is underMouse
+     *
+     * @return Type of Bool
+     */
+    public func underMouse(): Bool {
+        return unsafe {
+            nativeWidgetUnderMouse(ptr) == 1
         }
     }
 
