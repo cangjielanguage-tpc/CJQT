@@ -56,7 +56,9 @@ public class QQMusicWindow <: QWidget {
 
         setWindowTitle("QQ音乐")
         setWindowFlag(WindowType.FramelessWindowHint.value(), true)
-        setFixedSize(1044, 704)
+        setMinimumWidth(1044)
+        setMinimumHeight(704)
+        resize(1044, 704)
         setStyleSheet("QWidget { background-color: #F5F5F5; }")
 
         let mainLayout = QVBoxLayout(parent: this)
