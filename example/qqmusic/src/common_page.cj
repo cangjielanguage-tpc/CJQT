@@ -39,7 +39,7 @@ public class CommonPage <: QWidget {
         let header = QWidget()
         header.setFixedHeight(40)
         let headerLayout = QHBoxLayout(parent: header)
-        headerLayout.setContentsMargins(0, 0, 0, 0)
+        headerLayout.setContentsMargins(12, 0, 12, 0)
         headerLayout.setSpacing(8)
 
         let image = headerImage
@@ -76,7 +76,7 @@ public class CommonPage <: QWidget {
 
         layout.addWidget(header)
 
-        // 滚动列表容器
+        // 滚动列表容器：widgetResizable=true 撑满视口，布局默认顶部对齐
         scrollArea.setWidget(listContainer)
         scrollArea.setWidgetResizable(true)
         scrollArea.setStyleSheet("QScrollArea { border: none; background-color: #ffffff; }")
@@ -102,8 +102,14 @@ public class CommonPage <: QWidget {
         row.setFixedHeight(40)
         row.setStyleSheet("QWidget { background-color: #ffffff; border-bottom: 1px solid #f0f0f0; }")
         let rowLayout = QHBoxLayout(parent: row)
-        rowLayout.setContentsMargins(12, 0, 12, 0)
+        rowLayout.setContentsMargins(12, 0, 0, 0)
         rowLayout.setSpacing(8)
+
+        // 表头图片占位：与表头的 image(120) + spacing 对齐，保证歌名/歌手/专辑列与表头一致
+        let spacer = QWidget()
+        spacer.setFixedSize(120, 36)
+        spacer.setStyleSheet("QWidget { background: transparent; }")
+        rowLayout.addWidget(spacer)
 
         let nameLabel = QLabel(name)
         nameLabel.setFixedWidth(300)
