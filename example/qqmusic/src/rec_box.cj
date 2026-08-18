@@ -124,17 +124,27 @@ public class RecBox <: QWidget {
         card.setFixedWidth(150)
         let cardLayout = QVBoxLayout(parent: card)
         cardLayout.setContentsMargins(0, 0, 0, 0)
-        cardLayout.setSpacing(6)
-        let image = QLabel()
+        cardLayout.setSpacing(4)
+
+        // 图片固定容器：图片用setGeometry手动定位居中，放大不推挤标题
+        let imageBox = QWidget()
+        imageBox.setFixedSize(150, 150)
+        cardLayout.addWidget(imageBox)
+
+        let image = QLabel(imageBox)
         image.setFixedSize(150, 150)
+        image.move(0, 0)
         image.setStyleSheet(
             "QLabel { background-image: url(${imagePath}); background-repeat: no-repeat; background-position: center center; background-clip: content; border-radius: 10px; padding: 8px; }")
         image.setMouseTracking(true)
-        cardLayout.addWidget(image)
         imageLabels.add(image)
+
         let name = QLabel(title)
         name.setFontSize(12)
         name.setFontColor(QColor(51, 51, 51))
+        name.setStyleSheet(
+            "QLabel { qproperty-alignment: 'AlignCenter'; background: transparent; }")
+        name.setFixedHeight(20)
         cardLayout.addWidget(name)
         return card
     }
@@ -149,6 +159,7 @@ public class RecBox <: QWidget {
     }
 
     // 检查鼠标悬停，平滑放大/缩小图片（步长4，动画约400ms快速完成，避免卡顿）
+    // 图片在固定容器内setGeometry居中扩展，不推挤下方标题
     public func tick() {
         var i: Int64 = 0
         while (i < imageLabels.size) {
@@ -169,6 +180,8 @@ public class RecBox <: QWidget {
                     }
                 }
                 label.setFixedSize(next, next)
+                let offset = (next - 150) / 2
+                label.move(Int32(-offset), Int32(-offset))
             }
             i += 1
         }

@@ -5,22 +5,26 @@ import cjqt.gui.*
 import cjqt.widgets.*
 
 // 仿参考项目 CommonPage：音乐列表页（我喜欢 / 本地下载 / 最近播放）
+// 参考项目：每页不同标题与背景图（ilikebg/localbg/recentbg）
 public class CommonPage <: QWidget {
     let listWidget: QListWidget
+    let titleLabel: QLabel
+    let headerImage: QLabel
     var pageTitle = ""
     var playAllHandler: () -> Unit = { => () }
 
     public init() {
         listWidget = QListWidget()
+        titleLabel = QLabel(pageTitle)
+        headerImage = QLabel()
         setStyleSheet("QWidget { background-color: #F5F5F5; }")
         let layout = QVBoxLayout(parent: this)
         layout.setContentsMargins(16, 12, 16, 12)
         layout.setSpacing(8)
 
-        let title = QLabel(pageTitle)
-        title.setFontSize(18)
-        title.setFontColor(QColor(51, 51, 51))
-        layout.addWidget(title)
+        titleLabel.setFontSize(18)
+        titleLabel.setFontColor(QColor(51, 51, 51))
+        layout.addWidget(titleLabel)
 
         // 表头行：图片 + 歌名/歌手/专辑列 + 播放全部
         let header = QWidget()
@@ -29,7 +33,7 @@ public class CommonPage <: QWidget {
         headerLayout.setContentsMargins(0, 0, 0, 0)
         headerLayout.setSpacing(8)
 
-        let image = QLabel()
+        let image = headerImage
         image.setFixedSize(120, 36)
         image.setStyleSheet(
             "QLabel { background-image: url(images/ilikebg.png); background-repeat: no-repeat; background-position: center center; }")
@@ -70,6 +74,12 @@ public class CommonPage <: QWidget {
 
     public func setPageTitle(title: String) {
         pageTitle = title
+        titleLabel.setText(title)
+    }
+
+    public func setPageImage(imagePath: String) {
+        headerImage.setStyleSheet(
+            "QLabel { background-image: url(${imagePath}); background-repeat: no-repeat; background-position: center center; }")
     }
 
     public func setPlayAllHandler(handler: () -> Unit) {
