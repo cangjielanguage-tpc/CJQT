@@ -44,12 +44,12 @@ public class CommonPage <: QWidget {
         playBox.setFixedHeight(150)
         let playBoxLayout = QHBoxLayout(parent: playBox)
         playBoxLayout.setContentsMargins(0, 0, 0, 0)
-        playBoxLayout.setSpacing(0)
+        playBoxLayout.setSpacing(16)
 
-        // musicImageLabel：150px 宽封面图
+        // musicImageLabel：150px 宽封面图（加内边距，图片四周留白）
         headerImage.setFixedWidth(150)
         headerImage.setStyleSheet(
-            "QLabel { background-image: url(images/ilikebg.png); background-repeat: no-repeat; background-position: center center; }")
+            "QLabel { background-image: url(images/ilikebg.png); background-repeat: no-repeat; background-position: center center; background-clip: content; padding: 12px; border-radius: 8px; }")
         playBoxLayout.addWidget(headerImage)
 
         // playAll：120px 宽，垂直布局(spacer + 播放全部按钮)
