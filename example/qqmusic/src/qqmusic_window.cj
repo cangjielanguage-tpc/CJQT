@@ -515,14 +515,14 @@ public class QQMusicWindow <: QWidget {
         }
     }
 
-    // 按歌名设置喜欢状态并刷新我喜欢页，返回新状态
+    // 按歌名设置喜欢状态并刷新所有页面，返回新状态
     func setLikeByName(name: String, liked: Bool): Bool {
         var i: Int64 = 0
         while (i < library.size()) {
             let music = library.at(i)
             if (music.name == name) {
                 music.isLike = liked
-                refreshLikePage()
+                refreshAllPages()
                 return music.isLike
             }
             i += 1
@@ -537,12 +537,19 @@ public class QQMusicWindow <: QWidget {
             let music = library.at(i)
             if (music.name == name) {
                 music.isLike = !music.isLike
-                refreshLikePage()
+                refreshAllPages()
                 return music.isLike
             }
             i += 1
         }
         return false
+    }
+
+    // 刷新全部三个列表页（喜欢状态变化后同步红心图标）
+    func refreshAllPages() {
+        refreshLocalPage()
+        refreshLikePage()
+        refreshRecentPage()
     }
 
     // 控制栏喜欢按钮：切换当前播放歌曲的喜欢状态并更新图标
