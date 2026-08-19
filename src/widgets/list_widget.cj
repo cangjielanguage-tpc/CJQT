@@ -1,5 +1,7 @@
 package cjqt.widgets
 
+import cjqt.tools.ScrollBarPolicy
+
 foreign func nativeListWidgetCreate(parentPtr: Int64): Int64
 foreign func nativeListWidgetDelete(ptr: Int64): Unit
 foreign func nativeListWidgetAddItem(ptr: Int64, text: CString): Int64
@@ -11,6 +13,8 @@ foreign func nativeListWidgetCurrentItem(ptr: Int64): Int64
 foreign func nativeListWidgetClear(ptr: Int64): Unit
 foreign func nativeListWidgetSetItemText(ptr: Int64, index: Int32, text: CString): Unit
 foreign func nativeListWidgetItemText(ptr: Int64, index: Int32): CString
+foreign func nativeListWidgetSetItemWidget(ptr: Int64, index: Int32, widgetPtr: Int64): Unit
+foreign func nativeListWidgetItemWidget(ptr: Int64, index: Int32): Int64
 foreign func nativeListWidgetItemCreate(text: CString): Int64
 foreign func nativeListWidgetItemDelete(ptr: Int64): Unit
 foreign func nativeListWidgetItemGetText(ptr: Int64): CString
@@ -75,6 +79,52 @@ public class QListWidget <: QWidget {
             LibC.free(t)
             r
         })
+    }
+
+    /**
+     * The Function is setItemWidget
+     *
+     * @param index of Int64
+     * @param widget of QWidget
+     */
+    public func setItemWidget(index: Int64, widget: QWidget) {
+        unsafe {
+            nativeListWidgetSetItemWidget(ptr, Int32(index), widget.ptr)
+        }
+    }
+
+    /**
+     * The Function is itemWidget
+     *
+     * @param index of Int64
+     * @return Type of QWidget
+     */
+    public func itemWidget(index: Int64): QWidget {
+        return QWidget(unsafe {
+            nativeListWidgetItemWidget(ptr, Int32(index))
+        })
+    }
+
+    /**
+     * The Function is setVerticalScrollBarPolicy
+     *
+     * @param policy of ScrollBarPolicy
+     */
+    public func setVerticalScrollBarPolicy(policy: ScrollBarPolicy) {
+        unsafe {
+            nativeAbstractScrollAreaSetVerticalScrollBarPolicy(ptr, policy.value())
+        }
+    }
+
+    /**
+     * The Function is setHorizontalScrollBarPolicy
+     *
+     * @param policy of ScrollBarPolicy
+     */
+    public func setHorizontalScrollBarPolicy(policy: ScrollBarPolicy) {
+        unsafe {
+            nativeAbstractScrollAreaSetHorizontalScrollBarPolicy(ptr, policy.value())
+        }
     }
 
     public func count(): Int64 {

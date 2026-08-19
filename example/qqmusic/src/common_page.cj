@@ -3,18 +3,16 @@ package qqmusic
 import cjqt.core.*
 import cjqt.gui.*
 import cjqt.widgets.*
+import cjqt.tools.*
 import std.collection.*
 
 // 仿参考项目 CommonPage：音乐列表页（完全按 commonpage.ui 布局）
 // PageTittle + musicPlayBox(图片150+播放全部120) + listLabelBox(歌名/歌手/专辑) + 列表
-// 列表行仿 ListItemBox：likeBtn + 歌名 + 歌手 + 专辑，固定列宽对齐
+// 列表用 QListWidget + setItemWidget 自定义行（likeBtn + 歌名 + 歌手 + 专辑）
 public class CommonPage <: QWidget {
     let titleLabel: QLabel
     let headerImage: QLabel
-    let scrollArea: QScrollArea
-    var listContainer: QWidget
-    var listLayout: QVBoxLayout
-    let rows = ArrayList<QWidget>()
+    let listWidget: QListWidget
     let names = ArrayList<String>()
     var pageTitle = ""
     var playAllHandler: () -> Unit = { => () }
@@ -22,11 +20,7 @@ public class CommonPage <: QWidget {
     public init() {
         titleLabel = QLabel(pageTitle)
         headerImage = QLabel()
-        scrollArea = QScrollArea()
-        listContainer = QWidget()
-        listLayout = QVBoxLayout(parent: listContainer)
-        listLayout.setContentsMargins(0, 0, 0, 0)
-        listLayout.setSpacing(0)
+        listWidget = QListWidget()
         setStyleSheet("QWidget { background-color: #F5F5F5; }")
 
         let layout = QVBoxLayout(parent: this)
@@ -46,10 +40,10 @@ public class CommonPage <: QWidget {
         playBoxLayout.setContentsMargins(0, 0, 0, 0)
         playBoxLayout.setSpacing(16)
 
-        // musicImageLabel：150px 宽封面图（拉伸铺满）
+        // musicImageLabel：150px 宽封面图（图片缩放铺满，6px 内边距）
         headerImage.setFixedWidth(150)
-        headerImage.setStyleSheet(
-            "QLabel { background-image: url(images/ilikebg.png); background-repeat: no-repeat; background-position: center center; }")
+        headerImage.setFixedHeight(150)
+        headerImage.setPixmapScaled("images/ilikebg.png", 138, 138)
         playBoxLayout.addWidget(headerImage)
 
         // playAll：120px 宽，垂直布局(spacer + 播放全部按钮)
@@ -99,11 +93,13 @@ public class CommonPage <: QWidget {
 
         layout.addWidget(labelBox)
 
-        // 列表滚动容器
-        scrollArea.setWidget(listContainer)
-        scrollArea.setWidgetResizable(true)
-        scrollArea.setStyleSheet("QScrollArea { border: none; background-color: #ffffff; }")
-        layout.addWidget(scrollArea)
+        // pageMusicList：歌曲列表（QListWidget，行顶部对齐，原生滚动）
+        listWidget.setStyleSheet(
+            "QListWidget { background-color: #ffffff; color: #333333; border: none; font-size: 14px; } QListWidget::item { height: 45px; border-bottom: 1px solid #F0F0F0; padding-left: 16px; padding-right: 16px; } QListWidget::item:hover { background-color: #F5F5F5; } QListWidget::item:selected { background-color: #EFEFEF; }")
+        // 隐藏滑动条（列表项内边距由 setItemWidget 行内设置）
+        listWidget.setVerticalScrollBarPolicy(ScrollBarPolicy.ScrollBarAlwaysOff)
+        listWidget.setHorizontalScrollBarPolicy(ScrollBarPolicy.ScrollBarAlwaysOff)
+        layout.addWidget(listWidget)
     }
 
     public func setPageTitle(title: String) {
@@ -112,22 +108,30 @@ public class CommonPage <: QWidget {
     }
 
     public func setPageImage(imagePath: String) {
-        headerImage.setStyleSheet(
-            "QLabel { background-image: url(${imagePath}); background-repeat: no-repeat; background-position: center center; }")
+        headerImage.setPixmapScaled(imagePath, 138, 138)
     }
 
     public func setPlayAllHandler(handler: () -> Unit) {
         playAllHandler = handler
     }
 
-    // 仿参考项目 ListItemBox：likeBtn + 歌名 + 歌手 + 专辑（固定列宽对齐）
+    // 仿参考项目 ListItemBox：likeBtn + 歌名 + 歌手 + 专辑（setItemWidget 自定义行）
     // likeHandler: 点击喜欢按钮时回调，参数为期望状态，返回实际切换后的状态
-    public func addMusic(name: String, singer: String, album: String, isLike: Bool, likeHandler: (Bool) -> Bool) {
+    // playHandler: 点击播放按钮时回调，播放该行歌曲
+    public func addMusic(name: String, singer: String, album: String, isLike: Bool, likeHandler: (Bool) -> Bool, playHandler: () -> Unit) {
+        let index = listWidget.count()
+        listWidget.addItem("")
+        let row = makeRow(name, singer, album, isLike, likeHandler, playHandler)
+        listWidget.setItemWidget(index, row)
+        names.add(name)
+    }
+
+    func makeRow(name: String, singer: String, album: String, isLike: Bool, likeHandler: (Bool) -> Bool, playHandler: () -> Unit): QWidget {
         let row = QWidget()
         row.setFixedHeight(45)
         row.setStyleSheet("QWidget { background-color: #ffffff; border-bottom: 1px solid #F0F0F0; }")
         let rowLayout = QHBoxLayout(parent: row)
-        rowLayout.setContentsMargins(0, 0, 0, 0)
+        rowLayout.setContentsMargins(12, 0, 12, 0)
         rowLayout.setSpacing(0)
 
         // 歌名区：380px 宽（like 图标 + 歌名）
@@ -166,9 +170,17 @@ public class CommonPage <: QWidget {
         rowLayout.addWidget(albumLabel)
         rowLayout.addStretch(1)
 
-        listLayout.addWidget(row)
-        rows.add(row)
-        names.add(name)
+        // 播放按钮：点击播放该行歌曲
+        let playBtn = QPushButton()
+        playBtn.setFixedSize(25, 25)
+        playBtn.setStyleSheet(
+            "QPushButton { border: none; background-image: url(images/play3.png); background-repeat: no-repeat; background-position: center center; } QPushButton:hover { background-color: #E0E0E0; border-radius: 12px; }")
+        playBtn.clicked.connect() {
+            d => playHandler()
+        }
+        rowLayout.addWidget(playBtn)
+
+        return row
     }
 
     func likeStyle(liked: Bool): String {
@@ -177,29 +189,16 @@ public class CommonPage <: QWidget {
     }
 
     public func clear() {
-        scrollArea.setWidget(QWidget())
-        listContainer = QWidget()
-        listLayout = QVBoxLayout(parent: listContainer)
-        listLayout.setContentsMargins(0, 0, 0, 0)
-        listLayout.setSpacing(0)
-        scrollArea.setWidget(listContainer)
-        rows.clear()
+        listWidget.clear()
         names.clear()
     }
 
     public func currentRow(): Int64 {
-        return 0
+        return listWidget.currentRow()
     }
 
     public func setCurrentRow(row: Int64) {
-        var i: Int64 = 0
-        while (i < rows.size) {
-            rows[i].setStyleSheet("QWidget { background-color: #ffffff; border-bottom: 1px solid #F0F0F0; }")
-            i += 1
-        }
-        if (row >= 0 && row < rows.size) {
-            rows[row].setStyleSheet("QWidget { background-color: #EFEFEF; border-bottom: 1px solid #F0F0F0; }")
-        }
+        listWidget.setCurrentRow(row)
     }
 
     public func musicNameAt(index: Int64): String {

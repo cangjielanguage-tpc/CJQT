@@ -6,7 +6,33 @@
 #include <QMediaPlaylist>
 #include <QMediaMetaData>
 #include <QUrl>
+#include <QDir>
+#include <QDateTime>
+#include <QImage>
+#include "config.h"
 #include "native_string.h"
+
+// QMediaPlayer 子类：捕获 metaDataChanged 信号转发给注册的回调
+class CjQtMediaPlayer : public QMediaPlayer
+{
+public:
+    CjQtMediaPlayer(QObject *parent = nullptr) : QMediaPlayer(parent) {}
+
+    void setMetaDataChangedCallback(nativeConnectCallbackPointer cb)
+    {
+        metaCb = cb;
+        QObject::connect(this, QOverload<>::of(&QMediaPlayer::metaDataChanged), this,
+                         [this]() {
+                             if (metaCb != nullptr)
+                             {
+                                 metaCb(reinterpret_cast<uintptr_t>(this), nullptr);
+                             }
+                         });
+    }
+
+private:
+    nativeConnectCallbackPointer metaCb = nullptr;
+};
 
 extern "C"
 {
@@ -42,7 +68,13 @@ extern "C"
     uintptr_t nativeMediaPlayerCreate(uintptr_t parentPtr)
     {
         QObject *parent = reinterpret_cast<QObject *>(static_cast<uintptr_t>(parentPtr));
-        return reinterpret_cast<uintptr_t>(new QMediaPlayer(parent));
+        return reinterpret_cast<uintptr_t>(new CjQtMediaPlayer(parent));
+    }
+
+    void nativeMediaPlayerSetMetaDataChanged(uintptr_t ptr, nativeConnectCallbackPointer callback)
+    {
+        CjQtMediaPlayer *player = reinterpret_cast<CjQtMediaPlayer *>(static_cast<uintptr_t>(ptr));
+        player->setMetaDataChangedCallback(callback);
     }
 
     void nativeMediaPlayerDelete(uintptr_t ptr)
@@ -130,6 +162,36 @@ extern "C"
     {
         QMediaPlaylist *playlist = reinterpret_cast<QMediaPlaylist *>(static_cast<uintptr_t>(playlistPtr));
         reinterpret_cast<QMediaPlayer *>(static_cast<uintptr_t>(ptr))->setPlaylist(playlist);
+    }
+
+    // 读取播放器元数据封面（GStreamer 用 CoverArtImage，部分后端用 ThumbnailImage），
+    // 保存为临时 PNG 并返回路径；无封面返回空串
+    const char *nativeMediaPlayerThumbnail(uintptr_t ptr)
+    {
+        QMediaPlayer *player = reinterpret_cast<QMediaPlayer *>(static_cast<uintptr_t>(ptr));
+        QImage image;
+        QVariant cover = player->metaData(QMediaMetaData::CoverArtImage);
+        if (cover.isValid())
+        {
+            image = cover.value<QImage>();
+        }
+        if (image.isNull())
+        {
+            QVariant thumb = player->metaData(QMediaMetaData::ThumbnailImage);
+            if (thumb.isValid())
+            {
+                image = thumb.value<QImage>();
+            }
+        }
+        if (!image.isNull())
+        {
+            QString path = QDir::tempPath() + QString("/cjqt_cover_%1.png").arg(QDateTime::currentMSecsSinceEpoch());
+            if (image.save(path))
+            {
+                return cjqt_to_cstring(path);
+            }
+        }
+        return cjqt_to_cstring(QString());
     }
 
     // ---- QMediaPlaylist ----

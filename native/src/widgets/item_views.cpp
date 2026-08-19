@@ -70,6 +70,29 @@ extern "C"
         }
     }
 
+    void nativeListWidgetSetItemWidget(uintptr_t ptr, int index, uintptr_t widgetPtr)
+    {
+        QListWidget *list = reinterpret_cast<QListWidget *>(static_cast<uintptr_t>(ptr));
+        QListWidgetItem *item = list->item(index);
+        QWidget *widget = reinterpret_cast<QWidget *>(static_cast<uintptr_t>(widgetPtr));
+        if (item != nullptr)
+        {
+            list->setItemWidget(item, widget);
+        }
+    }
+
+    uintptr_t nativeListWidgetItemWidget(uintptr_t ptr, int index)
+    {
+        QListWidget *list = reinterpret_cast<QListWidget *>(static_cast<uintptr_t>(ptr));
+        QListWidgetItem *item = list->item(index);
+        if (item != nullptr)
+        {
+            QWidget *widget = list->itemWidget(item);
+            return reinterpret_cast<uintptr_t>(widget);
+        }
+        return 0;
+    }
+
     char *nativeListWidgetItemText(uintptr_t ptr, int index)
     {
         QListWidget *list = reinterpret_cast<QListWidget *>(static_cast<uintptr_t>(ptr));

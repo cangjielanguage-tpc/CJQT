@@ -19,6 +19,7 @@ public class QQMusicWindow <: QWidget {
     let totalTimeLabel: QLabel
     let musicNameLabel: QLabel
     let musicSingerLabel: QLabel
+    let coverLabel: QLabel
     let playBtn: QPushButton
     let playModeBtn: QPushButton
     let volumeBtn: QPushButton
@@ -33,6 +34,7 @@ public class QQMusicWindow <: QWidget {
     var isPlaying = false
     var currentSongIndex = -1
     var currentSongName = ""
+    var coverPending = false
     var maximized = false
     var normalWidth: Int64 = 0
     var normalHeight: Int64 = 0
@@ -55,6 +57,7 @@ public class QQMusicWindow <: QWidget {
         totalTimeLabel = QLabel()
         musicNameLabel = QLabel()
         musicSingerLabel = QLabel()
+        coverLabel = QLabel()
         playBtn = QPushButton()
         playModeBtn = QPushButton()
         volumeBtn = QPushButton()
@@ -340,7 +343,7 @@ public class QQMusicWindow <: QWidget {
         let play1Layout = QHBoxLayout(parent: play1)
         play1Layout.setContentsMargins(0, 0, 0, 0)
         play1Layout.setSpacing(8)
-        let cover = QLabel()
+        let cover = coverLabel
         cover.setFixedSize(60, 60)
         cover.setStyleSheet(
             "QLabel { background-image: url(images/default_cover.png); background-repeat: no-repeat; background-position: center center; }")
@@ -397,12 +400,6 @@ public class QQMusicWindow <: QWidget {
             d => toggleVolumeTool()
         }
         play2Layout.addWidget(volumeBtn)
-
-        let likeBtn = makeIconButton("images/like_1.png")
-        likeBtn.clicked.connect() {
-            d => toggleLikeCurrent(likeBtn)
-        }
-        play2Layout.addWidget(likeBtn)
 
         let addBtn = makeIconButton("images/add.png")
         addBtn.clicked.connect() {
@@ -484,19 +481,17 @@ public class QQMusicWindow <: QWidget {
         var i: Int64 = 0
         while (i < library.size()) {
             let m = library.at(i)
-            localPage.addMusic(m.name, m.singer, m.album, m.isLike, { liked => setLikeByName(m.name, liked) })
+            localPage.addMusic(m.name, m.singer, m.album, m.isLike, { liked => setLikeByName(m.name, liked) }, { => playByName(m.name) })
             i += 1
         }
-    }
-
-    // 我喜欢页数据源：isLike 标记的歌曲
+    }    // 我喜欢页数据源：isLike 标记的歌曲
     func refreshLikePage() {
         likePage.clear()
         var i: Int64 = 0
         while (i < library.size()) {
             let m = library.at(i)
             if (m.isLike) {
-                likePage.addMusic(m.name, m.singer, m.album, m.isLike, { liked => setLikeByName(m.name, liked) })
+                likePage.addMusic(m.name, m.singer, m.album, m.isLike, { liked => setLikeByName(m.name, liked) }, { => playByName(m.name) })
             }
             i += 1
         }
@@ -509,7 +504,7 @@ public class QQMusicWindow <: QWidget {
         while (i < library.size()) {
             let m = library.at(i)
             if (m.isHistory) {
-                recentPage.addMusic(m.name, m.singer, m.album, m.isLike, { liked => setLikeByName(m.name, liked) })
+                recentPage.addMusic(m.name, m.singer, m.album, m.isLike, { liked => setLikeByName(m.name, liked) }, { => playByName(m.name) })
             }
             i += 1
         }
@@ -552,17 +547,19 @@ public class QQMusicWindow <: QWidget {
         refreshRecentPage()
     }
 
-    // 控制栏喜欢按钮：切换当前播放歌曲的喜欢状态并更新图标
-    func toggleLikeCurrent(btn: QPushButton) {
-        if (currentSongIndex < 0 || currentSongIndex >= library.size()) {
-            return
-        }
-        let liked = toggleLike(library.at(currentSongIndex).name)
-        btn.setStyleSheet(iconStyle(if (liked) { "images/like_3.png" } else { "images/like_1.png" }))
-    }
-
     func playAll() {
         if (library.size() == 0) {
+            return
+        }
+        buildPlaylist()
+        playlist.setCurrentIndex(0)
+        currentSongIndex = 0
+        playCurrent()
+    }
+
+    // 构建播放列表（添加全部歌曲）
+    func buildPlaylist() {
+        if (playlist.mediaCount() > 0) {
             return
         }
         playlist.clear()
@@ -571,9 +568,6 @@ public class QQMusicWindow <: QWidget {
             playlist.addMedia(fileUrl(library.at(i).filePath))
             i += 1
         }
-        playlist.setCurrentIndex(0)
-        currentSongIndex = 0
-        playCurrent()
     }
 
     func playCurrent() {
@@ -583,10 +577,61 @@ public class QQMusicWindow <: QWidget {
             musicNameLabel.setText(music.name)
             musicSingerLabel.setText(parseSinger(music.name))
             loadLrc(music)
-            music.isHistory = true
+            updateCover()
+            if (!music.isHistory) {
+                music.isHistory = true
+                refreshRecentPage()
+            }
             player.play()
             isPlaying = true
             playBtn.setStyleSheet(iconStyle("images/play_on.png"))
+        }
+    }
+
+    // 读取播放器元数据封面并更新控制栏封面图（无封面时用默认图）
+    // 信号驱动为主，未读到则置 pending 由进度定时器兜底重试
+    func updateCover() {
+        let coverPath = player.thumbnail()
+        if (coverPath.size > 0) {
+            coverPending = false
+            coverLabel.setStyleSheet(
+                "QLabel { background-image: url(${coverPath}); background-repeat: no-repeat; background-position: center center; background-clip: content; padding: 4px; }")
+        } else {
+            coverPending = true
+            coverLabel.setStyleSheet(
+                "QLabel { background-image: url(images/default_cover.png); background-repeat: no-repeat; background-position: center center; }")
+        }
+    }
+
+    // 元数据加载完成后重试读取封面（由进度定时器每帧调用，信号未触发时兜底）
+    func retryCover() {
+        if (!coverPending) {
+            return
+        }
+        if (player.duration() <= 0) {
+            return
+        }
+        updateCover()
+    }
+
+    // 按歌名播放：找到歌曲索引，切换到对应播放列表曲目并播放
+    func playByName(name: String): Unit {
+        var i: Int64 = 0
+        while (i < library.size()) {
+            let music = library.at(i)
+            if (music.name == name) {
+                // 播放列表为空时先构建（不自动播放第一首）
+                if (playlist.mediaCount() == 0) {
+                    buildPlaylist()
+                }
+                if (currentSongIndex != i) {
+                    playlist.setCurrentIndex(i)
+                }
+                currentSongIndex = i
+                playCurrent()
+                return
+            }
+            i += 1
         }
     }
 
@@ -679,6 +724,30 @@ public class QQMusicWindow <: QWidget {
         currentTimeLabel.setText(formatTime(position))
         totalTimeLabel.setText(formatTime(duration))
         updateLrc(position)
+        retryCover()
+    }
+
+    // 连接播放器元数据变更信号（构造后调用，方法内 this 可用）
+    public func connectMetaDataChanged() {
+        player.metaDataChanged.connect() {
+            => onMetaDataChanged()
+        }
+        musicSlider.setSeekHandler() {
+            ratio => seekTo(ratio)
+        }
+    }
+
+    // 进度条拖拽释放后跳转到对应播放位置
+    func seekTo(ratio: Float64) {
+        let duration = player.duration()
+        if (duration > 0) {
+            player.setPosition(Int64(Float64(duration) * ratio))
+        }
+    }
+
+    // 元数据变更时更新封面（信号驱动，替代轮询）
+    func onMetaDataChanged() {
+        updateCover()
     }
 
     func formatTime(ms: Int64): String {

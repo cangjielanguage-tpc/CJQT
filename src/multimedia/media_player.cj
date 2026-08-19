@@ -1,6 +1,7 @@
 package cjqt.multimedia
 
 import cjqt.core.*
+import cjqt.tools.QCallbackMap
 
 foreign func nativeMediaPlayerCreate(parentPtr: Int64): Int64
 foreign func nativeMediaPlayerDelete(ptr: Int64): Unit
@@ -20,6 +21,36 @@ foreign func nativeMediaPlayerDuration(ptr: Int64): Int64
 foreign func nativeMediaPlayerIsAudioAvailable(ptr: Int64): Bool
 foreign func nativeMediaPlayerIsVideoAvailable(ptr: Int64): Bool
 foreign func nativeMediaPlayerSetPlaylist(ptr: Int64, playlistPtr: Int64): Unit
+foreign func nativeMediaPlayerThumbnail(ptr: Int64): CString
+foreign func nativeMediaPlayerSetMetaDataChanged(ptr: Int64, callback: CFunc<(Int64, CPointer<Unit>) -> Unit>): Unit
+
+// QMediaPlayer metaDataChanged 信号
+public class QMediaPlayerMetaDataChangedSignal {
+    private let ptr: Int64
+
+    public init(ptr: Int64) {
+        this.ptr = ptr
+    }
+
+    public func connect(callback: () -> Unit) {
+        let code = ptr
+        QCallbackMap.connect[code] = callback
+        let cb: CFunc<(Int64, CPointer<Unit>) -> Unit> = {
+            code, pointer =>
+            try {
+                let opt: Option<() -> Unit> = QCallbackMap.connect[code]
+                if (opt.isSome()) {
+                    (opt.getOrThrow())()
+                }
+            } catch (e: Exception) {
+                println("metaDataChanged callback: ${e}")
+            }
+        }
+        unsafe {
+            nativeMediaPlayerSetMetaDataChanged(ptr, cb)
+        }
+    }
+}
 
 public enum QMediaPlayerState {
     | StoppedState
@@ -62,12 +93,16 @@ public enum QMediaPlayerStatus {
 }
 
 public class QMediaPlayer <: QObject {
+    public let metaDataChanged: QMediaPlayerMetaDataChangedSignal
+
     public init(ptr: Int64) {
         super(ptr)
+        metaDataChanged = QMediaPlayerMetaDataChangedSignal(ptr)
     }
 
     public init() {
         super(unsafe { nativeMediaPlayerCreate(0) })
+        metaDataChanged = QMediaPlayerMetaDataChangedSignal(ptr)
     }
 
     public override func delete() {
@@ -152,5 +187,20 @@ public class QMediaPlayer <: QObject {
 
     public func setPlaylist(playlist: QMediaPlaylist) {
         unsafe { nativeMediaPlayerSetPlaylist(ptr, playlist.ptr) }
+    }
+
+    /**
+     * The Function is thumbnail
+     *
+     * 读取媒体元数据中的封面图（ThumbnailImage），保存为临时PNG并返回路径；
+     * 无封面返回空字符串
+     *
+     * @return Type of String
+     */
+    public func thumbnail(): String {
+        let result = unsafe {
+            nativeMediaPlayerThumbnail(ptr).toString()
+        }
+        return result
     }
 }

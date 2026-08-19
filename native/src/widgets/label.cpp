@@ -1,4 +1,5 @@
 #include "label.h"
+#include <QPixmap>
 
 extern "C"
 {
@@ -40,6 +41,16 @@ extern "C"
     void nativeLabelSetText(uintptr_t ptr, const char *text){
         QLabel *instance = reinterpret_cast<QLabel *>(static_cast<uintptr_t>(ptr));
         instance->setText(text);
+    }
+
+    void nativeLabelSetPixmapScaled(uintptr_t ptr, const char *path, int w, int h){
+        QLabel *instance = reinterpret_cast<QLabel *>(static_cast<uintptr_t>(ptr));
+        QPixmap pixmap(QString::fromUtf8(path));
+        if (!pixmap.isNull() && w > 0 && h > 0)
+        {
+            pixmap = pixmap.scaled(w, h, Qt::KeepAspectRatioByExpanding, Qt::SmoothTransformation);
+        }
+        instance->setPixmap(pixmap);
     }
 
 	void nativeLabelDelete(uintptr_t ptr)

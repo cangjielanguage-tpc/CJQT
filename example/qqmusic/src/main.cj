@@ -10,6 +10,7 @@ main() {
     AnimGlobals.progressTick = { => win.updateProgress() }
     AnimGlobals.navTick = { => win.tickNav() }
     AnimGlobals.recTick = { => RecBox.tickAll() }
+    win.connectMetaDataChanged()
     win.show()
     QApplication.exec()
     win.delete()

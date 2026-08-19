@@ -13,6 +13,7 @@ import cjqt.core.*
 
 foreign func nativeLabelCreate(parentPtr: Int64): Int64
 foreign func nativeLabelCreateText(text:CString,parentPtr: Int64): Int64
+foreign func nativeLabelSetPixmapScaled(ptr: Int64, path: CString, w: Int32, h: Int32): Unit
 foreign func nativeLabelSetText(ptr: Int64, text:CString): Unit
 foreign func nativeLabelDelete(ptr: Int64): Unit
 
@@ -89,6 +90,23 @@ public class QLabel <: QWidget{
             let t=LibC.mallocCString(text)
             nativeLabelSetText(ptr, t)
             LibC.free(t)
+        }
+    }
+
+    /**
+     * The Function is setPixmapScaled
+     *
+     * 加载图片并缩放到指定尺寸设置到 QLabel（铺满显示）
+     *
+     * @param path of String
+     * @param w of Int32
+     * @param h of Int32
+     */
+    public func setPixmapScaled(path: String, w: Int32, h: Int32) {
+        unsafe {
+            let p = LibC.mallocCString(path)
+            nativeLabelSetPixmapScaled(ptr, p, w, h)
+            LibC.free(p)
         }
     }
 
