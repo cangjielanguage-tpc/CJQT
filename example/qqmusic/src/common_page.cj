@@ -142,8 +142,9 @@ public class CommonPage <: QWidget {
         likeBtn.setStyleSheet(likeStyle(isLike))
         likeBtn.clicked.connect() {
             d =>
-            let liked = likeHandler(!isLike)
-            likeBtn.setStyleSheet(likeStyle(liked))
+            // 仅触发回调；回调会刷新所有列表页并重建行，likeBtn 随后被销毁，
+            // 因此不能在回调后访问 likeBtn（会访问已释放内存导致崩溃）
+            likeHandler(!isLike)
         }
         nameBoxLayout.addWidget(likeBtn)
 
