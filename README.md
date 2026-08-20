@@ -149,6 +149,29 @@ D:\work\CJQT\target\release\cjqt
 
 6.example示例运行
 
+### 仿QQ音乐示例
+
+[hello示例详情](./example/qqmusic)
+
+选择example\qqmusic项目，使用cjpm build进行构建，之后运行target\release\bin\main文件
+
+也可执行命令如下：
+
+Linux下：
+```shell
+./example/qqmusic/run.sh 
+```
+
+Windows下：
+```shell
+.\example\qqmusic\run.ps1 
+```
+
+执行效果：
+<p align="center">
+<img src="./doc/assets/qqmusic_demo.png" width="60%" >
+</p>
+
 ### hello示例
 
 [hello示例详情](./example/hello)

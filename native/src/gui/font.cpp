@@ -27,6 +27,12 @@ extern "C"
         instance->setPointSize(size);
     }
 
+    void nativeFontSetPixelSize(uintptr_t ptr, int size)
+    {
+        QFont *instance = reinterpret_cast<QFont *>(static_cast<uintptr_t>(ptr));
+        instance->setPixelSize(size);
+    }
+
     void nativeFontSetFamily(uintptr_t ptr,  const char *family){
         QFont *instance = reinterpret_cast<QFont *>(static_cast<uintptr_t>(ptr));
         instance->setFamily(family);

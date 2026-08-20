@@ -209,8 +209,9 @@ extern "C"
 
     bool nativeMediaPlaylistAddMediaUrl(uintptr_t ptr, const char *url)
     {
+        // 使用 QUrl::fromLocalFile：跨平台处理本地路径（Windows C:\ 反斜杠等）
         return reinterpret_cast<QMediaPlaylist *>(static_cast<uintptr_t>(ptr))->addMedia(
-            QMediaContent(QUrl(QString::fromUtf8(url))));
+            QMediaContent(QUrl::fromLocalFile(QString::fromUtf8(url))));
     }
 
     int nativeMediaPlaylistMediaCount(uintptr_t ptr)

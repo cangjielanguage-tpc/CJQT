@@ -11,6 +11,7 @@ package cjqt.gui
 foreign func nativeFontCreate(fontPtr: Int64): Int64
 foreign func nativeFontCreateFPWI(family:CString,pointSize:Int32,weight:Int32,italic:Bool): Int64
 foreign func nativeFontSetPointSize(ptr: Int64, size: Int32): Unit
+foreign func nativeFontSetPixelSize(ptr: Int64, size: Int32): Unit
 foreign func nativeFontDelete(ptr: Int64): Unit
 
 foreign func nativeFontSetFamily(ptr: Int64, family:CString): Unit
@@ -72,6 +73,17 @@ public class QFont {
     public func setPointSize(size: Int32) {
         unsafe {
             nativeFontSetPointSize(ptr, size)
+        }
+    }
+
+    /**
+     * The Function is setPixelSize
+     *
+     * @param size of Int32
+     */
+    public func setPixelSize(size: Int32) {
+        unsafe {
+            nativeFontSetPixelSize(ptr, size)
         }
     }
     public func setFamily(family:String){

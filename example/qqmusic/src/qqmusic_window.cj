@@ -760,7 +760,8 @@ public class QQMusicWindow <: QWidget {
     }
 
     func fileUrl(path: String): String {
-        return "file://${path}"
+        // 传纯本地路径，native 层用 QUrl::fromLocalFile 生成平台正确的 file URL
+        return path
     }
 
     func parseSinger(name: String): String {

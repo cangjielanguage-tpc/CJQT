@@ -138,7 +138,7 @@ public class QLabel <: QWidget{
      */
     public func setFontSize(size :Int32){
         let font = QFont()
-        font.setPointSize(size)
+        font.setPixelSize(size)
         setFont(font)
     }
 }
